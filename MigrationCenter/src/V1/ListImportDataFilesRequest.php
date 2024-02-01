@@ -53,8 +53,7 @@ class ListImportDataFilesRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. Name of the parent of the `ImportDataFiles` resource. Please see
-     *                       {@see MigrationCenterClient::importJobName()} for help formatting this field.
+     * @param string $parent Required. Name of the parent of the `ImportDataFiles` resource.
      *
      * @return \Google\Cloud\MigrationCenter\V1\ListImportDataFilesRequest
      *

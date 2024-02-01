@@ -32,17 +32,19 @@ use Google\Cloud\Ids\V1\ListEndpointsRequest;
 /**
  * Lists Endpoints in a given project and location.
  *
- * @param string $formattedParent The parent, which owns this collection of endpoints. Please see
- *                                {@see IDSClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_endpoints_sample(string $formattedParent): void
+function list_endpoints_sample(): void
 {
     // Create a client.
     $iDSClient = new IDSClient();
 
     // Prepare the request message.
-    $request = (new ListEndpointsRequest())
-        ->setParent($formattedParent);
+    $request = new ListEndpointsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +58,5 @@ function list_endpoints_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = IDSClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_endpoints_sample($formattedParent);
 }
 // [END ids_v1_generated_IDS_ListEndpoints_sync]

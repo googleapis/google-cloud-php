@@ -48,8 +48,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. Parent value for `ListGroupsRequest`. Please see
-     *                       {@see MigrationCenterClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Parent value for `ListGroupsRequest`.
      *
      * @return \Google\Cloud\MigrationCenter\V1\ListGroupsRequest
      *

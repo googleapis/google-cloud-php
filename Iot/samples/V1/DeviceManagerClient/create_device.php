@@ -31,21 +31,19 @@ use Google\Cloud\Iot\V1\Device;
 /**
  * Creates a device in a device registry.
  *
- * @param string $formattedParent The name of the device registry where this device should be created.
- *                                For example,
- *                                `projects/example-project/locations/us-central1/registries/my-registry`. Please see
- *                                {@see DeviceManagerClient::registryName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_device_sample(string $formattedParent): void
+function create_device_sample(): void
 {
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
     // Prepare the request message.
-    $device = new Device();
-    $request = (new CreateDeviceRequest())
-        ->setParent($formattedParent)
-        ->setDevice($device);
+    $request = new CreateDeviceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +53,5 @@ function create_device_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DeviceManagerClient::registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-
-    create_device_sample($formattedParent);
 }
 // [END cloudiot_v1_generated_DeviceManager_CreateDevice_sync]

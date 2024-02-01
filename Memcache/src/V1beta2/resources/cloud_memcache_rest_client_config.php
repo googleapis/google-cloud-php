@@ -62,9 +62,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'instance_id',
-                ],
             ],
             'DeleteInstance' => [
                 'method' => 'delete',
@@ -122,9 +119,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateParameters' => [

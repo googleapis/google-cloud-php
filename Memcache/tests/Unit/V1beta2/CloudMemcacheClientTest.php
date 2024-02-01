@@ -31,13 +31,10 @@ use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\Cloud\Memcache\V1beta2\CloudMemcacheClient;
 use Google\Cloud\Memcache\V1beta2\Instance;
-use Google\Cloud\Memcache\V1beta2\Instance\NodeConfig;
 use Google\Cloud\Memcache\V1beta2\ListInstancesResponse;
-use Google\Cloud\Memcache\V1beta2\RescheduleMaintenanceRequest\RescheduleType;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -113,9 +110,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->applyParameters($formattedName);
+        $response = $gapicClient->applyParameters();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -125,8 +120,6 @@ class CloudMemcacheClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/ApplyParameters', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/applyParametersTest');
         $response->pollUntilComplete([
@@ -177,9 +170,7 @@ class CloudMemcacheClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->applyParameters($formattedName);
+        $response = $gapicClient->applyParameters();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -244,9 +235,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->applySoftwareUpdate($formattedInstance);
+        $response = $gapicClient->applySoftwareUpdate();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -256,8 +245,6 @@ class CloudMemcacheClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/ApplySoftwareUpdate', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($formattedInstance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/applySoftwareUpdateTest');
         $response->pollUntilComplete([
@@ -308,9 +295,7 @@ class CloudMemcacheClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->applySoftwareUpdate($formattedInstance);
+        $response = $gapicClient->applySoftwareUpdate();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -375,21 +360,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $instanceId = 'instanceId-2101995259';
-        $resource = new Instance();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
-        $resourceNodeCount = 754855871;
-        $resource->setNodeCount($resourceNodeCount);
-        $resourceNodeConfig = new NodeConfig();
-        $nodeConfigCpuCount = 604896331;
-        $resourceNodeConfig->setCpuCount($nodeConfigCpuCount);
-        $nodeConfigMemorySizeMb = 701709349;
-        $resourceNodeConfig->setMemorySizeMb($nodeConfigMemorySizeMb);
-        $resource->setNodeConfig($resourceNodeConfig);
-        $response = $gapicClient->createInstance($formattedParent, $instanceId, $resource);
+        $response = $gapicClient->createInstance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -399,12 +370,6 @@ class CloudMemcacheClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/CreateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([
@@ -455,21 +420,7 @@ class CloudMemcacheClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $instanceId = 'instanceId-2101995259';
-        $resource = new Instance();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
-        $resourceNodeCount = 754855871;
-        $resource->setNodeCount($resourceNodeCount);
-        $resourceNodeConfig = new NodeConfig();
-        $nodeConfigCpuCount = 604896331;
-        $resourceNodeConfig->setCpuCount($nodeConfigCpuCount);
-        $nodeConfigMemorySizeMb = 701709349;
-        $resourceNodeConfig->setMemorySizeMb($nodeConfigMemorySizeMb);
-        $resource->setNodeConfig($resourceNodeConfig);
-        $response = $gapicClient->createInstance($formattedParent, $instanceId, $resource);
+        $response = $gapicClient->createInstance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -520,9 +471,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->deleteInstance($formattedName);
+        $response = $gapicClient->deleteInstance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -532,8 +481,6 @@ class CloudMemcacheClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/DeleteInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteInstanceTest');
         $response->pollUntilComplete([
@@ -584,9 +531,7 @@ class CloudMemcacheClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->deleteInstance($formattedName);
+        $response = $gapicClient->deleteInstance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -633,17 +578,13 @@ class CloudMemcacheClientTest extends GeneratedTest
         $expectedResponse->setDiscoveryEndpoint($discoveryEndpoint);
         $expectedResponse->setUpdateAvailable($updateAvailable);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->getInstance($formattedName);
+        $response = $gapicClient->getInstance();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/GetInstance', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -665,10 +606,8 @@ class CloudMemcacheClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         try {
-            $gapicClient->getInstance($formattedName);
+            $gapicClient->getInstance();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -698,9 +637,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResources($resources);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listInstances($formattedParent);
+        $response = $gapicClient->listInstances();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -710,8 +647,6 @@ class CloudMemcacheClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/ListInstances', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -733,10 +668,8 @@ class CloudMemcacheClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listInstances($formattedParent);
+            $gapicClient->listInstances();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -791,10 +724,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $rescheduleType = RescheduleType::RESCHEDULE_TYPE_UNSPECIFIED;
-        $response = $gapicClient->rescheduleMaintenance($formattedInstance, $rescheduleType);
+        $response = $gapicClient->rescheduleMaintenance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -804,10 +734,6 @@ class CloudMemcacheClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/RescheduleMaintenance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($formattedInstance, $actualValue);
-        $actualValue = $actualApiRequestObject->getRescheduleType();
-        $this->assertProtobufEquals($rescheduleType, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/rescheduleMaintenanceTest');
         $response->pollUntilComplete([
@@ -858,10 +784,7 @@ class CloudMemcacheClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $rescheduleType = RescheduleType::RESCHEDULE_TYPE_UNSPECIFIED;
-        $response = $gapicClient->rescheduleMaintenance($formattedInstance, $rescheduleType);
+        $response = $gapicClient->rescheduleMaintenance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -926,20 +849,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $resource = new Instance();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
-        $resourceNodeCount = 754855871;
-        $resource->setNodeCount($resourceNodeCount);
-        $resourceNodeConfig = new NodeConfig();
-        $nodeConfigCpuCount = 604896331;
-        $resourceNodeConfig->setCpuCount($nodeConfigCpuCount);
-        $nodeConfigMemorySizeMb = 701709349;
-        $resourceNodeConfig->setMemorySizeMb($nodeConfigMemorySizeMb);
-        $resource->setNodeConfig($resourceNodeConfig);
-        $response = $gapicClient->updateInstance($updateMask, $resource);
+        $response = $gapicClient->updateInstance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -949,10 +859,6 @@ class CloudMemcacheClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/UpdateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateInstanceTest');
         $response->pollUntilComplete([
@@ -1003,20 +909,7 @@ class CloudMemcacheClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $resource = new Instance();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
-        $resourceNodeCount = 754855871;
-        $resource->setNodeCount($resourceNodeCount);
-        $resourceNodeConfig = new NodeConfig();
-        $nodeConfigCpuCount = 604896331;
-        $resourceNodeConfig->setCpuCount($nodeConfigCpuCount);
-        $nodeConfigMemorySizeMb = 701709349;
-        $resourceNodeConfig->setMemorySizeMb($nodeConfigMemorySizeMb);
-        $resource->setNodeConfig($resourceNodeConfig);
-        $response = $gapicClient->updateInstance($updateMask, $resource);
+        $response = $gapicClient->updateInstance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1081,10 +974,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateParameters($formattedName, $updateMask);
+        $response = $gapicClient->updateParameters();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1094,10 +984,6 @@ class CloudMemcacheClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/UpdateParameters', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateParametersTest');
         $response->pollUntilComplete([
@@ -1148,10 +1034,7 @@ class CloudMemcacheClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateParameters($formattedName, $updateMask);
+        $response = $gapicClient->updateParameters();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

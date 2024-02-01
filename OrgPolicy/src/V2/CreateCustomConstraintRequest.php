@@ -34,7 +34,6 @@ class CreateCustomConstraintRequest extends \Google\Protobuf\Internal\Message
      * @param string                                      $parent           Required. Must be in the following form:
      *
      *                                                                      * `organizations/{organization_id}`
-     *                                                                      Please see {@see OrgPolicyClient::organizationName()} for help formatting this field.
      * @param \Google\Cloud\OrgPolicy\V2\CustomConstraint $customConstraint Required. Custom constraint to create.
      *
      * @return \Google\Cloud\OrgPolicy\V2\CreateCustomConstraintRequest

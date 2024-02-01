@@ -32,23 +32,19 @@ use Google\Cloud\OrgPolicy\V2\ListConstraintsRequest;
 /**
  * Lists constraints that could be applied on the specified resource.
  *
- * @param string $formattedParent The Google Cloud resource that parents the constraint. Must be in
- *                                one of the following forms:
- *
- *                                * `projects/{project_number}`
- *                                * `projects/{project_id}`
- *                                * `folders/{folder_id}`
- *                                * `organizations/{organization_id}`
- *                                Please see {@see OrgPolicyClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_constraints_sample(string $formattedParent): void
+function list_constraints_sample(): void
 {
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
     // Prepare the request message.
-    $request = (new ListConstraintsRequest())
-        ->setParent($formattedParent);
+    $request = new ListConstraintsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,21 +58,5 @@ function list_constraints_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = OrgPolicyClient::projectName('[PROJECT]');
-
-    list_constraints_sample($formattedParent);
 }
 // [END orgpolicy_v2_generated_OrgPolicy_ListConstraints_sync]

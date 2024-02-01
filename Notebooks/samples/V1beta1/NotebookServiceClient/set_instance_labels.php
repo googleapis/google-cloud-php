@@ -32,10 +32,13 @@ use Google\Rpc\Status;
 /**
  * Updates the labels of an Instance.
  *
- * @param string $name Format:
- *                     `projects/{project_id}/locations/{location}/instances/{instance_id}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_instance_labels_sample(string $name): void
+function set_instance_labels_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
@@ -43,7 +46,7 @@ function set_instance_labels_sample(string $name): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $notebookServiceClient->setInstanceLabels($name);
+        $response = $notebookServiceClient->setInstanceLabels();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,21 +61,5 @@ function set_instance_labels_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    set_instance_labels_sample($name);
 }
 // [END notebooks_v1beta1_generated_NotebookService_SetInstanceLabels_sync]

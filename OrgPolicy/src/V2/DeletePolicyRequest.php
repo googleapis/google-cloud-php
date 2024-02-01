@@ -34,8 +34,7 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the policy to delete.
-     *                     See the policy entry for naming rules. Please see
-     *                     {@see OrgPolicyClient::policyName()} for help formatting this field.
+     *                     See the policy entry for naming rules.
      *
      * @return \Google\Cloud\OrgPolicy\V2\DeletePolicyRequest
      *

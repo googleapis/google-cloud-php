@@ -28,27 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetApp\V1\Client\NetAppClient;
 use Google\Cloud\NetApp\V1\KmsConfig;
 use Google\Cloud\NetApp\V1\UpdateKmsConfigRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the Kms config properties with the full spec
  *
- * @param string $kmsConfigCryptoKeyName Customer managed crypto key resource full name. Format:
- *                                       projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_kms_config_sample(string $kmsConfigCryptoKeyName): void
+function update_kms_config_sample(): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $kmsConfig = (new KmsConfig())
-        ->setCryptoKeyName($kmsConfigCryptoKeyName);
-    $request = (new UpdateKmsConfigRequest())
-        ->setUpdateMask($updateMask)
-        ->setKmsConfig($kmsConfig);
+    $request = new UpdateKmsConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,21 +65,5 @@ function update_kms_config_sample(string $kmsConfigCryptoKeyName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $kmsConfigCryptoKeyName = '[CRYPTO_KEY_NAME]';
-
-    update_kms_config_sample($kmsConfigCryptoKeyName);
 }
 // [END netapp_v1_generated_NetApp_UpdateKmsConfig_sync]

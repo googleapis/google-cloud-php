@@ -659,18 +659,18 @@ class EnvironmentsGapicClient
      * ```
      * $environmentsClient = new EnvironmentsClient();
      * try {
-     *     $formattedEnvironment = $environmentsClient->environmentName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]');
-     *     $response = $environmentsClient->fetchDatabaseProperties($formattedEnvironment);
+     *     $response = $environmentsClient->fetchDatabaseProperties();
      * } finally {
      *     $environmentsClient->close();
      * }
      * ```
      *
-     * @param string $environment  Required. The resource name of the environment, in the form:
-     *                             "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $environment
+     *           Required. The resource name of the environment, in the form:
+     *           "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -681,14 +681,15 @@ class EnvironmentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function fetchDatabaseProperties(
-        $environment,
-        array $optionalArgs = []
-    ) {
+    public function fetchDatabaseProperties(array $optionalArgs = [])
+    {
         $request = new FetchDatabasePropertiesRequest();
         $requestParamHeaders = [];
-        $request->setEnvironment($environment);
-        $requestParamHeaders['environment'] = $environment;
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+            $requestParamHeaders['environment'] = $optionalArgs['environment'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

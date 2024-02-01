@@ -33,28 +33,19 @@ use Google\Rpc\Status;
 /**
  * Updates the DNS conditional forwarder.
  *
- * @param string $formattedName               The resource domain name, project name and location using the form:
- *                                            `projects/{project_id}/locations/global/domains/{domain_name}`
- *                                            Please see {@see ManagedIdentitiesServiceClient::domainName()} for help formatting this field.
- * @param string $targetDomainName            The fully-qualified target domain name which will be in trust with current
- *                                            domain.
- * @param string $targetDnsIpAddressesElement The target DNS server IP addresses to resolve the remote domain involved
- *                                            in the trust.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function reconfigure_trust_sample(
-    string $formattedName,
-    string $targetDomainName,
-    string $targetDnsIpAddressesElement
-): void {
+function reconfigure_trust_sample(): void
+{
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
     // Prepare the request message.
-    $targetDnsIpAddresses = [$targetDnsIpAddressesElement,];
-    $request = (new ReconfigureTrustRequest())
-        ->setName($formattedName)
-        ->setTargetDomainName($targetDomainName)
-        ->setTargetDnsIpAddresses($targetDnsIpAddresses);
+    $request = new ReconfigureTrustRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,23 +65,5 @@ function reconfigure_trust_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ManagedIdentitiesServiceClient::domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-    $targetDomainName = '[TARGET_DOMAIN_NAME]';
-    $targetDnsIpAddressesElement = '[TARGET_DNS_IP_ADDRESSES]';
-
-    reconfigure_trust_sample($formattedName, $targetDomainName, $targetDnsIpAddressesElement);
 }
 // [END managedidentities_v1_generated_ManagedIdentitiesService_ReconfigureTrust_sync]

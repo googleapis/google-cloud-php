@@ -35,28 +35,19 @@ use Google\Rpc\Status;
  * to use BigQuery to read the logs stored in the log bucket. A log bucket may
  * currently only contain one link.
  *
- * @param string $formattedParent The full resource name of the bucket to create a link for.
- *
- *                                "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
- *                                "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
- *                                "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
- *                                "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
- *                                Please see {@see ConfigServiceV2Client::logBucketName()} for help formatting this field.
- * @param string $linkId          The ID to use for the link. The link_id can have up to 100
- *                                characters. A valid link_id must only have alphanumeric characters and
- *                                underscores within it.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_link_sample(string $formattedParent, string $linkId): void
+function create_link_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $link = new Link();
-    $request = (new CreateLinkRequest())
-        ->setParent($formattedParent)
-        ->setLink($link)
-        ->setLinkId($linkId);
+    $request = new CreateLinkRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -76,22 +67,5 @@ function create_link_sample(string $formattedParent, string $linkId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConfigServiceV2Client::logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-    $linkId = '[LINK_ID]';
-
-    create_link_sample($formattedParent, $linkId);
 }
 // [END logging_v2_generated_ConfigServiceV2_CreateLink_sync]

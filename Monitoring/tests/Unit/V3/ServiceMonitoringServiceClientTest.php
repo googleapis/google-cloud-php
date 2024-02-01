@@ -78,20 +78,13 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $service = new Service();
-        $response = $gapicClient->createService($parent, $service);
+        $response = $gapicClient->createService();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/CreateService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getService();
-        $this->assertProtobufEquals($service, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -113,11 +106,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $service = new Service();
         try {
-            $gapicClient->createService($parent, $service);
+            $gapicClient->createService();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -146,20 +136,13 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setGoal($goal);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $serviceLevelObjective = new ServiceLevelObjective();
-        $response = $gapicClient->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
+        $response = $gapicClient->createServiceLevelObjective();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/CreateServiceLevelObjective', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getServiceLevelObjective();
-        $this->assertProtobufEquals($serviceLevelObjective, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -181,11 +164,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $serviceLevelObjective = new ServiceLevelObjective();
         try {
-            $gapicClient->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
+            $gapicClient->createServiceLevelObjective();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -208,16 +188,12 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $gapicClient->deleteService($formattedName);
+        $gapicClient->deleteService();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/DeleteService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -239,10 +215,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
         try {
-            $gapicClient->deleteService($formattedName);
+            $gapicClient->deleteService();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -265,16 +239,12 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-        $gapicClient->deleteServiceLevelObjective($formattedName);
+        $gapicClient->deleteServiceLevelObjective();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/DeleteServiceLevelObjective', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -296,10 +266,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
         try {
-            $gapicClient->deleteServiceLevelObjective($formattedName);
+            $gapicClient->deleteServiceLevelObjective();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -326,17 +294,13 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $response = $gapicClient->getService($formattedName);
+        $response = $gapicClient->getService();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/GetService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -358,10 +322,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
         try {
-            $gapicClient->getService($formattedName);
+            $gapicClient->getService();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -390,17 +352,13 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setGoal($goal);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-        $response = $gapicClient->getServiceLevelObjective($formattedName);
+        $response = $gapicClient->getServiceLevelObjective();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/GetServiceLevelObjective', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -422,10 +380,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
         try {
-            $gapicClient->getServiceLevelObjective($formattedName);
+            $gapicClient->getServiceLevelObjective();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -455,9 +411,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServiceLevelObjectives($serviceLevelObjectives);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $response = $gapicClient->listServiceLevelObjectives($formattedParent);
+        $response = $gapicClient->listServiceLevelObjectives();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -467,8 +421,6 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/ListServiceLevelObjectives', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -490,10 +442,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
         try {
-            $gapicClient->listServiceLevelObjectives($formattedParent);
+            $gapicClient->listServiceLevelObjectives();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -523,9 +473,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServices($services);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $response = $gapicClient->listServices($parent);
+        $response = $gapicClient->listServices();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -535,8 +483,6 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/ListServices', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -558,10 +504,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
         try {
-            $gapicClient->listServices($parent);
+            $gapicClient->listServices();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -588,17 +532,13 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $service = new Service();
-        $response = $gapicClient->updateService($service);
+        $response = $gapicClient->updateService();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/UpdateService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getService();
-        $this->assertProtobufEquals($service, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -620,10 +560,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $service = new Service();
         try {
-            $gapicClient->updateService($service);
+            $gapicClient->updateService();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -652,17 +590,13 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setGoal($goal);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $serviceLevelObjective = new ServiceLevelObjective();
-        $response = $gapicClient->updateServiceLevelObjective($serviceLevelObjective);
+        $response = $gapicClient->updateServiceLevelObjective();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/UpdateServiceLevelObjective', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServiceLevelObjective();
-        $this->assertProtobufEquals($serviceLevelObjective, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -684,10 +618,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $serviceLevelObjective = new ServiceLevelObjective();
         try {
-            $gapicClient->updateServiceLevelObjective($serviceLevelObjective);
+            $gapicClient->updateServiceLevelObjective();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

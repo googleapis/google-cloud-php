@@ -31,8 +31,7 @@ class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      *                     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      *
      *                     An example of `[METRIC_ID]` is:
-     *                     `"custom.googleapis.com/my_test_metric"`. Please see
-     *                     {@see MetricServiceClient::metricDescriptorName()} for help formatting this field.
+     *                     `"custom.googleapis.com/my_test_metric"`.
      *
      * @return \Google\Cloud\Monitoring\V3\DeleteMetricDescriptorRequest
      *

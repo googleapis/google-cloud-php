@@ -26,47 +26,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy;
-use Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Action;
 use Google\Cloud\NetworkSecurity\V1beta1\NetworkSecurityClient;
 use Google\Rpc\Status;
 
 /**
  * Creates a new AuthorizationPolicy in a given project and location.
  *
- * @param string $formattedParent           The parent resource of the AuthorizationPolicy. Must be in the
- *                                          format `projects/{project}/locations/{location}`. Please see
- *                                          {@see NetworkSecurityClient::locationName()} for help formatting this field.
- * @param string $authorizationPolicyId     Short name of the AuthorizationPolicy resource to be created.
- *                                          This value should be 1-63 characters long, containing only
- *                                          letters, numbers, hyphens, and underscores, and should not start
- *                                          with a number. E.g. "authz_policy".
- * @param string $authorizationPolicyName   Name of the AuthorizationPolicy resource. It matches pattern
- *                                          `projects/{project}/locations/{location}/authorizationPolicies/<authorization_policy>`.
- * @param int    $authorizationPolicyAction The action to take when a rule match is found. Possible values
- *                                          are "ALLOW" or "DENY".
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_authorization_policy_sample(
-    string $formattedParent,
-    string $authorizationPolicyId,
-    string $authorizationPolicyName,
-    int $authorizationPolicyAction
-): void {
+function create_authorization_policy_sample(): void
+{
     // Create a client.
     $networkSecurityClient = new NetworkSecurityClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $authorizationPolicy = (new AuthorizationPolicy())
-        ->setName($authorizationPolicyName)
-        ->setAction($authorizationPolicyAction);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkSecurityClient->createAuthorizationPolicy(
-            $formattedParent,
-            $authorizationPolicyId,
-            $authorizationPolicy
-        );
+        $response = $networkSecurityClient->createAuthorizationPolicy();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -81,29 +61,5 @@ function create_authorization_policy_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NetworkSecurityClient::locationName('[PROJECT]', '[LOCATION]');
-    $authorizationPolicyId = '[AUTHORIZATION_POLICY_ID]';
-    $authorizationPolicyName = '[NAME]';
-    $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
-
-    create_authorization_policy_sample(
-        $formattedParent,
-        $authorizationPolicyId,
-        $authorizationPolicyName,
-        $authorizationPolicyAction
-    );
 }
 // [END networksecurity_v1beta1_generated_NetworkSecurity_CreateAuthorizationPolicy_sync]

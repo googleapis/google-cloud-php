@@ -26,7 +26,6 @@ class GetReplicationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The replication resource name, in the format
      *                     `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`
-     *                     Please see {@see NetAppClient::replicationName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\GetReplicationRequest
      *

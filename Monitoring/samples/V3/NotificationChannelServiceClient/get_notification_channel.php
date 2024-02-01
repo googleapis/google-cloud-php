@@ -35,19 +35,19 @@ use Google\Cloud\Monitoring\V3\NotificationChannel;
  * matter and thus the response may not be 100% identical to the information
  * that was supplied in the call to the create method.
  *
- * @param string $formattedName The channel for which to execute the request. The format is:
- *
- *                              projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
- *                              Please see {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_notification_channel_sample(string $formattedName): void
+function get_notification_channel_sample(): void
 {
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new GetNotificationChannelRequest())
-        ->setName($formattedName);
+    $request = new GetNotificationChannelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,24 +57,5 @@ function get_notification_channel_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NotificationChannelServiceClient::notificationChannelName(
-        '[PROJECT]',
-        '[NOTIFICATION_CHANNEL]'
-    );
-
-    get_notification_channel_sample($formattedName);
 }
 // [END monitoring_v3_generated_NotificationChannelService_GetNotificationChannel_sync]

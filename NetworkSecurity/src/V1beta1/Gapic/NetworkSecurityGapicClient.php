@@ -83,10 +83,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $networkSecurityClient = new NetworkSecurityClient();
  * try {
- *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
- *     $authorizationPolicyId = 'authorization_policy_id';
- *     $authorizationPolicy = new AuthorizationPolicy();
- *     $operationResponse = $networkSecurityClient->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
+ *     $operationResponse = $networkSecurityClient->createAuthorizationPolicy();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -97,7 +94,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $networkSecurityClient->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
+ *     $operationResponse = $networkSecurityClient->createAuthorizationPolicy();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $networkSecurityClient->resumeOperation($operationName, 'createAuthorizationPolicy');
@@ -500,10 +497,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $authorizationPolicyId = 'authorization_policy_id';
-     *     $authorizationPolicy = new AuthorizationPolicy();
-     *     $operationResponse = $networkSecurityClient->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
+     *     $operationResponse = $networkSecurityClient->createAuthorizationPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -514,7 +508,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networkSecurityClient->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
+     *     $operationResponse = $networkSecurityClient->createAuthorizationPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networkSecurityClient->resumeOperation($operationName, 'createAuthorizationPolicy');
@@ -534,16 +528,19 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param string              $parent                Required. The parent resource of the AuthorizationPolicy. Must be in the
-     *                                                   format `projects/{project}/locations/{location}`.
-     * @param string              $authorizationPolicyId Required. Short name of the AuthorizationPolicy resource to be created.
-     *                                                   This value should be 1-63 characters long, containing only
-     *                                                   letters, numbers, hyphens, and underscores, and should not start
-     *                                                   with a number. E.g. "authz_policy".
-     * @param AuthorizationPolicy $authorizationPolicy   Required. AuthorizationPolicy resource to be created.
-     * @param array               $optionalArgs          {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the AuthorizationPolicy. Must be in the
+     *           format `projects/{project}/locations/{location}`.
+     *     @type string $authorizationPolicyId
+     *           Required. Short name of the AuthorizationPolicy resource to be created.
+     *           This value should be 1-63 characters long, containing only
+     *           letters, numbers, hyphens, and underscores, and should not start
+     *           with a number. E.g. "authz_policy".
+     *     @type AuthorizationPolicy $authorizationPolicy
+     *           Required. AuthorizationPolicy resource to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -556,18 +553,27 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function createAuthorizationPolicy(
-        $parent,
-        $authorizationPolicyId,
-        $authorizationPolicy,
-        array $optionalArgs = []
-    ) {
+    public function createAuthorizationPolicy(array $optionalArgs = [])
+    {
         $request = new CreateAuthorizationPolicyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAuthorizationPolicyId($authorizationPolicyId);
-        $request->setAuthorizationPolicy($authorizationPolicy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['authorizationPolicyId'])) {
+            $request->setAuthorizationPolicyId(
+                $optionalArgs['authorizationPolicyId']
+            );
+        }
+
+        if (isset($optionalArgs['authorizationPolicy'])) {
+            $request->setAuthorizationPolicy(
+                $optionalArgs['authorizationPolicy']
+            );
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -589,10 +595,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $clientTlsPolicyId = 'client_tls_policy_id';
-     *     $clientTlsPolicy = new ClientTlsPolicy();
-     *     $operationResponse = $networkSecurityClient->createClientTlsPolicy($formattedParent, $clientTlsPolicyId, $clientTlsPolicy);
+     *     $operationResponse = $networkSecurityClient->createClientTlsPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -603,7 +606,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networkSecurityClient->createClientTlsPolicy($formattedParent, $clientTlsPolicyId, $clientTlsPolicy);
+     *     $operationResponse = $networkSecurityClient->createClientTlsPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networkSecurityClient->resumeOperation($operationName, 'createClientTlsPolicy');
@@ -623,16 +626,19 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param string          $parent            Required. The parent resource of the ClientTlsPolicy. Must be in
-     *                                           the format `projects/&#42;/locations/{location}`.
-     * @param string          $clientTlsPolicyId Required. Short name of the ClientTlsPolicy resource to be created. This
-     *                                           value should be 1-63 characters long, containing only letters, numbers,
-     *                                           hyphens, and underscores, and should not start with a number. E.g.
-     *                                           "client_mtls_policy".
-     * @param ClientTlsPolicy $clientTlsPolicy   Required. ClientTlsPolicy resource to be created.
-     * @param array           $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the ClientTlsPolicy. Must be in
+     *           the format `projects/&#42;/locations/{location}`.
+     *     @type string $clientTlsPolicyId
+     *           Required. Short name of the ClientTlsPolicy resource to be created. This
+     *           value should be 1-63 characters long, containing only letters, numbers,
+     *           hyphens, and underscores, and should not start with a number. E.g.
+     *           "client_mtls_policy".
+     *     @type ClientTlsPolicy $clientTlsPolicy
+     *           Required. ClientTlsPolicy resource to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -645,18 +651,23 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function createClientTlsPolicy(
-        $parent,
-        $clientTlsPolicyId,
-        $clientTlsPolicy,
-        array $optionalArgs = []
-    ) {
+    public function createClientTlsPolicy(array $optionalArgs = [])
+    {
         $request = new CreateClientTlsPolicyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setClientTlsPolicyId($clientTlsPolicyId);
-        $request->setClientTlsPolicy($clientTlsPolicy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['clientTlsPolicyId'])) {
+            $request->setClientTlsPolicyId($optionalArgs['clientTlsPolicyId']);
+        }
+
+        if (isset($optionalArgs['clientTlsPolicy'])) {
+            $request->setClientTlsPolicy($optionalArgs['clientTlsPolicy']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -678,10 +689,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $serverTlsPolicyId = 'server_tls_policy_id';
-     *     $serverTlsPolicy = new ServerTlsPolicy();
-     *     $operationResponse = $networkSecurityClient->createServerTlsPolicy($formattedParent, $serverTlsPolicyId, $serverTlsPolicy);
+     *     $operationResponse = $networkSecurityClient->createServerTlsPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -692,7 +700,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networkSecurityClient->createServerTlsPolicy($formattedParent, $serverTlsPolicyId, $serverTlsPolicy);
+     *     $operationResponse = $networkSecurityClient->createServerTlsPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networkSecurityClient->resumeOperation($operationName, 'createServerTlsPolicy');
@@ -712,16 +720,19 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param string          $parent            Required. The parent resource of the ServerTlsPolicy. Must be in
-     *                                           the format `projects/&#42;/locations/{location}`.
-     * @param string          $serverTlsPolicyId Required. Short name of the ServerTlsPolicy resource to be created. This
-     *                                           value should be 1-63 characters long, containing only letters, numbers,
-     *                                           hyphens, and underscores, and should not start with a number. E.g.
-     *                                           "server_mtls_policy".
-     * @param ServerTlsPolicy $serverTlsPolicy   Required. ServerTlsPolicy resource to be created.
-     * @param array           $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the ServerTlsPolicy. Must be in
+     *           the format `projects/&#42;/locations/{location}`.
+     *     @type string $serverTlsPolicyId
+     *           Required. Short name of the ServerTlsPolicy resource to be created. This
+     *           value should be 1-63 characters long, containing only letters, numbers,
+     *           hyphens, and underscores, and should not start with a number. E.g.
+     *           "server_mtls_policy".
+     *     @type ServerTlsPolicy $serverTlsPolicy
+     *           Required. ServerTlsPolicy resource to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -734,18 +745,23 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function createServerTlsPolicy(
-        $parent,
-        $serverTlsPolicyId,
-        $serverTlsPolicy,
-        array $optionalArgs = []
-    ) {
+    public function createServerTlsPolicy(array $optionalArgs = [])
+    {
         $request = new CreateServerTlsPolicyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setServerTlsPolicyId($serverTlsPolicyId);
-        $request->setServerTlsPolicy($serverTlsPolicy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['serverTlsPolicyId'])) {
+            $request->setServerTlsPolicyId($optionalArgs['serverTlsPolicyId']);
+        }
+
+        if (isset($optionalArgs['serverTlsPolicy'])) {
+            $request->setServerTlsPolicy($optionalArgs['serverTlsPolicy']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -767,8 +783,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedName = $networkSecurityClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-     *     $operationResponse = $networkSecurityClient->deleteAuthorizationPolicy($formattedName);
+     *     $operationResponse = $networkSecurityClient->deleteAuthorizationPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -778,7 +793,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networkSecurityClient->deleteAuthorizationPolicy($formattedName);
+     *     $operationResponse = $networkSecurityClient->deleteAuthorizationPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networkSecurityClient->resumeOperation($operationName, 'deleteAuthorizationPolicy');
@@ -797,11 +812,12 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. A name of the AuthorizationPolicy to delete. Must be in the
-     *                             format `projects/{project}/locations/{location}/authorizationPolicies/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the AuthorizationPolicy to delete. Must be in the
+     *           format `projects/{project}/locations/{location}/authorizationPolicies/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -814,12 +830,15 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function deleteAuthorizationPolicy($name, array $optionalArgs = [])
+    public function deleteAuthorizationPolicy(array $optionalArgs = [])
     {
         $request = new DeleteAuthorizationPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -841,8 +860,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedName = $networkSecurityClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-     *     $operationResponse = $networkSecurityClient->deleteClientTlsPolicy($formattedName);
+     *     $operationResponse = $networkSecurityClient->deleteClientTlsPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -852,7 +870,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networkSecurityClient->deleteClientTlsPolicy($formattedName);
+     *     $operationResponse = $networkSecurityClient->deleteClientTlsPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networkSecurityClient->resumeOperation($operationName, 'deleteClientTlsPolicy');
@@ -871,11 +889,12 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. A name of the ClientTlsPolicy to delete. Must be in
-     *                             the format `projects/&#42;/locations/{location}/clientTlsPolicies/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the ClientTlsPolicy to delete. Must be in
+     *           the format `projects/&#42;/locations/{location}/clientTlsPolicies/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -888,12 +907,15 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function deleteClientTlsPolicy($name, array $optionalArgs = [])
+    public function deleteClientTlsPolicy(array $optionalArgs = [])
     {
         $request = new DeleteClientTlsPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -915,8 +937,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedName = $networkSecurityClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-     *     $operationResponse = $networkSecurityClient->deleteServerTlsPolicy($formattedName);
+     *     $operationResponse = $networkSecurityClient->deleteServerTlsPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -926,7 +947,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networkSecurityClient->deleteServerTlsPolicy($formattedName);
+     *     $operationResponse = $networkSecurityClient->deleteServerTlsPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networkSecurityClient->resumeOperation($operationName, 'deleteServerTlsPolicy');
@@ -945,11 +966,12 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. A name of the ServerTlsPolicy to delete. Must be in
-     *                             the format `projects/&#42;/locations/{location}/serverTlsPolicies/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the ServerTlsPolicy to delete. Must be in
+     *           the format `projects/&#42;/locations/{location}/serverTlsPolicies/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -962,12 +984,15 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function deleteServerTlsPolicy($name, array $optionalArgs = [])
+    public function deleteServerTlsPolicy(array $optionalArgs = [])
     {
         $request = new DeleteServerTlsPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -989,18 +1014,18 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedName = $networkSecurityClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-     *     $response = $networkSecurityClient->getAuthorizationPolicy($formattedName);
+     *     $response = $networkSecurityClient->getAuthorizationPolicy();
      * } finally {
      *     $networkSecurityClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A name of the AuthorizationPolicy to get. Must be in the format
-     *                             `projects/{project}/locations/{location}/authorizationPolicies/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the AuthorizationPolicy to get. Must be in the format
+     *           `projects/{project}/locations/{location}/authorizationPolicies/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1013,12 +1038,15 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function getAuthorizationPolicy($name, array $optionalArgs = [])
+    public function getAuthorizationPolicy(array $optionalArgs = [])
     {
         $request = new GetAuthorizationPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1040,18 +1068,18 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedName = $networkSecurityClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-     *     $response = $networkSecurityClient->getClientTlsPolicy($formattedName);
+     *     $response = $networkSecurityClient->getClientTlsPolicy();
      * } finally {
      *     $networkSecurityClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A name of the ClientTlsPolicy to get. Must be in the format
-     *                             `projects/&#42;/locations/{location}/clientTlsPolicies/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the ClientTlsPolicy to get. Must be in the format
+     *           `projects/&#42;/locations/{location}/clientTlsPolicies/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1064,12 +1092,15 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function getClientTlsPolicy($name, array $optionalArgs = [])
+    public function getClientTlsPolicy(array $optionalArgs = [])
     {
         $request = new GetClientTlsPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1091,18 +1122,18 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedName = $networkSecurityClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-     *     $response = $networkSecurityClient->getServerTlsPolicy($formattedName);
+     *     $response = $networkSecurityClient->getServerTlsPolicy();
      * } finally {
      *     $networkSecurityClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A name of the ServerTlsPolicy to get. Must be in the format
-     *                             `projects/&#42;/locations/{location}/serverTlsPolicies/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the ServerTlsPolicy to get. Must be in the format
+     *           `projects/&#42;/locations/{location}/serverTlsPolicies/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1115,12 +1146,15 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function getServerTlsPolicy($name, array $optionalArgs = [])
+    public function getServerTlsPolicy(array $optionalArgs = [])
     {
         $request = new GetServerTlsPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1142,9 +1176,8 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $networkSecurityClient->listAuthorizationPolicies($formattedParent);
+     *     $pagedResponse = $networkSecurityClient->listAuthorizationPolicies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1152,7 +1185,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $networkSecurityClient->listAuthorizationPolicies($formattedParent);
+     *     $pagedResponse = $networkSecurityClient->listAuthorizationPolicies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1161,12 +1194,13 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the AuthorizationPolicies
-     *                             should be listed, specified in the format
-     *                             `projects/{project}/locations/{location}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location from which the AuthorizationPolicies
+     *           should be listed, specified in the format
+     *           `projects/{project}/locations/{location}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1188,12 +1222,15 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function listAuthorizationPolicies($parent, array $optionalArgs = [])
+    public function listAuthorizationPolicies(array $optionalArgs = [])
     {
         $request = new ListAuthorizationPoliciesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1223,9 +1260,8 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $networkSecurityClient->listClientTlsPolicies($formattedParent);
+     *     $pagedResponse = $networkSecurityClient->listClientTlsPolicies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1233,7 +1269,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $networkSecurityClient->listClientTlsPolicies($formattedParent);
+     *     $pagedResponse = $networkSecurityClient->listClientTlsPolicies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1242,11 +1278,12 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the ClientTlsPolicies should
-     *                             be listed, specified in the format `projects/&#42;/locations/{location}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location from which the ClientTlsPolicies should
+     *           be listed, specified in the format `projects/&#42;/locations/{location}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1268,12 +1305,15 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function listClientTlsPolicies($parent, array $optionalArgs = [])
+    public function listClientTlsPolicies(array $optionalArgs = [])
     {
         $request = new ListClientTlsPoliciesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1303,9 +1343,8 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $networkSecurityClient->listServerTlsPolicies($formattedParent);
+     *     $pagedResponse = $networkSecurityClient->listServerTlsPolicies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1313,7 +1352,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $networkSecurityClient->listServerTlsPolicies($formattedParent);
+     *     $pagedResponse = $networkSecurityClient->listServerTlsPolicies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1322,11 +1361,12 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location from which the ServerTlsPolicies should
-     *                             be listed, specified in the format `projects/&#42;/locations/{location}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location from which the ServerTlsPolicies should
+     *           be listed, specified in the format `projects/&#42;/locations/{location}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1348,12 +1388,15 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function listServerTlsPolicies($parent, array $optionalArgs = [])
+    public function listServerTlsPolicies(array $optionalArgs = [])
     {
         $request = new ListServerTlsPoliciesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1383,8 +1426,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $authorizationPolicy = new AuthorizationPolicy();
-     *     $operationResponse = $networkSecurityClient->updateAuthorizationPolicy($authorizationPolicy);
+     *     $operationResponse = $networkSecurityClient->updateAuthorizationPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1395,7 +1437,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networkSecurityClient->updateAuthorizationPolicy($authorizationPolicy);
+     *     $operationResponse = $networkSecurityClient->updateAuthorizationPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networkSecurityClient->resumeOperation($operationName, 'updateAuthorizationPolicy');
@@ -1415,8 +1457,7 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param AuthorizationPolicy $authorizationPolicy Required. Updated AuthorizationPolicy resource.
-     * @param array               $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -1425,6 +1466,8 @@ class NetworkSecurityGapicClient
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
+     *     @type AuthorizationPolicy $authorizationPolicy
+     *           Required. Updated AuthorizationPolicy resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1437,18 +1480,18 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function updateAuthorizationPolicy(
-        $authorizationPolicy,
-        array $optionalArgs = []
-    ) {
+    public function updateAuthorizationPolicy(array $optionalArgs = [])
+    {
         $request = new UpdateAuthorizationPolicyRequest();
         $requestParamHeaders = [];
-        $request->setAuthorizationPolicy($authorizationPolicy);
-        $requestParamHeaders[
-            'authorization_policy.name'
-        ] = $authorizationPolicy->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['authorizationPolicy'])) {
+            $request->setAuthorizationPolicy(
+                $optionalArgs['authorizationPolicy']
+            );
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1472,8 +1515,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $clientTlsPolicy = new ClientTlsPolicy();
-     *     $operationResponse = $networkSecurityClient->updateClientTlsPolicy($clientTlsPolicy);
+     *     $operationResponse = $networkSecurityClient->updateClientTlsPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1484,7 +1526,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networkSecurityClient->updateClientTlsPolicy($clientTlsPolicy);
+     *     $operationResponse = $networkSecurityClient->updateClientTlsPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networkSecurityClient->resumeOperation($operationName, 'updateClientTlsPolicy');
@@ -1504,8 +1546,7 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param ClientTlsPolicy $clientTlsPolicy Required. Updated ClientTlsPolicy resource.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -1515,6 +1556,8 @@ class NetworkSecurityGapicClient
      *           the full request. A field will be overwritten if it is in the
      *           mask. If the user does not provide a mask then all fields will be
      *           overwritten.
+     *     @type ClientTlsPolicy $clientTlsPolicy
+     *           Required. Updated ClientTlsPolicy resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1527,18 +1570,16 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function updateClientTlsPolicy(
-        $clientTlsPolicy,
-        array $optionalArgs = []
-    ) {
+    public function updateClientTlsPolicy(array $optionalArgs = [])
+    {
         $request = new UpdateClientTlsPolicyRequest();
         $requestParamHeaders = [];
-        $request->setClientTlsPolicy($clientTlsPolicy);
-        $requestParamHeaders[
-            'client_tls_policy.name'
-        ] = $clientTlsPolicy->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['clientTlsPolicy'])) {
+            $request->setClientTlsPolicy($optionalArgs['clientTlsPolicy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1562,8 +1603,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $serverTlsPolicy = new ServerTlsPolicy();
-     *     $operationResponse = $networkSecurityClient->updateServerTlsPolicy($serverTlsPolicy);
+     *     $operationResponse = $networkSecurityClient->updateServerTlsPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1574,7 +1614,7 @@ class NetworkSecurityGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networkSecurityClient->updateServerTlsPolicy($serverTlsPolicy);
+     *     $operationResponse = $networkSecurityClient->updateServerTlsPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $networkSecurityClient->resumeOperation($operationName, 'updateServerTlsPolicy');
@@ -1594,8 +1634,7 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param ServerTlsPolicy $serverTlsPolicy Required. Updated ServerTlsPolicy resource.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -1605,6 +1644,8 @@ class NetworkSecurityGapicClient
      *           the full request. A field will be overwritten if it is in the
      *           mask. If the user does not provide a mask then all fields will be
      *           overwritten.
+     *     @type ServerTlsPolicy $serverTlsPolicy
+     *           Required. Updated ServerTlsPolicy resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1617,18 +1658,16 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function updateServerTlsPolicy(
-        $serverTlsPolicy,
-        array $optionalArgs = []
-    ) {
+    public function updateServerTlsPolicy(array $optionalArgs = [])
+    {
         $request = new UpdateServerTlsPolicyRequest();
         $requestParamHeaders = [];
-        $request->setServerTlsPolicy($serverTlsPolicy);
-        $requestParamHeaders[
-            'server_tls_policy.name'
-        ] = $serverTlsPolicy->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['serverTlsPolicy'])) {
+            $request->setServerTlsPolicy($optionalArgs['serverTlsPolicy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1797,18 +1836,18 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $networkSecurityClient->getIamPolicy($resource);
+     *     $response = $networkSecurityClient->getIamPolicy();
      * } finally {
      *     $networkSecurityClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1824,12 +1863,15 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1861,23 +1903,23 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $networkSecurityClient->setIamPolicy($resource, $policy);
+     *     $response = $networkSecurityClient->setIamPolicy();
      * } finally {
      *     $networkSecurityClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1896,13 +1938,19 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1936,23 +1984,23 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $networkSecurityClient->testIamPermissions($resource, $permissions);
+     *     $response = $networkSecurityClient->testIamPermissions();
      * } finally {
      *     $networkSecurityClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1965,16 +2013,19 @@ class NetworkSecurityGapicClient
      *
      * @experimental
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

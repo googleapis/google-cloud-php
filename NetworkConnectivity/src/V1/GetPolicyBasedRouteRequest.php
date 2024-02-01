@@ -23,8 +23,7 @@ class GetPolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Name of the PolicyBasedRoute resource to get. Please see
-     *                     {@see PolicyBasedRoutingServiceClient::policyBasedRouteName()} for help formatting this field.
+     * @param string $name Required. Name of the PolicyBasedRoute resource to get.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\GetPolicyBasedRouteRequest
      *

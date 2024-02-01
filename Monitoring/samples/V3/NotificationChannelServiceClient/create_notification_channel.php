@@ -37,27 +37,19 @@ use Google\Cloud\Monitoring\V3\NotificationChannel;
  * CreateNotificationChannel, DeleteNotificationChannel and
  * UpdateNotificationChannel.
  *
- * @param string $name The
- *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
- *                     to execute the request. The format is:
- *
- *                     projects/[PROJECT_ID_OR_NUMBER]
- *
- *                     This names the container into which the channel will be
- *                     written, this does not name the newly created channel. The resulting
- *                     channel's name will have a normalized version of this field as a prefix,
- *                     but will add `/notificationChannels/[CHANNEL_ID]` to identify the channel.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_notification_channel_sample(string $name): void
+function create_notification_channel_sample(): void
 {
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
     // Prepare the request message.
-    $notificationChannel = new NotificationChannel();
-    $request = (new CreateNotificationChannelRequest())
-        ->setName($name)
-        ->setNotificationChannel($notificationChannel);
+    $request = new CreateNotificationChannelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,21 +59,5 @@ function create_notification_channel_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    create_notification_channel_sample($name);
 }
 // [END monitoring_v3_generated_NotificationChannelService_CreateNotificationChannel_sync]

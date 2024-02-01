@@ -31,19 +31,19 @@ use Google\Cloud\MigrationCenter\V1\ReportAssetFramesResponse;
 /**
  * Reports a set of frames.
  *
- * @param string $parent          Parent of the resource.
- * @param string $formattedSource Reference to a source. Please see
- *                                {@see MigrationCenterClient::sourceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function report_asset_frames_sample(string $parent, string $formattedSource): void
+function report_asset_frames_sample(): void
 {
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $request = (new ReportAssetFramesRequest())
-        ->setParent($parent)
-        ->setSource($formattedSource);
+    $request = new ReportAssetFramesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,22 +53,5 @@ function report_asset_frames_sample(string $parent, string $formattedSource): vo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $formattedSource = MigrationCenterClient::sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-
-    report_asset_frames_sample($parent, $formattedSource);
 }
 // [END migrationcenter_v1_generated_MigrationCenter_ReportAssetFrames_sync]

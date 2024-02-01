@@ -34,18 +34,19 @@ use Google\Rpc\Status;
  * `ApplyParameters` restarts the set of specified nodes in order to update
  * them to the current set of parameters for the Memcached Instance.
  *
- * @param string $formattedName Resource name of the Memcached instance for which parameter group updates
- *                              should be applied. Please see
- *                              {@see CloudMemcacheClient::instanceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function apply_parameters_sample(string $formattedName): void
+function apply_parameters_sample(): void
 {
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
     // Prepare the request message.
-    $request = (new ApplyParametersRequest())
-        ->setName($formattedName);
+    $request = new ApplyParametersRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +66,5 @@ function apply_parameters_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudMemcacheClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-
-    apply_parameters_sample($formattedName);
 }
 // [END memcache_v1_generated_CloudMemcache_ApplyParameters_sync]

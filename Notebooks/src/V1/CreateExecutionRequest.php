@@ -38,7 +38,6 @@ class CreateExecutionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $parent      Required. Format:
      *                                                          `parent=projects/{project_id}/locations/{location}`
-     *                                                          Please see {@see NotebookServiceClient::executionName()} for help formatting this field.
      * @param \Google\Cloud\Notebooks\V1\Execution $execution   Required. The execution to be created.
      * @param string                               $executionId Required. User-defined unique ID of this execution.
      *

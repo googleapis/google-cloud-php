@@ -31,23 +31,19 @@ use Google\Cloud\Logging\V2\LogView;
 /**
  * Gets a view on a log bucket..
  *
- * @param string $formattedName The resource name of the policy:
- *
- *                              "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
- *
- *                              For example:
- *
- *                              `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
- *                              Please see {@see ConfigServiceV2Client::logViewName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_view_sample(string $formattedName): void
+function get_view_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $request = (new GetViewRequest())
-        ->setName($formattedName);
+    $request = new GetViewRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,26 +53,5 @@ function get_view_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConfigServiceV2Client::logViewName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[BUCKET]',
-        '[VIEW]'
-    );
-
-    get_view_sample($formattedName);
 }
 // [END logging_v2_generated_ConfigServiceV2_GetView_sync]

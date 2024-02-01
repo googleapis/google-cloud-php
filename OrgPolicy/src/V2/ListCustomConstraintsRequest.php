@@ -47,7 +47,6 @@ class ListCustomConstraintsRequest extends \Google\Protobuf\Internal\Message
      *                       following forms:
      *
      *                       * `organizations/{organization_id}`
-     *                       Please see {@see OrgPolicyClient::organizationName()} for help formatting this field.
      *
      * @return \Google\Cloud\OrgPolicy\V2\ListCustomConstraintsRequest
      *

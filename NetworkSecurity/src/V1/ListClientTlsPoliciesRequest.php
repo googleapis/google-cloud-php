@@ -40,8 +40,7 @@ class ListClientTlsPoliciesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project and location from which the ClientTlsPolicies should
-     *                       be listed, specified in the format `projects/&#42;/locations/{location}`. Please see
-     *                       {@see NetworkSecurityClient::locationName()} for help formatting this field.
+     *                       be listed, specified in the format `projects/&#42;/locations/{location}`.
      *
      * @return \Google\Cloud\NetworkSecurity\V1\ListClientTlsPoliciesRequest
      *

@@ -24,7 +24,6 @@ class GetKmsConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the KmsConfig
-     *                     Please see {@see NetAppClient::kmsConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\GetKmsConfigRequest
      *

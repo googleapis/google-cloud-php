@@ -47,10 +47,8 @@ class AcceptHubSpokeRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string $name     Required. The name of the hub into which to accept the spoke. Please see
-     *                         {@see HubServiceClient::hubName()} for help formatting this field.
-     * @param string $spokeUri Required. The URI of the spoke to accept into the hub. Please see
-     *                         {@see HubServiceClient::spokeName()} for help formatting this field.
+     * @param string $name     Required. The name of the hub into which to accept the spoke.
+     * @param string $spokeUri Required. The URI of the spoke to accept into the hub.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\AcceptHubSpokeRequest
      *

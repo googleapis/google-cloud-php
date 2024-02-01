@@ -79,16 +79,12 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedLogName = $gapicClient->logName('[PROJECT]', '[LOG]');
-        $gapicClient->deleteLog($formattedLogName);
+        $gapicClient->deleteLog();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.LoggingServiceV2/DeleteLog', $actualFuncCall);
-        $actualValue = $actualRequestObject->getLogName();
-        $this->assertProtobufEquals($formattedLogName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -110,10 +106,8 @@ class LoggingServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedLogName = $gapicClient->logName('[PROJECT]', '[LOG]');
         try {
-            $gapicClient->deleteLog($formattedLogName);
+            $gapicClient->deleteLog();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -143,11 +137,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntries($entries);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedResourceNames = [
-            $gapicClient->projectName('[PROJECT]'),
-        ];
-        $response = $gapicClient->listLogEntries($formattedResourceNames);
+        $response = $gapicClient->listLogEntries();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -157,8 +147,6 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.LoggingServiceV2/ListLogEntries', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResourceNames();
-        $this->assertProtobufEquals($formattedResourceNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -180,12 +168,8 @@ class LoggingServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedResourceNames = [
-            $gapicClient->projectName('[PROJECT]'),
-        ];
         try {
-            $gapicClient->listLogEntries($formattedResourceNames);
+            $gapicClient->listLogEntries();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -215,9 +199,7 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLogNames($logNames);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listLogs($formattedParent);
+        $response = $gapicClient->listLogs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -227,8 +209,6 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.LoggingServiceV2/ListLogs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -250,10 +230,8 @@ class LoggingServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listLogs($formattedParent);
+            $gapicClient->listLogs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -343,15 +321,9 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         $expectedResponse3 = new TailLogEntriesResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $resourceNames = [];
         $request = new TailLogEntriesRequest();
-        $request->setResourceNames($resourceNames);
-        $resourceNames2 = [];
         $request2 = new TailLogEntriesRequest();
-        $request2->setResourceNames($resourceNames2);
-        $resourceNames3 = [];
         $request3 = new TailLogEntriesRequest();
-        $request3->setResourceNames($resourceNames3);
         $bidi = $gapicClient->tailLogEntries();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
@@ -432,17 +404,13 @@ class LoggingServiceV2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new WriteLogEntriesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $entries = [];
-        $response = $gapicClient->writeLogEntries($entries);
+        $response = $gapicClient->writeLogEntries();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.LoggingServiceV2/WriteLogEntries', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEntries();
-        $this->assertProtobufEquals($entries, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -464,10 +432,8 @@ class LoggingServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $entries = [];
         try {
-            $gapicClient->writeLogEntries($entries);
+            $gapicClient->writeLogEntries();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

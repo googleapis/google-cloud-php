@@ -29,9 +29,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Monitoring\V3\ListSnoozesResponse;
 use Google\Cloud\Monitoring\V3\Snooze;
 use Google\Cloud\Monitoring\V3\SnoozeServiceClient;
-use Google\Cloud\Monitoring\V3\Snooze\Criteria;
-use Google\Cloud\Monitoring\V3\TimeInterval;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -78,28 +75,13 @@ class SnoozeServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->workspaceName('[PROJECT]');
-        $snooze = new Snooze();
-        $snoozeName = 'snoozeName1119820177';
-        $snooze->setName($snoozeName);
-        $snoozeCriteria = new Criteria();
-        $snooze->setCriteria($snoozeCriteria);
-        $snoozeInterval = new TimeInterval();
-        $snooze->setInterval($snoozeInterval);
-        $snoozeDisplayName = 'snoozeDisplayName-1956223833';
-        $snooze->setDisplayName($snoozeDisplayName);
-        $response = $gapicClient->createSnooze($formattedParent, $snooze);
+        $response = $gapicClient->createSnooze();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.SnoozeService/CreateSnooze', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSnooze();
-        $this->assertProtobufEquals($snooze, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -121,19 +103,8 @@ class SnoozeServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->workspaceName('[PROJECT]');
-        $snooze = new Snooze();
-        $snoozeName = 'snoozeName1119820177';
-        $snooze->setName($snoozeName);
-        $snoozeCriteria = new Criteria();
-        $snooze->setCriteria($snoozeCriteria);
-        $snoozeInterval = new TimeInterval();
-        $snooze->setInterval($snoozeInterval);
-        $snoozeDisplayName = 'snoozeDisplayName-1956223833';
-        $snooze->setDisplayName($snoozeDisplayName);
         try {
-            $gapicClient->createSnooze($formattedParent, $snooze);
+            $gapicClient->createSnooze();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -160,17 +131,13 @@ class SnoozeServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->snoozeName('[PROJECT]', '[SNOOZE]');
-        $response = $gapicClient->getSnooze($formattedName);
+        $response = $gapicClient->getSnooze();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.SnoozeService/GetSnooze', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -192,10 +159,8 @@ class SnoozeServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->snoozeName('[PROJECT]', '[SNOOZE]');
         try {
-            $gapicClient->getSnooze($formattedName);
+            $gapicClient->getSnooze();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -225,9 +190,7 @@ class SnoozeServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnoozes($snoozes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->workspaceName('[PROJECT]');
-        $response = $gapicClient->listSnoozes($formattedParent);
+        $response = $gapicClient->listSnoozes();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -237,8 +200,6 @@ class SnoozeServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.SnoozeService/ListSnoozes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -260,10 +221,8 @@ class SnoozeServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->workspaceName('[PROJECT]');
         try {
-            $gapicClient->listSnoozes($formattedParent);
+            $gapicClient->listSnoozes();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -290,28 +249,13 @@ class SnoozeServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $snooze = new Snooze();
-        $snoozeName = 'snoozeName1119820177';
-        $snooze->setName($snoozeName);
-        $snoozeCriteria = new Criteria();
-        $snooze->setCriteria($snoozeCriteria);
-        $snoozeInterval = new TimeInterval();
-        $snooze->setInterval($snoozeInterval);
-        $snoozeDisplayName = 'snoozeDisplayName-1956223833';
-        $snooze->setDisplayName($snoozeDisplayName);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateSnooze($snooze, $updateMask);
+        $response = $gapicClient->updateSnooze();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.SnoozeService/UpdateSnooze', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSnooze();
-        $this->assertProtobufEquals($snooze, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -333,19 +277,8 @@ class SnoozeServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $snooze = new Snooze();
-        $snoozeName = 'snoozeName1119820177';
-        $snooze->setName($snoozeName);
-        $snoozeCriteria = new Criteria();
-        $snooze->setCriteria($snoozeCriteria);
-        $snoozeInterval = new TimeInterval();
-        $snooze->setInterval($snoozeInterval);
-        $snoozeDisplayName = 'snoozeDisplayName-1956223833';
-        $snooze->setDisplayName($snoozeDisplayName);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateSnooze($snooze, $updateMask);
+            $gapicClient->updateSnooze();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

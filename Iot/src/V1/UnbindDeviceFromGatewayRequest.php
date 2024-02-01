@@ -40,8 +40,7 @@ class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent    Required. The name of the registry. For example,
-     *                          `projects/example-project/locations/us-central1/registries/my-registry`. Please see
-     *                          {@see DeviceManagerClient::registryName()} for help formatting this field.
+     *                          `projects/example-project/locations/us-central1/registries/my-registry`.
      * @param string $gatewayId Required. The value of `gateway_id` can be either the device numeric ID or the
      *                          user-defined device identifier.
      * @param string $deviceId  Required. The device to disassociate from the specified gateway. The value of

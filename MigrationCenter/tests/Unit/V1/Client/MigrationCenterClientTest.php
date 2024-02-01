@@ -35,7 +35,6 @@ use Google\Cloud\MigrationCenter\V1\AddAssetsToGroupRequest;
 use Google\Cloud\MigrationCenter\V1\AggregateAssetsValuesRequest;
 use Google\Cloud\MigrationCenter\V1\AggregateAssetsValuesResponse;
 use Google\Cloud\MigrationCenter\V1\Asset;
-use Google\Cloud\MigrationCenter\V1\AssetList;
 use Google\Cloud\MigrationCenter\V1\BatchDeleteAssetsRequest;
 use Google\Cloud\MigrationCenter\V1\BatchUpdateAssetsRequest;
 use Google\Cloud\MigrationCenter\V1\BatchUpdateAssetsResponse;
@@ -69,7 +68,6 @@ use Google\Cloud\MigrationCenter\V1\GetSourceRequest;
 use Google\Cloud\MigrationCenter\V1\Group;
 use Google\Cloud\MigrationCenter\V1\ImportDataFile;
 use Google\Cloud\MigrationCenter\V1\ImportJob;
-use Google\Cloud\MigrationCenter\V1\ImportJobFormat;
 use Google\Cloud\MigrationCenter\V1\ListAssetsRequest;
 use Google\Cloud\MigrationCenter\V1\ListAssetsResponse;
 use Google\Cloud\MigrationCenter\V1\ListErrorFramesRequest;
@@ -107,7 +105,6 @@ use Google\Cloud\MigrationCenter\V1\ValidateImportJobRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -177,12 +174,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $assets = new AssetList();
-        $assetsAssetIds = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
-        $assets->setAssetIds($assetsAssetIds);
-        $request = (new AddAssetsToGroupRequest())->setGroup($formattedGroup)->setAssets($assets);
+        $request = new AddAssetsToGroupRequest();
         $response = $gapicClient->addAssetsToGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -193,10 +185,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/AddAssetsToGroup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getGroup();
-        $this->assertProtobufEquals($formattedGroup, $actualValue);
-        $actualValue = $actualApiRequestObject->getAssets();
-        $this->assertProtobufEquals($assets, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/addAssetsToGroupTest');
         $response->pollUntilComplete([
@@ -250,12 +238,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $assets = new AssetList();
-        $assetsAssetIds = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
-        $assets->setAssetIds($assetsAssetIds);
-        $request = (new AddAssetsToGroupRequest())->setGroup($formattedGroup)->setAssets($assets);
+        $request = new AddAssetsToGroupRequest();
         $response = $gapicClient->addAssetsToGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -289,9 +272,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new AggregateAssetsValuesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new AggregateAssetsValuesRequest())->setParent($parent);
+        $request = new AggregateAssetsValuesRequest();
         $response = $gapicClient->aggregateAssetsValues($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -299,8 +280,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/AggregateAssetsValues', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -325,9 +304,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new AggregateAssetsValuesRequest())->setParent($parent);
+        $request = new AggregateAssetsValuesRequest();
         try {
             $gapicClient->aggregateAssetsValues($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -352,20 +329,13 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $formattedNames = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
-        $request = (new BatchDeleteAssetsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $request = new BatchDeleteAssetsRequest();
         $gapicClient->batchDeleteAssets($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/BatchDeleteAssets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getNames();
-        $this->assertProtobufEquals($formattedNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -390,10 +360,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $formattedNames = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
-        $request = (new BatchDeleteAssetsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $request = new BatchDeleteAssetsRequest();
         try {
             $gapicClient->batchDeleteAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -418,10 +385,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchUpdateAssetsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $requests = [];
-        $request = (new BatchUpdateAssetsRequest())->setParent($formattedParent)->setRequests($requests);
+        $request = new BatchUpdateAssetsRequest();
         $response = $gapicClient->batchUpdateAssets($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -429,10 +393,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/BatchUpdateAssets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -457,10 +417,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $requests = [];
-        $request = (new BatchUpdateAssetsRequest())->setParent($formattedParent)->setRequests($requests);
+        $request = new BatchUpdateAssetsRequest();
         try {
             $gapicClient->batchUpdateAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -509,14 +466,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $groupId = 'groupId506361563';
-        $group = new Group();
-        $request = (new CreateGroupRequest())
-            ->setParent($formattedParent)
-            ->setGroupId($groupId)
-            ->setGroup($group);
+        $request = new CreateGroupRequest();
         $response = $gapicClient->createGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -527,12 +477,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/CreateGroup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getGroupId();
-        $this->assertProtobufEquals($groupId, $actualValue);
-        $actualValue = $actualApiRequestObject->getGroup();
-        $this->assertProtobufEquals($group, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createGroupTest');
         $response->pollUntilComplete([
@@ -586,14 +530,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $groupId = 'groupId506361563';
-        $group = new Group();
-        $request = (new CreateGroupRequest())
-            ->setParent($formattedParent)
-            ->setGroupId($groupId)
-            ->setGroup($group);
+        $request = new CreateGroupRequest();
         $response = $gapicClient->createGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -649,16 +586,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $importDataFileId = 'importDataFileId-1455500925';
-        $importDataFile = new ImportDataFile();
-        $importDataFileFormat = ImportJobFormat::IMPORT_JOB_FORMAT_UNSPECIFIED;
-        $importDataFile->setFormat($importDataFileFormat);
-        $request = (new CreateImportDataFileRequest())
-            ->setParent($formattedParent)
-            ->setImportDataFileId($importDataFileId)
-            ->setImportDataFile($importDataFile);
+        $request = new CreateImportDataFileRequest();
         $response = $gapicClient->createImportDataFile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -669,12 +597,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/CreateImportDataFile', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getImportDataFileId();
-        $this->assertProtobufEquals($importDataFileId, $actualValue);
-        $actualValue = $actualApiRequestObject->getImportDataFile();
-        $this->assertProtobufEquals($importDataFile, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createImportDataFileTest');
         $response->pollUntilComplete([
@@ -728,16 +650,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $importDataFileId = 'importDataFileId-1455500925';
-        $importDataFile = new ImportDataFile();
-        $importDataFileFormat = ImportJobFormat::IMPORT_JOB_FORMAT_UNSPECIFIED;
-        $importDataFile->setFormat($importDataFileFormat);
-        $request = (new CreateImportDataFileRequest())
-            ->setParent($formattedParent)
-            ->setImportDataFileId($importDataFileId)
-            ->setImportDataFile($importDataFile);
+        $request = new CreateImportDataFileRequest();
         $response = $gapicClient->createImportDataFile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -795,16 +708,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $importJobId = 'importJobId-1620773193';
-        $importJob = new ImportJob();
-        $importJobAssetSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $importJob->setAssetSource($importJobAssetSource);
-        $request = (new CreateImportJobRequest())
-            ->setParent($formattedParent)
-            ->setImportJobId($importJobId)
-            ->setImportJob($importJob);
+        $request = new CreateImportJobRequest();
         $response = $gapicClient->createImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -815,12 +719,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/CreateImportJob', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getImportJobId();
-        $this->assertProtobufEquals($importJobId, $actualValue);
-        $actualValue = $actualApiRequestObject->getImportJob();
-        $this->assertProtobufEquals($importJob, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createImportJobTest');
         $response->pollUntilComplete([
@@ -874,16 +772,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $importJobId = 'importJobId-1620773193';
-        $importJob = new ImportJob();
-        $importJobAssetSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $importJob->setAssetSource($importJobAssetSource);
-        $request = (new CreateImportJobRequest())
-            ->setParent($formattedParent)
-            ->setImportJobId($importJobId)
-            ->setImportJob($importJob);
+        $request = new CreateImportJobRequest();
         $response = $gapicClient->createImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -941,14 +830,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $preferenceSetId = 'preferenceSetId697034236';
-        $preferenceSet = new PreferenceSet();
-        $request = (new CreatePreferenceSetRequest())
-            ->setParent($formattedParent)
-            ->setPreferenceSetId($preferenceSetId)
-            ->setPreferenceSet($preferenceSet);
+        $request = new CreatePreferenceSetRequest();
         $response = $gapicClient->createPreferenceSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -959,12 +841,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/CreatePreferenceSet', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getPreferenceSetId();
-        $this->assertProtobufEquals($preferenceSetId, $actualValue);
-        $actualValue = $actualApiRequestObject->getPreferenceSet();
-        $this->assertProtobufEquals($preferenceSet, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createPreferenceSetTest');
         $response->pollUntilComplete([
@@ -1018,14 +894,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $preferenceSetId = 'preferenceSetId697034236';
-        $preferenceSet = new PreferenceSet();
-        $request = (new CreatePreferenceSetRequest())
-            ->setParent($formattedParent)
-            ->setPreferenceSetId($preferenceSetId)
-            ->setPreferenceSet($preferenceSet);
+        $request = new CreatePreferenceSetRequest();
         $response = $gapicClient->createPreferenceSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1083,14 +952,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $reportId = 'reportId-353329146';
-        $report = new Report();
-        $request = (new CreateReportRequest())
-            ->setParent($formattedParent)
-            ->setReportId($reportId)
-            ->setReport($report);
+        $request = new CreateReportRequest();
         $response = $gapicClient->createReport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1101,12 +963,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/CreateReport', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getReportId();
-        $this->assertProtobufEquals($reportId, $actualValue);
-        $actualValue = $actualApiRequestObject->getReport();
-        $this->assertProtobufEquals($report, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createReportTest');
         $response->pollUntilComplete([
@@ -1160,14 +1016,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $reportId = 'reportId-353329146';
-        $report = new Report();
-        $request = (new CreateReportRequest())
-            ->setParent($formattedParent)
-            ->setReportId($reportId)
-            ->setReport($report);
+        $request = new CreateReportRequest();
         $response = $gapicClient->createReport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1225,16 +1074,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $reportConfigId = 'reportConfigId2120773101';
-        $reportConfig = new ReportConfig();
-        $reportConfigGroupPreferencesetAssignments = [];
-        $reportConfig->setGroupPreferencesetAssignments($reportConfigGroupPreferencesetAssignments);
-        $request = (new CreateReportConfigRequest())
-            ->setParent($formattedParent)
-            ->setReportConfigId($reportConfigId)
-            ->setReportConfig($reportConfig);
+        $request = new CreateReportConfigRequest();
         $response = $gapicClient->createReportConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1245,12 +1085,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/CreateReportConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getReportConfigId();
-        $this->assertProtobufEquals($reportConfigId, $actualValue);
-        $actualValue = $actualApiRequestObject->getReportConfig();
-        $this->assertProtobufEquals($reportConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createReportConfigTest');
         $response->pollUntilComplete([
@@ -1304,16 +1138,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $reportConfigId = 'reportConfigId2120773101';
-        $reportConfig = new ReportConfig();
-        $reportConfigGroupPreferencesetAssignments = [];
-        $reportConfig->setGroupPreferencesetAssignments($reportConfigGroupPreferencesetAssignments);
-        $request = (new CreateReportConfigRequest())
-            ->setParent($formattedParent)
-            ->setReportConfigId($reportConfigId)
-            ->setReportConfig($reportConfig);
+        $request = new CreateReportConfigRequest();
         $response = $gapicClient->createReportConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1379,14 +1204,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $sourceId = 'sourceId-1698410561';
-        $source = new Source();
-        $request = (new CreateSourceRequest())
-            ->setParent($formattedParent)
-            ->setSourceId($sourceId)
-            ->setSource($source);
+        $request = new CreateSourceRequest();
         $response = $gapicClient->createSource($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1397,12 +1215,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/CreateSource', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSourceId();
-        $this->assertProtobufEquals($sourceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getSource();
-        $this->assertProtobufEquals($source, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createSourceTest');
         $response->pollUntilComplete([
@@ -1456,14 +1268,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $sourceId = 'sourceId-1698410561';
-        $source = new Source();
-        $request = (new CreateSourceRequest())
-            ->setParent($formattedParent)
-            ->setSourceId($sourceId)
-            ->setSource($source);
+        $request = new CreateSourceRequest();
         $response = $gapicClient->createSource($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1497,17 +1302,13 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
-        $request = (new DeleteAssetRequest())->setName($formattedName);
+        $request = new DeleteAssetRequest();
         $gapicClient->deleteAsset($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/DeleteAsset', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1532,9 +1333,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
-        $request = (new DeleteAssetRequest())->setName($formattedName);
+        $request = new DeleteAssetRequest();
         try {
             $gapicClient->deleteAsset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1577,9 +1376,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $request = (new DeleteGroupRequest())->setName($formattedName);
+        $request = new DeleteGroupRequest();
         $response = $gapicClient->deleteGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1590,8 +1387,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/DeleteGroup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteGroupTest');
         $response->pollUntilComplete([
@@ -1645,9 +1440,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $request = (new DeleteGroupRequest())->setName($formattedName);
+        $request = new DeleteGroupRequest();
         $response = $gapicClient->deleteGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1699,14 +1492,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->importDataFileName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[IMPORT_JOB]',
-            '[IMPORT_DATA_FILE]'
-        );
-        $request = (new DeleteImportDataFileRequest())->setName($formattedName);
+        $request = new DeleteImportDataFileRequest();
         $response = $gapicClient->deleteImportDataFile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1717,8 +1503,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/DeleteImportDataFile', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteImportDataFileTest');
         $response->pollUntilComplete([
@@ -1772,14 +1556,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->importDataFileName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[IMPORT_JOB]',
-            '[IMPORT_DATA_FILE]'
-        );
-        $request = (new DeleteImportDataFileRequest())->setName($formattedName);
+        $request = new DeleteImportDataFileRequest();
         $response = $gapicClient->deleteImportDataFile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1831,9 +1608,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new DeleteImportJobRequest())->setName($formattedName);
+        $request = new DeleteImportJobRequest();
         $response = $gapicClient->deleteImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1844,8 +1619,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/DeleteImportJob', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteImportJobTest');
         $response->pollUntilComplete([
@@ -1899,9 +1672,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new DeleteImportJobRequest())->setName($formattedName);
+        $request = new DeleteImportJobRequest();
         $response = $gapicClient->deleteImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1953,9 +1724,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->preferenceSetName('[PROJECT]', '[LOCATION]', '[PREFERENCE_SET]');
-        $request = (new DeletePreferenceSetRequest())->setName($formattedName);
+        $request = new DeletePreferenceSetRequest();
         $response = $gapicClient->deletePreferenceSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1966,8 +1735,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/DeletePreferenceSet', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deletePreferenceSetTest');
         $response->pollUntilComplete([
@@ -2021,9 +1788,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->preferenceSetName('[PROJECT]', '[LOCATION]', '[PREFERENCE_SET]');
-        $request = (new DeletePreferenceSetRequest())->setName($formattedName);
+        $request = new DeletePreferenceSetRequest();
         $response = $gapicClient->deletePreferenceSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2075,9 +1840,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->reportName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT]');
-        $request = (new DeleteReportRequest())->setName($formattedName);
+        $request = new DeleteReportRequest();
         $response = $gapicClient->deleteReport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2088,8 +1851,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/DeleteReport', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteReportTest');
         $response->pollUntilComplete([
@@ -2143,9 +1904,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->reportName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT]');
-        $request = (new DeleteReportRequest())->setName($formattedName);
+        $request = new DeleteReportRequest();
         $response = $gapicClient->deleteReport($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2197,9 +1956,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new DeleteReportConfigRequest())->setName($formattedName);
+        $request = new DeleteReportConfigRequest();
         $response = $gapicClient->deleteReportConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2210,8 +1967,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/DeleteReportConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteReportConfigTest');
         $response->pollUntilComplete([
@@ -2265,9 +2020,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new DeleteReportConfigRequest())->setName($formattedName);
+        $request = new DeleteReportConfigRequest();
         $response = $gapicClient->deleteReportConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2319,9 +2072,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new DeleteSourceRequest())->setName($formattedName);
+        $request = new DeleteSourceRequest();
         $response = $gapicClient->deleteSource($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2332,8 +2083,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/DeleteSource', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteSourceTest');
         $response->pollUntilComplete([
@@ -2387,9 +2136,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new DeleteSourceRequest())->setName($formattedName);
+        $request = new DeleteSourceRequest();
         $response = $gapicClient->deleteSource($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2425,9 +2172,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse = new Asset();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
-        $request = (new GetAssetRequest())->setName($formattedName);
+        $request = new GetAssetRequest();
         $response = $gapicClient->getAsset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2435,8 +2180,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/GetAsset', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2461,9 +2204,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
-        $request = (new GetAssetRequest())->setName($formattedName);
+        $request = new GetAssetRequest();
         try {
             $gapicClient->getAsset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2490,9 +2231,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse = new ErrorFrame();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->errorFrameName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[ERROR_FRAME]');
-        $request = (new GetErrorFrameRequest())->setName($formattedName);
+        $request = new GetErrorFrameRequest();
         $response = $gapicClient->getErrorFrame($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2500,8 +2239,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/GetErrorFrame', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2526,9 +2263,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->errorFrameName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[ERROR_FRAME]');
-        $request = (new GetErrorFrameRequest())->setName($formattedName);
+        $request = new GetErrorFrameRequest();
         try {
             $gapicClient->getErrorFrame($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2559,9 +2294,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $request = (new GetGroupRequest())->setName($formattedName);
+        $request = new GetGroupRequest();
         $response = $gapicClient->getGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2569,8 +2302,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/GetGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2595,9 +2326,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $request = (new GetGroupRequest())->setName($formattedName);
+        $request = new GetGroupRequest();
         try {
             $gapicClient->getGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2626,14 +2355,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->importDataFileName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[IMPORT_JOB]',
-            '[IMPORT_DATA_FILE]'
-        );
-        $request = (new GetImportDataFileRequest())->setName($formattedName);
+        $request = new GetImportDataFileRequest();
         $response = $gapicClient->getImportDataFile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2641,8 +2363,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/GetImportDataFile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2667,14 +2387,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->importDataFileName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[IMPORT_JOB]',
-            '[IMPORT_DATA_FILE]'
-        );
-        $request = (new GetImportDataFileRequest())->setName($formattedName);
+        $request = new GetImportDataFileRequest();
         try {
             $gapicClient->getImportDataFile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2705,9 +2418,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setAssetSource($assetSource);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new GetImportJobRequest())->setName($formattedName);
+        $request = new GetImportJobRequest();
         $response = $gapicClient->getImportJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2715,8 +2426,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/GetImportJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2741,9 +2450,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new GetImportJobRequest())->setName($formattedName);
+        $request = new GetImportJobRequest();
         try {
             $gapicClient->getImportJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2774,9 +2481,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->preferenceSetName('[PROJECT]', '[LOCATION]', '[PREFERENCE_SET]');
-        $request = (new GetPreferenceSetRequest())->setName($formattedName);
+        $request = new GetPreferenceSetRequest();
         $response = $gapicClient->getPreferenceSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2784,8 +2489,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/GetPreferenceSet', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2810,9 +2513,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->preferenceSetName('[PROJECT]', '[LOCATION]', '[PREFERENCE_SET]');
-        $request = (new GetPreferenceSetRequest())->setName($formattedName);
+        $request = new GetPreferenceSetRequest();
         try {
             $gapicClient->getPreferenceSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2843,9 +2544,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->reportName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT]');
-        $request = (new GetReportRequest())->setName($formattedName);
+        $request = new GetReportRequest();
         $response = $gapicClient->getReport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2853,8 +2552,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/GetReport', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2879,9 +2576,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->reportName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT]');
-        $request = (new GetReportRequest())->setName($formattedName);
+        $request = new GetReportRequest();
         try {
             $gapicClient->getReport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2912,9 +2607,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new GetReportConfigRequest())->setName($formattedName);
+        $request = new GetReportConfigRequest();
         $response = $gapicClient->getReportConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2922,8 +2615,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/GetReportConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2948,9 +2639,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new GetReportConfigRequest())->setName($formattedName);
+        $request = new GetReportConfigRequest();
         try {
             $gapicClient->getReportConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2979,9 +2668,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setPreferenceSet($preferenceSet);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->settingsName('[PROJECT]', '[LOCATION]');
-        $request = (new GetSettingsRequest())->setName($formattedName);
+        $request = new GetSettingsRequest();
         $response = $gapicClient->getSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2989,8 +2676,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/GetSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3015,9 +2700,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->settingsName('[PROJECT]', '[LOCATION]');
-        $request = (new GetSettingsRequest())->setName($formattedName);
+        $request = new GetSettingsRequest();
         try {
             $gapicClient->getSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3056,9 +2739,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setPendingFrameCount($pendingFrameCount);
         $expectedResponse->setErrorFrameCount($errorFrameCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new GetSourceRequest())->setName($formattedName);
+        $request = new GetSourceRequest();
         $response = $gapicClient->getSource($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3066,8 +2747,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/GetSource', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3092,9 +2771,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new GetSourceRequest())->setName($formattedName);
+        $request = new GetSourceRequest();
         try {
             $gapicClient->getSource($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3124,9 +2801,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAssets($assets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAssetsRequest())->setParent($formattedParent);
+        $request = new ListAssetsRequest();
         $response = $gapicClient->listAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3137,8 +2812,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ListAssets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3163,9 +2836,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAssetsRequest())->setParent($formattedParent);
+        $request = new ListAssetsRequest();
         try {
             $gapicClient->listAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3195,9 +2866,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setErrorFrames($errorFrames);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new ListErrorFramesRequest())->setParent($formattedParent);
+        $request = new ListErrorFramesRequest();
         $response = $gapicClient->listErrorFrames($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3208,8 +2877,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ListErrorFrames', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3234,9 +2901,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new ListErrorFramesRequest())->setParent($formattedParent);
+        $request = new ListErrorFramesRequest();
         try {
             $gapicClient->listErrorFrames($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3266,9 +2931,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGroups($groups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListGroupsRequest())->setParent($formattedParent);
+        $request = new ListGroupsRequest();
         $response = $gapicClient->listGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3279,8 +2942,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ListGroups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3305,9 +2966,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListGroupsRequest())->setParent($formattedParent);
+        $request = new ListGroupsRequest();
         try {
             $gapicClient->listGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3337,9 +2996,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setImportDataFiles($importDataFiles);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new ListImportDataFilesRequest())->setParent($formattedParent);
+        $request = new ListImportDataFilesRequest();
         $response = $gapicClient->listImportDataFiles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3350,8 +3007,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ListImportDataFiles', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3376,9 +3031,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new ListImportDataFilesRequest())->setParent($formattedParent);
+        $request = new ListImportDataFilesRequest();
         try {
             $gapicClient->listImportDataFiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3408,9 +3061,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setImportJobs($importJobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListImportJobsRequest())->setParent($formattedParent);
+        $request = new ListImportJobsRequest();
         $response = $gapicClient->listImportJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3421,8 +3072,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ListImportJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3447,9 +3096,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListImportJobsRequest())->setParent($formattedParent);
+        $request = new ListImportJobsRequest();
         try {
             $gapicClient->listImportJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3479,9 +3126,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPreferenceSets($preferenceSets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPreferenceSetsRequest())->setParent($formattedParent);
+        $request = new ListPreferenceSetsRequest();
         $response = $gapicClient->listPreferenceSets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3492,8 +3137,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ListPreferenceSets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3518,9 +3161,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPreferenceSetsRequest())->setParent($formattedParent);
+        $request = new ListPreferenceSetsRequest();
         try {
             $gapicClient->listPreferenceSets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3550,9 +3191,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReportConfigs($reportConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListReportConfigsRequest())->setParent($formattedParent);
+        $request = new ListReportConfigsRequest();
         $response = $gapicClient->listReportConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3563,8 +3202,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ListReportConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3589,9 +3226,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListReportConfigsRequest())->setParent($formattedParent);
+        $request = new ListReportConfigsRequest();
         try {
             $gapicClient->listReportConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3621,9 +3256,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReports($reports);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new ListReportsRequest())->setParent($formattedParent);
+        $request = new ListReportsRequest();
         $response = $gapicClient->listReports($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3634,8 +3267,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ListReports', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3660,9 +3291,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new ListReportsRequest())->setParent($formattedParent);
+        $request = new ListReportsRequest();
         try {
             $gapicClient->listReports($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3692,9 +3321,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSources($sources);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSourcesRequest())->setParent($formattedParent);
+        $request = new ListSourcesRequest();
         $response = $gapicClient->listSources($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3705,8 +3332,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ListSources', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3731,9 +3356,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSourcesRequest())->setParent($formattedParent);
+        $request = new ListSourcesRequest();
         try {
             $gapicClient->listSources($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3782,12 +3405,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $assets = new AssetList();
-        $assetsAssetIds = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
-        $assets->setAssetIds($assetsAssetIds);
-        $request = (new RemoveAssetsFromGroupRequest())->setGroup($formattedGroup)->setAssets($assets);
+        $request = new RemoveAssetsFromGroupRequest();
         $response = $gapicClient->removeAssetsFromGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3798,10 +3416,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/RemoveAssetsFromGroup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getGroup();
-        $this->assertProtobufEquals($formattedGroup, $actualValue);
-        $actualValue = $actualApiRequestObject->getAssets();
-        $this->assertProtobufEquals($assets, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/removeAssetsFromGroupTest');
         $response->pollUntilComplete([
@@ -3855,12 +3469,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $assets = new AssetList();
-        $assetsAssetIds = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
-        $assets->setAssetIds($assetsAssetIds);
-        $request = (new RemoveAssetsFromGroupRequest())->setGroup($formattedGroup)->setAssets($assets);
+        $request = new RemoveAssetsFromGroupRequest();
         $response = $gapicClient->removeAssetsFromGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3894,10 +3503,7 @@ class MigrationCenterClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ReportAssetFramesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $formattedSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new ReportAssetFramesRequest())->setParent($parent)->setSource($formattedSource);
+        $request = new ReportAssetFramesRequest();
         $response = $gapicClient->reportAssetFrames($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3905,10 +3511,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ReportAssetFrames', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getSource();
-        $this->assertProtobufEquals($formattedSource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3933,10 +3535,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $formattedSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $request = (new ReportAssetFramesRequest())->setParent($parent)->setSource($formattedSource);
+        $request = new ReportAssetFramesRequest();
         try {
             $gapicClient->reportAssetFrames($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3979,9 +3578,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new RunImportJobRequest())->setName($formattedName);
+        $request = new RunImportJobRequest();
         $response = $gapicClient->runImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3992,8 +3589,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/RunImportJob', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/runImportJobTest');
         $response->pollUntilComplete([
@@ -4047,9 +3642,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new RunImportJobRequest())->setName($formattedName);
+        $request = new RunImportJobRequest();
         $response = $gapicClient->runImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4085,10 +3678,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $expectedResponse = new Asset();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $asset = new Asset();
-        $request = (new UpdateAssetRequest())->setUpdateMask($updateMask)->setAsset($asset);
+        $request = new UpdateAssetRequest();
         $response = $gapicClient->updateAsset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4096,10 +3686,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/UpdateAsset', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualRequestObject->getAsset();
-        $this->assertProtobufEquals($asset, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4124,10 +3710,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $asset = new Asset();
-        $request = (new UpdateAssetRequest())->setUpdateMask($updateMask)->setAsset($asset);
+        $request = new UpdateAssetRequest();
         try {
             $gapicClient->updateAsset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4176,10 +3759,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $group = new Group();
-        $request = (new UpdateGroupRequest())->setUpdateMask($updateMask)->setGroup($group);
+        $request = new UpdateGroupRequest();
         $response = $gapicClient->updateGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4190,10 +3770,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/UpdateGroup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getGroup();
-        $this->assertProtobufEquals($group, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateGroupTest');
         $response->pollUntilComplete([
@@ -4247,10 +3823,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $group = new Group();
-        $request = (new UpdateGroupRequest())->setUpdateMask($updateMask)->setGroup($group);
+        $request = new UpdateGroupRequest();
         $response = $gapicClient->updateGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4308,12 +3881,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $importJob = new ImportJob();
-        $importJobAssetSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $importJob->setAssetSource($importJobAssetSource);
-        $request = (new UpdateImportJobRequest())->setUpdateMask($updateMask)->setImportJob($importJob);
+        $request = new UpdateImportJobRequest();
         $response = $gapicClient->updateImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4324,10 +3892,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/UpdateImportJob', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getImportJob();
-        $this->assertProtobufEquals($importJob, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateImportJobTest');
         $response->pollUntilComplete([
@@ -4381,12 +3945,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $importJob = new ImportJob();
-        $importJobAssetSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $importJob->setAssetSource($importJobAssetSource);
-        $request = (new UpdateImportJobRequest())->setUpdateMask($updateMask)->setImportJob($importJob);
+        $request = new UpdateImportJobRequest();
         $response = $gapicClient->updateImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4444,10 +4003,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $preferenceSet = new PreferenceSet();
-        $request = (new UpdatePreferenceSetRequest())->setUpdateMask($updateMask)->setPreferenceSet($preferenceSet);
+        $request = new UpdatePreferenceSetRequest();
         $response = $gapicClient->updatePreferenceSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4458,10 +4014,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/UpdatePreferenceSet', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getPreferenceSet();
-        $this->assertProtobufEquals($preferenceSet, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updatePreferenceSetTest');
         $response->pollUntilComplete([
@@ -4515,10 +4067,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $preferenceSet = new PreferenceSet();
-        $request = (new UpdatePreferenceSetRequest())->setUpdateMask($updateMask)->setPreferenceSet($preferenceSet);
+        $request = new UpdatePreferenceSetRequest();
         $response = $gapicClient->updatePreferenceSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4574,10 +4123,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $settings = new Settings();
-        $request = (new UpdateSettingsRequest())->setUpdateMask($updateMask)->setSettings($settings);
+        $request = new UpdateSettingsRequest();
         $response = $gapicClient->updateSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4588,10 +4134,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/UpdateSettings', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getSettings();
-        $this->assertProtobufEquals($settings, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateSettingsTest');
         $response->pollUntilComplete([
@@ -4645,10 +4187,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $settings = new Settings();
-        $request = (new UpdateSettingsRequest())->setUpdateMask($updateMask)->setSettings($settings);
+        $request = new UpdateSettingsRequest();
         $response = $gapicClient->updateSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4714,10 +4253,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $source = new Source();
-        $request = (new UpdateSourceRequest())->setUpdateMask($updateMask)->setSource($source);
+        $request = new UpdateSourceRequest();
         $response = $gapicClient->updateSource($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4728,10 +4264,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/UpdateSource', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getSource();
-        $this->assertProtobufEquals($source, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateSourceTest');
         $response->pollUntilComplete([
@@ -4785,10 +4317,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $source = new Source();
-        $request = (new UpdateSourceRequest())->setUpdateMask($updateMask)->setSource($source);
+        $request = new UpdateSourceRequest();
         $response = $gapicClient->updateSource($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4840,9 +4369,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new ValidateImportJobRequest())->setName($formattedName);
+        $request = new ValidateImportJobRequest();
         $response = $gapicClient->validateImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4853,8 +4380,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/ValidateImportJob', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/validateImportJobTest');
         $response->pollUntilComplete([
@@ -4908,9 +4433,7 @@ class MigrationCenterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-        $request = (new ValidateImportJobRequest())->setName($formattedName);
+        $request = new ValidateImportJobRequest();
         $response = $gapicClient->validateImportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5096,12 +4619,7 @@ class MigrationCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $assets = new AssetList();
-        $assetsAssetIds = [$gapicClient->assetName('[PROJECT]', '[LOCATION]', '[ASSET]')];
-        $assets->setAssetIds($assetsAssetIds);
-        $request = (new AddAssetsToGroupRequest())->setGroup($formattedGroup)->setAssets($assets);
+        $request = new AddAssetsToGroupRequest();
         $response = $gapicClient->addAssetsToGroupAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5112,10 +4630,6 @@ class MigrationCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.migrationcenter.v1.MigrationCenter/AddAssetsToGroup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getGroup();
-        $this->assertProtobufEquals($formattedGroup, $actualValue);
-        $actualValue = $actualApiRequestObject->getAssets();
-        $this->assertProtobufEquals($assets, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/addAssetsToGroupTest');
         $response->pollUntilComplete([

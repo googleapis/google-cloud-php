@@ -27,7 +27,6 @@ class GetNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The channel for which to execute the request. The format is:
      *
      *                     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
-     *                     Please see {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
      *
      * @return \Google\Cloud\Monitoring\V3\GetNotificationChannelRequest
      *

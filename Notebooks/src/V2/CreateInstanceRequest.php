@@ -44,7 +44,6 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                              $parent     Required. Format:
      *                                                        `parent=projects/{project_id}/locations/{location}`
-     *                                                        Please see {@see NotebookServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Notebooks\V2\Instance $instance   Required. The instance to be created.
      * @param string                              $instanceId Required. User-defined unique ID of this instance.
      *

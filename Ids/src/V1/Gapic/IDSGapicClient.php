@@ -52,10 +52,7 @@ use Google\LongRunning\Operation;
  * ```
  * $iDSClient = new IDSClient();
  * try {
- *     $formattedParent = $iDSClient->locationName('[PROJECT]', '[LOCATION]');
- *     $endpointId = 'endpoint_id';
- *     $endpoint = new Endpoint();
- *     $operationResponse = $iDSClient->createEndpoint($formattedParent, $endpointId, $endpoint);
+ *     $operationResponse = $iDSClient->createEndpoint();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -66,7 +63,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $iDSClient->createEndpoint($formattedParent, $endpointId, $endpoint);
+ *     $operationResponse = $iDSClient->createEndpoint();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $iDSClient->resumeOperation($operationName, 'createEndpoint');
@@ -371,10 +368,7 @@ class IDSGapicClient
      * ```
      * $iDSClient = new IDSClient();
      * try {
-     *     $formattedParent = $iDSClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $endpointId = 'endpoint_id';
-     *     $endpoint = new Endpoint();
-     *     $operationResponse = $iDSClient->createEndpoint($formattedParent, $endpointId, $endpoint);
+     *     $operationResponse = $iDSClient->createEndpoint();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -385,7 +379,7 @@ class IDSGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $iDSClient->createEndpoint($formattedParent, $endpointId, $endpoint);
+     *     $operationResponse = $iDSClient->createEndpoint();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $iDSClient->resumeOperation($operationName, 'createEndpoint');
@@ -405,17 +399,20 @@ class IDSGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The endpoint's parent.
-     * @param string   $endpointId   Required. The endpoint identifier. This will be part of the endpoint's
-     *                               resource name.
-     *                               This value must start with a lowercase letter followed by up to 62
-     *                               lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
-     *                               Values that do not match this pattern will trigger an INVALID_ARGUMENT
-     *                               error.
-     * @param Endpoint $endpoint     Required. The endpoint to create.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The endpoint's parent.
+     *     @type string $endpointId
+     *           Required. The endpoint identifier. This will be part of the endpoint's
+     *           resource name.
+     *           This value must start with a lowercase letter followed by up to 62
+     *           lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     *           Values that do not match this pattern will trigger an INVALID_ARGUMENT
+     *           error.
+     *     @type Endpoint $endpoint
+     *           Required. The endpoint to create.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -440,18 +437,23 @@ class IDSGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEndpoint(
-        $parent,
-        $endpointId,
-        $endpoint,
-        array $optionalArgs = []
-    ) {
+    public function createEndpoint(array $optionalArgs = [])
+    {
         $request = new CreateEndpointRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEndpointId($endpointId);
-        $request->setEndpoint($endpoint);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['endpointId'])) {
+            $request->setEndpointId($optionalArgs['endpointId']);
+        }
+
+        if (isset($optionalArgs['endpoint'])) {
+            $request->setEndpoint($optionalArgs['endpoint']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -477,8 +479,7 @@ class IDSGapicClient
      * ```
      * $iDSClient = new IDSClient();
      * try {
-     *     $formattedName = $iDSClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-     *     $operationResponse = $iDSClient->deleteEndpoint($formattedName);
+     *     $operationResponse = $iDSClient->deleteEndpoint();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -488,7 +489,7 @@ class IDSGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $iDSClient->deleteEndpoint($formattedName);
+     *     $operationResponse = $iDSClient->deleteEndpoint();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $iDSClient->resumeOperation($operationName, 'deleteEndpoint');
@@ -507,10 +508,11 @@ class IDSGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the endpoint to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the endpoint to delete.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server will know to ignore
@@ -535,12 +537,15 @@ class IDSGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteEndpoint($name, array $optionalArgs = [])
+    public function deleteEndpoint(array $optionalArgs = [])
     {
         $request = new DeleteEndpointRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -566,18 +571,18 @@ class IDSGapicClient
      * ```
      * $iDSClient = new IDSClient();
      * try {
-     *     $formattedName = $iDSClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-     *     $response = $iDSClient->getEndpoint($formattedName);
+     *     $response = $iDSClient->getEndpoint();
      * } finally {
      *     $iDSClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the endpoint to retrieve.
-     *                             Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the endpoint to retrieve.
+     *           Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -588,12 +593,15 @@ class IDSGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEndpoint($name, array $optionalArgs = [])
+    public function getEndpoint(array $optionalArgs = [])
     {
         $request = new GetEndpointRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -615,9 +623,8 @@ class IDSGapicClient
      * ```
      * $iDSClient = new IDSClient();
      * try {
-     *     $formattedParent = $iDSClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $iDSClient->listEndpoints($formattedParent);
+     *     $pagedResponse = $iDSClient->listEndpoints();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -625,7 +632,7 @@ class IDSGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $iDSClient->listEndpoints($formattedParent);
+     *     $pagedResponse = $iDSClient->listEndpoints();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -634,10 +641,11 @@ class IDSGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of endpoints.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of endpoints.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -663,12 +671,15 @@ class IDSGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEndpoints($parent, array $optionalArgs = [])
+    public function listEndpoints(array $optionalArgs = [])
     {
         $request = new ListEndpointsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

@@ -33,7 +33,6 @@ class RefreshRuntimeTokenInternalRequest extends \Google\Protobuf\Internal\Messa
     /**
      * @param string $name Required. Format:
      *                     `projects/{project_id}/locations/{location}/runtimes/{runtime_id}`
-     *                     Please see {@see ManagedNotebookServiceClient::runtimeName()} for help formatting this field.
      * @param string $vmId Required. The VM hardware token for authenticating the VM.
      *                     https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      *

@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Language\V2\AnalyzeSentimentRequest;
 use Google\Cloud\Language\V2\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V2\Client\LanguageServiceClient;
-use Google\Cloud\Language\V2\Document;
 
 /**
  * Analyzes the sentiment of the provided text.
@@ -44,9 +43,7 @@ function analyze_sentiment_sample(): void
     $languageServiceClient = new LanguageServiceClient();
 
     // Prepare the request message.
-    $document = new Document();
-    $request = (new AnalyzeSentimentRequest())
-        ->setDocument($document);
+    $request = new AnalyzeSentimentRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -50,9 +50,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'domain_name',
-                ],
             ],
             'DeleteDomain' => [
                 'method' => 'delete',
@@ -134,9 +131,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'ValidateTrust' => [

@@ -36,8 +36,7 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                   "projects/[PROJECT_ID]"
      *
-     *                                                   The new metric must be provided in the request. Please see
-     *                                                   {@see MetricsServiceV2Client::projectName()} for help formatting this field.
+     *                                                   The new metric must be provided in the request.
      * @param \Google\Cloud\Logging\V2\LogMetric $metric Required. The new logs-based metric, which must not have an identifier that
      *                                                   already exists.
      *

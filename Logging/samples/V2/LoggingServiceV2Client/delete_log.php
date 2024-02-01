@@ -33,29 +33,19 @@ use Google\Cloud\Logging\V2\DeleteLogRequest;
  * the delete operation might not be deleted. Entries received after the
  * delete operation with a timestamp before the operation will be deleted.
  *
- * @param string $formattedLogName The resource name of the log to delete:
- *
- *                                 * `projects/[PROJECT_ID]/logs/[LOG_ID]`
- *                                 * `organizations/[ORGANIZATION_ID]/logs/[LOG_ID]`
- *                                 * `billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]`
- *                                 * `folders/[FOLDER_ID]/logs/[LOG_ID]`
- *
- *                                 `[LOG_ID]` must be URL-encoded. For example,
- *                                 `"projects/my-project-id/logs/syslog"`,
- *                                 `"organizations/123/logs/cloudaudit.googleapis.com%2Factivity"`.
- *
- *                                 For more information about log names, see
- *                                 [LogEntry][google.logging.v2.LogEntry]. Please see
- *                                 {@see LoggingServiceV2Client::logName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_log_sample(string $formattedLogName): void
+function delete_log_sample(): void
 {
     // Create a client.
     $loggingServiceV2Client = new LoggingServiceV2Client();
 
     // Prepare the request message.
-    $request = (new DeleteLogRequest())
-        ->setLogName($formattedLogName);
+    $request = new DeleteLogRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -64,21 +54,5 @@ function delete_log_sample(string $formattedLogName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedLogName = LoggingServiceV2Client::logName('[PROJECT]', '[LOG]');
-
-    delete_log_sample($formattedLogName);
 }
 // [END logging_v2_generated_LoggingServiceV2_DeleteLog_sync]

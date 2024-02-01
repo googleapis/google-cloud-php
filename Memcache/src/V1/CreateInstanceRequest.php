@@ -47,7 +47,6 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * @param string                             $parent     Required. The resource name of the instance location using the form:
      *                                                       `projects/{project_id}/locations/{location_id}`
      *                                                       where `location_id` refers to a GCP region
-     *                                                       Please see {@see CloudMemcacheClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Memcache\V1\Instance $instance   Required. A Memcached Instance
      * @param string                             $instanceId Required. The logical name of the Memcached instance in the user
      *                                                       project with the following restrictions:

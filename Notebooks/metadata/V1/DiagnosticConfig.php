@@ -17,15 +17,15 @@ class DiagnosticConfig
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-é
-1google/cloud/notebooks/v1/diagnostic_config.protogoogle.cloud.notebooks.v1"æ
-DiagnosticConfig
+ì
+1google/cloud/notebooks/v1/diagnostic_config.protogoogle.cloud.notebooks.v1"√
+DiagnosticConfig
 
-gcs_bucket (	B‡A
-relative_path (	B‡A 
-repair_flag_enabled (B‡A(
-packet_capture_flag_enabled (B‡A)
-copy_home_files_flag_enabled (B‡ABu
+gcs_bucket (	B‚A
+relative_path (	B‚A!
+repair_flag_enabled (B‚A)
+packet_capture_flag_enabled (B‚A*
+copy_home_files_flag_enabled (B‚ABu
 com.google.cloud.notebooks.v1BDiagnosticConfigProtoPZ;cloud.google.com/go/notebooks/apiv1/notebookspb;notebookspbbproto3'
         , true);
 

@@ -54,8 +54,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     protected $view = 0;
 
     /**
-     * @param string $parent Required. Parent value for `ListAssetsRequest`. Please see
-     *                       {@see MigrationCenterClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Parent value for `ListAssetsRequest`.
      *
      * @return \Google\Cloud\MigrationCenter\V1\ListAssetsRequest
      *

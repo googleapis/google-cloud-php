@@ -31,11 +31,13 @@ use Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy;
 /**
  * Lists ServerTlsPolicies in a given project and location.
  *
- * @param string $formattedParent The project and location from which the ServerTlsPolicies should
- *                                be listed, specified in the format `projects/&#42;/locations/{location}`. Please see
- *                                {@see NetworkSecurityClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_server_tls_policies_sample(string $formattedParent): void
+function list_server_tls_policies_sample(): void
 {
     // Create a client.
     $networkSecurityClient = new NetworkSecurityClient();
@@ -43,7 +45,7 @@ function list_server_tls_policies_sample(string $formattedParent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networkSecurityClient->listServerTlsPolicies($formattedParent);
+        $response = $networkSecurityClient->listServerTlsPolicies();
 
         /** @var ServerTlsPolicy $element */
         foreach ($response as $element) {
@@ -52,21 +54,5 @@ function list_server_tls_policies_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NetworkSecurityClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_server_tls_policies_sample($formattedParent);
 }
 // [END networksecurity_v1beta1_generated_NetworkSecurity_ListServerTlsPolicies_sync]

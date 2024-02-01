@@ -35,34 +35,19 @@ use Google\Cloud\Logging\V2\LogEntry;
  * entries, see [Exporting
  * Logs](https://cloud.google.com/logging/docs/export).
  *
- * @param string $formattedResourceNamesElement Names of one or more parent resources from which to
- *                                              retrieve log entries:
- *
- *                                              *  `projects/[PROJECT_ID]`
- *                                              *  `organizations/[ORGANIZATION_ID]`
- *                                              *  `billingAccounts/[BILLING_ACCOUNT_ID]`
- *                                              *  `folders/[FOLDER_ID]`
- *
- *                                              May alternatively be one or more views:
- *
- *                                              * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
- *                                              * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
- *                                              * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
- *                                              * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
- *
- *                                              Projects listed in the `project_ids` field are added to this list.
- *                                              A maximum of 100 resources may be specified in a single request. Please see
- *                                              {@see LoggingServiceV2Client::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_log_entries_sample(string $formattedResourceNamesElement): void
+function list_log_entries_sample(): void
 {
     // Create a client.
     $loggingServiceV2Client = new LoggingServiceV2Client();
 
     // Prepare the request message.
-    $formattedResourceNames = [$formattedResourceNamesElement,];
-    $request = (new ListLogEntriesRequest())
-        ->setResourceNames($formattedResourceNames);
+    $request = new ListLogEntriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -76,21 +61,5 @@ function list_log_entries_sample(string $formattedResourceNamesElement): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedResourceNamesElement = LoggingServiceV2Client::projectName('[PROJECT]');
-
-    list_log_entries_sample($formattedResourceNamesElement);
 }
 // [END logging_v2_generated_LoggingServiceV2_ListLogEntries_sync]

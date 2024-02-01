@@ -41,8 +41,7 @@ class DeleteHubRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string $name Required. The name of the hub to delete. Please see
-     *                     {@see HubServiceClient::hubName()} for help formatting this field.
+     * @param string $name Required. The name of the hub to delete.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\DeleteHubRequest
      *

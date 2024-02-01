@@ -27,41 +27,24 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView;
-use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
 
 /**
  * Lists time series that match a filter. This method does not require a Workspace.
  *
- * @param string $formattedName The [project](https://cloud.google.com/monitoring/api/v3#project_name),
- *                              organization or folder on which to execute the request. The format is:
- *
- *                              projects/[PROJECT_ID_OR_NUMBER]
- *                              organizations/[ORGANIZATION_ID]
- *                              folders/[FOLDER_ID]
- *                              Please see {@see MetricServiceClient::workspaceName()} for help formatting this field.
- * @param string $filter        A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
- *                              that specifies which time series should be returned.  The filter must
- *                              specify a single metric type, and can additionally specify metric labels
- *                              and other information. For example:
- *
- *                              metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
- *                              metric.labels.instance_name = "my-instance-name"
- * @param int    $view          Specifies which information is returned about the time series.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_time_series_sample(string $formattedName, string $filter, int $view): void
+function list_time_series_sample(): void
 {
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
     // Prepare the request message.
-    $interval = new TimeInterval();
-    $request = (new ListTimeSeriesRequest())
-        ->setName($formattedName)
-        ->setFilter($filter)
-        ->setInterval($interval)
-        ->setView($view);
+    $request = new ListTimeSeriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,23 +58,5 @@ function list_time_series_sample(string $formattedName, string $filter, int $vie
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = MetricServiceClient::workspaceName('[PROJECT]');
-    $filter = '[FILTER]';
-    $view = TimeSeriesView::FULL;
-
-    list_time_series_sample($formattedName, $filter, $view);
 }
 // [END monitoring_v3_generated_MetricService_ListTimeSeries_sync]

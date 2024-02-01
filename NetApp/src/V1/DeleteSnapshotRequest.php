@@ -26,7 +26,6 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The snapshot resource name, in the format
      *                     `projects/&#42;/locations/&#42;/volumes/&#42;/snapshots/{snapshot_id}`
-     *                     Please see {@see NetAppClient::snapshotName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\DeleteSnapshotRequest
      *

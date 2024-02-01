@@ -51,8 +51,7 @@ class GetSettingsRequest extends \Google\Protobuf\Internal\Message
      *                     Note: Settings for the Log Router can be get for Google Cloud projects,
      *                     folders, organizations and billing accounts. Currently it can only be
      *                     configured for organizations. Once configured for an organization, it
-     *                     applies to all projects and folders in the Google Cloud organization. Please see
-     *                     {@see ConfigServiceV2Client::settingsName()} for help formatting this field.
+     *                     applies to all projects and folders in the Google Cloud organization.
      *
      * @return \Google\Cloud\Logging\V2\GetSettingsRequest
      *

@@ -56,7 +56,6 @@ use Google\Cloud\Notebooks\V1beta1\Environment;
 use Google\Cloud\Notebooks\V1beta1\GetEnvironmentRequest;
 use Google\Cloud\Notebooks\V1beta1\GetInstanceRequest;
 use Google\Cloud\Notebooks\V1beta1\Instance;
-use Google\Cloud\Notebooks\V1beta1\Instance\AcceleratorType;
 use Google\Cloud\Notebooks\V1beta1\IsInstanceUpgradeableRequest;
 use Google\Cloud\Notebooks\V1beta1\IsInstanceUpgradeableResponse;
 use Google\Cloud\Notebooks\V1beta1\ListEnvironmentsRequest;
@@ -85,10 +84,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $notebookServiceClient = new NotebookServiceClient();
  * try {
- *     $parent = 'parent';
- *     $environmentId = 'environment_id';
- *     $environment = new Environment();
- *     $operationResponse = $notebookServiceClient->createEnvironment($parent, $environmentId, $environment);
+ *     $operationResponse = $notebookServiceClient->createEnvironment();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -99,7 +95,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $notebookServiceClient->createEnvironment($parent, $environmentId, $environment);
+ *     $operationResponse = $notebookServiceClient->createEnvironment();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'createEnvironment');
@@ -398,10 +394,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $environmentId = 'environment_id';
-     *     $environment = new Environment();
-     *     $operationResponse = $notebookServiceClient->createEnvironment($parent, $environmentId, $environment);
+     *     $operationResponse = $notebookServiceClient->createEnvironment();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -412,7 +405,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->createEnvironment($parent, $environmentId, $environment);
+     *     $operationResponse = $notebookServiceClient->createEnvironment();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'createEnvironment');
@@ -432,15 +425,18 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent        Required. Format: `projects/{project_id}/locations/{location}`
-     * @param string      $environmentId Required. User-defined unique ID of this environment. The `environment_id` must
-     *                                   be 1 to 63 characters long and contain only lowercase letters,
-     *                                   numeric characters, and dashes. The first character must be a lowercase
-     *                                   letter and the last character cannot be a dash.
-     * @param Environment $environment   Required. The environment to be created.
-     * @param array       $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Format: `projects/{project_id}/locations/{location}`
+     *     @type string $environmentId
+     *           Required. User-defined unique ID of this environment. The `environment_id` must
+     *           be 1 to 63 characters long and contain only lowercase letters,
+     *           numeric characters, and dashes. The first character must be a lowercase
+     *           letter and the last character cannot be a dash.
+     *     @type Environment $environment
+     *           Required. The environment to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -453,14 +449,23 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function createEnvironment($parent, $environmentId, $environment, array $optionalArgs = [])
+    public function createEnvironment(array $optionalArgs = [])
     {
         $request = new CreateEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEnvironmentId($environmentId);
-        $request->setEnvironment($environment);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['environmentId'])) {
+            $request->setEnvironmentId($optionalArgs['environmentId']);
+        }
+
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateEnvironment', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -473,10 +478,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $instanceId = 'instance_id';
-     *     $instance = new Instance();
-     *     $operationResponse = $notebookServiceClient->createInstance($parent, $instanceId, $instance);
+     *     $operationResponse = $notebookServiceClient->createInstance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -487,7 +489,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->createInstance($parent, $instanceId, $instance);
+     *     $operationResponse = $notebookServiceClient->createInstance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'createInstance');
@@ -507,13 +509,16 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. Format:
-     *                               `parent=projects/{project_id}/locations/{location}`
-     * @param string   $instanceId   Required. User-defined unique ID of this instance.
-     * @param Instance $instance     Required. The instance to be created.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Format:
+     *           `parent=projects/{project_id}/locations/{location}`
+     *     @type string $instanceId
+     *           Required. User-defined unique ID of this instance.
+     *     @type Instance $instance
+     *           Required. The instance to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -526,14 +531,23 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function createInstance($parent, $instanceId, $instance, array $optionalArgs = [])
+    public function createInstance(array $optionalArgs = [])
     {
         $request = new CreateInstanceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setInstanceId($instanceId);
-        $request->setInstance($instance);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['instanceId'])) {
+            $request->setInstanceId($optionalArgs['instanceId']);
+        }
+
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -546,8 +560,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $notebookServiceClient->deleteEnvironment($name);
+     *     $operationResponse = $notebookServiceClient->deleteEnvironment();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -557,7 +570,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->deleteEnvironment($name);
+     *     $operationResponse = $notebookServiceClient->deleteEnvironment();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'deleteEnvironment');
@@ -576,11 +589,12 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/environments/{environment_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/environments/{environment_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -593,12 +607,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function deleteEnvironment($name, array $optionalArgs = [])
+    public function deleteEnvironment(array $optionalArgs = [])
     {
         $request = new DeleteEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteEnvironment', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -611,8 +628,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $notebookServiceClient->deleteInstance($name);
+     *     $operationResponse = $notebookServiceClient->deleteInstance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -622,7 +638,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->deleteInstance($name);
+     *     $operationResponse = $notebookServiceClient->deleteInstance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'deleteInstance');
@@ -641,11 +657,12 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -658,12 +675,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function deleteInstance($name, array $optionalArgs = [])
+    public function deleteInstance(array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -676,18 +696,18 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $notebookServiceClient->getEnvironment($name);
+     *     $response = $notebookServiceClient->getEnvironment();
      * } finally {
      *     $notebookServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/environments/{environment_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/environments/{environment_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -700,12 +720,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function getEnvironment($name, array $optionalArgs = [])
+    public function getEnvironment(array $optionalArgs = [])
     {
         $request = new GetEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEnvironment', Environment::class, $optionalArgs, $request)->wait();
@@ -718,18 +741,18 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $notebookServiceClient->getInstance($name);
+     *     $response = $notebookServiceClient->getInstance();
      * } finally {
      *     $notebookServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -742,12 +765,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function getInstance($name, array $optionalArgs = [])
+    public function getInstance(array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetInstance', Instance::class, $optionalArgs, $request)->wait();
@@ -761,18 +787,18 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $notebookInstance = 'notebook_instance';
-     *     $response = $notebookServiceClient->isInstanceUpgradeable($notebookInstance);
+     *     $response = $notebookServiceClient->isInstanceUpgradeable();
      * } finally {
      *     $notebookServiceClient->close();
      * }
      * ```
      *
-     * @param string $notebookInstance Required. Format:
-     *                                 `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param array  $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $notebookInstance
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -787,12 +813,15 @@ class NotebookServiceGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function isInstanceUpgradeable($notebookInstance, array $optionalArgs = [])
+    public function isInstanceUpgradeable(array $optionalArgs = [])
     {
         $request = new IsInstanceUpgradeableRequest();
         $requestParamHeaders = [];
-        $request->setNotebookInstance($notebookInstance);
-        $requestParamHeaders['notebook_instance'] = $notebookInstance;
+        if (isset($optionalArgs['notebookInstance'])) {
+            $request->setNotebookInstance($optionalArgs['notebookInstance']);
+            $requestParamHeaders['notebook_instance'] = $optionalArgs['notebookInstance'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('IsInstanceUpgradeable', IsInstanceUpgradeableResponse::class, $optionalArgs, $request)->wait();
@@ -805,9 +834,8 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $notebookServiceClient->listEnvironments($parent);
+     *     $pagedResponse = $notebookServiceClient->listEnvironments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -815,7 +843,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $notebookServiceClient->listEnvironments($parent);
+     *     $pagedResponse = $notebookServiceClient->listEnvironments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -824,10 +852,11 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Format: `projects/{project_id}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Format: `projects/{project_id}/locations/{location}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -849,12 +878,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function listEnvironments($parent, array $optionalArgs = [])
+    public function listEnvironments(array $optionalArgs = [])
     {
         $request = new ListEnvironmentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -875,9 +907,8 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $notebookServiceClient->listInstances($parent);
+     *     $pagedResponse = $notebookServiceClient->listInstances();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -885,7 +916,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $notebookServiceClient->listInstances($parent);
+     *     $pagedResponse = $notebookServiceClient->listInstances();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -894,11 +925,12 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Format:
-     *                             `parent=projects/{project_id}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Format:
+     *           `parent=projects/{project_id}/locations/{location}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -920,12 +952,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function listInstances($parent, array $optionalArgs = [])
+    public function listInstances(array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -949,9 +984,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $instanceId = 'instance_id';
-     *     $operationResponse = $notebookServiceClient->registerInstance($parent, $instanceId);
+     *     $operationResponse = $notebookServiceClient->registerInstance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -962,7 +995,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->registerInstance($parent, $instanceId);
+     *     $operationResponse = $notebookServiceClient->registerInstance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'registerInstance');
@@ -982,15 +1015,17 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Format:
-     *                             `parent=projects/{project_id}/locations/{location}`
-     * @param string $instanceId   Required. User defined unique ID of this instance. The `instance_id` must
-     *                             be 1 to 63 characters long and contain only lowercase letters,
-     *                             numeric characters, and dashes. The first character must be a lowercase
-     *                             letter and the last character cannot be a dash.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Format:
+     *           `parent=projects/{project_id}/locations/{location}`
+     *     @type string $instanceId
+     *           Required. User defined unique ID of this instance. The `instance_id` must
+     *           be 1 to 63 characters long and contain only lowercase letters,
+     *           numeric characters, and dashes. The first character must be a lowercase
+     *           letter and the last character cannot be a dash.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1003,13 +1038,19 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function registerInstance($parent, $instanceId, array $optionalArgs = [])
+    public function registerInstance(array $optionalArgs = [])
     {
         $request = new RegisterInstanceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setInstanceId($instanceId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['instanceId'])) {
+            $request->setInstanceId($optionalArgs['instanceId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RegisterInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1025,9 +1066,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $vmId = 'vm_id';
-     *     $operationResponse = $notebookServiceClient->reportInstanceInfo($name, $vmId);
+     *     $operationResponse = $notebookServiceClient->reportInstanceInfo();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1038,7 +1077,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->reportInstanceInfo($name, $vmId);
+     *     $operationResponse = $notebookServiceClient->reportInstanceInfo();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'reportInstanceInfo');
@@ -1058,13 +1097,15 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param string $vmId         Required. The VM hardware token for authenticating the VM.
-     *                             https://cloud.google.com/compute/docs/instances/verifying-instance-identity
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
+     *     @type string $vmId
+     *           Required. The VM hardware token for authenticating the VM.
+     *           https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      *     @type array $metadata
      *           The metadata reported to Notebooks API. This will be merged to the instance
      *           metadata store
@@ -1080,13 +1121,19 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function reportInstanceInfo($name, $vmId, array $optionalArgs = [])
+    public function reportInstanceInfo(array $optionalArgs = [])
     {
         $request = new ReportInstanceInfoRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setVmId($vmId);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['vmId'])) {
+            $request->setVmId($optionalArgs['vmId']);
+        }
+
         if (isset($optionalArgs['metadata'])) {
             $request->setMetadata($optionalArgs['metadata']);
         }
@@ -1103,8 +1150,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $notebookServiceClient->resetInstance($name);
+     *     $operationResponse = $notebookServiceClient->resetInstance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1115,7 +1161,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->resetInstance($name);
+     *     $operationResponse = $notebookServiceClient->resetInstance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'resetInstance');
@@ -1135,11 +1181,12 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1152,12 +1199,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function resetInstance($name, array $optionalArgs = [])
+    public function resetInstance(array $optionalArgs = [])
     {
         $request = new ResetInstanceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ResetInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1170,10 +1220,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $type = AcceleratorType::ACCELERATOR_TYPE_UNSPECIFIED;
-     *     $coreCount = 0;
-     *     $operationResponse = $notebookServiceClient->setInstanceAccelerator($name, $type, $coreCount);
+     *     $operationResponse = $notebookServiceClient->setInstanceAccelerator();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1184,7 +1231,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->setInstanceAccelerator($name, $type, $coreCount);
+     *     $operationResponse = $notebookServiceClient->setInstanceAccelerator();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'setInstanceAccelerator');
@@ -1204,17 +1251,20 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param int    $type         Required. Type of this accelerator.
-     *                             For allowed values, use constants defined on {@see \Google\Cloud\Notebooks\V1beta1\Instance\AcceleratorType}
-     * @param int    $coreCount    Required. Count of cores of this accelerator. Note that not all combinations
-     *                             of `type` and `core_count` are valid. Check [GPUs on
-     *                             Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to
-     *                             find a valid combination. TPUs are not supported.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
+     *     @type int $type
+     *           Required. Type of this accelerator.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Notebooks\V1beta1\Instance\AcceleratorType}
+     *     @type int $coreCount
+     *           Required. Count of cores of this accelerator. Note that not all combinations
+     *           of `type` and `core_count` are valid. Check [GPUs on
+     *           Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to
+     *           find a valid combination. TPUs are not supported.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1227,14 +1277,23 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function setInstanceAccelerator($name, $type, $coreCount, array $optionalArgs = [])
+    public function setInstanceAccelerator(array $optionalArgs = [])
     {
         $request = new SetInstanceAcceleratorRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setType($type);
-        $request->setCoreCount($coreCount);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['type'])) {
+            $request->setType($optionalArgs['type']);
+        }
+
+        if (isset($optionalArgs['coreCount'])) {
+            $request->setCoreCount($optionalArgs['coreCount']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetInstanceAccelerator', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1247,8 +1306,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $notebookServiceClient->setInstanceLabels($name);
+     *     $operationResponse = $notebookServiceClient->setInstanceLabels();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1259,7 +1317,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->setInstanceLabels($name);
+     *     $operationResponse = $notebookServiceClient->setInstanceLabels();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'setInstanceLabels');
@@ -1279,11 +1337,12 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
      *     @type array $labels
      *           Labels to apply to this instance.
      *           These can be later modified by the setLabels method
@@ -1299,12 +1358,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function setInstanceLabels($name, array $optionalArgs = [])
+    public function setInstanceLabels(array $optionalArgs = [])
     {
         $request = new SetInstanceLabelsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
         }
@@ -1321,9 +1383,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $machineType = 'machine_type';
-     *     $operationResponse = $notebookServiceClient->setInstanceMachineType($name, $machineType);
+     *     $operationResponse = $notebookServiceClient->setInstanceMachineType();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1334,7 +1394,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->setInstanceMachineType($name, $machineType);
+     *     $operationResponse = $notebookServiceClient->setInstanceMachineType();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'setInstanceMachineType');
@@ -1354,13 +1414,15 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param string $machineType  Required. The [Compute Engine machine
-     *                             type](https://cloud.google.com/compute/docs/machine-types).
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
+     *     @type string $machineType
+     *           Required. The [Compute Engine machine
+     *           type](https://cloud.google.com/compute/docs/machine-types).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1373,13 +1435,19 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function setInstanceMachineType($name, $machineType, array $optionalArgs = [])
+    public function setInstanceMachineType(array $optionalArgs = [])
     {
         $request = new SetInstanceMachineTypeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setMachineType($machineType);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['machineType'])) {
+            $request->setMachineType($optionalArgs['machineType']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetInstanceMachineType', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1392,8 +1460,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $notebookServiceClient->startInstance($name);
+     *     $operationResponse = $notebookServiceClient->startInstance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1404,7 +1471,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->startInstance($name);
+     *     $operationResponse = $notebookServiceClient->startInstance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'startInstance');
@@ -1424,11 +1491,12 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1441,12 +1509,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function startInstance($name, array $optionalArgs = [])
+    public function startInstance(array $optionalArgs = [])
     {
         $request = new StartInstanceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('StartInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1459,8 +1530,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $notebookServiceClient->stopInstance($name);
+     *     $operationResponse = $notebookServiceClient->stopInstance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1471,7 +1541,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->stopInstance($name);
+     *     $operationResponse = $notebookServiceClient->stopInstance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'stopInstance');
@@ -1491,11 +1561,12 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1508,12 +1579,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function stopInstance($name, array $optionalArgs = [])
+    public function stopInstance(array $optionalArgs = [])
     {
         $request = new StopInstanceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('StopInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1527,8 +1601,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $notebookServiceClient->upgradeInstance($name);
+     *     $operationResponse = $notebookServiceClient->upgradeInstance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1539,7 +1612,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->upgradeInstance($name);
+     *     $operationResponse = $notebookServiceClient->upgradeInstance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'upgradeInstance');
@@ -1559,11 +1632,12 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1578,12 +1652,15 @@ class NotebookServiceGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function upgradeInstance($name, array $optionalArgs = [])
+    public function upgradeInstance(array $optionalArgs = [])
     {
         $request = new UpgradeInstanceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpgradeInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1598,9 +1675,7 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $name = 'name';
-     *     $vmId = 'vm_id';
-     *     $operationResponse = $notebookServiceClient->upgradeInstanceInternal($name, $vmId);
+     *     $operationResponse = $notebookServiceClient->upgradeInstanceInternal();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1611,7 +1686,7 @@ class NotebookServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $notebookServiceClient->upgradeInstanceInternal($name, $vmId);
+     *     $operationResponse = $notebookServiceClient->upgradeInstanceInternal();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $notebookServiceClient->resumeOperation($operationName, 'upgradeInstanceInternal');
@@ -1631,13 +1706,15 @@ class NotebookServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Format:
-     *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     * @param string $vmId         Required. The VM hardware token for authenticating the VM.
-     *                             https://cloud.google.com/compute/docs/instances/verifying-instance-identity
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Format:
+     *           `projects/{project_id}/locations/{location}/instances/{instance_id}`
+     *     @type string $vmId
+     *           Required. The VM hardware token for authenticating the VM.
+     *           https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1652,13 +1729,19 @@ class NotebookServiceGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function upgradeInstanceInternal($name, $vmId, array $optionalArgs = [])
+    public function upgradeInstanceInternal(array $optionalArgs = [])
     {
         $request = new UpgradeInstanceInternalRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setVmId($vmId);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['vmId'])) {
+            $request->setVmId($optionalArgs['vmId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpgradeInstanceInternal', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1795,18 +1878,18 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $notebookServiceClient->getIamPolicy($resource);
+     *     $response = $notebookServiceClient->getIamPolicy();
      * } finally {
      *     $notebookServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1822,12 +1905,15 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1848,23 +1934,23 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $notebookServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $notebookServiceClient->setIamPolicy();
      * } finally {
      *     $notebookServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1883,13 +1969,19 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1912,23 +2004,23 @@ class NotebookServiceGapicClient
      * ```
      * $notebookServiceClient = new NotebookServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $notebookServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $notebookServiceClient->testIamPermissions();
      * } finally {
      *     $notebookServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1941,13 +2033,19 @@ class NotebookServiceGapicClient
      *
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

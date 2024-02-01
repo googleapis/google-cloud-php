@@ -31,18 +31,19 @@ use Google\Cloud\Notebooks\V2\Instance;
 /**
  * Gets details of a single Instance.
  *
- * @param string $formattedName Format:
- *                              `projects/{project_id}/locations/{location}/instances/{instance_id}`
- *                              Please see {@see NotebookServiceClient::instanceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_instance_sample(string $formattedName): void
+function get_instance_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $request = (new GetInstanceRequest())
-        ->setName($formattedName);
+    $request = new GetInstanceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function get_instance_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NotebookServiceClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-
-    get_instance_sample($formattedName);
 }
 // [END notebooks_v2_generated_NotebookService_GetInstance_sync]

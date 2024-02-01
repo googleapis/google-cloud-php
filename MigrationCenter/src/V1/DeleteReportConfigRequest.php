@@ -47,8 +47,7 @@ class DeleteReportConfigRequest extends \Google\Protobuf\Internal\Message
     protected $force = false;
 
     /**
-     * @param string $name Required. Name of the resource. Please see
-     *                     {@see MigrationCenterClient::reportConfigName()} for help formatting this field.
+     * @param string $name Required. Name of the resource.
      *
      * @return \Google\Cloud\MigrationCenter\V1\DeleteReportConfigRequest
      *

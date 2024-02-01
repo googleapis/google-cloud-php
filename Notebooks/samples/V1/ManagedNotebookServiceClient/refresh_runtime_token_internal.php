@@ -32,21 +32,19 @@ use Google\Cloud\Notebooks\V1\RefreshRuntimeTokenInternalResponse;
  * Gets an access token for the consumer service account that the customer
  * attached to the runtime. Only accessible from the tenant instance.
  *
- * @param string $formattedName Format:
- *                              `projects/{project_id}/locations/{location}/runtimes/{runtime_id}`
- *                              Please see {@see ManagedNotebookServiceClient::runtimeName()} for help formatting this field.
- * @param string $vmId          The VM hardware token for authenticating the VM.
- *                              https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function refresh_runtime_token_internal_sample(string $formattedName, string $vmId): void
+function refresh_runtime_token_internal_sample(): void
 {
     // Create a client.
     $managedNotebookServiceClient = new ManagedNotebookServiceClient();
 
     // Prepare the request message.
-    $request = (new RefreshRuntimeTokenInternalRequest())
-        ->setName($formattedName)
-        ->setVmId($vmId);
+    $request = new RefreshRuntimeTokenInternalRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,22 +54,5 @@ function refresh_runtime_token_internal_sample(string $formattedName, string $vm
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ManagedNotebookServiceClient::runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
-    $vmId = '[VM_ID]';
-
-    refresh_runtime_token_internal_sample($formattedName, $vmId);
 }
 // [END notebooks_v1_generated_ManagedNotebookService_RefreshRuntimeTokenInternal_sync]

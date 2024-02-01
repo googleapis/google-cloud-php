@@ -28,27 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
 use Google\Cloud\MigrationCenter\V1\ImportJob;
 use Google\Cloud\MigrationCenter\V1\UpdateImportJobRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates an import job.
  *
- * @param string $formattedImportJobAssetSource Reference to a source. Please see
- *                                              {@see MigrationCenterClient::sourceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_import_job_sample(string $formattedImportJobAssetSource): void
+function update_import_job_sample(): void
 {
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $importJob = (new ImportJob())
-        ->setAssetSource($formattedImportJobAssetSource);
-    $request = (new UpdateImportJobRequest())
-        ->setUpdateMask($updateMask)
-        ->setImportJob($importJob);
+    $request = new UpdateImportJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,25 +65,5 @@ function update_import_job_sample(string $formattedImportJobAssetSource): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedImportJobAssetSource = MigrationCenterClient::sourceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[SOURCE]'
-    );
-
-    update_import_job_sample($formattedImportJobAssetSource);
 }
 // [END migrationcenter_v1_generated_MigrationCenter_UpdateImportJob_sync]

@@ -25,10 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START language_v1_generated_LanguageService_AnnotateText_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Language\V1\AnnotateTextRequest;
-use Google\Cloud\Language\V1\AnnotateTextRequest\Features;
 use Google\Cloud\Language\V1\AnnotateTextResponse;
 use Google\Cloud\Language\V1\Client\LanguageServiceClient;
-use Google\Cloud\Language\V1\Document;
 
 /**
  * A convenience method that provides all the features that analyzeSentiment,
@@ -46,11 +44,7 @@ function annotate_text_sample(): void
     $languageServiceClient = new LanguageServiceClient();
 
     // Prepare the request message.
-    $document = new Document();
-    $features = new Features();
-    $request = (new AnnotateTextRequest())
-        ->setDocument($document)
-        ->setFeatures($features);
+    $request = new AnnotateTextRequest();
 
     // Call the API and handle any network failures.
     try {

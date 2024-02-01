@@ -40,7 +40,6 @@ class CreateReplicationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                              $parent        Required. The NetApp volume to create the replications of, in the format
      *                                                           `projects/{project_id}/locations/{location}/volumes/{volume_id}`
-     *                                                           Please see {@see NetAppClient::volumeName()} for help formatting this field.
      * @param \Google\Cloud\NetApp\V1\Replication $replication   Required. A replication resource
      * @param string                              $replicationId Required. ID of the replication to create.
      *                                                           This value must start with a lowercase letter followed by up to 62

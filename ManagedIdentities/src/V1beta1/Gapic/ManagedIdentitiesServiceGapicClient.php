@@ -63,9 +63,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
  * try {
- *     $formattedName = $managedIdentitiesServiceClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
- *     $trust = new Trust();
- *     $operationResponse = $managedIdentitiesServiceClient->attachTrust($formattedName, $trust);
+ *     $operationResponse = $managedIdentitiesServiceClient->attachTrust();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -76,7 +74,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $managedIdentitiesServiceClient->attachTrust($formattedName, $trust);
+ *     $operationResponse = $managedIdentitiesServiceClient->attachTrust();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $managedIdentitiesServiceClient->resumeOperation($operationName, 'attachTrust');
@@ -377,9 +375,7 @@ class ManagedIdentitiesServiceGapicClient
      * ```
      * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
      * try {
-     *     $formattedName = $managedIdentitiesServiceClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-     *     $trust = new Trust();
-     *     $operationResponse = $managedIdentitiesServiceClient->attachTrust($formattedName, $trust);
+     *     $operationResponse = $managedIdentitiesServiceClient->attachTrust();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -390,7 +386,7 @@ class ManagedIdentitiesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $managedIdentitiesServiceClient->attachTrust($formattedName, $trust);
+     *     $operationResponse = $managedIdentitiesServiceClient->attachTrust();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $managedIdentitiesServiceClient->resumeOperation($operationName, 'attachTrust');
@@ -410,12 +406,14 @@ class ManagedIdentitiesServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource domain name, project name and location using the form:
-     *                             `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param Trust  $trust        Required. The domain trust resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource domain name, project name and location using the form:
+     *           `projects/{project_id}/locations/global/domains/{domain_name}`
+     *     @type Trust $trust
+     *           Required. The domain trust resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -428,13 +426,19 @@ class ManagedIdentitiesServiceGapicClient
      *
      * @experimental
      */
-    public function attachTrust($name, $trust, array $optionalArgs = [])
+    public function attachTrust(array $optionalArgs = [])
     {
         $request = new AttachTrustRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setTrust($trust);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['trust'])) {
+            $request->setTrust($optionalArgs['trust']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('AttachTrust', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -447,10 +451,7 @@ class ManagedIdentitiesServiceGapicClient
      * ```
      * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
      * try {
-     *     $formattedParent = $managedIdentitiesServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $domainName = 'domain_name';
-     *     $domain = new Domain();
-     *     $operationResponse = $managedIdentitiesServiceClient->createMicrosoftAdDomain($formattedParent, $domainName, $domain);
+     *     $operationResponse = $managedIdentitiesServiceClient->createMicrosoftAdDomain();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -461,7 +462,7 @@ class ManagedIdentitiesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $managedIdentitiesServiceClient->createMicrosoftAdDomain($formattedParent, $domainName, $domain);
+     *     $operationResponse = $managedIdentitiesServiceClient->createMicrosoftAdDomain();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $managedIdentitiesServiceClient->resumeOperation($operationName, 'createMicrosoftAdDomain');
@@ -481,22 +482,25 @@ class ManagedIdentitiesServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource project name and location using the form:
-     *                             `projects/{project_id}/locations/global`
-     * @param string $domainName   Required. A domain name, e.g. mydomain.myorg.com, with the following restrictions:
-     *                             * Must contain only lowercase letters, numbers, periods and hyphens.
-     *                             * Must start with a letter.
-     *                             * Must contain between 2-64 characters.
-     *                             * Must end with a number or a letter.
-     *                             * Must not start with period.
-     *                             * First segment length (mydomain form example above) shouldn't exceed
-     *                             15 chars.
-     *                             * The last segment cannot be fully numeric.
-     *                             * Must be unique within the customer project.
-     * @param Domain $domain       Required. A Managed Identity domain resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource project name and location using the form:
+     *           `projects/{project_id}/locations/global`
+     *     @type string $domainName
+     *           Required. A domain name, e.g. mydomain.myorg.com, with the following restrictions:
+     *           * Must contain only lowercase letters, numbers, periods and hyphens.
+     *           * Must start with a letter.
+     *           * Must contain between 2-64 characters.
+     *           * Must end with a number or a letter.
+     *           * Must not start with period.
+     *           * First segment length (mydomain form example above) shouldn't exceed
+     *           15 chars.
+     *           * The last segment cannot be fully numeric.
+     *           * Must be unique within the customer project.
+     *     @type Domain $domain
+     *           Required. A Managed Identity domain resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -509,14 +513,23 @@ class ManagedIdentitiesServiceGapicClient
      *
      * @experimental
      */
-    public function createMicrosoftAdDomain($parent, $domainName, $domain, array $optionalArgs = [])
+    public function createMicrosoftAdDomain(array $optionalArgs = [])
     {
         $request = new CreateMicrosoftAdDomainRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDomainName($domainName);
-        $request->setDomain($domain);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['domainName'])) {
+            $request->setDomainName($optionalArgs['domainName']);
+        }
+
+        if (isset($optionalArgs['domain'])) {
+            $request->setDomain($optionalArgs['domain']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateMicrosoftAdDomain', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -529,8 +542,7 @@ class ManagedIdentitiesServiceGapicClient
      * ```
      * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
      * try {
-     *     $formattedName = $managedIdentitiesServiceClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-     *     $operationResponse = $managedIdentitiesServiceClient->deleteDomain($formattedName);
+     *     $operationResponse = $managedIdentitiesServiceClient->deleteDomain();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -540,7 +552,7 @@ class ManagedIdentitiesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $managedIdentitiesServiceClient->deleteDomain($formattedName);
+     *     $operationResponse = $managedIdentitiesServiceClient->deleteDomain();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $managedIdentitiesServiceClient->resumeOperation($operationName, 'deleteDomain');
@@ -559,11 +571,12 @@ class ManagedIdentitiesServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The domain resource name using the form:
-     *                             `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The domain resource name using the form:
+     *           `projects/{project_id}/locations/global/domains/{domain_name}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -576,12 +589,15 @@ class ManagedIdentitiesServiceGapicClient
      *
      * @experimental
      */
-    public function deleteDomain($name, array $optionalArgs = [])
+    public function deleteDomain(array $optionalArgs = [])
     {
         $request = new DeleteDomainRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteDomain', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -594,9 +610,7 @@ class ManagedIdentitiesServiceGapicClient
      * ```
      * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
      * try {
-     *     $formattedName = $managedIdentitiesServiceClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-     *     $trust = new Trust();
-     *     $operationResponse = $managedIdentitiesServiceClient->detachTrust($formattedName, $trust);
+     *     $operationResponse = $managedIdentitiesServiceClient->detachTrust();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -607,7 +621,7 @@ class ManagedIdentitiesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $managedIdentitiesServiceClient->detachTrust($formattedName, $trust);
+     *     $operationResponse = $managedIdentitiesServiceClient->detachTrust();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $managedIdentitiesServiceClient->resumeOperation($operationName, 'detachTrust');
@@ -627,12 +641,14 @@ class ManagedIdentitiesServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource domain name, project name, and location using the form:
-     *                             `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param Trust  $trust        Required. The domain trust resource to removed.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource domain name, project name, and location using the form:
+     *           `projects/{project_id}/locations/global/domains/{domain_name}`
+     *     @type Trust $trust
+     *           Required. The domain trust resource to removed.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -645,13 +661,19 @@ class ManagedIdentitiesServiceGapicClient
      *
      * @experimental
      */
-    public function detachTrust($name, $trust, array $optionalArgs = [])
+    public function detachTrust(array $optionalArgs = [])
     {
         $request = new DetachTrustRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setTrust($trust);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['trust'])) {
+            $request->setTrust($optionalArgs['trust']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DetachTrust', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -664,18 +686,18 @@ class ManagedIdentitiesServiceGapicClient
      * ```
      * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
      * try {
-     *     $formattedName = $managedIdentitiesServiceClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-     *     $response = $managedIdentitiesServiceClient->getDomain($formattedName);
+     *     $response = $managedIdentitiesServiceClient->getDomain();
      * } finally {
      *     $managedIdentitiesServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The domain resource name using the form:
-     *                             `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The domain resource name using the form:
+     *           `projects/{project_id}/locations/global/domains/{domain_name}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -688,12 +710,15 @@ class ManagedIdentitiesServiceGapicClient
      *
      * @experimental
      */
-    public function getDomain($name, array $optionalArgs = [])
+    public function getDomain(array $optionalArgs = [])
     {
         $request = new GetDomainRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDomain', Domain::class, $optionalArgs, $request)->wait();
@@ -706,9 +731,8 @@ class ManagedIdentitiesServiceGapicClient
      * ```
      * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
      * try {
-     *     $formattedParent = $managedIdentitiesServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $managedIdentitiesServiceClient->listDomains($formattedParent);
+     *     $pagedResponse = $managedIdentitiesServiceClient->listDomains();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -716,7 +740,7 @@ class ManagedIdentitiesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $managedIdentitiesServiceClient->listDomains($formattedParent);
+     *     $pagedResponse = $managedIdentitiesServiceClient->listDomains();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -725,11 +749,12 @@ class ManagedIdentitiesServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the domain location using the form:
-     *                             `projects/{project_id}/locations/global`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the domain location using the form:
+     *           `projects/{project_id}/locations/global`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -759,12 +784,15 @@ class ManagedIdentitiesServiceGapicClient
      *
      * @experimental
      */
-    public function listDomains($parent, array $optionalArgs = [])
+    public function listDomains(array $optionalArgs = [])
     {
         $request = new ListDomainsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -793,10 +821,7 @@ class ManagedIdentitiesServiceGapicClient
      * ```
      * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
      * try {
-     *     $formattedName = $managedIdentitiesServiceClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-     *     $targetDomainName = 'target_domain_name';
-     *     $targetDnsIpAddresses = [];
-     *     $operationResponse = $managedIdentitiesServiceClient->reconfigureTrust($formattedName, $targetDomainName, $targetDnsIpAddresses);
+     *     $operationResponse = $managedIdentitiesServiceClient->reconfigureTrust();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -807,7 +832,7 @@ class ManagedIdentitiesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $managedIdentitiesServiceClient->reconfigureTrust($formattedName, $targetDomainName, $targetDnsIpAddresses);
+     *     $operationResponse = $managedIdentitiesServiceClient->reconfigureTrust();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $managedIdentitiesServiceClient->resumeOperation($operationName, 'reconfigureTrust');
@@ -827,15 +852,18 @@ class ManagedIdentitiesServiceGapicClient
      * }
      * ```
      *
-     * @param string   $name                 Required. The resource domain name, project name and location using the form:
-     *                                       `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param string   $targetDomainName     Required. The fully-qualified target domain name which will be in trust with current
-     *                                       domain.
-     * @param string[] $targetDnsIpAddresses Required. The target DNS server IP addresses to resolve the remote domain involved
-     *                                       in the trust.
-     * @param array    $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource domain name, project name and location using the form:
+     *           `projects/{project_id}/locations/global/domains/{domain_name}`
+     *     @type string $targetDomainName
+     *           Required. The fully-qualified target domain name which will be in trust with current
+     *           domain.
+     *     @type string[] $targetDnsIpAddresses
+     *           Required. The target DNS server IP addresses to resolve the remote domain involved
+     *           in the trust.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -848,14 +876,23 @@ class ManagedIdentitiesServiceGapicClient
      *
      * @experimental
      */
-    public function reconfigureTrust($name, $targetDomainName, $targetDnsIpAddresses, array $optionalArgs = [])
+    public function reconfigureTrust(array $optionalArgs = [])
     {
         $request = new ReconfigureTrustRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setTargetDomainName($targetDomainName);
-        $request->setTargetDnsIpAddresses($targetDnsIpAddresses);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['targetDomainName'])) {
+            $request->setTargetDomainName($optionalArgs['targetDomainName']);
+        }
+
+        if (isset($optionalArgs['targetDnsIpAddresses'])) {
+            $request->setTargetDnsIpAddresses($optionalArgs['targetDnsIpAddresses']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ReconfigureTrust', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -868,18 +905,18 @@ class ManagedIdentitiesServiceGapicClient
      * ```
      * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
      * try {
-     *     $formattedName = $managedIdentitiesServiceClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-     *     $response = $managedIdentitiesServiceClient->resetAdminPassword($formattedName);
+     *     $response = $managedIdentitiesServiceClient->resetAdminPassword();
      * } finally {
      *     $managedIdentitiesServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The domain resource name using the form:
-     *                             `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The domain resource name using the form:
+     *           `projects/{project_id}/locations/global/domains/{domain_name}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -892,12 +929,15 @@ class ManagedIdentitiesServiceGapicClient
      *
      * @experimental
      */
-    public function resetAdminPassword($name, array $optionalArgs = [])
+    public function resetAdminPassword(array $optionalArgs = [])
     {
         $request = new ResetAdminPasswordRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ResetAdminPassword', ResetAdminPasswordResponse::class, $optionalArgs, $request)->wait();
@@ -910,9 +950,7 @@ class ManagedIdentitiesServiceGapicClient
      * ```
      * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $domain = new Domain();
-     *     $operationResponse = $managedIdentitiesServiceClient->updateDomain($updateMask, $domain);
+     *     $operationResponse = $managedIdentitiesServiceClient->updateDomain();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -923,7 +961,7 @@ class ManagedIdentitiesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $managedIdentitiesServiceClient->updateDomain($updateMask, $domain);
+     *     $operationResponse = $managedIdentitiesServiceClient->updateDomain();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $managedIdentitiesServiceClient->resumeOperation($operationName, 'updateDomain');
@@ -943,18 +981,20 @@ class ManagedIdentitiesServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Mask of fields to update. At least one path must be supplied in this
-     *                                field. The elements of the repeated paths field may only include
-     *                                fields from [Domain][google.cloud.managedidentities.v1beta1.Domain]:
-     *                                * `labels`
-     *                                * `locations`
-     *                                * `authorized_networks`
-     *                                * `audit_logs_enabled`
-     * @param Domain    $domain       Required. Domain message with updated fields. Only supported fields specified in
-     *                                update_mask are updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update. At least one path must be supplied in this
+     *           field. The elements of the repeated paths field may only include
+     *           fields from [Domain][google.cloud.managedidentities.v1beta1.Domain]:
+     *           * `labels`
+     *           * `locations`
+     *           * `authorized_networks`
+     *           * `audit_logs_enabled`
+     *     @type Domain $domain
+     *           Required. Domain message with updated fields. Only supported fields specified in
+     *           update_mask are updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -967,13 +1007,18 @@ class ManagedIdentitiesServiceGapicClient
      *
      * @experimental
      */
-    public function updateDomain($updateMask, $domain, array $optionalArgs = [])
+    public function updateDomain(array $optionalArgs = [])
     {
         $request = new UpdateDomainRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setDomain($domain);
-        $requestParamHeaders['domain.name'] = $domain->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['domain'])) {
+            $request->setDomain($optionalArgs['domain']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpdateDomain', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -987,9 +1032,7 @@ class ManagedIdentitiesServiceGapicClient
      * ```
      * $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
      * try {
-     *     $formattedName = $managedIdentitiesServiceClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-     *     $trust = new Trust();
-     *     $operationResponse = $managedIdentitiesServiceClient->validateTrust($formattedName, $trust);
+     *     $operationResponse = $managedIdentitiesServiceClient->validateTrust();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1000,7 +1043,7 @@ class ManagedIdentitiesServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $managedIdentitiesServiceClient->validateTrust($formattedName, $trust);
+     *     $operationResponse = $managedIdentitiesServiceClient->validateTrust();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $managedIdentitiesServiceClient->resumeOperation($operationName, 'validateTrust');
@@ -1020,12 +1063,14 @@ class ManagedIdentitiesServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource domain name, project name, and location using the form:
-     *                             `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param Trust  $trust        Required. The domain trust to validate trust state for.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource domain name, project name, and location using the form:
+     *           `projects/{project_id}/locations/global/domains/{domain_name}`
+     *     @type Trust $trust
+     *           Required. The domain trust to validate trust state for.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1038,13 +1083,19 @@ class ManagedIdentitiesServiceGapicClient
      *
      * @experimental
      */
-    public function validateTrust($name, $trust, array $optionalArgs = [])
+    public function validateTrust(array $optionalArgs = [])
     {
         $request = new ValidateTrustRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setTrust($trust);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['trust'])) {
+            $request->setTrust($optionalArgs['trust']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ValidateTrust', $optionalArgs, $request, $this->getOperationsClient())->wait();

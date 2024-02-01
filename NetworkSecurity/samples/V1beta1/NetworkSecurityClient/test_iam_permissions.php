@@ -36,45 +36,24 @@ Note: This operation is designed to be used for building
 permission-aware UIs and command-line tools, not for authorization
 checking. This operation may "fail open" without warning.
  *
- * @param string $resource           REQUIRED: The resource for which the policy detail is being requested.
- *                                   See the operation documentation for the appropriate value for this field.
- * @param string $permissionsElement The set of permissions to check for the `resource`. Permissions with
- *                                   wildcards (such as '*' or 'storage.*') are not allowed. For more
- *                                   information see
- *                                   [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
- */
-function test_iam_permissions_sample(string $resource, string $permissionsElement): void
-{
-    // Create a client.
-    $networkSecurityClient = new NetworkSecurityClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $permissions = [$permissionsElement,];
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var TestIamPermissionsResponse $response */
-        $response = $networkSecurityClient->testIamPermissions($resource, $permissions);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function test_iam_permissions_sample(): void
 {
-    $resource = '[RESOURCE]';
-    $permissionsElement = '[PERMISSIONS]';
+    // Create a client.
+    $networkSecurityClient = new NetworkSecurityClient();
 
-    test_iam_permissions_sample($resource, $permissionsElement);
+    // Call the API and handle any network failures.
+    try {
+        /** @var TestIamPermissionsResponse $response */
+        $response = $networkSecurityClient->testIamPermissions();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END networksecurity_v1beta1_generated_NetworkSecurity_TestIamPermissions_sync]

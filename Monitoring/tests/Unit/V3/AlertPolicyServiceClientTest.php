@@ -76,20 +76,13 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $alertPolicy = new AlertPolicy();
-        $response = $gapicClient->createAlertPolicy($name, $alertPolicy);
+        $response = $gapicClient->createAlertPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/CreateAlertPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getAlertPolicy();
-        $this->assertProtobufEquals($alertPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -111,11 +104,8 @@ class AlertPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $alertPolicy = new AlertPolicy();
         try {
-            $gapicClient->createAlertPolicy($name, $alertPolicy);
+            $gapicClient->createAlertPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -138,16 +128,12 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-        $gapicClient->deleteAlertPolicy($formattedName);
+        $gapicClient->deleteAlertPolicy();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/DeleteAlertPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -169,10 +155,8 @@ class AlertPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
         try {
-            $gapicClient->deleteAlertPolicy($formattedName);
+            $gapicClient->deleteAlertPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -199,17 +183,13 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-        $response = $gapicClient->getAlertPolicy($formattedName);
+        $response = $gapicClient->getAlertPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/GetAlertPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -231,10 +211,8 @@ class AlertPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
         try {
-            $gapicClient->getAlertPolicy($formattedName);
+            $gapicClient->getAlertPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -266,9 +244,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setAlertPolicies($alertPolicies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->listAlertPolicies($name);
+        $response = $gapicClient->listAlertPolicies();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -278,8 +254,6 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/ListAlertPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -301,10 +275,8 @@ class AlertPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->listAlertPolicies($name);
+            $gapicClient->listAlertPolicies();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -331,17 +303,13 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $alertPolicy = new AlertPolicy();
-        $response = $gapicClient->updateAlertPolicy($alertPolicy);
+        $response = $gapicClient->updateAlertPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/UpdateAlertPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAlertPolicy();
-        $this->assertProtobufEquals($alertPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -363,10 +331,8 @@ class AlertPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $alertPolicy = new AlertPolicy();
         try {
-            $gapicClient->updateAlertPolicy($alertPolicy);
+            $gapicClient->updateAlertPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

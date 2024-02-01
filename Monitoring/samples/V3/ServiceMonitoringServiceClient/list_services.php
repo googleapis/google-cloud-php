@@ -32,21 +32,19 @@ use Google\Cloud\Monitoring\V3\Service;
 /**
  * List `Service`s for this workspace.
  *
- * @param string $parent Resource name of the parent containing the listed services, either a
- *                       [project](https://cloud.google.com/monitoring/api/v3#project_name) or a
- *                       Monitoring Workspace. The formats are:
- *
- *                       projects/[PROJECT_ID_OR_NUMBER]
- *                       workspaces/[HOST_PROJECT_ID_OR_NUMBER]
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_services_sample(string $parent): void
+function list_services_sample(): void
 {
     // Create a client.
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
     // Prepare the request message.
-    $request = (new ListServicesRequest())
-        ->setParent($parent);
+    $request = new ListServicesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +58,5 @@ function list_services_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_services_sample($parent);
 }
 // [END monitoring_v3_generated_ServiceMonitoringService_ListServices_sync]

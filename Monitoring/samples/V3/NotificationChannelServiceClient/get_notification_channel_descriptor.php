@@ -32,19 +32,19 @@ use Google\Cloud\Monitoring\V3\NotificationChannelDescriptor;
  * Gets a single channel descriptor. The descriptor indicates which fields
  * are expected / permitted for a notification channel of the given type.
  *
- * @param string $formattedName The channel type for which to execute the request. The format is:
- *
- *                              projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
- *                              Please see {@see NotificationChannelServiceClient::notificationChannelDescriptorName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_notification_channel_descriptor_sample(string $formattedName): void
+function get_notification_channel_descriptor_sample(): void
 {
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new GetNotificationChannelDescriptorRequest())
-        ->setName($formattedName);
+    $request = new GetNotificationChannelDescriptorRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,24 +54,5 @@ function get_notification_channel_descriptor_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NotificationChannelServiceClient::notificationChannelDescriptorName(
-        '[PROJECT]',
-        '[CHANNEL_DESCRIPTOR]'
-    );
-
-    get_notification_channel_descriptor_sample($formattedName);
 }
 // [END monitoring_v3_generated_NotificationChannelService_GetNotificationChannelDescriptor_sync]

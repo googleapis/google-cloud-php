@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\LifeSciences\V2beta\Client\WorkflowsServiceV2BetaClient;
-use Google\Cloud\LifeSciences\V2beta\Pipeline;
 use Google\Cloud\LifeSciences\V2beta\RunPipelineRequest;
 use Google\Cloud\LifeSciences\V2beta\RunPipelineResponse;
 use Google\Rpc\Status;
@@ -62,9 +61,7 @@ function run_pipeline_sample(): void
     $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
 
     // Prepare the request message.
-    $pipeline = new Pipeline();
-    $request = (new RunPipelineRequest())
-        ->setPipeline($pipeline);
+    $request = new RunPipelineRequest();
 
     // Call the API and handle any network failures.
     try {

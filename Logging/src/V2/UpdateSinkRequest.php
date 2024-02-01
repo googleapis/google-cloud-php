@@ -79,7 +79,6 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *                                                     For example:
      *
      *                                                     `"projects/my-project/sinks/my-sink"`
-     *                                                     Please see {@see ConfigServiceV2Client::logSinkName()} for help formatting this field.
      * @param \Google\Cloud\Logging\V2\LogSink $sink       Required. The updated sink, whose name is the same identifier that appears
      *                                                     as part of `sink_name`.
      * @param \Google\Protobuf\FieldMask       $updateMask Optional. Field mask that specifies the fields in `sink` that need
@@ -123,7 +122,6 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *                                                   For example:
      *
      *                                                   `"projects/my-project/sinks/my-sink"`
-     *                                                   Please see {@see ConfigServiceV2Client::logSinkName()} for help formatting this field.
      * @param \Google\Cloud\Logging\V2\LogSink $sink     Required. The updated sink, whose name is the same identifier that appears
      *                                                   as part of `sink_name`.
      *

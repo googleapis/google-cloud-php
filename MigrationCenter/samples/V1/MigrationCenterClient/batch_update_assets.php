@@ -24,34 +24,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START migrationcenter_v1_generated_MigrationCenter_BatchUpdateAssets_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\MigrationCenter\V1\Asset;
 use Google\Cloud\MigrationCenter\V1\BatchUpdateAssetsRequest;
 use Google\Cloud\MigrationCenter\V1\BatchUpdateAssetsResponse;
 use Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
-use Google\Cloud\MigrationCenter\V1\UpdateAssetRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the parameters of a list of assets.
  *
- * @param string $formattedParent Parent value for batch asset update. Please see
- *                                {@see MigrationCenterClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_update_assets_sample(string $formattedParent): void
+function batch_update_assets_sample(): void
 {
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $requestsUpdateMask = new FieldMask();
-    $requestsAsset = new Asset();
-    $updateAssetRequest = (new UpdateAssetRequest())
-        ->setUpdateMask($requestsUpdateMask)
-        ->setAsset($requestsAsset);
-    $requests = [$updateAssetRequest,];
-    $request = (new BatchUpdateAssetsRequest())
-        ->setParent($formattedParent)
-        ->setRequests($requests);
+    $request = new BatchUpdateAssetsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +53,5 @@ function batch_update_assets_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MigrationCenterClient::locationName('[PROJECT]', '[LOCATION]');
-
-    batch_update_assets_sample($formattedParent);
 }
 // [END migrationcenter_v1_generated_MigrationCenter_BatchUpdateAssets_sync]

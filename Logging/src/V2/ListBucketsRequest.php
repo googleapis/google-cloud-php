@@ -56,8 +56,7 @@ class ListBucketsRequest extends \Google\Protobuf\Internal\Message
      *
      *                       Note: The locations portion of the resource must be specified, but
      *                       supplying the character `-` in place of [LOCATION_ID] will return all
-     *                       buckets. Please see
-     *                       {@see ConfigServiceV2Client::organizationLocationName()} for help formatting this field.
+     *                       buckets.
      *
      * @return \Google\Cloud\Logging\V2\ListBucketsRequest
      *

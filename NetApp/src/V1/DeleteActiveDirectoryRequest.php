@@ -23,8 +23,7 @@ class DeleteActiveDirectoryRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Name of the active directory. Please see
-     *                     {@see NetAppClient::activeDirectoryName()} for help formatting this field.
+     * @param string $name Required. Name of the active directory.
      *
      * @return \Google\Cloud\NetApp\V1\DeleteActiveDirectoryRequest
      *

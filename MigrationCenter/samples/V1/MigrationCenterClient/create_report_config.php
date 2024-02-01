@@ -28,44 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
 use Google\Cloud\MigrationCenter\V1\CreateReportConfigRequest;
 use Google\Cloud\MigrationCenter\V1\ReportConfig;
-use Google\Cloud\MigrationCenter\V1\ReportConfig\GroupPreferenceSetAssignment;
 use Google\Rpc\Status;
 
 /**
  * Creates a report configuration.
  *
- * @param string $formattedParent                                                 Value for parent. Please see
- *                                                                                {@see MigrationCenterClient::locationName()} for help formatting this field.
- * @param string $reportConfigId                                                  User specified ID for the report config. It will become the last
- *                                                                                component of the report config name. The ID must be unique within the
- *                                                                                project, must conform with RFC-1034, is restricted to lower-cased letters,
- *                                                                                and has a maximum length of 63 characters. The ID must match the regular
- *                                                                                expression: [a-z]([a-z0-9-]{0,61}[a-z0-9])?.
- * @param string $formattedReportConfigGroupPreferencesetAssignmentsGroup         Name of the group. Please see
- *                                                                                {@see MigrationCenterClient::groupName()} for help formatting this field.
- * @param string $formattedReportConfigGroupPreferencesetAssignmentsPreferenceSet Name of the Preference Set. Please see
- *                                                                                {@see MigrationCenterClient::preferenceSetName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_report_config_sample(
-    string $formattedParent,
-    string $reportConfigId,
-    string $formattedReportConfigGroupPreferencesetAssignmentsGroup,
-    string $formattedReportConfigGroupPreferencesetAssignmentsPreferenceSet
-): void {
+function create_report_config_sample(): void
+{
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $groupPreferenceSetAssignment = (new GroupPreferenceSetAssignment())
-        ->setGroup($formattedReportConfigGroupPreferencesetAssignmentsGroup)
-        ->setPreferenceSet($formattedReportConfigGroupPreferencesetAssignmentsPreferenceSet);
-    $reportConfigGroupPreferencesetAssignments = [$groupPreferenceSetAssignment,];
-    $reportConfig = (new ReportConfig())
-        ->setGroupPreferencesetAssignments($reportConfigGroupPreferencesetAssignments);
-    $request = (new CreateReportConfigRequest())
-        ->setParent($formattedParent)
-        ->setReportConfigId($reportConfigId)
-        ->setReportConfig($reportConfig);
+    $request = new CreateReportConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -85,37 +65,5 @@ function create_report_config_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MigrationCenterClient::locationName('[PROJECT]', '[LOCATION]');
-    $reportConfigId = '[REPORT_CONFIG_ID]';
-    $formattedReportConfigGroupPreferencesetAssignmentsGroup = MigrationCenterClient::groupName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[GROUP]'
-    );
-    $formattedReportConfigGroupPreferencesetAssignmentsPreferenceSet = MigrationCenterClient::preferenceSetName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[PREFERENCE_SET]'
-    );
-
-    create_report_config_sample(
-        $formattedParent,
-        $reportConfigId,
-        $formattedReportConfigGroupPreferencesetAssignmentsGroup,
-        $formattedReportConfigGroupPreferencesetAssignmentsPreferenceSet
-    );
 }
 // [END migrationcenter_v1_generated_MigrationCenter_CreateReportConfig_sync]

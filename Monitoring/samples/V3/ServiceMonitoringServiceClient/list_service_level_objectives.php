@@ -32,21 +32,19 @@ use Google\Cloud\Monitoring\V3\ServiceLevelObjective;
 /**
  * List the `ServiceLevelObjective`s for the given `Service`.
  *
- * @param string $formattedParent Resource name of the parent containing the listed SLOs, either a
- *                                project or a Monitoring Workspace. The formats are:
- *
- *                                projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
- *                                workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
- *                                Please see {@see ServiceMonitoringServiceClient::serviceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_service_level_objectives_sample(string $formattedParent): void
+function list_service_level_objectives_sample(): void
 {
     // Create a client.
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
     // Prepare the request message.
-    $request = (new ListServiceLevelObjectivesRequest())
-        ->setParent($formattedParent);
+    $request = new ListServiceLevelObjectivesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +58,5 @@ function list_service_level_objectives_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ServiceMonitoringServiceClient::serviceName('[PROJECT]', '[SERVICE]');
-
-    list_service_level_objectives_sample($formattedParent);
 }
 // [END monitoring_v3_generated_ServiceMonitoringService_ListServiceLevelObjectives_sync]

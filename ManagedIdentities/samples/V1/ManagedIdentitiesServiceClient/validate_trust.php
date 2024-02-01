@@ -27,9 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
 use Google\Cloud\ManagedIdentities\V1\Domain;
-use Google\Cloud\ManagedIdentities\V1\Trust;
-use Google\Cloud\ManagedIdentities\V1\Trust\TrustDirection;
-use Google\Cloud\ManagedIdentities\V1\Trust\TrustType;
 use Google\Cloud\ManagedIdentities\V1\ValidateTrustRequest;
 use Google\Rpc\Status;
 
@@ -37,41 +34,19 @@ use Google\Rpc\Status;
  * Validates a trust state, that the target domain is reachable, and that the
  * target domain is able to accept incoming trust requests.
  *
- * @param string $formattedName                    The resource domain name, project name, and location using the form:
- *                                                 `projects/{project_id}/locations/global/domains/{domain_name}`
- *                                                 Please see {@see ManagedIdentitiesServiceClient::domainName()} for help formatting this field.
- * @param string $trustTargetDomainName            The fully qualified target domain name which will be in trust with the
- *                                                 current domain.
- * @param int    $trustTrustType                   The type of trust represented by the trust resource.
- * @param int    $trustTrustDirection              The trust direction, which decides if the current domain is trusted,
- *                                                 trusting, or both.
- * @param string $trustTargetDnsIpAddressesElement The target DNS server IP addresses which can resolve the remote domain
- *                                                 involved in the trust.
- * @param string $trustTrustHandshakeSecret        The trust secret used for the handshake with the target domain. This will
- *                                                 not be stored.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function validate_trust_sample(
-    string $formattedName,
-    string $trustTargetDomainName,
-    int $trustTrustType,
-    int $trustTrustDirection,
-    string $trustTargetDnsIpAddressesElement,
-    string $trustTrustHandshakeSecret
-): void {
+function validate_trust_sample(): void
+{
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
     // Prepare the request message.
-    $trustTargetDnsIpAddresses = [$trustTargetDnsIpAddressesElement,];
-    $trust = (new Trust())
-        ->setTargetDomainName($trustTargetDomainName)
-        ->setTrustType($trustTrustType)
-        ->setTrustDirection($trustTrustDirection)
-        ->setTargetDnsIpAddresses($trustTargetDnsIpAddresses)
-        ->setTrustHandshakeSecret($trustTrustHandshakeSecret);
-    $request = (new ValidateTrustRequest())
-        ->setName($formattedName)
-        ->setTrust($trust);
+    $request = new ValidateTrustRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -91,33 +66,5 @@ function validate_trust_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ManagedIdentitiesServiceClient::domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-    $trustTargetDomainName = '[TARGET_DOMAIN_NAME]';
-    $trustTrustType = TrustType::TRUST_TYPE_UNSPECIFIED;
-    $trustTrustDirection = TrustDirection::TRUST_DIRECTION_UNSPECIFIED;
-    $trustTargetDnsIpAddressesElement = '[TARGET_DNS_IP_ADDRESSES]';
-    $trustTrustHandshakeSecret = '[TRUST_HANDSHAKE_SECRET]';
-
-    validate_trust_sample(
-        $formattedName,
-        $trustTargetDomainName,
-        $trustTrustType,
-        $trustTrustDirection,
-        $trustTargetDnsIpAddressesElement,
-        $trustTrustHandshakeSecret
-    );
 }
 // [END managedidentities_v1_generated_ManagedIdentitiesService_ValidateTrust_sync]

@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\MigrationCenter\V1\Asset;
 use Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
 use Google\Cloud\MigrationCenter\V1\UpdateAssetRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the parameters of an asset.
@@ -44,11 +43,7 @@ function update_asset_sample(): void
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $asset = new Asset();
-    $request = (new UpdateAssetRequest())
-        ->setUpdateMask($updateMask)
-        ->setAsset($asset);
+    $request = new UpdateAssetRequest();
 
     // Call the API and handle any network failures.
     try {

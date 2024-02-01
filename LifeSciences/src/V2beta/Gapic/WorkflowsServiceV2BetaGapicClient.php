@@ -57,8 +57,7 @@ use Google\LongRunning\Operation;
  * ```
  * $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
  * try {
- *     $pipeline = new Pipeline();
- *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline($pipeline);
+ *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -69,7 +68,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline($pipeline);
+ *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $workflowsServiceV2BetaClient->resumeOperation($operationName, 'runPipeline');
@@ -261,8 +260,7 @@ class WorkflowsServiceV2BetaGapicClient
      * ```
      * $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
      * try {
-     *     $pipeline = new Pipeline();
-     *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline($pipeline);
+     *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -273,7 +271,7 @@ class WorkflowsServiceV2BetaGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline($pipeline);
+     *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $workflowsServiceV2BetaClient->resumeOperation($operationName, 'runPipeline');
@@ -293,12 +291,13 @@ class WorkflowsServiceV2BetaGapicClient
      * }
      * ```
      *
-     * @param Pipeline $pipeline     Required. The description of the pipeline to run.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $parent
      *           The project and location that this request should be executed against.
+     *     @type Pipeline $pipeline
+     *           Required. The description of the pipeline to run.
      *     @type array $labels
      *           User-defined labels to associate with the returned operation. These
      *           labels are not propagated to any Google Cloud Platform resources used by
@@ -323,14 +322,17 @@ class WorkflowsServiceV2BetaGapicClient
      *
      * @experimental
      */
-    public function runPipeline($pipeline, array $optionalArgs = [])
+    public function runPipeline(array $optionalArgs = [])
     {
         $request = new RunPipelineRequest();
         $requestParamHeaders = [];
-        $request->setPipeline($pipeline);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['pipeline'])) {
+            $request->setPipeline($optionalArgs['pipeline']);
         }
 
         if (isset($optionalArgs['labels'])) {

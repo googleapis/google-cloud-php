@@ -31,17 +31,19 @@ use Google\Cloud\NetApp\V1\StoragePool;
 /**
  * Returns the description of the specified storage pool by poolId.
  *
- * @param string $formattedName Name of the storage pool
- *                              Please see {@see NetAppClient::storagePoolName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_storage_pool_sample(string $formattedName): void
+function get_storage_pool_sample(): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $request = (new GetStoragePoolRequest())
-        ->setName($formattedName);
+    $request = new GetStoragePoolRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +53,5 @@ function get_storage_pool_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NetAppClient::storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-
-    get_storage_pool_sample($formattedName);
 }
 // [END netapp_v1_generated_NetApp_GetStoragePool_sync]

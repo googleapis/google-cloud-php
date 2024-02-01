@@ -70,7 +70,6 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $scope     Required. Resource name of the organization.
      *                          Example: organizations/123
-     *                          Please see {@see KeyTrackingServiceClient::organizationName()} for help formatting this field.
      * @param string $cryptoKey Required. The resource name of the
      *                          [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *

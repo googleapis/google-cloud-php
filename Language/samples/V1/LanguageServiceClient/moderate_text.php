@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START language_v1_generated_LanguageService_ModerateText_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Language\V1\Client\LanguageServiceClient;
-use Google\Cloud\Language\V1\Document;
 use Google\Cloud\Language\V1\ModerateTextRequest;
 use Google\Cloud\Language\V1\ModerateTextResponse;
 
@@ -44,9 +43,7 @@ function moderate_text_sample(): void
     $languageServiceClient = new LanguageServiceClient();
 
     // Prepare the request message.
-    $document = new Document();
-    $request = (new ModerateTextRequest())
-        ->setDocument($document);
+    $request = new ModerateTextRequest();
 
     // Call the API and handle any network failures.
     try {

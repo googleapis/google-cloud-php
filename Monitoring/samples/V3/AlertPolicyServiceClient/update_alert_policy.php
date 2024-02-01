@@ -50,9 +50,7 @@ function update_alert_policy_sample(): void
     $alertPolicyServiceClient = new AlertPolicyServiceClient();
 
     // Prepare the request message.
-    $alertPolicy = new AlertPolicy();
-    $request = (new UpdateAlertPolicyRequest())
-        ->setAlertPolicy($alertPolicy);
+    $request = new UpdateAlertPolicyRequest();
 
     // Call the API and handle any network failures.
     try {

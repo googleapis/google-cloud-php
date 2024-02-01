@@ -38,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'policy_based_route_id',
-                ],
             ],
             'DeletePolicyBasedRoute' => [
                 'method' => 'delete',

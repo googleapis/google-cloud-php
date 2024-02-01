@@ -58,8 +58,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $loggingServiceV2Client = new LoggingServiceV2Client();
  * try {
- *     $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
- *     $loggingServiceV2Client->deleteLog($formattedLogName);
+ *     $loggingServiceV2Client->deleteLog();
  * } finally {
  *     $loggingServiceV2Client->close();
  * }
@@ -507,29 +506,29 @@ class LoggingServiceV2GapicClient
      * ```
      * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $formattedLogName = $loggingServiceV2Client->logName('[PROJECT]', '[LOG]');
-     *     $loggingServiceV2Client->deleteLog($formattedLogName);
+     *     $loggingServiceV2Client->deleteLog();
      * } finally {
      *     $loggingServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $logName      Required. The resource name of the log to delete:
-     *
-     *                             * `projects/[PROJECT_ID]/logs/[LOG_ID]`
-     *                             * `organizations/[ORGANIZATION_ID]/logs/[LOG_ID]`
-     *                             * `billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]`
-     *                             * `folders/[FOLDER_ID]/logs/[LOG_ID]`
-     *
-     *                             `[LOG_ID]` must be URL-encoded. For example,
-     *                             `"projects/my-project-id/logs/syslog"`,
-     *                             `"organizations/123/logs/cloudaudit.googleapis.com%2Factivity"`.
-     *
-     *                             For more information about log names, see
-     *                             [LogEntry][google.logging.v2.LogEntry].
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $logName
+     *           Required. The resource name of the log to delete:
+     *
+     *           * `projects/[PROJECT_ID]/logs/[LOG_ID]`
+     *           * `organizations/[ORGANIZATION_ID]/logs/[LOG_ID]`
+     *           * `billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]`
+     *           * `folders/[FOLDER_ID]/logs/[LOG_ID]`
+     *
+     *           `[LOG_ID]` must be URL-encoded. For example,
+     *           `"projects/my-project-id/logs/syslog"`,
+     *           `"organizations/123/logs/cloudaudit.googleapis.com%2Factivity"`.
+     *
+     *           For more information about log names, see
+     *           [LogEntry][google.logging.v2.LogEntry].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -538,12 +537,15 @@ class LoggingServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteLog($logName, array $optionalArgs = [])
+    public function deleteLog(array $optionalArgs = [])
     {
         $request = new DeleteLogRequest();
         $requestParamHeaders = [];
-        $request->setLogName($logName);
-        $requestParamHeaders['log_name'] = $logName;
+        if (isset($optionalArgs['logName'])) {
+            $request->setLogName($optionalArgs['logName']);
+            $requestParamHeaders['log_name'] = $optionalArgs['logName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteLog', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -559,11 +561,8 @@ class LoggingServiceV2GapicClient
      * ```
      * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $formattedResourceNames = [
-     *         $loggingServiceV2Client->projectName('[PROJECT]'),
-     *     ];
      *     // Iterate over pages of elements
-     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($formattedResourceNames);
+     *     $pagedResponse = $loggingServiceV2Client->listLogEntries();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -571,7 +570,7 @@ class LoggingServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($formattedResourceNames);
+     *     $pagedResponse = $loggingServiceV2Client->listLogEntries();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -580,26 +579,27 @@ class LoggingServiceV2GapicClient
      * }
      * ```
      *
-     * @param string[] $resourceNames Required. Names of one or more parent resources from which to
-     *                                retrieve log entries:
-     *
-     *                                *  `projects/[PROJECT_ID]`
-     *                                *  `organizations/[ORGANIZATION_ID]`
-     *                                *  `billingAccounts/[BILLING_ACCOUNT_ID]`
-     *                                *  `folders/[FOLDER_ID]`
-     *
-     *                                May alternatively be one or more views:
-     *
-     *                                * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *                                * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *                                * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *                                * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
-     *
-     *                                Projects listed in the `project_ids` field are added to this list.
-     *                                A maximum of 100 resources may be specified in a single request.
-     * @param array    $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string[] $resourceNames
+     *           Required. Names of one or more parent resources from which to
+     *           retrieve log entries:
+     *
+     *           *  `projects/[PROJECT_ID]`
+     *           *  `organizations/[ORGANIZATION_ID]`
+     *           *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     *           *  `folders/[FOLDER_ID]`
+     *
+     *           May alternatively be one or more views:
+     *
+     *           * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *           * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *           * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *           * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *
+     *           Projects listed in the `project_ids` field are added to this list.
+     *           A maximum of 100 resources may be specified in a single request.
      *     @type string $filter
      *           Optional. Only log entries that match the filter are returned.  An empty
      *           filter matches all log entries in the resources listed in `resource_names`.
@@ -632,10 +632,13 @@ class LoggingServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listLogEntries($resourceNames, array $optionalArgs = [])
+    public function listLogEntries(array $optionalArgs = [])
     {
         $request = new ListLogEntriesRequest();
-        $request->setResourceNames($resourceNames);
+        if (isset($optionalArgs['resourceNames'])) {
+            $request->setResourceNames($optionalArgs['resourceNames']);
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -663,9 +666,8 @@ class LoggingServiceV2GapicClient
      * ```
      * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $formattedParent = $loggingServiceV2Client->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
+     *     $pagedResponse = $loggingServiceV2Client->listLogs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -673,7 +675,7 @@ class LoggingServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
+     *     $pagedResponse = $loggingServiceV2Client->listLogs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -682,15 +684,16 @@ class LoggingServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name to list logs for:
-     *
-     *                             *  `projects/[PROJECT_ID]`
-     *                             *  `organizations/[ORGANIZATION_ID]`
-     *                             *  `billingAccounts/[BILLING_ACCOUNT_ID]`
-     *                             *  `folders/[FOLDER_ID]`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name to list logs for:
+     *
+     *           *  `projects/[PROJECT_ID]`
+     *           *  `organizations/[ORGANIZATION_ID]`
+     *           *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     *           *  `folders/[FOLDER_ID]`
      *     @type string[] $resourceNames
      *           Optional. List of resource names to list logs for:
      *
@@ -726,12 +729,15 @@ class LoggingServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listLogs($parent, array $optionalArgs = [])
+    public function listLogs(array $optionalArgs = [])
     {
         $request = new ListLogsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['resourceNames'])) {
             $request->setResourceNames($optionalArgs['resourceNames']);
         }
@@ -818,9 +824,7 @@ class LoggingServiceV2GapicClient
      * ```
      * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $resourceNames = [];
      *     $request = new TailLogEntriesRequest();
-     *     $request->setResourceNames($resourceNames);
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
      *     $requests = [
@@ -885,38 +889,13 @@ class LoggingServiceV2GapicClient
      * ```
      * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $entries = [];
-     *     $response = $loggingServiceV2Client->writeLogEntries($entries);
+     *     $response = $loggingServiceV2Client->writeLogEntries();
      * } finally {
      *     $loggingServiceV2Client->close();
      * }
      * ```
      *
-     * @param LogEntry[] $entries      Required. The log entries to send to Logging. The order of log
-     *                                 entries in this list does not matter. Values supplied in this method's
-     *                                 `log_name`, `resource`, and `labels` fields are copied into those log
-     *                                 entries in this list that do not include values for their corresponding
-     *                                 fields. For more information, see the
-     *                                 [LogEntry][google.logging.v2.LogEntry] type.
-     *
-     *                                 If the `timestamp` or `insert_id` fields are missing in log entries, then
-     *                                 this method supplies the current time or a unique identifier, respectively.
-     *                                 The supplied values are chosen so that, among the log entries that did not
-     *                                 supply their own values, the entries earlier in the list will sort before
-     *                                 the entries later in the list. See the `entries.list` method.
-     *
-     *                                 Log entries with timestamps that are more than the
-     *                                 [logs retention period](https://cloud.google.com/logging/quotas) in
-     *                                 the past or more than 24 hours in the future will not be available when
-     *                                 calling `entries.list`. However, those log entries can still be [exported
-     *                                 with
-     *                                 LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
-     *
-     *                                 To improve throughput and to avoid exceeding the
-     *                                 [quota limit](https://cloud.google.com/logging/quotas) for calls to
-     *                                 `entries.write`, you should try to include several log entries in this
-     *                                 list, rather than calling this method for each individual log entry.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $logName
@@ -951,6 +930,31 @@ class LoggingServiceV2GapicClient
      *           entries in `entries`. If a log entry already has a label with the same key
      *           as a label in this parameter, then the log entry's label is not changed.
      *           See [LogEntry][google.logging.v2.LogEntry].
+     *     @type LogEntry[] $entries
+     *           Required. The log entries to send to Logging. The order of log
+     *           entries in this list does not matter. Values supplied in this method's
+     *           `log_name`, `resource`, and `labels` fields are copied into those log
+     *           entries in this list that do not include values for their corresponding
+     *           fields. For more information, see the
+     *           [LogEntry][google.logging.v2.LogEntry] type.
+     *
+     *           If the `timestamp` or `insert_id` fields are missing in log entries, then
+     *           this method supplies the current time or a unique identifier, respectively.
+     *           The supplied values are chosen so that, among the log entries that did not
+     *           supply their own values, the entries earlier in the list will sort before
+     *           the entries later in the list. See the `entries.list` method.
+     *
+     *           Log entries with timestamps that are more than the
+     *           [logs retention period](https://cloud.google.com/logging/quotas) in
+     *           the past or more than 24 hours in the future will not be available when
+     *           calling `entries.list`. However, those log entries can still be [exported
+     *           with
+     *           LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
+     *
+     *           To improve throughput and to avoid exceeding the
+     *           [quota limit](https://cloud.google.com/logging/quotas) for calls to
+     *           `entries.write`, you should try to include several log entries in this
+     *           list, rather than calling this method for each individual log entry.
      *     @type bool $partialSuccess
      *           Optional. Whether a batch's valid entries should be written even if some
      *           other entry failed due to a permanent error such as INVALID_ARGUMENT or
@@ -973,10 +977,9 @@ class LoggingServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function writeLogEntries($entries, array $optionalArgs = [])
+    public function writeLogEntries(array $optionalArgs = [])
     {
         $request = new WriteLogEntriesRequest();
-        $request->setEntries($entries);
         if (isset($optionalArgs['logName'])) {
             $request->setLogName($optionalArgs['logName']);
         }
@@ -987,6 +990,10 @@ class LoggingServiceV2GapicClient
 
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
+        }
+
+        if (isset($optionalArgs['entries'])) {
+            $request->setEntries($optionalArgs['entries']);
         }
 
         if (isset($optionalArgs['partialSuccess'])) {

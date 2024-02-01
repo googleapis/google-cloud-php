@@ -26,38 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetApp\V1\Client\NetAppClient;
-use Google\Cloud\NetApp\V1\ServiceLevel;
 use Google\Cloud\NetApp\V1\StoragePool;
 use Google\Cloud\NetApp\V1\UpdateStoragePoolRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the storage pool properties with the full spec
  *
- * @param int    $storagePoolServiceLevel     Service level of the storage pool
- * @param int    $storagePoolCapacityGib      Capacity in GIB of the pool
- * @param string $formattedStoragePoolNetwork VPC Network name.
- *                                            Format: projects/{project}/global/networks/{network}
- *                                            Please see {@see NetAppClient::networkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_storage_pool_sample(
-    int $storagePoolServiceLevel,
-    int $storagePoolCapacityGib,
-    string $formattedStoragePoolNetwork
-): void {
+function update_storage_pool_sample(): void
+{
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $storagePool = (new StoragePool())
-        ->setServiceLevel($storagePoolServiceLevel)
-        ->setCapacityGib($storagePoolCapacityGib)
-        ->setNetwork($formattedStoragePoolNetwork);
-    $request = (new UpdateStoragePoolRequest())
-        ->setUpdateMask($updateMask)
-        ->setStoragePool($storagePool);
+    $request = new UpdateStoragePoolRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -77,27 +65,5 @@ function update_storage_pool_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $storagePoolServiceLevel = ServiceLevel::SERVICE_LEVEL_UNSPECIFIED;
-    $storagePoolCapacityGib = 0;
-    $formattedStoragePoolNetwork = NetAppClient::networkName('[PROJECT]', '[NETWORK]');
-
-    update_storage_pool_sample(
-        $storagePoolServiceLevel,
-        $storagePoolCapacityGib,
-        $formattedStoragePoolNetwork
-    );
 }
 // [END netapp_v1_generated_NetApp_UpdateStoragePool_sync]

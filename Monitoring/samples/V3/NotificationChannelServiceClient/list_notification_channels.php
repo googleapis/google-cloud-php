@@ -34,27 +34,19 @@ use Google\Cloud\Monitoring\V3\NotificationChannel;
  * To list the types of notification channels that are supported, use
  * the `ListNotificationChannelDescriptors` method.
  *
- * @param string $name The
- *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
- *                     to execute the request. The format is:
- *
- *                     projects/[PROJECT_ID_OR_NUMBER]
- *
- *                     This names the container
- *                     in which to look for the notification channels; it does not name a
- *                     specific channel. To query a specific channel by REST resource name, use
- *                     the
- *                     [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
- *                     operation.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_notification_channels_sample(string $name): void
+function list_notification_channels_sample(): void
 {
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new ListNotificationChannelsRequest())
-        ->setName($name);
+    $request = new ListNotificationChannelsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,21 +60,5 @@ function list_notification_channels_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    list_notification_channels_sample($name);
 }
 // [END monitoring_v3_generated_NotificationChannelService_ListNotificationChannels_sync]

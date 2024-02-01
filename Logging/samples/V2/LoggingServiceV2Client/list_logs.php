@@ -32,22 +32,19 @@ use Google\Cloud\Logging\V2\ListLogsRequest;
  * Lists the logs in projects, organizations, folders, or billing accounts.
  * Only logs that have entries are listed.
  *
- * @param string $formattedParent The resource name to list logs for:
- *
- *                                *  `projects/[PROJECT_ID]`
- *                                *  `organizations/[ORGANIZATION_ID]`
- *                                *  `billingAccounts/[BILLING_ACCOUNT_ID]`
- *                                *  `folders/[FOLDER_ID]`
- *                                Please see {@see LoggingServiceV2Client::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_logs_sample(string $formattedParent): void
+function list_logs_sample(): void
 {
     // Create a client.
     $loggingServiceV2Client = new LoggingServiceV2Client();
 
     // Prepare the request message.
-    $request = (new ListLogsRequest())
-        ->setParent($formattedParent);
+    $request = new ListLogsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +58,5 @@ function list_logs_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = LoggingServiceV2Client::projectName('[PROJECT]');
-
-    list_logs_sample($formattedParent);
 }
 // [END logging_v2_generated_LoggingServiceV2_ListLogs_sync]

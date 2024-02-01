@@ -24,7 +24,6 @@ class GetStoragePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the storage pool
-     *                     Please see {@see NetAppClient::storagePoolName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\GetStoragePoolRequest
      *

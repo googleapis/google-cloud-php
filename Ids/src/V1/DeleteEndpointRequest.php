@@ -37,8 +37,7 @@ class DeleteEndpointRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string $name Required. The name of the endpoint to delete. Please see
-     *                     {@see IDSClient::endpointName()} for help formatting this field.
+     * @param string $name Required. The name of the endpoint to delete.
      *
      * @return \Google\Cloud\Ids\V1\DeleteEndpointRequest
      *

@@ -46,9 +46,7 @@ function update_hub_sample(): void
     $hubServiceClient = new HubServiceClient();
 
     // Prepare the request message.
-    $hub = new Hub();
-    $request = (new UpdateHubRequest())
-        ->setHub($hub);
+    $request = new UpdateHubRequest();
 
     // Call the API and handle any network failures.
     try {

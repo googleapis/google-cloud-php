@@ -48,7 +48,6 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                         `"projects/my-logging-project"`
      *                                                         `"organizations/123456789"`
-     *                                                         Please see {@see ConfigServiceV2Client::projectName()} for help formatting this field.
      * @param \Google\Cloud\Logging\V2\LogExclusion $exclusion Required. The new exclusion, whose `name` parameter is an exclusion name
      *                                                         that is not already used in the parent resource.
      *

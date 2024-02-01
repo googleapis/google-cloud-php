@@ -46,28 +46,19 @@ use Google\Cloud\Logging\V2\UpdateSettingsRequest;
  * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
  * for more information.
  *
- * @param string $name The resource name for the settings to update.
- *
- *                     "organizations/[ORGANIZATION_ID]/settings"
- *
- *                     For example:
- *
- *                     `"organizations/12345/settings"`
- *
- *                     Note: Settings for the Log Router can currently only be configured for
- *                     Google Cloud organizations. Once configured, it applies to all projects and
- *                     folders in the Google Cloud organization.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_settings_sample(string $name): void
+function update_settings_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $settings = new Settings();
-    $request = (new UpdateSettingsRequest())
-        ->setName($name)
-        ->setSettings($settings);
+    $request = new UpdateSettingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -77,21 +68,5 @@ function update_settings_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    update_settings_sample($name);
 }
 // [END logging_v2_generated_ConfigServiceV2_UpdateSettings_sync]

@@ -46,9 +46,7 @@ function update_uptime_check_config_sample(): void
     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
 
     // Prepare the request message.
-    $uptimeCheckConfig = new UptimeCheckConfig();
-    $request = (new UpdateUptimeCheckConfigRequest())
-        ->setUptimeCheckConfig($uptimeCheckConfig);
+    $request = new UpdateUptimeCheckConfigRequest();
 
     // Call the API and handle any network failures.
     try {

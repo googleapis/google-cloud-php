@@ -34,17 +34,19 @@ use Google\Cloud\NetworkConnectivity\V1\Spoke;
  * specified hub and location. The list includes both spokes that are attached
  * to the hub and spokes that have been proposed but not yet accepted.
  *
- * @param string $formattedName The name of the hub. Please see
- *                              {@see HubServiceClient::hubName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_hub_spokes_sample(string $formattedName): void
+function list_hub_spokes_sample(): void
 {
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
     // Prepare the request message.
-    $request = (new ListHubSpokesRequest())
-        ->setName($formattedName);
+    $request = new ListHubSpokesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +60,5 @@ function list_hub_spokes_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = HubServiceClient::hubName('[PROJECT]', '[HUB]');
-
-    list_hub_spokes_sample($formattedName);
 }
 // [END networkconnectivity_v1_generated_HubService_ListHubSpokes_sync]

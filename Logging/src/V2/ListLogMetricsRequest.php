@@ -44,7 +44,6 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The name of the project containing the metrics:
      *
      *                       "projects/[PROJECT_ID]"
-     *                       Please see {@see MetricsServiceV2Client::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Logging\V2\ListLogMetricsRequest
      *

@@ -33,20 +33,19 @@ use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
  * Lists the existing valid Uptime check configurations for the project
  * (leaving out any invalid configurations).
  *
- * @param string $parent The
- *                       [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
- *                       Uptime check configurations are listed. The format is:
- *
- *                       projects/[PROJECT_ID_OR_NUMBER]
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_uptime_check_configs_sample(string $parent): void
+function list_uptime_check_configs_sample(): void
 {
     // Create a client.
     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
 
     // Prepare the request message.
-    $request = (new ListUptimeCheckConfigsRequest())
-        ->setParent($parent);
+    $request = new ListUptimeCheckConfigsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +59,5 @@ function list_uptime_check_configs_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_uptime_check_configs_sample($parent);
 }
 // [END monitoring_v3_generated_UptimeCheckService_ListUptimeCheckConfigs_sync]

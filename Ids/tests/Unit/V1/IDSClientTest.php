@@ -28,7 +28,6 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Ids\V1\Endpoint;
-use Google\Cloud\Ids\V1\Endpoint\Severity;
 use Google\Cloud\Ids\V1\IDSClient;
 use Google\Cloud\Ids\V1\ListEndpointsResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -107,15 +106,7 @@ class IDSClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $endpointId = 'endpointId-1135808507';
-        $endpoint = new Endpoint();
-        $endpointNetwork = 'endpointNetwork1670861529';
-        $endpoint->setNetwork($endpointNetwork);
-        $endpointSeverity = Severity::SEVERITY_UNSPECIFIED;
-        $endpoint->setSeverity($endpointSeverity);
-        $response = $gapicClient->createEndpoint($formattedParent, $endpointId, $endpoint);
+        $response = $gapicClient->createEndpoint();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -125,12 +116,6 @@ class IDSClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.ids.v1.IDS/CreateEndpoint', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEndpointId();
-        $this->assertProtobufEquals($endpointId, $actualValue);
-        $actualValue = $actualApiRequestObject->getEndpoint();
-        $this->assertProtobufEquals($endpoint, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEndpointTest');
         $response->pollUntilComplete([
@@ -181,15 +166,7 @@ class IDSClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $endpointId = 'endpointId-1135808507';
-        $endpoint = new Endpoint();
-        $endpointNetwork = 'endpointNetwork1670861529';
-        $endpoint->setNetwork($endpointNetwork);
-        $endpointSeverity = Severity::SEVERITY_UNSPECIFIED;
-        $endpoint->setSeverity($endpointSeverity);
-        $response = $gapicClient->createEndpoint($formattedParent, $endpointId, $endpoint);
+        $response = $gapicClient->createEndpoint();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -240,9 +217,7 @@ class IDSClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $response = $gapicClient->deleteEndpoint($formattedName);
+        $response = $gapicClient->deleteEndpoint();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -252,8 +227,6 @@ class IDSClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.ids.v1.IDS/DeleteEndpoint', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteEndpointTest');
         $response->pollUntilComplete([
@@ -304,9 +277,7 @@ class IDSClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $response = $gapicClient->deleteEndpoint($formattedName);
+        $response = $gapicClient->deleteEndpoint();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -351,17 +322,13 @@ class IDSClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setTrafficLogs($trafficLogs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $response = $gapicClient->getEndpoint($formattedName);
+        $response = $gapicClient->getEndpoint();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.ids.v1.IDS/GetEndpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -383,10 +350,8 @@ class IDSClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         try {
-            $gapicClient->getEndpoint($formattedName);
+            $gapicClient->getEndpoint();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -416,9 +381,7 @@ class IDSClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEndpoints($endpoints);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listEndpoints($formattedParent);
+        $response = $gapicClient->listEndpoints();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -428,8 +391,6 @@ class IDSClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.ids.v1.IDS/ListEndpoints', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -451,10 +412,8 @@ class IDSClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listEndpoints($formattedParent);
+            $gapicClient->listEndpoints();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

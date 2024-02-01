@@ -41,8 +41,7 @@ class GetNotificationChannelVerificationCodeRequest extends \Google\Protobuf\Int
     /**
      * @param string $name Required. The notification channel for which a verification code is to be
      *                     generated and retrieved. This must name a channel that is already verified;
-     *                     if the specified channel is not verified, the request will fail. Please see
-     *                     {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
+     *                     if the specified channel is not verified, the request will fail.
      *
      * @return \Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeRequest
      *

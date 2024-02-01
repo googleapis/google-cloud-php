@@ -45,9 +45,7 @@ function update_spoke_sample(): void
     $hubServiceClient = new HubServiceClient();
 
     // Prepare the request message.
-    $spoke = new Spoke();
-    $request = (new UpdateSpokeRequest())
-        ->setSpoke($spoke);
+    $request = new UpdateSpokeRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -55,8 +55,7 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                 $parent  Required. Value for parent. Please see
-     *                                                        {@see MigrationCenterClient::locationName()} for help formatting this field.
+     * @param string                                 $parent  Required. Value for parent.
      * @param \Google\Cloud\MigrationCenter\V1\Group $group   Required. The group resource being created.
      * @param string                                 $groupId Required. User specified ID for the group. It will become the last
      *                                                        component of the group name. The ID must be unique within the project, must

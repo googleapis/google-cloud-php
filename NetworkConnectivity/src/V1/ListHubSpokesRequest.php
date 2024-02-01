@@ -69,8 +69,7 @@ class ListHubSpokesRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
-     * @param string $name Required. The name of the hub. Please see
-     *                     {@see HubServiceClient::hubName()} for help formatting this field.
+     * @param string $name Required. The name of the hub.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\ListHubSpokesRequest
      *

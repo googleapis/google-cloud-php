@@ -44,9 +44,7 @@ function update_group_sample(): void
     $groupServiceClient = new GroupServiceClient();
 
     // Prepare the request message.
-    $group = new Group();
-    $request = (new UpdateGroupRequest())
-        ->setGroup($group);
+    $request = new UpdateGroupRequest();
 
     // Call the API and handle any network failures.
     try {

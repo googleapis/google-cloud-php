@@ -18,16 +18,16 @@ class Common
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ç
-1google/cloud/networksecurity/v1beta1/common.proto$google.cloud.networksecurity.v1beta1google/protobuf/timestamp.proto"Ä
-OperationMetadata4
-create_time (2.google.protobuf.TimestampB‡A1
-end_time (2.google.protobuf.TimestampB‡A
-target (	B‡A
-verb (	B‡A
-status_message (	B‡A#
-requested_cancellation (B‡A
-api_version (	B‡ABÖ
+î
+1google/cloud/networksecurity/v1beta1/common.proto$google.cloud.networksecurity.v1beta1google/protobuf/timestamp.proto"á
+OperationMetadata5
+create_time (2.google.protobuf.TimestampB‚A2
+end_time (2.google.protobuf.TimestampB‚A
+target (	B‚A
+verb (	B‚A
+status_message (	B‚A$
+requested_cancellation (B‚A
+api_version (	B‚ABÖ
 (com.google.cloud.networksecurity.v1beta1BCommonProtoPZRcloud.google.com/go/networksecurity/apiv1beta1/networksecuritypb;networksecuritypb™$Google.Cloud.NetworkSecurity.V1Beta1 $Google\\Cloud\\NetworkSecurity\\V1beta1Í\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
         , true);
 

@@ -32,23 +32,19 @@ use Google\Cloud\Monitoring\V3\TimeSeriesData;
 /**
  * Queries time series using Monitoring Query Language. This method does not require a Workspace.
  *
- * @param string $name  The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                      which to execute the request. The format is:
- *
- *                      projects/[PROJECT_ID_OR_NUMBER]
- * @param string $query The query in the [Monitoring Query
- *                      Language](https://cloud.google.com/monitoring/mql/reference) format.
- *                      The default time zone is in UTC.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function query_time_series_sample(string $name, string $query): void
+function query_time_series_sample(): void
 {
     // Create a client.
     $queryServiceClient = new QueryServiceClient();
 
     // Prepare the request message.
-    $request = (new QueryTimeSeriesRequest())
-        ->setName($name)
-        ->setQuery($query);
+    $request = new QueryTimeSeriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,22 +58,5 @@ function query_time_series_sample(string $name, string $query): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-    $query = '[QUERY]';
-
-    query_time_series_sample($name, $query);
 }
 // [END monitoring_v3_generated_QueryService_QueryTimeSeries_sync]

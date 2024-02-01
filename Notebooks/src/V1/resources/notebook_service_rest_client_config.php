@@ -38,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'environment_id',
-                ],
             ],
             'CreateExecution' => [
                 'method' => 'post',
@@ -52,9 +49,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'execution_id',
                 ],
             ],
             'CreateInstance' => [
@@ -68,9 +62,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'instance_id',
-                ],
             ],
             'CreateSchedule' => [
                 'method' => 'post',
@@ -82,9 +73,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'schedule_id',
                 ],
             ],
             'DeleteEnvironment' => [

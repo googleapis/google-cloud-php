@@ -53,8 +53,7 @@ class CreateSpokeRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string                                     $parent  Required. The parent resource. Please see
-     *                                                            {@see HubServiceClient::locationName()} for help formatting this field.
+     * @param string                                     $parent  Required. The parent resource.
      * @param \Google\Cloud\NetworkConnectivity\V1\Spoke $spoke   Required. The initial values for a new spoke.
      * @param string                                     $spokeId Required. Unique id for the spoke to create.
      *

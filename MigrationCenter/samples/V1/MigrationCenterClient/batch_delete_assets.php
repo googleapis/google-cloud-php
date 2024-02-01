@@ -30,23 +30,19 @@ use Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
 /**
  * Deletes list of Assets.
  *
- * @param string $formattedParent       Parent value for batch asset delete. Please see
- *                                      {@see MigrationCenterClient::locationName()} for help formatting this field.
- * @param string $formattedNamesElement The IDs of the assets to delete.
- *                                      A maximum of 1000 assets can be deleted in a batch.
- *                                      Format: projects/{project}/locations/{location}/assets/{name}. Please see
- *                                      {@see MigrationCenterClient::assetName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_delete_assets_sample(string $formattedParent, string $formattedNamesElement): void
+function batch_delete_assets_sample(): void
 {
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
-    $request = (new BatchDeleteAssetsRequest())
-        ->setParent($formattedParent)
-        ->setNames($formattedNames);
+    $request = new BatchDeleteAssetsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,22 +51,5 @@ function batch_delete_assets_sample(string $formattedParent, string $formattedNa
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MigrationCenterClient::locationName('[PROJECT]', '[LOCATION]');
-    $formattedNamesElement = MigrationCenterClient::assetName('[PROJECT]', '[LOCATION]', '[ASSET]');
-
-    batch_delete_assets_sample($formattedParent, $formattedNamesElement);
 }
 // [END migrationcenter_v1_generated_MigrationCenter_BatchDeleteAssets_sync]

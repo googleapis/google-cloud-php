@@ -32,18 +32,19 @@ use Google\Cloud\Notebooks\V1\ListExecutionsRequest;
 /**
  * Lists executions in a given project and location
  *
- * @param string $formattedParent Format:
- *                                `parent=projects/{project_id}/locations/{location}`
- *                                Please see {@see NotebookServiceClient::executionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_executions_sample(string $formattedParent): void
+function list_executions_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $request = (new ListExecutionsRequest())
-        ->setParent($formattedParent);
+    $request = new ListExecutionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_executions_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NotebookServiceClient::executionName('[PROJECT]', '[LOCATION]', '[EXECUTION]');
-
-    list_executions_sample($formattedParent);
 }
 // [END notebooks_v1_generated_NotebookService_ListExecutions_sync]

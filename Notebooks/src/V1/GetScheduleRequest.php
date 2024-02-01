@@ -26,7 +26,6 @@ class GetScheduleRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Format:
      *                     `projects/{project_id}/locations/{location}/schedules/{schedule_id}`
-     *                     Please see {@see NotebookServiceClient::scheduleName()} for help formatting this field.
      *
      * @return \Google\Cloud\Notebooks\V1\GetScheduleRequest
      *

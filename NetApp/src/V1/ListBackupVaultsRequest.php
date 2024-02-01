@@ -52,8 +52,7 @@ class ListBackupVaultsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The location for which to retrieve backupVault information,
      *                       in the format
-     *                       `projects/{project_id}/locations/{location}`. Please see
-     *                       {@see NetAppClient::locationName()} for help formatting this field.
+     *                       `projects/{project_id}/locations/{location}`.
      *
      * @return \Google\Cloud\NetApp\V1\ListBackupVaultsRequest
      *

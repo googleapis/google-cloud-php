@@ -58,7 +58,6 @@ use Google\Cloud\Iot\V1\UnbindDeviceFromGatewayRequest;
 use Google\Cloud\Iot\V1\UnbindDeviceFromGatewayResponse;
 use Google\Cloud\Iot\V1\UpdateDeviceRegistryRequest;
 use Google\Cloud\Iot\V1\UpdateDeviceRequest;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -102,14 +101,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BindDeviceToGatewayResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $gatewayId = 'gatewayId955798774';
-        $deviceId = 'deviceId25209764';
-        $request = (new BindDeviceToGatewayRequest())
-            ->setParent($formattedParent)
-            ->setGatewayId($gatewayId)
-            ->setDeviceId($deviceId);
+        $request = new BindDeviceToGatewayRequest();
         $response = $gapicClient->bindDeviceToGateway($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -117,12 +109,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/BindDeviceToGateway', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGatewayId();
-        $this->assertProtobufEquals($gatewayId, $actualValue);
-        $actualValue = $actualRequestObject->getDeviceId();
-        $this->assertProtobufEquals($deviceId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -144,14 +130,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $gatewayId = 'gatewayId955798774';
-        $deviceId = 'deviceId25209764';
-        $request = (new BindDeviceToGatewayRequest())
-            ->setParent($formattedParent)
-            ->setGatewayId($gatewayId)
-            ->setDeviceId($deviceId);
+        $request = new BindDeviceToGatewayRequest();
         try {
             $gapicClient->bindDeviceToGateway($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -184,12 +163,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setNumId($numId);
         $expectedResponse->setBlocked($blocked);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $device = new Device();
-        $request = (new CreateDeviceRequest())
-            ->setParent($formattedParent)
-            ->setDevice($device);
+        $request = new CreateDeviceRequest();
         $response = $gapicClient->createDevice($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -197,10 +171,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/CreateDevice', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDevice();
-        $this->assertProtobufEquals($device, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -222,12 +192,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $device = new Device();
-        $request = (new CreateDeviceRequest())
-            ->setParent($formattedParent)
-            ->setDevice($device);
+        $request = new CreateDeviceRequest();
         try {
             $gapicClient->createDevice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -256,12 +221,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $deviceRegistry = new DeviceRegistry();
-        $request = (new CreateDeviceRegistryRequest())
-            ->setParent($formattedParent)
-            ->setDeviceRegistry($deviceRegistry);
+        $request = new CreateDeviceRegistryRequest();
         $response = $gapicClient->createDeviceRegistry($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -269,10 +229,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/CreateDeviceRegistry', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDeviceRegistry();
-        $this->assertProtobufEquals($deviceRegistry, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -294,12 +250,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $deviceRegistry = new DeviceRegistry();
-        $request = (new CreateDeviceRegistryRequest())
-            ->setParent($formattedParent)
-            ->setDeviceRegistry($deviceRegistry);
+        $request = new CreateDeviceRegistryRequest();
         try {
             $gapicClient->createDeviceRegistry($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -324,18 +275,13 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new DeleteDeviceRequest())
-            ->setName($formattedName);
+        $request = new DeleteDeviceRequest();
         $gapicClient->deleteDevice($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/DeleteDevice', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -357,10 +303,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new DeleteDeviceRequest())
-            ->setName($formattedName);
+        $request = new DeleteDeviceRequest();
         try {
             $gapicClient->deleteDevice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -385,18 +328,13 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new DeleteDeviceRegistryRequest())
-            ->setName($formattedName);
+        $request = new DeleteDeviceRegistryRequest();
         $gapicClient->deleteDeviceRegistry($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/DeleteDeviceRegistry', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -418,10 +356,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new DeleteDeviceRegistryRequest())
-            ->setName($formattedName);
+        $request = new DeleteDeviceRegistryRequest();
         try {
             $gapicClient->deleteDeviceRegistry($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -454,10 +389,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setNumId($numId);
         $expectedResponse->setBlocked($blocked);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new GetDeviceRequest())
-            ->setName($formattedName);
+        $request = new GetDeviceRequest();
         $response = $gapicClient->getDevice($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -465,8 +397,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/GetDevice', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -488,10 +418,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new GetDeviceRequest())
-            ->setName($formattedName);
+        $request = new GetDeviceRequest();
         try {
             $gapicClient->getDevice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -520,10 +447,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new GetDeviceRegistryRequest())
-            ->setName($formattedName);
+        $request = new GetDeviceRegistryRequest();
         $response = $gapicClient->getDeviceRegistry($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -531,8 +455,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/GetDeviceRegistry', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -554,10 +476,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new GetDeviceRegistryRequest())
-            ->setName($formattedName);
+        $request = new GetDeviceRegistryRequest();
         try {
             $gapicClient->getDeviceRegistry($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -648,10 +567,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListDeviceConfigVersionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new ListDeviceConfigVersionsRequest())
-            ->setName($formattedName);
+        $request = new ListDeviceConfigVersionsRequest();
         $response = $gapicClient->listDeviceConfigVersions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -659,8 +575,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/ListDeviceConfigVersions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -682,10 +596,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new ListDeviceConfigVersionsRequest())
-            ->setName($formattedName);
+        $request = new ListDeviceConfigVersionsRequest();
         try {
             $gapicClient->listDeviceConfigVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -717,10 +628,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeviceRegistries($deviceRegistries);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDeviceRegistriesRequest())
-            ->setParent($formattedParent);
+        $request = new ListDeviceRegistriesRequest();
         $response = $gapicClient->listDeviceRegistries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -731,8 +639,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/ListDeviceRegistries', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -754,10 +660,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDeviceRegistriesRequest())
-            ->setParent($formattedParent);
+        $request = new ListDeviceRegistriesRequest();
         try {
             $gapicClient->listDeviceRegistries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -782,10 +685,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListDeviceStatesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new ListDeviceStatesRequest())
-            ->setName($formattedName);
+        $request = new ListDeviceStatesRequest();
         $response = $gapicClient->listDeviceStates($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -793,8 +693,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/ListDeviceStates', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -816,10 +714,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new ListDeviceStatesRequest())
-            ->setName($formattedName);
+        $request = new ListDeviceStatesRequest();
         try {
             $gapicClient->listDeviceStates($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -851,10 +746,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDevices($devices);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new ListDevicesRequest())
-            ->setParent($formattedParent);
+        $request = new ListDevicesRequest();
         $response = $gapicClient->listDevices($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -865,8 +757,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/ListDevices', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -888,10 +778,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new ListDevicesRequest())
-            ->setParent($formattedParent);
+        $request = new ListDevicesRequest();
         try {
             $gapicClient->listDevices($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -920,12 +807,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setBinaryData($binaryData2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $binaryData = '40';
-        $request = (new ModifyCloudToDeviceConfigRequest())
-            ->setName($formattedName)
-            ->setBinaryData($binaryData);
+        $request = new ModifyCloudToDeviceConfigRequest();
         $response = $gapicClient->modifyCloudToDeviceConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -933,10 +815,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/ModifyCloudToDeviceConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getBinaryData();
-        $this->assertProtobufEquals($binaryData, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -958,12 +836,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $binaryData = '40';
-        $request = (new ModifyCloudToDeviceConfigRequest())
-            ->setName($formattedName)
-            ->setBinaryData($binaryData);
+        $request = new ModifyCloudToDeviceConfigRequest();
         try {
             $gapicClient->modifyCloudToDeviceConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -988,12 +861,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SendCommandToDeviceResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $binaryData = '40';
-        $request = (new SendCommandToDeviceRequest())
-            ->setName($formattedName)
-            ->setBinaryData($binaryData);
+        $request = new SendCommandToDeviceRequest();
         $response = $gapicClient->sendCommandToDevice($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1001,10 +869,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/SendCommandToDevice', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getBinaryData();
-        $this->assertProtobufEquals($binaryData, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1026,12 +890,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $binaryData = '40';
-        $request = (new SendCommandToDeviceRequest())
-            ->setName($formattedName)
-            ->setBinaryData($binaryData);
+        $request = new SendCommandToDeviceRequest();
         try {
             $gapicClient->sendCommandToDevice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1196,14 +1055,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new UnbindDeviceFromGatewayResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $gatewayId = 'gatewayId955798774';
-        $deviceId = 'deviceId25209764';
-        $request = (new UnbindDeviceFromGatewayRequest())
-            ->setParent($formattedParent)
-            ->setGatewayId($gatewayId)
-            ->setDeviceId($deviceId);
+        $request = new UnbindDeviceFromGatewayRequest();
         $response = $gapicClient->unbindDeviceFromGateway($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1211,12 +1063,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/UnbindDeviceFromGateway', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGatewayId();
-        $this->assertProtobufEquals($gatewayId, $actualValue);
-        $actualValue = $actualRequestObject->getDeviceId();
-        $this->assertProtobufEquals($deviceId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1238,14 +1084,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $gatewayId = 'gatewayId955798774';
-        $deviceId = 'deviceId25209764';
-        $request = (new UnbindDeviceFromGatewayRequest())
-            ->setParent($formattedParent)
-            ->setGatewayId($gatewayId)
-            ->setDeviceId($deviceId);
+        $request = new UnbindDeviceFromGatewayRequest();
         try {
             $gapicClient->unbindDeviceFromGateway($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1278,12 +1117,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setNumId($numId);
         $expectedResponse->setBlocked($blocked);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $device = new Device();
-        $updateMask = new FieldMask();
-        $request = (new UpdateDeviceRequest())
-            ->setDevice($device)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateDeviceRequest();
         $response = $gapicClient->updateDevice($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1291,10 +1125,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/UpdateDevice', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDevice();
-        $this->assertProtobufEquals($device, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1316,12 +1146,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $device = new Device();
-        $updateMask = new FieldMask();
-        $request = (new UpdateDeviceRequest())
-            ->setDevice($device)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateDeviceRequest();
         try {
             $gapicClient->updateDevice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1350,12 +1175,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $deviceRegistry = new DeviceRegistry();
-        $updateMask = new FieldMask();
-        $request = (new UpdateDeviceRegistryRequest())
-            ->setDeviceRegistry($deviceRegistry)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateDeviceRegistryRequest();
         $response = $gapicClient->updateDeviceRegistry($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1363,10 +1183,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/UpdateDeviceRegistry', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDeviceRegistry();
-        $this->assertProtobufEquals($deviceRegistry, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1388,12 +1204,7 @@ class DeviceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $deviceRegistry = new DeviceRegistry();
-        $updateMask = new FieldMask();
-        $request = (new UpdateDeviceRegistryRequest())
-            ->setDeviceRegistry($deviceRegistry)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateDeviceRegistryRequest();
         try {
             $gapicClient->updateDeviceRegistry($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1418,14 +1229,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BindDeviceToGatewayResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $gatewayId = 'gatewayId955798774';
-        $deviceId = 'deviceId25209764';
-        $request = (new BindDeviceToGatewayRequest())
-            ->setParent($formattedParent)
-            ->setGatewayId($gatewayId)
-            ->setDeviceId($deviceId);
+        $request = new BindDeviceToGatewayRequest();
         $response = $gapicClient->bindDeviceToGatewayAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1433,12 +1237,6 @@ class DeviceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iot.v1.DeviceManager/BindDeviceToGateway', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGatewayId();
-        $this->assertProtobufEquals($gatewayId, $actualValue);
-        $actualValue = $actualRequestObject->getDeviceId();
-        $this->assertProtobufEquals($deviceId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

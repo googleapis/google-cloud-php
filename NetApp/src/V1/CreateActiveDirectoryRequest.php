@@ -35,8 +35,7 @@ class CreateActiveDirectoryRequest extends \Google\Protobuf\Internal\Message
     protected $active_directory_id = '';
 
     /**
-     * @param string                                  $parent            Required. Value for parent. Please see
-     *                                                                   {@see NetAppClient::locationName()} for help formatting this field.
+     * @param string                                  $parent            Required. Value for parent.
      * @param \Google\Cloud\NetApp\V1\ActiveDirectory $activeDirectory   Required. Fields of the to be created active directory.
      * @param string                                  $activeDirectoryId Required. ID of the active directory to create.
      *

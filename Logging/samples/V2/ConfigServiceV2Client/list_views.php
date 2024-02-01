@@ -32,18 +32,19 @@ use Google\Cloud\Logging\V2\LogView;
 /**
  * Lists views on a log bucket.
  *
- * @param string $parent The bucket whose views are to be listed:
- *
- *                       "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_views_sample(string $parent): void
+function list_views_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $request = (new ListViewsRequest())
-        ->setParent($parent);
+    $request = new ListViewsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_views_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_views_sample($parent);
 }
 // [END logging_v2_generated_ConfigServiceV2_ListViews_sync]

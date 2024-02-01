@@ -32,22 +32,21 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single ClientTlsPolicy.
  *
- * @param string $clientTlsPolicyName Name of the ClientTlsPolicy resource. It matches the pattern
- *                                    `projects/&#42;/locations/{location}/clientTlsPolicies/{client_tls_policy}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_client_tls_policy_sample(string $clientTlsPolicyName): void
+function update_client_tls_policy_sample(): void
 {
     // Create a client.
     $networkSecurityClient = new NetworkSecurityClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $clientTlsPolicy = (new ClientTlsPolicy())
-        ->setName($clientTlsPolicyName);
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkSecurityClient->updateClientTlsPolicy($clientTlsPolicy);
+        $response = $networkSecurityClient->updateClientTlsPolicy();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -62,21 +61,5 @@ function update_client_tls_policy_sample(string $clientTlsPolicyName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $clientTlsPolicyName = '[NAME]';
-
-    update_client_tls_policy_sample($clientTlsPolicyName);
 }
 // [END networksecurity_v1beta1_generated_NetworkSecurity_UpdateClientTlsPolicy_sync]

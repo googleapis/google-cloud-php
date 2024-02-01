@@ -44,17 +44,19 @@ use Google\Rpc\Status;
  * read permissions to the network configurations of listed projects), then
  * the reachability result returns a value of `UNKNOWN`.
  *
- * @param string $name Connectivity Test resource name using the form:
- *                     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rerun_connectivity_test_sample(string $name): void
+function rerun_connectivity_test_sample(): void
 {
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
     // Prepare the request message.
-    $request = (new RerunConnectivityTestRequest())
-        ->setName($name);
+    $request = new RerunConnectivityTestRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,21 +76,5 @@ function rerun_connectivity_test_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    rerun_connectivity_test_sample($name);
 }
 // [END networkmanagement_v1_generated_ReachabilityService_RerunConnectivityTest_sync]

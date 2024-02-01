@@ -41,8 +41,7 @@ class DeleteSpokeRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string $name Required. The name of the spoke to delete. Please see
-     *                     {@see HubServiceClient::spokeName()} for help formatting this field.
+     * @param string $name Required. The name of the spoke to delete.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\DeleteSpokeRequest
      *

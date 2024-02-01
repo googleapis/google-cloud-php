@@ -45,9 +45,8 @@ use Google\Cloud\Kms\Inventory\V1\ListCryptoKeysResponse;
  * ```
  * $keyDashboardServiceClient = new KeyDashboardServiceClient();
  * try {
- *     $formattedParent = $keyDashboardServiceClient->projectName('[PROJECT]');
  *     // Iterate over pages of elements
- *     $pagedResponse = $keyDashboardServiceClient->listCryptoKeys($formattedParent);
+ *     $pagedResponse = $keyDashboardServiceClient->listCryptoKeys();
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -55,7 +54,7 @@ use Google\Cloud\Kms\Inventory\V1\ListCryptoKeysResponse;
  *     }
  *     // Alternatively:
  *     // Iterate through all elements
- *     $pagedResponse = $keyDashboardServiceClient->listCryptoKeys($formattedParent);
+ *     $pagedResponse = $keyDashboardServiceClient->listCryptoKeys();
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -280,9 +279,8 @@ class KeyDashboardServiceGapicClient
      * ```
      * $keyDashboardServiceClient = new KeyDashboardServiceClient();
      * try {
-     *     $formattedParent = $keyDashboardServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $keyDashboardServiceClient->listCryptoKeys($formattedParent);
+     *     $pagedResponse = $keyDashboardServiceClient->listCryptoKeys();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -290,7 +288,7 @@ class KeyDashboardServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $keyDashboardServiceClient->listCryptoKeys($formattedParent);
+     *     $pagedResponse = $keyDashboardServiceClient->listCryptoKeys();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -299,11 +297,12 @@ class KeyDashboardServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Google Cloud project for which to retrieve key metadata, in
-     *                             the format `projects/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The Google Cloud project for which to retrieve key metadata, in
+     *           the format `projects/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -323,12 +322,15 @@ class KeyDashboardServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCryptoKeys($parent, array $optionalArgs = [])
+    public function listCryptoKeys(array $optionalArgs = [])
     {
         $request = new ListCryptoKeysRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

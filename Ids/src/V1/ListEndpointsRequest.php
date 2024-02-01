@@ -51,8 +51,7 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
-     * @param string $parent Required. The parent, which owns this collection of endpoints. Please see
-     *                       {@see IDSClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent, which owns this collection of endpoints.
      *
      * @return \Google\Cloud\Ids\V1\ListEndpointsRequest
      *

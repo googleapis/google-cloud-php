@@ -33,8 +33,7 @@ class CreateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                              $parent         Required. The project and cloud region where this device registry must be created.
-     *                                                            For example, `projects/example-project/locations/us-central1`. Please see
-     *                                                            {@see DeviceManagerClient::locationName()} for help formatting this field.
+     *                                                            For example, `projects/example-project/locations/us-central1`.
      * @param \Google\Cloud\Iot\V1\DeviceRegistry $deviceRegistry Required. The device registry. The field `name` must be empty. The server will
      *                                                            generate that field from the device registry `id` provided and the
      *                                                            `parent` field.

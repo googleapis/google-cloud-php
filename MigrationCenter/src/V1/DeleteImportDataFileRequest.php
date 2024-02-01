@@ -39,8 +39,7 @@ class DeleteImportDataFileRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string $name Required. Name of the ImportDataFile to delete. Please see
-     *                     {@see MigrationCenterClient::importDataFileName()} for help formatting this field.
+     * @param string $name Required. Name of the ImportDataFile to delete.
      *
      * @return \Google\Cloud\MigrationCenter\V1\DeleteImportDataFileRequest
      *

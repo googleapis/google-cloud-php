@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
 use Google\Cloud\MigrationCenter\V1\Source;
 use Google\Cloud\MigrationCenter\V1\UpdateSourceRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_source_sample(): void
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $source = new Source();
-    $request = (new UpdateSourceRequest())
-        ->setUpdateMask($updateMask)
-        ->setSource($source);
+    $request = new UpdateSourceRequest();
 
     // Call the API and handle any network failures.
     try {

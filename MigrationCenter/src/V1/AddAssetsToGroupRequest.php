@@ -57,8 +57,7 @@ class AddAssetsToGroupRequest extends \Google\Protobuf\Internal\Message
     protected $allow_existing = false;
 
     /**
-     * @param string $group Required. Group reference. Please see
-     *                      {@see MigrationCenterClient::groupName()} for help formatting this field.
+     * @param string $group Required. Group reference.
      *
      * @return \Google\Cloud\MigrationCenter\V1\AddAssetsToGroupRequest
      *

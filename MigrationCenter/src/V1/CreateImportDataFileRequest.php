@@ -51,8 +51,7 @@ class CreateImportDataFileRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                          $parent           Required. Name of the parent of the ImportDataFile. Please see
-     *                                                                          {@see MigrationCenterClient::importJobName()} for help formatting this field.
+     * @param string                                          $parent           Required. Name of the parent of the ImportDataFile.
      * @param \Google\Cloud\MigrationCenter\V1\ImportDataFile $importDataFile   Required. The resource being created.
      * @param string                                          $importDataFileId Required. The ID of the new data file.
      *

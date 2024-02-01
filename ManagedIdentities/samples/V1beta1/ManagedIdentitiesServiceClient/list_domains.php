@@ -31,11 +31,13 @@ use Google\Cloud\ManagedIdentities\V1beta1\ManagedIdentitiesServiceClient;
 /**
  * Lists domains in a project.
  *
- * @param string $formattedParent The resource name of the domain location using the form:
- *                                `projects/{project_id}/locations/global`
- *                                Please see {@see ManagedIdentitiesServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_domains_sample(string $formattedParent): void
+function list_domains_sample(): void
 {
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
@@ -43,7 +45,7 @@ function list_domains_sample(string $formattedParent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $managedIdentitiesServiceClient->listDomains($formattedParent);
+        $response = $managedIdentitiesServiceClient->listDomains();
 
         /** @var Domain $element */
         foreach ($response as $element) {
@@ -52,21 +54,5 @@ function list_domains_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ManagedIdentitiesServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_domains_sample($formattedParent);
 }
 // [END managedidentities_v1beta1_generated_ManagedIdentitiesService_ListDomains_sync]

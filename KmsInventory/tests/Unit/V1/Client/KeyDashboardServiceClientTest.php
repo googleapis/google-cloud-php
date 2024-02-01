@@ -79,10 +79,7 @@ class KeyDashboardServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCryptoKeys($cryptoKeys);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListCryptoKeysRequest())
-            ->setParent($formattedParent);
+        $request = new ListCryptoKeysRequest();
         $response = $gapicClient->listCryptoKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -93,8 +90,6 @@ class KeyDashboardServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.inventory.v1.KeyDashboardService/ListCryptoKeys', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -116,10 +111,7 @@ class KeyDashboardServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListCryptoKeysRequest())
-            ->setParent($formattedParent);
+        $request = new ListCryptoKeysRequest();
         try {
             $gapicClient->listCryptoKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -151,10 +143,7 @@ class KeyDashboardServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCryptoKeys($cryptoKeys);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListCryptoKeysRequest())
-            ->setParent($formattedParent);
+        $request = new ListCryptoKeysRequest();
         $response = $gapicClient->listCryptoKeysAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -165,8 +154,6 @@ class KeyDashboardServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.inventory.v1.KeyDashboardService/ListCryptoKeys', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

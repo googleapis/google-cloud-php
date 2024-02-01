@@ -31,27 +31,19 @@ use Google\Cloud\Logging\V2\DeleteSinkRequest;
  * Deletes a sink. If the sink has a unique `writer_identity`, then that
  * service account is also deleted.
  *
- * @param string $formattedSinkName The full resource name of the sink to delete, including the
- *                                  parent resource and the sink identifier:
- *
- *                                  "projects/[PROJECT_ID]/sinks/[SINK_ID]"
- *                                  "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
- *                                  "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
- *                                  "folders/[FOLDER_ID]/sinks/[SINK_ID]"
- *
- *                                  For example:
- *
- *                                  `"projects/my-project/sinks/my-sink"`
- *                                  Please see {@see ConfigServiceV2Client::logSinkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_sink_sample(string $formattedSinkName): void
+function delete_sink_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $request = (new DeleteSinkRequest())
-        ->setSinkName($formattedSinkName);
+    $request = new DeleteSinkRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +52,5 @@ function delete_sink_sample(string $formattedSinkName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSinkName = ConfigServiceV2Client::logSinkName('[PROJECT]', '[SINK]');
-
-    delete_sink_sample($formattedSinkName);
 }
 // [END logging_v2_generated_ConfigServiceV2_DeleteSink_sync]

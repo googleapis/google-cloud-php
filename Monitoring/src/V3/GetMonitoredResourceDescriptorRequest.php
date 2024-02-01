@@ -31,8 +31,7 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
      *                     projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE]
      *
      *                     The `[RESOURCE_TYPE]` is a predefined type, such as
-     *                     `cloudsql_database`. Please see
-     *                     {@see MetricServiceClient::monitoredResourceDescriptorName()} for help formatting this field.
+     *                     `cloudsql_database`.
      *
      * @return \Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest
      *

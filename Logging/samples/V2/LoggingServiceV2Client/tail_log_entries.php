@@ -33,29 +33,19 @@ use Google\Cloud\Logging\V2\TailLogEntriesResponse;
  * Streaming read of log entries as they are ingested. Until the stream is
  * terminated, it will continue reading logs.
  *
- * @param string $resourceNamesElement Name of a parent resource from which to retrieve log entries:
- *
- *                                     *  `projects/[PROJECT_ID]`
- *                                     *  `organizations/[ORGANIZATION_ID]`
- *                                     *  `billingAccounts/[BILLING_ACCOUNT_ID]`
- *                                     *  `folders/[FOLDER_ID]`
- *
- *                                     May alternatively be one or more views:
- *
- *                                     * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
- *                                     * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
- *                                     * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
- *                                     * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function tail_log_entries_sample(string $resourceNamesElement): void
+function tail_log_entries_sample(): void
 {
     // Create a client.
     $loggingServiceV2Client = new LoggingServiceV2Client();
 
     // Prepare the request message.
-    $resourceNames = [$resourceNamesElement,];
-    $request = (new TailLogEntriesRequest())
-        ->setResourceNames($resourceNames);
+    $request = new TailLogEntriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -70,21 +60,5 @@ function tail_log_entries_sample(string $resourceNamesElement): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $resourceNamesElement = '[RESOURCE_NAMES]';
-
-    tail_log_entries_sample($resourceNamesElement);
 }
 // [END logging_v2_generated_LoggingServiceV2_TailLogEntries_sync]

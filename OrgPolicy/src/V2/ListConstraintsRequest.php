@@ -51,7 +51,6 @@ class ListConstraintsRequest extends \Google\Protobuf\Internal\Message
      *                       * `projects/{project_id}`
      *                       * `folders/{folder_id}`
      *                       * `organizations/{organization_id}`
-     *                       Please see {@see OrgPolicyClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\OrgPolicy\V2\ListConstraintsRequest
      *

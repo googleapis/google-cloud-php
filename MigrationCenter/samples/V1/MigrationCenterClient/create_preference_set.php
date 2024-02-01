@@ -33,26 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new preference set in a given project and location.
  *
- * @param string $formattedParent Value for parent. Please see
- *                                {@see MigrationCenterClient::locationName()} for help formatting this field.
- * @param string $preferenceSetId User specified ID for the preference set. It will become the last
- *                                component of the preference set name. The ID must be unique within the
- *                                project, must conform with RFC-1034, is restricted to lower-cased letters,
- *                                and has a maximum length of 63 characters. The ID must match the regular
- *                                expression
- *                                `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_preference_set_sample(string $formattedParent, string $preferenceSetId): void
+function create_preference_set_sample(): void
 {
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $preferenceSet = new PreferenceSet();
-    $request = (new CreatePreferenceSetRequest())
-        ->setParent($formattedParent)
-        ->setPreferenceSetId($preferenceSetId)
-        ->setPreferenceSet($preferenceSet);
+    $request = new CreatePreferenceSetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,22 +65,5 @@ function create_preference_set_sample(string $formattedParent, string $preferenc
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MigrationCenterClient::locationName('[PROJECT]', '[LOCATION]');
-    $preferenceSetId = '[PREFERENCE_SET_ID]';
-
-    create_preference_set_sample($formattedParent, $preferenceSetId);
 }
 // [END migrationcenter_v1_generated_MigrationCenter_CreatePreferenceSet_sync]

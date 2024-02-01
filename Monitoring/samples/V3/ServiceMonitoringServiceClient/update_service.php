@@ -43,9 +43,7 @@ function update_service_sample(): void
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
     // Prepare the request message.
-    $service = new Service();
-    $request = (new UpdateServiceRequest())
-        ->setService($service);
+    $request = new UpdateServiceRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -25,8 +25,7 @@ class GetHubRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the hub resource to get. Please see
-     *                     {@see HubServiceClient::hubName()} for help formatting this field.
+     * @param string $name Required. The name of the hub resource to get.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\GetHubRequest
      *

@@ -39,8 +39,7 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                       The updated metric must be provided in the request and it's
      *                                                       `name` field must be the same as `[METRIC_ID]` If the metric
-     *                                                       does not exist in `[PROJECT_ID]`, then a new metric is created. Please see
-     *                                                       {@see MetricsServiceV2Client::logMetricName()} for help formatting this field.
+     *                                                       does not exist in `[PROJECT_ID]`, then a new metric is created.
      * @param \Google\Cloud\Logging\V2\LogMetric $metric     Required. The updated metric.
      *
      * @return \Google\Cloud\Logging\V2\UpdateLogMetricRequest

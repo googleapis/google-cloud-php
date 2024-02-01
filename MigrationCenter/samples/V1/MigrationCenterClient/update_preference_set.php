@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
 use Google\Cloud\MigrationCenter\V1\PreferenceSet;
 use Google\Cloud\MigrationCenter\V1\UpdatePreferenceSetRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_preference_set_sample(): void
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $preferenceSet = new PreferenceSet();
-    $request = (new UpdatePreferenceSetRequest())
-        ->setUpdateMask($updateMask)
-        ->setPreferenceSet($preferenceSet);
+    $request = new UpdatePreferenceSetRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -39,8 +39,7 @@ class RunImportJobRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string $name Required. The name of the import job to run. Please see
-     *                     {@see MigrationCenterClient::importJobName()} for help formatting this field.
+     * @param string $name Required. The name of the import job to run.
      *
      * @return \Google\Cloud\MigrationCenter\V1\RunImportJobRequest
      *

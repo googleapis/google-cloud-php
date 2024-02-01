@@ -60,9 +60,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
  * try {
- *     $name = 'name';
- *     $alertPolicy = new Google\Cloud\Monitoring\V3\AlertPolicy();
- *     $response = $alertPolicyServiceClient->createAlertPolicy($name, $alertPolicy);
+ *     $response = $alertPolicyServiceClient->createAlertPolicy();
  * } finally {
  *     $alertPolicyServiceClient->close();
  * }
@@ -495,33 +493,33 @@ class AlertPolicyServiceGapicClient
      * ```
      * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
-     *     $name = 'name';
-     *     $alertPolicy = new Google\Cloud\Monitoring\V3\AlertPolicy();
-     *     $response = $alertPolicyServiceClient->createAlertPolicy($name, $alertPolicy);
+     *     $response = $alertPolicyServiceClient->createAlertPolicy();
      * } finally {
      *     $alertPolicyServiceClient->close();
      * }
      * ```
      *
-     * @param string      $name         Required. The
-     *                                  [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
-     *                                  to create the alerting policy. The format is:
-     *
-     *                                  projects/[PROJECT_ID_OR_NUMBER]
-     *
-     *                                  Note that this field names the parent container in which the alerting
-     *                                  policy will be written, not the name of the created policy. |name| must be
-     *                                  a host project of a Metrics Scope, otherwise INVALID_ARGUMENT error will
-     *                                  return. The alerting policy that is returned will have a name that contains
-     *                                  a normalized representation of this name as a prefix but adds a suffix of
-     *                                  the form `/alertPolicies/[ALERT_POLICY_ID]`, identifying the policy in the
-     *                                  container.
-     * @param AlertPolicy $alertPolicy  Required. The requested alerting policy. You should omit the `name` field
-     *                                  in this policy. The name will be returned in the new policy, including a
-     *                                  new `[ALERT_POLICY_ID]` value.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *           to create the alerting policy. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
+     *
+     *           Note that this field names the parent container in which the alerting
+     *           policy will be written, not the name of the created policy. |name| must be
+     *           a host project of a Metrics Scope, otherwise INVALID_ARGUMENT error will
+     *           return. The alerting policy that is returned will have a name that contains
+     *           a normalized representation of this name as a prefix but adds a suffix of
+     *           the form `/alertPolicies/[ALERT_POLICY_ID]`, identifying the policy in the
+     *           container.
+     *     @type AlertPolicy $alertPolicy
+     *           Required. The requested alerting policy. You should omit the `name` field
+     *           in this policy. The name will be returned in the new policy, including a
+     *           new `[ALERT_POLICY_ID]` value.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -532,13 +530,19 @@ class AlertPolicyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAlertPolicy($name, $alertPolicy, array $optionalArgs = [])
+    public function createAlertPolicy(array $optionalArgs = [])
     {
         $request = new CreateAlertPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setAlertPolicy($alertPolicy);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['alertPolicy'])) {
+            $request->setAlertPolicy($optionalArgs['alertPolicy']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateAlertPolicy', AlertPolicy::class, $optionalArgs, $request)->wait();
@@ -555,21 +559,21 @@ class AlertPolicyServiceGapicClient
      * ```
      * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
-     *     $formattedName = $alertPolicyServiceClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-     *     $alertPolicyServiceClient->deleteAlertPolicy($formattedName);
+     *     $alertPolicyServiceClient->deleteAlertPolicy();
      * } finally {
      *     $alertPolicyServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The alerting policy to delete. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
-     *
-     *                             For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The alerting policy to delete. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
+     *
+     *           For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -578,12 +582,15 @@ class AlertPolicyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAlertPolicy($name, array $optionalArgs = [])
+    public function deleteAlertPolicy(array $optionalArgs = [])
     {
         $request = new DeleteAlertPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteAlertPolicy', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -596,19 +603,19 @@ class AlertPolicyServiceGapicClient
      * ```
      * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
-     *     $formattedName = $alertPolicyServiceClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-     *     $response = $alertPolicyServiceClient->getAlertPolicy($formattedName);
+     *     $response = $alertPolicyServiceClient->getAlertPolicy();
      * } finally {
      *     $alertPolicyServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The alerting policy to retrieve. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The alerting policy to retrieve. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -619,12 +626,15 @@ class AlertPolicyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAlertPolicy($name, array $optionalArgs = [])
+    public function getAlertPolicy(array $optionalArgs = [])
     {
         $request = new GetAlertPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetAlertPolicy', AlertPolicy::class, $optionalArgs, $request)->wait();
@@ -637,9 +647,8 @@ class AlertPolicyServiceGapicClient
      * ```
      * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
-     *     $name = 'name';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($name);
+     *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -647,7 +656,7 @@ class AlertPolicyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($name);
+     *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -656,20 +665,21 @@ class AlertPolicyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The
-     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
-     *                             alert policies are to be listed. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]
-     *
-     *                             Note that this field names the parent container in which the alerting
-     *                             policies to be listed are stored. To retrieve a single alerting policy
-     *                             by name, use the
-     *                             [GetAlertPolicy][google.monitoring.v3.AlertPolicyService.GetAlertPolicy]
-     *                             operation, instead.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+     *           alert policies are to be listed. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
+     *
+     *           Note that this field names the parent container in which the alerting
+     *           policies to be listed are stored. To retrieve a single alerting policy
+     *           by name, use the
+     *           [GetAlertPolicy][google.monitoring.v3.AlertPolicyService.GetAlertPolicy]
+     *           operation, instead.
      *     @type string $filter
      *           If provided, this field specifies the criteria that must be met by
      *           alert policies to be included in the response.
@@ -702,12 +712,15 @@ class AlertPolicyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAlertPolicies($name, array $optionalArgs = [])
+    public function listAlertPolicies(array $optionalArgs = [])
     {
         $request = new ListAlertPoliciesRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -743,18 +756,13 @@ class AlertPolicyServiceGapicClient
      * ```
      * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
-     *     $alertPolicy = new Google\Cloud\Monitoring\V3\AlertPolicy();
-     *     $response = $alertPolicyServiceClient->updateAlertPolicy($alertPolicy);
+     *     $response = $alertPolicyServiceClient->updateAlertPolicy();
      * } finally {
      *     $alertPolicyServiceClient->close();
      * }
      * ```
      *
-     * @param AlertPolicy $alertPolicy  Required. The updated alerting policy or the updated values for the
-     *                                  fields listed in `update_mask`.
-     *                                  If `update_mask` is not empty, any fields in this policy that are
-     *                                  not in `update_mask` are ignored.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -779,6 +787,11 @@ class AlertPolicyServiceGapicClient
      *           the supplied condition includes the `name` field with that
      *           `[CONDITION_ID]`. If the supplied condition omits the `name` field,
      *           then a new `[CONDITION_ID]` is created.
+     *     @type AlertPolicy $alertPolicy
+     *           Required. The updated alerting policy or the updated values for the
+     *           fields listed in `update_mask`.
+     *           If `update_mask` is not empty, any fields in this policy that are
+     *           not in `update_mask` are ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -789,14 +802,16 @@ class AlertPolicyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAlertPolicy($alertPolicy, array $optionalArgs = [])
+    public function updateAlertPolicy(array $optionalArgs = [])
     {
         $request = new UpdateAlertPolicyRequest();
         $requestParamHeaders = [];
-        $request->setAlertPolicy($alertPolicy);
-        $requestParamHeaders['alert_policy.name'] = $alertPolicy->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['alertPolicy'])) {
+            $request->setAlertPolicy($optionalArgs['alertPolicy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

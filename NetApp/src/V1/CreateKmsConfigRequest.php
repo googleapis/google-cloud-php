@@ -37,8 +37,7 @@ class CreateKmsConfigRequest extends \Google\Protobuf\Internal\Message
     protected $kms_config = null;
 
     /**
-     * @param string                            $parent      Required. Value for parent. Please see
-     *                                                       {@see NetAppClient::locationName()} for help formatting this field.
+     * @param string                            $parent      Required. Value for parent.
      * @param \Google\Cloud\NetApp\V1\KmsConfig $kmsConfig   Required. The required parameters to create a new KmsConfig.
      * @param string                            $kmsConfigId Required. Id of the requesting KmsConfig
      *                                                       If auto-generating Id server-side, remove this field and

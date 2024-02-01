@@ -37,8 +37,7 @@ class UpdateParametersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                       $name       Required. Resource name of the Memcached instance for which the parameters should be
-     *                                                                 updated. Please see
-     *                                                                 {@see CloudMemcacheClient::instanceName()} for help formatting this field.
+     *                                                                 updated.
      * @param \Google\Protobuf\FieldMask                   $updateMask Required. Mask of fields to update.
      * @param \Google\Cloud\Memcache\V1\MemcacheParameters $parameters The parameters to apply to the instance.
      *

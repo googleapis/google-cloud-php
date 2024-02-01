@@ -26,34 +26,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy;
-use Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Action;
 use Google\Cloud\NetworkSecurity\V1beta1\NetworkSecurityClient;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single AuthorizationPolicy.
  *
- * @param string $authorizationPolicyName   Name of the AuthorizationPolicy resource. It matches pattern
- *                                          `projects/{project}/locations/{location}/authorizationPolicies/<authorization_policy>`.
- * @param int    $authorizationPolicyAction The action to take when a rule match is found. Possible values
- *                                          are "ALLOW" or "DENY".
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_authorization_policy_sample(
-    string $authorizationPolicyName,
-    int $authorizationPolicyAction
-): void {
+function update_authorization_policy_sample(): void
+{
     // Create a client.
     $networkSecurityClient = new NetworkSecurityClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $authorizationPolicy = (new AuthorizationPolicy())
-        ->setName($authorizationPolicyName)
-        ->setAction($authorizationPolicyAction);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkSecurityClient->updateAuthorizationPolicy($authorizationPolicy);
+        $response = $networkSecurityClient->updateAuthorizationPolicy();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -68,22 +61,5 @@ function update_authorization_policy_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $authorizationPolicyName = '[NAME]';
-    $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
-
-    update_authorization_policy_sample($authorizationPolicyName, $authorizationPolicyAction);
 }
 // [END networksecurity_v1beta1_generated_NetworkSecurity_UpdateAuthorizationPolicy_sync]

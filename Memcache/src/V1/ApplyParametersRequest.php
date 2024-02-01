@@ -39,8 +39,7 @@ class ApplyParametersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string   $name     Required. Resource name of the Memcached instance for which parameter group updates
-     *                           should be applied. Please see
-     *                           {@see CloudMemcacheClient::instanceName()} for help formatting this field.
+     *                           should be applied.
      * @param string[] $nodeIds  Nodes to which the instance-level parameter group is applied.
      * @param bool     $applyAll Whether to apply instance-level parameter group to all nodes. If set to
      *                           true, users are restricted from specifying individual nodes, and

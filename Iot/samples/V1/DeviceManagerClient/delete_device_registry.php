@@ -30,18 +30,19 @@ use Google\Cloud\Iot\V1\DeleteDeviceRegistryRequest;
 /**
  * Deletes a device registry configuration.
  *
- * @param string $formattedName The name of the device registry. For example,
- *                              `projects/example-project/locations/us-central1/registries/my-registry`. Please see
- *                              {@see DeviceManagerClient::registryName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_device_registry_sample(string $formattedName): void
+function delete_device_registry_sample(): void
 {
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
     // Prepare the request message.
-    $request = (new DeleteDeviceRegistryRequest())
-        ->setName($formattedName);
+    $request = new DeleteDeviceRegistryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -50,21 +51,5 @@ function delete_device_registry_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DeviceManagerClient::registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-
-    delete_device_registry_sample($formattedName);
 }
 // [END cloudiot_v1_generated_DeviceManager_DeleteDeviceRegistry_sync]

@@ -42,8 +42,7 @@ class ListDeviceRegistriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project and cloud region path. For example,
-     *                       `projects/example-project/locations/us-central1`. Please see
-     *                       {@see DeviceManagerClient::locationName()} for help formatting this field.
+     *                       `projects/example-project/locations/us-central1`.
      *
      * @return \Google\Cloud\Iot\V1\ListDeviceRegistriesRequest
      *

@@ -55,8 +55,7 @@ class CreateReportRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                  $parent   Required. Value for parent. Please see
-     *                                                          {@see MigrationCenterClient::reportConfigName()} for help formatting this field.
+     * @param string                                  $parent   Required. Value for parent.
      * @param \Google\Cloud\MigrationCenter\V1\Report $report   Required. The report resource being created.
      * @param string                                  $reportId Required. User specified id for the report. It will become the last
      *                                                          component of the report name. The id must be unique within the project,

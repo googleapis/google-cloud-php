@@ -41,7 +41,6 @@ class CreateBackupPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $parent         Required. The location to create the backup policies of, in the format
      *                                                             `projects/{project_id}/locations/{location}`
-     *                                                             Please see {@see NetAppClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\NetApp\V1\BackupPolicy $backupPolicy   Required. A backupPolicy resource
      * @param string                               $backupPolicyId Required. The ID to use for the backup policy.
      *                                                             The ID must be unique within the specified location.

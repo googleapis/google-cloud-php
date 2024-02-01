@@ -19,13 +19,13 @@ class Snooze
         \GPBMetadata\Google\Monitoring\V3\Common::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê
-!google/monitoring/v3/snooze.protogoogle.monitoring.v3google/api/resource.proto!google/monitoring/v3/common.proto"≈
-Snooze
-name (	B‡A<
-criteria (2%.google.monitoring.v3.Snooze.CriteriaB‡A9
-interval (2".google.monitoring.v3.TimeIntervalB‡A
-display_name (	B‡AH
+î
+!google/monitoring/v3/snooze.protogoogle.monitoring.v3google/api/resource.proto!google/monitoring/v3/common.proto"…
+Snooze
+name (	B‚A=
+criteria (2%.google.monitoring.v3.Snooze.CriteriaB‚A:
+interval (2".google.monitoring.v3.TimeIntervalB‚A
+display_name (	B‚AH
 Criteria<
 policies (	B*˙A\'
 %monitoring.googleapis.com/AlertPolicy:JÍAG

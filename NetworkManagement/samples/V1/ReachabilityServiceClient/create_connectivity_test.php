@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetworkManagement\V1\Client\ReachabilityServiceClient;
 use Google\Cloud\NetworkManagement\V1\ConnectivityTest;
 use Google\Cloud\NetworkManagement\V1\CreateConnectivityTestRequest;
-use Google\Cloud\NetworkManagement\V1\Endpoint;
 use Google\Rpc\Status;
 
 /**
@@ -46,38 +45,19 @@ use Google\Rpc\Status;
  * <code>AMBIGUOUS</code>. For more information,
  * see the Connectivity Test documentation.
  *
- * @param string $parent       The parent resource of the Connectivity Test to create:
- *                             `projects/{project_id}/locations/global`
- * @param string $testId       The logical name of the Connectivity Test in your project
- *                             with the following restrictions:
- *
- *                             * Must contain only lowercase letters, numbers, and hyphens.
- *                             * Must start with a letter.
- *                             * Must be between 1-40 characters.
- *                             * Must end with a number or a letter.
- *                             * Must be unique within the customer project
- * @param string $resourceName Unique name of the resource using the form:
- *                             `projects/{project_id}/locations/global/connectivityTests/{test}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_connectivity_test_sample(
-    string $parent,
-    string $testId,
-    string $resourceName
-): void {
+function create_connectivity_test_sample(): void
+{
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
     // Prepare the request message.
-    $resourceSource = new Endpoint();
-    $resourceDestination = new Endpoint();
-    $resource = (new ConnectivityTest())
-        ->setName($resourceName)
-        ->setSource($resourceSource)
-        ->setDestination($resourceDestination);
-    $request = (new CreateConnectivityTestRequest())
-        ->setParent($parent)
-        ->setTestId($testId)
-        ->setResource($resource);
+    $request = new CreateConnectivityTestRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -97,23 +77,5 @@ function create_connectivity_test_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $testId = '[TEST_ID]';
-    $resourceName = '[NAME]';
-
-    create_connectivity_test_sample($parent, $testId, $resourceName);
 }
 // [END networkmanagement_v1_generated_ReachabilityService_CreateConnectivityTest_sync]

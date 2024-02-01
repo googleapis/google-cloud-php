@@ -40,7 +40,6 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *                                                             which to execute the request. The format is:
      *
      *                                                             projects/[PROJECT_ID_OR_NUMBER]
-     *                                                             Please see {@see MetricServiceClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\Monitoring\V3\TimeSeries[] $timeSeries Required. The new data to be added to a list of time series.
      *                                                             Adds at most one data point to each of several time series.  The new data
      *                                                             point must be more recent than any other point in its time series.  Each

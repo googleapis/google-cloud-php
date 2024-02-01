@@ -41,7 +41,6 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string   $name                 Required. The resource domain name, project name and location using the form:
      *                                       `projects/{project_id}/locations/global/domains/{domain_name}`
-     *                                       Please see {@see ManagedIdentitiesServiceClient::domainName()} for help formatting this field.
      * @param string   $targetDomainName     Required. The fully-qualified target domain name which will be in trust with current
      *                                       domain.
      * @param string[] $targetDnsIpAddresses Required. The target DNS server IP addresses to resolve the remote domain involved

@@ -31,22 +31,19 @@ use Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest;
 /**
  * Gets a single metric descriptor. This method does not require a Workspace.
  *
- * @param string $formattedName The metric descriptor on which to execute the request. The format is:
- *
- *                              projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
- *
- *                              An example value of `[METRIC_ID]` is
- *                              `"compute.googleapis.com/instance/disk/read_bytes_count"`. Please see
- *                              {@see MetricServiceClient::metricDescriptorName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_metric_descriptor_sample(string $formattedName): void
+function get_metric_descriptor_sample(): void
 {
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
     // Prepare the request message.
-    $request = (new GetMetricDescriptorRequest())
-        ->setName($formattedName);
+    $request = new GetMetricDescriptorRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +53,5 @@ function get_metric_descriptor_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = MetricServiceClient::metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
-
-    get_metric_descriptor_sample($formattedName);
 }
 // [END monitoring_v3_generated_MetricService_GetMetricDescriptor_sync]

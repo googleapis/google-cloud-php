@@ -23,8 +23,7 @@ class GetImportDataFileRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Name of the ImportDataFile. Please see
-     *                     {@see MigrationCenterClient::importDataFileName()} for help formatting this field.
+     * @param string $name Required. Name of the ImportDataFile.
      *
      * @return \Google\Cloud\MigrationCenter\V1\GetImportDataFileRequest
      *

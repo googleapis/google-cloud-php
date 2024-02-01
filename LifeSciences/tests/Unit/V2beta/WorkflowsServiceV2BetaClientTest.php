@@ -27,7 +27,6 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\LifeSciences\V2beta\Pipeline;
 use Google\Cloud\LifeSciences\V2beta\RunPipelineResponse;
 use Google\Cloud\LifeSciences\V2beta\WorkflowsServiceV2BetaClient;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -95,9 +94,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $pipeline = new Pipeline();
-        $response = $gapicClient->runPipeline($pipeline);
+        $response = $gapicClient->runPipeline();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -107,8 +104,6 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta/RunPipeline', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getPipeline();
-        $this->assertProtobufEquals($pipeline, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/runPipelineTest');
         $response->pollUntilComplete([
@@ -159,9 +154,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $pipeline = new Pipeline();
-        $response = $gapicClient->runPipeline($pipeline);
+        $response = $gapicClient->runPipeline();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

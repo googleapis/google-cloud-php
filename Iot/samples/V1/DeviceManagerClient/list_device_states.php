@@ -32,19 +32,19 @@ use Google\Cloud\Iot\V1\ListDeviceStatesResponse;
  * Lists the last few versions of the device state in descending order (i.e.:
  * newest first).
  *
- * @param string $formattedName The name of the device. For example,
- *                              `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
- *                              `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`. Please see
- *                              {@see DeviceManagerClient::deviceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_device_states_sample(string $formattedName): void
+function list_device_states_sample(): void
 {
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
     // Prepare the request message.
-    $request = (new ListDeviceStatesRequest())
-        ->setName($formattedName);
+    $request = new ListDeviceStatesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,26 +54,5 @@ function list_device_states_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DeviceManagerClient::deviceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REGISTRY]',
-        '[DEVICE]'
-    );
-
-    list_device_states_sample($formattedName);
 }
 // [END cloudiot_v1_generated_DeviceManager_ListDeviceStates_sync]

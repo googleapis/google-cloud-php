@@ -65,9 +65,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
  * try {
- *     $name = 'name';
- *     $group = new Google\Cloud\Monitoring\V3\Group();
- *     $response = $groupServiceClient->createGroup($name, $group);
+ *     $response = $groupServiceClient->createGroup();
  * } finally {
  *     $groupServiceClient->close();
  * }
@@ -368,23 +366,23 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $name = 'name';
-     *     $group = new Google\Cloud\Monitoring\V3\Group();
-     *     $response = $groupServiceClient->createGroup($name, $group);
+     *     $response = $groupServiceClient->createGroup();
      * } finally {
      *     $groupServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     *                             which to create the group. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]
-     * @param Group  $group        Required. A group definition. It is an error to define the `name` field because
-     *                             the system assigns the name.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     *           which to create the group. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
+     *     @type Group $group
+     *           Required. A group definition. It is an error to define the `name` field because
+     *           the system assigns the name.
      *     @type bool $validateOnly
      *           If true, validate this request but do not create the group.
      *     @type RetrySettings|array $retrySettings
@@ -397,13 +395,19 @@ class GroupServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createGroup($name, $group, array $optionalArgs = [])
+    public function createGroup(array $optionalArgs = [])
     {
         $request = new CreateGroupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setGroup($group);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['group'])) {
+            $request->setGroup($optionalArgs['group']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -420,19 +424,19 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
-     *     $groupServiceClient->deleteGroup($formattedName);
+     *     $groupServiceClient->deleteGroup();
      * } finally {
      *     $groupServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The group to delete. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The group to delete. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *     @type bool $recursive
      *           If this field is true, then the request means to delete a group with all
      *           its descendants. Otherwise, the request means to delete a group only when
@@ -445,12 +449,15 @@ class GroupServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteGroup($name, array $optionalArgs = [])
+    public function deleteGroup(array $optionalArgs = [])
     {
         $request = new DeleteGroupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['recursive'])) {
             $request->setRecursive($optionalArgs['recursive']);
         }
@@ -467,19 +474,19 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
-     *     $response = $groupServiceClient->getGroup($formattedName);
+     *     $response = $groupServiceClient->getGroup();
      * } finally {
      *     $groupServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The group to retrieve. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The group to retrieve. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -490,12 +497,15 @@ class GroupServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getGroup($name, array $optionalArgs = [])
+    public function getGroup(array $optionalArgs = [])
     {
         $request = new GetGroupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetGroup', Group::class, $optionalArgs, $request)->wait();
@@ -508,9 +518,8 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
+     *     $pagedResponse = $groupServiceClient->listGroupMembers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -518,7 +527,7 @@ class GroupServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
+     *     $pagedResponse = $groupServiceClient->listGroupMembers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -527,12 +536,13 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The group whose members are listed. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The group whose members are listed. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -566,12 +576,15 @@ class GroupServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listGroupMembers($name, array $optionalArgs = [])
+    public function listGroupMembers(array $optionalArgs = [])
     {
         $request = new ListGroupMembersRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -600,9 +613,8 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $name = 'name';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $groupServiceClient->listGroups($name);
+     *     $pagedResponse = $groupServiceClient->listGroups();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -610,7 +622,7 @@ class GroupServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $groupServiceClient->listGroups($name);
+     *     $pagedResponse = $groupServiceClient->listGroups();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -619,13 +631,14 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
-     *                             whose groups are to be listed. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
+     *           whose groups are to be listed. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $childrenOfGroup
      *           A group name. The format is:
      *
@@ -669,12 +682,15 @@ class GroupServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listGroups($name, array $optionalArgs = [])
+    public function listGroups(array $optionalArgs = [])
     {
         $request = new ListGroupsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['childrenOfGroup'])) {
             $request->setChildrenOfGroup($optionalArgs['childrenOfGroup']);
         }
@@ -708,18 +724,18 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $group = new Google\Cloud\Monitoring\V3\Group();
-     *     $response = $groupServiceClient->updateGroup($group);
+     *     $response = $groupServiceClient->updateGroup();
      * } finally {
      *     $groupServiceClient->close();
      * }
      * ```
      *
-     * @param Group $group        Required. The new definition of the group.  All fields of the existing group,
-     *                            excepting `name`, are replaced with the corresponding fields of this group.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Group $group
+     *           Required. The new definition of the group.  All fields of the existing group,
+     *           excepting `name`, are replaced with the corresponding fields of this group.
      *     @type bool $validateOnly
      *           If true, validate this request but do not update the existing group.
      *     @type RetrySettings|array $retrySettings
@@ -732,12 +748,14 @@ class GroupServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateGroup($group, array $optionalArgs = [])
+    public function updateGroup(array $optionalArgs = [])
     {
         $request = new UpdateGroupRequest();
         $requestParamHeaders = [];
-        $request->setGroup($group);
-        $requestParamHeaders['group.name'] = $group->getName();
+        if (isset($optionalArgs['group'])) {
+            $request->setGroup($optionalArgs['group']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }

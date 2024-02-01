@@ -31,11 +31,13 @@ use Google\Rpc\Status;
 /**
  * Deletes a domain.
  *
- * @param string $formattedName The domain resource name using the form:
- *                              `projects/{project_id}/locations/global/domains/{domain_name}`
- *                              Please see {@see ManagedIdentitiesServiceClient::domainName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_domain_sample(string $formattedName): void
+function delete_domain_sample(): void
 {
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
@@ -43,7 +45,7 @@ function delete_domain_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $managedIdentitiesServiceClient->deleteDomain($formattedName);
+        $response = $managedIdentitiesServiceClient->deleteDomain();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -56,21 +58,5 @@ function delete_domain_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ManagedIdentitiesServiceClient::domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-
-    delete_domain_sample($formattedName);
 }
 // [END managedidentities_v1beta1_generated_ManagedIdentitiesService_DeleteDomain_sync]

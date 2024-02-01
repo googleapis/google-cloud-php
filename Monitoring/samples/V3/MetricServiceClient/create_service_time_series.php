@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
 use Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\TimeSeries;
 
 /**
  * Creates or adds data to one or more service time series. A service time
@@ -39,22 +38,19 @@ use Google\Cloud\Monitoring\V3\TimeSeries;
  * [projects.timeSeries.create][google.monitoring.v3.MetricService.CreateTimeSeries]
  * instead.
  *
- * @param string $formattedName The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                              which to execute the request. The format is:
- *
- *                              projects/[PROJECT_ID_OR_NUMBER]
- *                              Please see {@see MetricServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_service_time_series_sample(string $formattedName): void
+function create_service_time_series_sample(): void
 {
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
     // Prepare the request message.
-    $timeSeries = [new TimeSeries()];
-    $request = (new CreateTimeSeriesRequest())
-        ->setName($formattedName)
-        ->setTimeSeries($timeSeries);
+    $request = new CreateTimeSeriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,21 +59,5 @@ function create_service_time_series_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = MetricServiceClient::projectName('[PROJECT]');
-
-    create_service_time_series_sample($formattedName);
 }
 // [END monitoring_v3_generated_MetricService_CreateServiceTimeSeries_sync]

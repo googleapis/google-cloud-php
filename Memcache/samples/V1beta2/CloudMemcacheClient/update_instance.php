@@ -27,48 +27,26 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Memcache\V1beta2\CloudMemcacheClient;
 use Google\Cloud\Memcache\V1beta2\Instance;
-use Google\Cloud\Memcache\V1beta2\Instance\NodeConfig;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates an existing Instance in a given project and location.
  *
- * @param string $resourceName                   Unique name of the resource in this scope including project and
- *                                               location using the form:
- *                                               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
- *
- *                                               Note: Memcached instances are managed and addressed at the regional level
- *                                               so `location_id` here refers to a Google Cloud region; however, users may
- *                                               choose which zones Memcached nodes should be provisioned in within an
- *                                               instance. Refer to [zones][google.cloud.memcache.v1beta2.Instance.zones] field for more details.
- * @param int    $resourceNodeCount              Number of nodes in the Memcached instance.
- * @param int    $resourceNodeConfigCpuCount     Number of cpus per Memcached node.
- * @param int    $resourceNodeConfigMemorySizeMb Memory size in MiB for each Memcached node.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_instance_sample(
-    string $resourceName,
-    int $resourceNodeCount,
-    int $resourceNodeConfigCpuCount,
-    int $resourceNodeConfigMemorySizeMb
-): void {
+function update_instance_sample(): void
+{
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $updateMask = new FieldMask();
-    $resourceNodeConfig = (new NodeConfig())
-        ->setCpuCount($resourceNodeConfigCpuCount)
-        ->setMemorySizeMb($resourceNodeConfigMemorySizeMb);
-    $resource = (new Instance())
-        ->setName($resourceName)
-        ->setNodeCount($resourceNodeCount)
-        ->setNodeConfig($resourceNodeConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudMemcacheClient->updateInstance($updateMask, $resource);
+        $response = $cloudMemcacheClient->updateInstance();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -83,29 +61,5 @@ function update_instance_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $resourceName = '[NAME]';
-    $resourceNodeCount = 0;
-    $resourceNodeConfigCpuCount = 0;
-    $resourceNodeConfigMemorySizeMb = 0;
-
-    update_instance_sample(
-        $resourceName,
-        $resourceNodeCount,
-        $resourceNodeConfigCpuCount,
-        $resourceNodeConfigMemorySizeMb
-    );
 }
 // [END memcache_v1beta2_generated_CloudMemcache_UpdateInstance_sync]

@@ -36,25 +36,19 @@ use Google\Cloud\OrgPolicy\V2\Policy;
  * Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
  * policy already exists on the given Google Cloud resource.
  *
- * @param string $formattedParent The Google Cloud resource that will parent the new policy. Must
- *                                be in one of the following forms:
- *
- *                                * `projects/{project_number}`
- *                                * `projects/{project_id}`
- *                                * `folders/{folder_id}`
- *                                * `organizations/{organization_id}`
- *                                Please see {@see OrgPolicyClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_policy_sample(string $formattedParent): void
+function create_policy_sample(): void
 {
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
     // Prepare the request message.
-    $policy = new Policy();
-    $request = (new CreatePolicyRequest())
-        ->setParent($formattedParent)
-        ->setPolicy($policy);
+    $request = new CreatePolicyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -64,21 +58,5 @@ function create_policy_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = OrgPolicyClient::projectName('[PROJECT]');
-
-    create_policy_sample($formattedParent);
 }
 // [END orgpolicy_v2_generated_OrgPolicy_CreatePolicy_sync]

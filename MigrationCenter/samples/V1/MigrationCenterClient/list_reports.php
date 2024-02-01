@@ -32,17 +32,19 @@ use Google\Cloud\MigrationCenter\V1\Report;
 /**
  * Lists Reports in a given ReportConfig.
  *
- * @param string $formattedParent Parent value for `ListReportsRequest`. Please see
- *                                {@see MigrationCenterClient::reportConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_reports_sample(string $formattedParent): void
+function list_reports_sample(): void
 {
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $request = (new ListReportsRequest())
-        ->setParent($formattedParent);
+    $request = new ListReportsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,25 +58,5 @@ function list_reports_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MigrationCenterClient::reportConfigName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REPORT_CONFIG]'
-    );
-
-    list_reports_sample($formattedParent);
 }
 // [END migrationcenter_v1_generated_MigrationCenter_ListReports_sync]

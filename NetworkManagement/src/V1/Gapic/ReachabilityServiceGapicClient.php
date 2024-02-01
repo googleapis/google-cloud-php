@@ -62,10 +62,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $reachabilityServiceClient = new ReachabilityServiceClient();
  * try {
- *     $parent = 'parent';
- *     $testId = 'test_id';
- *     $resource = new ConnectivityTest();
- *     $operationResponse = $reachabilityServiceClient->createConnectivityTest($parent, $testId, $resource);
+ *     $operationResponse = $reachabilityServiceClient->createConnectivityTest();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -76,7 +73,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $reachabilityServiceClient->createConnectivityTest($parent, $testId, $resource);
+ *     $operationResponse = $reachabilityServiceClient->createConnectivityTest();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $reachabilityServiceClient->resumeOperation($operationName, 'createConnectivityTest');
@@ -363,10 +360,7 @@ class ReachabilityServiceGapicClient
      * ```
      * $reachabilityServiceClient = new ReachabilityServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $testId = 'test_id';
-     *     $resource = new ConnectivityTest();
-     *     $operationResponse = $reachabilityServiceClient->createConnectivityTest($parent, $testId, $resource);
+     *     $operationResponse = $reachabilityServiceClient->createConnectivityTest();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -377,7 +371,7 @@ class ReachabilityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $reachabilityServiceClient->createConnectivityTest($parent, $testId, $resource);
+     *     $operationResponse = $reachabilityServiceClient->createConnectivityTest();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $reachabilityServiceClient->resumeOperation($operationName, 'createConnectivityTest');
@@ -397,20 +391,23 @@ class ReachabilityServiceGapicClient
      * }
      * ```
      *
-     * @param string           $parent       Required. The parent resource of the Connectivity Test to create:
-     *                                       `projects/{project_id}/locations/global`
-     * @param string           $testId       Required. The logical name of the Connectivity Test in your project
-     *                                       with the following restrictions:
-     *
-     *                                       * Must contain only lowercase letters, numbers, and hyphens.
-     *                                       * Must start with a letter.
-     *                                       * Must be between 1-40 characters.
-     *                                       * Must end with a number or a letter.
-     *                                       * Must be unique within the customer project
-     * @param ConnectivityTest $resource     Required. A `ConnectivityTest` resource
-     * @param array            $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the Connectivity Test to create:
+     *           `projects/{project_id}/locations/global`
+     *     @type string $testId
+     *           Required. The logical name of the Connectivity Test in your project
+     *           with the following restrictions:
+     *
+     *           * Must contain only lowercase letters, numbers, and hyphens.
+     *           * Must start with a letter.
+     *           * Must be between 1-40 characters.
+     *           * Must end with a number or a letter.
+     *           * Must be unique within the customer project
+     *     @type ConnectivityTest $resource
+     *           Required. A `ConnectivityTest` resource
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -421,18 +418,23 @@ class ReachabilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createConnectivityTest(
-        $parent,
-        $testId,
-        $resource,
-        array $optionalArgs = []
-    ) {
+    public function createConnectivityTest(array $optionalArgs = [])
+    {
         $request = new CreateConnectivityTestRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setTestId($testId);
-        $request->setResource($resource);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['testId'])) {
+            $request->setTestId($optionalArgs['testId']);
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -454,8 +456,7 @@ class ReachabilityServiceGapicClient
      * ```
      * $reachabilityServiceClient = new ReachabilityServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $reachabilityServiceClient->deleteConnectivityTest($name);
+     *     $operationResponse = $reachabilityServiceClient->deleteConnectivityTest();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -465,7 +466,7 @@ class ReachabilityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $reachabilityServiceClient->deleteConnectivityTest($name);
+     *     $operationResponse = $reachabilityServiceClient->deleteConnectivityTest();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $reachabilityServiceClient->resumeOperation($operationName, 'deleteConnectivityTest');
@@ -484,11 +485,12 @@ class ReachabilityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Connectivity Test resource name using the form:
-     *                             `projects/{project_id}/locations/global/connectivityTests/{test_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Connectivity Test resource name using the form:
+     *           `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -499,12 +501,15 @@ class ReachabilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteConnectivityTest($name, array $optionalArgs = [])
+    public function deleteConnectivityTest(array $optionalArgs = [])
     {
         $request = new DeleteConnectivityTestRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -526,18 +531,18 @@ class ReachabilityServiceGapicClient
      * ```
      * $reachabilityServiceClient = new ReachabilityServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $reachabilityServiceClient->getConnectivityTest($name);
+     *     $response = $reachabilityServiceClient->getConnectivityTest();
      * } finally {
      *     $reachabilityServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. `ConnectivityTest` resource name using the form:
-     *                             `projects/{project_id}/locations/global/connectivityTests/{test_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. `ConnectivityTest` resource name using the form:
+     *           `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -548,12 +553,15 @@ class ReachabilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConnectivityTest($name, array $optionalArgs = [])
+    public function getConnectivityTest(array $optionalArgs = [])
     {
         $request = new GetConnectivityTestRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -575,9 +583,8 @@ class ReachabilityServiceGapicClient
      * ```
      * $reachabilityServiceClient = new ReachabilityServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $reachabilityServiceClient->listConnectivityTests($parent);
+     *     $pagedResponse = $reachabilityServiceClient->listConnectivityTests();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -585,7 +592,7 @@ class ReachabilityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $reachabilityServiceClient->listConnectivityTests($parent);
+     *     $pagedResponse = $reachabilityServiceClient->listConnectivityTests();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -594,11 +601,12 @@ class ReachabilityServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the Connectivity Tests:
-     *                             `projects/{project_id}/locations/global`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the Connectivity Tests:
+     *           `projects/{project_id}/locations/global`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -639,12 +647,15 @@ class ReachabilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConnectivityTests($parent, array $optionalArgs = [])
+    public function listConnectivityTests(array $optionalArgs = [])
     {
         $request = new ListConnectivityTestsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -693,8 +704,7 @@ class ReachabilityServiceGapicClient
      * ```
      * $reachabilityServiceClient = new ReachabilityServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $reachabilityServiceClient->rerunConnectivityTest($name);
+     *     $operationResponse = $reachabilityServiceClient->rerunConnectivityTest();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -705,7 +715,7 @@ class ReachabilityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $reachabilityServiceClient->rerunConnectivityTest($name);
+     *     $operationResponse = $reachabilityServiceClient->rerunConnectivityTest();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $reachabilityServiceClient->resumeOperation($operationName, 'rerunConnectivityTest');
@@ -725,11 +735,12 @@ class ReachabilityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Connectivity Test resource name using the form:
-     *                             `projects/{project_id}/locations/global/connectivityTests/{test_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Connectivity Test resource name using the form:
+     *           `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -740,12 +751,15 @@ class ReachabilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rerunConnectivityTest($name, array $optionalArgs = [])
+    public function rerunConnectivityTest(array $optionalArgs = [])
     {
         $request = new RerunConnectivityTestRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -780,9 +794,7 @@ class ReachabilityServiceGapicClient
      * ```
      * $reachabilityServiceClient = new ReachabilityServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $resource = new ConnectivityTest();
-     *     $operationResponse = $reachabilityServiceClient->updateConnectivityTest($updateMask, $resource);
+     *     $operationResponse = $reachabilityServiceClient->updateConnectivityTest();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -793,7 +805,7 @@ class ReachabilityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $reachabilityServiceClient->updateConnectivityTest($updateMask, $resource);
+     *     $operationResponse = $reachabilityServiceClient->updateConnectivityTest();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $reachabilityServiceClient->resumeOperation($operationName, 'updateConnectivityTest');
@@ -813,12 +825,14 @@ class ReachabilityServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask        $updateMask   Required. Mask of fields to update. At least one path must be supplied in
-     *                                       this field.
-     * @param ConnectivityTest $resource     Required. Only fields specified in update_mask are updated.
-     * @param array            $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update. At least one path must be supplied in
+     *           this field.
+     *     @type ConnectivityTest $resource
+     *           Required. Only fields specified in update_mask are updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -829,16 +843,18 @@ class ReachabilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateConnectivityTest(
-        $updateMask,
-        $resource,
-        array $optionalArgs = []
-    ) {
+    public function updateConnectivityTest(array $optionalArgs = [])
+    {
         $request = new UpdateConnectivityTestRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setResource($resource);
-        $requestParamHeaders['resource.name'] = $resource->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

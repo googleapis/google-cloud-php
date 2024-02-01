@@ -31,17 +31,19 @@ use Google\Cloud\NetApp\V1\VerifyKmsConfigResponse;
 /**
  * Verifies KMS config reachability.
  *
- * @param string $formattedName Name of the KMS Config to be verified. Please see
- *                              {@see NetAppClient::kmsConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function verify_kms_config_sample(string $formattedName): void
+function verify_kms_config_sample(): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $request = (new VerifyKmsConfigRequest())
-        ->setName($formattedName);
+    $request = new VerifyKmsConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +53,5 @@ function verify_kms_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NetAppClient::kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-
-    verify_kms_config_sample($formattedName);
 }
 // [END netapp_v1_generated_NetApp_VerifyKmsConfig_sync]

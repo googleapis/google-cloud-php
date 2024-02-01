@@ -48,8 +48,7 @@ use Google\Cloud\Kms\Inventory\V1\SearchProtectedResourcesResponse;
  * ```
  * $keyTrackingServiceClient = new KeyTrackingServiceClient();
  * try {
- *     $formattedName = $keyTrackingServiceClient->protectedResourcesSummaryName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
- *     $response = $keyTrackingServiceClient->getProtectedResourcesSummary($formattedName);
+ *     $response = $keyTrackingServiceClient->getProtectedResourcesSummary();
  * } finally {
  *     $keyTrackingServiceClient->close();
  * }
@@ -408,18 +407,18 @@ class KeyTrackingServiceGapicClient
      * ```
      * $keyTrackingServiceClient = new KeyTrackingServiceClient();
      * try {
-     *     $formattedName = $keyTrackingServiceClient->protectedResourcesSummaryName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-     *     $response = $keyTrackingServiceClient->getProtectedResourcesSummary($formattedName);
+     *     $response = $keyTrackingServiceClient->getProtectedResourcesSummary();
      * } finally {
      *     $keyTrackingServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the
-     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey].
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -430,14 +429,15 @@ class KeyTrackingServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProtectedResourcesSummary(
-        $name,
-        array $optionalArgs = []
-    ) {
+    public function getProtectedResourcesSummary(array $optionalArgs = [])
+    {
         $request = new GetProtectedResourcesSummaryRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -460,10 +460,8 @@ class KeyTrackingServiceGapicClient
      * ```
      * $keyTrackingServiceClient = new KeyTrackingServiceClient();
      * try {
-     *     $formattedScope = $keyTrackingServiceClient->organizationName('[ORGANIZATION]');
-     *     $cryptoKey = 'crypto_key';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $keyTrackingServiceClient->searchProtectedResources($formattedScope, $cryptoKey);
+     *     $pagedResponse = $keyTrackingServiceClient->searchProtectedResources();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -471,7 +469,7 @@ class KeyTrackingServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $keyTrackingServiceClient->searchProtectedResources($formattedScope, $cryptoKey);
+     *     $pagedResponse = $keyTrackingServiceClient->searchProtectedResources();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -480,13 +478,15 @@ class KeyTrackingServiceGapicClient
      * }
      * ```
      *
-     * @param string $scope        Required. Resource name of the organization.
-     *                             Example: organizations/123
-     * @param string $cryptoKey    Required. The resource name of the
-     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey].
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $scope
+     *           Required. Resource name of the organization.
+     *           Example: organizations/123
+     *     @type string $cryptoKey
+     *           Required. The resource name of the
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -521,16 +521,19 @@ class KeyTrackingServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchProtectedResources(
-        $scope,
-        $cryptoKey,
-        array $optionalArgs = []
-    ) {
+    public function searchProtectedResources(array $optionalArgs = [])
+    {
         $request = new SearchProtectedResourcesRequest();
         $requestParamHeaders = [];
-        $request->setScope($scope);
-        $request->setCryptoKey($cryptoKey);
-        $requestParamHeaders['scope'] = $scope;
+        if (isset($optionalArgs['scope'])) {
+            $request->setScope($optionalArgs['scope']);
+            $requestParamHeaders['scope'] = $optionalArgs['scope'];
+        }
+
+        if (isset($optionalArgs['cryptoKey'])) {
+            $request->setCryptoKey($optionalArgs['cryptoKey']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

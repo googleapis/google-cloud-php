@@ -32,17 +32,19 @@ use Google\Cloud\NetworkConnectivity\V1\Route;
 /**
  * Lists routes in a given project.
  *
- * @param string $formattedParent The parent resource's name. Please see
- *                                {@see HubServiceClient::routeTableName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_routes_sample(string $formattedParent): void
+function list_routes_sample(): void
 {
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
     // Prepare the request message.
-    $request = (new ListRoutesRequest())
-        ->setParent($formattedParent);
+    $request = new ListRoutesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +58,5 @@ function list_routes_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = HubServiceClient::routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-
-    list_routes_sample($formattedParent);
 }
 // [END networkconnectivity_v1_generated_HubService_ListRoutes_sync]

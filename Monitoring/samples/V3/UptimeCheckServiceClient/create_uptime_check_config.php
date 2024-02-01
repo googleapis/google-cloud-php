@@ -31,22 +31,19 @@ use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
 /**
  * Creates a new Uptime check configuration.
  *
- * @param string $parent The
- *                       [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
- *                       to create the Uptime check. The format is:
- *
- *                       projects/[PROJECT_ID_OR_NUMBER]
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_uptime_check_config_sample(string $parent): void
+function create_uptime_check_config_sample(): void
 {
     // Create a client.
     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
 
     // Prepare the request message.
-    $uptimeCheckConfig = new UptimeCheckConfig();
-    $request = (new CreateUptimeCheckConfigRequest())
-        ->setParent($parent)
-        ->setUptimeCheckConfig($uptimeCheckConfig);
+    $request = new CreateUptimeCheckConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +53,5 @@ function create_uptime_check_config_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    create_uptime_check_config_sample($parent);
 }
 // [END monitoring_v3_generated_UptimeCheckService_CreateUptimeCheckConfig_sync]

@@ -36,20 +36,19 @@ use Google\Rpc\Status;
  * API server. The server will merge the reported information to
  * the instance metadata store. Do not use this method directly.
  *
- * @param string $name Format:
- *                     `projects/{project_id}/locations/{location}/instances/{instance_id}`
- * @param string $vmId The VM hardware token for authenticating the VM.
- *                     https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function report_instance_info_sample(string $name, string $vmId): void
+function report_instance_info_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $request = (new ReportInstanceInfoRequest())
-        ->setName($name)
-        ->setVmId($vmId);
+    $request = new ReportInstanceInfoRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,22 +68,5 @@ function report_instance_info_sample(string $name, string $vmId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-    $vmId = '[VM_ID]';
-
-    report_instance_info_sample($name, $vmId);
 }
 // [END notebooks_v1_generated_NotebookService_ReportInstanceInfo_sync]

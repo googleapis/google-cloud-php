@@ -84,24 +84,13 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDisabled($disabled);
         $expectedResponse->setValueExtractor($valueExtractor);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $metric = new LogMetric();
-        $metricName = 'metricName-610759589';
-        $metric->setName($metricName);
-        $metricFilter = 'metricFilter1248897352';
-        $metric->setFilter($metricFilter);
-        $response = $gapicClient->createLogMetric($formattedParent, $metric);
+        $response = $gapicClient->createLogMetric();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/CreateLogMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getMetric();
-        $this->assertProtobufEquals($metric, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -123,15 +112,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $metric = new LogMetric();
-        $metricName = 'metricName-610759589';
-        $metric->setName($metricName);
-        $metricFilter = 'metricFilter1248897352';
-        $metric->setFilter($metricFilter);
         try {
-            $gapicClient->createLogMetric($formattedParent, $metric);
+            $gapicClient->createLogMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -154,16 +136,12 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
-        $gapicClient->deleteLogMetric($formattedMetricName);
+        $gapicClient->deleteLogMetric();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/DeleteLogMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getMetricName();
-        $this->assertProtobufEquals($formattedMetricName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -185,10 +163,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
         try {
-            $gapicClient->deleteLogMetric($formattedMetricName);
+            $gapicClient->deleteLogMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -223,17 +199,13 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDisabled($disabled);
         $expectedResponse->setValueExtractor($valueExtractor);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
-        $response = $gapicClient->getLogMetric($formattedMetricName);
+        $response = $gapicClient->getLogMetric();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/GetLogMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getMetricName();
-        $this->assertProtobufEquals($formattedMetricName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -255,10 +227,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
         try {
-            $gapicClient->getLogMetric($formattedMetricName);
+            $gapicClient->getLogMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -288,9 +258,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMetrics($metrics);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listLogMetrics($formattedParent);
+        $response = $gapicClient->listLogMetrics();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -300,8 +268,6 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/ListLogMetrics', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -323,10 +289,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listLogMetrics($formattedParent);
+            $gapicClient->listLogMetrics();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -361,24 +325,13 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDisabled($disabled);
         $expectedResponse->setValueExtractor($valueExtractor);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
-        $metric = new LogMetric();
-        $metricName = 'metricName-610759589';
-        $metric->setName($metricName);
-        $metricFilter = 'metricFilter1248897352';
-        $metric->setFilter($metricFilter);
-        $response = $gapicClient->updateLogMetric($formattedMetricName, $metric);
+        $response = $gapicClient->updateLogMetric();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.MetricsServiceV2/UpdateLogMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getMetricName();
-        $this->assertProtobufEquals($formattedMetricName, $actualValue);
-        $actualValue = $actualRequestObject->getMetric();
-        $this->assertProtobufEquals($metric, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -400,15 +353,8 @@ class MetricsServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
-        $metric = new LogMetric();
-        $metricName = 'metricName-610759589';
-        $metric->setName($metricName);
-        $metricFilter = 'metricFilter1248897352';
-        $metric->setFilter($metricFilter);
         try {
-            $gapicClient->updateLogMetric($formattedMetricName, $metric);
+            $gapicClient->updateLogMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -35,18 +35,19 @@ use Google\Cloud\Kms\Inventory\V1\ProtectedResourcesSummary;
  * holds the key must be part of an organization in order for this call to
  * succeed.
  *
- * @param string $formattedName The resource name of the
- *                              [CryptoKey][google.cloud.kms.v1.CryptoKey]. Please see
- *                              {@see KeyTrackingServiceClient::protectedResourcesSummaryName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_protected_resources_summary_sample(string $formattedName): void
+function get_protected_resources_summary_sample(): void
 {
     // Create a client.
     $keyTrackingServiceClient = new KeyTrackingServiceClient();
 
     // Prepare the request message.
-    $request = (new GetProtectedResourcesSummaryRequest())
-        ->setName($formattedName);
+    $request = new GetProtectedResourcesSummaryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,26 +57,5 @@ function get_protected_resources_summary_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = KeyTrackingServiceClient::protectedResourcesSummaryName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[KEY_RING]',
-        '[CRYPTO_KEY]'
-    );
-
-    get_protected_resources_summary_sample($formattedName);
 }
 // [END kmsinventory_v1_generated_KeyTrackingService_GetProtectedResourcesSummary_sync]

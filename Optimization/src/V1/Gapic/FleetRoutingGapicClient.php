@@ -69,9 +69,7 @@ use Google\Protobuf\Duration;
  * ```
  * $fleetRoutingClient = new FleetRoutingClient();
  * try {
- *     $parent = 'parent';
- *     $modelConfigs = [];
- *     $operationResponse = $fleetRoutingClient->batchOptimizeTours($parent, $modelConfigs);
+ *     $operationResponse = $fleetRoutingClient->batchOptimizeTours();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -82,7 +80,7 @@ use Google\Protobuf\Duration;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $fleetRoutingClient->batchOptimizeTours($parent, $modelConfigs);
+ *     $operationResponse = $fleetRoutingClient->batchOptimizeTours();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $fleetRoutingClient->resumeOperation($operationName, 'batchOptimizeTours');
@@ -271,9 +269,7 @@ class FleetRoutingGapicClient
      * ```
      * $fleetRoutingClient = new FleetRoutingClient();
      * try {
-     *     $parent = 'parent';
-     *     $modelConfigs = [];
-     *     $operationResponse = $fleetRoutingClient->batchOptimizeTours($parent, $modelConfigs);
+     *     $operationResponse = $fleetRoutingClient->batchOptimizeTours();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -284,7 +280,7 @@ class FleetRoutingGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $fleetRoutingClient->batchOptimizeTours($parent, $modelConfigs);
+     *     $operationResponse = $fleetRoutingClient->batchOptimizeTours();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $fleetRoutingClient->resumeOperation($operationName, 'batchOptimizeTours');
@@ -304,16 +300,18 @@ class FleetRoutingGapicClient
      * }
      * ```
      *
-     * @param string             $parent       Required. Target project and location to make a call.
-     *
-     *                                         Format: `projects/{project-id}/locations/{location-id}`.
-     *
-     *                                         If no location is specified, a region will be chosen automatically.
-     * @param AsyncModelConfig[] $modelConfigs Required. Input/Output information each purchase model, such as file paths
-     *                                         and data formats.
-     * @param array              $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Target project and location to make a call.
+     *
+     *           Format: `projects/{project-id}/locations/{location-id}`.
+     *
+     *           If no location is specified, a region will be chosen automatically.
+     *     @type AsyncModelConfig[] $modelConfigs
+     *           Required. Input/Output information each purchase model, such as file paths
+     *           and data formats.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -324,16 +322,19 @@ class FleetRoutingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchOptimizeTours(
-        $parent,
-        $modelConfigs,
-        array $optionalArgs = []
-    ) {
+    public function batchOptimizeTours(array $optionalArgs = [])
+    {
         $request = new BatchOptimizeToursRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setModelConfigs($modelConfigs);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['modelConfigs'])) {
+            $request->setModelConfigs($optionalArgs['modelConfigs']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -368,21 +369,21 @@ class FleetRoutingGapicClient
      * ```
      * $fleetRoutingClient = new FleetRoutingClient();
      * try {
-     *     $parent = 'parent';
-     *     $response = $fleetRoutingClient->optimizeTours($parent);
+     *     $response = $fleetRoutingClient->optimizeTours();
      * } finally {
      *     $fleetRoutingClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Target project and location to make a call.
-     *
-     *                             Format: `projects/{project-id}/locations/{location-id}`.
-     *
-     *                             If no location is specified, a region will be chosen automatically.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Target project and location to make a call.
+     *
+     *           Format: `projects/{project-id}/locations/{location-id}`.
+     *
+     *           If no location is specified, a region will be chosen automatically.
      *     @type Duration $timeout
      *           If this timeout is set, the server returns a response before the timeout
      *           period has elapsed or the server deadline for synchronous requests is
@@ -578,12 +579,15 @@ class FleetRoutingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function optimizeTours($parent, array $optionalArgs = [])
+    public function optimizeTours(array $optionalArgs = [])
     {
         $request = new OptimizeToursRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['timeout'])) {
             $request->setTimeout($optionalArgs['timeout']);
         }

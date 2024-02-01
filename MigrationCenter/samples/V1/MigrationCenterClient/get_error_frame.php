@@ -31,19 +31,19 @@ use Google\Cloud\MigrationCenter\V1\GetErrorFrameRequest;
 /**
  * Gets the details of an error frame.
  *
- * @param string $formattedName The name of the frame to retrieve.
- *                              Format:
- *                              projects/{project}/locations/{location}/sources/{source}/errorFrames/{error_frame}
- *                              Please see {@see MigrationCenterClient::errorFrameName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_error_frame_sample(string $formattedName): void
+function get_error_frame_sample(): void
 {
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $request = (new GetErrorFrameRequest())
-        ->setName($formattedName);
+    $request = new GetErrorFrameRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,26 +53,5 @@ function get_error_frame_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = MigrationCenterClient::errorFrameName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[SOURCE]',
-        '[ERROR_FRAME]'
-    );
-
-    get_error_frame_sample($formattedName);
 }
 // [END migrationcenter_v1_generated_MigrationCenter_GetErrorFrame_sync]

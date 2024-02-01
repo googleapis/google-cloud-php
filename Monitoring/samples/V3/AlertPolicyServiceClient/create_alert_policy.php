@@ -35,30 +35,19 @@ use Google\Cloud\Monitoring\V3\CreateAlertPolicyRequest;
  * alerting policies in a single project. This includes calls to
  * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
  *
- * @param string $name The
- *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
- *                     to create the alerting policy. The format is:
- *
- *                     projects/[PROJECT_ID_OR_NUMBER]
- *
- *                     Note that this field names the parent container in which the alerting
- *                     policy will be written, not the name of the created policy. |name| must be
- *                     a host project of a Metrics Scope, otherwise INVALID_ARGUMENT error will
- *                     return. The alerting policy that is returned will have a name that contains
- *                     a normalized representation of this name as a prefix but adds a suffix of
- *                     the form `/alertPolicies/[ALERT_POLICY_ID]`, identifying the policy in the
- *                     container.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_alert_policy_sample(string $name): void
+function create_alert_policy_sample(): void
 {
     // Create a client.
     $alertPolicyServiceClient = new AlertPolicyServiceClient();
 
     // Prepare the request message.
-    $alertPolicy = new AlertPolicy();
-    $request = (new CreateAlertPolicyRequest())
-        ->setName($name)
-        ->setAlertPolicy($alertPolicy);
+    $request = new CreateAlertPolicyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,21 +57,5 @@ function create_alert_policy_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    create_alert_policy_sample($name);
 }
 // [END monitoring_v3_generated_AlertPolicyService_CreateAlertPolicy_sync]

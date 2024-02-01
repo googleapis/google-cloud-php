@@ -95,12 +95,7 @@ class FleetRoutingClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $modelConfigs = [];
-        $request = (new BatchOptimizeToursRequest())
-            ->setParent($parent)
-            ->setModelConfigs($modelConfigs);
+        $request = new BatchOptimizeToursRequest();
         $response = $gapicClient->batchOptimizeTours($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -111,10 +106,6 @@ class FleetRoutingClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.optimization.v1.FleetRouting/BatchOptimizeTours', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getModelConfigs();
-        $this->assertProtobufEquals($modelConfigs, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchOptimizeToursTest');
         $response->pollUntilComplete([
@@ -165,12 +156,7 @@ class FleetRoutingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $modelConfigs = [];
-        $request = (new BatchOptimizeToursRequest())
-            ->setParent($parent)
-            ->setModelConfigs($modelConfigs);
+        $request = new BatchOptimizeToursRequest();
         $response = $gapicClient->batchOptimizeTours($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -208,10 +194,7 @@ class FleetRoutingClientTest extends GeneratedTest
         $expectedResponse->setRequestLabel($requestLabel);
         $expectedResponse->setTotalCost($totalCost);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new OptimizeToursRequest())
-            ->setParent($parent);
+        $request = new OptimizeToursRequest();
         $response = $gapicClient->optimizeTours($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -219,8 +202,6 @@ class FleetRoutingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.optimization.v1.FleetRouting/OptimizeTours', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -242,10 +223,7 @@ class FleetRoutingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new OptimizeToursRequest())
-            ->setParent($parent);
+        $request = new OptimizeToursRequest();
         try {
             $gapicClient->optimizeTours($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -288,12 +266,7 @@ class FleetRoutingClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $modelConfigs = [];
-        $request = (new BatchOptimizeToursRequest())
-            ->setParent($parent)
-            ->setModelConfigs($modelConfigs);
+        $request = new BatchOptimizeToursRequest();
         $response = $gapicClient->batchOptimizeToursAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -304,10 +277,6 @@ class FleetRoutingClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.optimization.v1.FleetRouting/BatchOptimizeTours', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getModelConfigs();
-        $this->assertProtobufEquals($modelConfigs, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchOptimizeToursTest');
         $response->pollUntilComplete([

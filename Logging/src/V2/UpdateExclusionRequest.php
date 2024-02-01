@@ -58,7 +58,6 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
      *                                                          For example:
      *
      *                                                          `"projects/my-project/exclusions/my-exclusion"`
-     *                                                          Please see {@see ConfigServiceV2Client::logExclusionName()} for help formatting this field.
      * @param \Google\Cloud\Logging\V2\LogExclusion $exclusion  Required. New values for the existing exclusion. Only the fields specified
      *                                                          in `update_mask` are relevant.
      * @param \Google\Protobuf\FieldMask            $updateMask Required. A non-empty list of fields to change in the existing exclusion.

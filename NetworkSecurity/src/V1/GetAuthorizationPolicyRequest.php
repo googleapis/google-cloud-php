@@ -25,8 +25,7 @@ class GetAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. A name of the AuthorizationPolicy to get. Must be in the format
-     *                     `projects/{project}/locations/{location}/authorizationPolicies/*`. Please see
-     *                     {@see NetworkSecurityClient::authorizationPolicyName()} for help formatting this field.
+     *                     `projects/{project}/locations/{location}/authorizationPolicies/*`.
      *
      * @return \Google\Cloud\NetworkSecurity\V1\GetAuthorizationPolicyRequest
      *

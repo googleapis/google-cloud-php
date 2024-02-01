@@ -31,17 +31,19 @@ use Google\Cloud\NetworkConnectivity\V1\RouteTable;
 /**
  * Gets details about a Network Connectivity Center route table.
  *
- * @param string $formattedName The name of the route table resource. Please see
- *                              {@see HubServiceClient::routeTableName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_route_table_sample(string $formattedName): void
+function get_route_table_sample(): void
 {
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
     // Prepare the request message.
-    $request = (new GetRouteTableRequest())
-        ->setName($formattedName);
+    $request = new GetRouteTableRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +53,5 @@ function get_route_table_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = HubServiceClient::routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-
-    get_route_table_sample($formattedName);
 }
 // [END networkconnectivity_v1_generated_HubService_GetRouteTable_sync]

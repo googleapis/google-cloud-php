@@ -81,9 +81,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $orgPolicyClient = new OrgPolicyClient();
  * try {
- *     $formattedParent = $orgPolicyClient->organizationName('[ORGANIZATION]');
- *     $customConstraint = new CustomConstraint();
- *     $response = $orgPolicyClient->createCustomConstraint($formattedParent, $customConstraint);
+ *     $response = $orgPolicyClient->createCustomConstraint();
  * } finally {
  *     $orgPolicyClient->close();
  * }
@@ -501,21 +499,21 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $formattedParent = $orgPolicyClient->organizationName('[ORGANIZATION]');
-     *     $customConstraint = new CustomConstraint();
-     *     $response = $orgPolicyClient->createCustomConstraint($formattedParent, $customConstraint);
+     *     $response = $orgPolicyClient->createCustomConstraint();
      * } finally {
      *     $orgPolicyClient->close();
      * }
      * ```
      *
-     * @param string           $parent           Required. Must be in the following form:
-     *
-     *                                           * `organizations/{organization_id}`
-     * @param CustomConstraint $customConstraint Required. Custom constraint to create.
-     * @param array            $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Must be in the following form:
+     *
+     *           * `organizations/{organization_id}`
+     *     @type CustomConstraint $customConstraint
+     *           Required. Custom constraint to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -526,13 +524,19 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCustomConstraint($parent, $customConstraint, array $optionalArgs = [])
+    public function createCustomConstraint(array $optionalArgs = [])
     {
         $request = new CreateCustomConstraintRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCustomConstraint($customConstraint);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['customConstraint'])) {
+            $request->setCustomConstraint($optionalArgs['customConstraint']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCustomConstraint', CustomConstraint::class, $optionalArgs, $request)->wait();
@@ -550,25 +554,25 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $formattedParent = $orgPolicyClient->projectName('[PROJECT]');
-     *     $policy = new Policy();
-     *     $response = $orgPolicyClient->createPolicy($formattedParent, $policy);
+     *     $response = $orgPolicyClient->createPolicy();
      * } finally {
      *     $orgPolicyClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The Google Cloud resource that will parent the new policy. Must
-     *                             be in one of the following forms:
-     *
-     *                             * `projects/{project_number}`
-     *                             * `projects/{project_id}`
-     *                             * `folders/{folder_id}`
-     *                             * `organizations/{organization_id}`
-     * @param Policy $policy       Required. Policy to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The Google Cloud resource that will parent the new policy. Must
+     *           be in one of the following forms:
+     *
+     *           * `projects/{project_number}`
+     *           * `projects/{project_id}`
+     *           * `folders/{folder_id}`
+     *           * `organizations/{organization_id}`
+     *     @type Policy $policy
+     *           Required. Policy to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -579,13 +583,19 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createPolicy($parent, $policy, array $optionalArgs = [])
+    public function createPolicy(array $optionalArgs = [])
     {
         $request = new CreatePolicyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setPolicy($policy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreatePolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -601,18 +611,18 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $formattedName = $orgPolicyClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-     *     $orgPolicyClient->deleteCustomConstraint($formattedName);
+     *     $orgPolicyClient->deleteCustomConstraint();
      * } finally {
      *     $orgPolicyClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the custom constraint to delete.
-     *                             See the custom constraint entry for naming rules.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the custom constraint to delete.
+     *           See the custom constraint entry for naming rules.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -621,12 +631,15 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCustomConstraint($name, array $optionalArgs = [])
+    public function deleteCustomConstraint(array $optionalArgs = [])
     {
         $request = new DeleteCustomConstraintRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteCustomConstraint', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -642,18 +655,18 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $formattedName = $orgPolicyClient->policyName('[PROJECT]', '[POLICY]');
-     *     $orgPolicyClient->deletePolicy($formattedName);
+     *     $orgPolicyClient->deletePolicy();
      * } finally {
      *     $orgPolicyClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the policy to delete.
-     *                             See the policy entry for naming rules.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the policy to delete.
+     *           See the policy entry for naming rules.
      *     @type string $etag
      *           Optional. The current etag of policy. If an etag is provided and does not
      *           match the current etag of the policy, deletion will be blocked and an
@@ -666,12 +679,15 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePolicy($name, array $optionalArgs = [])
+    public function deletePolicy(array $optionalArgs = [])
     {
         $request = new DeletePolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -691,18 +707,18 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $formattedName = $orgPolicyClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-     *     $response = $orgPolicyClient->getCustomConstraint($formattedName);
+     *     $response = $orgPolicyClient->getCustomConstraint();
      * } finally {
      *     $orgPolicyClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the custom constraint. See the custom constraint
-     *                             entry for naming requirements.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the custom constraint. See the custom constraint
+     *           entry for naming requirements.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -713,12 +729,15 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCustomConstraint($name, array $optionalArgs = [])
+    public function getCustomConstraint(array $optionalArgs = [])
     {
         $request = new GetCustomConstraintRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCustomConstraint', CustomConstraint::class, $optionalArgs, $request)->wait();
@@ -736,18 +755,18 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $formattedName = $orgPolicyClient->policyName('[PROJECT]', '[POLICY]');
-     *     $response = $orgPolicyClient->getEffectivePolicy($formattedName);
+     *     $response = $orgPolicyClient->getEffectivePolicy();
      * } finally {
      *     $orgPolicyClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The effective policy to compute. See
-     *                             [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The effective policy to compute. See
+     *           [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -758,12 +777,15 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEffectivePolicy($name, array $optionalArgs = [])
+    public function getEffectivePolicy(array $optionalArgs = [])
     {
         $request = new GetEffectivePolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEffectivePolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -780,18 +802,18 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $formattedName = $orgPolicyClient->policyName('[PROJECT]', '[POLICY]');
-     *     $response = $orgPolicyClient->getPolicy($formattedName);
+     *     $response = $orgPolicyClient->getPolicy();
      * } finally {
      *     $orgPolicyClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the policy. See
-     *                             [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the policy. See
+     *           [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -802,12 +824,15 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPolicy($name, array $optionalArgs = [])
+    public function getPolicy(array $optionalArgs = [])
     {
         $request = new GetPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -820,9 +845,8 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $formattedParent = $orgPolicyClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $orgPolicyClient->listConstraints($formattedParent);
+     *     $pagedResponse = $orgPolicyClient->listConstraints();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -830,7 +854,7 @@ class OrgPolicyGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $orgPolicyClient->listConstraints($formattedParent);
+     *     $pagedResponse = $orgPolicyClient->listConstraints();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -839,16 +863,17 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Google Cloud resource that parents the constraint. Must be in
-     *                             one of the following forms:
-     *
-     *                             * `projects/{project_number}`
-     *                             * `projects/{project_id}`
-     *                             * `folders/{folder_id}`
-     *                             * `organizations/{organization_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The Google Cloud resource that parents the constraint. Must be in
+     *           one of the following forms:
+     *
+     *           * `projects/{project_number}`
+     *           * `projects/{project_id}`
+     *           * `folders/{folder_id}`
+     *           * `organizations/{organization_id}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -868,12 +893,15 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConstraints($parent, array $optionalArgs = [])
+    public function listConstraints(array $optionalArgs = [])
     {
         $request = new ListConstraintsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -895,9 +923,8 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $formattedParent = $orgPolicyClient->organizationName('[ORGANIZATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $orgPolicyClient->listCustomConstraints($formattedParent);
+     *     $pagedResponse = $orgPolicyClient->listCustomConstraints();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -905,7 +932,7 @@ class OrgPolicyGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $orgPolicyClient->listCustomConstraints($formattedParent);
+     *     $pagedResponse = $orgPolicyClient->listCustomConstraints();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -914,14 +941,15 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The target Google Cloud resource that parents the set of custom
-     *                             constraints that will be returned from this call. Must be in one of the
-     *                             following forms:
-     *
-     *                             * `organizations/{organization_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The target Google Cloud resource that parents the set of custom
+     *           constraints that will be returned from this call. Must be in one of the
+     *           following forms:
+     *
+     *           * `organizations/{organization_id}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -941,12 +969,15 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCustomConstraints($parent, array $optionalArgs = [])
+    public function listCustomConstraints(array $optionalArgs = [])
     {
         $request = new ListCustomConstraintsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -967,9 +998,8 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $formattedParent = $orgPolicyClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $orgPolicyClient->listPolicies($formattedParent);
+     *     $pagedResponse = $orgPolicyClient->listPolicies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -977,7 +1007,7 @@ class OrgPolicyGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $orgPolicyClient->listPolicies($formattedParent);
+     *     $pagedResponse = $orgPolicyClient->listPolicies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -986,17 +1016,18 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The target Google Cloud resource that parents the set of
-     *                             constraints and policies that will be returned from this call. Must be in
-     *                             one of the following forms:
-     *
-     *                             * `projects/{project_number}`
-     *                             * `projects/{project_id}`
-     *                             * `folders/{folder_id}`
-     *                             * `organizations/{organization_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The target Google Cloud resource that parents the set of
+     *           constraints and policies that will be returned from this call. Must be in
+     *           one of the following forms:
+     *
+     *           * `projects/{project_number}`
+     *           * `projects/{project_id}`
+     *           * `folders/{folder_id}`
+     *           * `organizations/{organization_id}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1016,12 +1047,15 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPolicies($parent, array $optionalArgs = [])
+    public function listPolicies(array $optionalArgs = [])
     {
         $request = new ListPoliciesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1048,17 +1082,17 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $customConstraint = new CustomConstraint();
-     *     $response = $orgPolicyClient->updateCustomConstraint($customConstraint);
+     *     $response = $orgPolicyClient->updateCustomConstraint();
      * } finally {
      *     $orgPolicyClient->close();
      * }
      * ```
      *
-     * @param CustomConstraint $customConstraint Required. `CustomConstraint` to update.
-     * @param array            $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type CustomConstraint $customConstraint
+     *           Required. `CustomConstraint` to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1069,12 +1103,14 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCustomConstraint($customConstraint, array $optionalArgs = [])
+    public function updateCustomConstraint(array $optionalArgs = [])
     {
         $request = new UpdateCustomConstraintRequest();
         $requestParamHeaders = [];
-        $request->setCustomConstraint($customConstraint);
-        $requestParamHeaders['custom_constraint.name'] = $customConstraint->getName();
+        if (isset($optionalArgs['customConstraint'])) {
+            $request->setCustomConstraint($optionalArgs['customConstraint']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateCustomConstraint', CustomConstraint::class, $optionalArgs, $request)->wait();
@@ -1095,17 +1131,17 @@ class OrgPolicyGapicClient
      * ```
      * $orgPolicyClient = new OrgPolicyClient();
      * try {
-     *     $policy = new Policy();
-     *     $response = $orgPolicyClient->updatePolicy($policy);
+     *     $response = $orgPolicyClient->updatePolicy();
      * } finally {
      *     $orgPolicyClient->close();
      * }
      * ```
      *
-     * @param Policy $policy       Required. Policy to update.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Policy $policy
+     *           Required. Policy to update.
      *     @type FieldMask $updateMask
      *           Field mask used to specify the fields to be overwritten in the policy
      *           by the set. The fields specified in the update_mask are relative to the
@@ -1120,12 +1156,14 @@ class OrgPolicyGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updatePolicy($policy, array $optionalArgs = [])
+    public function updatePolicy(array $optionalArgs = [])
     {
         $request = new UpdatePolicyRequest();
         $requestParamHeaders = [];
-        $request->setPolicy($policy);
-        $requestParamHeaders['policy.name'] = $policy->getName();
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

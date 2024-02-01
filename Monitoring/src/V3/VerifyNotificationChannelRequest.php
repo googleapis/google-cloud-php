@@ -35,8 +35,7 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     private $code = '';
 
     /**
-     * @param string $name Required. The notification channel to verify. Please see
-     *                     {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
+     * @param string $name Required. The notification channel to verify.
      * @param string $code Required. The verification code that was delivered to the channel as
      *                     a result of invoking the `SendNotificationChannelVerificationCode` API
      *                     method or that was retrieved from a verified channel via

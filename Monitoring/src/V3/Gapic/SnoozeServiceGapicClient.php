@@ -52,9 +52,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $snoozeServiceClient = new SnoozeServiceClient();
  * try {
- *     $formattedParent = $snoozeServiceClient->workspaceName('[PROJECT]');
- *     $snooze = new Snooze();
- *     $response = $snoozeServiceClient->createSnooze($formattedParent, $snooze);
+ *     $response = $snoozeServiceClient->createSnooze();
  * } finally {
  *     $snoozeServiceClient->close();
  * }
@@ -443,24 +441,24 @@ class SnoozeServiceGapicClient
      * ```
      * $snoozeServiceClient = new SnoozeServiceClient();
      * try {
-     *     $formattedParent = $snoozeServiceClient->workspaceName('[PROJECT]');
-     *     $snooze = new Snooze();
-     *     $response = $snoozeServiceClient->createSnooze($formattedParent, $snooze);
+     *     $response = $snoozeServiceClient->createSnooze();
      * } finally {
      *     $snoozeServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The
-     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
-     *                             a `Snooze` should be created. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]
-     * @param Snooze $snooze       Required. The `Snooze` to create. Omit the `name` field, as it will be
-     *                             filled in by the API.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *           a `Snooze` should be created. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
+     *     @type Snooze $snooze
+     *           Required. The `Snooze` to create. Omit the `name` field, as it will be
+     *           filled in by the API.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -471,13 +469,19 @@ class SnoozeServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSnooze($parent, $snooze, array $optionalArgs = [])
+    public function createSnooze(array $optionalArgs = [])
     {
         $request = new CreateSnoozeRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSnooze($snooze);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['snooze'])) {
+            $request->setSnooze($optionalArgs['snooze']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateSnooze', Snooze::class, $optionalArgs, $request)->wait();
@@ -490,19 +494,19 @@ class SnoozeServiceGapicClient
      * ```
      * $snoozeServiceClient = new SnoozeServiceClient();
      * try {
-     *     $formattedName = $snoozeServiceClient->snoozeName('[PROJECT]', '[SNOOZE]');
-     *     $response = $snoozeServiceClient->getSnooze($formattedName);
+     *     $response = $snoozeServiceClient->getSnooze();
      * } finally {
      *     $snoozeServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The ID of the `Snooze` to retrieve. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The ID of the `Snooze` to retrieve. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID]
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -513,12 +517,15 @@ class SnoozeServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSnooze($name, array $optionalArgs = [])
+    public function getSnooze(array $optionalArgs = [])
     {
         $request = new GetSnoozeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSnooze', Snooze::class, $optionalArgs, $request)->wait();
@@ -532,9 +539,8 @@ class SnoozeServiceGapicClient
      * ```
      * $snoozeServiceClient = new SnoozeServiceClient();
      * try {
-     *     $formattedParent = $snoozeServiceClient->workspaceName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $snoozeServiceClient->listSnoozes($formattedParent);
+     *     $pagedResponse = $snoozeServiceClient->listSnoozes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -542,7 +548,7 @@ class SnoozeServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $snoozeServiceClient->listSnoozes($formattedParent);
+     *     $pagedResponse = $snoozeServiceClient->listSnoozes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -551,14 +557,15 @@ class SnoozeServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The
-     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
-     *                             `Snooze`s should be listed. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+     *           `Snooze`s should be listed. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $filter
      *           Optional. Optional filter to restrict results to the given criteria. The
      *           following fields are supported.
@@ -591,12 +598,15 @@ class SnoozeServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSnoozes($parent, array $optionalArgs = [])
+    public function listSnoozes(array $optionalArgs = [])
     {
         $request = new ListSnoozesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -622,40 +632,40 @@ class SnoozeServiceGapicClient
      * ```
      * $snoozeServiceClient = new SnoozeServiceClient();
      * try {
-     *     $snooze = new Snooze();
-     *     $updateMask = new FieldMask();
-     *     $response = $snoozeServiceClient->updateSnooze($snooze, $updateMask);
+     *     $response = $snoozeServiceClient->updateSnooze();
      * } finally {
      *     $snoozeServiceClient->close();
      * }
      * ```
      *
-     * @param Snooze    $snooze       Required. The `Snooze` to update. Must have the name field present.
-     * @param FieldMask $updateMask   Required. The fields to update.
-     *
-     *                                For each field listed in `update_mask`:
-     *
-     *                                * If the `Snooze` object supplied in the `UpdateSnoozeRequest` has a
-     *                                value for that field, the value of the field in the existing `Snooze`
-     *                                will be set to the value of the field in the supplied `Snooze`.
-     *                                * If the field does not have a value in the supplied `Snooze`, the field
-     *                                in the existing `Snooze` is set to its default value.
-     *
-     *                                Fields not listed retain their existing value.
-     *
-     *                                The following are the field names that are accepted in `update_mask`:
-     *
-     *                                * `display_name`
-     *                                * `interval.start_time`
-     *                                * `interval.end_time`
-     *
-     *                                That said, the start time and end time of the `Snooze` determines which
-     *                                fields can legally be updated. Before attempting an update, users should
-     *                                consult the documentation for `UpdateSnoozeRequest`, which talks about
-     *                                which fields can be updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Snooze $snooze
+     *           Required. The `Snooze` to update. Must have the name field present.
+     *     @type FieldMask $updateMask
+     *           Required. The fields to update.
+     *
+     *           For each field listed in `update_mask`:
+     *
+     *           * If the `Snooze` object supplied in the `UpdateSnoozeRequest` has a
+     *           value for that field, the value of the field in the existing `Snooze`
+     *           will be set to the value of the field in the supplied `Snooze`.
+     *           * If the field does not have a value in the supplied `Snooze`, the field
+     *           in the existing `Snooze` is set to its default value.
+     *
+     *           Fields not listed retain their existing value.
+     *
+     *           The following are the field names that are accepted in `update_mask`:
+     *
+     *           * `display_name`
+     *           * `interval.start_time`
+     *           * `interval.end_time`
+     *
+     *           That said, the start time and end time of the `Snooze` determines which
+     *           fields can legally be updated. Before attempting an update, users should
+     *           consult the documentation for `UpdateSnoozeRequest`, which talks about
+     *           which fields can be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -666,13 +676,18 @@ class SnoozeServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSnooze($snooze, $updateMask, array $optionalArgs = [])
+    public function updateSnooze(array $optionalArgs = [])
     {
         $request = new UpdateSnoozeRequest();
         $requestParamHeaders = [];
-        $request->setSnooze($snooze);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['snooze.name'] = $snooze->getName();
+        if (isset($optionalArgs['snooze'])) {
+            $request->setSnooze($optionalArgs['snooze']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateSnooze', Snooze::class, $optionalArgs, $request)->wait();

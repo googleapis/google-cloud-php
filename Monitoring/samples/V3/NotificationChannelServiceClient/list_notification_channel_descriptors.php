@@ -33,26 +33,19 @@ use Google\Cloud\Monitoring\V3\NotificationChannelDescriptor;
  * Lists the descriptors for supported channel types. The use of descriptors
  * makes it possible for new channel types to be dynamically added.
  *
- * @param string $name The REST resource name of the parent from which to retrieve
- *                     the notification channel descriptors. The expected syntax is:
- *
- *                     projects/[PROJECT_ID_OR_NUMBER]
- *
- *                     Note that this
- *                     [names](https://cloud.google.com/monitoring/api/v3#project_name) the parent
- *                     container in which to look for the descriptors; to retrieve a single
- *                     descriptor by name, use the
- *                     [GetNotificationChannelDescriptor][google.monitoring.v3.NotificationChannelService.GetNotificationChannelDescriptor]
- *                     operation, instead.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_notification_channel_descriptors_sample(string $name): void
+function list_notification_channel_descriptors_sample(): void
 {
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new ListNotificationChannelDescriptorsRequest())
-        ->setName($name);
+    $request = new ListNotificationChannelDescriptorsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,21 +59,5 @@ function list_notification_channel_descriptors_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    list_notification_channel_descriptors_sample($name);
 }
 // [END monitoring_v3_generated_NotificationChannelService_ListNotificationChannelDescriptors_sync]

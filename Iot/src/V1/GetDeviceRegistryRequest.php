@@ -25,8 +25,7 @@ class GetDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the device registry. For example,
-     *                     `projects/example-project/locations/us-central1/registries/my-registry`. Please see
-     *                     {@see DeviceManagerClient::registryName()} for help formatting this field.
+     *                     `projects/example-project/locations/us-central1/registries/my-registry`.
      *
      * @return \Google\Cloud\Iot\V1\GetDeviceRegistryRequest
      *

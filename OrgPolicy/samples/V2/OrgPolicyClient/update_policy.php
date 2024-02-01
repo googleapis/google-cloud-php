@@ -51,9 +51,7 @@ function update_policy_sample(): void
     $orgPolicyClient = new OrgPolicyClient();
 
     // Prepare the request message.
-    $policy = new Policy();
-    $request = (new UpdatePolicyRequest())
-        ->setPolicy($policy);
+    $request = new UpdatePolicyRequest();
 
     // Call the API and handle any network failures.
     try {

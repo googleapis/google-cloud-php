@@ -37,8 +37,7 @@ class CreateStoragePoolRequest extends \Google\Protobuf\Internal\Message
     protected $storage_pool = null;
 
     /**
-     * @param string                              $parent        Required. Value for parent. Please see
-     *                                                           {@see NetAppClient::locationName()} for help formatting this field.
+     * @param string                              $parent        Required. Value for parent.
      * @param \Google\Cloud\NetApp\V1\StoragePool $storagePool   Required. The required parameters to create a new storage pool.
      * @param string                              $storagePoolId Required. Id of the requesting storage pool
      *                                                           If auto-generating Id server-side, remove this field and

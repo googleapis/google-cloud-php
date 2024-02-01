@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Language\V2\ClassifyTextRequest;
 use Google\Cloud\Language\V2\ClassifyTextResponse;
 use Google\Cloud\Language\V2\Client\LanguageServiceClient;
-use Google\Cloud\Language\V2\Document;
 
 /**
  * Classifies a document into categories.
@@ -44,9 +43,7 @@ function classify_text_sample(): void
     $languageServiceClient = new LanguageServiceClient();
 
     // Prepare the request message.
-    $document = new Document();
-    $request = (new ClassifyTextRequest())
-        ->setDocument($document);
+    $request = new ClassifyTextRequest();
 
     // Call the API and handle any network failures.
     try {

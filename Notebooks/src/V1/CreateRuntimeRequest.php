@@ -44,7 +44,6 @@ class CreateRuntimeRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                             $parent    Required. Format:
      *                                                      `parent=projects/{project_id}/locations/{location}`
-     *                                                      Please see {@see ManagedNotebookServiceClient::runtimeName()} for help formatting this field.
      * @param string                             $runtimeId Required. User-defined unique ID of this Runtime.
      * @param \Google\Cloud\Notebooks\V1\Runtime $runtime   Required. The Runtime to be created.
      *

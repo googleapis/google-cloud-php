@@ -49,7 +49,6 @@ class ListBackupPoliciesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent value for ListBackupPoliciesRequest
-     *                       Please see {@see NetAppClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\ListBackupPoliciesRequest
      *

@@ -46,7 +46,6 @@ use Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesResponse;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
@@ -62,9 +61,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
  * try {
- *     $name = 'name';
- *     $metricDescriptor = new Google\Cloud\Monitoring\V3\MetricDescriptor();
- *     $response = $metricServiceClient->createMetricDescriptor($name, $metricDescriptor);
+ *     $response = $metricServiceClient->createMetricDescriptor();
  * } finally {
  *     $metricServiceClient->close();
  * }
@@ -602,23 +599,23 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $name = 'name';
-     *     $metricDescriptor = new Google\Cloud\Monitoring\V3\MetricDescriptor();
-     *     $response = $metricServiceClient->createMetricDescriptor($name, $metricDescriptor);
+     *     $response = $metricServiceClient->createMetricDescriptor();
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string           $name             Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *                                           which to execute the request. The format is:
-     *                                           4
-     *                                           projects/[PROJECT_ID_OR_NUMBER]
-     * @param MetricDescriptor $metricDescriptor Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
-     *                                           descriptor.
-     * @param array            $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *           which to execute the request. The format is:
+     *           4
+     *           projects/[PROJECT_ID_OR_NUMBER]
+     *     @type MetricDescriptor $metricDescriptor
+     *           Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
+     *           descriptor.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -629,13 +626,19 @@ class MetricServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createMetricDescriptor($name, $metricDescriptor, array $optionalArgs = [])
+    public function createMetricDescriptor(array $optionalArgs = [])
     {
         $request = new CreateMetricDescriptorRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setMetricDescriptor($metricDescriptor);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['metricDescriptor'])) {
+            $request->setMetricDescriptor($optionalArgs['metricDescriptor']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateMetricDescriptor', MetricDescriptor::class, $optionalArgs, $request)->wait();
@@ -656,28 +659,28 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
-     *     $timeSeries = [];
-     *     $metricServiceClient->createServiceTimeSeries($formattedName, $timeSeries);
+     *     $metricServiceClient->createServiceTimeSeries();
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string       $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *                                   which to execute the request. The format is:
-     *
-     *                                   projects/[PROJECT_ID_OR_NUMBER]
-     * @param TimeSeries[] $timeSeries   Required. The new data to be added to a list of time series.
-     *                                   Adds at most one data point to each of several time series.  The new data
-     *                                   point must be more recent than any other point in its time series.  Each
-     *                                   `TimeSeries` value must fully specify a unique time series by supplying
-     *                                   all label values for the metric and the monitored resource.
-     *
-     *                                   The maximum number of `TimeSeries` objects per `Create` request is 200.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *           which to execute the request. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
+     *     @type TimeSeries[] $timeSeries
+     *           Required. The new data to be added to a list of time series.
+     *           Adds at most one data point to each of several time series.  The new data
+     *           point must be more recent than any other point in its time series.  Each
+     *           `TimeSeries` value must fully specify a unique time series by supplying
+     *           all label values for the metric and the monitored resource.
+     *
+     *           The maximum number of `TimeSeries` objects per `Create` request is 200.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -686,13 +689,19 @@ class MetricServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createServiceTimeSeries($name, $timeSeries, array $optionalArgs = [])
+    public function createServiceTimeSeries(array $optionalArgs = [])
     {
         $request = new CreateTimeSeriesRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setTimeSeries($timeSeries);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['timeSeries'])) {
+            $request->setTimeSeries($optionalArgs['timeSeries']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateServiceTimeSeries', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -708,28 +717,28 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
-     *     $timeSeries = [];
-     *     $metricServiceClient->createTimeSeries($formattedName, $timeSeries);
+     *     $metricServiceClient->createTimeSeries();
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string       $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *                                   which to execute the request. The format is:
-     *
-     *                                   projects/[PROJECT_ID_OR_NUMBER]
-     * @param TimeSeries[] $timeSeries   Required. The new data to be added to a list of time series.
-     *                                   Adds at most one data point to each of several time series.  The new data
-     *                                   point must be more recent than any other point in its time series.  Each
-     *                                   `TimeSeries` value must fully specify a unique time series by supplying
-     *                                   all label values for the metric and the monitored resource.
-     *
-     *                                   The maximum number of `TimeSeries` objects per `Create` request is 200.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *           which to execute the request. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
+     *     @type TimeSeries[] $timeSeries
+     *           Required. The new data to be added to a list of time series.
+     *           Adds at most one data point to each of several time series.  The new data
+     *           point must be more recent than any other point in its time series.  Each
+     *           `TimeSeries` value must fully specify a unique time series by supplying
+     *           all label values for the metric and the monitored resource.
+     *
+     *           The maximum number of `TimeSeries` objects per `Create` request is 200.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -738,13 +747,19 @@ class MetricServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTimeSeries($name, $timeSeries, array $optionalArgs = [])
+    public function createTimeSeries(array $optionalArgs = [])
     {
         $request = new CreateTimeSeriesRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setTimeSeries($timeSeries);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['timeSeries'])) {
+            $request->setTimeSeries($optionalArgs['timeSeries']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateTimeSeries', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -759,22 +774,22 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
-     *     $metricServiceClient->deleteMetricDescriptor($formattedName);
+     *     $metricServiceClient->deleteMetricDescriptor();
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The metric descriptor on which to execute the request. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
-     *
-     *                             An example of `[METRIC_ID]` is:
-     *                             `"custom.googleapis.com/my_test_metric"`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The metric descriptor on which to execute the request. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
+     *
+     *           An example of `[METRIC_ID]` is:
+     *           `"custom.googleapis.com/my_test_metric"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -783,12 +798,15 @@ class MetricServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteMetricDescriptor($name, array $optionalArgs = [])
+    public function deleteMetricDescriptor(array $optionalArgs = [])
     {
         $request = new DeleteMetricDescriptorRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteMetricDescriptor', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -801,22 +819,22 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
-     *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
+     *     $response = $metricServiceClient->getMetricDescriptor();
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The metric descriptor on which to execute the request. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
-     *
-     *                             An example value of `[METRIC_ID]` is
-     *                             `"compute.googleapis.com/instance/disk/read_bytes_count"`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The metric descriptor on which to execute the request. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
+     *
+     *           An example value of `[METRIC_ID]` is
+     *           `"compute.googleapis.com/instance/disk/read_bytes_count"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -827,12 +845,15 @@ class MetricServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getMetricDescriptor($name, array $optionalArgs = [])
+    public function getMetricDescriptor(array $optionalArgs = [])
     {
         $request = new GetMetricDescriptorRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetMetricDescriptor', MetricDescriptor::class, $optionalArgs, $request)->wait();
@@ -845,22 +866,22 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
-     *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
+     *     $response = $metricServiceClient->getMonitoredResourceDescriptor();
      * } finally {
      *     $metricServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The monitored resource descriptor to get.  The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE]
-     *
-     *                             The `[RESOURCE_TYPE]` is a predefined type, such as
-     *                             `cloudsql_database`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The monitored resource descriptor to get.  The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE]
+     *
+     *           The `[RESOURCE_TYPE]` is a predefined type, such as
+     *           `cloudsql_database`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -871,12 +892,15 @@ class MetricServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getMonitoredResourceDescriptor($name, array $optionalArgs = [])
+    public function getMonitoredResourceDescriptor(array $optionalArgs = [])
     {
         $request = new GetMonitoredResourceDescriptorRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetMonitoredResourceDescriptor', MonitoredResourceDescriptor::class, $optionalArgs, $request)->wait();
@@ -889,9 +913,8 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $name = 'name';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($name);
+     *     $pagedResponse = $metricServiceClient->listMetricDescriptors();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -899,7 +922,7 @@ class MetricServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($name);
+     *     $pagedResponse = $metricServiceClient->listMetricDescriptors();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -908,13 +931,14 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *                             which to execute the request. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *           which to execute the request. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $filter
      *           If this field is empty, all custom and
      *           system-defined metric descriptors are returned.
@@ -943,12 +967,15 @@ class MetricServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listMetricDescriptors($name, array $optionalArgs = [])
+    public function listMetricDescriptors(array $optionalArgs = [])
     {
         $request = new ListMetricDescriptorsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -973,9 +1000,8 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $name = 'name';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($name);
+     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -983,7 +1009,7 @@ class MetricServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($name);
+     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -992,13 +1018,14 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *                             which to execute the request. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *           which to execute the request. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $filter
      *           An optional [filter](https://cloud.google.com/monitoring/api/v3/filters)
      *           describing the descriptors to be returned.  The filter can reference the
@@ -1025,12 +1052,15 @@ class MetricServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listMonitoredResourceDescriptors($name, array $optionalArgs = [])
+    public function listMonitoredResourceDescriptors(array $optionalArgs = [])
     {
         $request = new ListMonitoredResourceDescriptorsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1055,12 +1085,8 @@ class MetricServiceGapicClient
      * ```
      * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->workspaceName('[PROJECT]');
-     *     $filter = 'filter';
-     *     $interval = new Google\Cloud\Monitoring\V3\TimeInterval();
-     *     $view = Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView::FULL;
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
+     *     $pagedResponse = $metricServiceClient->listTimeSeries();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1068,7 +1094,7 @@ class MetricServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
+     *     $pagedResponse = $metricServiceClient->listTimeSeries();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1077,27 +1103,28 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string       $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name),
-     *                                   organization or folder on which to execute the request. The format is:
-     *
-     *                                   projects/[PROJECT_ID_OR_NUMBER]
-     *                                   organizations/[ORGANIZATION_ID]
-     *                                   folders/[FOLDER_ID]
-     * @param string       $filter       Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
-     *                                   that specifies which time series should be returned.  The filter must
-     *                                   specify a single metric type, and can additionally specify metric labels
-     *                                   and other information. For example:
-     *
-     *                                   metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
-     *                                   metric.labels.instance_name = "my-instance-name"
-     * @param TimeInterval $interval     Required. The time interval for which results should be returned. Only time series
-     *                                   that contain data points in the specified interval are included
-     *                                   in the response.
-     * @param int          $view         Required. Specifies which information is returned about the time series.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView}
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name),
+     *           organization or folder on which to execute the request. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
+     *           organizations/[ORGANIZATION_ID]
+     *           folders/[FOLDER_ID]
+     *     @type string $filter
+     *           Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
+     *           that specifies which time series should be returned.  The filter must
+     *           specify a single metric type, and can additionally specify metric labels
+     *           and other information. For example:
+     *
+     *           metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
+     *           metric.labels.instance_name = "my-instance-name"
+     *     @type TimeInterval $interval
+     *           Required. The time interval for which results should be returned. Only time series
+     *           that contain data points in the specified interval are included
+     *           in the response.
      *     @type Aggregation $aggregation
      *           Specifies the alignment of data points in individual time series as
      *           well as how to combine the retrieved time series across specified labels.
@@ -1110,6 +1137,9 @@ class MetricServiceGapicClient
      *     @type string $orderBy
      *           Unsupported: must be left blank. The points in each time series are
      *           currently returned in reverse time order (most recent to oldest).
+     *     @type int $view
+     *           Required. Specifies which information is returned about the time series.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1129,15 +1159,23 @@ class MetricServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTimeSeries($name, $filter, $interval, $view, array $optionalArgs = [])
+    public function listTimeSeries(array $optionalArgs = [])
     {
         $request = new ListTimeSeriesRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setFilter($filter);
-        $request->setInterval($interval);
-        $request->setView($view);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['interval'])) {
+            $request->setInterval($optionalArgs['interval']);
+        }
+
         if (isset($optionalArgs['aggregation'])) {
             $request->setAggregation($optionalArgs['aggregation']);
         }
@@ -1148,6 +1186,10 @@ class MetricServiceGapicClient
 
         if (isset($optionalArgs['orderBy'])) {
             $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
         }
 
         if (isset($optionalArgs['pageSize'])) {

@@ -90,9 +90,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $configServiceV2Client = new ConfigServiceV2Client();
  * try {
- *     $name = 'name';
- *     $destination = 'destination';
- *     $operationResponse = $configServiceV2Client->copyLogEntries($name, $destination);
+ *     $operationResponse = $configServiceV2Client->copyLogEntries();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -103,7 +101,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $configServiceV2Client->copyLogEntries($name, $destination);
+ *     $operationResponse = $configServiceV2Client->copyLogEntries();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $configServiceV2Client->resumeOperation($operationName, 'copyLogEntries');
@@ -1643,9 +1641,7 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $name = 'name';
-     *     $destination = 'destination';
-     *     $operationResponse = $configServiceV2Client->copyLogEntries($name, $destination);
+     *     $operationResponse = $configServiceV2Client->copyLogEntries();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1656,7 +1652,7 @@ class ConfigServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $configServiceV2Client->copyLogEntries($name, $destination);
+     *     $operationResponse = $configServiceV2Client->copyLogEntries();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $configServiceV2Client->resumeOperation($operationName, 'copyLogEntries');
@@ -1676,18 +1672,20 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Log bucket from which to copy log entries.
-     *
-     *                             For example:
-     *
-     *                             `"projects/my-project/locations/global/buckets/my-source-bucket"`
-     * @param string $destination  Required. Destination to which to copy log entries.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Log bucket from which to copy log entries.
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global/buckets/my-source-bucket"`
      *     @type string $filter
      *           Optional. A filter specifying which log entries to copy. The filter must be
      *           no more than 20k characters. An empty filter matches all log entries.
+     *     @type string $destination
+     *           Required. Destination to which to copy log entries.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1698,13 +1696,19 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function copyLogEntries($name, $destination, array $optionalArgs = [])
+    public function copyLogEntries(array $optionalArgs = [])
     {
         $request = new CopyLogEntriesRequest();
-        $request->setName($name);
-        $request->setDestination($destination);
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['destination'])) {
+            $request->setDestination($optionalArgs['destination']);
         }
 
         return $this->startOperationsCall('CopyLogEntries', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1718,31 +1722,31 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedParent = $configServiceV2Client->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-     *     $bucketId = 'bucket_id';
-     *     $bucket = new LogBucket();
-     *     $response = $configServiceV2Client->createBucket($formattedParent, $bucketId, $bucket);
+     *     $response = $configServiceV2Client->createBucket();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string    $parent       Required. The resource in which to create the log bucket:
-     *
-     *                                "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     *
-     *                                For example:
-     *
-     *                                `"projects/my-project/locations/global"`
-     * @param string    $bucketId     Required. A client-assigned identifier such as `"my-bucket"`. Identifiers
-     *                                are limited to 100 characters and can include only letters, digits,
-     *                                underscores, hyphens, and periods.
-     * @param LogBucket $bucket       Required. The new bucket. The region specified in the new bucket must be
-     *                                compliant with any Location Restriction Org Policy. The name field in the
-     *                                bucket is ignored.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource in which to create the log bucket:
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global"`
+     *     @type string $bucketId
+     *           Required. A client-assigned identifier such as `"my-bucket"`. Identifiers
+     *           are limited to 100 characters and can include only letters, digits,
+     *           underscores, hyphens, and periods.
+     *     @type LogBucket $bucket
+     *           Required. The new bucket. The region specified in the new bucket must be
+     *           compliant with any Location Restriction Org Policy. The name field in the
+     *           bucket is ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1753,14 +1757,23 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBucket($parent, $bucketId, $bucket, array $optionalArgs = [])
+    public function createBucket(array $optionalArgs = [])
     {
         $request = new CreateBucketRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setBucketId($bucketId);
-        $request->setBucket($bucket);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['bucketId'])) {
+            $request->setBucketId($optionalArgs['bucketId']);
+        }
+
+        if (isset($optionalArgs['bucket'])) {
+            $request->setBucket($optionalArgs['bucket']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateBucket', LogBucket::class, $optionalArgs, $request)->wait();
@@ -1775,10 +1788,7 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedParent = $configServiceV2Client->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-     *     $bucketId = 'bucket_id';
-     *     $bucket = new LogBucket();
-     *     $operationResponse = $configServiceV2Client->createBucketAsync($formattedParent, $bucketId, $bucket);
+     *     $operationResponse = $configServiceV2Client->createBucketAsync();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1789,7 +1799,7 @@ class ConfigServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $configServiceV2Client->createBucketAsync($formattedParent, $bucketId, $bucket);
+     *     $operationResponse = $configServiceV2Client->createBucketAsync();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $configServiceV2Client->resumeOperation($operationName, 'createBucketAsync');
@@ -1809,22 +1819,25 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The resource in which to create the log bucket:
-     *
-     *                                "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     *
-     *                                For example:
-     *
-     *                                `"projects/my-project/locations/global"`
-     * @param string    $bucketId     Required. A client-assigned identifier such as `"my-bucket"`. Identifiers
-     *                                are limited to 100 characters and can include only letters, digits,
-     *                                underscores, hyphens, and periods.
-     * @param LogBucket $bucket       Required. The new bucket. The region specified in the new bucket must be
-     *                                compliant with any Location Restriction Org Policy. The name field in the
-     *                                bucket is ignored.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource in which to create the log bucket:
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global"`
+     *     @type string $bucketId
+     *           Required. A client-assigned identifier such as `"my-bucket"`. Identifiers
+     *           are limited to 100 characters and can include only letters, digits,
+     *           underscores, hyphens, and periods.
+     *     @type LogBucket $bucket
+     *           Required. The new bucket. The region specified in the new bucket must be
+     *           compliant with any Location Restriction Org Policy. The name field in the
+     *           bucket is ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1835,14 +1848,23 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBucketAsync($parent, $bucketId, $bucket, array $optionalArgs = [])
+    public function createBucketAsync(array $optionalArgs = [])
     {
         $request = new CreateBucketRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setBucketId($bucketId);
-        $request->setBucket($bucket);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['bucketId'])) {
+            $request->setBucketId($optionalArgs['bucketId']);
+        }
+
+        if (isset($optionalArgs['bucket'])) {
+            $request->setBucket($optionalArgs['bucket']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateBucketAsync', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1857,30 +1879,30 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
-     *     $exclusion = new LogExclusion();
-     *     $response = $configServiceV2Client->createExclusion($formattedParent, $exclusion);
+     *     $response = $configServiceV2Client->createExclusion();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string       $parent       Required. The parent resource in which to create the exclusion:
-     *
-     *                                   "projects/[PROJECT_ID]"
-     *                                   "organizations/[ORGANIZATION_ID]"
-     *                                   "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *                                   "folders/[FOLDER_ID]"
-     *
-     *                                   For examples:
-     *
-     *                                   `"projects/my-logging-project"`
-     *                                   `"organizations/123456789"`
-     * @param LogExclusion $exclusion    Required. The new exclusion, whose `name` parameter is an exclusion name
-     *                                   that is not already used in the parent resource.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource in which to create the exclusion:
+     *
+     *           "projects/[PROJECT_ID]"
+     *           "organizations/[ORGANIZATION_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *           "folders/[FOLDER_ID]"
+     *
+     *           For examples:
+     *
+     *           `"projects/my-logging-project"`
+     *           `"organizations/123456789"`
+     *     @type LogExclusion $exclusion
+     *           Required. The new exclusion, whose `name` parameter is an exclusion name
+     *           that is not already used in the parent resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1891,13 +1913,19 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createExclusion($parent, $exclusion, array $optionalArgs = [])
+    public function createExclusion(array $optionalArgs = [])
     {
         $request = new CreateExclusionRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setExclusion($exclusion);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['exclusion'])) {
+            $request->setExclusion($optionalArgs['exclusion']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateExclusion', LogExclusion::class, $optionalArgs, $request)->wait();
@@ -1912,10 +1940,7 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedParent = $configServiceV2Client->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-     *     $link = new Link();
-     *     $linkId = 'link_id';
-     *     $operationResponse = $configServiceV2Client->createLink($formattedParent, $link, $linkId);
+     *     $operationResponse = $configServiceV2Client->createLink();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1926,7 +1951,7 @@ class ConfigServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $configServiceV2Client->createLink($formattedParent, $link, $linkId);
+     *     $operationResponse = $configServiceV2Client->createLink();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $configServiceV2Client->resumeOperation($operationName, 'createLink');
@@ -1946,19 +1971,22 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The full resource name of the bucket to create a link for.
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     * @param Link   $link         Required. The new link.
-     * @param string $linkId       Required. The ID to use for the link. The link_id can have up to 100
-     *                             characters. A valid link_id must only have alphanumeric characters and
-     *                             underscores within it.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The full resource name of the bucket to create a link for.
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *     @type Link $link
+     *           Required. The new link.
+     *     @type string $linkId
+     *           Required. The ID to use for the link. The link_id can have up to 100
+     *           characters. A valid link_id must only have alphanumeric characters and
+     *           underscores within it.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1969,14 +1997,23 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createLink($parent, $link, $linkId, array $optionalArgs = [])
+    public function createLink(array $optionalArgs = [])
     {
         $request = new CreateLinkRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setLink($link);
-        $request->setLinkId($linkId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['link'])) {
+            $request->setLink($optionalArgs['link']);
+        }
+
+        if (isset($optionalArgs['linkId'])) {
+            $request->setLinkId($optionalArgs['linkId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateLink', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1992,30 +2029,30 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
-     *     $sink = new LogSink();
-     *     $response = $configServiceV2Client->createSink($formattedParent, $sink);
+     *     $response = $configServiceV2Client->createSink();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. The resource in which to create the sink:
-     *
-     *                              "projects/[PROJECT_ID]"
-     *                              "organizations/[ORGANIZATION_ID]"
-     *                              "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *                              "folders/[FOLDER_ID]"
-     *
-     *                              For examples:
-     *
-     *                              `"projects/my-project"`
-     *                              `"organizations/123456789"`
-     * @param LogSink $sink         Required. The new sink, whose `name` parameter is a sink identifier that
-     *                              is not already in use.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource in which to create the sink:
+     *
+     *           "projects/[PROJECT_ID]"
+     *           "organizations/[ORGANIZATION_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *           "folders/[FOLDER_ID]"
+     *
+     *           For examples:
+     *
+     *           `"projects/my-project"`
+     *           `"organizations/123456789"`
+     *     @type LogSink $sink
+     *           Required. The new sink, whose `name` parameter is a sink identifier that
+     *           is not already in use.
      *     @type bool $uniqueWriterIdentity
      *           Optional. Determines the kind of IAM identity returned as `writer_identity`
      *           in the new sink. If this value is omitted or set to false, and if the
@@ -2039,13 +2076,19 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSink($parent, $sink, array $optionalArgs = [])
+    public function createSink(array $optionalArgs = [])
     {
         $request = new CreateSinkRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSink($sink);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['sink'])) {
+            $request->setSink($optionalArgs['sink']);
+        }
+
         if (isset($optionalArgs['uniqueWriterIdentity'])) {
             $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
         }
@@ -2063,29 +2106,29 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $parent = 'parent';
-     *     $viewId = 'view_id';
-     *     $view = new LogView();
-     *     $response = $configServiceV2Client->createView($parent, $viewId, $view);
+     *     $response = $configServiceV2Client->createView();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. The bucket in which to create the view
-     *
-     *                              `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"`
-     *
-     *                              For example:
-     *
-     *                              `"projects/my-project/locations/global/buckets/my-bucket"`
-     * @param string  $viewId       Required. A client-assigned identifier such as `"my-view"`. Identifiers are
-     *                              limited to 100 characters and can include only letters, digits,
-     *                              underscores, hyphens, and periods.
-     * @param LogView $view         Required. The new view.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The bucket in which to create the view
+     *
+     *           `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"`
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global/buckets/my-bucket"`
+     *     @type string $viewId
+     *           Required. A client-assigned identifier such as `"my-view"`. Identifiers are
+     *           limited to 100 characters and can include only letters, digits,
+     *           underscores, hyphens, and periods.
+     *     @type LogView $view
+     *           Required. The new view.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2096,14 +2139,23 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createView($parent, $viewId, $view, array $optionalArgs = [])
+    public function createView(array $optionalArgs = [])
     {
         $request = new CreateViewRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setViewId($viewId);
-        $request->setView($view);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['viewId'])) {
+            $request->setViewId($optionalArgs['viewId']);
+        }
+
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateView', LogView::class, $optionalArgs, $request)->wait();
@@ -2120,26 +2172,26 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-     *     $configServiceV2Client->deleteBucket($formattedName);
+     *     $configServiceV2Client->deleteBucket();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full resource name of the bucket to delete.
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *
-     *                             For example:
-     *
-     *                             `"projects/my-project/locations/global/buckets/my-bucket"`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the bucket to delete.
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global/buckets/my-bucket"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2148,12 +2200,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBucket($name, array $optionalArgs = [])
+    public function deleteBucket(array $optionalArgs = [])
     {
         $request = new DeleteBucketRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteBucket', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -2166,26 +2221,26 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->logExclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $configServiceV2Client->deleteExclusion($formattedName);
+     *     $configServiceV2Client->deleteExclusion();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of an existing exclusion to delete:
-     *
-     *                             "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *                             "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *
-     *                             For example:
-     *
-     *                             `"projects/my-project/exclusions/my-exclusion"`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of an existing exclusion to delete:
+     *
+     *           "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *           "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *           "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/exclusions/my-exclusion"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2194,12 +2249,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteExclusion($name, array $optionalArgs = [])
+    public function deleteExclusion(array $optionalArgs = [])
     {
         $request = new DeleteExclusionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteExclusion', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -2213,8 +2271,7 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->linkName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[LINK]');
-     *     $operationResponse = $configServiceV2Client->deleteLink($formattedName);
+     *     $operationResponse = $configServiceV2Client->deleteLink();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -2224,7 +2281,7 @@ class ConfigServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $configServiceV2Client->deleteLink($formattedName);
+     *     $operationResponse = $configServiceV2Client->deleteLink();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $configServiceV2Client->resumeOperation($operationName, 'deleteLink');
@@ -2243,15 +2300,16 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The full resource name of the link to delete.
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
-     *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the link to delete.
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
+     *           "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
+     *           "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2262,12 +2320,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteLink($name, array $optionalArgs = [])
+    public function deleteLink(array $optionalArgs = [])
     {
         $request = new DeleteLinkRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteLink', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -2281,27 +2342,27 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedSinkName = $configServiceV2Client->logSinkName('[PROJECT]', '[SINK]');
-     *     $configServiceV2Client->deleteSink($formattedSinkName);
+     *     $configServiceV2Client->deleteSink();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $sinkName     Required. The full resource name of the sink to delete, including the
-     *                             parent resource and the sink identifier:
-     *
-     *                             "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *                             "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *
-     *                             For example:
-     *
-     *                             `"projects/my-project/sinks/my-sink"`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $sinkName
+     *           Required. The full resource name of the sink to delete, including the
+     *           parent resource and the sink identifier:
+     *
+     *           "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *           "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *           "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/sinks/my-sink"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2310,12 +2371,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSink($sinkName, array $optionalArgs = [])
+    public function deleteSink(array $optionalArgs = [])
     {
         $request = new DeleteSinkRequest();
         $requestParamHeaders = [];
-        $request->setSinkName($sinkName);
-        $requestParamHeaders['sink_name'] = $sinkName;
+        if (isset($optionalArgs['sinkName'])) {
+            $request->setSinkName($optionalArgs['sinkName']);
+            $requestParamHeaders['sink_name'] = $optionalArgs['sinkName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteSink', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -2331,23 +2395,23 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->logViewName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[VIEW]');
-     *     $configServiceV2Client->deleteView($formattedName);
+     *     $configServiceV2Client->deleteView();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full resource name of the view to delete:
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *
-     *                             For example:
-     *
-     *                             `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the view to delete:
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2356,12 +2420,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteView($name, array $optionalArgs = [])
+    public function deleteView(array $optionalArgs = [])
     {
         $request = new DeleteViewRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteView', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -2374,26 +2441,26 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-     *     $response = $configServiceV2Client->getBucket($formattedName);
+     *     $response = $configServiceV2Client->getBucket();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the bucket:
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *
-     *                             For example:
-     *
-     *                             `"projects/my-project/locations/global/buckets/my-bucket"`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the bucket:
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global/buckets/my-bucket"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2404,12 +2471,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBucket($name, array $optionalArgs = [])
+    public function getBucket(array $optionalArgs = [])
     {
         $request = new GetBucketRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetBucket', LogBucket::class, $optionalArgs, $request)->wait();
@@ -2487,26 +2557,26 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->logExclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $response = $configServiceV2Client->getExclusion($formattedName);
+     *     $response = $configServiceV2Client->getExclusion();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of an existing exclusion:
-     *
-     *                             "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *                             "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *
-     *                             For example:
-     *
-     *                             `"projects/my-project/exclusions/my-exclusion"`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of an existing exclusion:
+     *
+     *           "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *           "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *           "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/exclusions/my-exclusion"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2517,12 +2587,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getExclusion($name, array $optionalArgs = [])
+    public function getExclusion(array $optionalArgs = [])
     {
         $request = new GetExclusionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetExclusion', LogExclusion::class, $optionalArgs, $request)->wait();
@@ -2535,22 +2608,22 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->linkName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[LINK]');
-     *     $response = $configServiceV2Client->getLink($formattedName);
+     *     $response = $configServiceV2Client->getLink();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the link:
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
-     *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the link:
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
+     *           "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
+     *           "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2561,12 +2634,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getLink($name, array $optionalArgs = [])
+    public function getLink(array $optionalArgs = [])
     {
         $request = new GetLinkRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetLink', Link::class, $optionalArgs, $request)->wait();
@@ -2588,31 +2664,31 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->settingsName('[PROJECT]');
-     *     $response = $configServiceV2Client->getSettings($formattedName);
+     *     $response = $configServiceV2Client->getSettings();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource for which to retrieve settings.
-     *
-     *                             "projects/[PROJECT_ID]/settings"
-     *                             "organizations/[ORGANIZATION_ID]/settings"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/settings"
-     *                             "folders/[FOLDER_ID]/settings"
-     *
-     *                             For example:
-     *
-     *                             `"organizations/12345/settings"`
-     *
-     *                             Note: Settings for the Log Router can be get for Google Cloud projects,
-     *                             folders, organizations and billing accounts. Currently it can only be
-     *                             configured for organizations. Once configured for an organization, it
-     *                             applies to all projects and folders in the Google Cloud organization.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource for which to retrieve settings.
+     *
+     *           "projects/[PROJECT_ID]/settings"
+     *           "organizations/[ORGANIZATION_ID]/settings"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/settings"
+     *           "folders/[FOLDER_ID]/settings"
+     *
+     *           For example:
+     *
+     *           `"organizations/12345/settings"`
+     *
+     *           Note: Settings for the Log Router can be get for Google Cloud projects,
+     *           folders, organizations and billing accounts. Currently it can only be
+     *           configured for organizations. Once configured for an organization, it
+     *           applies to all projects and folders in the Google Cloud organization.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2623,12 +2699,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSettings($name, array $optionalArgs = [])
+    public function getSettings(array $optionalArgs = [])
     {
         $request = new GetSettingsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSettings', Settings::class, $optionalArgs, $request)->wait();
@@ -2641,26 +2720,26 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedSinkName = $configServiceV2Client->logSinkName('[PROJECT]', '[SINK]');
-     *     $response = $configServiceV2Client->getSink($formattedSinkName);
+     *     $response = $configServiceV2Client->getSink();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $sinkName     Required. The resource name of the sink:
-     *
-     *                             "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *                             "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *
-     *                             For example:
-     *
-     *                             `"projects/my-project/sinks/my-sink"`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $sinkName
+     *           Required. The resource name of the sink:
+     *
+     *           "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *           "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *           "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/sinks/my-sink"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2671,12 +2750,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSink($sinkName, array $optionalArgs = [])
+    public function getSink(array $optionalArgs = [])
     {
         $request = new GetSinkRequest();
         $requestParamHeaders = [];
-        $request->setSinkName($sinkName);
-        $requestParamHeaders['sink_name'] = $sinkName;
+        if (isset($optionalArgs['sinkName'])) {
+            $request->setSinkName($optionalArgs['sinkName']);
+            $requestParamHeaders['sink_name'] = $optionalArgs['sinkName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSink', LogSink::class, $optionalArgs, $request)->wait();
@@ -2689,23 +2771,23 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->logViewName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[VIEW]');
-     *     $response = $configServiceV2Client->getView($formattedName);
+     *     $response = $configServiceV2Client->getView();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the policy:
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *
-     *                             For example:
-     *
-     *                             `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the policy:
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2716,12 +2798,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getView($name, array $optionalArgs = [])
+    public function getView(array $optionalArgs = [])
     {
         $request = new GetViewRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetView', LogView::class, $optionalArgs, $request)->wait();
@@ -2734,9 +2819,8 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedParent = $configServiceV2Client->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $configServiceV2Client->listBuckets($formattedParent);
+     *     $pagedResponse = $configServiceV2Client->listBuckets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2744,7 +2828,7 @@ class ConfigServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $configServiceV2Client->listBuckets($formattedParent);
+     *     $pagedResponse = $configServiceV2Client->listBuckets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2753,19 +2837,20 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource whose buckets are to be listed:
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
-     *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
-     *
-     *                             Note: The locations portion of the resource must be specified, but
-     *                             supplying the character `-` in place of [LOCATION_ID] will return all
-     *                             buckets.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource whose buckets are to be listed:
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     *           "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]"
+     *           "folders/[FOLDER_ID]/locations/[LOCATION_ID]"
+     *
+     *           Note: The locations portion of the resource must be specified, but
+     *           supplying the character `-` in place of [LOCATION_ID] will return all
+     *           buckets.
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -2785,12 +2870,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBuckets($parent, array $optionalArgs = [])
+    public function listBuckets(array $optionalArgs = [])
     {
         $request = new ListBucketsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -2811,9 +2899,8 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $configServiceV2Client->listExclusions($formattedParent);
+     *     $pagedResponse = $configServiceV2Client->listExclusions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2821,7 +2908,7 @@ class ConfigServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $configServiceV2Client->listExclusions($formattedParent);
+     *     $pagedResponse = $configServiceV2Client->listExclusions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2830,15 +2917,16 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource whose exclusions are to be listed.
-     *
-     *                             "projects/[PROJECT_ID]"
-     *                             "organizations/[ORGANIZATION_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *                             "folders/[FOLDER_ID]"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource whose exclusions are to be listed.
+     *
+     *           "projects/[PROJECT_ID]"
+     *           "organizations/[ORGANIZATION_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *           "folders/[FOLDER_ID]"
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -2858,12 +2946,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listExclusions($parent, array $optionalArgs = [])
+    public function listExclusions(array $optionalArgs = [])
     {
         $request = new ListExclusionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -2884,9 +2975,8 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedParent = $configServiceV2Client->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $configServiceV2Client->listLinks($formattedParent);
+     *     $pagedResponse = $configServiceV2Client->listLinks();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2894,7 +2984,7 @@ class ConfigServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $configServiceV2Client->listLinks($formattedParent);
+     *     $pagedResponse = $configServiceV2Client->listLinks();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2903,15 +2993,16 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource whose links are to be listed:
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/"
-     *                             "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
-     *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource whose links are to be listed:
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/"
+     *           "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/"
+     *           "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -2931,12 +3022,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listLinks($parent, array $optionalArgs = [])
+    public function listLinks(array $optionalArgs = [])
     {
         $request = new ListLinksRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -2957,9 +3051,8 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedParent = $configServiceV2Client->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
+     *     $pagedResponse = $configServiceV2Client->listSinks();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2967,7 +3060,7 @@ class ConfigServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
+     *     $pagedResponse = $configServiceV2Client->listSinks();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2976,15 +3069,16 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource whose sinks are to be listed:
-     *
-     *                             "projects/[PROJECT_ID]"
-     *                             "organizations/[ORGANIZATION_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *                             "folders/[FOLDER_ID]"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource whose sinks are to be listed:
+     *
+     *           "projects/[PROJECT_ID]"
+     *           "organizations/[ORGANIZATION_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *           "folders/[FOLDER_ID]"
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -3004,12 +3098,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSinks($parent, array $optionalArgs = [])
+    public function listSinks(array $optionalArgs = [])
     {
         $request = new ListSinksRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -3030,9 +3127,8 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $configServiceV2Client->listViews($parent);
+     *     $pagedResponse = $configServiceV2Client->listViews();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3040,7 +3136,7 @@ class ConfigServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $configServiceV2Client->listViews($parent);
+     *     $pagedResponse = $configServiceV2Client->listViews();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3049,12 +3145,13 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The bucket whose views are to be listed:
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The bucket whose views are to be listed:
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -3074,12 +3171,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listViews($parent, array $optionalArgs = [])
+    public function listViews(array $optionalArgs = [])
     {
         $request = new ListViewsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -3101,26 +3201,26 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-     *     $configServiceV2Client->undeleteBucket($formattedName);
+     *     $configServiceV2Client->undeleteBucket();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full resource name of the bucket to undelete.
-     *
-     *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *
-     *                             For example:
-     *
-     *                             `"projects/my-project/locations/global/buckets/my-bucket"`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the bucket to undelete.
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global/buckets/my-bucket"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3129,12 +3229,15 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeleteBucket($name, array $optionalArgs = [])
+    public function undeleteBucket(array $optionalArgs = [])
     {
         $request = new UndeleteBucketRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UndeleteBucket', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -3152,37 +3255,37 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-     *     $bucket = new LogBucket();
-     *     $updateMask = new FieldMask();
-     *     $response = $configServiceV2Client->updateBucket($formattedName, $bucket, $updateMask);
+     *     $response = $configServiceV2Client->updateBucket();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string    $name         Required. The full resource name of the bucket to update.
-     *
-     *                                "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                                "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                                "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                                "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *
-     *                                For example:
-     *
-     *                                `"projects/my-project/locations/global/buckets/my-bucket"`
-     * @param LogBucket $bucket       Required. The updated bucket.
-     * @param FieldMask $updateMask   Required. Field mask that specifies the fields in `bucket` that need an
-     *                                update. A bucket field will be overwritten if, and only if, it is in the
-     *                                update mask. `name` and output only fields cannot be updated.
-     *
-     *                                For a detailed `FieldMask` definition, see:
-     *                                https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
-     *
-     *                                For example: `updateMask=retention_days`
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the bucket to update.
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global/buckets/my-bucket"`
+     *     @type LogBucket $bucket
+     *           Required. The updated bucket.
+     *     @type FieldMask $updateMask
+     *           Required. Field mask that specifies the fields in `bucket` that need an
+     *           update. A bucket field will be overwritten if, and only if, it is in the
+     *           update mask. `name` and output only fields cannot be updated.
+     *
+     *           For a detailed `FieldMask` definition, see:
+     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
+     *
+     *           For example: `updateMask=retention_days`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3193,14 +3296,23 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateBucket($name, $bucket, $updateMask, array $optionalArgs = [])
+    public function updateBucket(array $optionalArgs = [])
     {
         $request = new UpdateBucketRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setBucket($bucket);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['bucket'])) {
+            $request->setBucket($optionalArgs['bucket']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateBucket', LogBucket::class, $optionalArgs, $request)->wait();
@@ -3218,10 +3330,7 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-     *     $bucket = new LogBucket();
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $configServiceV2Client->updateBucketAsync($formattedName, $bucket, $updateMask);
+     *     $operationResponse = $configServiceV2Client->updateBucketAsync();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3232,7 +3341,7 @@ class ConfigServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $configServiceV2Client->updateBucketAsync($formattedName, $bucket, $updateMask);
+     *     $operationResponse = $configServiceV2Client->updateBucketAsync();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $configServiceV2Client->resumeOperation($operationName, 'updateBucketAsync');
@@ -3252,28 +3361,31 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string    $name         Required. The full resource name of the bucket to update.
-     *
-     *                                "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                                "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                                "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *                                "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *
-     *                                For example:
-     *
-     *                                `"projects/my-project/locations/global/buckets/my-bucket"`
-     * @param LogBucket $bucket       Required. The updated bucket.
-     * @param FieldMask $updateMask   Required. Field mask that specifies the fields in `bucket` that need an
-     *                                update. A bucket field will be overwritten if, and only if, it is in the
-     *                                update mask. `name` and output only fields cannot be updated.
-     *
-     *                                For a detailed `FieldMask` definition, see:
-     *                                https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
-     *
-     *                                For example: `updateMask=retention_days`
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the bucket to update.
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *           "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global/buckets/my-bucket"`
+     *     @type LogBucket $bucket
+     *           Required. The updated bucket.
+     *     @type FieldMask $updateMask
+     *           Required. Field mask that specifies the fields in `bucket` that need an
+     *           update. A bucket field will be overwritten if, and only if, it is in the
+     *           update mask. `name` and output only fields cannot be updated.
+     *
+     *           For a detailed `FieldMask` definition, see:
+     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
+     *
+     *           For example: `updateMask=retention_days`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3284,14 +3396,23 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateBucketAsync($name, $bucket, $updateMask, array $optionalArgs = [])
+    public function updateBucketAsync(array $optionalArgs = [])
     {
         $request = new UpdateBucketRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setBucket($bucket);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['bucket'])) {
+            $request->setBucket($optionalArgs['bucket']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpdateBucketAsync', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -3396,38 +3517,38 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedName = $configServiceV2Client->logExclusionName('[PROJECT]', '[EXCLUSION]');
-     *     $exclusion = new LogExclusion();
-     *     $updateMask = new FieldMask();
-     *     $response = $configServiceV2Client->updateExclusion($formattedName, $exclusion, $updateMask);
+     *     $response = $configServiceV2Client->updateExclusion();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string       $name         Required. The resource name of the exclusion to update:
-     *
-     *                                   "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
-     *                                   "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
-     *                                   "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
-     *                                   "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *
-     *                                   For example:
-     *
-     *                                   `"projects/my-project/exclusions/my-exclusion"`
-     * @param LogExclusion $exclusion    Required. New values for the existing exclusion. Only the fields specified
-     *                                   in `update_mask` are relevant.
-     * @param FieldMask    $updateMask   Required. A non-empty list of fields to change in the existing exclusion.
-     *                                   New values for the fields are taken from the corresponding fields in the
-     *                                   [LogExclusion][google.logging.v2.LogExclusion] included in this request.
-     *                                   Fields not mentioned in `update_mask` are not changed and are ignored in
-     *                                   the request.
-     *
-     *                                   For example, to change the filter and description of an exclusion,
-     *                                   specify an `update_mask` of `"filter,description"`.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the exclusion to update:
+     *
+     *           "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *           "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *           "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/exclusions/my-exclusion"`
+     *     @type LogExclusion $exclusion
+     *           Required. New values for the existing exclusion. Only the fields specified
+     *           in `update_mask` are relevant.
+     *     @type FieldMask $updateMask
+     *           Required. A non-empty list of fields to change in the existing exclusion.
+     *           New values for the fields are taken from the corresponding fields in the
+     *           [LogExclusion][google.logging.v2.LogExclusion] included in this request.
+     *           Fields not mentioned in `update_mask` are not changed and are ignored in
+     *           the request.
+     *
+     *           For example, to change the filter and description of an exclusion,
+     *           specify an `update_mask` of `"filter,description"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3438,14 +3559,23 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateExclusion($name, $exclusion, $updateMask, array $optionalArgs = [])
+    public function updateExclusion(array $optionalArgs = [])
     {
         $request = new UpdateExclusionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setExclusion($exclusion);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['exclusion'])) {
+            $request->setExclusion($optionalArgs['exclusion']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateExclusion', LogExclusion::class, $optionalArgs, $request)->wait();
@@ -3473,33 +3603,33 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $name = 'name';
-     *     $settings = new Settings();
-     *     $response = $configServiceV2Client->updateSettings($name, $settings);
+     *     $response = $configServiceV2Client->updateSettings();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string   $name         Required. The resource name for the settings to update.
-     *
-     *                               "organizations/[ORGANIZATION_ID]/settings"
-     *
-     *                               For example:
-     *
-     *                               `"organizations/12345/settings"`
-     *
-     *                               Note: Settings for the Log Router can currently only be configured for
-     *                               Google Cloud organizations. Once configured, it applies to all projects and
-     *                               folders in the Google Cloud organization.
-     * @param Settings $settings     Required. The settings to update.
-     *
-     *                               See [Enabling CMEK for Log
-     *                               Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
-     *                               for more information.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for the settings to update.
+     *
+     *           "organizations/[ORGANIZATION_ID]/settings"
+     *
+     *           For example:
+     *
+     *           `"organizations/12345/settings"`
+     *
+     *           Note: Settings for the Log Router can currently only be configured for
+     *           Google Cloud organizations. Once configured, it applies to all projects and
+     *           folders in the Google Cloud organization.
+     *     @type Settings $settings
+     *           Required. The settings to update.
+     *
+     *           See [Enabling CMEK for Log
+     *           Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+     *           for more information.
      *     @type FieldMask $updateMask
      *           Optional. Field mask identifying which fields from `settings` should
      *           be updated. A field will be overwritten if and only if it is in the update
@@ -3518,13 +3648,19 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSettings($name, $settings, array $optionalArgs = [])
+    public function updateSettings(array $optionalArgs = [])
     {
         $request = new UpdateSettingsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setSettings($settings);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['settings'])) {
+            $request->setSettings($optionalArgs['settings']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3545,30 +3681,30 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $formattedSinkName = $configServiceV2Client->logSinkName('[PROJECT]', '[SINK]');
-     *     $sink = new LogSink();
-     *     $response = $configServiceV2Client->updateSink($formattedSinkName, $sink);
+     *     $response = $configServiceV2Client->updateSink();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string  $sinkName     Required. The full resource name of the sink to update, including the
-     *                              parent resource and the sink identifier:
-     *
-     *                              "projects/[PROJECT_ID]/sinks/[SINK_ID]"
-     *                              "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
-     *                              "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
-     *                              "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *
-     *                              For example:
-     *
-     *                              `"projects/my-project/sinks/my-sink"`
-     * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears
-     *                              as part of `sink_name`.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $sinkName
+     *           Required. The full resource name of the sink to update, including the
+     *           parent resource and the sink identifier:
+     *
+     *           "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *           "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *           "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
+     *           "folders/[FOLDER_ID]/sinks/[SINK_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/sinks/my-sink"`
+     *     @type LogSink $sink
+     *           Required. The updated sink, whose name is the same identifier that appears
+     *           as part of `sink_name`.
      *     @type bool $uniqueWriterIdentity
      *           Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
      *           for a description of this field. When updating a sink, the effect of this
@@ -3608,13 +3744,19 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSink($sinkName, $sink, array $optionalArgs = [])
+    public function updateSink(array $optionalArgs = [])
     {
         $request = new UpdateSinkRequest();
         $requestParamHeaders = [];
-        $request->setSinkName($sinkName);
-        $request->setSink($sink);
-        $requestParamHeaders['sink_name'] = $sinkName;
+        if (isset($optionalArgs['sinkName'])) {
+            $request->setSinkName($optionalArgs['sinkName']);
+            $requestParamHeaders['sink_name'] = $optionalArgs['sinkName'];
+        }
+
+        if (isset($optionalArgs['sink'])) {
+            $request->setSink($optionalArgs['sink']);
+        }
+
         if (isset($optionalArgs['uniqueWriterIdentity'])) {
             $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
         }
@@ -3639,25 +3781,25 @@ class ConfigServiceV2GapicClient
      * ```
      * $configServiceV2Client = new ConfigServiceV2Client();
      * try {
-     *     $name = 'name';
-     *     $view = new LogView();
-     *     $response = $configServiceV2Client->updateView($name, $view);
+     *     $response = $configServiceV2Client->updateView();
      * } finally {
      *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string  $name         Required. The full resource name of the view to update
-     *
-     *                              "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *
-     *                              For example:
-     *
-     *                              `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
-     * @param LogView $view         Required. The updated view.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the view to update
+     *
+     *           "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
+     *
+     *           For example:
+     *
+     *           `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
+     *     @type LogView $view
+     *           Required. The updated view.
      *     @type FieldMask $updateMask
      *           Optional. Field mask that specifies the fields in `view` that need
      *           an update. A field will be overwritten if, and only if, it is
@@ -3677,13 +3819,19 @@ class ConfigServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateView($name, $view, array $optionalArgs = [])
+    public function updateView(array $optionalArgs = [])
     {
         $request = new UpdateViewRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setView($view);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

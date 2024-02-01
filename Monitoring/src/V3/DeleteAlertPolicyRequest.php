@@ -29,8 +29,7 @@ class DeleteAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      *                     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
      *
-     *                     For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy]. Please see
-     *                     {@see AlertPolicyServiceClient::alertPolicyName()} for help formatting this field.
+     *                     For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
      *
      * @return \Google\Cloud\Monitoring\V3\DeleteAlertPolicyRequest
      *

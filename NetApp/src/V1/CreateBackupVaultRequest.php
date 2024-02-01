@@ -44,7 +44,6 @@ class CreateBackupVaultRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                              $parent        Required. The location to create the backup vaults, in the format
      *                                                           `projects/{project_id}/locations/{location}`
-     *                                                           Please see {@see NetAppClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\NetApp\V1\BackupVault $backupVault   Required. A backupVault resource
      * @param string                              $backupVaultId Required. The ID to use for the backupVault.
      *                                                           The ID must be unique within the specified location.

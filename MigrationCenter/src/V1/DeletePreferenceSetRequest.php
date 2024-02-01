@@ -39,8 +39,7 @@ class DeletePreferenceSetRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string $name Required. Name of the group resource. Please see
-     *                     {@see MigrationCenterClient::preferenceSetName()} for help formatting this field.
+     * @param string $name Required. Name of the group resource.
      *
      * @return \Google\Cloud\MigrationCenter\V1\DeletePreferenceSetRequest
      *

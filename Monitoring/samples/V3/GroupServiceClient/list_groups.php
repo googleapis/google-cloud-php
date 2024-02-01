@@ -32,19 +32,19 @@ use Google\Cloud\Monitoring\V3\ListGroupsRequest;
 /**
  * Lists the existing groups.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name)
- *                     whose groups are to be listed. The format is:
- *
- *                     projects/[PROJECT_ID_OR_NUMBER]
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_groups_sample(string $name): void
+function list_groups_sample(): void
 {
     // Create a client.
     $groupServiceClient = new GroupServiceClient();
 
     // Prepare the request message.
-    $request = (new ListGroupsRequest())
-        ->setName($name);
+    $request = new ListGroupsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +58,5 @@ function list_groups_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    list_groups_sample($name);
 }
 // [END monitoring_v3_generated_GroupService_ListGroups_sync]

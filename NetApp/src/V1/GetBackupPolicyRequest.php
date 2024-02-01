@@ -26,7 +26,6 @@ class GetBackupPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The backupPolicy resource name, in the format
      *                     `projects/{project_id}/locations/{location}/backupPolicies/{backup_policy_id}`
-     *                     Please see {@see NetAppClient::backupPolicyName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\GetBackupPolicyRequest
      *

@@ -26,7 +26,6 @@ class DeleteBackupVaultRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The backupVault resource name, in the format
      *                     `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
-     *                     Please see {@see NetAppClient::backupVaultName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\DeleteBackupVaultRequest
      *

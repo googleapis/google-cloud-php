@@ -23,8 +23,7 @@ class DeleteKmsConfigRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Name of the KmsConfig. Please see
-     *                     {@see NetAppClient::kmsConfigName()} for help formatting this field.
+     * @param string $name Required. Name of the KmsConfig.
      *
      * @return \Google\Cloud\NetApp\V1\DeleteKmsConfigRequest
      *

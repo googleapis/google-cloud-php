@@ -33,22 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new Scheduled Notebook in a given project and location.
  *
- * @param string $formattedParent Format:
- *                                `parent=projects/{project_id}/locations/{location}`
- *                                Please see {@see NotebookServiceClient::scheduleName()} for help formatting this field.
- * @param string $scheduleId      User-defined unique ID of this schedule.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_schedule_sample(string $formattedParent, string $scheduleId): void
+function create_schedule_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $schedule = new Schedule();
-    $request = (new CreateScheduleRequest())
-        ->setParent($formattedParent)
-        ->setScheduleId($scheduleId)
-        ->setSchedule($schedule);
+    $request = new CreateScheduleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,22 +65,5 @@ function create_schedule_sample(string $formattedParent, string $scheduleId): vo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NotebookServiceClient::scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-    $scheduleId = '[SCHEDULE_ID]';
-
-    create_schedule_sample($formattedParent, $scheduleId);
 }
 // [END notebooks_v1_generated_NotebookService_CreateSchedule_sync]

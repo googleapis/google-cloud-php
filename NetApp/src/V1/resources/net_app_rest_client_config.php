@@ -38,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'active_directory_id',
-                ],
             ],
             'CreateBackup' => [
                 'method' => 'post',
@@ -52,9 +49,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'backup_id',
                 ],
             ],
             'CreateBackupPolicy' => [
@@ -68,9 +62,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'backup_policy_id',
-                ],
             ],
             'CreateBackupVault' => [
                 'method' => 'post',
@@ -82,9 +73,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'backup_vault_id',
                 ],
             ],
             'CreateKmsConfig' => [
@@ -98,9 +86,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'kms_config_id',
-                ],
             ],
             'CreateReplication' => [
                 'method' => 'post',
@@ -112,9 +97,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'replication_id',
                 ],
             ],
             'CreateSnapshot' => [
@@ -128,9 +110,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'snapshot_id',
-                ],
             ],
             'CreateStoragePool' => [
                 'method' => 'post',
@@ -143,9 +122,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'storage_pool_id',
-                ],
             ],
             'CreateVolume' => [
                 'method' => 'post',
@@ -157,9 +133,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'volume_id',
                 ],
             ],
             'DeleteActiveDirectory' => [
@@ -531,9 +504,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateBackup' => [
                 'method' => 'patch',
@@ -546,9 +516,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateBackupPolicy' => [
@@ -563,9 +530,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateBackupVault' => [
                 'method' => 'patch',
@@ -578,9 +542,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateKmsConfig' => [
@@ -595,9 +556,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateReplication' => [
                 'method' => 'patch',
@@ -610,9 +568,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateSnapshot' => [
@@ -627,9 +582,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateStoragePool' => [
                 'method' => 'patch',
@@ -643,9 +595,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateVolume' => [
                 'method' => 'patch',
@@ -658,9 +607,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'VerifyKmsConfig' => [

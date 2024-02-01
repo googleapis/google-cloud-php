@@ -39,7 +39,6 @@ class GetSinkRequest extends \Google\Protobuf\Internal\Message
      *                         For example:
      *
      *                         `"projects/my-project/sinks/my-sink"`
-     *                         Please see {@see ConfigServiceV2Client::logSinkName()} for help formatting this field.
      *
      * @return \Google\Cloud\Logging\V2\GetSinkRequest
      *

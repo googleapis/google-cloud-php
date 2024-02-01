@@ -42,7 +42,6 @@ class CreatePolicyRequest extends \Google\Protobuf\Internal\Message
      *                                                  * `projects/{project_id}`
      *                                                  * `folders/{folder_id}`
      *                                                  * `organizations/{organization_id}`
-     *                                                  Please see {@see OrgPolicyClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\OrgPolicy\V2\Policy $policy Required. Policy to create.
      *
      * @return \Google\Cloud\OrgPolicy\V2\CreatePolicyRequest

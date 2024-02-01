@@ -36,22 +36,19 @@ use Google\Rpc\Status;
  * calls. They are not manageable by the Notebooks API out of the box. This
  * call makes these instances manageable by the Notebooks API.
  *
- * @param string $parent     Format:
- *                           `parent=projects/{project_id}/locations/{location}`
- * @param string $instanceId User defined unique ID of this instance. The `instance_id` must
- *                           be 1 to 63 characters long and contain only lowercase letters,
- *                           numeric characters, and dashes. The first character must be a lowercase
- *                           letter and the last character cannot be a dash.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function register_instance_sample(string $parent, string $instanceId): void
+function register_instance_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $request = (new RegisterInstanceRequest())
-        ->setParent($parent)
-        ->setInstanceId($instanceId);
+    $request = new RegisterInstanceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,22 +68,5 @@ function register_instance_sample(string $parent, string $instanceId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $instanceId = '[INSTANCE_ID]';
-
-    register_instance_sample($parent, $instanceId);
 }
 // [END notebooks_v1_generated_NotebookService_RegisterInstance_sync]

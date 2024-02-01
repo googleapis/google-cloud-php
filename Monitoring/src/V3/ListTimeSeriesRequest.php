@@ -99,7 +99,6 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *                                                           projects/[PROJECT_ID_OR_NUMBER]
      *                                                           organizations/[ORGANIZATION_ID]
      *                                                           folders/[FOLDER_ID]
-     *                                                           Please see {@see MetricServiceClient::workspaceName()} for help formatting this field.
      * @param string                                   $filter   Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
      *                                                           that specifies which time series should be returned.  The filter must
      *                                                           specify a single metric type, and can additionally specify metric labels

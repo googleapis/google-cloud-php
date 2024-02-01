@@ -32,24 +32,19 @@ use Google\Cloud\OrgPolicy\V2\Policy;
 /**
  * Retrieves all of the policies that exist on a particular resource.
  *
- * @param string $formattedParent The target Google Cloud resource that parents the set of
- *                                constraints and policies that will be returned from this call. Must be in
- *                                one of the following forms:
- *
- *                                * `projects/{project_number}`
- *                                * `projects/{project_id}`
- *                                * `folders/{folder_id}`
- *                                * `organizations/{organization_id}`
- *                                Please see {@see OrgPolicyClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_policies_sample(string $formattedParent): void
+function list_policies_sample(): void
 {
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
     // Prepare the request message.
-    $request = (new ListPoliciesRequest())
-        ->setParent($formattedParent);
+    $request = new ListPoliciesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,21 +58,5 @@ function list_policies_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = OrgPolicyClient::projectName('[PROJECT]');
-
-    list_policies_sample($formattedParent);
 }
 // [END orgpolicy_v2_generated_OrgPolicy_ListPolicies_sync]

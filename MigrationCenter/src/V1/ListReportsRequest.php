@@ -54,8 +54,7 @@ class ListReportsRequest extends \Google\Protobuf\Internal\Message
     protected $view = 0;
 
     /**
-     * @param string $parent Required. Parent value for `ListReportsRequest`. Please see
-     *                       {@see MigrationCenterClient::reportConfigName()} for help formatting this field.
+     * @param string $parent Required. Parent value for `ListReportsRequest`.
      *
      * @return \Google\Cloud\MigrationCenter\V1\ListReportsRequest
      *

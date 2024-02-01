@@ -21,42 +21,42 @@ class ClientTlsPolicy
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ø
-7google/cloud/networksecurity/v1/client_tls_policy.protogoogle.cloud.networksecurity.v1google/api/resource.proto)google/cloud/networksecurity/v1/tls.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ï
-ClientTlsPolicy
-name (	B‡A
-description (	B‡A4
-create_time (2.google.protobuf.TimestampB‡A4
-update_time (2.google.protobuf.TimestampB‡AQ
-labels (2<.google.cloud.networksecurity.v1.ClientTlsPolicy.LabelsEntryB‡A
-sni (	B‡AU
-client_certificate (24.google.cloud.networksecurity.v1.CertificateProviderB‡AP
-server_validation_ca (2-.google.cloud.networksecurity.v1.ValidationCAB‡A-
+ø
+7google/cloud/networksecurity/v1/client_tls_policy.protogoogle.cloud.networksecurity.v1google/api/resource.proto)google/cloud/networksecurity/v1/tls.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ù
+ClientTlsPolicy
+name (	B‚A
+description (	B‚A5
+create_time (2.google.protobuf.TimestampB‚A5
+update_time (2.google.protobuf.TimestampB‚AR
+labels (2<.google.cloud.networksecurity.v1.ClientTlsPolicy.LabelsEntryB‚A
+sni (	B‚AV
+client_certificate (24.google.cloud.networksecurity.v1.CertificateProviderB‚AQ
+server_validation_ca (2-.google.cloud.networksecurity.v1.ValidationCAB‚A-
 LabelsEntry
 key (	
 value (	:8:ÇÍA
-.networksecurity.googleapis.com/ClientTlsPolicyMprojects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}"Ä
-ListClientTlsPoliciesRequest9
-parent (	B)‡A˙A#
+.networksecurity.googleapis.com/ClientTlsPolicyMprojects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}"Å
+ListClientTlsPoliciesRequest:
+parent (	B*‚A˙A#
 !locations.googleapis.com/Location
 	page_size (
 
 page_token (	"á
 ListClientTlsPoliciesResponseM
 client_tls_policies (20.google.cloud.networksecurity.v1.ClientTlsPolicy
-next_page_token (	"a
-GetClientTlsPolicyRequestD
-name (	B6‡A˙A0
-.networksecurity.googleapis.com/ClientTlsPolicy"€
-CreateClientTlsPolicyRequestF
-parent (	B6‡A˙A0.networksecurity.googleapis.com/ClientTlsPolicy!
-client_tls_policy_id (	B‡AP
-client_tls_policy (20.google.cloud.networksecurity.v1.ClientTlsPolicyB‡A"¶
-UpdateClientTlsPolicyRequest4
-update_mask (2.google.protobuf.FieldMaskB‡AP
-client_tls_policy (20.google.cloud.networksecurity.v1.ClientTlsPolicyB‡A"d
-DeleteClientTlsPolicyRequestD
-name (	B6‡A˙A0
+next_page_token (	"b
+GetClientTlsPolicyRequestE
+name (	B7‚A˙A0
+.networksecurity.googleapis.com/ClientTlsPolicy"ﬁ
+CreateClientTlsPolicyRequestG
+parent (	B7‚A˙A0.networksecurity.googleapis.com/ClientTlsPolicy"
+client_tls_policy_id (	B‚AQ
+client_tls_policy (20.google.cloud.networksecurity.v1.ClientTlsPolicyB‚A"®
+UpdateClientTlsPolicyRequest5
+update_mask (2.google.protobuf.FieldMaskB‚AQ
+client_tls_policy (20.google.cloud.networksecurity.v1.ClientTlsPolicyB‚A"e
+DeleteClientTlsPolicyRequestE
+name (	B7‚A˙A0
 .networksecurity.googleapis.com/ClientTlsPolicyBı
 #com.google.cloud.networksecurity.v1BClientTlsPolicyProtoPZMcloud.google.com/go/networksecurity/apiv1/networksecuritypb;networksecuritypb™Google.Cloud.NetworkSecurity.V1 Google\\Cloud\\NetworkSecurity\\V1Í"Google::Cloud::NetworkSecurity::V1bproto3'
         , true);

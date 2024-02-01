@@ -31,26 +31,19 @@ use Google\Cloud\Logging\V2\LogSink;
 /**
  * Gets a sink.
  *
- * @param string $formattedSinkName The resource name of the sink:
- *
- *                                  "projects/[PROJECT_ID]/sinks/[SINK_ID]"
- *                                  "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
- *                                  "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
- *                                  "folders/[FOLDER_ID]/sinks/[SINK_ID]"
- *
- *                                  For example:
- *
- *                                  `"projects/my-project/sinks/my-sink"`
- *                                  Please see {@see ConfigServiceV2Client::logSinkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sink_sample(string $formattedSinkName): void
+function get_sink_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $request = (new GetSinkRequest())
-        ->setSinkName($formattedSinkName);
+    $request = new GetSinkRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +53,5 @@ function get_sink_sample(string $formattedSinkName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSinkName = ConfigServiceV2Client::logSinkName('[PROJECT]', '[SINK]');
-
-    get_sink_sample($formattedSinkName);
 }
 // [END logging_v2_generated_ConfigServiceV2_GetSink_sync]

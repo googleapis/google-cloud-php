@@ -25,8 +25,7 @@ class GetServerTlsPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. A name of the ServerTlsPolicy to get. Must be in the format
-     *                     `projects/&#42;/locations/{location}/serverTlsPolicies/*`. Please see
-     *                     {@see NetworkSecurityClient::serverTlsPolicyName()} for help formatting this field.
+     *                     `projects/&#42;/locations/{location}/serverTlsPolicies/*`.
      *
      * @return \Google\Cloud\NetworkSecurity\V1\GetServerTlsPolicyRequest
      *

@@ -26,11 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Optimization\V1\BatchOptimizeToursRequest;
-use Google\Cloud\Optimization\V1\BatchOptimizeToursRequest\AsyncModelConfig;
 use Google\Cloud\Optimization\V1\BatchOptimizeToursResponse;
 use Google\Cloud\Optimization\V1\Client\FleetRoutingClient;
-use Google\Cloud\Optimization\V1\InputConfig;
-use Google\Cloud\Optimization\V1\OutputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -45,27 +42,19 @@ use Google\Rpc\Status;
  * containing `ShipmentRoute`s, which are a set of routes to be performed by
  * vehicles minimizing the overall cost.
  *
- * @param string $parent Target project and location to make a call.
- *
- *                       Format: `projects/{project-id}/locations/{location-id}`.
- *
- *                       If no location is specified, a region will be chosen automatically.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_optimize_tours_sample(string $parent): void
+function batch_optimize_tours_sample(): void
 {
     // Create a client.
     $fleetRoutingClient = new FleetRoutingClient();
 
     // Prepare the request message.
-    $modelConfigsInputConfig = new InputConfig();
-    $modelConfigsOutputConfig = new OutputConfig();
-    $asyncModelConfig = (new AsyncModelConfig())
-        ->setInputConfig($modelConfigsInputConfig)
-        ->setOutputConfig($modelConfigsOutputConfig);
-    $modelConfigs = [$asyncModelConfig,];
-    $request = (new BatchOptimizeToursRequest())
-        ->setParent($parent)
-        ->setModelConfigs($modelConfigs);
+    $request = new BatchOptimizeToursRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -85,21 +74,5 @@ function batch_optimize_tours_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    batch_optimize_tours_sample($parent);
 }
 // [END cloudoptimization_v1_generated_FleetRouting_BatchOptimizeTours_sync]

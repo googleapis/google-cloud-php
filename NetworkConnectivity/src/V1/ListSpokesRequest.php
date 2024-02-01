@@ -48,8 +48,7 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
-     * @param string $parent Required. The parent resource. Please see
-     *                       {@see HubServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent resource.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\ListSpokesRequest
      *

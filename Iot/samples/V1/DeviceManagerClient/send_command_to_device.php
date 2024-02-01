@@ -43,21 +43,19 @@ use Google\Cloud\Iot\V1\SendCommandToDeviceResponse;
  * return OK. If the subscription is QoS 1, at least once delivery will be
  * guaranteed; for QoS 0, no acknowledgment will be expected from the device.
  *
- * @param string $formattedName The name of the device. For example,
- *                              `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
- *                              `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`. Please see
- *                              {@see DeviceManagerClient::deviceName()} for help formatting this field.
- * @param string $binaryData    The command data to send to the device.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function send_command_to_device_sample(string $formattedName, string $binaryData): void
+function send_command_to_device_sample(): void
 {
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
     // Prepare the request message.
-    $request = (new SendCommandToDeviceRequest())
-        ->setName($formattedName)
-        ->setBinaryData($binaryData);
+    $request = new SendCommandToDeviceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,27 +65,5 @@ function send_command_to_device_sample(string $formattedName, string $binaryData
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DeviceManagerClient::deviceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REGISTRY]',
-        '[DEVICE]'
-    );
-    $binaryData = '...';
-
-    send_command_to_device_sample($formattedName, $binaryData);
 }
 // [END cloudiot_v1_generated_DeviceManager_SendCommandToDevice_sync]

@@ -54,7 +54,6 @@ use Google\Cloud\NetApp\V1\DeleteReplicationRequest;
 use Google\Cloud\NetApp\V1\DeleteSnapshotRequest;
 use Google\Cloud\NetApp\V1\DeleteStoragePoolRequest;
 use Google\Cloud\NetApp\V1\DeleteVolumeRequest;
-use Google\Cloud\NetApp\V1\DestinationVolumeParameters;
 use Google\Cloud\NetApp\V1\EncryptVolumesRequest;
 use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\GetBackupPolicyRequest;
@@ -85,11 +84,9 @@ use Google\Cloud\NetApp\V1\ListStoragePoolsResponse;
 use Google\Cloud\NetApp\V1\ListVolumesRequest;
 use Google\Cloud\NetApp\V1\ListVolumesResponse;
 use Google\Cloud\NetApp\V1\Replication;
-use Google\Cloud\NetApp\V1\Replication\ReplicationSchedule;
 use Google\Cloud\NetApp\V1\ResumeReplicationRequest;
 use Google\Cloud\NetApp\V1\ReverseReplicationDirectionRequest;
 use Google\Cloud\NetApp\V1\RevertVolumeRequest;
-use Google\Cloud\NetApp\V1\ServiceLevel;
 use Google\Cloud\NetApp\V1\Snapshot;
 use Google\Cloud\NetApp\V1\StopReplicationRequest;
 use Google\Cloud\NetApp\V1\StoragePool;
@@ -108,7 +105,6 @@ use Google\Cloud\NetApp\V1\Volume;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -204,24 +200,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $activeDirectory = new ActiveDirectory();
-        $activeDirectoryDomain = 'activeDirectoryDomain1710368171';
-        $activeDirectory->setDomain($activeDirectoryDomain);
-        $activeDirectoryDns = 'activeDirectoryDns1090270626';
-        $activeDirectory->setDns($activeDirectoryDns);
-        $activeDirectoryNetBiosPrefix = 'activeDirectoryNetBiosPrefix-1870358125';
-        $activeDirectory->setNetBiosPrefix($activeDirectoryNetBiosPrefix);
-        $activeDirectoryUsername = 'activeDirectoryUsername1591163901';
-        $activeDirectory->setUsername($activeDirectoryUsername);
-        $activeDirectoryPassword = 'activeDirectoryPassword-1221104190';
-        $activeDirectory->setPassword($activeDirectoryPassword);
-        $activeDirectoryId = 'activeDirectoryId1363092678';
-        $request = (new CreateActiveDirectoryRequest())
-            ->setParent($formattedParent)
-            ->setActiveDirectory($activeDirectory)
-            ->setActiveDirectoryId($activeDirectoryId);
+        $request = new CreateActiveDirectoryRequest();
         $response = $gapicClient->createActiveDirectory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -232,12 +211,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateActiveDirectory', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getActiveDirectory();
-        $this->assertProtobufEquals($activeDirectory, $actualValue);
-        $actualValue = $actualApiRequestObject->getActiveDirectoryId();
-        $this->assertProtobufEquals($activeDirectoryId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createActiveDirectoryTest');
         $response->pollUntilComplete([
@@ -291,24 +264,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $activeDirectory = new ActiveDirectory();
-        $activeDirectoryDomain = 'activeDirectoryDomain1710368171';
-        $activeDirectory->setDomain($activeDirectoryDomain);
-        $activeDirectoryDns = 'activeDirectoryDns1090270626';
-        $activeDirectory->setDns($activeDirectoryDns);
-        $activeDirectoryNetBiosPrefix = 'activeDirectoryNetBiosPrefix-1870358125';
-        $activeDirectory->setNetBiosPrefix($activeDirectoryNetBiosPrefix);
-        $activeDirectoryUsername = 'activeDirectoryUsername1591163901';
-        $activeDirectory->setUsername($activeDirectoryUsername);
-        $activeDirectoryPassword = 'activeDirectoryPassword-1221104190';
-        $activeDirectory->setPassword($activeDirectoryPassword);
-        $activeDirectoryId = 'activeDirectoryId1363092678';
-        $request = (new CreateActiveDirectoryRequest())
-            ->setParent($formattedParent)
-            ->setActiveDirectory($activeDirectory)
-            ->setActiveDirectoryId($activeDirectoryId);
+        $request = new CreateActiveDirectoryRequest();
         $response = $gapicClient->createActiveDirectory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -372,14 +328,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
-        $backupId = 'backupId1355353272';
-        $backup = new Backup();
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent)
-            ->setBackupId($backupId)
-            ->setBackup($backup);
+        $request = new CreateBackupRequest();
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -390,12 +339,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupId();
-        $this->assertProtobufEquals($backupId, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackup();
-        $this->assertProtobufEquals($backup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupTest');
         $response->pollUntilComplete([
@@ -449,14 +392,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
-        $backupId = 'backupId1355353272';
-        $backup = new Backup();
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent)
-            ->setBackupId($backupId)
-            ->setBackup($backup);
+        $request = new CreateBackupRequest();
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -522,14 +458,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backupPolicy = new BackupPolicy();
-        $backupPolicyId = 'backupPolicyId-1316025077';
-        $request = (new CreateBackupPolicyRequest())
-            ->setParent($formattedParent)
-            ->setBackupPolicy($backupPolicy)
-            ->setBackupPolicyId($backupPolicyId);
+        $request = new CreateBackupPolicyRequest();
         $response = $gapicClient->createBackupPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -540,12 +469,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateBackupPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupPolicy();
-        $this->assertProtobufEquals($backupPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupPolicyId();
-        $this->assertProtobufEquals($backupPolicyId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupPolicyTest');
         $response->pollUntilComplete([
@@ -599,14 +522,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backupPolicy = new BackupPolicy();
-        $backupPolicyId = 'backupPolicyId-1316025077';
-        $request = (new CreateBackupPolicyRequest())
-            ->setParent($formattedParent)
-            ->setBackupPolicy($backupPolicy)
-            ->setBackupPolicyId($backupPolicyId);
+        $request = new CreateBackupPolicyRequest();
         $response = $gapicClient->createBackupPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -662,14 +578,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backupVaultId = 'backupVaultId467030053';
-        $backupVault = new BackupVault();
-        $request = (new CreateBackupVaultRequest())
-            ->setParent($formattedParent)
-            ->setBackupVaultId($backupVaultId)
-            ->setBackupVault($backupVault);
+        $request = new CreateBackupVaultRequest();
         $response = $gapicClient->createBackupVault($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -680,12 +589,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateBackupVault', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupVaultId();
-        $this->assertProtobufEquals($backupVaultId, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupVault();
-        $this->assertProtobufEquals($backupVault, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupVaultTest');
         $response->pollUntilComplete([
@@ -739,14 +642,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backupVaultId = 'backupVaultId467030053';
-        $backupVault = new BackupVault();
-        $request = (new CreateBackupVaultRequest())
-            ->setParent($formattedParent)
-            ->setBackupVaultId($backupVaultId)
-            ->setBackupVault($backupVault);
+        $request = new CreateBackupVaultRequest();
         $response = $gapicClient->createBackupVault($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -810,16 +706,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $kmsConfigId = 'kmsConfigId1366390730';
-        $kmsConfig = new KmsConfig();
-        $kmsConfigCryptoKeyName = 'kmsConfigCryptoKeyName2110252630';
-        $kmsConfig->setCryptoKeyName($kmsConfigCryptoKeyName);
-        $request = (new CreateKmsConfigRequest())
-            ->setParent($formattedParent)
-            ->setKmsConfigId($kmsConfigId)
-            ->setKmsConfig($kmsConfig);
+        $request = new CreateKmsConfigRequest();
         $response = $gapicClient->createKmsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -830,12 +717,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateKmsConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getKmsConfigId();
-        $this->assertProtobufEquals($kmsConfigId, $actualValue);
-        $actualValue = $actualApiRequestObject->getKmsConfig();
-        $this->assertProtobufEquals($kmsConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createKmsConfigTest');
         $response->pollUntilComplete([
@@ -889,16 +770,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $kmsConfigId = 'kmsConfigId1366390730';
-        $kmsConfig = new KmsConfig();
-        $kmsConfigCryptoKeyName = 'kmsConfigCryptoKeyName2110252630';
-        $kmsConfig->setCryptoKeyName($kmsConfigCryptoKeyName);
-        $request = (new CreateKmsConfigRequest())
-            ->setParent($formattedParent)
-            ->setKmsConfigId($kmsConfigId)
-            ->setKmsConfig($kmsConfig);
+        $request = new CreateKmsConfigRequest();
         $response = $gapicClient->createKmsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -962,24 +834,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $replication = new Replication();
-        $replicationReplicationSchedule = ReplicationSchedule::REPLICATION_SCHEDULE_UNSPECIFIED;
-        $replication->setReplicationSchedule($replicationReplicationSchedule);
-        $replicationDestinationVolumeParameters = new DestinationVolumeParameters();
-        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[STORAGE_POOL]'
-        );
-        $replicationDestinationVolumeParameters->setStoragePool($destinationVolumeParametersStoragePool);
-        $replication->setDestinationVolumeParameters($replicationDestinationVolumeParameters);
-        $replicationId = 'replicationId1935722094';
-        $request = (new CreateReplicationRequest())
-            ->setParent($formattedParent)
-            ->setReplication($replication)
-            ->setReplicationId($replicationId);
+        $request = new CreateReplicationRequest();
         $response = $gapicClient->createReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -990,12 +845,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateReplication', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getReplication();
-        $this->assertProtobufEquals($replication, $actualValue);
-        $actualValue = $actualApiRequestObject->getReplicationId();
-        $this->assertProtobufEquals($replicationId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createReplicationTest');
         $response->pollUntilComplete([
@@ -1049,24 +898,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $replication = new Replication();
-        $replicationReplicationSchedule = ReplicationSchedule::REPLICATION_SCHEDULE_UNSPECIFIED;
-        $replication->setReplicationSchedule($replicationReplicationSchedule);
-        $replicationDestinationVolumeParameters = new DestinationVolumeParameters();
-        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[STORAGE_POOL]'
-        );
-        $replicationDestinationVolumeParameters->setStoragePool($destinationVolumeParametersStoragePool);
-        $replication->setDestinationVolumeParameters($replicationDestinationVolumeParameters);
-        $replicationId = 'replicationId1935722094';
-        $request = (new CreateReplicationRequest())
-            ->setParent($formattedParent)
-            ->setReplication($replication)
-            ->setReplicationId($replicationId);
+        $request = new CreateReplicationRequest();
         $response = $gapicClient->createReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1126,14 +958,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $snapshot = new Snapshot();
-        $snapshotId = 'snapshotId-168585866';
-        $request = (new CreateSnapshotRequest())
-            ->setParent($formattedParent)
-            ->setSnapshot($snapshot)
-            ->setSnapshotId($snapshotId);
+        $request = new CreateSnapshotRequest();
         $response = $gapicClient->createSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1144,12 +969,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateSnapshot', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSnapshot();
-        $this->assertProtobufEquals($snapshot, $actualValue);
-        $actualValue = $actualApiRequestObject->getSnapshotId();
-        $this->assertProtobufEquals($snapshotId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createSnapshotTest');
         $response->pollUntilComplete([
@@ -1203,14 +1022,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $snapshot = new Snapshot();
-        $snapshotId = 'snapshotId-168585866';
-        $request = (new CreateSnapshotRequest())
-            ->setParent($formattedParent)
-            ->setSnapshot($snapshot)
-            ->setSnapshotId($snapshotId);
+        $request = new CreateSnapshotRequest();
         $response = $gapicClient->createSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1286,20 +1098,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $storagePoolId = 'storagePoolId909234778';
-        $storagePool = new StoragePool();
-        $storagePoolServiceLevel = ServiceLevel::SERVICE_LEVEL_UNSPECIFIED;
-        $storagePool->setServiceLevel($storagePoolServiceLevel);
-        $storagePoolCapacityGib = 1260910865;
-        $storagePool->setCapacityGib($storagePoolCapacityGib);
-        $storagePoolNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $storagePool->setNetwork($storagePoolNetwork);
-        $request = (new CreateStoragePoolRequest())
-            ->setParent($formattedParent)
-            ->setStoragePoolId($storagePoolId)
-            ->setStoragePool($storagePool);
+        $request = new CreateStoragePoolRequest();
         $response = $gapicClient->createStoragePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1310,12 +1109,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateStoragePool', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getStoragePoolId();
-        $this->assertProtobufEquals($storagePoolId, $actualValue);
-        $actualValue = $actualApiRequestObject->getStoragePool();
-        $this->assertProtobufEquals($storagePool, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createStoragePoolTest');
         $response->pollUntilComplete([
@@ -1369,20 +1162,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $storagePoolId = 'storagePoolId909234778';
-        $storagePool = new StoragePool();
-        $storagePoolServiceLevel = ServiceLevel::SERVICE_LEVEL_UNSPECIFIED;
-        $storagePool->setServiceLevel($storagePoolServiceLevel);
-        $storagePoolCapacityGib = 1260910865;
-        $storagePool->setCapacityGib($storagePoolCapacityGib);
-        $storagePoolNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $storagePool->setNetwork($storagePoolNetwork);
-        $request = (new CreateStoragePoolRequest())
-            ->setParent($formattedParent)
-            ->setStoragePoolId($storagePoolId)
-            ->setStoragePool($storagePool);
+        $request = new CreateStoragePoolRequest();
         $response = $gapicClient->createStoragePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1468,22 +1248,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $volumeId = 'volumeId-2128282528';
-        $volume = new Volume();
-        $volumeShareName = 'volumeShareName1564593424';
-        $volume->setShareName($volumeShareName);
-        $volumeStoragePool = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $volume->setStoragePool($volumeStoragePool);
-        $volumeCapacityGib = 1491387092;
-        $volume->setCapacityGib($volumeCapacityGib);
-        $volumeProtocols = [];
-        $volume->setProtocols($volumeProtocols);
-        $request = (new CreateVolumeRequest())
-            ->setParent($formattedParent)
-            ->setVolumeId($volumeId)
-            ->setVolume($volume);
+        $request = new CreateVolumeRequest();
         $response = $gapicClient->createVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1494,12 +1259,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateVolume', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getVolumeId();
-        $this->assertProtobufEquals($volumeId, $actualValue);
-        $actualValue = $actualApiRequestObject->getVolume();
-        $this->assertProtobufEquals($volume, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createVolumeTest');
         $response->pollUntilComplete([
@@ -1553,22 +1312,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $volumeId = 'volumeId-2128282528';
-        $volume = new Volume();
-        $volumeShareName = 'volumeShareName1564593424';
-        $volume->setShareName($volumeShareName);
-        $volumeStoragePool = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $volume->setStoragePool($volumeStoragePool);
-        $volumeCapacityGib = 1491387092;
-        $volume->setCapacityGib($volumeCapacityGib);
-        $volumeProtocols = [];
-        $volume->setProtocols($volumeProtocols);
-        $request = (new CreateVolumeRequest())
-            ->setParent($formattedParent)
-            ->setVolumeId($volumeId)
-            ->setVolume($volume);
+        $request = new CreateVolumeRequest();
         $response = $gapicClient->createVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1620,9 +1364,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->activeDirectoryName('[PROJECT]', '[LOCATION]', '[ACTIVE_DIRECTORY]');
-        $request = (new DeleteActiveDirectoryRequest())->setName($formattedName);
+        $request = new DeleteActiveDirectoryRequest();
         $response = $gapicClient->deleteActiveDirectory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1633,8 +1375,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteActiveDirectory', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteActiveDirectoryTest');
         $response->pollUntilComplete([
@@ -1688,9 +1428,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->activeDirectoryName('[PROJECT]', '[LOCATION]', '[ACTIVE_DIRECTORY]');
-        $request = (new DeleteActiveDirectoryRequest())->setName($formattedName);
+        $request = new DeleteActiveDirectoryRequest();
         $response = $gapicClient->deleteActiveDirectory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1742,9 +1480,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())->setName($formattedName);
+        $request = new DeleteBackupRequest();
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1755,8 +1491,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteBackupTest');
         $response->pollUntilComplete([
@@ -1810,9 +1544,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())->setName($formattedName);
+        $request = new DeleteBackupRequest();
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1864,9 +1596,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->backupPolicyName('[PROJECT]', '[LOCATION]', '[BACKUP_POLICY]');
-        $request = (new DeleteBackupPolicyRequest())->setName($formattedName);
+        $request = new DeleteBackupPolicyRequest();
         $response = $gapicClient->deleteBackupPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1877,8 +1607,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteBackupPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteBackupPolicyTest');
         $response->pollUntilComplete([
@@ -1932,9 +1660,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupPolicyName('[PROJECT]', '[LOCATION]', '[BACKUP_POLICY]');
-        $request = (new DeleteBackupPolicyRequest())->setName($formattedName);
+        $request = new DeleteBackupPolicyRequest();
         $response = $gapicClient->deleteBackupPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1986,9 +1712,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
-        $request = (new DeleteBackupVaultRequest())->setName($formattedName);
+        $request = new DeleteBackupVaultRequest();
         $response = $gapicClient->deleteBackupVault($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1999,8 +1723,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteBackupVault', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteBackupVaultTest');
         $response->pollUntilComplete([
@@ -2054,9 +1776,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
-        $request = (new DeleteBackupVaultRequest())->setName($formattedName);
+        $request = new DeleteBackupVaultRequest();
         $response = $gapicClient->deleteBackupVault($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2108,9 +1828,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new DeleteKmsConfigRequest())->setName($formattedName);
+        $request = new DeleteKmsConfigRequest();
         $response = $gapicClient->deleteKmsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2121,8 +1839,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteKmsConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteKmsConfigTest');
         $response->pollUntilComplete([
@@ -2176,9 +1892,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new DeleteKmsConfigRequest())->setName($formattedName);
+        $request = new DeleteKmsConfigRequest();
         $response = $gapicClient->deleteKmsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2230,9 +1944,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new DeleteReplicationRequest())->setName($formattedName);
+        $request = new DeleteReplicationRequest();
         $response = $gapicClient->deleteReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2243,8 +1955,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteReplication', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteReplicationTest');
         $response->pollUntilComplete([
@@ -2298,9 +2008,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new DeleteReplicationRequest())->setName($formattedName);
+        $request = new DeleteReplicationRequest();
         $response = $gapicClient->deleteReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2352,9 +2060,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new DeleteSnapshotRequest())->setName($formattedName);
+        $request = new DeleteSnapshotRequest();
         $response = $gapicClient->deleteSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2365,8 +2071,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteSnapshot', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteSnapshotTest');
         $response->pollUntilComplete([
@@ -2420,9 +2124,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new DeleteSnapshotRequest())->setName($formattedName);
+        $request = new DeleteSnapshotRequest();
         $response = $gapicClient->deleteSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2474,9 +2176,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $request = (new DeleteStoragePoolRequest())->setName($formattedName);
+        $request = new DeleteStoragePoolRequest();
         $response = $gapicClient->deleteStoragePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2487,8 +2187,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteStoragePool', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteStoragePoolTest');
         $response->pollUntilComplete([
@@ -2542,9 +2240,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $request = (new DeleteStoragePoolRequest())->setName($formattedName);
+        $request = new DeleteStoragePoolRequest();
         $response = $gapicClient->deleteStoragePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2596,9 +2292,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new DeleteVolumeRequest())->setName($formattedName);
+        $request = new DeleteVolumeRequest();
         $response = $gapicClient->deleteVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2609,8 +2303,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteVolume', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteVolumeTest');
         $response->pollUntilComplete([
@@ -2664,9 +2356,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new DeleteVolumeRequest())->setName($formattedName);
+        $request = new DeleteVolumeRequest();
         $response = $gapicClient->deleteVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2730,9 +2420,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new EncryptVolumesRequest())->setName($formattedName);
+        $request = new EncryptVolumesRequest();
         $response = $gapicClient->encryptVolumes($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2743,8 +2431,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/EncryptVolumes', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/encryptVolumesTest');
         $response->pollUntilComplete([
@@ -2798,9 +2484,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new EncryptVolumesRequest())->setName($formattedName);
+        $request = new EncryptVolumesRequest();
         $response = $gapicClient->encryptVolumes($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2866,9 +2550,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setEncryptDcConnections($encryptDcConnections);
         $expectedResponse->setStateDetails($stateDetails);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->activeDirectoryName('[PROJECT]', '[LOCATION]', '[ACTIVE_DIRECTORY]');
-        $request = (new GetActiveDirectoryRequest())->setName($formattedName);
+        $request = new GetActiveDirectoryRequest();
         $response = $gapicClient->getActiveDirectory($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2876,8 +2558,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/GetActiveDirectory', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2902,9 +2582,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->activeDirectoryName('[PROJECT]', '[LOCATION]', '[ACTIVE_DIRECTORY]');
-        $request = (new GetActiveDirectoryRequest())->setName($formattedName);
+        $request = new GetActiveDirectoryRequest();
         try {
             $gapicClient->getActiveDirectory($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2941,9 +2619,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setSourceSnapshot($sourceSnapshot);
         $expectedResponse->setChainStorageBytes($chainStorageBytes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]', '[BACKUP]');
-        $request = (new GetBackupRequest())->setName($formattedName);
+        $request = new GetBackupRequest();
         $response = $gapicClient->getBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2951,8 +2627,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/GetBackup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2977,9 +2651,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]', '[BACKUP]');
-        $request = (new GetBackupRequest())->setName($formattedName);
+        $request = new GetBackupRequest();
         try {
             $gapicClient->getBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3018,9 +2690,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setEnabled($enabled);
         $expectedResponse->setAssignedVolumeCount($assignedVolumeCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->backupPolicyName('[PROJECT]', '[LOCATION]', '[BACKUP_POLICY]');
-        $request = (new GetBackupPolicyRequest())->setName($formattedName);
+        $request = new GetBackupPolicyRequest();
         $response = $gapicClient->getBackupPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3028,8 +2698,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/GetBackupPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3054,9 +2722,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupPolicyName('[PROJECT]', '[LOCATION]', '[BACKUP_POLICY]');
-        $request = (new GetBackupPolicyRequest())->setName($formattedName);
+        $request = new GetBackupPolicyRequest();
         try {
             $gapicClient->getBackupPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3085,9 +2751,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
-        $request = (new GetBackupVaultRequest())->setName($formattedName);
+        $request = new GetBackupVaultRequest();
         $response = $gapicClient->getBackupVault($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3095,8 +2759,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/GetBackupVault', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3121,9 +2783,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
-        $request = (new GetBackupVaultRequest())->setName($formattedName);
+        $request = new GetBackupVaultRequest();
         try {
             $gapicClient->getBackupVault($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3160,9 +2820,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setInstructions($instructions);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new GetKmsConfigRequest())->setName($formattedName);
+        $request = new GetKmsConfigRequest();
         $response = $gapicClient->getKmsConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3170,8 +2828,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/GetKmsConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3196,9 +2852,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new GetKmsConfigRequest())->setName($formattedName);
+        $request = new GetKmsConfigRequest();
         try {
             $gapicClient->getKmsConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3235,9 +2889,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new GetReplicationRequest())->setName($formattedName);
+        $request = new GetReplicationRequest();
         $response = $gapicClient->getReplication($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3245,8 +2897,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/GetReplication', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3271,9 +2921,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new GetReplicationRequest())->setName($formattedName);
+        $request = new GetReplicationRequest();
         try {
             $gapicClient->getReplication($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3306,9 +2954,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setUsedBytes($usedBytes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new GetSnapshotRequest())->setName($formattedName);
+        $request = new GetSnapshotRequest();
         $response = $gapicClient->getSnapshot($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3316,8 +2962,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/GetSnapshot', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3342,9 +2986,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new GetSnapshotRequest())->setName($formattedName);
+        $request = new GetSnapshotRequest();
         try {
             $gapicClient->getSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3393,9 +3035,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setPsaRange($psaRange);
         $expectedResponse->setGlobalAccessAllowed($globalAccessAllowed);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $request = (new GetStoragePoolRequest())->setName($formattedName);
+        $request = new GetStoragePoolRequest();
         $response = $gapicClient->getStoragePool($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3403,8 +3043,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/GetStoragePool', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3429,9 +3067,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $request = (new GetStoragePoolRequest())->setName($formattedName);
+        $request = new GetStoragePoolRequest();
         try {
             $gapicClient->getStoragePool($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3490,9 +3126,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setKmsConfig($kmsConfig);
         $expectedResponse->setHasReplication($hasReplication);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new GetVolumeRequest())->setName($formattedName);
+        $request = new GetVolumeRequest();
         $response = $gapicClient->getVolume($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3500,8 +3134,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/GetVolume', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3526,9 +3158,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new GetVolumeRequest())->setName($formattedName);
+        $request = new GetVolumeRequest();
         try {
             $gapicClient->getVolume($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3558,9 +3188,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setActiveDirectories($activeDirectories);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListActiveDirectoriesRequest())->setParent($formattedParent);
+        $request = new ListActiveDirectoriesRequest();
         $response = $gapicClient->listActiveDirectories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3571,8 +3199,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ListActiveDirectories', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3597,9 +3223,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListActiveDirectoriesRequest())->setParent($formattedParent);
+        $request = new ListActiveDirectoriesRequest();
         try {
             $gapicClient->listActiveDirectories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3629,9 +3253,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackupPolicies($backupPolicies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupPoliciesRequest())->setParent($formattedParent);
+        $request = new ListBackupPoliciesRequest();
         $response = $gapicClient->listBackupPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3642,8 +3264,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ListBackupPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3668,9 +3288,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupPoliciesRequest())->setParent($formattedParent);
+        $request = new ListBackupPoliciesRequest();
         try {
             $gapicClient->listBackupPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3700,9 +3318,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackupVaults($backupVaults);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupVaultsRequest())->setParent($formattedParent);
+        $request = new ListBackupVaultsRequest();
         $response = $gapicClient->listBackupVaults($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3713,8 +3329,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ListBackupVaults', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3739,9 +3353,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupVaultsRequest())->setParent($formattedParent);
+        $request = new ListBackupVaultsRequest();
         try {
             $gapicClient->listBackupVaults($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3771,9 +3383,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
-        $request = (new ListBackupsRequest())->setParent($formattedParent);
+        $request = new ListBackupsRequest();
         $response = $gapicClient->listBackups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3784,8 +3394,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ListBackups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3810,9 +3418,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
-        $request = (new ListBackupsRequest())->setParent($formattedParent);
+        $request = new ListBackupsRequest();
         try {
             $gapicClient->listBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3842,9 +3448,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setKmsConfigs($kmsConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListKmsConfigsRequest())->setParent($formattedParent);
+        $request = new ListKmsConfigsRequest();
         $response = $gapicClient->listKmsConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3855,8 +3459,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ListKmsConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3881,9 +3483,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListKmsConfigsRequest())->setParent($formattedParent);
+        $request = new ListKmsConfigsRequest();
         try {
             $gapicClient->listKmsConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3913,9 +3513,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReplications($replications);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListReplicationsRequest())->setParent($formattedParent);
+        $request = new ListReplicationsRequest();
         $response = $gapicClient->listReplications($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3926,8 +3524,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ListReplications', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3952,9 +3548,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListReplicationsRequest())->setParent($formattedParent);
+        $request = new ListReplicationsRequest();
         try {
             $gapicClient->listReplications($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3984,9 +3578,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnapshots($snapshots);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListSnapshotsRequest())->setParent($formattedParent);
+        $request = new ListSnapshotsRequest();
         $response = $gapicClient->listSnapshots($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3997,8 +3589,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ListSnapshots', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4023,9 +3613,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListSnapshotsRequest())->setParent($formattedParent);
+        $request = new ListSnapshotsRequest();
         try {
             $gapicClient->listSnapshots($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4055,9 +3643,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStoragePools($storagePools);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListStoragePoolsRequest())->setParent($formattedParent);
+        $request = new ListStoragePoolsRequest();
         $response = $gapicClient->listStoragePools($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4068,8 +3654,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ListStoragePools', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4094,9 +3678,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListStoragePoolsRequest())->setParent($formattedParent);
+        $request = new ListStoragePoolsRequest();
         try {
             $gapicClient->listStoragePools($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4126,9 +3708,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVolumes($volumes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListVolumesRequest())->setParent($formattedParent);
+        $request = new ListVolumesRequest();
         $response = $gapicClient->listVolumes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4139,8 +3719,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ListVolumes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4165,9 +3743,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListVolumesRequest())->setParent($formattedParent);
+        $request = new ListVolumesRequest();
         try {
             $gapicClient->listVolumes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4222,9 +3798,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new ResumeReplicationRequest())->setName($formattedName);
+        $request = new ResumeReplicationRequest();
         $response = $gapicClient->resumeReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4235,8 +3809,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ResumeReplication', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/resumeReplicationTest');
         $response->pollUntilComplete([
@@ -4290,9 +3862,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new ResumeReplicationRequest())->setName($formattedName);
+        $request = new ResumeReplicationRequest();
         $response = $gapicClient->resumeReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4356,9 +3926,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new ReverseReplicationDirectionRequest())->setName($formattedName);
+        $request = new ReverseReplicationDirectionRequest();
         $response = $gapicClient->reverseReplicationDirection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4369,8 +3937,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/ReverseReplicationDirection', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/reverseReplicationDirectionTest');
         $response->pollUntilComplete([
@@ -4424,9 +3990,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new ReverseReplicationDirectionRequest())->setName($formattedName);
+        $request = new ReverseReplicationDirectionRequest();
         $response = $gapicClient->reverseReplicationDirection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4512,10 +4076,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $snapshotId = 'snapshotId-168585866';
-        $request = (new RevertVolumeRequest())->setName($formattedName)->setSnapshotId($snapshotId);
+        $request = new RevertVolumeRequest();
         $response = $gapicClient->revertVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4526,10 +4087,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/RevertVolume', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getSnapshotId();
-        $this->assertProtobufEquals($snapshotId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/revertVolumeTest');
         $response->pollUntilComplete([
@@ -4583,10 +4140,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $snapshotId = 'snapshotId-168585866';
-        $request = (new RevertVolumeRequest())->setName($formattedName)->setSnapshotId($snapshotId);
+        $request = new RevertVolumeRequest();
         $response = $gapicClient->revertVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4650,9 +4204,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new StopReplicationRequest())->setName($formattedName);
+        $request = new StopReplicationRequest();
         $response = $gapicClient->stopReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4663,8 +4215,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/StopReplication', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/stopReplicationTest');
         $response->pollUntilComplete([
@@ -4718,9 +4268,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
-        $request = (new StopReplicationRequest())->setName($formattedName);
+        $request = new StopReplicationRequest();
         $response = $gapicClient->stopReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4804,22 +4352,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $activeDirectory = new ActiveDirectory();
-        $activeDirectoryDomain = 'activeDirectoryDomain1710368171';
-        $activeDirectory->setDomain($activeDirectoryDomain);
-        $activeDirectoryDns = 'activeDirectoryDns1090270626';
-        $activeDirectory->setDns($activeDirectoryDns);
-        $activeDirectoryNetBiosPrefix = 'activeDirectoryNetBiosPrefix-1870358125';
-        $activeDirectory->setNetBiosPrefix($activeDirectoryNetBiosPrefix);
-        $activeDirectoryUsername = 'activeDirectoryUsername1591163901';
-        $activeDirectory->setUsername($activeDirectoryUsername);
-        $activeDirectoryPassword = 'activeDirectoryPassword-1221104190';
-        $activeDirectory->setPassword($activeDirectoryPassword);
-        $request = (new UpdateActiveDirectoryRequest())
-            ->setUpdateMask($updateMask)
-            ->setActiveDirectory($activeDirectory);
+        $request = new UpdateActiveDirectoryRequest();
         $response = $gapicClient->updateActiveDirectory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4830,10 +4363,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateActiveDirectory', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getActiveDirectory();
-        $this->assertProtobufEquals($activeDirectory, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateActiveDirectoryTest');
         $response->pollUntilComplete([
@@ -4887,22 +4416,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $activeDirectory = new ActiveDirectory();
-        $activeDirectoryDomain = 'activeDirectoryDomain1710368171';
-        $activeDirectory->setDomain($activeDirectoryDomain);
-        $activeDirectoryDns = 'activeDirectoryDns1090270626';
-        $activeDirectory->setDns($activeDirectoryDns);
-        $activeDirectoryNetBiosPrefix = 'activeDirectoryNetBiosPrefix-1870358125';
-        $activeDirectory->setNetBiosPrefix($activeDirectoryNetBiosPrefix);
-        $activeDirectoryUsername = 'activeDirectoryUsername1591163901';
-        $activeDirectory->setUsername($activeDirectoryUsername);
-        $activeDirectoryPassword = 'activeDirectoryPassword-1221104190';
-        $activeDirectory->setPassword($activeDirectoryPassword);
-        $request = (new UpdateActiveDirectoryRequest())
-            ->setUpdateMask($updateMask)
-            ->setActiveDirectory($activeDirectory);
+        $request = new UpdateActiveDirectoryRequest();
         $response = $gapicClient->updateActiveDirectory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4966,10 +4480,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $backup = new Backup();
-        $request = (new UpdateBackupRequest())->setUpdateMask($updateMask)->setBackup($backup);
+        $request = new UpdateBackupRequest();
         $response = $gapicClient->updateBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4980,10 +4491,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackup();
-        $this->assertProtobufEquals($backup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBackupTest');
         $response->pollUntilComplete([
@@ -5037,10 +4544,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $backup = new Backup();
-        $request = (new UpdateBackupRequest())->setUpdateMask($updateMask)->setBackup($backup);
+        $request = new UpdateBackupRequest();
         $response = $gapicClient->updateBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5106,10 +4610,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $backupPolicy = new BackupPolicy();
-        $request = (new UpdateBackupPolicyRequest())->setUpdateMask($updateMask)->setBackupPolicy($backupPolicy);
+        $request = new UpdateBackupPolicyRequest();
         $response = $gapicClient->updateBackupPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5120,10 +4621,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateBackupPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupPolicy();
-        $this->assertProtobufEquals($backupPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBackupPolicyTest');
         $response->pollUntilComplete([
@@ -5177,10 +4674,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $backupPolicy = new BackupPolicy();
-        $request = (new UpdateBackupPolicyRequest())->setUpdateMask($updateMask)->setBackupPolicy($backupPolicy);
+        $request = new UpdateBackupPolicyRequest();
         $response = $gapicClient->updateBackupPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5236,10 +4730,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $backupVault = new BackupVault();
-        $request = (new UpdateBackupVaultRequest())->setUpdateMask($updateMask)->setBackupVault($backupVault);
+        $request = new UpdateBackupVaultRequest();
         $response = $gapicClient->updateBackupVault($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5250,10 +4741,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateBackupVault', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupVault();
-        $this->assertProtobufEquals($backupVault, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBackupVaultTest');
         $response->pollUntilComplete([
@@ -5307,10 +4794,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $backupVault = new BackupVault();
-        $request = (new UpdateBackupVaultRequest())->setUpdateMask($updateMask)->setBackupVault($backupVault);
+        $request = new UpdateBackupVaultRequest();
         $response = $gapicClient->updateBackupVault($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5374,12 +4858,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $kmsConfig = new KmsConfig();
-        $kmsConfigCryptoKeyName = 'kmsConfigCryptoKeyName2110252630';
-        $kmsConfig->setCryptoKeyName($kmsConfigCryptoKeyName);
-        $request = (new UpdateKmsConfigRequest())->setUpdateMask($updateMask)->setKmsConfig($kmsConfig);
+        $request = new UpdateKmsConfigRequest();
         $response = $gapicClient->updateKmsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5390,10 +4869,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateKmsConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getKmsConfig();
-        $this->assertProtobufEquals($kmsConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateKmsConfigTest');
         $response->pollUntilComplete([
@@ -5447,12 +4922,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $kmsConfig = new KmsConfig();
-        $kmsConfigCryptoKeyName = 'kmsConfigCryptoKeyName2110252630';
-        $kmsConfig->setCryptoKeyName($kmsConfigCryptoKeyName);
-        $request = (new UpdateKmsConfigRequest())->setUpdateMask($updateMask)->setKmsConfig($kmsConfig);
+        $request = new UpdateKmsConfigRequest();
         $response = $gapicClient->updateKmsConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5516,20 +4986,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $replication = new Replication();
-        $replicationReplicationSchedule = ReplicationSchedule::REPLICATION_SCHEDULE_UNSPECIFIED;
-        $replication->setReplicationSchedule($replicationReplicationSchedule);
-        $replicationDestinationVolumeParameters = new DestinationVolumeParameters();
-        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[STORAGE_POOL]'
-        );
-        $replicationDestinationVolumeParameters->setStoragePool($destinationVolumeParametersStoragePool);
-        $replication->setDestinationVolumeParameters($replicationDestinationVolumeParameters);
-        $request = (new UpdateReplicationRequest())->setUpdateMask($updateMask)->setReplication($replication);
+        $request = new UpdateReplicationRequest();
         $response = $gapicClient->updateReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5540,10 +4997,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateReplication', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getReplication();
-        $this->assertProtobufEquals($replication, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateReplicationTest');
         $response->pollUntilComplete([
@@ -5597,20 +5050,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $replication = new Replication();
-        $replicationReplicationSchedule = ReplicationSchedule::REPLICATION_SCHEDULE_UNSPECIFIED;
-        $replication->setReplicationSchedule($replicationReplicationSchedule);
-        $replicationDestinationVolumeParameters = new DestinationVolumeParameters();
-        $destinationVolumeParametersStoragePool = $gapicClient->storagePoolName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[STORAGE_POOL]'
-        );
-        $replicationDestinationVolumeParameters->setStoragePool($destinationVolumeParametersStoragePool);
-        $replication->setDestinationVolumeParameters($replicationDestinationVolumeParameters);
-        $request = (new UpdateReplicationRequest())->setUpdateMask($updateMask)->setReplication($replication);
+        $request = new UpdateReplicationRequest();
         $response = $gapicClient->updateReplication($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5670,10 +5110,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $snapshot = new Snapshot();
-        $request = (new UpdateSnapshotRequest())->setUpdateMask($updateMask)->setSnapshot($snapshot);
+        $request = new UpdateSnapshotRequest();
         $response = $gapicClient->updateSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5684,10 +5121,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateSnapshot', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getSnapshot();
-        $this->assertProtobufEquals($snapshot, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateSnapshotTest');
         $response->pollUntilComplete([
@@ -5741,10 +5174,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $snapshot = new Snapshot();
-        $request = (new UpdateSnapshotRequest())->setUpdateMask($updateMask)->setSnapshot($snapshot);
+        $request = new UpdateSnapshotRequest();
         $response = $gapicClient->updateSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5820,16 +5250,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $storagePool = new StoragePool();
-        $storagePoolServiceLevel = ServiceLevel::SERVICE_LEVEL_UNSPECIFIED;
-        $storagePool->setServiceLevel($storagePoolServiceLevel);
-        $storagePoolCapacityGib = 1260910865;
-        $storagePool->setCapacityGib($storagePoolCapacityGib);
-        $storagePoolNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $storagePool->setNetwork($storagePoolNetwork);
-        $request = (new UpdateStoragePoolRequest())->setUpdateMask($updateMask)->setStoragePool($storagePool);
+        $request = new UpdateStoragePoolRequest();
         $response = $gapicClient->updateStoragePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5840,10 +5261,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateStoragePool', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getStoragePool();
-        $this->assertProtobufEquals($storagePool, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateStoragePoolTest');
         $response->pollUntilComplete([
@@ -5897,16 +5314,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $storagePool = new StoragePool();
-        $storagePoolServiceLevel = ServiceLevel::SERVICE_LEVEL_UNSPECIFIED;
-        $storagePool->setServiceLevel($storagePoolServiceLevel);
-        $storagePoolCapacityGib = 1260910865;
-        $storagePool->setCapacityGib($storagePoolCapacityGib);
-        $storagePoolNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $storagePool->setNetwork($storagePoolNetwork);
-        $request = (new UpdateStoragePoolRequest())->setUpdateMask($updateMask)->setStoragePool($storagePool);
+        $request = new UpdateStoragePoolRequest();
         $response = $gapicClient->updateStoragePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5992,18 +5400,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $volume = new Volume();
-        $volumeShareName = 'volumeShareName1564593424';
-        $volume->setShareName($volumeShareName);
-        $volumeStoragePool = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $volume->setStoragePool($volumeStoragePool);
-        $volumeCapacityGib = 1491387092;
-        $volume->setCapacityGib($volumeCapacityGib);
-        $volumeProtocols = [];
-        $volume->setProtocols($volumeProtocols);
-        $request = (new UpdateVolumeRequest())->setUpdateMask($updateMask)->setVolume($volume);
+        $request = new UpdateVolumeRequest();
         $response = $gapicClient->updateVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6014,10 +5411,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateVolume', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getVolume();
-        $this->assertProtobufEquals($volume, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateVolumeTest');
         $response->pollUntilComplete([
@@ -6071,18 +5464,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $volume = new Volume();
-        $volumeShareName = 'volumeShareName1564593424';
-        $volume->setShareName($volumeShareName);
-        $volumeStoragePool = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
-        $volume->setStoragePool($volumeStoragePool);
-        $volumeCapacityGib = 1491387092;
-        $volume->setCapacityGib($volumeCapacityGib);
-        $volumeProtocols = [];
-        $volume->setProtocols($volumeProtocols);
-        $request = (new UpdateVolumeRequest())->setUpdateMask($updateMask)->setVolume($volume);
+        $request = new UpdateVolumeRequest();
         $response = $gapicClient->updateVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6122,9 +5504,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setHealthError($healthError);
         $expectedResponse->setInstructions($instructions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new VerifyKmsConfigRequest())->setName($formattedName);
+        $request = new VerifyKmsConfigRequest();
         $response = $gapicClient->verifyKmsConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -6132,8 +5512,6 @@ class NetAppClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/VerifyKmsConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6158,9 +5536,7 @@ class NetAppClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->kmsConfigName('[PROJECT]', '[LOCATION]', '[KMS_CONFIG]');
-        $request = (new VerifyKmsConfigRequest())->setName($formattedName);
+        $request = new VerifyKmsConfigRequest();
         try {
             $gapicClient->verifyKmsConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -6363,24 +5739,7 @@ class NetAppClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $activeDirectory = new ActiveDirectory();
-        $activeDirectoryDomain = 'activeDirectoryDomain1710368171';
-        $activeDirectory->setDomain($activeDirectoryDomain);
-        $activeDirectoryDns = 'activeDirectoryDns1090270626';
-        $activeDirectory->setDns($activeDirectoryDns);
-        $activeDirectoryNetBiosPrefix = 'activeDirectoryNetBiosPrefix-1870358125';
-        $activeDirectory->setNetBiosPrefix($activeDirectoryNetBiosPrefix);
-        $activeDirectoryUsername = 'activeDirectoryUsername1591163901';
-        $activeDirectory->setUsername($activeDirectoryUsername);
-        $activeDirectoryPassword = 'activeDirectoryPassword-1221104190';
-        $activeDirectory->setPassword($activeDirectoryPassword);
-        $activeDirectoryId = 'activeDirectoryId1363092678';
-        $request = (new CreateActiveDirectoryRequest())
-            ->setParent($formattedParent)
-            ->setActiveDirectory($activeDirectory)
-            ->setActiveDirectoryId($activeDirectoryId);
+        $request = new CreateActiveDirectoryRequest();
         $response = $gapicClient->createActiveDirectoryAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6391,12 +5750,6 @@ class NetAppClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateActiveDirectory', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getActiveDirectory();
-        $this->assertProtobufEquals($activeDirectory, $actualValue);
-        $actualValue = $actualApiRequestObject->getActiveDirectoryId();
-        $this->assertProtobufEquals($activeDirectoryId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createActiveDirectoryTest');
         $response->pollUntilComplete([

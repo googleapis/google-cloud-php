@@ -23,8 +23,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Name of the resource. Please see
-     *                     {@see MigrationCenterClient::groupName()} for help formatting this field.
+     * @param string $name Required. Name of the resource.
      *
      * @return \Google\Cloud\MigrationCenter\V1\GetGroupRequest
      *

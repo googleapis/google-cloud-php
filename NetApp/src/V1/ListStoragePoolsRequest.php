@@ -49,7 +49,6 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent value
-     *                       Please see {@see NetAppClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\ListStoragePoolsRequest
      *

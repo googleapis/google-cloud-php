@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Notebooks\V2\Client\NotebookServiceClient;
 use Google\Cloud\Notebooks\V2\Instance;
 use Google\Cloud\Notebooks\V2\UpdateInstanceRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_instance_sample(): void
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $instance = new Instance();
-    $updateMask = new FieldMask();
-    $request = (new UpdateInstanceRequest())
-        ->setInstance($instance)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateInstanceRequest();
 
     // Call the API and handle any network failures.
     try {

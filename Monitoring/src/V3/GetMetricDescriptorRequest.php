@@ -31,8 +31,7 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      *                     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      *
      *                     An example value of `[METRIC_ID]` is
-     *                     `"compute.googleapis.com/instance/disk/read_bytes_count"`. Please see
-     *                     {@see MetricServiceClient::metricDescriptorName()} for help formatting this field.
+     *                     `"compute.googleapis.com/instance/disk/read_bytes_count"`.
      *
      * @return \Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest
      *

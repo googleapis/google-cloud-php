@@ -31,48 +31,19 @@ use Google\Cloud\Logging\V2\LogMetric;
 /**
  * Creates a logs-based metric.
  *
- * @param string $formattedParent The resource name of the project in which to create the metric:
- *
- *                                "projects/[PROJECT_ID]"
- *
- *                                The new metric must be provided in the request. Please see
- *                                {@see MetricsServiceV2Client::projectName()} for help formatting this field.
- * @param string $metricName      The client-assigned metric identifier.
- *                                Examples: `"error_count"`, `"nginx/requests"`.
- *
- *                                Metric identifiers are limited to 100 characters and can include only the
- *                                following characters: `A-Z`, `a-z`, `0-9`, and the special characters
- *                                `_-.,+!*',()%/`. The forward-slash character (`/`) denotes a hierarchy of
- *                                name pieces, and it cannot be the first character of the name.
- *
- *                                This field is the `[METRIC_ID]` part of a metric resource name in the
- *                                format "projects/[PROJECT_ID]/metrics/[METRIC_ID]". Example: If the
- *                                resource name of a metric is
- *                                `"projects/my-project/metrics/nginx%2Frequests"`, this field's value is
- *                                `"nginx/requests"`.
- * @param string $metricFilter    An [advanced logs
- *                                filter](https://cloud.google.com/logging/docs/view/advanced_filters) which
- *                                is used to match log entries. Example:
- *
- *                                "resource.type=gae_app AND severity>=ERROR"
- *
- *                                The maximum length of the filter is 20000 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_log_metric_sample(
-    string $formattedParent,
-    string $metricName,
-    string $metricFilter
-): void {
+function create_log_metric_sample(): void
+{
     // Create a client.
     $metricsServiceV2Client = new MetricsServiceV2Client();
 
     // Prepare the request message.
-    $metric = (new LogMetric())
-        ->setName($metricName)
-        ->setFilter($metricFilter);
-    $request = (new CreateLogMetricRequest())
-        ->setParent($formattedParent)
-        ->setMetric($metric);
+    $request = new CreateLogMetricRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -82,23 +53,5 @@ function create_log_metric_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MetricsServiceV2Client::projectName('[PROJECT]');
-    $metricName = '[NAME]';
-    $metricFilter = '[FILTER]';
-
-    create_log_metric_sample($formattedParent, $metricName, $metricFilter);
 }
 // [END logging_v2_generated_MetricsServiceV2_CreateLogMetric_sync]

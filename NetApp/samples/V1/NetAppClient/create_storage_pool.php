@@ -27,43 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetApp\V1\Client\NetAppClient;
 use Google\Cloud\NetApp\V1\CreateStoragePoolRequest;
-use Google\Cloud\NetApp\V1\ServiceLevel;
 use Google\Cloud\NetApp\V1\StoragePool;
 use Google\Rpc\Status;
 
 /**
  * Creates a new storage pool.
  *
- * @param string $formattedParent             Value for parent. Please see
- *                                            {@see NetAppClient::locationName()} for help formatting this field.
- * @param string $storagePoolId               Id of the requesting storage pool
- *                                            If auto-generating Id server-side, remove this field and
- *                                            id from the method_signature of Create RPC
- * @param int    $storagePoolServiceLevel     Service level of the storage pool
- * @param int    $storagePoolCapacityGib      Capacity in GIB of the pool
- * @param string $formattedStoragePoolNetwork VPC Network name.
- *                                            Format: projects/{project}/global/networks/{network}
- *                                            Please see {@see NetAppClient::networkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_storage_pool_sample(
-    string $formattedParent,
-    string $storagePoolId,
-    int $storagePoolServiceLevel,
-    int $storagePoolCapacityGib,
-    string $formattedStoragePoolNetwork
-): void {
+function create_storage_pool_sample(): void
+{
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $storagePool = (new StoragePool())
-        ->setServiceLevel($storagePoolServiceLevel)
-        ->setCapacityGib($storagePoolCapacityGib)
-        ->setNetwork($formattedStoragePoolNetwork);
-    $request = (new CreateStoragePoolRequest())
-        ->setParent($formattedParent)
-        ->setStoragePoolId($storagePoolId)
-        ->setStoragePool($storagePool);
+    $request = new CreateStoragePoolRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -83,31 +65,5 @@ function create_storage_pool_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NetAppClient::locationName('[PROJECT]', '[LOCATION]');
-    $storagePoolId = '[STORAGE_POOL_ID]';
-    $storagePoolServiceLevel = ServiceLevel::SERVICE_LEVEL_UNSPECIFIED;
-    $storagePoolCapacityGib = 0;
-    $formattedStoragePoolNetwork = NetAppClient::networkName('[PROJECT]', '[NETWORK]');
-
-    create_storage_pool_sample(
-        $formattedParent,
-        $storagePoolId,
-        $storagePoolServiceLevel,
-        $storagePoolCapacityGib,
-        $formattedStoragePoolNetwork
-    );
 }
 // [END netapp_v1_generated_NetApp_CreateStoragePool_sync]

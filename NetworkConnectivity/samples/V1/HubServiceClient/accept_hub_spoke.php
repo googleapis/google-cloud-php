@@ -34,20 +34,19 @@ use Google\Rpc\Status;
  * Accepts a proposal to attach a Network Connectivity Center spoke
  * to a hub.
  *
- * @param string $formattedName     The name of the hub into which to accept the spoke. Please see
- *                                  {@see HubServiceClient::hubName()} for help formatting this field.
- * @param string $formattedSpokeUri The URI of the spoke to accept into the hub. Please see
- *                                  {@see HubServiceClient::spokeName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function accept_hub_spoke_sample(string $formattedName, string $formattedSpokeUri): void
+function accept_hub_spoke_sample(): void
 {
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
     // Prepare the request message.
-    $request = (new AcceptHubSpokeRequest())
-        ->setName($formattedName)
-        ->setSpokeUri($formattedSpokeUri);
+    $request = new AcceptHubSpokeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,22 +66,5 @@ function accept_hub_spoke_sample(string $formattedName, string $formattedSpokeUr
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = HubServiceClient::hubName('[PROJECT]', '[HUB]');
-    $formattedSpokeUri = HubServiceClient::spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-
-    accept_hub_spoke_sample($formattedName, $formattedSpokeUri);
 }
 // [END networkconnectivity_v1_generated_HubService_AcceptHubSpoke_sync]

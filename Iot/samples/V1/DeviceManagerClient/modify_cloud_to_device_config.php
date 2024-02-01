@@ -33,21 +33,19 @@ use Google\Cloud\Iot\V1\ModifyCloudToDeviceConfigRequest;
  * the Cloud IoT Core servers. Returns the modified configuration version and
  * its metadata.
  *
- * @param string $formattedName The name of the device. For example,
- *                              `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
- *                              `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`. Please see
- *                              {@see DeviceManagerClient::deviceName()} for help formatting this field.
- * @param string $binaryData    The configuration data for the device.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function modify_cloud_to_device_config_sample(string $formattedName, string $binaryData): void
+function modify_cloud_to_device_config_sample(): void
 {
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
     // Prepare the request message.
-    $request = (new ModifyCloudToDeviceConfigRequest())
-        ->setName($formattedName)
-        ->setBinaryData($binaryData);
+    $request = new ModifyCloudToDeviceConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,27 +55,5 @@ function modify_cloud_to_device_config_sample(string $formattedName, string $bin
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DeviceManagerClient::deviceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REGISTRY]',
-        '[DEVICE]'
-    );
-    $binaryData = '...';
-
-    modify_cloud_to_device_config_sample($formattedName, $binaryData);
 }
 // [END cloudiot_v1_generated_DeviceManager_ModifyCloudToDeviceConfig_sync]

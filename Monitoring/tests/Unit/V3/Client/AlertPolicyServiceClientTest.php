@@ -81,12 +81,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $alertPolicy = new AlertPolicy();
-        $request = (new CreateAlertPolicyRequest())
-            ->setName($name)
-            ->setAlertPolicy($alertPolicy);
+        $request = new CreateAlertPolicyRequest();
         $response = $gapicClient->createAlertPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -94,10 +89,6 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/CreateAlertPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getAlertPolicy();
-        $this->assertProtobufEquals($alertPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -119,12 +110,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $alertPolicy = new AlertPolicy();
-        $request = (new CreateAlertPolicyRequest())
-            ->setName($name)
-            ->setAlertPolicy($alertPolicy);
+        $request = new CreateAlertPolicyRequest();
         try {
             $gapicClient->createAlertPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -149,18 +135,13 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-        $request = (new DeleteAlertPolicyRequest())
-            ->setName($formattedName);
+        $request = new DeleteAlertPolicyRequest();
         $gapicClient->deleteAlertPolicy($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/DeleteAlertPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -182,10 +163,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-        $request = (new DeleteAlertPolicyRequest())
-            ->setName($formattedName);
+        $request = new DeleteAlertPolicyRequest();
         try {
             $gapicClient->deleteAlertPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -214,10 +192,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-        $request = (new GetAlertPolicyRequest())
-            ->setName($formattedName);
+        $request = new GetAlertPolicyRequest();
         $response = $gapicClient->getAlertPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -225,8 +200,6 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/GetAlertPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -248,10 +221,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-        $request = (new GetAlertPolicyRequest())
-            ->setName($formattedName);
+        $request = new GetAlertPolicyRequest();
         try {
             $gapicClient->getAlertPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -285,10 +255,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setAlertPolicies($alertPolicies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ListAlertPoliciesRequest())
-            ->setName($name);
+        $request = new ListAlertPoliciesRequest();
         $response = $gapicClient->listAlertPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -299,8 +266,6 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/ListAlertPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -322,10 +287,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ListAlertPoliciesRequest())
-            ->setName($name);
+        $request = new ListAlertPoliciesRequest();
         try {
             $gapicClient->listAlertPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -354,10 +316,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $alertPolicy = new AlertPolicy();
-        $request = (new UpdateAlertPolicyRequest())
-            ->setAlertPolicy($alertPolicy);
+        $request = new UpdateAlertPolicyRequest();
         $response = $gapicClient->updateAlertPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -365,8 +324,6 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/UpdateAlertPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAlertPolicy();
-        $this->assertProtobufEquals($alertPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -388,10 +345,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $alertPolicy = new AlertPolicy();
-        $request = (new UpdateAlertPolicyRequest())
-            ->setAlertPolicy($alertPolicy);
+        $request = new UpdateAlertPolicyRequest();
         try {
             $gapicClient->updateAlertPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -420,12 +374,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $alertPolicy = new AlertPolicy();
-        $request = (new CreateAlertPolicyRequest())
-            ->setName($name)
-            ->setAlertPolicy($alertPolicy);
+        $request = new CreateAlertPolicyRequest();
         $response = $gapicClient->createAlertPolicyAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -433,10 +382,6 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.AlertPolicyService/CreateAlertPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getAlertPolicy();
-        $this->assertProtobufEquals($alertPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

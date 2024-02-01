@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Language\V1\AnalyzeSyntaxRequest;
 use Google\Cloud\Language\V1\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1\Client\LanguageServiceClient;
-use Google\Cloud\Language\V1\Document;
 
 /**
  * Analyzes the syntax of the text and provides sentence boundaries and
@@ -46,9 +45,7 @@ function analyze_syntax_sample(): void
     $languageServiceClient = new LanguageServiceClient();
 
     // Prepare the request message.
-    $document = new Document();
-    $request = (new AnalyzeSyntaxRequest())
-        ->setDocument($document);
+    $request = new AnalyzeSyntaxRequest();
 
     // Call the API and handle any network failures.
     try {

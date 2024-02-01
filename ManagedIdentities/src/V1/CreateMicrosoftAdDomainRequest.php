@@ -49,7 +49,6 @@ class CreateMicrosoftAdDomainRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                    $parent     Required. The resource project name and location using the form:
      *                                                              `projects/{project_id}/locations/global`
-     *                                                              Please see {@see ManagedIdentitiesServiceClient::locationName()} for help formatting this field.
      * @param string                                    $domainName Required. The fully qualified domain name.
      *                                                              e.g. mydomain.myorganization.com, with the following restrictions:
      *

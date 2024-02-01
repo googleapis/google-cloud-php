@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Notebooks\V1\Client\ManagedNotebookServiceClient;
 use Google\Cloud\Notebooks\V1\Runtime;
 use Google\Cloud\Notebooks\V1\UpdateRuntimeRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_runtime_sample(): void
     $managedNotebookServiceClient = new ManagedNotebookServiceClient();
 
     // Prepare the request message.
-    $runtime = new Runtime();
-    $updateMask = new FieldMask();
-    $request = (new UpdateRuntimeRequest())
-        ->setRuntime($runtime)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateRuntimeRequest();
 
     // Call the API and handle any network failures.
     try {

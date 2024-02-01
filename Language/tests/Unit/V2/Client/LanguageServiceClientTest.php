@@ -31,12 +31,10 @@ use Google\Cloud\Language\V2\AnalyzeEntitiesResponse;
 use Google\Cloud\Language\V2\AnalyzeSentimentRequest;
 use Google\Cloud\Language\V2\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V2\AnnotateTextRequest;
-use Google\Cloud\Language\V2\AnnotateTextRequest\Features;
 use Google\Cloud\Language\V2\AnnotateTextResponse;
 use Google\Cloud\Language\V2\ClassifyTextRequest;
 use Google\Cloud\Language\V2\ClassifyTextResponse;
 use Google\Cloud\Language\V2\Client\LanguageServiceClient;
-use Google\Cloud\Language\V2\Document;
 use Google\Cloud\Language\V2\ModerateTextRequest;
 use Google\Cloud\Language\V2\ModerateTextResponse;
 use Google\Rpc\Code;
@@ -85,10 +83,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setLanguageSupported($languageSupported);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $request = (new AnalyzeEntitiesRequest())
-            ->setDocument($document);
+        $request = new AnalyzeEntitiesRequest();
         $response = $gapicClient->analyzeEntities($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -96,8 +91,6 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v2.LanguageService/AnalyzeEntities', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -119,10 +112,7 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
-        $request = (new AnalyzeEntitiesRequest())
-            ->setDocument($document);
+        $request = new AnalyzeEntitiesRequest();
         try {
             $gapicClient->analyzeEntities($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -151,10 +141,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setLanguageSupported($languageSupported);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $request = (new AnalyzeSentimentRequest())
-            ->setDocument($document);
+        $request = new AnalyzeSentimentRequest();
         $response = $gapicClient->analyzeSentiment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -162,8 +149,6 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v2.LanguageService/AnalyzeSentiment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -185,10 +170,7 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
-        $request = (new AnalyzeSentimentRequest())
-            ->setDocument($document);
+        $request = new AnalyzeSentimentRequest();
         try {
             $gapicClient->analyzeSentiment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -217,12 +199,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setLanguageSupported($languageSupported);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $features = new Features();
-        $request = (new AnnotateTextRequest())
-            ->setDocument($document)
-            ->setFeatures($features);
+        $request = new AnnotateTextRequest();
         $response = $gapicClient->annotateText($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -230,10 +207,6 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v2.LanguageService/AnnotateText', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
-        $actualValue = $actualRequestObject->getFeatures();
-        $this->assertProtobufEquals($features, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -255,12 +228,7 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
-        $features = new Features();
-        $request = (new AnnotateTextRequest())
-            ->setDocument($document)
-            ->setFeatures($features);
+        $request = new AnnotateTextRequest();
         try {
             $gapicClient->annotateText($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -289,10 +257,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setLanguageSupported($languageSupported);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $request = (new ClassifyTextRequest())
-            ->setDocument($document);
+        $request = new ClassifyTextRequest();
         $response = $gapicClient->classifyText($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -300,8 +265,6 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v2.LanguageService/ClassifyText', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -323,10 +286,7 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
-        $request = (new ClassifyTextRequest())
-            ->setDocument($document);
+        $request = new ClassifyTextRequest();
         try {
             $gapicClient->classifyText($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -355,10 +315,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setLanguageSupported($languageSupported);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $request = (new ModerateTextRequest())
-            ->setDocument($document);
+        $request = new ModerateTextRequest();
         $response = $gapicClient->moderateText($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -366,8 +323,6 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v2.LanguageService/ModerateText', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -389,10 +344,7 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
-        $request = (new ModerateTextRequest())
-            ->setDocument($document);
+        $request = new ModerateTextRequest();
         try {
             $gapicClient->moderateText($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -421,10 +373,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setLanguageSupported($languageSupported);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $request = (new AnalyzeEntitiesRequest())
-            ->setDocument($document);
+        $request = new AnalyzeEntitiesRequest();
         $response = $gapicClient->analyzeEntitiesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -432,8 +381,6 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v2.LanguageService/AnalyzeEntities', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -31,22 +31,19 @@ use Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
 /**
  * Gets a single monitored resource descriptor. This method does not require a Workspace.
  *
- * @param string $formattedName The monitored resource descriptor to get.  The format is:
- *
- *                              projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE]
- *
- *                              The `[RESOURCE_TYPE]` is a predefined type, such as
- *                              `cloudsql_database`. Please see
- *                              {@see MetricServiceClient::monitoredResourceDescriptorName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_monitored_resource_descriptor_sample(string $formattedName): void
+function get_monitored_resource_descriptor_sample(): void
 {
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
     // Prepare the request message.
-    $request = (new GetMonitoredResourceDescriptorRequest())
-        ->setName($formattedName);
+    $request = new GetMonitoredResourceDescriptorRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,24 +53,5 @@ function get_monitored_resource_descriptor_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = MetricServiceClient::monitoredResourceDescriptorName(
-        '[PROJECT]',
-        '[MONITORED_RESOURCE_DESCRIPTOR]'
-    );
-
-    get_monitored_resource_descriptor_sample($formattedName);
 }
 // [END monitoring_v3_generated_MetricService_GetMonitoredResourceDescriptor_sync]

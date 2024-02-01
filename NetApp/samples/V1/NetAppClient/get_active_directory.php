@@ -31,17 +31,19 @@ use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 /**
  * Describes a specified active directory.
  *
- * @param string $formattedName Name of the active directory. Please see
- *                              {@see NetAppClient::activeDirectoryName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_active_directory_sample(string $formattedName): void
+function get_active_directory_sample(): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $request = (new GetActiveDirectoryRequest())
-        ->setName($formattedName);
+    $request = new GetActiveDirectoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +53,5 @@ function get_active_directory_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NetAppClient::activeDirectoryName('[PROJECT]', '[LOCATION]', '[ACTIVE_DIRECTORY]');
-
-    get_active_directory_sample($formattedName);
 }
 // [END netapp_v1_generated_NetApp_GetActiveDirectory_sync]

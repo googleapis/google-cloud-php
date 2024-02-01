@@ -26,8 +26,7 @@ class DeleteCustomConstraintRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the custom constraint to delete.
-     *                     See the custom constraint entry for naming rules. Please see
-     *                     {@see OrgPolicyClient::customConstraintName()} for help formatting this field.
+     *                     See the custom constraint entry for naming rules.
      *
      * @return \Google\Cloud\OrgPolicy\V2\DeleteCustomConstraintRequest
      *

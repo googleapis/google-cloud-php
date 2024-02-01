@@ -33,18 +33,19 @@ use Google\Rpc\Status;
 /**
  * Triggers execution of an existing schedule.
  *
- * @param string $formattedName Format:
- *                              `parent=projects/{project_id}/locations/{location}/schedules/{schedule_id}`
- *                              Please see {@see NotebookServiceClient::scheduleName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function trigger_schedule_sample(string $formattedName): void
+function trigger_schedule_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $request = (new TriggerScheduleRequest())
-        ->setName($formattedName);
+    $request = new TriggerScheduleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -64,21 +65,5 @@ function trigger_schedule_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NotebookServiceClient::scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-
-    trigger_schedule_sample($formattedName);
 }
 // [END notebooks_v1_generated_NotebookService_TriggerSchedule_sync]

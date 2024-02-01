@@ -26,7 +26,6 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The backup resource name, in the format
      *                     `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}`
-     *                     Please see {@see NetAppClient::backupName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\GetBackupRequest
      *

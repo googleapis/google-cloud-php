@@ -486,17 +486,13 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse->setSecondaryGceZone($secondaryGceZone);
         $expectedResponse->setIsFailoverReplicaAvailable($isFailoverReplicaAvailable);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedEnvironment = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]');
-        $response = $gapicClient->fetchDatabaseProperties($formattedEnvironment);
+        $response = $gapicClient->fetchDatabaseProperties();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orchestration.airflow.service.v1.Environments/FetchDatabaseProperties', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEnvironment();
-        $this->assertProtobufEquals($formattedEnvironment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -518,10 +514,8 @@ class EnvironmentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedEnvironment = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]');
         try {
-            $gapicClient->fetchDatabaseProperties($formattedEnvironment);
+            $gapicClient->fetchDatabaseProperties();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

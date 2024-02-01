@@ -33,25 +33,19 @@ use Google\Cloud\Monitoring\V3\VerifyNotificationChannelRequest;
  * delivered to the channel as a result of calling
  * `SendNotificationChannelVerificationCode`.
  *
- * @param string $formattedName The notification channel to verify. Please see
- *                              {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
- * @param string $code          The verification code that was delivered to the channel as
- *                              a result of invoking the `SendNotificationChannelVerificationCode` API
- *                              method or that was retrieved from a verified channel via
- *                              `GetNotificationChannelVerificationCode`. For example, one might have
- *                              "G-123456" or "TKNZGhhd2EyN3I1MnRnMjRv" (in general, one is only
- *                              guaranteed that the code is valid UTF-8; one should not
- *                              make any assumptions regarding the structure or format of the code).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function verify_notification_channel_sample(string $formattedName, string $code): void
+function verify_notification_channel_sample(): void
 {
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
     // Prepare the request message.
-    $request = (new VerifyNotificationChannelRequest())
-        ->setName($formattedName)
-        ->setCode($code);
+    $request = new VerifyNotificationChannelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,25 +55,5 @@ function verify_notification_channel_sample(string $formattedName, string $code)
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NotificationChannelServiceClient::notificationChannelName(
-        '[PROJECT]',
-        '[NOTIFICATION_CHANNEL]'
-    );
-    $code = '[CODE]';
-
-    verify_notification_channel_sample($formattedName, $code);
 }
 // [END monitoring_v3_generated_NotificationChannelService_VerifyNotificationChannel_sync]

@@ -31,18 +31,19 @@ use Google\Cloud\NetworkSecurity\V1\GetAuthorizationPolicyRequest;
 /**
  * Gets details of a single AuthorizationPolicy.
  *
- * @param string $formattedName A name of the AuthorizationPolicy to get. Must be in the format
- *                              `projects/{project}/locations/{location}/authorizationPolicies/*`. Please see
- *                              {@see NetworkSecurityClient::authorizationPolicyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_authorization_policy_sample(string $formattedName): void
+function get_authorization_policy_sample(): void
 {
     // Create a client.
     $networkSecurityClient = new NetworkSecurityClient();
 
     // Prepare the request message.
-    $request = (new GetAuthorizationPolicyRequest())
-        ->setName($formattedName);
+    $request = new GetAuthorizationPolicyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,25 +53,5 @@ function get_authorization_policy_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NetworkSecurityClient::authorizationPolicyName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AUTHORIZATION_POLICY]'
-    );
-
-    get_authorization_policy_sample($formattedName);
 }
 // [END networksecurity_v1_generated_NetworkSecurity_GetAuthorizationPolicy_sync]

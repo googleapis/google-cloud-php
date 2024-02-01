@@ -44,20 +44,19 @@ use Google\Cloud\Optimization\V1\OptimizeToursResponse;
  * minimizes the total cost where cost has many components defined in the
  * `ShipmentModel`.
  *
- * @param string $parent Target project and location to make a call.
- *
- *                       Format: `projects/{project-id}/locations/{location-id}`.
- *
- *                       If no location is specified, a region will be chosen automatically.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function optimize_tours_sample(string $parent): void
+function optimize_tours_sample(): void
 {
     // Create a client.
     $fleetRoutingClient = new FleetRoutingClient();
 
     // Prepare the request message.
-    $request = (new OptimizeToursRequest())
-        ->setParent($parent);
+    $request = new OptimizeToursRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,21 +66,5 @@ function optimize_tours_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    optimize_tours_sample($parent);
 }
 // [END cloudoptimization_v1_generated_FleetRouting_OptimizeTours_sync]

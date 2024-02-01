@@ -90,9 +90,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $hubServiceClient = new HubServiceClient();
  * try {
- *     $formattedName = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
- *     $formattedSpokeUri = $hubServiceClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
- *     $operationResponse = $hubServiceClient->acceptHubSpoke($formattedName, $formattedSpokeUri);
+ *     $operationResponse = $hubServiceClient->acceptHubSpoke();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -103,7 +101,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $hubServiceClient->acceptHubSpoke($formattedName, $formattedSpokeUri);
+ *     $operationResponse = $hubServiceClient->acceptHubSpoke();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'acceptHubSpoke');
@@ -684,9 +682,7 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedName = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
-     *     $formattedSpokeUri = $hubServiceClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-     *     $operationResponse = $hubServiceClient->acceptHubSpoke($formattedName, $formattedSpokeUri);
+     *     $operationResponse = $hubServiceClient->acceptHubSpoke();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -697,7 +693,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $hubServiceClient->acceptHubSpoke($formattedName, $formattedSpokeUri);
+     *     $operationResponse = $hubServiceClient->acceptHubSpoke();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'acceptHubSpoke');
@@ -717,11 +713,13 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the hub into which to accept the spoke.
-     * @param string $spokeUri     Required. The URI of the spoke to accept into the hub.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the hub into which to accept the spoke.
+     *     @type string $spokeUri
+     *           Required. The URI of the spoke to accept into the hub.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID so
      *           that if you must retry your request, the server knows to ignore the request
@@ -747,13 +745,19 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function acceptHubSpoke($name, $spokeUri, array $optionalArgs = [])
+    public function acceptHubSpoke(array $optionalArgs = [])
     {
         $request = new AcceptHubSpokeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setSpokeUri($spokeUri);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['spokeUri'])) {
+            $request->setSpokeUri($optionalArgs['spokeUri']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -779,10 +783,7 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedParent = $hubServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $hubId = 'hub_id';
-     *     $hub = new Hub();
-     *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hubId, $hub);
+     *     $operationResponse = $hubServiceClient->createHub();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -793,7 +794,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hubId, $hub);
+     *     $operationResponse = $hubServiceClient->createHub();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'createHub');
@@ -813,12 +814,15 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource.
-     * @param string $hubId        Required. A unique identifier for the hub.
-     * @param Hub    $hub          Required. The initial values for a new hub.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource.
+     *     @type string $hubId
+     *           Required. A unique identifier for the hub.
+     *     @type Hub $hub
+     *           Required. The initial values for a new hub.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID so
      *           that if you must retry your request, the server knows to ignore the request
@@ -844,14 +848,23 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createHub($parent, $hubId, $hub, array $optionalArgs = [])
+    public function createHub(array $optionalArgs = [])
     {
         $request = new CreateHubRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setHubId($hubId);
-        $request->setHub($hub);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['hubId'])) {
+            $request->setHubId($optionalArgs['hubId']);
+        }
+
+        if (isset($optionalArgs['hub'])) {
+            $request->setHub($optionalArgs['hub']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -877,10 +890,7 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedParent = $hubServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $spokeId = 'spoke_id';
-     *     $spoke = new Spoke();
-     *     $operationResponse = $hubServiceClient->createSpoke($formattedParent, $spokeId, $spoke);
+     *     $operationResponse = $hubServiceClient->createSpoke();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -891,7 +901,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $hubServiceClient->createSpoke($formattedParent, $spokeId, $spoke);
+     *     $operationResponse = $hubServiceClient->createSpoke();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'createSpoke');
@@ -911,12 +921,15 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource.
-     * @param string $spokeId      Required. Unique id for the spoke to create.
-     * @param Spoke  $spoke        Required. The initial values for a new spoke.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource.
+     *     @type string $spokeId
+     *           Required. Unique id for the spoke to create.
+     *     @type Spoke $spoke
+     *           Required. The initial values for a new spoke.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID so
      *           that if you must retry your request, the server knows to ignore the request
@@ -942,18 +955,23 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSpoke(
-        $parent,
-        $spokeId,
-        $spoke,
-        array $optionalArgs = []
-    ) {
+    public function createSpoke(array $optionalArgs = [])
+    {
         $request = new CreateSpokeRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSpokeId($spokeId);
-        $request->setSpoke($spoke);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['spokeId'])) {
+            $request->setSpokeId($optionalArgs['spokeId']);
+        }
+
+        if (isset($optionalArgs['spoke'])) {
+            $request->setSpoke($optionalArgs['spoke']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -979,8 +997,7 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedName = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
-     *     $operationResponse = $hubServiceClient->deleteHub($formattedName);
+     *     $operationResponse = $hubServiceClient->deleteHub();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -990,7 +1007,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $hubServiceClient->deleteHub($formattedName);
+     *     $operationResponse = $hubServiceClient->deleteHub();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'deleteHub');
@@ -1009,10 +1026,11 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the hub to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the hub to delete.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID so
      *           that if you must retry your request, the server knows to ignore the request
@@ -1038,12 +1056,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteHub($name, array $optionalArgs = [])
+    public function deleteHub(array $optionalArgs = [])
     {
         $request = new DeleteHubRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1069,8 +1090,7 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedName = $hubServiceClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-     *     $operationResponse = $hubServiceClient->deleteSpoke($formattedName);
+     *     $operationResponse = $hubServiceClient->deleteSpoke();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1080,7 +1100,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $hubServiceClient->deleteSpoke($formattedName);
+     *     $operationResponse = $hubServiceClient->deleteSpoke();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'deleteSpoke');
@@ -1099,10 +1119,11 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the spoke to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the spoke to delete.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID so
      *           that if you must retry your request, the server knows to ignore the request
@@ -1128,12 +1149,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSpoke($name, array $optionalArgs = [])
+    public function deleteSpoke(array $optionalArgs = [])
     {
         $request = new DeleteSpokeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1159,17 +1183,17 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedName = $hubServiceClient->groupName('[PROJECT]', '[HUB]', '[GROUP]');
-     *     $response = $hubServiceClient->getGroup($formattedName);
+     *     $response = $hubServiceClient->getGroup();
      * } finally {
      *     $hubServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the route table resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the route table resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1180,12 +1204,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getGroup($name, array $optionalArgs = [])
+    public function getGroup(array $optionalArgs = [])
     {
         $request = new GetGroupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1207,17 +1234,17 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedName = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
-     *     $response = $hubServiceClient->getHub($formattedName);
+     *     $response = $hubServiceClient->getHub();
      * } finally {
      *     $hubServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the hub resource to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the hub resource to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1228,12 +1255,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getHub($name, array $optionalArgs = [])
+    public function getHub(array $optionalArgs = [])
     {
         $request = new GetHubRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1255,17 +1285,17 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedName = $hubServiceClient->hubRouteName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]', '[ROUTE]');
-     *     $response = $hubServiceClient->getRoute($formattedName);
+     *     $response = $hubServiceClient->getRoute();
      * } finally {
      *     $hubServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the route resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the route resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1276,12 +1306,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRoute($name, array $optionalArgs = [])
+    public function getRoute(array $optionalArgs = [])
     {
         $request = new GetRouteRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1303,17 +1336,17 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedName = $hubServiceClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-     *     $response = $hubServiceClient->getRouteTable($formattedName);
+     *     $response = $hubServiceClient->getRouteTable();
      * } finally {
      *     $hubServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the route table resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the route table resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1324,12 +1357,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRouteTable($name, array $optionalArgs = [])
+    public function getRouteTable(array $optionalArgs = [])
     {
         $request = new GetRouteTableRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1351,17 +1387,17 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedName = $hubServiceClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-     *     $response = $hubServiceClient->getSpoke($formattedName);
+     *     $response = $hubServiceClient->getSpoke();
      * } finally {
      *     $hubServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the spoke resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the spoke resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1372,12 +1408,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSpoke($name, array $optionalArgs = [])
+    public function getSpoke(array $optionalArgs = [])
     {
         $request = new GetSpokeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1399,9 +1438,8 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedParent = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $hubServiceClient->listGroups($formattedParent);
+     *     $pagedResponse = $hubServiceClient->listGroups();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1409,7 +1447,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $hubServiceClient->listGroups($formattedParent);
+     *     $pagedResponse = $hubServiceClient->listGroups();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1418,10 +1456,11 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource's name.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource's name.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1445,12 +1484,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listGroups($parent, array $optionalArgs = [])
+    public function listGroups(array $optionalArgs = [])
     {
         $request = new ListGroupsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1490,9 +1532,8 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedName = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $hubServiceClient->listHubSpokes($formattedName);
+     *     $pagedResponse = $hubServiceClient->listHubSpokes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1500,7 +1541,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $hubServiceClient->listHubSpokes($formattedName);
+     *     $pagedResponse = $hubServiceClient->listHubSpokes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1509,10 +1550,11 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the hub.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the hub.
      *     @type string[] $spokeLocations
      *           A list of locations.
      *           Specify one of the following: `[global]`, a single region (for
@@ -1550,12 +1592,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listHubSpokes($name, array $optionalArgs = [])
+    public function listHubSpokes(array $optionalArgs = [])
     {
         $request = new ListHubSpokesRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['spokeLocations'])) {
             $request->setSpokeLocations($optionalArgs['spokeLocations']);
         }
@@ -1601,9 +1646,8 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedParent = $hubServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $hubServiceClient->listHubs($formattedParent);
+     *     $pagedResponse = $hubServiceClient->listHubs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1611,7 +1655,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $hubServiceClient->listHubs($formattedParent);
+     *     $pagedResponse = $hubServiceClient->listHubs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1620,10 +1664,11 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource's name.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource's name.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1647,12 +1692,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listHubs($parent, array $optionalArgs = [])
+    public function listHubs(array $optionalArgs = [])
     {
         $request = new ListHubsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1690,9 +1738,8 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedParent = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $hubServiceClient->listRouteTables($formattedParent);
+     *     $pagedResponse = $hubServiceClient->listRouteTables();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1700,7 +1747,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $hubServiceClient->listRouteTables($formattedParent);
+     *     $pagedResponse = $hubServiceClient->listRouteTables();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1709,10 +1756,11 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource's name.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource's name.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1736,12 +1784,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRouteTables($parent, array $optionalArgs = [])
+    public function listRouteTables(array $optionalArgs = [])
     {
         $request = new ListRouteTablesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1779,9 +1830,8 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedParent = $hubServiceClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $hubServiceClient->listRoutes($formattedParent);
+     *     $pagedResponse = $hubServiceClient->listRoutes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1789,7 +1839,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $hubServiceClient->listRoutes($formattedParent);
+     *     $pagedResponse = $hubServiceClient->listRoutes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1798,10 +1848,11 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource's name.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource's name.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1825,12 +1876,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRoutes($parent, array $optionalArgs = [])
+    public function listRoutes(array $optionalArgs = [])
     {
         $request = new ListRoutesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1869,9 +1923,8 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedParent = $hubServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $hubServiceClient->listSpokes($formattedParent);
+     *     $pagedResponse = $hubServiceClient->listSpokes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1879,7 +1932,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $hubServiceClient->listSpokes($formattedParent);
+     *     $pagedResponse = $hubServiceClient->listSpokes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1888,10 +1941,11 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1915,12 +1969,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSpokes($parent, array $optionalArgs = [])
+    public function listSpokes(array $optionalArgs = [])
     {
         $request = new ListSpokesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1961,9 +2018,7 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $formattedName = $hubServiceClient->hubName('[PROJECT]', '[HUB]');
-     *     $formattedSpokeUri = $hubServiceClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-     *     $operationResponse = $hubServiceClient->rejectHubSpoke($formattedName, $formattedSpokeUri);
+     *     $operationResponse = $hubServiceClient->rejectHubSpoke();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1974,7 +2029,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $hubServiceClient->rejectHubSpoke($formattedName, $formattedSpokeUri);
+     *     $operationResponse = $hubServiceClient->rejectHubSpoke();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'rejectHubSpoke');
@@ -1994,11 +2049,13 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the hub from which to reject the spoke.
-     * @param string $spokeUri     Required. The URI of the spoke to reject from the hub.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the hub from which to reject the spoke.
+     *     @type string $spokeUri
+     *           Required. The URI of the spoke to reject from the hub.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID so
      *           that if you must retry your request, the server knows to ignore the request
@@ -2026,13 +2083,19 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rejectHubSpoke($name, $spokeUri, array $optionalArgs = [])
+    public function rejectHubSpoke(array $optionalArgs = [])
     {
         $request = new RejectHubSpokeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setSpokeUri($spokeUri);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['spokeUri'])) {
+            $request->setSpokeUri($optionalArgs['spokeUri']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -2063,8 +2126,7 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $hub = new Hub();
-     *     $operationResponse = $hubServiceClient->updateHub($hub);
+     *     $operationResponse = $hubServiceClient->updateHub();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2075,7 +2137,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $hubServiceClient->updateHub($hub);
+     *     $operationResponse = $hubServiceClient->updateHub();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'updateHub');
@@ -2095,7 +2157,6 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param Hub   $hub          Required. The state that the hub should be in after the update.
      * @param array $optionalArgs {
      *     Optional.
      *
@@ -2105,6 +2166,8 @@ class HubServiceGapicClient
      *           update_mask are relative to the resource, not the full request. A field is
      *           overwritten if it is in the mask. If the user does not provide a mask, then
      *           all fields are overwritten.
+     *     @type Hub $hub
+     *           Required. The state that the hub should be in after the update.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID so
      *           that if you must retry your request, the server knows to ignore the request
@@ -2130,14 +2193,16 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateHub($hub, array $optionalArgs = [])
+    public function updateHub(array $optionalArgs = [])
     {
         $request = new UpdateHubRequest();
         $requestParamHeaders = [];
-        $request->setHub($hub);
-        $requestParamHeaders['hub.name'] = $hub->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['hub'])) {
+            $request->setHub($optionalArgs['hub']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -2165,8 +2230,7 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $spoke = new Spoke();
-     *     $operationResponse = $hubServiceClient->updateSpoke($spoke);
+     *     $operationResponse = $hubServiceClient->updateSpoke();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2177,7 +2241,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $hubServiceClient->updateSpoke($spoke);
+     *     $operationResponse = $hubServiceClient->updateSpoke();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'updateSpoke');
@@ -2197,7 +2261,6 @@ class HubServiceGapicClient
      * }
      * ```
      *
-     * @param Spoke $spoke        Required. The state that the spoke should be in after the update.
      * @param array $optionalArgs {
      *     Optional.
      *
@@ -2207,6 +2270,8 @@ class HubServiceGapicClient
      *           update_mask are relative to the resource, not the full request. A field is
      *           overwritten if it is in the mask. If the user does not provide a mask, then
      *           all fields are overwritten.
+     *     @type Spoke $spoke
+     *           Required. The state that the spoke should be in after the update.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID so
      *           that if you must retry your request, the server knows to ignore the request
@@ -2232,14 +2297,16 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSpoke($spoke, array $optionalArgs = [])
+    public function updateSpoke(array $optionalArgs = [])
     {
         $request = new UpdateSpokeRequest();
         $requestParamHeaders = [];
-        $request->setSpoke($spoke);
-        $requestParamHeaders['spoke.name'] = $spoke->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['spoke'])) {
+            $request->setSpoke($optionalArgs['spoke']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -2408,18 +2475,18 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $hubServiceClient->getIamPolicy($resource);
+     *     $response = $hubServiceClient->getIamPolicy();
      * } finally {
      *     $hubServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -2433,12 +2500,15 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -2470,23 +2540,23 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $hubServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $hubServiceClient->setIamPolicy();
      * } finally {
      *     $hubServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -2503,13 +2573,19 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2543,23 +2619,23 @@ class HubServiceGapicClient
      * ```
      * $hubServiceClient = new HubServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $hubServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $hubServiceClient->testIamPermissions();
      * } finally {
      *     $hubServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2570,16 +2646,19 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

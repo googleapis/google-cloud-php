@@ -33,22 +33,19 @@ use Google\Rpc\Status;
  * Deletes a link. This will also delete the corresponding BigQuery linked
  * dataset.
  *
- * @param string $formattedName The full resource name of the link to delete.
- *
- *                              "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
- *                              "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
- *                              "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
- *                              "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
- *                              Please see {@see ConfigServiceV2Client::linkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_link_sample(string $formattedName): void
+function delete_link_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $request = (new DeleteLinkRequest())
-        ->setName($formattedName);
+    $request = new DeleteLinkRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,21 +63,5 @@ function delete_link_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConfigServiceV2Client::linkName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[LINK]');
-
-    delete_link_sample($formattedName);
 }
 // [END logging_v2_generated_ConfigServiceV2_DeleteLink_sync]

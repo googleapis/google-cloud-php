@@ -39,8 +39,7 @@ class DeleteReportRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string $name Required. Name of the resource. Please see
-     *                     {@see MigrationCenterClient::reportName()} for help formatting this field.
+     * @param string $name Required. Name of the resource.
      *
      * @return \Google\Cloud\MigrationCenter\V1\DeleteReportRequest
      *

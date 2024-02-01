@@ -40,7 +40,6 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                           $parent     Required. The NetApp volume to create the snapshots of, in the format
      *                                                     `projects/{project_id}/locations/{location}/volumes/{volume_id}`
-     *                                                     Please see {@see NetAppClient::volumeName()} for help formatting this field.
      * @param \Google\Cloud\NetApp\V1\Snapshot $snapshot   Required. A snapshot resource
      * @param string                           $snapshotId Required. ID of the snapshot to create.
      *                                                     This value must start with a lowercase letter followed by up to 62

@@ -39,7 +39,6 @@ class CreateSnoozeRequest extends \Google\Protobuf\Internal\Message
      *                                                   a `Snooze` should be created. The format is:
      *
      *                                                   projects/[PROJECT_ID_OR_NUMBER]
-     *                                                   Please see {@see SnoozeServiceClient::workspaceName()} for help formatting this field.
      * @param \Google\Cloud\Monitoring\V3\Snooze $snooze Required. The `Snooze` to create. Omit the `name` field, as it will be
      *                                                   filled in by the API.
      *

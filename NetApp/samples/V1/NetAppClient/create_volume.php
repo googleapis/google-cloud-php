@@ -27,46 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetApp\V1\Client\NetAppClient;
 use Google\Cloud\NetApp\V1\CreateVolumeRequest;
-use Google\Cloud\NetApp\V1\Protocols;
 use Google\Cloud\NetApp\V1\Volume;
 use Google\Rpc\Status;
 
 /**
  * Creates a new Volume in a given project and location.
  *
- * @param string $formattedParent            Value for parent. Please see
- *                                           {@see NetAppClient::locationName()} for help formatting this field.
- * @param string $volumeId                   Id of the requesting volume
- *                                           If auto-generating Id server-side, remove this field and
- *                                           Id from the method_signature of Create RPC
- * @param string $volumeShareName            Share name of the volume
- * @param string $formattedVolumeStoragePool StoragePool name of the volume
- *                                           Please see {@see NetAppClient::storagePoolName()} for help formatting this field.
- * @param int    $volumeCapacityGib          Capacity in GIB of the volume
- * @param int    $volumeProtocolsElement     Protocols required for the volume
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_volume_sample(
-    string $formattedParent,
-    string $volumeId,
-    string $volumeShareName,
-    string $formattedVolumeStoragePool,
-    int $volumeCapacityGib,
-    int $volumeProtocolsElement
-): void {
+function create_volume_sample(): void
+{
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $volumeProtocols = [$volumeProtocolsElement,];
-    $volume = (new Volume())
-        ->setShareName($volumeShareName)
-        ->setStoragePool($formattedVolumeStoragePool)
-        ->setCapacityGib($volumeCapacityGib)
-        ->setProtocols($volumeProtocols);
-    $request = (new CreateVolumeRequest())
-        ->setParent($formattedParent)
-        ->setVolumeId($volumeId)
-        ->setVolume($volume);
+    $request = new CreateVolumeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -86,37 +65,5 @@ function create_volume_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NetAppClient::locationName('[PROJECT]', '[LOCATION]');
-    $volumeId = '[VOLUME_ID]';
-    $volumeShareName = '[SHARE_NAME]';
-    $formattedVolumeStoragePool = NetAppClient::storagePoolName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[STORAGE_POOL]'
-    );
-    $volumeCapacityGib = 0;
-    $volumeProtocolsElement = Protocols::PROTOCOLS_UNSPECIFIED;
-
-    create_volume_sample(
-        $formattedParent,
-        $volumeId,
-        $volumeShareName,
-        $formattedVolumeStoragePool,
-        $volumeCapacityGib,
-        $volumeProtocolsElement
-    );
 }
 // [END netapp_v1_generated_NetApp_CreateVolume_sync]

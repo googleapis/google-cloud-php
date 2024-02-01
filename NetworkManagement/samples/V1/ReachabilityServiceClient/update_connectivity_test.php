@@ -27,9 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetworkManagement\V1\Client\ReachabilityServiceClient;
 use Google\Cloud\NetworkManagement\V1\ConnectivityTest;
-use Google\Cloud\NetworkManagement\V1\Endpoint;
 use Google\Cloud\NetworkManagement\V1\UpdateConnectivityTestRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -48,25 +46,19 @@ use Google\Rpc\Status;
  * reachability result returns a value of `AMBIGUOUS`. See the documentation
  * in `ConnectivityTest` for for more details.
  *
- * @param string $resourceName Unique name of the resource using the form:
- *                             `projects/{project_id}/locations/global/connectivityTests/{test}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_connectivity_test_sample(string $resourceName): void
+function update_connectivity_test_sample(): void
 {
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $resourceSource = new Endpoint();
-    $resourceDestination = new Endpoint();
-    $resource = (new ConnectivityTest())
-        ->setName($resourceName)
-        ->setSource($resourceSource)
-        ->setDestination($resourceDestination);
-    $request = (new UpdateConnectivityTestRequest())
-        ->setUpdateMask($updateMask)
-        ->setResource($resource);
+    $request = new UpdateConnectivityTestRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -86,21 +78,5 @@ function update_connectivity_test_sample(string $resourceName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $resourceName = '[NAME]';
-
-    update_connectivity_test_sample($resourceName);
 }
 // [END networkmanagement_v1_generated_ReachabilityService_UpdateConnectivityTest_sync]

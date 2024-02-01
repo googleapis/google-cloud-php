@@ -40,8 +40,7 @@ class CreateAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                               $parent                Required. The parent resource of the AuthorizationPolicy. Must be in the
-     *                                                                                    format `projects/{project}/locations/{location}`. Please see
-     *                                                                                    {@see NetworkSecurityClient::locationName()} for help formatting this field.
+     *                                                                                    format `projects/{project}/locations/{location}`.
      * @param \Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy $authorizationPolicy   Required. AuthorizationPolicy resource to be created.
      * @param string                                               $authorizationPolicyId Required. Short name of the AuthorizationPolicy resource to be created.
      *                                                                                    This value should be 1-63 characters long, containing only

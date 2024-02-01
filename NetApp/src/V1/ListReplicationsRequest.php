@@ -52,8 +52,7 @@ class ListReplicationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The volume for which to retrieve replication information,
      *                       in the format
-     *                       `projects/{project_id}/locations/{location}/volumes/{volume_id}`. Please see
-     *                       {@see NetAppClient::volumeName()} for help formatting this field.
+     *                       `projects/{project_id}/locations/{location}/volumes/{volume_id}`.
      *
      * @return \Google\Cloud\NetApp\V1\ListReplicationsRequest
      *

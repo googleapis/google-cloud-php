@@ -39,7 +39,6 @@ class ReportRuntimeEventRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Format:
      *                     `projects/{project_id}/locations/{location}/runtimes/{runtime_id}`
-     *                     Please see {@see ManagedNotebookServiceClient::runtimeName()} for help formatting this field.
      *
      * @return \Google\Cloud\Notebooks\V1\ReportRuntimeEventRequest
      *

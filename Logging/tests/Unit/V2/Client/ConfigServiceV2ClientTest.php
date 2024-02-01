@@ -74,7 +74,6 @@ use Google\Cloud\Logging\V2\UpdateViewRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -138,12 +137,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $destination = 'destination-1429847026';
-        $request = (new CopyLogEntriesRequest())
-            ->setName($name)
-            ->setDestination($destination);
+        $request = new CopyLogEntriesRequest();
         $response = $gapicClient->copyLogEntries($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -154,10 +148,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CopyLogEntries', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getDestination();
-        $this->assertProtobufEquals($destination, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/copyLogEntriesTest');
         $response->pollUntilComplete([
@@ -208,12 +198,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $destination = 'destination-1429847026';
-        $request = (new CopyLogEntriesRequest())
-            ->setName($name)
-            ->setDestination($destination);
+        $request = new CopyLogEntriesRequest();
         $response = $gapicClient->copyLogEntries($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -257,14 +242,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setLocked($locked);
         $expectedResponse->setAnalyticsEnabled($analyticsEnabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $bucketId = 'bucketId1837164432';
-        $bucket = new LogBucket();
-        $request = (new CreateBucketRequest())
-            ->setParent($formattedParent)
-            ->setBucketId($bucketId)
-            ->setBucket($bucket);
+        $request = new CreateBucketRequest();
         $response = $gapicClient->createBucket($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -272,12 +250,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateBucket', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getBucketId();
-        $this->assertProtobufEquals($bucketId, $actualValue);
-        $actualValue = $actualRequestObject->getBucket();
-        $this->assertProtobufEquals($bucket, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -299,14 +271,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $bucketId = 'bucketId1837164432';
-        $bucket = new LogBucket();
-        $request = (new CreateBucketRequest())
-            ->setParent($formattedParent)
-            ->setBucketId($bucketId)
-            ->setBucket($bucket);
+        $request = new CreateBucketRequest();
         try {
             $gapicClient->createBucket($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -359,14 +324,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $bucketId = 'bucketId1837164432';
-        $bucket = new LogBucket();
-        $request = (new CreateBucketRequest())
-            ->setParent($formattedParent)
-            ->setBucketId($bucketId)
-            ->setBucket($bucket);
+        $request = new CreateBucketRequest();
         $response = $gapicClient->createBucketAsync($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -377,12 +335,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateBucketAsync', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBucketId();
-        $this->assertProtobufEquals($bucketId, $actualValue);
-        $actualValue = $actualApiRequestObject->getBucket();
-        $this->assertProtobufEquals($bucket, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBucketAsyncTest');
         $response->pollUntilComplete([
@@ -433,14 +385,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $bucketId = 'bucketId1837164432';
-        $bucket = new LogBucket();
-        $request = (new CreateBucketRequest())
-            ->setParent($formattedParent)
-            ->setBucketId($bucketId)
-            ->setBucket($bucket);
+        $request = new CreateBucketRequest();
         $response = $gapicClient->createBucketAsync($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -482,16 +427,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setDisabled($disabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $exclusion = new LogExclusion();
-        $exclusionName = 'exclusionName1004344697';
-        $exclusion->setName($exclusionName);
-        $exclusionFilter = 'exclusionFilter-1414044954';
-        $exclusion->setFilter($exclusionFilter);
-        $request = (new CreateExclusionRequest())
-            ->setParent($formattedParent)
-            ->setExclusion($exclusion);
+        $request = new CreateExclusionRequest();
         $response = $gapicClient->createExclusion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -499,10 +435,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateExclusion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getExclusion();
-        $this->assertProtobufEquals($exclusion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -524,16 +456,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $exclusion = new LogExclusion();
-        $exclusionName = 'exclusionName1004344697';
-        $exclusion->setName($exclusionName);
-        $exclusionFilter = 'exclusionFilter-1414044954';
-        $exclusion->setFilter($exclusionFilter);
-        $request = (new CreateExclusionRequest())
-            ->setParent($formattedParent)
-            ->setExclusion($exclusion);
+        $request = new CreateExclusionRequest();
         try {
             $gapicClient->createExclusion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -580,14 +503,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $link = new Link();
-        $linkId = 'linkId177080192';
-        $request = (new CreateLinkRequest())
-            ->setParent($formattedParent)
-            ->setLink($link)
-            ->setLinkId($linkId);
+        $request = new CreateLinkRequest();
         $response = $gapicClient->createLink($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -598,12 +514,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateLink', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getLink();
-        $this->assertProtobufEquals($link, $actualValue);
-        $actualValue = $actualApiRequestObject->getLinkId();
-        $this->assertProtobufEquals($linkId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createLinkTest');
         $response->pollUntilComplete([
@@ -654,14 +564,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $link = new Link();
-        $linkId = 'linkId177080192';
-        $request = (new CreateLinkRequest())
-            ->setParent($formattedParent)
-            ->setLink($link)
-            ->setLinkId($linkId);
+        $request = new CreateLinkRequest();
         $response = $gapicClient->createLink($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -709,16 +612,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setWriterIdentity($writerIdentity);
         $expectedResponse->setIncludeChildren($includeChildren);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $sink = new LogSink();
-        $sinkName = 'sinkName508775358';
-        $sink->setName($sinkName);
-        $sinkDestination = 'sinkDestination-1018870917';
-        $sink->setDestination($sinkDestination);
-        $request = (new CreateSinkRequest())
-            ->setParent($formattedParent)
-            ->setSink($sink);
+        $request = new CreateSinkRequest();
         $response = $gapicClient->createSink($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -726,10 +620,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateSink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSink();
-        $this->assertProtobufEquals($sink, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -751,16 +641,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $sink = new LogSink();
-        $sinkName = 'sinkName508775358';
-        $sink->setName($sinkName);
-        $sinkDestination = 'sinkDestination-1018870917';
-        $sink->setDestination($sinkDestination);
-        $request = (new CreateSinkRequest())
-            ->setParent($formattedParent)
-            ->setSink($sink);
+        $request = new CreateSinkRequest();
         try {
             $gapicClient->createSink($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -791,14 +672,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $viewId = 'viewId454228213';
-        $view = new LogView();
-        $request = (new CreateViewRequest())
-            ->setParent($parent)
-            ->setViewId($viewId)
-            ->setView($view);
+        $request = new CreateViewRequest();
         $response = $gapicClient->createView($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -806,12 +680,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CreateView', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getViewId();
-        $this->assertProtobufEquals($viewId, $actualValue);
-        $actualValue = $actualRequestObject->getView();
-        $this->assertProtobufEquals($view, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -833,14 +701,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $viewId = 'viewId454228213';
-        $view = new LogView();
-        $request = (new CreateViewRequest())
-            ->setParent($parent)
-            ->setViewId($viewId)
-            ->setView($view);
+        $request = new CreateViewRequest();
         try {
             $gapicClient->createView($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -865,18 +726,13 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $request = (new DeleteBucketRequest())
-            ->setName($formattedName);
+        $request = new DeleteBucketRequest();
         $gapicClient->deleteBucket($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteBucket', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -898,10 +754,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $request = (new DeleteBucketRequest())
-            ->setName($formattedName);
+        $request = new DeleteBucketRequest();
         try {
             $gapicClient->deleteBucket($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -926,18 +779,13 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->logExclusionName('[PROJECT]', '[EXCLUSION]');
-        $request = (new DeleteExclusionRequest())
-            ->setName($formattedName);
+        $request = new DeleteExclusionRequest();
         $gapicClient->deleteExclusion($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteExclusion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -959,10 +807,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->logExclusionName('[PROJECT]', '[EXCLUSION]');
-        $request = (new DeleteExclusionRequest())
-            ->setName($formattedName);
+        $request = new DeleteExclusionRequest();
         try {
             $gapicClient->deleteExclusion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1005,10 +850,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->linkName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[LINK]');
-        $request = (new DeleteLinkRequest())
-            ->setName($formattedName);
+        $request = new DeleteLinkRequest();
         $response = $gapicClient->deleteLink($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1019,8 +861,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteLink', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteLinkTest');
         $response->pollUntilComplete([
@@ -1071,10 +911,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->linkName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[LINK]');
-        $request = (new DeleteLinkRequest())
-            ->setName($formattedName);
+        $request = new DeleteLinkRequest();
         $response = $gapicClient->deleteLink($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1108,18 +945,13 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSinkName = $gapicClient->logSinkName('[PROJECT]', '[SINK]');
-        $request = (new DeleteSinkRequest())
-            ->setSinkName($formattedSinkName);
+        $request = new DeleteSinkRequest();
         $gapicClient->deleteSink($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteSink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSinkName();
-        $this->assertProtobufEquals($formattedSinkName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1141,10 +973,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSinkName = $gapicClient->logSinkName('[PROJECT]', '[SINK]');
-        $request = (new DeleteSinkRequest())
-            ->setSinkName($formattedSinkName);
+        $request = new DeleteSinkRequest();
         try {
             $gapicClient->deleteSink($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1169,18 +998,13 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->logViewName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[VIEW]');
-        $request = (new DeleteViewRequest())
-            ->setName($formattedName);
+        $request = new DeleteViewRequest();
         $gapicClient->deleteView($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/DeleteView', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1202,10 +1026,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->logViewName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[VIEW]');
-        $request = (new DeleteViewRequest())
-            ->setName($formattedName);
+        $request = new DeleteViewRequest();
         try {
             $gapicClient->deleteView($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1240,10 +1061,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setLocked($locked);
         $expectedResponse->setAnalyticsEnabled($analyticsEnabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $request = (new GetBucketRequest())
-            ->setName($formattedName);
+        $request = new GetBucketRequest();
         $response = $gapicClient->getBucket($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1251,8 +1069,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetBucket', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1274,10 +1090,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $request = (new GetBucketRequest())
-            ->setName($formattedName);
+        $request = new GetBucketRequest();
         try {
             $gapicClient->getBucket($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1372,10 +1185,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setDisabled($disabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->logExclusionName('[PROJECT]', '[EXCLUSION]');
-        $request = (new GetExclusionRequest())
-            ->setName($formattedName);
+        $request = new GetExclusionRequest();
         $response = $gapicClient->getExclusion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1383,8 +1193,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetExclusion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1406,10 +1214,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->logExclusionName('[PROJECT]', '[EXCLUSION]');
-        $request = (new GetExclusionRequest())
-            ->setName($formattedName);
+        $request = new GetExclusionRequest();
         try {
             $gapicClient->getExclusion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1438,10 +1243,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->linkName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[LINK]');
-        $request = (new GetLinkRequest())
-            ->setName($formattedName);
+        $request = new GetLinkRequest();
         $response = $gapicClient->getLink($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1449,8 +1251,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1472,10 +1272,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->linkName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[LINK]');
-        $request = (new GetLinkRequest())
-            ->setName($formattedName);
+        $request = new GetLinkRequest();
         try {
             $gapicClient->getLink($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1510,10 +1307,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setStorageLocation($storageLocation);
         $expectedResponse->setDisableDefaultSink($disableDefaultSink);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->settingsName('[PROJECT]');
-        $request = (new GetSettingsRequest())
-            ->setName($formattedName);
+        $request = new GetSettingsRequest();
         $response = $gapicClient->getSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1521,8 +1315,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1544,10 +1336,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->settingsName('[PROJECT]');
-        $request = (new GetSettingsRequest())
-            ->setName($formattedName);
+        $request = new GetSettingsRequest();
         try {
             $gapicClient->getSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1586,10 +1375,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setWriterIdentity($writerIdentity);
         $expectedResponse->setIncludeChildren($includeChildren);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSinkName = $gapicClient->logSinkName('[PROJECT]', '[SINK]');
-        $request = (new GetSinkRequest())
-            ->setSinkName($formattedSinkName);
+        $request = new GetSinkRequest();
         $response = $gapicClient->getSink($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1597,8 +1383,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetSink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSinkName();
-        $this->assertProtobufEquals($formattedSinkName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1620,10 +1404,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSinkName = $gapicClient->logSinkName('[PROJECT]', '[SINK]');
-        $request = (new GetSinkRequest())
-            ->setSinkName($formattedSinkName);
+        $request = new GetSinkRequest();
         try {
             $gapicClient->getSink($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1654,10 +1435,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->logViewName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[VIEW]');
-        $request = (new GetViewRequest())
-            ->setName($formattedName);
+        $request = new GetViewRequest();
         $response = $gapicClient->getView($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1665,8 +1443,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/GetView', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1688,10 +1464,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->logViewName('[PROJECT]', '[LOCATION]', '[BUCKET]', '[VIEW]');
-        $request = (new GetViewRequest())
-            ->setName($formattedName);
+        $request = new GetViewRequest();
         try {
             $gapicClient->getView($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1723,10 +1496,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBuckets($buckets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListBucketsRequest())
-            ->setParent($formattedParent);
+        $request = new ListBucketsRequest();
         $response = $gapicClient->listBuckets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1737,8 +1507,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/ListBuckets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1760,10 +1528,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListBucketsRequest())
-            ->setParent($formattedParent);
+        $request = new ListBucketsRequest();
         try {
             $gapicClient->listBuckets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1795,10 +1560,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExclusions($exclusions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListExclusionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListExclusionsRequest();
         $response = $gapicClient->listExclusions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1809,8 +1571,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/ListExclusions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1832,10 +1592,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListExclusionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListExclusionsRequest();
         try {
             $gapicClient->listExclusions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1867,10 +1624,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLinks($links);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $request = (new ListLinksRequest())
-            ->setParent($formattedParent);
+        $request = new ListLinksRequest();
         $response = $gapicClient->listLinks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1881,8 +1635,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/ListLinks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1904,10 +1656,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $request = (new ListLinksRequest())
-            ->setParent($formattedParent);
+        $request = new ListLinksRequest();
         try {
             $gapicClient->listLinks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1939,10 +1688,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSinks($sinks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListSinksRequest())
-            ->setParent($formattedParent);
+        $request = new ListSinksRequest();
         $response = $gapicClient->listSinks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1953,8 +1699,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/ListSinks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1976,10 +1720,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListSinksRequest())
-            ->setParent($formattedParent);
+        $request = new ListSinksRequest();
         try {
             $gapicClient->listSinks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2011,10 +1752,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setViews($views);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListViewsRequest())
-            ->setParent($parent);
+        $request = new ListViewsRequest();
         $response = $gapicClient->listViews($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2025,8 +1763,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/ListViews', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2048,10 +1784,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListViewsRequest())
-            ->setParent($parent);
+        $request = new ListViewsRequest();
         try {
             $gapicClient->listViews($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2076,18 +1809,13 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $request = (new UndeleteBucketRequest())
-            ->setName($formattedName);
+        $request = new UndeleteBucketRequest();
         $gapicClient->undeleteBucket($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UndeleteBucket', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2109,10 +1837,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $request = (new UndeleteBucketRequest())
-            ->setName($formattedName);
+        $request = new UndeleteBucketRequest();
         try {
             $gapicClient->undeleteBucket($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2147,14 +1872,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setLocked($locked);
         $expectedResponse->setAnalyticsEnabled($analyticsEnabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $bucket = new LogBucket();
-        $updateMask = new FieldMask();
-        $request = (new UpdateBucketRequest())
-            ->setName($formattedName)
-            ->setBucket($bucket)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateBucketRequest();
         $response = $gapicClient->updateBucket($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2162,12 +1880,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateBucket', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getBucket();
-        $this->assertProtobufEquals($bucket, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2189,14 +1901,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $bucket = new LogBucket();
-        $updateMask = new FieldMask();
-        $request = (new UpdateBucketRequest())
-            ->setName($formattedName)
-            ->setBucket($bucket)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateBucketRequest();
         try {
             $gapicClient->updateBucket($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2249,14 +1954,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $bucket = new LogBucket();
-        $updateMask = new FieldMask();
-        $request = (new UpdateBucketRequest())
-            ->setName($formattedName)
-            ->setBucket($bucket)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateBucketRequest();
         $response = $gapicClient->updateBucketAsync($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2267,12 +1965,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateBucketAsync', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getBucket();
-        $this->assertProtobufEquals($bucket, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBucketAsyncTest');
         $response->pollUntilComplete([
@@ -2323,14 +2015,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-        $bucket = new LogBucket();
-        $updateMask = new FieldMask();
-        $request = (new UpdateBucketRequest())
-            ->setName($formattedName)
-            ->setBucket($bucket)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateBucketRequest();
         $response = $gapicClient->updateBucketAsync($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2434,18 +2119,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setDisabled($disabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->logExclusionName('[PROJECT]', '[EXCLUSION]');
-        $exclusion = new LogExclusion();
-        $exclusionName = 'exclusionName1004344697';
-        $exclusion->setName($exclusionName);
-        $exclusionFilter = 'exclusionFilter-1414044954';
-        $exclusion->setFilter($exclusionFilter);
-        $updateMask = new FieldMask();
-        $request = (new UpdateExclusionRequest())
-            ->setName($formattedName)
-            ->setExclusion($exclusion)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateExclusionRequest();
         $response = $gapicClient->updateExclusion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2453,12 +2127,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateExclusion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getExclusion();
-        $this->assertProtobufEquals($exclusion, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2480,18 +2148,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->logExclusionName('[PROJECT]', '[EXCLUSION]');
-        $exclusion = new LogExclusion();
-        $exclusionName = 'exclusionName1004344697';
-        $exclusion->setName($exclusionName);
-        $exclusionFilter = 'exclusionFilter-1414044954';
-        $exclusion->setFilter($exclusionFilter);
-        $updateMask = new FieldMask();
-        $request = (new UpdateExclusionRequest())
-            ->setName($formattedName)
-            ->setExclusion($exclusion)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateExclusionRequest();
         try {
             $gapicClient->updateExclusion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2526,12 +2183,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setStorageLocation($storageLocation);
         $expectedResponse->setDisableDefaultSink($disableDefaultSink);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $settings = new Settings();
-        $request = (new UpdateSettingsRequest())
-            ->setName($name)
-            ->setSettings($settings);
+        $request = new UpdateSettingsRequest();
         $response = $gapicClient->updateSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2539,10 +2191,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getSettings();
-        $this->assertProtobufEquals($settings, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2564,12 +2212,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $settings = new Settings();
-        $request = (new UpdateSettingsRequest())
-            ->setName($name)
-            ->setSettings($settings);
+        $request = new UpdateSettingsRequest();
         try {
             $gapicClient->updateSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2608,16 +2251,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setWriterIdentity($writerIdentity);
         $expectedResponse->setIncludeChildren($includeChildren);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSinkName = $gapicClient->logSinkName('[PROJECT]', '[SINK]');
-        $sink = new LogSink();
-        $sinkName = 'sinkName508775358';
-        $sink->setName($sinkName);
-        $sinkDestination = 'sinkDestination-1018870917';
-        $sink->setDestination($sinkDestination);
-        $request = (new UpdateSinkRequest())
-            ->setSinkName($formattedSinkName)
-            ->setSink($sink);
+        $request = new UpdateSinkRequest();
         $response = $gapicClient->updateSink($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2625,10 +2259,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateSink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSinkName();
-        $this->assertProtobufEquals($formattedSinkName, $actualValue);
-        $actualValue = $actualRequestObject->getSink();
-        $this->assertProtobufEquals($sink, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2650,16 +2280,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSinkName = $gapicClient->logSinkName('[PROJECT]', '[SINK]');
-        $sink = new LogSink();
-        $sinkName = 'sinkName508775358';
-        $sink->setName($sinkName);
-        $sinkDestination = 'sinkDestination-1018870917';
-        $sink->setDestination($sinkDestination);
-        $request = (new UpdateSinkRequest())
-            ->setSinkName($formattedSinkName)
-            ->setSink($sink);
+        $request = new UpdateSinkRequest();
         try {
             $gapicClient->updateSink($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2690,12 +2311,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilter($filter);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $view = new LogView();
-        $request = (new UpdateViewRequest())
-            ->setName($name)
-            ->setView($view);
+        $request = new UpdateViewRequest();
         $response = $gapicClient->updateView($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2703,10 +2319,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateView', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getView();
-        $this->assertProtobufEquals($view, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2728,12 +2340,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $view = new LogView();
-        $request = (new UpdateViewRequest())
-            ->setName($name)
-            ->setView($view);
+        $request = new UpdateViewRequest();
         try {
             $gapicClient->updateView($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2778,12 +2385,7 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $destination = 'destination-1429847026';
-        $request = (new CopyLogEntriesRequest())
-            ->setName($name)
-            ->setDestination($destination);
+        $request = new CopyLogEntriesRequest();
         $response = $gapicClient->copyLogEntriesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2794,10 +2396,6 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.logging.v2.ConfigServiceV2/CopyLogEntries', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getDestination();
-        $this->assertProtobufEquals($destination, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/copyLogEntriesTest');
         $response->pollUntilComplete([

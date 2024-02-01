@@ -55,8 +55,7 @@ class CreateSourceRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                  $parent   Required. Value for parent. Please see
-     *                                                          {@see MigrationCenterClient::locationName()} for help formatting this field.
+     * @param string                                  $parent   Required. Value for parent.
      * @param \Google\Cloud\MigrationCenter\V1\Source $source   Required. The resource being created.
      * @param string                                  $sourceId Required. User specified ID for the source. It will become the last
      *                                                          component of the source name. The ID must be unique within the project,

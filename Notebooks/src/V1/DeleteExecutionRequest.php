@@ -26,7 +26,6 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Format:
      *                     `projects/{project_id}/locations/{location}/executions/{execution_id}`
-     *                     Please see {@see NotebookServiceClient::executionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Notebooks\V1\DeleteExecutionRequest
      *

@@ -39,12 +39,10 @@ class BatchDeleteAssetsRequest extends \Google\Protobuf\Internal\Message
     protected $allow_missing = false;
 
     /**
-     * @param string   $parent Required. Parent value for batch asset delete. Please see
-     *                         {@see MigrationCenterClient::locationName()} for help formatting this field.
+     * @param string   $parent Required. Parent value for batch asset delete.
      * @param string[] $names  Required. The IDs of the assets to delete.
      *                         A maximum of 1000 assets can be deleted in a batch.
-     *                         Format: projects/{project}/locations/{location}/assets/{name}. Please see
-     *                         {@see MigrationCenterClient::assetName()} for help formatting this field.
+     *                         Format: projects/{project}/locations/{location}/assets/{name}.
      *
      * @return \Google\Cloud\MigrationCenter\V1\BatchDeleteAssetsRequest
      *

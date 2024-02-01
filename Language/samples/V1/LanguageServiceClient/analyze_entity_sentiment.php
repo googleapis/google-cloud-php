@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Language\V1\AnalyzeEntitySentimentRequest;
 use Google\Cloud\Language\V1\AnalyzeEntitySentimentResponse;
 use Google\Cloud\Language\V1\Client\LanguageServiceClient;
-use Google\Cloud\Language\V1\Document;
 
 /**
  * Finds entities, similar to
@@ -47,9 +46,7 @@ function analyze_entity_sentiment_sample(): void
     $languageServiceClient = new LanguageServiceClient();
 
     // Prepare the request message.
-    $document = new Document();
-    $request = (new AnalyzeEntitySentimentRequest())
-        ->setDocument($document);
+    $request = new AnalyzeEntitySentimentRequest();
 
     // Call the API and handle any network failures.
     try {

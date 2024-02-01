@@ -56,8 +56,7 @@ class CreatePreferenceSetRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                         $parent          Required. Value for parent. Please see
-     *                                                                        {@see MigrationCenterClient::locationName()} for help formatting this field.
+     * @param string                                         $parent          Required. Value for parent.
      * @param \Google\Cloud\MigrationCenter\V1\PreferenceSet $preferenceSet   Required. The preference set resource being created.
      * @param string                                         $preferenceSetId Required. User specified ID for the preference set. It will become the last
      *                                                                        component of the preference set name. The ID must be unique within the

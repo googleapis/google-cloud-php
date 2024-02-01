@@ -31,18 +31,19 @@ use Google\Cloud\NetworkSecurity\V1\GetClientTlsPolicyRequest;
 /**
  * Gets details of a single ClientTlsPolicy.
  *
- * @param string $formattedName A name of the ClientTlsPolicy to get. Must be in the format
- *                              `projects/&#42;/locations/{location}/clientTlsPolicies/*`. Please see
- *                              {@see NetworkSecurityClient::clientTlsPolicyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_client_tls_policy_sample(string $formattedName): void
+function get_client_tls_policy_sample(): void
 {
     // Create a client.
     $networkSecurityClient = new NetworkSecurityClient();
 
     // Prepare the request message.
-    $request = (new GetClientTlsPolicyRequest())
-        ->setName($formattedName);
+    $request = new GetClientTlsPolicyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,25 +53,5 @@ function get_client_tls_policy_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NetworkSecurityClient::clientTlsPolicyName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CLIENT_TLS_POLICY]'
-    );
-
-    get_client_tls_policy_sample($formattedName);
 }
 // [END networksecurity_v1_generated_NetworkSecurity_GetClientTlsPolicy_sync]

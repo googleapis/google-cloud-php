@@ -36,27 +36,19 @@ use Google\Rpc\Status;
  * request. If no snapshot specified, there'll be a new snapshot taken to
  * initiate the backup creation.
  *
- * @param string $formattedParent The NetApp backupVault to create the backups of, in the format
- *                                `projects/&#42;/locations/&#42;/backupVaults/{backup_vault_id}`
- *                                Please see {@see NetAppClient::backupVaultName()} for help formatting this field.
- * @param string $backupId        The ID to use for the backup.
- *                                The ID must be unique within the specified backupVault.
- *                                This value must start with a lowercase letter followed by up to 62
- *                                lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
- *                                Values that do not match this pattern will trigger an INVALID_ARGUMENT
- *                                error.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_backup_sample(string $formattedParent, string $backupId): void
+function create_backup_sample(): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $backup = new Backup();
-    $request = (new CreateBackupRequest())
-        ->setParent($formattedParent)
-        ->setBackupId($backupId)
-        ->setBackup($backup);
+    $request = new CreateBackupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -76,22 +68,5 @@ function create_backup_sample(string $formattedParent, string $backupId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NetAppClient::backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
-    $backupId = '[BACKUP_ID]';
-
-    create_backup_sample($formattedParent, $backupId);
 }
 // [END netapp_v1_generated_NetApp_CreateBackup_sync]

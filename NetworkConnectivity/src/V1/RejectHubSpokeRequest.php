@@ -53,10 +53,8 @@ class RejectHubSpokeRequest extends \Google\Protobuf\Internal\Message
     private $details = '';
 
     /**
-     * @param string $name     Required. The name of the hub from which to reject the spoke. Please see
-     *                         {@see HubServiceClient::hubName()} for help formatting this field.
-     * @param string $spokeUri Required. The URI of the spoke to reject from the hub. Please see
-     *                         {@see HubServiceClient::spokeName()} for help formatting this field.
+     * @param string $name     Required. The name of the hub from which to reject the spoke.
+     * @param string $spokeUri Required. The URI of the spoke to reject from the hub.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\RejectHubSpokeRequest
      *

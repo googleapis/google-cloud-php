@@ -50,7 +50,6 @@ class ListExclusionsRequest extends \Google\Protobuf\Internal\Message
      *                       "organizations/[ORGANIZATION_ID]"
      *                       "billingAccounts/[BILLING_ACCOUNT_ID]"
      *                       "folders/[FOLDER_ID]"
-     *                       Please see {@see ConfigServiceV2Client::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Logging\V2\ListExclusionsRequest
      *

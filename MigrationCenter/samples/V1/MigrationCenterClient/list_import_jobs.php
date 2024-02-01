@@ -32,17 +32,19 @@ use Google\Cloud\MigrationCenter\V1\ListImportJobsRequest;
 /**
  * Lists all import jobs.
  *
- * @param string $formattedParent Parent value for `ListImportJobsRequest`. Please see
- *                                {@see MigrationCenterClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_import_jobs_sample(string $formattedParent): void
+function list_import_jobs_sample(): void
 {
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $request = (new ListImportJobsRequest())
-        ->setParent($formattedParent);
+    $request = new ListImportJobsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +58,5 @@ function list_import_jobs_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MigrationCenterClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_import_jobs_sample($formattedParent);
 }
 // [END migrationcenter_v1_generated_MigrationCenter_ListImportJobs_sync]

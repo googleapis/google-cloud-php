@@ -32,17 +32,19 @@ use Google\Cloud\MigrationCenter\V1\ListImportDataFilesRequest;
 /**
  * List import data files.
  *
- * @param string $formattedParent Name of the parent of the `ImportDataFiles` resource. Please see
- *                                {@see MigrationCenterClient::importJobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_import_data_files_sample(string $formattedParent): void
+function list_import_data_files_sample(): void
 {
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $request = (new ListImportDataFilesRequest())
-        ->setParent($formattedParent);
+    $request = new ListImportDataFilesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +58,5 @@ function list_import_data_files_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MigrationCenterClient::importJobName('[PROJECT]', '[LOCATION]', '[IMPORT_JOB]');
-
-    list_import_data_files_sample($formattedParent);
 }
 // [END migrationcenter_v1_generated_MigrationCenter_ListImportDataFiles_sync]

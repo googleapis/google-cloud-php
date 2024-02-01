@@ -49,9 +49,7 @@ function update_custom_constraint_sample(): void
     $orgPolicyClient = new OrgPolicyClient();
 
     // Prepare the request message.
-    $customConstraint = new CustomConstraint();
-    $request = (new UpdateCustomConstraintRequest())
-        ->setCustomConstraint($customConstraint);
+    $request = new UpdateCustomConstraintRequest();
 
     // Call the API and handle any network failures.
     try {

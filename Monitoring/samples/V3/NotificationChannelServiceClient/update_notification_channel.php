@@ -49,9 +49,7 @@ function update_notification_channel_sample(): void
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
     // Prepare the request message.
-    $notificationChannel = new NotificationChannel();
-    $request = (new UpdateNotificationChannelRequest())
-        ->setNotificationChannel($notificationChannel);
+    $request = new UpdateNotificationChannelRequest();
 
     // Call the API and handle any network failures.
     try {

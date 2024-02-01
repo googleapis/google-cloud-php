@@ -101,20 +101,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v3/{name=organizations/*}/timeSeries',
-                        'queryParams' => [
-                            'filter',
-                            'interval',
-                            'view',
-                        ],
                     ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v3/{name=folders/*}/timeSeries',
-                        'queryParams' => [
-                            'filter',
-                            'interval',
-                            'view',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -123,11 +113,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'filter',
-                    'interval',
-                    'view',
                 ],
             ],
         ],

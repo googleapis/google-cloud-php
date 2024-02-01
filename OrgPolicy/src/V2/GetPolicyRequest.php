@@ -26,8 +26,7 @@ class GetPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the policy. See
-     *                     [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements. Please see
-     *                     {@see OrgPolicyClient::policyName()} for help formatting this field.
+     *                     [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      *
      * @return \Google\Cloud\OrgPolicy\V2\GetPolicyRequest
      *

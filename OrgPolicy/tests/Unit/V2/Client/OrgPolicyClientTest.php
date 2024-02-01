@@ -96,12 +96,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $customConstraint = new CustomConstraint();
-        $request = (new CreateCustomConstraintRequest())
-            ->setParent($formattedParent)
-            ->setCustomConstraint($customConstraint);
+        $request = new CreateCustomConstraintRequest();
         $response = $gapicClient->createCustomConstraint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -109,10 +104,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/CreateCustomConstraint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getCustomConstraint();
-        $this->assertProtobufEquals($customConstraint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -134,12 +125,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $customConstraint = new CustomConstraint();
-        $request = (new CreateCustomConstraintRequest())
-            ->setParent($formattedParent)
-            ->setCustomConstraint($customConstraint);
+        $request = new CreateCustomConstraintRequest();
         try {
             $gapicClient->createCustomConstraint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -168,12 +154,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($formattedParent)
-            ->setPolicy($policy);
+        $request = new CreatePolicyRequest();
         $response = $gapicClient->createPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -181,10 +162,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/CreatePolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -206,12 +183,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($formattedParent)
-            ->setPolicy($policy);
+        $request = new CreatePolicyRequest();
         try {
             $gapicClient->createPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -236,18 +208,13 @@ class OrgPolicyClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-        $request = (new DeleteCustomConstraintRequest())
-            ->setName($formattedName);
+        $request = new DeleteCustomConstraintRequest();
         $gapicClient->deleteCustomConstraint($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/DeleteCustomConstraint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -269,10 +236,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-        $request = (new DeleteCustomConstraintRequest())
-            ->setName($formattedName);
+        $request = new DeleteCustomConstraintRequest();
         try {
             $gapicClient->deleteCustomConstraint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -297,18 +261,13 @@ class OrgPolicyClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new DeletePolicyRequest())
-            ->setName($formattedName);
+        $request = new DeletePolicyRequest();
         $gapicClient->deletePolicy($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/DeletePolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -330,10 +289,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new DeletePolicyRequest())
-            ->setName($formattedName);
+        $request = new DeletePolicyRequest();
         try {
             $gapicClient->deletePolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -366,10 +322,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-        $request = (new GetCustomConstraintRequest())
-            ->setName($formattedName);
+        $request = new GetCustomConstraintRequest();
         $response = $gapicClient->getCustomConstraint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -377,8 +330,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/GetCustomConstraint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -400,10 +351,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-        $request = (new GetCustomConstraintRequest())
-            ->setName($formattedName);
+        $request = new GetCustomConstraintRequest();
         try {
             $gapicClient->getCustomConstraint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -432,10 +380,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new GetEffectivePolicyRequest())
-            ->setName($formattedName);
+        $request = new GetEffectivePolicyRequest();
         $response = $gapicClient->getEffectivePolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -443,8 +388,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/GetEffectivePolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -466,10 +409,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new GetEffectivePolicyRequest())
-            ->setName($formattedName);
+        $request = new GetEffectivePolicyRequest();
         try {
             $gapicClient->getEffectivePolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -498,10 +438,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new GetPolicyRequest())
-            ->setName($formattedName);
+        $request = new GetPolicyRequest();
         $response = $gapicClient->getPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -509,8 +446,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/GetPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -532,10 +467,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new GetPolicyRequest())
-            ->setName($formattedName);
+        $request = new GetPolicyRequest();
         try {
             $gapicClient->getPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -567,10 +499,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConstraints($constraints);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListConstraintsRequest())
-            ->setParent($formattedParent);
+        $request = new ListConstraintsRequest();
         $response = $gapicClient->listConstraints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -581,8 +510,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/ListConstraints', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -604,10 +531,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListConstraintsRequest())
-            ->setParent($formattedParent);
+        $request = new ListConstraintsRequest();
         try {
             $gapicClient->listConstraints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -639,10 +563,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomConstraints($customConstraints);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new ListCustomConstraintsRequest())
-            ->setParent($formattedParent);
+        $request = new ListCustomConstraintsRequest();
         $response = $gapicClient->listCustomConstraints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -653,8 +574,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/ListCustomConstraints', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -676,10 +595,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new ListCustomConstraintsRequest())
-            ->setParent($formattedParent);
+        $request = new ListCustomConstraintsRequest();
         try {
             $gapicClient->listCustomConstraints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -711,10 +627,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPolicies($policies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = new ListPoliciesRequest();
         $response = $gapicClient->listPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -725,8 +638,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/ListPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -748,10 +659,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = new ListPoliciesRequest();
         try {
             $gapicClient->listPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -784,10 +692,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $customConstraint = new CustomConstraint();
-        $request = (new UpdateCustomConstraintRequest())
-            ->setCustomConstraint($customConstraint);
+        $request = new UpdateCustomConstraintRequest();
         $response = $gapicClient->updateCustomConstraint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -795,8 +700,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/UpdateCustomConstraint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCustomConstraint();
-        $this->assertProtobufEquals($customConstraint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -818,10 +721,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $customConstraint = new CustomConstraint();
-        $request = (new UpdateCustomConstraintRequest())
-            ->setCustomConstraint($customConstraint);
+        $request = new UpdateCustomConstraintRequest();
         try {
             $gapicClient->updateCustomConstraint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -850,10 +750,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $policy = new Policy();
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
+        $request = new UpdatePolicyRequest();
         $response = $gapicClient->updatePolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -861,8 +758,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/UpdatePolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -884,10 +779,7 @@ class OrgPolicyClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $policy = new Policy();
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
+        $request = new UpdatePolicyRequest();
         try {
             $gapicClient->updatePolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -920,12 +812,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $customConstraint = new CustomConstraint();
-        $request = (new CreateCustomConstraintRequest())
-            ->setParent($formattedParent)
-            ->setCustomConstraint($customConstraint);
+        $request = new CreateCustomConstraintRequest();
         $response = $gapicClient->createCustomConstraintAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -933,10 +820,6 @@ class OrgPolicyClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.orgpolicy.v2.OrgPolicy/CreateCustomConstraint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getCustomConstraint();
-        $this->assertProtobufEquals($customConstraint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

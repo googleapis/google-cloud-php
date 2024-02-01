@@ -33,23 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new Environment.
  *
- * @param string $parent        Format: `projects/{project_id}/locations/{location}`
- * @param string $environmentId User-defined unique ID of this environment. The `environment_id` must
- *                              be 1 to 63 characters long and contain only lowercase letters,
- *                              numeric characters, and dashes. The first character must be a lowercase
- *                              letter and the last character cannot be a dash.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_environment_sample(string $parent, string $environmentId): void
+function create_environment_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $environment = new Environment();
-    $request = (new CreateEnvironmentRequest())
-        ->setParent($parent)
-        ->setEnvironmentId($environmentId)
-        ->setEnvironment($environment);
+    $request = new CreateEnvironmentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,22 +65,5 @@ function create_environment_sample(string $parent, string $environmentId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $environmentId = '[ENVIRONMENT_ID]';
-
-    create_environment_sample($parent, $environmentId);
 }
 // [END notebooks_v1_generated_NotebookService_CreateEnvironment_sync]

@@ -69,8 +69,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *                       To retrieve backup information for all backupVaults, use "-" for the
      *                       `{backup_vault_id}` value.
      *                       To retrieve backup information for a volume, use "-" for the
-     *                       `{backup_vault_id}` value and specify volume full name with the filter. Please see
-     *                       {@see NetAppClient::backupVaultName()} for help formatting this field.
+     *                       `{backup_vault_id}` value and specify volume full name with the filter.
      *
      * @return \Google\Cloud\NetApp\V1\ListBackupsRequest
      *

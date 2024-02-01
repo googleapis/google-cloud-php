@@ -39,8 +39,7 @@ class CreateServerTlsPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                           $parent            Required. The parent resource of the ServerTlsPolicy. Must be in
-     *                                                                            the format `projects/&#42;/locations/{location}`. Please see
-     *                                                                            {@see NetworkSecurityClient::locationName()} for help formatting this field.
+     *                                                                            the format `projects/&#42;/locations/{location}`.
      * @param \Google\Cloud\NetworkSecurity\V1\ServerTlsPolicy $serverTlsPolicy   Required. ServerTlsPolicy resource to be created.
      * @param string                                           $serverTlsPolicyId Required. Short name of the ServerTlsPolicy resource to be created. This value should
      *                                                                            be 1-63 characters long, containing only letters, numbers, hyphens, and

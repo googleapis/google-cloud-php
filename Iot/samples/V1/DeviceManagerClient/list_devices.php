@@ -32,18 +32,19 @@ use Google\Cloud\Iot\V1\ListDevicesRequest;
 /**
  * List devices in a device registry.
  *
- * @param string $formattedParent The device registry path. Required. For example,
- *                                `projects/my-project/locations/us-central1/registries/my-registry`. Please see
- *                                {@see DeviceManagerClient::registryName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_devices_sample(string $formattedParent): void
+function list_devices_sample(): void
 {
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
     // Prepare the request message.
-    $request = (new ListDevicesRequest())
-        ->setParent($formattedParent);
+    $request = new ListDevicesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_devices_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DeviceManagerClient::registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-
-    list_devices_sample($formattedParent);
 }
 // [END cloudiot_v1_generated_DeviceManager_ListDevices_sync]

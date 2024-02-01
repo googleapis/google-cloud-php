@@ -32,7 +32,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy;
-use Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Action;
 use Google\Cloud\NetworkSecurity\V1beta1\ClientTlsPolicy;
 use Google\Cloud\NetworkSecurity\V1beta1\ListAuthorizationPoliciesResponse;
 use Google\Cloud\NetworkSecurity\V1beta1\ListClientTlsPoliciesResponse;
@@ -107,15 +106,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $authorizationPolicyId = 'authorizationPolicyId-730349822';
-        $authorizationPolicy = new AuthorizationPolicy();
-        $authorizationPolicyName = 'authorizationPolicyName276096054';
-        $authorizationPolicy->setName($authorizationPolicyName);
-        $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
-        $authorizationPolicy->setAction($authorizationPolicyAction);
-        $response = $gapicClient->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
+        $response = $gapicClient->createAuthorizationPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -125,12 +116,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/CreateAuthorizationPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAuthorizationPolicyId();
-        $this->assertProtobufEquals($authorizationPolicyId, $actualValue);
-        $actualValue = $actualApiRequestObject->getAuthorizationPolicy();
-        $this->assertProtobufEquals($authorizationPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAuthorizationPolicyTest');
         $response->pollUntilComplete([
@@ -181,15 +166,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $authorizationPolicyId = 'authorizationPolicyId-730349822';
-        $authorizationPolicy = new AuthorizationPolicy();
-        $authorizationPolicyName = 'authorizationPolicyName276096054';
-        $authorizationPolicy->setName($authorizationPolicyName);
-        $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
-        $authorizationPolicy->setAction($authorizationPolicyAction);
-        $response = $gapicClient->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
+        $response = $gapicClient->createAuthorizationPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -246,13 +223,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clientTlsPolicyId = 'clientTlsPolicyId244525968';
-        $clientTlsPolicy = new ClientTlsPolicy();
-        $clientTlsPolicyName = 'clientTlsPolicyName-1176139731';
-        $clientTlsPolicy->setName($clientTlsPolicyName);
-        $response = $gapicClient->createClientTlsPolicy($formattedParent, $clientTlsPolicyId, $clientTlsPolicy);
+        $response = $gapicClient->createClientTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -262,12 +233,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/CreateClientTlsPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClientTlsPolicyId();
-        $this->assertProtobufEquals($clientTlsPolicyId, $actualValue);
-        $actualValue = $actualApiRequestObject->getClientTlsPolicy();
-        $this->assertProtobufEquals($clientTlsPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createClientTlsPolicyTest');
         $response->pollUntilComplete([
@@ -318,13 +283,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clientTlsPolicyId = 'clientTlsPolicyId244525968';
-        $clientTlsPolicy = new ClientTlsPolicy();
-        $clientTlsPolicyName = 'clientTlsPolicyName-1176139731';
-        $clientTlsPolicy->setName($clientTlsPolicyName);
-        $response = $gapicClient->createClientTlsPolicy($formattedParent, $clientTlsPolicyId, $clientTlsPolicy);
+        $response = $gapicClient->createClientTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -381,13 +340,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $serverTlsPolicyId = 'serverTlsPolicyId-1952910072';
-        $serverTlsPolicy = new ServerTlsPolicy();
-        $serverTlsPolicyName = 'serverTlsPolicyName415543221';
-        $serverTlsPolicy->setName($serverTlsPolicyName);
-        $response = $gapicClient->createServerTlsPolicy($formattedParent, $serverTlsPolicyId, $serverTlsPolicy);
+        $response = $gapicClient->createServerTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -397,12 +350,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/CreateServerTlsPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getServerTlsPolicyId();
-        $this->assertProtobufEquals($serverTlsPolicyId, $actualValue);
-        $actualValue = $actualApiRequestObject->getServerTlsPolicy();
-        $this->assertProtobufEquals($serverTlsPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createServerTlsPolicyTest');
         $response->pollUntilComplete([
@@ -453,13 +400,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $serverTlsPolicyId = 'serverTlsPolicyId-1952910072';
-        $serverTlsPolicy = new ServerTlsPolicy();
-        $serverTlsPolicyName = 'serverTlsPolicyName415543221';
-        $serverTlsPolicy->setName($serverTlsPolicyName);
-        $response = $gapicClient->createServerTlsPolicy($formattedParent, $serverTlsPolicyId, $serverTlsPolicy);
+        $response = $gapicClient->createServerTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -510,9 +451,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-        $response = $gapicClient->deleteAuthorizationPolicy($formattedName);
+        $response = $gapicClient->deleteAuthorizationPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -522,8 +461,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/DeleteAuthorizationPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteAuthorizationPolicyTest');
         $response->pollUntilComplete([
@@ -574,9 +511,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-        $response = $gapicClient->deleteAuthorizationPolicy($formattedName);
+        $response = $gapicClient->deleteAuthorizationPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -627,9 +562,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-        $response = $gapicClient->deleteClientTlsPolicy($formattedName);
+        $response = $gapicClient->deleteClientTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -639,8 +572,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/DeleteClientTlsPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteClientTlsPolicyTest');
         $response->pollUntilComplete([
@@ -691,9 +622,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-        $response = $gapicClient->deleteClientTlsPolicy($formattedName);
+        $response = $gapicClient->deleteClientTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -744,9 +673,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-        $response = $gapicClient->deleteServerTlsPolicy($formattedName);
+        $response = $gapicClient->deleteServerTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -756,8 +683,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/DeleteServerTlsPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteServerTlsPolicyTest');
         $response->pollUntilComplete([
@@ -808,9 +733,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-        $response = $gapicClient->deleteServerTlsPolicy($formattedName);
+        $response = $gapicClient->deleteServerTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -847,17 +770,13 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-        $response = $gapicClient->getAuthorizationPolicy($formattedName);
+        $response = $gapicClient->getAuthorizationPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/GetAuthorizationPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -879,10 +798,8 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
         try {
-            $gapicClient->getAuthorizationPolicy($formattedName);
+            $gapicClient->getAuthorizationPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -911,17 +828,13 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setSni($sni);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-        $response = $gapicClient->getClientTlsPolicy($formattedName);
+        $response = $gapicClient->getClientTlsPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/GetClientTlsPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -943,10 +856,8 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
         try {
-            $gapicClient->getClientTlsPolicy($formattedName);
+            $gapicClient->getClientTlsPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -975,17 +886,13 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setAllowOpen($allowOpen);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-        $response = $gapicClient->getServerTlsPolicy($formattedName);
+        $response = $gapicClient->getServerTlsPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/GetServerTlsPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1007,10 +914,8 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
         try {
-            $gapicClient->getServerTlsPolicy($formattedName);
+            $gapicClient->getServerTlsPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1040,9 +945,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAuthorizationPolicies($authorizationPolicies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listAuthorizationPolicies($formattedParent);
+        $response = $gapicClient->listAuthorizationPolicies();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1052,8 +955,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/ListAuthorizationPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1075,10 +976,8 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listAuthorizationPolicies($formattedParent);
+            $gapicClient->listAuthorizationPolicies();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1108,9 +1007,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setClientTlsPolicies($clientTlsPolicies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listClientTlsPolicies($formattedParent);
+        $response = $gapicClient->listClientTlsPolicies();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1120,8 +1017,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/ListClientTlsPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1143,10 +1038,8 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listClientTlsPolicies($formattedParent);
+            $gapicClient->listClientTlsPolicies();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1176,9 +1069,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServerTlsPolicies($serverTlsPolicies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listServerTlsPolicies($formattedParent);
+        $response = $gapicClient->listServerTlsPolicies();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1188,8 +1079,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/ListServerTlsPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1211,10 +1100,8 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listServerTlsPolicies($formattedParent);
+            $gapicClient->listServerTlsPolicies();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1259,13 +1146,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $authorizationPolicy = new AuthorizationPolicy();
-        $authorizationPolicyName = 'authorizationPolicyName276096054';
-        $authorizationPolicy->setName($authorizationPolicyName);
-        $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
-        $authorizationPolicy->setAction($authorizationPolicyAction);
-        $response = $gapicClient->updateAuthorizationPolicy($authorizationPolicy);
+        $response = $gapicClient->updateAuthorizationPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1275,8 +1156,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/UpdateAuthorizationPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getAuthorizationPolicy();
-        $this->assertProtobufEquals($authorizationPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateAuthorizationPolicyTest');
         $response->pollUntilComplete([
@@ -1327,13 +1206,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $authorizationPolicy = new AuthorizationPolicy();
-        $authorizationPolicyName = 'authorizationPolicyName276096054';
-        $authorizationPolicy->setName($authorizationPolicyName);
-        $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
-        $authorizationPolicy->setAction($authorizationPolicyAction);
-        $response = $gapicClient->updateAuthorizationPolicy($authorizationPolicy);
+        $response = $gapicClient->updateAuthorizationPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1390,11 +1263,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $clientTlsPolicy = new ClientTlsPolicy();
-        $clientTlsPolicyName = 'clientTlsPolicyName-1176139731';
-        $clientTlsPolicy->setName($clientTlsPolicyName);
-        $response = $gapicClient->updateClientTlsPolicy($clientTlsPolicy);
+        $response = $gapicClient->updateClientTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1404,8 +1273,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/UpdateClientTlsPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getClientTlsPolicy();
-        $this->assertProtobufEquals($clientTlsPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateClientTlsPolicyTest');
         $response->pollUntilComplete([
@@ -1456,11 +1323,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $clientTlsPolicy = new ClientTlsPolicy();
-        $clientTlsPolicyName = 'clientTlsPolicyName-1176139731';
-        $clientTlsPolicy->setName($clientTlsPolicyName);
-        $response = $gapicClient->updateClientTlsPolicy($clientTlsPolicy);
+        $response = $gapicClient->updateClientTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1517,11 +1380,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $serverTlsPolicy = new ServerTlsPolicy();
-        $serverTlsPolicyName = 'serverTlsPolicyName415543221';
-        $serverTlsPolicy->setName($serverTlsPolicyName);
-        $response = $gapicClient->updateServerTlsPolicy($serverTlsPolicy);
+        $response = $gapicClient->updateServerTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1531,8 +1390,6 @@ class NetworkSecurityClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networksecurity.v1beta1.NetworkSecurity/UpdateServerTlsPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getServerTlsPolicy();
-        $this->assertProtobufEquals($serverTlsPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateServerTlsPolicyTest');
         $response->pollUntilComplete([
@@ -1583,11 +1440,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $serverTlsPolicy = new ServerTlsPolicy();
-        $serverTlsPolicyName = 'serverTlsPolicyName415543221';
-        $serverTlsPolicy->setName($serverTlsPolicyName);
-        $response = $gapicClient->updateServerTlsPolicy($serverTlsPolicy);
+        $response = $gapicClient->updateServerTlsPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1744,17 +1597,13 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1776,10 +1625,8 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1806,20 +1653,13 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1841,11 +1681,8 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1868,20 +1705,13 @@ class NetworkSecurityClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1903,11 +1733,8 @@ class NetworkSecurityClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -26,41 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetApp\V1\Client\NetAppClient;
-use Google\Cloud\NetApp\V1\Protocols;
 use Google\Cloud\NetApp\V1\UpdateVolumeRequest;
 use Google\Cloud\NetApp\V1\Volume;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single Volume.
  *
- * @param string $volumeShareName            Share name of the volume
- * @param string $formattedVolumeStoragePool StoragePool name of the volume
- *                                           Please see {@see NetAppClient::storagePoolName()} for help formatting this field.
- * @param int    $volumeCapacityGib          Capacity in GIB of the volume
- * @param int    $volumeProtocolsElement     Protocols required for the volume
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_volume_sample(
-    string $volumeShareName,
-    string $formattedVolumeStoragePool,
-    int $volumeCapacityGib,
-    int $volumeProtocolsElement
-): void {
+function update_volume_sample(): void
+{
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $volumeProtocols = [$volumeProtocolsElement,];
-    $volume = (new Volume())
-        ->setShareName($volumeShareName)
-        ->setStoragePool($formattedVolumeStoragePool)
-        ->setCapacityGib($volumeCapacityGib)
-        ->setProtocols($volumeProtocols);
-    $request = (new UpdateVolumeRequest())
-        ->setUpdateMask($updateMask)
-        ->setVolume($volume);
+    $request = new UpdateVolumeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -80,33 +65,5 @@ function update_volume_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $volumeShareName = '[SHARE_NAME]';
-    $formattedVolumeStoragePool = NetAppClient::storagePoolName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[STORAGE_POOL]'
-    );
-    $volumeCapacityGib = 0;
-    $volumeProtocolsElement = Protocols::PROTOCOLS_UNSPECIFIED;
-
-    update_volume_sample(
-        $volumeShareName,
-        $formattedVolumeStoragePool,
-        $volumeCapacityGib,
-        $volumeProtocolsElement
-    );
 }
 // [END netapp_v1_generated_NetApp_UpdateVolume_sync]

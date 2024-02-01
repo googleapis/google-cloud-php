@@ -23,16 +23,16 @@ class AlertService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê
-(google/monitoring/v3/alert_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/monitoring/v3/alert.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"•
-CreateAlertPolicyRequest;
-name (	B-àAúA\'%monitoring.googleapis.com/AlertPolicy<
-alert_policy (2!.google.monitoring.v3.AlertPolicyBàA"T
-GetAlertPolicyRequest;
-name (	B-àAúA\'
-%monitoring.googleapis.com/AlertPolicy" 
-ListAlertPoliciesRequest;
-name (	B-àAúA\'%monitoring.googleapis.com/AlertPolicy
+ð
+(google/monitoring/v3/alert_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/monitoring/v3/alert.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"—
+CreateAlertPolicyRequest<
+name (	B.âAúA\'%monitoring.googleapis.com/AlertPolicy=
+alert_policy (2!.google.monitoring.v3.AlertPolicyBâA"U
+GetAlertPolicyRequest<
+name (	B.âAúA\'
+%monitoring.googleapis.com/AlertPolicy"¡
+ListAlertPoliciesRequest<
+name (	B.âAúA\'%monitoring.googleapis.com/AlertPolicy
 filter (	
 order_by (	
 	page_size (
@@ -42,19 +42,19 @@ page_token (	"ƒ
 alert_policies (2!.google.monitoring.v3.AlertPolicy
 next_page_token (	
 
-total_size ("‰
+total_size ("Š
 UpdateAlertPolicyRequest/
-update_mask (2.google.protobuf.FieldMask<
-alert_policy (2!.google.monitoring.v3.AlertPolicyBàA"W
-DeleteAlertPolicyRequest;
-name (	B-àAúA\'
+update_mask (2.google.protobuf.FieldMask=
+alert_policy (2!.google.monitoring.v3.AlertPolicyBâA"X
+DeleteAlertPolicyRequest<
+name (	B.âAúA\'
 %monitoring.googleapis.com/AlertPolicy2ž
 AlertPolicyService¨
-ListAlertPolicies..google.monitoring.v3.ListAlertPoliciesRequest/.google.monitoring.v3.ListAlertPoliciesResponse"2‚Óä“%#/v3/{name=projects/*}/alertPoliciesÚAname–
-GetAlertPolicy+.google.monitoring.v3.GetAlertPolicyRequest!.google.monitoring.v3.AlertPolicy"4‚Óä“\'%/v3/{name=projects/*/alertPolicies/*}ÚAnameµ
-CreateAlertPolicy..google.monitoring.v3.CreateAlertPolicyRequest!.google.monitoring.v3.AlertPolicy"M‚Óä“3"#/v3/{name=projects/*}/alertPolicies:alert_policyÚAname,alert_policy‘
-DeleteAlertPolicy..google.monitoring.v3.DeleteAlertPolicyRequest.google.protobuf.Empty"4‚Óä“\'*%/v3/{name=projects/*/alertPolicies/*}ÚAnameË
-UpdateAlertPolicy..google.monitoring.v3.UpdateAlertPolicyRequest!.google.monitoring.v3.AlertPolicy"c‚Óä“B22/v3/{alert_policy.name=projects/*/alertPolicies/*}:alert_policyÚAupdate_mask,alert_policy©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÌ
+ListAlertPolicies..google.monitoring.v3.ListAlertPoliciesRequest/.google.monitoring.v3.ListAlertPoliciesResponse"2ÚAname‚Óä“%#/v3/{name=projects/*}/alertPolicies–
+GetAlertPolicy+.google.monitoring.v3.GetAlertPolicyRequest!.google.monitoring.v3.AlertPolicy"4ÚAname‚Óä“\'%/v3/{name=projects/*/alertPolicies/*}µ
+CreateAlertPolicy..google.monitoring.v3.CreateAlertPolicyRequest!.google.monitoring.v3.AlertPolicy"MÚAname,alert_policy‚Óä“3"#/v3/{name=projects/*}/alertPolicies:alert_policy‘
+DeleteAlertPolicy..google.monitoring.v3.DeleteAlertPolicyRequest.google.protobuf.Empty"4ÚAname‚Óä“\'*%/v3/{name=projects/*/alertPolicies/*}Ë
+UpdateAlertPolicy..google.monitoring.v3.UpdateAlertPolicyRequest!.google.monitoring.v3.AlertPolicy"cÚAupdate_mask,alert_policy‚Óä“B22/v3/{alert_policy.name=projects/*/alertPolicies/*}:alert_policy©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÌ
 com.google.monitoring.v3BAlertServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 

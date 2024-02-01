@@ -36,7 +36,6 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      * @param string $name  Required. The channel for which to execute the request. The format is:
      *
      *                      projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
-     *                      Please see {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
      * @param bool   $force If true, the notification channel will be deleted regardless of its
      *                      use in alert policies (the policies will be updated to remove the
      *                      channel). If false, channels that are still referenced by an existing

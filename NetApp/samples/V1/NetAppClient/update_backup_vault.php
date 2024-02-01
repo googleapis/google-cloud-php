@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetApp\V1\BackupVault;
 use Google\Cloud\NetApp\V1\Client\NetAppClient;
 use Google\Cloud\NetApp\V1\UpdateBackupVaultRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_backup_vault_sample(): void
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $backupVault = new BackupVault();
-    $request = (new UpdateBackupVaultRequest())
-        ->setUpdateMask($updateMask)
-        ->setBackupVault($backupVault);
+    $request = new UpdateBackupVaultRequest();
 
     // Call the API and handle any network failures.
     try {

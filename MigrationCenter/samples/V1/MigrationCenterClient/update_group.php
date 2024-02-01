@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
 use Google\Cloud\MigrationCenter\V1\Group;
 use Google\Cloud\MigrationCenter\V1\UpdateGroupRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_group_sample(): void
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $group = new Group();
-    $request = (new UpdateGroupRequest())
-        ->setUpdateMask($updateMask)
-        ->setGroup($group);
+    $request = new UpdateGroupRequest();
 
     // Call the API and handle any network failures.
     try {

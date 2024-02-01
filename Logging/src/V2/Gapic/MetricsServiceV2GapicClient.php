@@ -51,9 +51,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $metricsServiceV2Client = new MetricsServiceV2Client();
  * try {
- *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
- *     $metric = new LogMetric();
- *     $response = $metricsServiceV2Client->createLogMetric($formattedParent, $metric);
+ *     $response = $metricsServiceV2Client->createLogMetric();
  * } finally {
  *     $metricsServiceV2Client->close();
  * }
@@ -294,24 +292,24 @@ class MetricsServiceV2GapicClient
      * ```
      * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
-     *     $metric = new LogMetric();
-     *     $response = $metricsServiceV2Client->createLogMetric($formattedParent, $metric);
+     *     $response = $metricsServiceV2Client->createLogMetric();
      * } finally {
      *     $metricsServiceV2Client->close();
      * }
      * ```
      *
-     * @param string    $parent       Required. The resource name of the project in which to create the metric:
-     *
-     *                                "projects/[PROJECT_ID]"
-     *
-     *                                The new metric must be provided in the request.
-     * @param LogMetric $metric       Required. The new logs-based metric, which must not have an identifier that
-     *                                already exists.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the project in which to create the metric:
+     *
+     *           "projects/[PROJECT_ID]"
+     *
+     *           The new metric must be provided in the request.
+     *     @type LogMetric $metric
+     *           Required. The new logs-based metric, which must not have an identifier that
+     *           already exists.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -322,13 +320,19 @@ class MetricsServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createLogMetric($parent, $metric, array $optionalArgs = [])
+    public function createLogMetric(array $optionalArgs = [])
     {
         $request = new CreateLogMetricRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setMetric($metric);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['metric'])) {
+            $request->setMetric($optionalArgs['metric']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateLogMetric', LogMetric::class, $optionalArgs, $request)->wait();
@@ -341,19 +345,19 @@ class MetricsServiceV2GapicClient
      * ```
      * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
-     *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
+     *     $metricsServiceV2Client->deleteLogMetric();
      * } finally {
      *     $metricsServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $metricName   Required. The resource name of the metric to delete:
-     *
-     *                             "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $metricName
+     *           Required. The resource name of the metric to delete:
+     *
+     *           "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -362,12 +366,15 @@ class MetricsServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteLogMetric($metricName, array $optionalArgs = [])
+    public function deleteLogMetric(array $optionalArgs = [])
     {
         $request = new DeleteLogMetricRequest();
         $requestParamHeaders = [];
-        $request->setMetricName($metricName);
-        $requestParamHeaders['metric_name'] = $metricName;
+        if (isset($optionalArgs['metricName'])) {
+            $request->setMetricName($optionalArgs['metricName']);
+            $requestParamHeaders['metric_name'] = $optionalArgs['metricName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteLogMetric', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -380,19 +387,19 @@ class MetricsServiceV2GapicClient
      * ```
      * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
-     *     $response = $metricsServiceV2Client->getLogMetric($formattedMetricName);
+     *     $response = $metricsServiceV2Client->getLogMetric();
      * } finally {
      *     $metricsServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $metricName   Required. The resource name of the desired metric:
-     *
-     *                             "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $metricName
+     *           Required. The resource name of the desired metric:
+     *
+     *           "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -403,12 +410,15 @@ class MetricsServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getLogMetric($metricName, array $optionalArgs = [])
+    public function getLogMetric(array $optionalArgs = [])
     {
         $request = new GetLogMetricRequest();
         $requestParamHeaders = [];
-        $request->setMetricName($metricName);
-        $requestParamHeaders['metric_name'] = $metricName;
+        if (isset($optionalArgs['metricName'])) {
+            $request->setMetricName($optionalArgs['metricName']);
+            $requestParamHeaders['metric_name'] = $optionalArgs['metricName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetLogMetric', LogMetric::class, $optionalArgs, $request)->wait();
@@ -421,9 +431,8 @@ class MetricsServiceV2GapicClient
      * ```
      * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
+     *     $pagedResponse = $metricsServiceV2Client->listLogMetrics();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -431,7 +440,7 @@ class MetricsServiceV2GapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
+     *     $pagedResponse = $metricsServiceV2Client->listLogMetrics();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -440,12 +449,13 @@ class MetricsServiceV2GapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project containing the metrics:
-     *
-     *                             "projects/[PROJECT_ID]"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project containing the metrics:
+     *
+     *           "projects/[PROJECT_ID]"
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -465,12 +475,15 @@ class MetricsServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listLogMetrics($parent, array $optionalArgs = [])
+    public function listLogMetrics(array $optionalArgs = [])
     {
         $request = new ListLogMetricsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -491,25 +504,25 @@ class MetricsServiceV2GapicClient
      * ```
      * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
-     *     $metric = new LogMetric();
-     *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
+     *     $response = $metricsServiceV2Client->updateLogMetric();
      * } finally {
      *     $metricsServiceV2Client->close();
      * }
      * ```
      *
-     * @param string    $metricName   Required. The resource name of the metric to update:
-     *
-     *                                "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     *
-     *                                The updated metric must be provided in the request and it's
-     *                                `name` field must be the same as `[METRIC_ID]` If the metric
-     *                                does not exist in `[PROJECT_ID]`, then a new metric is created.
-     * @param LogMetric $metric       Required. The updated metric.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $metricName
+     *           Required. The resource name of the metric to update:
+     *
+     *           "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *
+     *           The updated metric must be provided in the request and it's
+     *           `name` field must be the same as `[METRIC_ID]` If the metric
+     *           does not exist in `[PROJECT_ID]`, then a new metric is created.
+     *     @type LogMetric $metric
+     *           Required. The updated metric.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -520,13 +533,19 @@ class MetricsServiceV2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateLogMetric($metricName, $metric, array $optionalArgs = [])
+    public function updateLogMetric(array $optionalArgs = [])
     {
         $request = new UpdateLogMetricRequest();
         $requestParamHeaders = [];
-        $request->setMetricName($metricName);
-        $request->setMetric($metric);
-        $requestParamHeaders['metric_name'] = $metricName;
+        if (isset($optionalArgs['metricName'])) {
+            $request->setMetricName($optionalArgs['metricName']);
+            $requestParamHeaders['metric_name'] = $optionalArgs['metricName'];
+        }
+
+        if (isset($optionalArgs['metric'])) {
+            $request->setMetric($optionalArgs['metric']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateLogMetric', LogMetric::class, $optionalArgs, $request)->wait();

@@ -24,8 +24,7 @@ class GetRouteTableRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the route table resource. Please see
-     *                     {@see HubServiceClient::routeTableName()} for help formatting this field.
+     * @param string $name Required. The name of the route table resource.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\GetRouteTableRequest
      *

@@ -21,10 +21,10 @@ class KeyTrackingService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-©
-8google/cloud/kms/inventory/v1/key_tracking_service.protogoogle.cloud.kms.inventory.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"r
-#GetProtectedResourcesSummaryRequestK
-name (	B=àAúA7
+®
+8google/cloud/kms/inventory/v1/key_tracking_service.protogoogle.cloud.kms.inventory.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"s
+#GetProtectedResourcesSummaryRequestL
+name (	B>âAúA7
 5kmsinventory.googleapis.com/ProtectedResourcesSummary"à
 ProtectedResourcesSummary
 name (	
@@ -42,20 +42,21 @@ class KeyTrackingService
 LocationsEntry
 key (	
 value (:8:ÁêA½
-5kmsinventory.googleapis.com/ProtectedResourcesSummarymprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/protectedResourcesSummary”projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}/protectedResourcesSummary"Í
-SearchProtectedResourcesRequestG
-scope (	B8àAúA2
-0cloudresourcemanager.googleapis.com/Organization
+5kmsinventory.googleapis.com/ProtectedResourcesSummarymprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/protectedResourcesSummary”projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}/protectedResourcesSummary"Ð
+SearchProtectedResourcesRequestH
+scope (	B9âAúA2
+0cloudresourcemanager.googleapis.com/Organization
 
-crypto_key (	B	àAúA
+crypto_key (	B
+âAúA
 *
 	page_size (
 
-page_token (	
-resource_types (	BàA"Š
+page_token (	
+resource_types (	BâA"Š
  SearchProtectedResourcesResponseM
 protected_resources (20.google.cloud.kms.inventory.v1.ProtectedResource
-next_page_token (	"ù
+next_page_token (	"ú
 ProtectedResource
 name (	
 project (	
@@ -69,15 +70,15 @@ project_id	 (	
 (cloudkms.googleapis.com/CryptoKeyVersionJ
 crypto_key_versions
  (	B-úA*
-(cloudkms.googleapis.com/CryptoKeyVersion4
-create_time (2.google.protobuf.TimestampBàA-
+(cloudkms.googleapis.com/CryptoKeyVersion5
+create_time (2.google.protobuf.TimestampBâA-
 LabelsEntry
 key (	
 value (	:8:\'êA$
 cloudasset.googleapis.com/Asset*2Ú
 KeyTrackingService
-GetProtectedResourcesSummaryB.google.cloud.kms.inventory.v1.GetProtectedResourcesSummaryRequest8.google.cloud.kms.inventory.v1.ProtectedResourcesSummary"c‚Óä“VT/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}/protectedResourcesSummaryÚAnameî
-SearchProtectedResources>.google.cloud.kms.inventory.v1.SearchProtectedResourcesRequest?.google.cloud.kms.inventory.v1.SearchProtectedResourcesResponse"Q‚Óä“75/v1/{scope=organizations/*}/protectedResources:searchÚAscope, crypto_keyOÊAkmsinventory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÂ
+GetProtectedResourcesSummaryB.google.cloud.kms.inventory.v1.GetProtectedResourcesSummaryRequest8.google.cloud.kms.inventory.v1.ProtectedResourcesSummary"cÚAname‚Óä“VT/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}/protectedResourcesSummaryî
+SearchProtectedResources>.google.cloud.kms.inventory.v1.SearchProtectedResourcesRequest?.google.cloud.kms.inventory.v1.SearchProtectedResourcesResponse"QÚAscope, crypto_key‚Óä“75/v1/{scope=organizations/*}/protectedResources:searchOÊAkmsinventory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÂ
 !com.google.cloud.kms.inventory.v1BKeyTrackingServiceProtoPZ?cloud.google.com/go/kms/inventory/apiv1/inventorypb;inventorypbøªGoogle.Cloud.Kms.Inventory.V1ÊGoogle\\Cloud\\Kms\\Inventory\\V1bproto3'
         , true);
 

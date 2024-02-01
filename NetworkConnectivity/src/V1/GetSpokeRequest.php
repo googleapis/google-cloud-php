@@ -24,8 +24,7 @@ class GetSpokeRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the spoke resource. Please see
-     *                     {@see HubServiceClient::spokeName()} for help formatting this field.
+     * @param string $name Required. The name of the spoke resource.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\GetSpokeRequest
      *

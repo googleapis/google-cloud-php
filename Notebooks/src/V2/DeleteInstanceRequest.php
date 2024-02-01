@@ -32,7 +32,6 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Format:
      *                     `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     *                     Please see {@see NotebookServiceClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Notebooks\V2\DeleteInstanceRequest
      *

@@ -21,19 +21,19 @@ class KeyDashboardService
         \GPBMetadata\Google\Cloud\Kms\V1\Resources::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∏
-9google/cloud/kms/inventory/v1/key_dashboard_service.protogoogle.cloud.kms.inventory.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/kms/v1/resources.proto"ç
-ListCryptoKeysRequestC
-parent (	B3‡A˙A-
-+cloudresourcemanager.googleapis.com/Project
-	page_size (B‡A
+ª
+9google/cloud/kms/inventory/v1/key_dashboard_service.protogoogle.cloud.kms.inventory.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/kms/v1/resources.proto"ê
+ListCryptoKeysRequestD
+parent (	B4‚A˙A-
++cloudresourcemanager.googleapis.com/Project
+	page_size (B‚A
 
-page_token (	B‡A"f
+page_token (	B‚A"f
 ListCryptoKeysResponse3
 crypto_keys (2.google.cloud.kms.v1.CryptoKey
 next_page_token (	2õ
 KeyDashboardService≤
-ListCryptoKeys4.google.cloud.kms.inventory.v1.ListCryptoKeysRequest5.google.cloud.kms.inventory.v1.ListCryptoKeysResponse"3Ç”‰ì$"/v1/{parent=projects/*}/cryptoKeys⁄AparentO Akmsinventory.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB√
+ListCryptoKeys4.google.cloud.kms.inventory.v1.ListCryptoKeysRequest5.google.cloud.kms.inventory.v1.ListCryptoKeysResponse"3⁄AparentÇ”‰ì$"/v1/{parent=projects/*}/cryptoKeysO Akmsinventory.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB√
 !com.google.cloud.kms.inventory.v1BKeyDashboardServiceProtoPZ?cloud.google.com/go/kms/inventory/apiv1/inventorypb;inventorypb¯™Google.Cloud.Kms.Inventory.V1 Google\\Cloud\\Kms\\Inventory\\V1bproto3'
         , true);
 

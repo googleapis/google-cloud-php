@@ -30,8 +30,7 @@ class BatchUpdateAssetsRequest extends \Google\Protobuf\Internal\Message
     private $requests;
 
     /**
-     * @param string                                                $parent   Required. Parent value for batch asset update. Please see
-     *                                                                        {@see MigrationCenterClient::locationName()} for help formatting this field.
+     * @param string                                                $parent   Required. Parent value for batch asset update.
      * @param \Google\Cloud\MigrationCenter\V1\UpdateAssetRequest[] $requests Required. The request message specifying the resources to update.
      *                                                                        A maximum of 1000 assets can be modified in a batch.
      *

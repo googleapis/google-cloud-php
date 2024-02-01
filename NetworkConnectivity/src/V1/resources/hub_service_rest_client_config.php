@@ -50,9 +50,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'hub_id',
-                ],
             ],
             'CreateSpoke' => [
                 'method' => 'post',
@@ -64,9 +61,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'spoke_id',
                 ],
             ],
             'DeleteHub' => [

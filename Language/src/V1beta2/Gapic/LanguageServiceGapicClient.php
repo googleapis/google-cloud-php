@@ -61,8 +61,7 @@ use Google\Cloud\Language\V1beta2\ModerateTextResponse;
  * ```
  * $languageServiceClient = new Google\Cloud\Language\V1beta2\LanguageServiceClient();
  * try {
- *     $document = new Google\Cloud\Language\V1beta2\Document();
- *     $response = $languageServiceClient->analyzeEntities($document);
+ *     $response = $languageServiceClient->analyzeEntities();
  * } finally {
  *     $languageServiceClient->close();
  * }
@@ -191,17 +190,17 @@ class LanguageServiceGapicClient
      * ```
      * $languageServiceClient = new Google\Cloud\Language\V1beta2\LanguageServiceClient();
      * try {
-     *     $document = new Google\Cloud\Language\V1beta2\Document();
-     *     $response = $languageServiceClient->analyzeEntities($document);
+     *     $response = $languageServiceClient->analyzeEntities();
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
-     * @param Document $document     Required. Input document.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Document $document
+     *           Required. Input document.
      *     @type int $encodingType
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
@@ -217,10 +216,13 @@ class LanguageServiceGapicClient
      *
      * @experimental
      */
-    public function analyzeEntities($document, array $optionalArgs = [])
+    public function analyzeEntities(array $optionalArgs = [])
     {
         $request = new AnalyzeEntitiesRequest();
-        $request->setDocument($document);
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
         if (isset($optionalArgs['encodingType'])) {
             $request->setEncodingType($optionalArgs['encodingType']);
         }
@@ -238,17 +240,17 @@ class LanguageServiceGapicClient
      * ```
      * $languageServiceClient = new Google\Cloud\Language\V1beta2\LanguageServiceClient();
      * try {
-     *     $document = new Google\Cloud\Language\V1beta2\Document();
-     *     $response = $languageServiceClient->analyzeEntitySentiment($document);
+     *     $response = $languageServiceClient->analyzeEntitySentiment();
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
-     * @param Document $document     Required. Input document.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Document $document
+     *           Required. Input document.
      *     @type int $encodingType
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
@@ -264,10 +266,13 @@ class LanguageServiceGapicClient
      *
      * @experimental
      */
-    public function analyzeEntitySentiment($document, array $optionalArgs = [])
+    public function analyzeEntitySentiment(array $optionalArgs = [])
     {
         $request = new AnalyzeEntitySentimentRequest();
-        $request->setDocument($document);
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
         if (isset($optionalArgs['encodingType'])) {
             $request->setEncodingType($optionalArgs['encodingType']);
         }
@@ -282,17 +287,17 @@ class LanguageServiceGapicClient
      * ```
      * $languageServiceClient = new Google\Cloud\Language\V1beta2\LanguageServiceClient();
      * try {
-     *     $document = new Google\Cloud\Language\V1beta2\Document();
-     *     $response = $languageServiceClient->analyzeSentiment($document);
+     *     $response = $languageServiceClient->analyzeSentiment();
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
-     * @param Document $document     Required. Input document.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Document $document
+     *           Required. Input document.
      *     @type int $encodingType
      *           The encoding type used by the API to calculate sentence offsets for the
      *           sentence sentiment.
@@ -309,10 +314,13 @@ class LanguageServiceGapicClient
      *
      * @experimental
      */
-    public function analyzeSentiment($document, array $optionalArgs = [])
+    public function analyzeSentiment(array $optionalArgs = [])
     {
         $request = new AnalyzeSentimentRequest();
-        $request->setDocument($document);
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
         if (isset($optionalArgs['encodingType'])) {
             $request->setEncodingType($optionalArgs['encodingType']);
         }
@@ -329,17 +337,17 @@ class LanguageServiceGapicClient
      * ```
      * $languageServiceClient = new Google\Cloud\Language\V1beta2\LanguageServiceClient();
      * try {
-     *     $document = new Google\Cloud\Language\V1beta2\Document();
-     *     $response = $languageServiceClient->analyzeSyntax($document);
+     *     $response = $languageServiceClient->analyzeSyntax();
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
-     * @param Document $document     Required. Input document.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Document $document
+     *           Required. Input document.
      *     @type int $encodingType
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
@@ -355,10 +363,13 @@ class LanguageServiceGapicClient
      *
      * @experimental
      */
-    public function analyzeSyntax($document, array $optionalArgs = [])
+    public function analyzeSyntax(array $optionalArgs = [])
     {
         $request = new AnalyzeSyntaxRequest();
-        $request->setDocument($document);
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
         if (isset($optionalArgs['encodingType'])) {
             $request->setEncodingType($optionalArgs['encodingType']);
         }
@@ -374,19 +385,19 @@ class LanguageServiceGapicClient
      * ```
      * $languageServiceClient = new Google\Cloud\Language\V1beta2\LanguageServiceClient();
      * try {
-     *     $document = new Google\Cloud\Language\V1beta2\Document();
-     *     $features = new Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features();
-     *     $response = $languageServiceClient->annotateText($document, $features);
+     *     $response = $languageServiceClient->annotateText();
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
-     * @param Document $document     Required. Input document.
-     * @param Features $features     Required. The enabled features.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Document $document
+     *           Required. Input document.
+     *     @type Features $features
+     *           Required. The enabled features.
      *     @type int $encodingType
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
@@ -402,11 +413,17 @@ class LanguageServiceGapicClient
      *
      * @experimental
      */
-    public function annotateText($document, $features, array $optionalArgs = [])
+    public function annotateText(array $optionalArgs = [])
     {
         $request = new AnnotateTextRequest();
-        $request->setDocument($document);
-        $request->setFeatures($features);
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
+        if (isset($optionalArgs['features'])) {
+            $request->setFeatures($optionalArgs['features']);
+        }
+
         if (isset($optionalArgs['encodingType'])) {
             $request->setEncodingType($optionalArgs['encodingType']);
         }
@@ -421,17 +438,17 @@ class LanguageServiceGapicClient
      * ```
      * $languageServiceClient = new Google\Cloud\Language\V1beta2\LanguageServiceClient();
      * try {
-     *     $document = new Google\Cloud\Language\V1beta2\Document();
-     *     $response = $languageServiceClient->classifyText($document);
+     *     $response = $languageServiceClient->classifyText();
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
-     * @param Document $document     Required. Input document.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Document $document
+     *           Required. Input document.
      *     @type ClassificationModelOptions $classificationModelOptions
      *           Model options to use for classification. Defaults to v1 options if not
      *           specified.
@@ -447,10 +464,13 @@ class LanguageServiceGapicClient
      *
      * @experimental
      */
-    public function classifyText($document, array $optionalArgs = [])
+    public function classifyText(array $optionalArgs = [])
     {
         $request = new ClassifyTextRequest();
-        $request->setDocument($document);
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
         if (isset($optionalArgs['classificationModelOptions'])) {
             $request->setClassificationModelOptions($optionalArgs['classificationModelOptions']);
         }
@@ -465,17 +485,17 @@ class LanguageServiceGapicClient
      * ```
      * $languageServiceClient = new Google\Cloud\Language\V1beta2\LanguageServiceClient();
      * try {
-     *     $document = new Google\Cloud\Language\V1beta2\Document();
-     *     $response = $languageServiceClient->moderateText($document);
+     *     $response = $languageServiceClient->moderateText();
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
-     * @param Document $document     Required. Input document.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Document $document
+     *           Required. Input document.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -488,10 +508,13 @@ class LanguageServiceGapicClient
      *
      * @experimental
      */
-    public function moderateText($document, array $optionalArgs = [])
+    public function moderateText(array $optionalArgs = [])
     {
         $request = new ModerateTextRequest();
-        $request->setDocument($document);
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
         return $this->startCall('ModerateText', ModerateTextResponse::class, $optionalArgs, $request)->wait();
     }
 }

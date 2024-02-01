@@ -43,7 +43,6 @@ class CreateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
      * @param string                                            $parent                Required. Resource name of the parent `Service`. The format is:
      *
      *                                                                                 projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     *                                                                                 Please see {@see ServiceMonitoringServiceClient::serviceName()} for help formatting this field.
      * @param \Google\Cloud\Monitoring\V3\ServiceLevelObjective $serviceLevelObjective Required. The `ServiceLevelObjective` to create.
      *                                                                                 The provided `name` will be respected if no `ServiceLevelObjective` exists
      *                                                                                 with this name.

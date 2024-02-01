@@ -34,21 +34,19 @@ use Google\Cloud\Monitoring\V3\DeleteAlertPolicyRequest;
  * alerting policies in a single project. This includes calls to
  * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
  *
- * @param string $formattedName The alerting policy to delete. The format is:
- *
- *                              projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
- *
- *                              For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy]. Please see
- *                              {@see AlertPolicyServiceClient::alertPolicyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_alert_policy_sample(string $formattedName): void
+function delete_alert_policy_sample(): void
 {
     // Create a client.
     $alertPolicyServiceClient = new AlertPolicyServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteAlertPolicyRequest())
-        ->setName($formattedName);
+    $request = new DeleteAlertPolicyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +55,5 @@ function delete_alert_policy_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AlertPolicyServiceClient::alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-
-    delete_alert_policy_sample($formattedName);
 }
 // [END monitoring_v3_generated_AlertPolicyService_DeleteAlertPolicy_sync]

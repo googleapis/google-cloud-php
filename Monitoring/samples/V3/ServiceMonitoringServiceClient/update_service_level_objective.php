@@ -43,9 +43,7 @@ function update_service_level_objective_sample(): void
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
     // Prepare the request message.
-    $serviceLevelObjective = new ServiceLevelObjective();
-    $request = (new UpdateServiceLevelObjectiveRequest())
-        ->setServiceLevelObjective($serviceLevelObjective);
+    $request = new UpdateServiceLevelObjectiveRequest();
 
     // Call the API and handle any network failures.
     try {

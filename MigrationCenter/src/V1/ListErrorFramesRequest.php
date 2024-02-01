@@ -43,8 +43,7 @@ class ListErrorFramesRequest extends \Google\Protobuf\Internal\Message
     protected $view = 0;
 
     /**
-     * @param string $parent Required. Parent value (the source) for `ListErrorFramesRequest`. Please see
-     *                       {@see MigrationCenterClient::sourceName()} for help formatting this field.
+     * @param string $parent Required. Parent value (the source) for `ListErrorFramesRequest`.
      *
      * @return \Google\Cloud\MigrationCenter\V1\ListErrorFramesRequest
      *

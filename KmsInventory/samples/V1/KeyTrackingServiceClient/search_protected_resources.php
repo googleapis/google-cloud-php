@@ -33,21 +33,19 @@ use Google\Cloud\Kms\Inventory\V1\SearchProtectedResourcesRequest;
  * Returns metadata about the resources protected by the given Cloud KMS
  * [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud organization.
  *
- * @param string $formattedScope Resource name of the organization.
- *                               Example: organizations/123
- *                               Please see {@see KeyTrackingServiceClient::organizationName()} for help formatting this field.
- * @param string $cryptoKey      The resource name of the
- *                               [CryptoKey][google.cloud.kms.v1.CryptoKey].
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_protected_resources_sample(string $formattedScope, string $cryptoKey): void
+function search_protected_resources_sample(): void
 {
     // Create a client.
     $keyTrackingServiceClient = new KeyTrackingServiceClient();
 
     // Prepare the request message.
-    $request = (new SearchProtectedResourcesRequest())
-        ->setScope($formattedScope)
-        ->setCryptoKey($cryptoKey);
+    $request = new SearchProtectedResourcesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,22 +59,5 @@ function search_protected_resources_sample(string $formattedScope, string $crypt
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedScope = KeyTrackingServiceClient::organizationName('[ORGANIZATION]');
-    $cryptoKey = '[CRYPTO_KEY]';
-
-    search_protected_resources_sample($formattedScope, $cryptoKey);
 }
 // [END kmsinventory_v1_generated_KeyTrackingService_SearchProtectedResources_sync]

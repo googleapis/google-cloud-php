@@ -33,27 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates an import job.
  *
- * @param string $formattedParent               Value for parent. Please see
- *                                              {@see MigrationCenterClient::locationName()} for help formatting this field.
- * @param string $importJobId                   ID of the import job.
- * @param string $formattedImportJobAssetSource Reference to a source. Please see
- *                                              {@see MigrationCenterClient::sourceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_import_job_sample(
-    string $formattedParent,
-    string $importJobId,
-    string $formattedImportJobAssetSource
-): void {
+function create_import_job_sample(): void
+{
     // Create a client.
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $importJob = (new ImportJob())
-        ->setAssetSource($formattedImportJobAssetSource);
-    $request = (new CreateImportJobRequest())
-        ->setParent($formattedParent)
-        ->setImportJobId($importJobId)
-        ->setImportJob($importJob);
+    $request = new CreateImportJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -73,27 +65,5 @@ function create_import_job_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MigrationCenterClient::locationName('[PROJECT]', '[LOCATION]');
-    $importJobId = '[IMPORT_JOB_ID]';
-    $formattedImportJobAssetSource = MigrationCenterClient::sourceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[SOURCE]'
-    );
-
-    create_import_job_sample($formattedParent, $importJobId, $formattedImportJobAssetSource);
 }
 // [END migrationcenter_v1_generated_MigrationCenter_CreateImportJob_sync]

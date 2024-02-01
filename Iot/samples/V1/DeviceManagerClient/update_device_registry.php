@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
 use Google\Cloud\Iot\V1\DeviceRegistry;
 use Google\Cloud\Iot\V1\UpdateDeviceRegistryRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a device registry configuration.
@@ -44,11 +43,7 @@ function update_device_registry_sample(): void
     $deviceManagerClient = new DeviceManagerClient();
 
     // Prepare the request message.
-    $deviceRegistry = new DeviceRegistry();
-    $updateMask = new FieldMask();
-    $request = (new UpdateDeviceRegistryRequest())
-        ->setDeviceRegistry($deviceRegistry)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateDeviceRegistryRequest();
 
     // Call the API and handle any network failures.
     try {

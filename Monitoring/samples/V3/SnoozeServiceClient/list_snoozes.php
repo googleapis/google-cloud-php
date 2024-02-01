@@ -33,21 +33,19 @@ use Google\Cloud\Monitoring\V3\Snooze;
  * Lists the `Snooze`s associated with a project. Can optionally pass in
  * `filter`, which specifies predicates to match `Snooze`s.
  *
- * @param string $formattedParent The
- *                                [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
- *                                `Snooze`s should be listed. The format is:
- *
- *                                projects/[PROJECT_ID_OR_NUMBER]
- *                                Please see {@see SnoozeServiceClient::workspaceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_snoozes_sample(string $formattedParent): void
+function list_snoozes_sample(): void
 {
     // Create a client.
     $snoozeServiceClient = new SnoozeServiceClient();
 
     // Prepare the request message.
-    $request = (new ListSnoozesRequest())
-        ->setParent($formattedParent);
+    $request = new ListSnoozesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +59,5 @@ function list_snoozes_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SnoozeServiceClient::workspaceName('[PROJECT]');
-
-    list_snoozes_sample($formattedParent);
 }
 // [END monitoring_v3_generated_SnoozeService_ListSnoozes_sync]

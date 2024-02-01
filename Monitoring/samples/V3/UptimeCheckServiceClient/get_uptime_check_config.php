@@ -31,19 +31,19 @@ use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
 /**
  * Gets a single Uptime check configuration.
  *
- * @param string $formattedName The Uptime check configuration to retrieve. The format is:
- *
- *                              projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
- *                              Please see {@see UptimeCheckServiceClient::uptimeCheckConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_uptime_check_config_sample(string $formattedName): void
+function get_uptime_check_config_sample(): void
 {
     // Create a client.
     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
 
     // Prepare the request message.
-    $request = (new GetUptimeCheckConfigRequest())
-        ->setName($formattedName);
+    $request = new GetUptimeCheckConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,24 +53,5 @@ function get_uptime_check_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = UptimeCheckServiceClient::uptimeCheckConfigName(
-        '[PROJECT]',
-        '[UPTIME_CHECK_CONFIG]'
-    );
-
-    get_uptime_check_config_sample($formattedName);
 }
 // [END monitoring_v3_generated_UptimeCheckService_GetUptimeCheckConfig_sync]

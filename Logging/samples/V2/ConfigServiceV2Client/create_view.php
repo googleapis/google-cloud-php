@@ -32,28 +32,19 @@ use Google\Cloud\Logging\V2\LogView;
  * Creates a view over log entries in a log bucket. A bucket may contain a
  * maximum of 30 views.
  *
- * @param string $parent The bucket in which to create the view
- *
- *                       `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"`
- *
- *                       For example:
- *
- *                       `"projects/my-project/locations/global/buckets/my-bucket"`
- * @param string $viewId A client-assigned identifier such as `"my-view"`. Identifiers are
- *                       limited to 100 characters and can include only letters, digits,
- *                       underscores, hyphens, and periods.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_view_sample(string $parent, string $viewId): void
+function create_view_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $view = new LogView();
-    $request = (new CreateViewRequest())
-        ->setParent($parent)
-        ->setViewId($viewId)
-        ->setView($view);
+    $request = new CreateViewRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,22 +54,5 @@ function create_view_sample(string $parent, string $viewId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $viewId = '[VIEW_ID]';
-
-    create_view_sample($parent, $viewId);
 }
 // [END logging_v2_generated_ConfigServiceV2_CreateView_sync]

@@ -35,22 +35,19 @@ use Google\Rpc\Status;
  * Warning! This operation will permanently revert all changes made after the
  * snapshot was created.
  *
- * @param string $formattedName The resource name of the volume, in the format of
- *                              projects/{project_id}/locations/{location}/volumes/{volume_id}. Please see
- *                              {@see NetAppClient::volumeName()} for help formatting this field.
- * @param string $snapshotId    The snapshot resource ID, in the format 'my-snapshot', where the
- *                              specified ID is the {snapshot_id} of the fully qualified name like
- *                              projects/{project_id}/locations/{location_id}/volumes/{volume_id}/snapshots/{snapshot_id}
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function revert_volume_sample(string $formattedName, string $snapshotId): void
+function revert_volume_sample(): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $request = (new RevertVolumeRequest())
-        ->setName($formattedName)
-        ->setSnapshotId($snapshotId);
+    $request = new RevertVolumeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -70,22 +67,5 @@ function revert_volume_sample(string $formattedName, string $snapshotId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NetAppClient::volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-    $snapshotId = '[SNAPSHOT_ID]';
-
-    revert_volume_sample($formattedName, $snapshotId);
 }
 // [END netapp_v1_generated_NetApp_RevertVolume_sync]

@@ -34,18 +34,19 @@ use Google\Cloud\OrgPolicy\V2\GetCustomConstraintRequest;
  * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
  * custom constraint does not exist.
  *
- * @param string $formattedName Resource name of the custom constraint. See the custom constraint
- *                              entry for naming requirements. Please see
- *                              {@see OrgPolicyClient::customConstraintName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_custom_constraint_sample(string $formattedName): void
+function get_custom_constraint_sample(): void
 {
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
     // Prepare the request message.
-    $request = (new GetCustomConstraintRequest())
-        ->setName($formattedName);
+    $request = new GetCustomConstraintRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +56,5 @@ function get_custom_constraint_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = OrgPolicyClient::customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-
-    get_custom_constraint_sample($formattedName);
 }
 // [END orgpolicy_v2_generated_OrgPolicy_GetCustomConstraint_sync]

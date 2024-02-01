@@ -26,22 +26,19 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Notebooks\V1beta1\Instance;
-use Google\Cloud\Notebooks\V1beta1\Instance\AcceleratorType;
 use Google\Cloud\Notebooks\V1beta1\NotebookServiceClient;
 use Google\Rpc\Status;
 
 /**
  * Updates the guest accelerators of a single Instance.
  *
- * @param string $name      Format:
- *                          `projects/{project_id}/locations/{location}/instances/{instance_id}`
- * @param int    $type      Type of this accelerator.
- * @param int    $coreCount Count of cores of this accelerator. Note that not all combinations
- *                          of `type` and `core_count` are valid. Check [GPUs on
- *                          Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to
- *                          find a valid combination. TPUs are not supported.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_instance_accelerator_sample(string $name, int $type, int $coreCount): void
+function set_instance_accelerator_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
@@ -49,7 +46,7 @@ function set_instance_accelerator_sample(string $name, int $type, int $coreCount
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $notebookServiceClient->setInstanceAccelerator($name, $type, $coreCount);
+        $response = $notebookServiceClient->setInstanceAccelerator();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -64,23 +61,5 @@ function set_instance_accelerator_sample(string $name, int $type, int $coreCount
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-    $type = AcceleratorType::ACCELERATOR_TYPE_UNSPECIFIED;
-    $coreCount = 0;
-
-    set_instance_accelerator_sample($name, $type, $coreCount);
 }
 // [END notebooks_v1beta1_generated_NotebookService_SetInstanceAccelerator_sync]

@@ -48,8 +48,7 @@ class ListReportConfigsRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. Parent value for `ListReportConfigsRequest`. Please see
-     *                       {@see MigrationCenterClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Parent value for `ListReportConfigsRequest`.
      *
      * @return \Google\Cloud\MigrationCenter\V1\ListReportConfigsRequest
      *

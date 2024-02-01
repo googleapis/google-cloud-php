@@ -63,7 +63,6 @@ class ListSnoozesRequest extends \Google\Protobuf\Internal\Message
      *                       `Snooze`s should be listed. The format is:
      *
      *                       projects/[PROJECT_ID_OR_NUMBER]
-     *                       Please see {@see SnoozeServiceClient::workspaceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Monitoring\V3\ListSnoozesRequest
      *

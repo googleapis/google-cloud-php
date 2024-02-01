@@ -47,8 +47,7 @@ class ListPolicyBasedRoutesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
-     * @param string $parent Required. The parent resource's name. Please see
-     *                       {@see PolicyBasedRoutingServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent resource's name.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\ListPolicyBasedRoutesRequest
      *

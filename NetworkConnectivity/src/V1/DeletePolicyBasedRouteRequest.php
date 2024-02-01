@@ -39,8 +39,7 @@ class DeletePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string $name Required. Name of the PolicyBasedRoute resource to delete. Please see
-     *                     {@see PolicyBasedRoutingServiceClient::policyBasedRouteName()} for help formatting this field.
+     * @param string $name Required. Name of the PolicyBasedRoute resource to delete.
      *
      * @return \Google\Cloud\NetworkConnectivity\V1\DeletePolicyBasedRouteRequest
      *

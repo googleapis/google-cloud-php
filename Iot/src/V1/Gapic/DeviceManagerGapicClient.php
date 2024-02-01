@@ -78,10 +78,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $deviceManagerClient = new DeviceManagerClient();
  * try {
- *     $formattedParent = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
- *     $gatewayId = 'gateway_id';
- *     $deviceId = 'device_id';
- *     $response = $deviceManagerClient->bindDeviceToGateway($formattedParent, $gatewayId, $deviceId);
+ *     $response = $deviceManagerClient->bindDeviceToGateway();
  * } finally {
  *     $deviceManagerClient->close();
  * }
@@ -373,25 +370,25 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedParent = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-     *     $gatewayId = 'gateway_id';
-     *     $deviceId = 'device_id';
-     *     $response = $deviceManagerClient->bindDeviceToGateway($formattedParent, $gatewayId, $deviceId);
+     *     $response = $deviceManagerClient->bindDeviceToGateway();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the registry. For example,
-     *                             `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param string $gatewayId    Required. The value of `gateway_id` can be either the device numeric ID or the
-     *                             user-defined device identifier.
-     * @param string $deviceId     Required. The device to associate with the specified gateway. The value of
-     *                             `device_id` can be either the device numeric ID or the user-defined device
-     *                             identifier.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the registry. For example,
+     *           `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     @type string $gatewayId
+     *           Required. The value of `gateway_id` can be either the device numeric ID or the
+     *           user-defined device identifier.
+     *     @type string $deviceId
+     *           Required. The device to associate with the specified gateway. The value of
+     *           `device_id` can be either the device numeric ID or the user-defined device
+     *           identifier.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -402,18 +399,23 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function bindDeviceToGateway(
-        $parent,
-        $gatewayId,
-        $deviceId,
-        array $optionalArgs = []
-    ) {
+    public function bindDeviceToGateway(array $optionalArgs = [])
+    {
         $request = new BindDeviceToGatewayRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setGatewayId($gatewayId);
-        $request->setDeviceId($deviceId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['gatewayId'])) {
+            $request->setGatewayId($optionalArgs['gatewayId']);
+        }
+
+        if (isset($optionalArgs['deviceId'])) {
+            $request->setDeviceId($optionalArgs['deviceId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -435,23 +437,23 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedParent = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-     *     $device = new Device();
-     *     $response = $deviceManagerClient->createDevice($formattedParent, $device);
+     *     $response = $deviceManagerClient->createDevice();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the device registry where this device should be created.
-     *                             For example,
-     *                             `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param Device $device       Required. The device registration details. The field `name` must be empty. The server
-     *                             generates `name` from the device registry `id` and the
-     *                             `parent` field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the device registry where this device should be created.
+     *           For example,
+     *           `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     @type Device $device
+     *           Required. The device registration details. The field `name` must be empty. The server
+     *           generates `name` from the device registry `id` and the
+     *           `parent` field.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -462,13 +464,19 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDevice($parent, $device, array $optionalArgs = [])
+    public function createDevice(array $optionalArgs = [])
     {
         $request = new CreateDeviceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDevice($device);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['device'])) {
+            $request->setDevice($optionalArgs['device']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -490,22 +498,22 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedParent = $deviceManagerClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $deviceRegistry = new DeviceRegistry();
-     *     $response = $deviceManagerClient->createDeviceRegistry($formattedParent, $deviceRegistry);
+     *     $response = $deviceManagerClient->createDeviceRegistry();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string         $parent         Required. The project and cloud region where this device registry must be created.
-     *                                       For example, `projects/example-project/locations/us-central1`.
-     * @param DeviceRegistry $deviceRegistry Required. The device registry. The field `name` must be empty. The server will
-     *                                       generate that field from the device registry `id` provided and the
-     *                                       `parent` field.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and cloud region where this device registry must be created.
+     *           For example, `projects/example-project/locations/us-central1`.
+     *     @type DeviceRegistry $deviceRegistry
+     *           Required. The device registry. The field `name` must be empty. The server will
+     *           generate that field from the device registry `id` provided and the
+     *           `parent` field.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -516,16 +524,19 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDeviceRegistry(
-        $parent,
-        $deviceRegistry,
-        array $optionalArgs = []
-    ) {
+    public function createDeviceRegistry(array $optionalArgs = [])
+    {
         $request = new CreateDeviceRegistryRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDeviceRegistry($deviceRegistry);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['deviceRegistry'])) {
+            $request->setDeviceRegistry($optionalArgs['deviceRegistry']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -547,19 +558,19 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $deviceManagerClient->deleteDevice($formattedName);
+     *     $deviceManagerClient->deleteDevice();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the device. For example,
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the device. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -568,12 +579,15 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDevice($name, array $optionalArgs = [])
+    public function deleteDevice(array $optionalArgs = [])
     {
         $request = new DeleteDeviceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -595,18 +609,18 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedName = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-     *     $deviceManagerClient->deleteDeviceRegistry($formattedName);
+     *     $deviceManagerClient->deleteDeviceRegistry();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the device registry. For example,
-     *                             `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the device registry. For example,
+     *           `projects/example-project/locations/us-central1/registries/my-registry`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -615,12 +629,15 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDeviceRegistry($name, array $optionalArgs = [])
+    public function deleteDeviceRegistry(array $optionalArgs = [])
     {
         $request = new DeleteDeviceRegistryRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -642,19 +659,19 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $response = $deviceManagerClient->getDevice($formattedName);
+     *     $response = $deviceManagerClient->getDevice();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the device. For example,
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the device. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *     @type FieldMask $fieldMask
      *           The fields of the `Device` resource to be returned in the response. If the
      *           field mask is unset or empty, all fields are returned. Fields have to be
@@ -669,12 +686,15 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDevice($name, array $optionalArgs = [])
+    public function getDevice(array $optionalArgs = [])
     {
         $request = new GetDeviceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['fieldMask'])) {
             $request->setFieldMask($optionalArgs['fieldMask']);
         }
@@ -700,18 +720,18 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedName = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-     *     $response = $deviceManagerClient->getDeviceRegistry($formattedName);
+     *     $response = $deviceManagerClient->getDeviceRegistry();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the device registry. For example,
-     *                             `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the device registry. For example,
+     *           `projects/example-project/locations/us-central1/registries/my-registry`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -722,12 +742,15 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDeviceRegistry($name, array $optionalArgs = [])
+    public function getDeviceRegistry(array $optionalArgs = [])
     {
         $request = new GetDeviceRegistryRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -808,19 +831,19 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $response = $deviceManagerClient->listDeviceConfigVersions($formattedName);
+     *     $response = $deviceManagerClient->listDeviceConfigVersions();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the device. For example,
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the device. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *     @type int $numVersions
      *           The number of versions to list. Versions are listed in decreasing order of
      *           the version number. The maximum number of versions retained is 10. If this
@@ -835,12 +858,15 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDeviceConfigVersions($name, array $optionalArgs = [])
+    public function listDeviceConfigVersions(array $optionalArgs = [])
     {
         $request = new ListDeviceConfigVersionsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['numVersions'])) {
             $request->setNumVersions($optionalArgs['numVersions']);
         }
@@ -866,9 +892,8 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedParent = $deviceManagerClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $deviceManagerClient->listDeviceRegistries($formattedParent);
+     *     $pagedResponse = $deviceManagerClient->listDeviceRegistries();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -876,7 +901,7 @@ class DeviceManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $deviceManagerClient->listDeviceRegistries($formattedParent);
+     *     $pagedResponse = $deviceManagerClient->listDeviceRegistries();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -885,11 +910,12 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and cloud region path. For example,
-     *                             `projects/example-project/locations/us-central1`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and cloud region path. For example,
+     *           `projects/example-project/locations/us-central1`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -909,12 +935,15 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDeviceRegistries($parent, array $optionalArgs = [])
+    public function listDeviceRegistries(array $optionalArgs = [])
     {
         $request = new ListDeviceRegistriesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -945,19 +974,19 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $response = $deviceManagerClient->listDeviceStates($formattedName);
+     *     $response = $deviceManagerClient->listDeviceStates();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the device. For example,
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the device. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *     @type int $numStates
      *           The number of states to list. States are listed in descending order of
      *           update time. The maximum number of states retained is 10. If this
@@ -972,12 +1001,15 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDeviceStates($name, array $optionalArgs = [])
+    public function listDeviceStates(array $optionalArgs = [])
     {
         $request = new ListDeviceStatesRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['numStates'])) {
             $request->setNumStates($optionalArgs['numStates']);
         }
@@ -1003,9 +1035,8 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedParent = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $deviceManagerClient->listDevices($formattedParent);
+     *     $pagedResponse = $deviceManagerClient->listDevices();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1013,7 +1044,7 @@ class DeviceManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $deviceManagerClient->listDevices($formattedParent);
+     *     $pagedResponse = $deviceManagerClient->listDevices();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1022,11 +1053,12 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The device registry path. Required. For example,
-     *                             `projects/my-project/locations/us-central1/registries/my-registry`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The device registry path. Required. For example,
+     *           `projects/my-project/locations/us-central1/registries/my-registry`.
      *     @type int[] $deviceNumIds
      *           A list of device numeric IDs. If empty, this field is ignored. Maximum
      *           IDs: 10,000.
@@ -1059,12 +1091,15 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDevices($parent, array $optionalArgs = [])
+    public function listDevices(array $optionalArgs = [])
     {
         $request = new ListDevicesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['deviceNumIds'])) {
             $request->setDeviceNumIds($optionalArgs['deviceNumIds']);
         }
@@ -1114,27 +1149,27 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $binaryData = '...';
-     *     $response = $deviceManagerClient->modifyCloudToDeviceConfig($formattedName, $binaryData);
+     *     $response = $deviceManagerClient->modifyCloudToDeviceConfig();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the device. For example,
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param string $binaryData   Required. The configuration data for the device.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the device. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *     @type int $versionToUpdate
      *           The version number to update. If this value is zero, it will not check the
      *           version number of the server and will always update the current version;
      *           otherwise, this update will fail if the version number found on the server
      *           does not match this version number. This is used to support multiple
      *           simultaneous updates without losing data.
+     *     @type string $binaryData
+     *           Required. The configuration data for the device.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1145,18 +1180,21 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function modifyCloudToDeviceConfig(
-        $name,
-        $binaryData,
-        array $optionalArgs = []
-    ) {
+    public function modifyCloudToDeviceConfig(array $optionalArgs = [])
+    {
         $request = new ModifyCloudToDeviceConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setBinaryData($binaryData);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['versionToUpdate'])) {
             $request->setVersionToUpdate($optionalArgs['versionToUpdate']);
+        }
+
+        if (isset($optionalArgs['binaryData'])) {
+            $request->setBinaryData($optionalArgs['binaryData']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1192,21 +1230,21 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $binaryData = '...';
-     *     $response = $deviceManagerClient->sendCommandToDevice($formattedName, $binaryData);
+     *     $response = $deviceManagerClient->sendCommandToDevice();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the device. For example,
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
-     *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param string $binaryData   Required. The command data to send to the device.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the device. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     @type string $binaryData
+     *           Required. The command data to send to the device.
      *     @type string $subfolder
      *           Optional subfolder for the command. If empty, the command will be delivered
      *           to the /devices/{device-id}/commands topic, otherwise it will be delivered
@@ -1223,16 +1261,19 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function sendCommandToDevice(
-        $name,
-        $binaryData,
-        array $optionalArgs = []
-    ) {
+    public function sendCommandToDevice(array $optionalArgs = [])
+    {
         $request = new SendCommandToDeviceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setBinaryData($binaryData);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['binaryData'])) {
+            $request->setBinaryData($optionalArgs['binaryData']);
+        }
+
         if (isset($optionalArgs['subfolder'])) {
             $request->setSubfolder($optionalArgs['subfolder']);
         }
@@ -1384,25 +1425,25 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedParent = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-     *     $gatewayId = 'gateway_id';
-     *     $deviceId = 'device_id';
-     *     $response = $deviceManagerClient->unbindDeviceFromGateway($formattedParent, $gatewayId, $deviceId);
+     *     $response = $deviceManagerClient->unbindDeviceFromGateway();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the registry. For example,
-     *                             `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param string $gatewayId    Required. The value of `gateway_id` can be either the device numeric ID or the
-     *                             user-defined device identifier.
-     * @param string $deviceId     Required. The device to disassociate from the specified gateway. The value of
-     *                             `device_id` can be either the device numeric ID or the user-defined device
-     *                             identifier.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the registry. For example,
+     *           `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     @type string $gatewayId
+     *           Required. The value of `gateway_id` can be either the device numeric ID or the
+     *           user-defined device identifier.
+     *     @type string $deviceId
+     *           Required. The device to disassociate from the specified gateway. The value of
+     *           `device_id` can be either the device numeric ID or the user-defined device
+     *           identifier.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1413,18 +1454,23 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function unbindDeviceFromGateway(
-        $parent,
-        $gatewayId,
-        $deviceId,
-        array $optionalArgs = []
-    ) {
+    public function unbindDeviceFromGateway(array $optionalArgs = [])
+    {
         $request = new UnbindDeviceFromGatewayRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setGatewayId($gatewayId);
-        $request->setDeviceId($deviceId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['gatewayId'])) {
+            $request->setGatewayId($optionalArgs['gatewayId']);
+        }
+
+        if (isset($optionalArgs['deviceId'])) {
+            $request->setDeviceId($optionalArgs['deviceId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1446,25 +1492,25 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $device = new Device();
-     *     $updateMask = new FieldMask();
-     *     $response = $deviceManagerClient->updateDevice($device, $updateMask);
+     *     $response = $deviceManagerClient->updateDevice();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param Device    $device       Required. The new values for the device. The `id` and `num_id` fields must
-     *                                be empty, and the field `name` must specify the name path. For example,
-     *                                `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
-     *                                `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param FieldMask $updateMask   Required. Only updates the `device` fields indicated by this mask.
-     *                                The field mask must not be empty, and it must not contain fields that
-     *                                are immutable or only set by the server.
-     *                                Mutable top-level fields: `credentials`, `blocked`, and `metadata`
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Device $device
+     *           Required. The new values for the device. The `id` and `num_id` fields must
+     *           be empty, and the field `name` must specify the name path. For example,
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
+     *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     *     @type FieldMask $updateMask
+     *           Required. Only updates the `device` fields indicated by this mask.
+     *           The field mask must not be empty, and it must not contain fields that
+     *           are immutable or only set by the server.
+     *           Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1475,13 +1521,18 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDevice($device, $updateMask, array $optionalArgs = [])
+    public function updateDevice(array $optionalArgs = [])
     {
         $request = new UpdateDeviceRequest();
         $requestParamHeaders = [];
-        $request->setDevice($device);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['device.name'] = $device->getName();
+        if (isset($optionalArgs['device'])) {
+            $request->setDevice($optionalArgs['device']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1503,25 +1554,25 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $deviceRegistry = new DeviceRegistry();
-     *     $updateMask = new FieldMask();
-     *     $response = $deviceManagerClient->updateDeviceRegistry($deviceRegistry, $updateMask);
+     *     $response = $deviceManagerClient->updateDeviceRegistry();
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param DeviceRegistry $deviceRegistry Required. The new values for the device registry. The `id` field must be empty, and
-     *                                       the `name` field must indicate the path of the resource. For example,
-     *                                       `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param FieldMask      $updateMask     Required. Only updates the `device_registry` fields indicated by this mask.
-     *                                       The field mask must not be empty, and it must not contain fields that
-     *                                       are immutable or only set by the server.
-     *                                       Mutable top-level fields: `event_notification_config`, `http_config`,
-     *                                       `mqtt_config`, and `state_notification_config`.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type DeviceRegistry $deviceRegistry
+     *           Required. The new values for the device registry. The `id` field must be empty, and
+     *           the `name` field must indicate the path of the resource. For example,
+     *           `projects/example-project/locations/us-central1/registries/my-registry`.
+     *     @type FieldMask $updateMask
+     *           Required. Only updates the `device_registry` fields indicated by this mask.
+     *           The field mask must not be empty, and it must not contain fields that
+     *           are immutable or only set by the server.
+     *           Mutable top-level fields: `event_notification_config`, `http_config`,
+     *           `mqtt_config`, and `state_notification_config`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1532,18 +1583,18 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDeviceRegistry(
-        $deviceRegistry,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateDeviceRegistry(array $optionalArgs = [])
+    {
         $request = new UpdateDeviceRegistryRequest();
         $requestParamHeaders = [];
-        $request->setDeviceRegistry($deviceRegistry);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders[
-            'device_registry.name'
-        ] = $deviceRegistry->getName();
+        if (isset($optionalArgs['deviceRegistry'])) {
+            $request->setDeviceRegistry($optionalArgs['deviceRegistry']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

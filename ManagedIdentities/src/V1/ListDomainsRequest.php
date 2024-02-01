@@ -61,7 +61,6 @@ class ListDomainsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the domain location using the form:
      *                       `projects/{project_id}/locations/global`
-     *                       Please see {@see ManagedIdentitiesServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\ManagedIdentities\V1\ListDomainsRequest
      *

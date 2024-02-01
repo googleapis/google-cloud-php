@@ -21,13 +21,13 @@ class ServerTlsPolicy
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-È
-<google/cloud/networksecurity/v1beta1/server_tls_policy.proto$google.cloud.networksecurity.v1beta1google/api/resource.proto.google/cloud/networksecurity/v1beta1/tls.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Î
-ServerTlsPolicy
-name (	BàA
-description (	4
-create_time (2.google.protobuf.TimestampBàA4
-update_time (2.google.protobuf.TimestampBàAQ
+Ó
+<google/cloud/networksecurity/v1beta1/server_tls_policy.proto$google.cloud.networksecurity.v1beta1google/api/resource.proto.google/cloud/networksecurity/v1beta1/tls.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ñ
+ServerTlsPolicy
+name (	BâA
+description (	5
+create_time (2.google.protobuf.TimestampBâA5
+update_time (2.google.protobuf.TimestampBâAQ
 labels (2A.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.LabelsEntry
 
 allow_open (U
@@ -39,28 +39,28 @@ MTLSPolicyP
 LabelsEntry
 key (	
 value (	:8:‚êA
-.networksecurity.googleapis.com/ServerTlsPolicyMprojects/{project}/locations/{location}/serverTlsPolicies/{server_tls_policy}"€
-ListServerTlsPoliciesRequest9
-parent (	B)àAúA#
+.networksecurity.googleapis.com/ServerTlsPolicyMprojects/{project}/locations/{location}/serverTlsPolicies/{server_tls_policy}"
+ListServerTlsPoliciesRequest:
+parent (	B*âAúA#
 !locations.googleapis.com/Location
 	page_size (
 
 page_token (	"Œ
 ListServerTlsPoliciesResponseR
 server_tls_policies (25.google.cloud.networksecurity.v1beta1.ServerTlsPolicy
-next_page_token (	"a
-GetServerTlsPolicyRequestD
-name (	B6àAúA0
-.networksecurity.googleapis.com/ServerTlsPolicy"à
-CreateServerTlsPolicyRequestF
-parent (	B6àAúA0.networksecurity.googleapis.com/ServerTlsPolicy!
-server_tls_policy_id (	BàAU
-server_tls_policy (25.google.cloud.networksecurity.v1beta1.ServerTlsPolicyBàA"«
-UpdateServerTlsPolicyRequest4
-update_mask (2.google.protobuf.FieldMaskBàAU
-server_tls_policy (25.google.cloud.networksecurity.v1beta1.ServerTlsPolicyBàA"d
-DeleteServerTlsPolicyRequestD
-name (	B6àAúA0
+next_page_token (	"b
+GetServerTlsPolicyRequestE
+name (	B7âAúA0
+.networksecurity.googleapis.com/ServerTlsPolicy"ã
+CreateServerTlsPolicyRequestG
+parent (	B7âAúA0.networksecurity.googleapis.com/ServerTlsPolicy"
+server_tls_policy_id (	BâAV
+server_tls_policy (25.google.cloud.networksecurity.v1beta1.ServerTlsPolicyBâA"­
+UpdateServerTlsPolicyRequest5
+update_mask (2.google.protobuf.FieldMaskBâAV
+server_tls_policy (25.google.cloud.networksecurity.v1beta1.ServerTlsPolicyBâA"e
+DeleteServerTlsPolicyRequestE
+name (	B7âAúA0
 .networksecurity.googleapis.com/ServerTlsPolicyBŽ
 (com.google.cloud.networksecurity.v1beta1BServerTlsPolicyProtoPZRcloud.google.com/go/networksecurity/apiv1beta1/networksecuritypb;networksecuritypbª$Google.Cloud.NetworkSecurity.V1Beta1Ê$Google\\Cloud\\NetworkSecurity\\V1beta1ê\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
         , true);

@@ -32,19 +32,19 @@ use Google\Cloud\NetApp\V1\Snapshot;
 /**
  * Returns descriptions of all snapshots for a volume.
  *
- * @param string $formattedParent The volume for which to retrieve snapshot information,
- *                                in the format
- *                                `projects/{project_id}/locations/{location}/volumes/{volume_id}`. Please see
- *                                {@see NetAppClient::volumeName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_snapshots_sample(string $formattedParent): void
+function list_snapshots_sample(): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $request = (new ListSnapshotsRequest())
-        ->setParent($formattedParent);
+    $request = new ListSnapshotsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +58,5 @@ function list_snapshots_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NetAppClient::volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-
-    list_snapshots_sample($formattedParent);
 }
 // [END netapp_v1_generated_NetApp_ListSnapshots_sync]

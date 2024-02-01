@@ -61,9 +61,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
  * try {
- *     $parent = 'parent';
- *     $uptimeCheckConfig = new Google\Cloud\Monitoring\V3\UptimeCheckConfig();
- *     $response = $uptimeCheckServiceClient->createUptimeCheckConfig($parent, $uptimeCheckConfig);
+ *     $response = $uptimeCheckServiceClient->createUptimeCheckConfig();
  * } finally {
  *     $uptimeCheckServiceClient->close();
  * }
@@ -364,23 +362,23 @@ class UptimeCheckServiceGapicClient
      * ```
      * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $uptimeCheckConfig = new Google\Cloud\Monitoring\V3\UptimeCheckConfig();
-     *     $response = $uptimeCheckServiceClient->createUptimeCheckConfig($parent, $uptimeCheckConfig);
+     *     $response = $uptimeCheckServiceClient->createUptimeCheckConfig();
      * } finally {
      *     $uptimeCheckServiceClient->close();
      * }
      * ```
      *
-     * @param string            $parent            Required. The
-     *                                             [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
-     *                                             to create the Uptime check. The format is:
-     *
-     *                                             projects/[PROJECT_ID_OR_NUMBER]
-     * @param UptimeCheckConfig $uptimeCheckConfig Required. The new Uptime check configuration.
-     * @param array             $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *           to create the Uptime check. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
+     *     @type UptimeCheckConfig $uptimeCheckConfig
+     *           Required. The new Uptime check configuration.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -391,13 +389,19 @@ class UptimeCheckServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createUptimeCheckConfig($parent, $uptimeCheckConfig, array $optionalArgs = [])
+    public function createUptimeCheckConfig(array $optionalArgs = [])
     {
         $request = new CreateUptimeCheckConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setUptimeCheckConfig($uptimeCheckConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['uptimeCheckConfig'])) {
+            $request->setUptimeCheckConfig($optionalArgs['uptimeCheckConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateUptimeCheckConfig', UptimeCheckConfig::class, $optionalArgs, $request)->wait();
@@ -412,19 +416,19 @@ class UptimeCheckServiceGapicClient
      * ```
      * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
-     *     $formattedName = $uptimeCheckServiceClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-     *     $uptimeCheckServiceClient->deleteUptimeCheckConfig($formattedName);
+     *     $uptimeCheckServiceClient->deleteUptimeCheckConfig();
      * } finally {
      *     $uptimeCheckServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The Uptime check configuration to delete. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The Uptime check configuration to delete. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -433,12 +437,15 @@ class UptimeCheckServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteUptimeCheckConfig($name, array $optionalArgs = [])
+    public function deleteUptimeCheckConfig(array $optionalArgs = [])
     {
         $request = new DeleteUptimeCheckConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteUptimeCheckConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -451,19 +458,19 @@ class UptimeCheckServiceGapicClient
      * ```
      * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
-     *     $formattedName = $uptimeCheckServiceClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-     *     $response = $uptimeCheckServiceClient->getUptimeCheckConfig($formattedName);
+     *     $response = $uptimeCheckServiceClient->getUptimeCheckConfig();
      * } finally {
      *     $uptimeCheckServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The Uptime check configuration to retrieve. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The Uptime check configuration to retrieve. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -474,12 +481,15 @@ class UptimeCheckServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getUptimeCheckConfig($name, array $optionalArgs = [])
+    public function getUptimeCheckConfig(array $optionalArgs = [])
     {
         $request = new GetUptimeCheckConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetUptimeCheckConfig', UptimeCheckConfig::class, $optionalArgs, $request)->wait();
@@ -493,9 +503,8 @@ class UptimeCheckServiceGapicClient
      * ```
      * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($parent);
+     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -503,7 +512,7 @@ class UptimeCheckServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($parent);
+     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -512,14 +521,15 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The
-     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
-     *                             Uptime check configurations are listed. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+     *           Uptime check configurations are listed. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $filter
      *           If provided, this field specifies the criteria that must be met by
      *           uptime checks to be included in the response.
@@ -545,12 +555,15 @@ class UptimeCheckServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listUptimeCheckConfigs($parent, array $optionalArgs = [])
+    public function listUptimeCheckConfigs(array $optionalArgs = [])
     {
         $request = new ListUptimeCheckConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -639,25 +652,13 @@ class UptimeCheckServiceGapicClient
      * ```
      * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
-     *     $uptimeCheckConfig = new Google\Cloud\Monitoring\V3\UptimeCheckConfig();
-     *     $response = $uptimeCheckServiceClient->updateUptimeCheckConfig($uptimeCheckConfig);
+     *     $response = $uptimeCheckServiceClient->updateUptimeCheckConfig();
      * } finally {
      *     $uptimeCheckServiceClient->close();
      * }
      * ```
      *
-     * @param UptimeCheckConfig $uptimeCheckConfig Required. If an `updateMask` has been specified, this field gives
-     *                                             the values for the set of fields mentioned in the `updateMask`. If an
-     *                                             `updateMask` has not been given, this Uptime check configuration replaces
-     *                                             the current configuration. If a field is mentioned in `updateMask` but
-     *                                             the corresponding field is omitted in this partial Uptime check
-     *                                             configuration, it has the effect of deleting/clearing the field from the
-     *                                             configuration on the server.
-     *
-     *                                             The following fields can be updated: `display_name`,
-     *                                             `http_check`, `tcp_check`, `timeout`, `content_matchers`, and
-     *                                             `selected_regions`.
-     * @param array             $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
@@ -665,6 +666,18 @@ class UptimeCheckServiceGapicClient
      *           configuration are updated with values from the new configuration. If this
      *           field is empty, then the current configuration is completely replaced with
      *           the new configuration.
+     *     @type UptimeCheckConfig $uptimeCheckConfig
+     *           Required. If an `updateMask` has been specified, this field gives
+     *           the values for the set of fields mentioned in the `updateMask`. If an
+     *           `updateMask` has not been given, this Uptime check configuration replaces
+     *           the current configuration. If a field is mentioned in `updateMask` but
+     *           the corresponding field is omitted in this partial Uptime check
+     *           configuration, it has the effect of deleting/clearing the field from the
+     *           configuration on the server.
+     *
+     *           The following fields can be updated: `display_name`,
+     *           `http_check`, `tcp_check`, `timeout`, `content_matchers`, and
+     *           `selected_regions`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -675,14 +688,16 @@ class UptimeCheckServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateUptimeCheckConfig($uptimeCheckConfig, array $optionalArgs = [])
+    public function updateUptimeCheckConfig(array $optionalArgs = [])
     {
         $request = new UpdateUptimeCheckConfigRequest();
         $requestParamHeaders = [];
-        $request->setUptimeCheckConfig($uptimeCheckConfig);
-        $requestParamHeaders['uptime_check_config.name'] = $uptimeCheckConfig->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['uptimeCheckConfig'])) {
+            $request->setUptimeCheckConfig($optionalArgs['uptimeCheckConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

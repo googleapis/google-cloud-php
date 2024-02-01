@@ -51,7 +51,6 @@ class ListSchedulesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Format:
      *                       `parent=projects/{project_id}/locations/{location}`
-     *                       Please see {@see NotebookServiceClient::scheduleName()} for help formatting this field.
      *
      * @return \Google\Cloud\Notebooks\V1\ListSchedulesRequest
      *

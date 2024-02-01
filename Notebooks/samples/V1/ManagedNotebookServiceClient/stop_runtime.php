@@ -37,17 +37,19 @@ use Google\Rpc\Status;
  * https://cloud.google.com/compute/docs/instances/stop-start-instance
  * https://cloud.google.com/compute/docs/instances/suspend-resume-instance
  *
- * @param string $name Format:
- *                     `projects/{project_id}/locations/{location}/runtimes/{runtime_id}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function stop_runtime_sample(string $name): void
+function stop_runtime_sample(): void
 {
     // Create a client.
     $managedNotebookServiceClient = new ManagedNotebookServiceClient();
 
     // Prepare the request message.
-    $request = (new StopRuntimeRequest())
-        ->setName($name);
+    $request = new StopRuntimeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,21 +69,5 @@ function stop_runtime_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    stop_runtime_sample($name);
 }
 // [END notebooks_v1_generated_ManagedNotebookService_StopRuntime_sync]

@@ -49,7 +49,6 @@ use Google\Cloud\Memcache\V1\ListInstancesRequest;
 use Google\Cloud\Memcache\V1\ListInstancesResponse;
 use Google\Cloud\Memcache\V1\MemcacheParameters;
 use Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest;
-use Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest\RescheduleType;
 use Google\Cloud\Memcache\V1\UpdateInstanceRequest;
 use Google\Cloud\Memcache\V1\UpdateParametersRequest;
 use Google\LongRunning\Operation;
@@ -79,8 +78,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $cloudMemcacheClient = new CloudMemcacheClient();
  * try {
- *     $formattedName = $cloudMemcacheClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
- *     $operationResponse = $cloudMemcacheClient->applyParameters($formattedName);
+ *     $operationResponse = $cloudMemcacheClient->applyParameters();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -91,7 +89,7 @@ use Google\Protobuf\Timestamp;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $cloudMemcacheClient->applyParameters($formattedName);
+ *     $operationResponse = $cloudMemcacheClient->applyParameters();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $cloudMemcacheClient->resumeOperation($operationName, 'applyParameters');
@@ -379,8 +377,7 @@ class CloudMemcacheGapicClient
      * ```
      * $cloudMemcacheClient = new CloudMemcacheClient();
      * try {
-     *     $formattedName = $cloudMemcacheClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-     *     $operationResponse = $cloudMemcacheClient->applyParameters($formattedName);
+     *     $operationResponse = $cloudMemcacheClient->applyParameters();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -391,7 +388,7 @@ class CloudMemcacheGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudMemcacheClient->applyParameters($formattedName);
+     *     $operationResponse = $cloudMemcacheClient->applyParameters();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudMemcacheClient->resumeOperation($operationName, 'applyParameters');
@@ -411,11 +408,12 @@ class CloudMemcacheGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the Memcached instance for which parameter group updates
-     *                             should be applied.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the Memcached instance for which parameter group updates
+     *           should be applied.
      *     @type string[] $nodeIds
      *           Nodes to which the instance-level parameter group is applied.
      *     @type bool $applyAll
@@ -432,12 +430,15 @@ class CloudMemcacheGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function applyParameters($name, array $optionalArgs = [])
+    public function applyParameters(array $optionalArgs = [])
     {
         $request = new ApplyParametersRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['nodeIds'])) {
             $request->setNodeIds($optionalArgs['nodeIds']);
         }
@@ -458,10 +459,7 @@ class CloudMemcacheGapicClient
      * ```
      * $cloudMemcacheClient = new CloudMemcacheClient();
      * try {
-     *     $formattedParent = $cloudMemcacheClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $instanceId = 'instance_id';
-     *     $instance = new Instance();
-     *     $operationResponse = $cloudMemcacheClient->createInstance($formattedParent, $instanceId, $instance);
+     *     $operationResponse = $cloudMemcacheClient->createInstance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -472,7 +470,7 @@ class CloudMemcacheGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudMemcacheClient->createInstance($formattedParent, $instanceId, $instance);
+     *     $operationResponse = $cloudMemcacheClient->createInstance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudMemcacheClient->resumeOperation($operationName, 'createInstance');
@@ -492,23 +490,26 @@ class CloudMemcacheGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The resource name of the instance location using the form:
-     *                               `projects/{project_id}/locations/{location_id}`
-     *                               where `location_id` refers to a GCP region
-     * @param string   $instanceId   Required. The logical name of the Memcached instance in the user
-     *                               project with the following restrictions:
-     *
-     *                               * Must contain only lowercase letters, numbers, and hyphens.
-     *                               * Must start with a letter.
-     *                               * Must be between 1-40 characters.
-     *                               * Must end with a number or a letter.
-     *                               * Must be unique within the user project / location.
-     *
-     *                               If any of the above are not met, the API raises an invalid argument error.
-     * @param Instance $instance     Required. A Memcached Instance
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the instance location using the form:
+     *           `projects/{project_id}/locations/{location_id}`
+     *           where `location_id` refers to a GCP region
+     *     @type string $instanceId
+     *           Required. The logical name of the Memcached instance in the user
+     *           project with the following restrictions:
+     *
+     *           * Must contain only lowercase letters, numbers, and hyphens.
+     *           * Must start with a letter.
+     *           * Must be between 1-40 characters.
+     *           * Must end with a number or a letter.
+     *           * Must be unique within the user project / location.
+     *
+     *           If any of the above are not met, the API raises an invalid argument error.
+     *     @type Instance $instance
+     *           Required. A Memcached Instance
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -519,14 +520,23 @@ class CloudMemcacheGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createInstance($parent, $instanceId, $instance, array $optionalArgs = [])
+    public function createInstance(array $optionalArgs = [])
     {
         $request = new CreateInstanceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setInstanceId($instanceId);
-        $request->setInstance($instance);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['instanceId'])) {
+            $request->setInstanceId($optionalArgs['instanceId']);
+        }
+
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -539,8 +549,7 @@ class CloudMemcacheGapicClient
      * ```
      * $cloudMemcacheClient = new CloudMemcacheClient();
      * try {
-     *     $formattedName = $cloudMemcacheClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-     *     $operationResponse = $cloudMemcacheClient->deleteInstance($formattedName);
+     *     $operationResponse = $cloudMemcacheClient->deleteInstance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -550,7 +559,7 @@ class CloudMemcacheGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudMemcacheClient->deleteInstance($formattedName);
+     *     $operationResponse = $cloudMemcacheClient->deleteInstance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudMemcacheClient->resumeOperation($operationName, 'deleteInstance');
@@ -569,12 +578,13 @@ class CloudMemcacheGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Memcached instance resource name in the format:
-     *                             `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *                             where `location_id` refers to a GCP region
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Memcached instance resource name in the format:
+     *           `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *           where `location_id` refers to a GCP region
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -585,12 +595,15 @@ class CloudMemcacheGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteInstance($name, array $optionalArgs = [])
+    public function deleteInstance(array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -603,19 +616,19 @@ class CloudMemcacheGapicClient
      * ```
      * $cloudMemcacheClient = new CloudMemcacheClient();
      * try {
-     *     $formattedName = $cloudMemcacheClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-     *     $response = $cloudMemcacheClient->getInstance($formattedName);
+     *     $response = $cloudMemcacheClient->getInstance();
      * } finally {
      *     $cloudMemcacheClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Memcached instance resource name in the format:
-     *                             `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *                             where `location_id` refers to a GCP region
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Memcached instance resource name in the format:
+     *           `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *           where `location_id` refers to a GCP region
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -626,12 +639,15 @@ class CloudMemcacheGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInstance($name, array $optionalArgs = [])
+    public function getInstance(array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetInstance', Instance::class, $optionalArgs, $request)->wait();
@@ -644,9 +660,8 @@ class CloudMemcacheGapicClient
      * ```
      * $cloudMemcacheClient = new CloudMemcacheClient();
      * try {
-     *     $formattedParent = $cloudMemcacheClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudMemcacheClient->listInstances($formattedParent);
+     *     $pagedResponse = $cloudMemcacheClient->listInstances();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -654,7 +669,7 @@ class CloudMemcacheGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudMemcacheClient->listInstances($formattedParent);
+     *     $pagedResponse = $cloudMemcacheClient->listInstances();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -663,12 +678,13 @@ class CloudMemcacheGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the instance location using the form:
-     *                             `projects/{project_id}/locations/{location_id}`
-     *                             where `location_id` refers to a GCP region
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the instance location using the form:
+     *           `projects/{project_id}/locations/{location_id}`
+     *           where `location_id` refers to a GCP region
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -693,12 +709,15 @@ class CloudMemcacheGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listInstances($parent, array $optionalArgs = [])
+    public function listInstances(array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -727,9 +746,7 @@ class CloudMemcacheGapicClient
      * ```
      * $cloudMemcacheClient = new CloudMemcacheClient();
      * try {
-     *     $formattedInstance = $cloudMemcacheClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-     *     $rescheduleType = RescheduleType::RESCHEDULE_TYPE_UNSPECIFIED;
-     *     $operationResponse = $cloudMemcacheClient->rescheduleMaintenance($formattedInstance, $rescheduleType);
+     *     $operationResponse = $cloudMemcacheClient->rescheduleMaintenance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -740,7 +757,7 @@ class CloudMemcacheGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudMemcacheClient->rescheduleMaintenance($formattedInstance, $rescheduleType);
+     *     $operationResponse = $cloudMemcacheClient->rescheduleMaintenance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudMemcacheClient->resumeOperation($operationName, 'rescheduleMaintenance');
@@ -760,14 +777,16 @@ class CloudMemcacheGapicClient
      * }
      * ```
      *
-     * @param string $instance       Required. Memcache instance resource name using the form:
-     *                               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *                               where `location_id` refers to a GCP region.
-     * @param int    $rescheduleType Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
-     *                               For allowed values, use constants defined on {@see \Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest\RescheduleType}
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $instance
+     *           Required. Memcache instance resource name using the form:
+     *           `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *           where `location_id` refers to a GCP region.
+     *     @type int $rescheduleType
+     *           Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest\RescheduleType}
      *     @type Timestamp $scheduleTime
      *           Timestamp when the maintenance shall be rescheduled to if
      *           reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for
@@ -782,13 +801,19 @@ class CloudMemcacheGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rescheduleMaintenance($instance, $rescheduleType, array $optionalArgs = [])
+    public function rescheduleMaintenance(array $optionalArgs = [])
     {
         $request = new RescheduleMaintenanceRequest();
         $requestParamHeaders = [];
-        $request->setInstance($instance);
-        $request->setRescheduleType($rescheduleType);
-        $requestParamHeaders['instance'] = $instance;
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+            $requestParamHeaders['instance'] = $optionalArgs['instance'];
+        }
+
+        if (isset($optionalArgs['rescheduleType'])) {
+            $request->setRescheduleType($optionalArgs['rescheduleType']);
+        }
+
         if (isset($optionalArgs['scheduleTime'])) {
             $request->setScheduleTime($optionalArgs['scheduleTime']);
         }
@@ -805,9 +830,7 @@ class CloudMemcacheGapicClient
      * ```
      * $cloudMemcacheClient = new CloudMemcacheClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $instance = new Instance();
-     *     $operationResponse = $cloudMemcacheClient->updateInstance($updateMask, $instance);
+     *     $operationResponse = $cloudMemcacheClient->updateInstance();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -818,7 +841,7 @@ class CloudMemcacheGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudMemcacheClient->updateInstance($updateMask, $instance);
+     *     $operationResponse = $cloudMemcacheClient->updateInstance();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudMemcacheClient->resumeOperation($operationName, 'updateInstance');
@@ -838,14 +861,16 @@ class CloudMemcacheGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Mask of fields to update.
-     *
-     *                                *   `displayName`
-     * @param Instance  $instance     Required. A Memcached Instance.
-     *                                Only fields specified in update_mask are updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
+     *
+     *           *   `displayName`
+     *     @type Instance $instance
+     *           Required. A Memcached Instance.
+     *           Only fields specified in update_mask are updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -856,13 +881,18 @@ class CloudMemcacheGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateInstance($updateMask, $instance, array $optionalArgs = [])
+    public function updateInstance(array $optionalArgs = [])
     {
         $request = new UpdateInstanceRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setInstance($instance);
-        $requestParamHeaders['instance.name'] = $instance->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['instance'])) {
+            $request->setInstance($optionalArgs['instance']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpdateInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -878,9 +908,7 @@ class CloudMemcacheGapicClient
      * ```
      * $cloudMemcacheClient = new CloudMemcacheClient();
      * try {
-     *     $formattedName = $cloudMemcacheClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $cloudMemcacheClient->updateParameters($formattedName, $updateMask);
+     *     $operationResponse = $cloudMemcacheClient->updateParameters();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -891,7 +919,7 @@ class CloudMemcacheGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudMemcacheClient->updateParameters($formattedName, $updateMask);
+     *     $operationResponse = $cloudMemcacheClient->updateParameters();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudMemcacheClient->resumeOperation($operationName, 'updateParameters');
@@ -911,12 +939,14 @@ class CloudMemcacheGapicClient
      * }
      * ```
      *
-     * @param string    $name         Required. Resource name of the Memcached instance for which the parameters should be
-     *                                updated.
-     * @param FieldMask $updateMask   Required. Mask of fields to update.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the Memcached instance for which the parameters should be
+     *           updated.
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
      *     @type MemcacheParameters $parameters
      *           The parameters to apply to the instance.
      *     @type RetrySettings|array $retrySettings
@@ -929,13 +959,19 @@ class CloudMemcacheGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateParameters($name, $updateMask, array $optionalArgs = [])
+    public function updateParameters(array $optionalArgs = [])
     {
         $request = new UpdateParametersRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['parameters'])) {
             $request->setParameters($optionalArgs['parameters']);
         }

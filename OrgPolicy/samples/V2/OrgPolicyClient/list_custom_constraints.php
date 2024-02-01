@@ -33,21 +33,19 @@ use Google\Cloud\OrgPolicy\V2\ListCustomConstraintsRequest;
  * Retrieves all of the custom constraints that exist on a particular
  * organization resource.
  *
- * @param string $formattedParent The target Google Cloud resource that parents the set of custom
- *                                constraints that will be returned from this call. Must be in one of the
- *                                following forms:
- *
- *                                * `organizations/{organization_id}`
- *                                Please see {@see OrgPolicyClient::organizationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_custom_constraints_sample(string $formattedParent): void
+function list_custom_constraints_sample(): void
 {
     // Create a client.
     $orgPolicyClient = new OrgPolicyClient();
 
     // Prepare the request message.
-    $request = (new ListCustomConstraintsRequest())
-        ->setParent($formattedParent);
+    $request = new ListCustomConstraintsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +59,5 @@ function list_custom_constraints_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = OrgPolicyClient::organizationName('[ORGANIZATION]');
-
-    list_custom_constraints_sample($formattedParent);
 }
 // [END orgpolicy_v2_generated_OrgPolicy_ListCustomConstraints_sync]

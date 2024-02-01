@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'endpoint_id',
-                ],
             ],
             'DeleteEndpoint' => [
                 'method' => 'delete',

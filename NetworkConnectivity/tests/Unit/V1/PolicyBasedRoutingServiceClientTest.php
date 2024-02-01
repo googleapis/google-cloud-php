@@ -33,8 +33,6 @@ use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\Cloud\NetworkConnectivity\V1\ListPolicyBasedRoutesResponse;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
-use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Filter;
-use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Filter\ProtocolVersion;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -114,17 +112,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $policyBasedRouteId = 'policyBasedRouteId-103152502';
-        $policyBasedRoute = new PolicyBasedRoute();
-        $policyBasedRouteNetwork = $gapicClient->networkName('[PROJECT]', '[RESOURCE_ID]');
-        $policyBasedRoute->setNetwork($policyBasedRouteNetwork);
-        $policyBasedRouteFilter = new Filter();
-        $filterProtocolVersion = ProtocolVersion::PROTOCOL_VERSION_UNSPECIFIED;
-        $policyBasedRouteFilter->setProtocolVersion($filterProtocolVersion);
-        $policyBasedRoute->setFilter($policyBasedRouteFilter);
-        $response = $gapicClient->createPolicyBasedRoute($formattedParent, $policyBasedRouteId, $policyBasedRoute);
+        $response = $gapicClient->createPolicyBasedRoute();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -134,12 +122,6 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/CreatePolicyBasedRoute', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getPolicyBasedRouteId();
-        $this->assertProtobufEquals($policyBasedRouteId, $actualValue);
-        $actualValue = $actualApiRequestObject->getPolicyBasedRoute();
-        $this->assertProtobufEquals($policyBasedRoute, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createPolicyBasedRouteTest');
         $response->pollUntilComplete([
@@ -190,17 +172,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $policyBasedRouteId = 'policyBasedRouteId-103152502';
-        $policyBasedRoute = new PolicyBasedRoute();
-        $policyBasedRouteNetwork = $gapicClient->networkName('[PROJECT]', '[RESOURCE_ID]');
-        $policyBasedRoute->setNetwork($policyBasedRouteNetwork);
-        $policyBasedRouteFilter = new Filter();
-        $filterProtocolVersion = ProtocolVersion::PROTOCOL_VERSION_UNSPECIFIED;
-        $policyBasedRouteFilter->setProtocolVersion($filterProtocolVersion);
-        $policyBasedRoute->setFilter($policyBasedRouteFilter);
-        $response = $gapicClient->createPolicyBasedRoute($formattedParent, $policyBasedRouteId, $policyBasedRoute);
+        $response = $gapicClient->createPolicyBasedRoute();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -251,9 +223,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->policyBasedRouteName('[PROJECT]', '[POLICY_BASED_ROUTE]');
-        $response = $gapicClient->deletePolicyBasedRoute($formattedName);
+        $response = $gapicClient->deletePolicyBasedRoute();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -263,8 +233,6 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/DeletePolicyBasedRoute', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deletePolicyBasedRouteTest');
         $response->pollUntilComplete([
@@ -315,9 +283,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->policyBasedRouteName('[PROJECT]', '[POLICY_BASED_ROUTE]');
-        $response = $gapicClient->deletePolicyBasedRoute($formattedName);
+        $response = $gapicClient->deletePolicyBasedRoute();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -364,17 +330,13 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->policyBasedRouteName('[PROJECT]', '[POLICY_BASED_ROUTE]');
-        $response = $gapicClient->getPolicyBasedRoute($formattedName);
+        $response = $gapicClient->getPolicyBasedRoute();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/GetPolicyBasedRoute', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -396,10 +358,8 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->policyBasedRouteName('[PROJECT]', '[POLICY_BASED_ROUTE]');
         try {
-            $gapicClient->getPolicyBasedRoute($formattedName);
+            $gapicClient->getPolicyBasedRoute();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -429,9 +389,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPolicyBasedRoutes($policyBasedRoutes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listPolicyBasedRoutes($formattedParent);
+        $response = $gapicClient->listPolicyBasedRoutes();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -441,8 +399,6 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.PolicyBasedRoutingService/ListPolicyBasedRoutes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -464,10 +420,8 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listPolicyBasedRoutes($formattedParent);
+            $gapicClient->listPolicyBasedRoutes();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -614,17 +568,13 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -646,10 +596,8 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -676,20 +624,13 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -711,11 +652,8 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -738,20 +676,13 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -773,11 +704,8 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

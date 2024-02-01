@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Language\V1\AnalyzeEntitiesRequest;
 use Google\Cloud\Language\V1\AnalyzeEntitiesResponse;
 use Google\Cloud\Language\V1\Client\LanguageServiceClient;
-use Google\Cloud\Language\V1\Document;
 
 /**
  * Finds named entities (currently proper names and common nouns) in the text
@@ -46,9 +45,7 @@ function analyze_entities_sample(): void
     $languageServiceClient = new LanguageServiceClient();
 
     // Prepare the request message.
-    $document = new Document();
-    $request = (new AnalyzeEntitiesRequest())
-        ->setDocument($document);
+    $request = new AnalyzeEntitiesRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -32,11 +32,13 @@ use Google\Rpc\Status;
 /**
  * Updates software on the selected nodes of the Instance.
  *
- * @param string $formattedInstance Resource name of the Memcached instance for which software update should be
- *                                  applied. Please see
- *                                  {@see CloudMemcacheClient::instanceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function apply_software_update_sample(string $formattedInstance): void
+function apply_software_update_sample(): void
 {
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
@@ -44,7 +46,7 @@ function apply_software_update_sample(string $formattedInstance): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudMemcacheClient->applySoftwareUpdate($formattedInstance);
+        $response = $cloudMemcacheClient->applySoftwareUpdate();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,21 +61,5 @@ function apply_software_update_sample(string $formattedInstance): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedInstance = CloudMemcacheClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-
-    apply_software_update_sample($formattedInstance);
 }
 // [END memcache_v1beta2_generated_CloudMemcache_ApplySoftwareUpdate_sync]

@@ -54,8 +54,7 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string                        $parent     Required. The endpoint's parent. Please see
-     *                                                  {@see IDSClient::locationName()} for help formatting this field.
+     * @param string                        $parent     Required. The endpoint's parent.
      * @param \Google\Cloud\Ids\V1\Endpoint $endpoint   Required. The endpoint to create.
      * @param string                        $endpointId Required. The endpoint identifier. This will be part of the endpoint's
      *                                                  resource name.

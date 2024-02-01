@@ -30,10 +30,8 @@ use Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse;
-use Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features;
 use Google\Cloud\Language\V1beta2\AnnotateTextResponse;
 use Google\Cloud\Language\V1beta2\ClassifyTextResponse;
-use Google\Cloud\Language\V1beta2\Document;
 use Google\Cloud\Language\V1beta2\LanguageServiceClient;
 use Google\Cloud\Language\V1beta2\ModerateTextResponse;
 use Google\Rpc\Code;
@@ -80,17 +78,13 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse = new AnalyzeEntitiesResponse();
         $expectedResponse->setLanguage($language);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $response = $gapicClient->analyzeEntities($document);
+        $response = $gapicClient->analyzeEntities();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeEntities', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -112,10 +106,8 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
         try {
-            $gapicClient->analyzeEntities($document);
+            $gapicClient->analyzeEntities();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -140,17 +132,13 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse = new AnalyzeEntitySentimentResponse();
         $expectedResponse->setLanguage($language);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $response = $gapicClient->analyzeEntitySentiment($document);
+        $response = $gapicClient->analyzeEntitySentiment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeEntitySentiment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -172,10 +160,8 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
         try {
-            $gapicClient->analyzeEntitySentiment($document);
+            $gapicClient->analyzeEntitySentiment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -200,17 +186,13 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse = new AnalyzeSentimentResponse();
         $expectedResponse->setLanguage($language);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $response = $gapicClient->analyzeSentiment($document);
+        $response = $gapicClient->analyzeSentiment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeSentiment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -232,10 +214,8 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
         try {
-            $gapicClient->analyzeSentiment($document);
+            $gapicClient->analyzeSentiment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -260,17 +240,13 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse = new AnalyzeSyntaxResponse();
         $expectedResponse->setLanguage($language);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $response = $gapicClient->analyzeSyntax($document);
+        $response = $gapicClient->analyzeSyntax();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnalyzeSyntax', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -292,10 +268,8 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
         try {
-            $gapicClient->analyzeSyntax($document);
+            $gapicClient->analyzeSyntax();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -320,20 +294,13 @@ class LanguageServiceClientTest extends GeneratedTest
         $expectedResponse = new AnnotateTextResponse();
         $expectedResponse->setLanguage($language);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $features = new Features();
-        $response = $gapicClient->annotateText($document, $features);
+        $response = $gapicClient->annotateText();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/AnnotateText', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
-        $actualValue = $actualRequestObject->getFeatures();
-        $this->assertProtobufEquals($features, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -355,11 +322,8 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
-        $features = new Features();
         try {
-            $gapicClient->annotateText($document, $features);
+            $gapicClient->annotateText();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -382,17 +346,13 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ClassifyTextResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $response = $gapicClient->classifyText($document);
+        $response = $gapicClient->classifyText();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/ClassifyText', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -414,10 +374,8 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
         try {
-            $gapicClient->classifyText($document);
+            $gapicClient->classifyText();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -440,17 +398,13 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ModerateTextResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $response = $gapicClient->moderateText($document);
+        $response = $gapicClient->moderateText();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1beta2.LanguageService/ModerateText', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -472,10 +426,8 @@ class LanguageServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
         try {
-            $gapicClient->moderateText($document);
+            $gapicClient->moderateText();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

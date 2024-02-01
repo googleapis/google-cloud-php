@@ -28,7 +28,6 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\LifeSciences\V2beta\Client\WorkflowsServiceV2BetaClient;
-use Google\Cloud\LifeSciences\V2beta\Pipeline;
 use Google\Cloud\LifeSciences\V2beta\RunPipelineRequest;
 use Google\Cloud\LifeSciences\V2beta\RunPipelineResponse;
 use Google\Cloud\Location\GetLocationRequest;
@@ -98,10 +97,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $pipeline = new Pipeline();
-        $request = (new RunPipelineRequest())
-            ->setPipeline($pipeline);
+        $request = new RunPipelineRequest();
         $response = $gapicClient->runPipeline($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -112,8 +108,6 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta/RunPipeline', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getPipeline();
-        $this->assertProtobufEquals($pipeline, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/runPipelineTest');
         $response->pollUntilComplete([
@@ -164,10 +158,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $pipeline = new Pipeline();
-        $request = (new RunPipelineRequest())
-            ->setPipeline($pipeline);
+        $request = new RunPipelineRequest();
         $response = $gapicClient->runPipeline($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -343,10 +334,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $pipeline = new Pipeline();
-        $request = (new RunPipelineRequest())
-            ->setPipeline($pipeline);
+        $request = new RunPipelineRequest();
         $response = $gapicClient->runPipelineAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -357,8 +345,6 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta/RunPipeline', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getPipeline();
-        $this->assertProtobufEquals($pipeline, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/runPipelineTest');
         $response->pollUntilComplete([

@@ -33,22 +33,19 @@ use Google\Rpc\Status;
 /**
  * Copies a set of log entries from a log bucket to a Cloud Storage bucket.
  *
- * @param string $name        Log bucket from which to copy log entries.
- *
- *                            For example:
- *
- *                            `"projects/my-project/locations/global/buckets/my-source-bucket"`
- * @param string $destination Destination to which to copy log entries.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function copy_log_entries_sample(string $name, string $destination): void
+function copy_log_entries_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $request = (new CopyLogEntriesRequest())
-        ->setName($name)
-        ->setDestination($destination);
+    $request = new CopyLogEntriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,22 +65,5 @@ function copy_log_entries_sample(string $name, string $destination): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-    $destination = '[DESTINATION]';
-
-    copy_log_entries_sample($name, $destination);
 }
 // [END logging_v2_generated_ConfigServiceV2_CopyLogEntries_sync]

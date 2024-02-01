@@ -25,10 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START language_v2_generated_LanguageService_AnnotateText_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Language\V2\AnnotateTextRequest;
-use Google\Cloud\Language\V2\AnnotateTextRequest\Features;
 use Google\Cloud\Language\V2\AnnotateTextResponse;
 use Google\Cloud\Language\V2\Client\LanguageServiceClient;
-use Google\Cloud\Language\V2\Document;
 
 /**
  * A convenience method that provides all features in one call.
@@ -45,11 +43,7 @@ function annotate_text_sample(): void
     $languageServiceClient = new LanguageServiceClient();
 
     // Prepare the request message.
-    $document = new Document();
-    $features = new Features();
-    $request = (new AnnotateTextRequest())
-        ->setDocument($document)
-        ->setFeatures($features);
+    $request = new AnnotateTextRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -31,18 +31,19 @@ use Google\Cloud\NetApp\V1\GetBackupRequest;
 /**
  * Returns the description of the specified backup
  *
- * @param string $formattedName The backup resource name, in the format
- *                              `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}`
- *                              Please see {@see NetAppClient::backupName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_backup_sample(string $formattedName): void
+function get_backup_sample(): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $request = (new GetBackupRequest())
-        ->setName($formattedName);
+    $request = new GetBackupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function get_backup_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NetAppClient::backupName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]', '[BACKUP]');
-
-    get_backup_sample($formattedName);
 }
 // [END netapp_v1_generated_NetApp_GetBackup_sync]

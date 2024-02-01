@@ -90,8 +90,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *                                * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *
      *                                Projects listed in the `project_ids` field are added to this list.
-     *                                A maximum of 100 resources may be specified in a single request. Please see
-     *                                {@see LoggingServiceV2Client::projectName()} for help formatting this field.
+     *                                A maximum of 100 resources may be specified in a single request.
      * @param string   $filter        Optional. Only log entries that match the filter are returned.  An empty
      *                                filter matches all log entries in the resources listed in `resource_names`.
      *                                Referencing a parent resource that is not listed in `resource_names` will

@@ -40,31 +40,19 @@ use Google\Cloud\Logging\V2\Settings;
  * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
  * for more information.
  *
- * @param string $formattedName The resource for which to retrieve settings.
- *
- *                              "projects/[PROJECT_ID]/settings"
- *                              "organizations/[ORGANIZATION_ID]/settings"
- *                              "billingAccounts/[BILLING_ACCOUNT_ID]/settings"
- *                              "folders/[FOLDER_ID]/settings"
- *
- *                              For example:
- *
- *                              `"organizations/12345/settings"`
- *
- *                              Note: Settings for the Log Router can be get for Google Cloud projects,
- *                              folders, organizations and billing accounts. Currently it can only be
- *                              configured for organizations. Once configured for an organization, it
- *                              applies to all projects and folders in the Google Cloud organization. Please see
- *                              {@see ConfigServiceV2Client::settingsName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_settings_sample(string $formattedName): void
+function get_settings_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $request = (new GetSettingsRequest())
-        ->setName($formattedName);
+    $request = new GetSettingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,21 +62,5 @@ function get_settings_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConfigServiceV2Client::settingsName('[PROJECT]');
-
-    get_settings_sample($formattedName);
 }
 // [END logging_v2_generated_ConfigServiceV2_GetSettings_sync]

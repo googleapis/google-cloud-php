@@ -90,12 +90,7 @@ class GroupServiceClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setIsCluster($isCluster);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $group = new Group();
-        $request = (new CreateGroupRequest())
-            ->setName($name)
-            ->setGroup($group);
+        $request = new CreateGroupRequest();
         $response = $gapicClient->createGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -103,10 +98,6 @@ class GroupServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/CreateGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getGroup();
-        $this->assertProtobufEquals($group, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -128,12 +119,7 @@ class GroupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $group = new Group();
-        $request = (new CreateGroupRequest())
-            ->setName($name)
-            ->setGroup($group);
+        $request = new CreateGroupRequest();
         try {
             $gapicClient->createGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -158,18 +144,13 @@ class GroupServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[GROUP]');
-        $request = (new DeleteGroupRequest())
-            ->setName($formattedName);
+        $request = new DeleteGroupRequest();
         $gapicClient->deleteGroup($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/DeleteGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -191,10 +172,7 @@ class GroupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[GROUP]');
-        $request = (new DeleteGroupRequest())
-            ->setName($formattedName);
+        $request = new DeleteGroupRequest();
         try {
             $gapicClient->deleteGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -229,10 +207,7 @@ class GroupServiceClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setIsCluster($isCluster);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setName($formattedName);
+        $request = new GetGroupRequest();
         $response = $gapicClient->getGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -240,8 +215,6 @@ class GroupServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/GetGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -263,10 +236,7 @@ class GroupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setName($formattedName);
+        $request = new GetGroupRequest();
         try {
             $gapicClient->getGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -300,10 +270,7 @@ class GroupServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setMembers($members);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[GROUP]');
-        $request = (new ListGroupMembersRequest())
-            ->setName($formattedName);
+        $request = new ListGroupMembersRequest();
         $response = $gapicClient->listGroupMembers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -314,8 +281,6 @@ class GroupServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/ListGroupMembers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -337,10 +302,7 @@ class GroupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[GROUP]');
-        $request = (new ListGroupMembersRequest())
-            ->setName($formattedName);
+        $request = new ListGroupMembersRequest();
         try {
             $gapicClient->listGroupMembers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -372,10 +334,7 @@ class GroupServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGroup($group);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ListGroupsRequest())
-            ->setName($name);
+        $request = new ListGroupsRequest();
         $response = $gapicClient->listGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -386,8 +345,6 @@ class GroupServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/ListGroups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -409,10 +366,7 @@ class GroupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ListGroupsRequest())
-            ->setName($name);
+        $request = new ListGroupsRequest();
         try {
             $gapicClient->listGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -447,10 +401,7 @@ class GroupServiceClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setIsCluster($isCluster);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $group = new Group();
-        $request = (new UpdateGroupRequest())
-            ->setGroup($group);
+        $request = new UpdateGroupRequest();
         $response = $gapicClient->updateGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -458,8 +409,6 @@ class GroupServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/UpdateGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGroup();
-        $this->assertProtobufEquals($group, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -481,10 +430,7 @@ class GroupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $group = new Group();
-        $request = (new UpdateGroupRequest())
-            ->setGroup($group);
+        $request = new UpdateGroupRequest();
         try {
             $gapicClient->updateGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -519,12 +465,7 @@ class GroupServiceClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setIsCluster($isCluster);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $group = new Group();
-        $request = (new CreateGroupRequest())
-            ->setName($name)
-            ->setGroup($group);
+        $request = new CreateGroupRequest();
         $response = $gapicClient->createGroupAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -532,10 +473,6 @@ class GroupServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.GroupService/CreateGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getGroup();
-        $this->assertProtobufEquals($group, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

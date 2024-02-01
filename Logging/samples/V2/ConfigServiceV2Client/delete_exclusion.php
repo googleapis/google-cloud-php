@@ -30,26 +30,19 @@ use Google\Cloud\Logging\V2\DeleteExclusionRequest;
 /**
  * Deletes an exclusion in the _Default sink.
  *
- * @param string $formattedName The resource name of an existing exclusion to delete:
- *
- *                              "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
- *                              "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
- *                              "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
- *                              "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
- *
- *                              For example:
- *
- *                              `"projects/my-project/exclusions/my-exclusion"`
- *                              Please see {@see ConfigServiceV2Client::logExclusionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_exclusion_sample(string $formattedName): void
+function delete_exclusion_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $request = (new DeleteExclusionRequest())
-        ->setName($formattedName);
+    $request = new DeleteExclusionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +51,5 @@ function delete_exclusion_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConfigServiceV2Client::logExclusionName('[PROJECT]', '[EXCLUSION]');
-
-    delete_exclusion_sample($formattedName);
 }
 // [END logging_v2_generated_ConfigServiceV2_DeleteExclusion_sync]

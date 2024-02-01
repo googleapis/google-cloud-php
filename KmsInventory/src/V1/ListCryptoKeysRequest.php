@@ -42,7 +42,6 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The Google Cloud project for which to retrieve key metadata, in
      *                       the format `projects/*`
-     *                       Please see {@see KeyDashboardServiceClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Kms\Inventory\V1\ListCryptoKeysRequest
      *

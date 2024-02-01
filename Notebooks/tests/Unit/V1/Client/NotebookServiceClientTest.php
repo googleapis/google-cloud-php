@@ -46,7 +46,6 @@ use Google\Cloud\Notebooks\V1\DeleteExecutionRequest;
 use Google\Cloud\Notebooks\V1\DeleteInstanceRequest;
 use Google\Cloud\Notebooks\V1\DeleteScheduleRequest;
 use Google\Cloud\Notebooks\V1\DiagnoseInstanceRequest;
-use Google\Cloud\Notebooks\V1\DiagnosticConfig;
 use Google\Cloud\Notebooks\V1\Environment;
 use Google\Cloud\Notebooks\V1\Execution;
 use Google\Cloud\Notebooks\V1\GetEnvironmentRequest;
@@ -56,7 +55,6 @@ use Google\Cloud\Notebooks\V1\GetInstanceHealthResponse;
 use Google\Cloud\Notebooks\V1\GetInstanceRequest;
 use Google\Cloud\Notebooks\V1\GetScheduleRequest;
 use Google\Cloud\Notebooks\V1\Instance;
-use Google\Cloud\Notebooks\V1\Instance\AcceleratorType;
 use Google\Cloud\Notebooks\V1\IsInstanceUpgradeableRequest;
 use Google\Cloud\Notebooks\V1\IsInstanceUpgradeableResponse;
 use Google\Cloud\Notebooks\V1\ListEnvironmentsRequest;
@@ -156,14 +154,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $environmentId = 'environmentId608412359';
-        $environment = new Environment();
-        $request = (new CreateEnvironmentRequest())
-            ->setParent($parent)
-            ->setEnvironmentId($environmentId)
-            ->setEnvironment($environment);
+        $request = new CreateEnvironmentRequest();
         $response = $gapicClient->createEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -174,12 +165,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/CreateEnvironment', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEnvironmentId();
-        $this->assertProtobufEquals($environmentId, $actualValue);
-        $actualValue = $actualApiRequestObject->getEnvironment();
-        $this->assertProtobufEquals($environment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEnvironmentTest');
         $response->pollUntilComplete([
@@ -230,14 +215,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $environmentId = 'environmentId608412359';
-        $environment = new Environment();
-        $request = (new CreateEnvironmentRequest())
-            ->setParent($parent)
-            ->setEnvironmentId($environmentId)
-            ->setEnvironment($environment);
+        $request = new CreateEnvironmentRequest();
         $response = $gapicClient->createEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -299,14 +277,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[EXECUTION]');
-        $executionId = 'executionId-1217171550';
-        $execution = new Execution();
-        $request = (new CreateExecutionRequest())
-            ->setParent($formattedParent)
-            ->setExecutionId($executionId)
-            ->setExecution($execution);
+        $request = new CreateExecutionRequest();
         $response = $gapicClient->createExecution($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -317,12 +288,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/CreateExecution', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getExecutionId();
-        $this->assertProtobufEquals($executionId, $actualValue);
-        $actualValue = $actualApiRequestObject->getExecution();
-        $this->assertProtobufEquals($execution, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createExecutionTest');
         $response->pollUntilComplete([
@@ -373,14 +338,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[EXECUTION]');
-        $executionId = 'executionId-1217171550';
-        $execution = new Execution();
-        $request = (new CreateExecutionRequest())
-            ->setParent($formattedParent)
-            ->setExecutionId($executionId)
-            ->setExecution($execution);
+        $request = new CreateExecutionRequest();
         $response = $gapicClient->createExecution($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -466,16 +424,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceMachineType = 'instanceMachineType-107765684';
-        $instance->setMachineType($instanceMachineType);
-        $request = (new CreateInstanceRequest())
-            ->setParent($parent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -486,12 +435,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/CreateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([
@@ -542,16 +485,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceMachineType = 'instanceMachineType-107765684';
-        $instance->setMachineType($instanceMachineType);
-        $request = (new CreateInstanceRequest())
-            ->setParent($parent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -613,14 +547,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $scheduleId = 'scheduleId176047043';
-        $schedule = new Schedule();
-        $request = (new CreateScheduleRequest())
-            ->setParent($formattedParent)
-            ->setScheduleId($scheduleId)
-            ->setSchedule($schedule);
+        $request = new CreateScheduleRequest();
         $response = $gapicClient->createSchedule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -631,12 +558,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/CreateSchedule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getScheduleId();
-        $this->assertProtobufEquals($scheduleId, $actualValue);
-        $actualValue = $actualApiRequestObject->getSchedule();
-        $this->assertProtobufEquals($schedule, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createScheduleTest');
         $response->pollUntilComplete([
@@ -687,14 +608,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $scheduleId = 'scheduleId176047043';
-        $schedule = new Schedule();
-        $request = (new CreateScheduleRequest())
-            ->setParent($formattedParent)
-            ->setScheduleId($scheduleId)
-            ->setSchedule($schedule);
+        $request = new CreateScheduleRequest();
         $response = $gapicClient->createSchedule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -746,10 +660,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new DeleteEnvironmentRequest())
-            ->setName($name);
+        $request = new DeleteEnvironmentRequest();
         $response = $gapicClient->deleteEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -760,8 +671,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/DeleteEnvironment', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteEnvironmentTest');
         $response->pollUntilComplete([
@@ -812,10 +721,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new DeleteEnvironmentRequest())
-            ->setName($name);
+        $request = new DeleteEnvironmentRequest();
         $response = $gapicClient->deleteEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -867,10 +773,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[EXECUTION]');
-        $request = (new DeleteExecutionRequest())
-            ->setName($formattedName);
+        $request = new DeleteExecutionRequest();
         $response = $gapicClient->deleteExecution($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -881,8 +784,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/DeleteExecution', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteExecutionTest');
         $response->pollUntilComplete([
@@ -933,10 +834,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[EXECUTION]');
-        $request = (new DeleteExecutionRequest())
-            ->setName($formattedName);
+        $request = new DeleteExecutionRequest();
         $response = $gapicClient->deleteExecution($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -988,10 +886,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new DeleteInstanceRequest())
-            ->setName($name);
+        $request = new DeleteInstanceRequest();
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1002,8 +897,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/DeleteInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteInstanceTest');
         $response->pollUntilComplete([
@@ -1054,10 +947,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new DeleteInstanceRequest())
-            ->setName($name);
+        $request = new DeleteInstanceRequest();
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1109,10 +999,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new DeleteScheduleRequest())
-            ->setName($formattedName);
+        $request = new DeleteScheduleRequest();
         $response = $gapicClient->deleteSchedule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1123,8 +1010,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/DeleteSchedule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteScheduleTest');
         $response->pollUntilComplete([
@@ -1175,10 +1060,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new DeleteScheduleRequest())
-            ->setName($formattedName);
+        $request = new DeleteScheduleRequest();
         $response = $gapicClient->deleteSchedule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1264,14 +1146,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $diagnosticConfig = new DiagnosticConfig();
-        $diagnosticConfigGcsBucket = 'diagnosticConfigGcsBucket-1116063720';
-        $diagnosticConfig->setGcsBucket($diagnosticConfigGcsBucket);
-        $request = (new DiagnoseInstanceRequest())
-            ->setName($formattedName)
-            ->setDiagnosticConfig($diagnosticConfig);
+        $request = new DiagnoseInstanceRequest();
         $response = $gapicClient->diagnoseInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1282,10 +1157,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/DiagnoseInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getDiagnosticConfig();
-        $this->assertProtobufEquals($diagnosticConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/diagnoseInstanceTest');
         $response->pollUntilComplete([
@@ -1336,14 +1207,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $diagnosticConfig = new DiagnosticConfig();
-        $diagnosticConfigGcsBucket = 'diagnosticConfigGcsBucket-1116063720';
-        $diagnosticConfig->setGcsBucket($diagnosticConfigGcsBucket);
-        $request = (new DiagnoseInstanceRequest())
-            ->setName($formattedName)
-            ->setDiagnosticConfig($diagnosticConfig);
+        $request = new DiagnoseInstanceRequest();
         $response = $gapicClient->diagnoseInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1385,10 +1249,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPostStartupScript($postStartupScript);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetEnvironmentRequest())
-            ->setName($name);
+        $request = new GetEnvironmentRequest();
         $response = $gapicClient->getEnvironment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1396,8 +1257,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/GetEnvironment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1419,10 +1278,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetEnvironmentRequest())
-            ->setName($name);
+        $request = new GetEnvironmentRequest();
         try {
             $gapicClient->getEnvironment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1457,10 +1313,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setOutputNotebookFile($outputNotebookFile);
         $expectedResponse->setJobUri($jobUri);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[EXECUTION]');
-        $request = (new GetExecutionRequest())
-            ->setName($formattedName);
+        $request = new GetExecutionRequest();
         $response = $gapicClient->getExecution($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1468,8 +1321,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/GetExecution', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1491,10 +1342,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[EXECUTION]');
-        $request = (new GetExecutionRequest())
-            ->setName($formattedName);
+        $request = new GetExecutionRequest();
         try {
             $gapicClient->getExecution($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1553,10 +1401,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setCanIpForward($canIpForward);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetInstanceRequest())
-            ->setName($name);
+        $request = new GetInstanceRequest();
         $response = $gapicClient->getInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1564,8 +1409,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/GetInstance', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1587,10 +1430,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetInstanceRequest())
-            ->setName($name);
+        $request = new GetInstanceRequest();
         try {
             $gapicClient->getInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1615,10 +1455,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GetInstanceHealthResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new GetInstanceHealthRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceHealthRequest();
         $response = $gapicClient->getInstanceHealth($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1626,8 +1463,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/GetInstanceHealth', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1649,10 +1484,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new GetInstanceHealthRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceHealthRequest();
         try {
             $gapicClient->getInstanceHealth($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1687,10 +1519,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setCronSchedule($cronSchedule);
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new GetScheduleRequest())
-            ->setName($formattedName);
+        $request = new GetScheduleRequest();
         $response = $gapicClient->getSchedule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1698,8 +1527,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/GetSchedule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1721,10 +1548,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new GetScheduleRequest())
-            ->setName($formattedName);
+        $request = new GetScheduleRequest();
         try {
             $gapicClient->getSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1757,10 +1581,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setUpgradeInfo($upgradeInfo);
         $expectedResponse->setUpgradeImage($upgradeImage);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $notebookInstance = 'notebookInstance-1078982023';
-        $request = (new IsInstanceUpgradeableRequest())
-            ->setNotebookInstance($notebookInstance);
+        $request = new IsInstanceUpgradeableRequest();
         $response = $gapicClient->isInstanceUpgradeable($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1768,8 +1589,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/IsInstanceUpgradeable', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNotebookInstance();
-        $this->assertProtobufEquals($notebookInstance, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1791,10 +1610,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $notebookInstance = 'notebookInstance-1078982023';
-        $request = (new IsInstanceUpgradeableRequest())
-            ->setNotebookInstance($notebookInstance);
+        $request = new IsInstanceUpgradeableRequest();
         try {
             $gapicClient->isInstanceUpgradeable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1826,10 +1642,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEnvironments($environments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListEnvironmentsRequest())
-            ->setParent($parent);
+        $request = new ListEnvironmentsRequest();
         $response = $gapicClient->listEnvironments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1840,8 +1653,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/ListEnvironments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1863,10 +1674,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListEnvironmentsRequest())
-            ->setParent($parent);
+        $request = new ListEnvironmentsRequest();
         try {
             $gapicClient->listEnvironments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1898,10 +1706,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExecutions($executions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[EXECUTION]');
-        $request = (new ListExecutionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListExecutionsRequest();
         $response = $gapicClient->listExecutions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1912,8 +1717,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/ListExecutions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1935,10 +1738,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[EXECUTION]');
-        $request = (new ListExecutionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListExecutionsRequest();
         try {
             $gapicClient->listExecutions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1970,10 +1770,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListInstancesRequest())
-            ->setParent($parent);
+        $request = new ListInstancesRequest();
         $response = $gapicClient->listInstances($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1984,8 +1781,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/ListInstances', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2007,10 +1802,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListInstancesRequest())
-            ->setParent($parent);
+        $request = new ListInstancesRequest();
         try {
             $gapicClient->listInstances($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2042,10 +1834,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSchedules($schedules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new ListSchedulesRequest())
-            ->setParent($formattedParent);
+        $request = new ListSchedulesRequest();
         $response = $gapicClient->listSchedules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2056,8 +1845,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/ListSchedules', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2079,10 +1866,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new ListSchedulesRequest())
-            ->setParent($formattedParent);
+        $request = new ListSchedulesRequest();
         try {
             $gapicClient->listSchedules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2159,12 +1943,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $instanceId = 'instanceId-2101995259';
-        $request = (new RegisterInstanceRequest())
-            ->setParent($parent)
-            ->setInstanceId($instanceId);
+        $request = new RegisterInstanceRequest();
         $response = $gapicClient->registerInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2175,10 +1954,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/RegisterInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/registerInstanceTest');
         $response->pollUntilComplete([
@@ -2229,12 +2004,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $instanceId = 'instanceId-2101995259';
-        $request = (new RegisterInstanceRequest())
-            ->setParent($parent)
-            ->setInstanceId($instanceId);
+        $request = new RegisterInstanceRequest();
         $response = $gapicClient->registerInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2320,12 +2090,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $vmId = 'vmId112317347';
-        $request = (new ReportInstanceInfoRequest())
-            ->setName($name)
-            ->setVmId($vmId);
+        $request = new ReportInstanceInfoRequest();
         $response = $gapicClient->reportInstanceInfo($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2336,10 +2101,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/ReportInstanceInfo', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getVmId();
-        $this->assertProtobufEquals($vmId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/reportInstanceInfoTest');
         $response->pollUntilComplete([
@@ -2390,12 +2151,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $vmId = 'vmId112317347';
-        $request = (new ReportInstanceInfoRequest())
-            ->setName($name)
-            ->setVmId($vmId);
+        $request = new ReportInstanceInfoRequest();
         $response = $gapicClient->reportInstanceInfo($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2481,10 +2237,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ResetInstanceRequest())
-            ->setName($name);
+        $request = new ResetInstanceRequest();
         $response = $gapicClient->resetInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2495,8 +2248,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/ResetInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/resetInstanceTest');
         $response->pollUntilComplete([
@@ -2547,10 +2298,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ResetInstanceRequest())
-            ->setName($name);
+        $request = new ResetInstanceRequest();
         $response = $gapicClient->resetInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2636,12 +2384,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $targetSnapshot = 'targetSnapshot556386482';
-        $request = (new RollbackInstanceRequest())
-            ->setName($name)
-            ->setTargetSnapshot($targetSnapshot);
+        $request = new RollbackInstanceRequest();
         $response = $gapicClient->rollbackInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2652,10 +2395,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/RollbackInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetSnapshot();
-        $this->assertProtobufEquals($targetSnapshot, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/rollbackInstanceTest');
         $response->pollUntilComplete([
@@ -2706,12 +2445,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $targetSnapshot = 'targetSnapshot556386482';
-        $request = (new RollbackInstanceRequest())
-            ->setName($name)
-            ->setTargetSnapshot($targetSnapshot);
+        $request = new RollbackInstanceRequest();
         $response = $gapicClient->rollbackInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2797,14 +2531,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $type = AcceleratorType::ACCELERATOR_TYPE_UNSPECIFIED;
-        $coreCount = 1963855761;
-        $request = (new SetInstanceAcceleratorRequest())
-            ->setName($name)
-            ->setType($type)
-            ->setCoreCount($coreCount);
+        $request = new SetInstanceAcceleratorRequest();
         $response = $gapicClient->setInstanceAccelerator($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2815,12 +2542,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/SetInstanceAccelerator', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getType();
-        $this->assertProtobufEquals($type, $actualValue);
-        $actualValue = $actualApiRequestObject->getCoreCount();
-        $this->assertProtobufEquals($coreCount, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/setInstanceAcceleratorTest');
         $response->pollUntilComplete([
@@ -2871,14 +2592,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $type = AcceleratorType::ACCELERATOR_TYPE_UNSPECIFIED;
-        $coreCount = 1963855761;
-        $request = (new SetInstanceAcceleratorRequest())
-            ->setName($name)
-            ->setType($type)
-            ->setCoreCount($coreCount);
+        $request = new SetInstanceAcceleratorRequest();
         $response = $gapicClient->setInstanceAccelerator($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2964,10 +2678,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new SetInstanceLabelsRequest())
-            ->setName($name);
+        $request = new SetInstanceLabelsRequest();
         $response = $gapicClient->setInstanceLabels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2978,8 +2689,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/SetInstanceLabels', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/setInstanceLabelsTest');
         $response->pollUntilComplete([
@@ -3030,10 +2739,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new SetInstanceLabelsRequest())
-            ->setName($name);
+        $request = new SetInstanceLabelsRequest();
         $response = $gapicClient->setInstanceLabels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3119,12 +2825,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $machineType = 'machineType1838323762';
-        $request = (new SetInstanceMachineTypeRequest())
-            ->setName($name)
-            ->setMachineType($machineType);
+        $request = new SetInstanceMachineTypeRequest();
         $response = $gapicClient->setInstanceMachineType($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3135,10 +2836,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/SetInstanceMachineType', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getMachineType();
-        $this->assertProtobufEquals($machineType, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/setInstanceMachineTypeTest');
         $response->pollUntilComplete([
@@ -3189,12 +2886,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $machineType = 'machineType1838323762';
-        $request = (new SetInstanceMachineTypeRequest())
-            ->setName($name)
-            ->setMachineType($machineType);
+        $request = new SetInstanceMachineTypeRequest();
         $response = $gapicClient->setInstanceMachineType($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3280,10 +2972,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new StartInstanceRequest())
-            ->setName($name);
+        $request = new StartInstanceRequest();
         $response = $gapicClient->startInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3294,8 +2983,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/StartInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/startInstanceTest');
         $response->pollUntilComplete([
@@ -3346,10 +3033,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new StartInstanceRequest())
-            ->setName($name);
+        $request = new StartInstanceRequest();
         $response = $gapicClient->startInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3435,10 +3119,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new StopInstanceRequest())
-            ->setName($name);
+        $request = new StopInstanceRequest();
         $response = $gapicClient->stopInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3449,8 +3130,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/StopInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/stopInstanceTest');
         $response->pollUntilComplete([
@@ -3501,10 +3180,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new StopInstanceRequest())
-            ->setName($name);
+        $request = new StopInstanceRequest();
         $response = $gapicClient->stopInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3566,10 +3242,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new TriggerScheduleRequest())
-            ->setName($formattedName);
+        $request = new TriggerScheduleRequest();
         $response = $gapicClient->triggerSchedule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3580,8 +3253,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/TriggerSchedule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/triggerScheduleTest');
         $response->pollUntilComplete([
@@ -3632,10 +3303,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new TriggerScheduleRequest())
-            ->setName($formattedName);
+        $request = new TriggerScheduleRequest();
         $response = $gapicClient->triggerSchedule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3721,10 +3389,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new UpdateInstanceConfigRequest())
-            ->setName($name);
+        $request = new UpdateInstanceConfigRequest();
         $response = $gapicClient->updateInstanceConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3735,8 +3400,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/UpdateInstanceConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateInstanceConfigTest');
         $response->pollUntilComplete([
@@ -3787,10 +3450,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new UpdateInstanceConfigRequest())
-            ->setName($name);
+        $request = new UpdateInstanceConfigRequest();
         $response = $gapicClient->updateInstanceConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3824,10 +3484,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new UpdateInstanceMetadataItemsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new UpdateInstanceMetadataItemsRequest())
-            ->setName($name);
+        $request = new UpdateInstanceMetadataItemsRequest();
         $response = $gapicClient->updateInstanceMetadataItems($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3835,8 +3492,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/UpdateInstanceMetadataItems', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3858,10 +3513,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new UpdateInstanceMetadataItemsRequest())
-            ->setName($name);
+        $request = new UpdateInstanceMetadataItemsRequest();
         try {
             $gapicClient->updateInstanceMetadataItems($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3938,10 +3590,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new UpdateShieldedInstanceConfigRequest())
-            ->setName($name);
+        $request = new UpdateShieldedInstanceConfigRequest();
         $response = $gapicClient->updateShieldedInstanceConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3952,8 +3601,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/UpdateShieldedInstanceConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateShieldedInstanceConfigTest');
         $response->pollUntilComplete([
@@ -4004,10 +3651,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new UpdateShieldedInstanceConfigRequest())
-            ->setName($name);
+        $request = new UpdateShieldedInstanceConfigRequest();
         $response = $gapicClient->updateShieldedInstanceConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4093,10 +3737,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new UpgradeInstanceRequest())
-            ->setName($name);
+        $request = new UpgradeInstanceRequest();
         $response = $gapicClient->upgradeInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4107,8 +3748,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/UpgradeInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/upgradeInstanceTest');
         $response->pollUntilComplete([
@@ -4159,10 +3798,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new UpgradeInstanceRequest())
-            ->setName($name);
+        $request = new UpgradeInstanceRequest();
         $response = $gapicClient->upgradeInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4248,12 +3884,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $vmId = 'vmId112317347';
-        $request = (new UpgradeInstanceInternalRequest())
-            ->setName($name)
-            ->setVmId($vmId);
+        $request = new UpgradeInstanceInternalRequest();
         $response = $gapicClient->upgradeInstanceInternal($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4264,10 +3895,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/UpgradeInstanceInternal', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getVmId();
-        $this->assertProtobufEquals($vmId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/upgradeInstanceInternalTest');
         $response->pollUntilComplete([
@@ -4318,12 +3945,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $vmId = 'vmId112317347';
-        $request = (new UpgradeInstanceInternalRequest())
-            ->setName($name)
-            ->setVmId($vmId);
+        $request = new UpgradeInstanceInternalRequest();
         $response = $gapicClient->upgradeInstanceInternal($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4485,10 +4107,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4496,8 +4115,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4519,10 +4136,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4551,12 +4165,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4564,10 +4173,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4589,12 +4194,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4619,12 +4219,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4632,10 +4227,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4657,12 +4248,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4713,14 +4299,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $environmentId = 'environmentId608412359';
-        $environment = new Environment();
-        $request = (new CreateEnvironmentRequest())
-            ->setParent($parent)
-            ->setEnvironmentId($environmentId)
-            ->setEnvironment($environment);
+        $request = new CreateEnvironmentRequest();
         $response = $gapicClient->createEnvironmentAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4731,12 +4310,6 @@ class NotebookServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.notebooks.v1.NotebookService/CreateEnvironment', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEnvironmentId();
-        $this->assertProtobufEquals($environmentId, $actualValue);
-        $actualValue = $actualApiRequestObject->getEnvironment();
-        $this->assertProtobufEquals($environment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEnvironmentTest');
         $response->pollUntilComplete([

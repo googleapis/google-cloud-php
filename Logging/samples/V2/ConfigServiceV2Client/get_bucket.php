@@ -31,26 +31,19 @@ use Google\Cloud\Logging\V2\LogBucket;
 /**
  * Gets a log bucket.
  *
- * @param string $formattedName The resource name of the bucket:
- *
- *                              "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
- *                              "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
- *                              "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
- *                              "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
- *
- *                              For example:
- *
- *                              `"projects/my-project/locations/global/buckets/my-bucket"`
- *                              Please see {@see ConfigServiceV2Client::logBucketName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_bucket_sample(string $formattedName): void
+function get_bucket_sample(): void
 {
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
     // Prepare the request message.
-    $request = (new GetBucketRequest())
-        ->setName($formattedName);
+    $request = new GetBucketRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +53,5 @@ function get_bucket_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConfigServiceV2Client::logBucketName('[PROJECT]', '[LOCATION]', '[BUCKET]');
-
-    get_bucket_sample($formattedName);
 }
 // [END logging_v2_generated_ConfigServiceV2_GetBucket_sync]

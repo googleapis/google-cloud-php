@@ -33,22 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new Execution in a given project and location.
  *
- * @param string $formattedParent Format:
- *                                `parent=projects/{project_id}/locations/{location}`
- *                                Please see {@see NotebookServiceClient::executionName()} for help formatting this field.
- * @param string $executionId     User-defined unique ID of this execution.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_execution_sample(string $formattedParent, string $executionId): void
+function create_execution_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $execution = new Execution();
-    $request = (new CreateExecutionRequest())
-        ->setParent($formattedParent)
-        ->setExecutionId($executionId)
-        ->setExecution($execution);
+    $request = new CreateExecutionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,22 +65,5 @@ function create_execution_sample(string $formattedParent, string $executionId): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NotebookServiceClient::executionName('[PROJECT]', '[LOCATION]', '[EXECUTION]');
-    $executionId = '[EXECUTION_ID]';
-
-    create_execution_sample($formattedParent, $executionId);
 }
 // [END notebooks_v1_generated_NotebookService_CreateExecution_sync]

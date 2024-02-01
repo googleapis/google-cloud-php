@@ -55,8 +55,7 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
     protected $view = 0;
 
     /**
-     * @param string $parent Required. Parent value for `ListImportJobsRequest`. Please see
-     *                       {@see MigrationCenterClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Parent value for `ListImportJobsRequest`.
      *
      * @return \Google\Cloud\MigrationCenter\V1\ListImportJobsRequest
      *

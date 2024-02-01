@@ -26,8 +26,7 @@ class GetProtectedResourcesSummaryRequest extends \Google\Protobuf\Internal\Mess
 
     /**
      * @param string $name Required. The resource name of the
-     *                     [CryptoKey][google.cloud.kms.v1.CryptoKey]. Please see
-     *                     {@see KeyTrackingServiceClient::protectedResourcesSummaryName()} for help formatting this field.
+     *                     [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * @return \Google\Cloud\Kms\Inventory\V1\GetProtectedResourcesSummaryRequest
      *

@@ -32,19 +32,19 @@ use Google\Cloud\Monitoring\V3\DeleteUptimeCheckConfigRequest;
  * if the Uptime check configuration is referenced by an alert policy or
  * other dependent configs that would be rendered invalid by the deletion.
  *
- * @param string $formattedName The Uptime check configuration to delete. The format is:
- *
- *                              projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
- *                              Please see {@see UptimeCheckServiceClient::uptimeCheckConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_uptime_check_config_sample(string $formattedName): void
+function delete_uptime_check_config_sample(): void
 {
     // Create a client.
     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteUptimeCheckConfigRequest())
-        ->setName($formattedName);
+    $request = new DeleteUptimeCheckConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,24 +53,5 @@ function delete_uptime_check_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = UptimeCheckServiceClient::uptimeCheckConfigName(
-        '[PROJECT]',
-        '[UPTIME_CHECK_CONFIG]'
-    );
-
-    delete_uptime_check_config_sample($formattedName);
 }
 // [END monitoring_v3_generated_UptimeCheckService_DeleteUptimeCheckConfig_sync]

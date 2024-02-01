@@ -33,7 +33,6 @@ class DeleteLinkRequest extends \Google\Protobuf\Internal\Message
      *                     "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      *                     "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
      *                     "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/links/[LINK_ID]"
-     *                     Please see {@see ConfigServiceV2Client::linkName()} for help formatting this field.
      *
      * @return \Google\Cloud\Logging\V2\DeleteLinkRequest
      *

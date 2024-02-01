@@ -35,21 +35,19 @@ use Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest;
  * User-created metric descriptors define
  * [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                     which to execute the request. The format is:
- *                     4
- *                     projects/[PROJECT_ID_OR_NUMBER]
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_metric_descriptor_sample(string $name): void
+function create_metric_descriptor_sample(): void
 {
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
     // Prepare the request message.
-    $metricDescriptor = new MetricDescriptor();
-    $request = (new CreateMetricDescriptorRequest())
-        ->setName($name)
-        ->setMetricDescriptor($metricDescriptor);
+    $request = new CreateMetricDescriptorRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +57,5 @@ function create_metric_descriptor_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    create_metric_descriptor_sample($name);
 }
 // [END monitoring_v3_generated_MetricService_CreateMetricDescriptor_sync]

@@ -28,42 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
 use Google\Cloud\ManagedIdentities\V1\Domain;
 use Google\Cloud\ManagedIdentities\V1\UpdateDomainRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the metadata and configuration of a domain.
  *
- * @param string $domainName             The unique name of the domain using the form:
- *                                       `projects/{project_id}/locations/global/domains/{domain_name}`.
- * @param string $domainReservedIpRange  The CIDR range of internal addresses that are reserved for this
- *                                       domain. Reserved networks must be /24 or larger. Ranges must be
- *                                       unique and non-overlapping with existing subnets in
- *                                       [Domain].[authorized_networks].
- * @param string $domainLocationsElement Locations where domain needs to be provisioned.
- *                                       [regions][compute/docs/regions-zones/]
- *                                       e.g. us-west1 or us-east4
- *                                       Service supports up to 4 locations at once. Each location will use a /26
- *                                       block.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_domain_sample(
-    string $domainName,
-    string $domainReservedIpRange,
-    string $domainLocationsElement
-): void {
+function update_domain_sample(): void
+{
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $domainLocations = [$domainLocationsElement,];
-    $domain = (new Domain())
-        ->setName($domainName)
-        ->setReservedIpRange($domainReservedIpRange)
-        ->setLocations($domainLocations);
-    $request = (new UpdateDomainRequest())
-        ->setUpdateMask($updateMask)
-        ->setDomain($domain);
+    $request = new UpdateDomainRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -83,23 +65,5 @@ function update_domain_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $domainName = '[NAME]';
-    $domainReservedIpRange = '[RESERVED_IP_RANGE]';
-    $domainLocationsElement = '[LOCATIONS]';
-
-    update_domain_sample($domainName, $domainReservedIpRange, $domainLocationsElement);
 }
 // [END managedidentities_v1_generated_ManagedIdentitiesService_UpdateDomain_sync]

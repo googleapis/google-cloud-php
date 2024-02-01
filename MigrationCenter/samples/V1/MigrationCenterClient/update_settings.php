@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\MigrationCenter\V1\Client\MigrationCenterClient;
 use Google\Cloud\MigrationCenter\V1\Settings;
 use Google\Cloud\MigrationCenter\V1\UpdateSettingsRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_settings_sample(): void
     $migrationCenterClient = new MigrationCenterClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $settings = new Settings();
-    $request = (new UpdateSettingsRequest())
-        ->setUpdateMask($updateMask)
-        ->setSettings($settings);
+    $request = new UpdateSettingsRequest();
 
     // Call the API and handle any network failures.
     try {

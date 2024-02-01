@@ -33,7 +33,6 @@ class GetErrorFrameRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the frame to retrieve.
      *                     Format:
      *                     projects/{project}/locations/{location}/sources/{source}/errorFrames/{error_frame}
-     *                     Please see {@see MigrationCenterClient::errorFrameName()} for help formatting this field.
      *
      * @return \Google\Cloud\MigrationCenter\V1\GetErrorFrameRequest
      *

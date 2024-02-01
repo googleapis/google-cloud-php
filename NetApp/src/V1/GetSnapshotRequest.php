@@ -26,7 +26,6 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The snapshot resource name, in the format
      *                     `projects/{project_id}/locations/{location}/volumes/{volume_id}/snapshots/{snapshot_id}`
-     *                     Please see {@see NetAppClient::snapshotName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\GetSnapshotRequest
      *

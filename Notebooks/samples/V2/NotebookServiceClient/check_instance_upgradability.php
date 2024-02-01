@@ -31,17 +31,19 @@ use Google\Cloud\Notebooks\V2\Client\NotebookServiceClient;
 /**
  * Checks whether a notebook instance is upgradable.
  *
- * @param string $notebookInstance Format:
- *                                 `projects/{project_id}/locations/{location}/instances/{instance_id}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function check_instance_upgradability_sample(string $notebookInstance): void
+function check_instance_upgradability_sample(): void
 {
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $request = (new CheckInstanceUpgradabilityRequest())
-        ->setNotebookInstance($notebookInstance);
+    $request = new CheckInstanceUpgradabilityRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +53,5 @@ function check_instance_upgradability_sample(string $notebookInstance): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $notebookInstance = '[NOTEBOOK_INSTANCE]';
-
-    check_instance_upgradability_sample($notebookInstance);
 }
 // [END notebooks_v2_generated_NotebookService_CheckInstanceUpgradability_sync]

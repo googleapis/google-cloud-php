@@ -26,7 +26,6 @@ class DeleteReplicationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The replication resource name, in the format
      *                     `projects/&#42;/locations/&#42;/volumes/&#42;/replications/{replication_id}`
-     *                     Please see {@see NetAppClient::replicationName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\DeleteReplicationRequest
      *

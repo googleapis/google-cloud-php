@@ -51,8 +51,7 @@ class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                     $parent      Required. Value for parent. Please see
-     *                                                                {@see MigrationCenterClient::locationName()} for help formatting this field.
+     * @param string                                     $parent      Required. Value for parent.
      * @param \Google\Cloud\MigrationCenter\V1\ImportJob $importJob   Required. The resource being created.
      * @param string                                     $importJobId Required. ID of the import job.
      *

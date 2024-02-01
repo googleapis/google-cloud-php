@@ -38,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'runtime_id',
-                ],
             ],
             'DeleteRuntime' => [
                 'method' => 'delete',
@@ -170,9 +167,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpgradeRuntime' => [

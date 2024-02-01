@@ -33,28 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates new backup vault
  *
- * @param string $formattedParent The location to create the backup vaults, in the format
- *                                `projects/{project_id}/locations/{location}`
- *                                Please see {@see NetAppClient::locationName()} for help formatting this field.
- * @param string $backupVaultId   The ID to use for the backupVault.
- *                                The ID must be unique within the specified location.
- *                                The max supported length is 63 characters.
- *                                This value must start with a lowercase letter followed by up to 62
- *                                lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
- *                                Values that do not match this pattern will trigger an INVALID_ARGUMENT
- *                                error.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_backup_vault_sample(string $formattedParent, string $backupVaultId): void
+function create_backup_vault_sample(): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $backupVault = new BackupVault();
-    $request = (new CreateBackupVaultRequest())
-        ->setParent($formattedParent)
-        ->setBackupVaultId($backupVaultId)
-        ->setBackupVault($backupVault);
+    $request = new CreateBackupVaultRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,22 +65,5 @@ function create_backup_vault_sample(string $formattedParent, string $backupVault
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NetAppClient::locationName('[PROJECT]', '[LOCATION]');
-    $backupVaultId = '[BACKUP_VAULT_ID]';
-
-    create_backup_vault_sample($formattedParent, $backupVaultId);
 }
 // [END netapp_v1_generated_NetApp_CreateBackupVault_sync]

@@ -44,8 +44,7 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
      *                        `"organizations/123/logs/cloudaudit.googleapis.com%2Factivity"`.
      *
      *                        For more information about log names, see
-     *                        [LogEntry][google.logging.v2.LogEntry]. Please see
-     *                        {@see LoggingServiceV2Client::logName()} for help formatting this field.
+     *                        [LogEntry][google.logging.v2.LogEntry].
      *
      * @return \Google\Cloud\Logging\V2\DeleteLogRequest
      *

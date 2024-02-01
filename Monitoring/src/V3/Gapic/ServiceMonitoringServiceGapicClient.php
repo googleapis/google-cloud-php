@@ -63,9 +63,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
  * try {
- *     $parent = 'parent';
- *     $service = new Service();
- *     $response = $serviceMonitoringServiceClient->createService($parent, $service);
+ *     $response = $serviceMonitoringServiceClient->createService();
  * } finally {
  *     $serviceMonitoringServiceClient->close();
  * }
@@ -494,25 +492,25 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $service = new Service();
-     *     $response = $serviceMonitoringServiceClient->createService($parent, $service);
+     *     $response = $serviceMonitoringServiceClient->createService();
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. Resource [name](https://cloud.google.com/monitoring/api/v3#project_name) of
-     *                              the parent workspace. The format is:
-     *
-     *                              projects/[PROJECT_ID_OR_NUMBER]
-     * @param Service $service      Required. The `Service` to create.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource [name](https://cloud.google.com/monitoring/api/v3#project_name) of
+     *           the parent workspace. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $serviceId
      *           Optional. The Service id to use for this Service. If omitted, an id will be
      *           generated instead. Must match the pattern `[a-z0-9\-]+`
+     *     @type Service $service
+     *           Required. The `Service` to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -523,15 +521,21 @@ class ServiceMonitoringServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createService($parent, $service, array $optionalArgs = [])
+    public function createService(array $optionalArgs = [])
     {
         $request = new CreateServiceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setService($service);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['serviceId'])) {
             $request->setServiceId($optionalArgs['serviceId']);
+        }
+
+        if (isset($optionalArgs['service'])) {
+            $request->setService($optionalArgs['service']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -546,27 +550,27 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedParent = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
-     *     $serviceLevelObjective = new ServiceLevelObjective();
-     *     $response = $serviceMonitoringServiceClient->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
+     *     $response = $serviceMonitoringServiceClient->createServiceLevelObjective();
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string                $parent                Required. Resource name of the parent `Service`. The format is:
-     *
-     *                                                     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     * @param ServiceLevelObjective $serviceLevelObjective Required. The `ServiceLevelObjective` to create.
-     *                                                     The provided `name` will be respected if no `ServiceLevelObjective` exists
-     *                                                     with this name.
-     * @param array                 $optionalArgs          {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the parent `Service`. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *     @type string $serviceLevelObjectiveId
      *           Optional. The ServiceLevelObjective id to use for this
      *           ServiceLevelObjective. If omitted, an id will be generated instead. Must
      *           match the pattern `[a-z0-9\-]+`
+     *     @type ServiceLevelObjective $serviceLevelObjective
+     *           Required. The `ServiceLevelObjective` to create.
+     *           The provided `name` will be respected if no `ServiceLevelObjective` exists
+     *           with this name.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -577,15 +581,21 @@ class ServiceMonitoringServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createServiceLevelObjective($parent, $serviceLevelObjective, array $optionalArgs = [])
+    public function createServiceLevelObjective(array $optionalArgs = [])
     {
         $request = new CreateServiceLevelObjectiveRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setServiceLevelObjective($serviceLevelObjective);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['serviceLevelObjectiveId'])) {
             $request->setServiceLevelObjectiveId($optionalArgs['serviceLevelObjectiveId']);
+        }
+
+        if (isset($optionalArgs['serviceLevelObjective'])) {
+            $request->setServiceLevelObjective($optionalArgs['serviceLevelObjective']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -600,19 +610,19 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
-     *     $serviceMonitoringServiceClient->deleteService($formattedName);
+     *     $serviceMonitoringServiceClient->deleteService();
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the `Service` to delete. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the `Service` to delete. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -621,12 +631,15 @@ class ServiceMonitoringServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteService($name, array $optionalArgs = [])
+    public function deleteService(array $optionalArgs = [])
     {
         $request = new DeleteServiceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteService', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -639,19 +652,19 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $serviceMonitoringServiceClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-     *     $serviceMonitoringServiceClient->deleteServiceLevelObjective($formattedName);
+     *     $serviceMonitoringServiceClient->deleteServiceLevelObjective();
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the `ServiceLevelObjective` to delete. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the `ServiceLevelObjective` to delete. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -660,12 +673,15 @@ class ServiceMonitoringServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteServiceLevelObjective($name, array $optionalArgs = [])
+    public function deleteServiceLevelObjective(array $optionalArgs = [])
     {
         $request = new DeleteServiceLevelObjectiveRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteServiceLevelObjective', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -678,19 +694,19 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
-     *     $response = $serviceMonitoringServiceClient->getService($formattedName);
+     *     $response = $serviceMonitoringServiceClient->getService();
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the `Service`. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the `Service`. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -701,12 +717,15 @@ class ServiceMonitoringServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getService($name, array $optionalArgs = [])
+    public function getService(array $optionalArgs = [])
     {
         $request = new GetServiceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetService', Service::class, $optionalArgs, $request)->wait();
@@ -719,19 +738,19 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $serviceMonitoringServiceClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-     *     $response = $serviceMonitoringServiceClient->getServiceLevelObjective($formattedName);
+     *     $response = $serviceMonitoringServiceClient->getServiceLevelObjective();
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the `ServiceLevelObjective` to get. The format is:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *     @type int $view
      *           View of the `ServiceLevelObjective` to return. If `DEFAULT`, return the
      *           `ServiceLevelObjective` as originally defined. If `EXPLICIT` and the
@@ -748,12 +767,15 @@ class ServiceMonitoringServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getServiceLevelObjective($name, array $optionalArgs = [])
+    public function getServiceLevelObjective(array $optionalArgs = [])
     {
         $request = new GetServiceLevelObjectiveRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -770,9 +792,8 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedParent = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $serviceMonitoringServiceClient->listServiceLevelObjectives($formattedParent);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServiceLevelObjectives();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -780,7 +801,7 @@ class ServiceMonitoringServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $serviceMonitoringServiceClient->listServiceLevelObjectives($formattedParent);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServiceLevelObjectives();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -789,14 +810,15 @@ class ServiceMonitoringServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the parent containing the listed SLOs, either a
-     *                             project or a Monitoring Workspace. The formats are:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     *                             workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the parent containing the listed SLOs, either a
+     *           project or a Monitoring Workspace. The formats are:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
+     *           workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      *     @type string $filter
      *           A filter specifying what `ServiceLevelObjective`s to return.
      *     @type int $pageSize
@@ -824,12 +846,15 @@ class ServiceMonitoringServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listServiceLevelObjectives($parent, array $optionalArgs = [])
+    public function listServiceLevelObjectives(array $optionalArgs = [])
     {
         $request = new ListServiceLevelObjectivesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -858,9 +883,8 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $serviceMonitoringServiceClient->listServices($parent);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServices();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -868,7 +892,7 @@ class ServiceMonitoringServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $serviceMonitoringServiceClient->listServices($parent);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServices();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -877,15 +901,16 @@ class ServiceMonitoringServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the parent containing the listed services, either a
-     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) or a
-     *                             Monitoring Workspace. The formats are:
-     *
-     *                             projects/[PROJECT_ID_OR_NUMBER]
-     *                             workspaces/[HOST_PROJECT_ID_OR_NUMBER]
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the parent containing the listed services, either a
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) or a
+     *           Monitoring Workspace. The formats are:
+     *
+     *           projects/[PROJECT_ID_OR_NUMBER]
+     *           workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      *     @type string $filter
      *           A filter specifying what `Service`s to return. The filter currently
      *           supports the following fields:
@@ -925,12 +950,15 @@ class ServiceMonitoringServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listServices($parent, array $optionalArgs = [])
+    public function listServices(array $optionalArgs = [])
     {
         $request = new ListServicesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -955,18 +983,18 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $service = new Service();
-     *     $response = $serviceMonitoringServiceClient->updateService($service);
+     *     $response = $serviceMonitoringServiceClient->updateService();
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param Service $service      Required. The `Service` to draw updates from.
-     *                              The given `name` specifies the resource to update.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Service $service
+     *           Required. The `Service` to draw updates from.
+     *           The given `name` specifies the resource to update.
      *     @type FieldMask $updateMask
      *           A set of field paths defining which fields to use for the update.
      *     @type RetrySettings|array $retrySettings
@@ -979,12 +1007,14 @@ class ServiceMonitoringServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateService($service, array $optionalArgs = [])
+    public function updateService(array $optionalArgs = [])
     {
         $request = new UpdateServiceRequest();
         $requestParamHeaders = [];
-        $request->setService($service);
-        $requestParamHeaders['service.name'] = $service->getName();
+        if (isset($optionalArgs['service'])) {
+            $request->setService($optionalArgs['service']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1001,18 +1031,18 @@ class ServiceMonitoringServiceGapicClient
      * ```
      * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $serviceLevelObjective = new ServiceLevelObjective();
-     *     $response = $serviceMonitoringServiceClient->updateServiceLevelObjective($serviceLevelObjective);
+     *     $response = $serviceMonitoringServiceClient->updateServiceLevelObjective();
      * } finally {
      *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param ServiceLevelObjective $serviceLevelObjective Required. The `ServiceLevelObjective` to draw updates from.
-     *                                                     The given `name` specifies the resource to update.
-     * @param array                 $optionalArgs          {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ServiceLevelObjective $serviceLevelObjective
+     *           Required. The `ServiceLevelObjective` to draw updates from.
+     *           The given `name` specifies the resource to update.
      *     @type FieldMask $updateMask
      *           A set of field paths defining which fields to use for the update.
      *     @type RetrySettings|array $retrySettings
@@ -1025,12 +1055,14 @@ class ServiceMonitoringServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateServiceLevelObjective($serviceLevelObjective, array $optionalArgs = [])
+    public function updateServiceLevelObjective(array $optionalArgs = [])
     {
         $request = new UpdateServiceLevelObjectiveRequest();
         $requestParamHeaders = [];
-        $request->setServiceLevelObjective($serviceLevelObjective);
-        $requestParamHeaders['service_level_objective.name'] = $serviceLevelObjective->getName();
+        if (isset($optionalArgs['serviceLevelObjective'])) {
+            $request->setServiceLevelObjective($optionalArgs['serviceLevelObjective']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

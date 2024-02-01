@@ -33,29 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new KMS config.
  *
- * @param string $formattedParent        Value for parent. Please see
- *                                       {@see NetAppClient::locationName()} for help formatting this field.
- * @param string $kmsConfigId            Id of the requesting KmsConfig
- *                                       If auto-generating Id server-side, remove this field and
- *                                       id from the method_signature of Create RPC
- * @param string $kmsConfigCryptoKeyName Customer managed crypto key resource full name. Format:
- *                                       projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_kms_config_sample(
-    string $formattedParent,
-    string $kmsConfigId,
-    string $kmsConfigCryptoKeyName
-): void {
+function create_kms_config_sample(): void
+{
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $kmsConfig = (new KmsConfig())
-        ->setCryptoKeyName($kmsConfigCryptoKeyName);
-    $request = (new CreateKmsConfigRequest())
-        ->setParent($formattedParent)
-        ->setKmsConfigId($kmsConfigId)
-        ->setKmsConfig($kmsConfig);
+    $request = new CreateKmsConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,23 +65,5 @@ function create_kms_config_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NetAppClient::locationName('[PROJECT]', '[LOCATION]');
-    $kmsConfigId = '[KMS_CONFIG_ID]';
-    $kmsConfigCryptoKeyName = '[CRYPTO_KEY_NAME]';
-
-    create_kms_config_sample($formattedParent, $kmsConfigId, $kmsConfigCryptoKeyName);
 }
 // [END netapp_v1_generated_NetApp_CreateKmsConfig_sync]

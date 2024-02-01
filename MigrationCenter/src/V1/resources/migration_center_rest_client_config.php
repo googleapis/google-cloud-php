@@ -86,9 +86,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'group_id',
-                ],
             ],
             'CreateImportDataFile' => [
                 'method' => 'post',
@@ -100,9 +97,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'import_data_file_id',
                 ],
             ],
             'CreateImportJob' => [
@@ -116,9 +110,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'import_job_id',
-                ],
             ],
             'CreatePreferenceSet' => [
                 'method' => 'post',
@@ -130,9 +121,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'preference_set_id',
                 ],
             ],
             'CreateReport' => [
@@ -146,9 +134,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'report_id',
-                ],
             ],
             'CreateReportConfig' => [
                 'method' => 'post',
@@ -161,9 +146,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'report_config_id',
-                ],
             ],
             'CreateSource' => [
                 'method' => 'post',
@@ -175,9 +157,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'source_id',
                 ],
             ],
             'DeleteAsset' => [
@@ -525,9 +504,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateGroup' => [
                 'method' => 'patch',
@@ -540,9 +516,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateImportJob' => [
@@ -557,9 +530,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdatePreferenceSet' => [
                 'method' => 'patch',
@@ -572,9 +542,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateSettings' => [
@@ -589,9 +556,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateSource' => [
                 'method' => 'patch',
@@ -604,9 +568,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'ValidateImportJob' => [

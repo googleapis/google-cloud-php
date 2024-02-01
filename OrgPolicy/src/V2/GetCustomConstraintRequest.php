@@ -26,8 +26,7 @@ class GetCustomConstraintRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the custom constraint. See the custom constraint
-     *                     entry for naming requirements. Please see
-     *                     {@see OrgPolicyClient::customConstraintName()} for help formatting this field.
+     *                     entry for naming requirements.
      *
      * @return \Google\Cloud\OrgPolicy\V2\GetCustomConstraintRequest
      *

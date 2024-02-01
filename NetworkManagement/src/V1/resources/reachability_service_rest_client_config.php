@@ -38,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'test_id',
-                ],
             ],
             'DeleteConnectivityTest' => [
                 'method' => 'delete',
@@ -98,9 +95,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

@@ -37,8 +37,7 @@ class CreateVolumeRequest extends \Google\Protobuf\Internal\Message
     protected $volume = null;
 
     /**
-     * @param string                         $parent   Required. Value for parent. Please see
-     *                                                 {@see NetAppClient::locationName()} for help formatting this field.
+     * @param string                         $parent   Required. Value for parent.
      * @param \Google\Cloud\NetApp\V1\Volume $volume   Required. The volume being created.
      * @param string                         $volumeId Required. Id of the requesting volume
      *                                                 If auto-generating Id server-side, remove this field and

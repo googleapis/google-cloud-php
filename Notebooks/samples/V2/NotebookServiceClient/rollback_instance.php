@@ -33,26 +33,19 @@ use Google\Rpc\Status;
 /**
  * Rollbacks a notebook instance to the previous version.
  *
- * @param string $formattedName  Format:
- *                               `projects/{project_id}/locations/{location}/instances/{instance_id}`
- *                               Please see {@see NotebookServiceClient::instanceName()} for help formatting this field.
- * @param string $targetSnapshot The snapshot for rollback.
- *                               Example: "projects/test-project/global/snapshots/krwlzipynril".
- * @param string $revisionId     Output only. Revision Id
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rollback_instance_sample(
-    string $formattedName,
-    string $targetSnapshot,
-    string $revisionId
-): void {
+function rollback_instance_sample(): void
+{
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
 
     // Prepare the request message.
-    $request = (new RollbackInstanceRequest())
-        ->setName($formattedName)
-        ->setTargetSnapshot($targetSnapshot)
-        ->setRevisionId($revisionId);
+    $request = new RollbackInstanceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,23 +65,5 @@ function rollback_instance_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = NotebookServiceClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-    $targetSnapshot = '[TARGET_SNAPSHOT]';
-    $revisionId = '[REVISION_ID]';
-
-    rollback_instance_sample($formattedName, $targetSnapshot, $revisionId);
 }
 // [END notebooks_v2_generated_NotebookService_RollbackInstance_sync]

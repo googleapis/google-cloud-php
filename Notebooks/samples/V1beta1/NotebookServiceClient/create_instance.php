@@ -32,29 +32,21 @@ use Google\Rpc\Status;
 /**
  * Creates a new Instance in a given project and location.
  *
- * @param string $parent              Format:
- *                                    `parent=projects/{project_id}/locations/{location}`
- * @param string $instanceId          User-defined unique ID of this instance.
- * @param string $instanceMachineType The [Compute Engine machine
- *                                    type](https://cloud.google.com/compute/docs/machine-types) of this
- *                                    instance.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_instance_sample(
-    string $parent,
-    string $instanceId,
-    string $instanceMachineType
-): void {
+function create_instance_sample(): void
+{
     // Create a client.
     $notebookServiceClient = new NotebookServiceClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $instance = (new Instance())
-        ->setMachineType($instanceMachineType);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $notebookServiceClient->createInstance($parent, $instanceId, $instance);
+        $response = $notebookServiceClient->createInstance();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -69,23 +61,5 @@ function create_instance_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $instanceId = '[INSTANCE_ID]';
-    $instanceMachineType = '[MACHINE_TYPE]';
-
-    create_instance_sample($parent, $instanceId, $instanceMachineType);
 }
 // [END notebooks_v1beta1_generated_NotebookService_CreateInstance_sync]

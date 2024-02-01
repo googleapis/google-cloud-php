@@ -79,12 +79,7 @@ class QueryServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTimeSeriesData($timeSeriesData);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $query = 'query107944136';
-        $request = (new QueryTimeSeriesRequest())
-            ->setName($name)
-            ->setQuery($query);
+        $request = new QueryTimeSeriesRequest();
         $response = $gapicClient->queryTimeSeries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -95,10 +90,6 @@ class QueryServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.QueryService/QueryTimeSeries', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -120,12 +111,7 @@ class QueryServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $query = 'query107944136';
-        $request = (new QueryTimeSeriesRequest())
-            ->setName($name)
-            ->setQuery($query);
+        $request = new QueryTimeSeriesRequest();
         try {
             $gapicClient->queryTimeSeries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -157,12 +143,7 @@ class QueryServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTimeSeriesData($timeSeriesData);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $query = 'query107944136';
-        $request = (new QueryTimeSeriesRequest())
-            ->setName($name)
-            ->setQuery($query);
+        $request = new QueryTimeSeriesRequest();
         $response = $gapicClient->queryTimeSeriesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -173,10 +154,6 @@ class QueryServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.QueryService/QueryTimeSeries', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

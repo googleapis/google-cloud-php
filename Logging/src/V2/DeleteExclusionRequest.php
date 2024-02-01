@@ -39,7 +39,6 @@ class DeleteExclusionRequest extends \Google\Protobuf\Internal\Message
      *                     For example:
      *
      *                     `"projects/my-project/exclusions/my-exclusion"`
-     *                     Please see {@see ConfigServiceV2Client::logExclusionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Logging\V2\DeleteExclusionRequest
      *

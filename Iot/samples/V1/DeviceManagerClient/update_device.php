@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
 use Google\Cloud\Iot\V1\Device;
 use Google\Cloud\Iot\V1\UpdateDeviceRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a device.
@@ -44,11 +43,7 @@ function update_device_sample(): void
     $deviceManagerClient = new DeviceManagerClient();
 
     // Prepare the request message.
-    $device = new Device();
-    $updateMask = new FieldMask();
-    $request = (new UpdateDeviceRequest())
-        ->setDevice($device)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateDeviceRequest();
 
     // Call the API and handle any network failures.
     try {

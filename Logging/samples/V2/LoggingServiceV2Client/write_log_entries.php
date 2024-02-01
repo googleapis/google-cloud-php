@@ -24,9 +24,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START logging_v2_generated_LoggingServiceV2_WriteLogEntries_sync]
 use Google\ApiCore\ApiException;
-use Google\Api\MonitoredResource;
 use Google\Cloud\Logging\V2\Client\LoggingServiceV2Client;
-use Google\Cloud\Logging\V2\LogEntry;
 use Google\Cloud\Logging\V2\WriteLogEntriesRequest;
 use Google\Cloud\Logging\V2\WriteLogEntriesResponse;
 
@@ -39,43 +37,19 @@ use Google\Cloud\Logging\V2\WriteLogEntriesResponse;
  * different resources (projects, organizations, billing accounts or
  * folders)
  *
- * @param string $entriesLogName The resource name of the log to which this log entry belongs:
- *
- *                               "projects/[PROJECT_ID]/logs/[LOG_ID]"
- *                               "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
- *                               "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
- *                               "folders/[FOLDER_ID]/logs/[LOG_ID]"
- *
- *                               A project number may be used in place of PROJECT_ID. The project number is
- *                               translated to its corresponding PROJECT_ID internally and the `log_name`
- *                               field will contain PROJECT_ID in queries and exports.
- *
- *                               `[LOG_ID]` must be URL-encoded within `log_name`. Example:
- *                               `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
- *
- *                               `[LOG_ID]` must be less than 512 characters long and can only include the
- *                               following characters: upper and lower case alphanumeric characters,
- *                               forward-slash, underscore, hyphen, and period.
- *
- *                               For backward compatibility, if `log_name` begins with a forward-slash, such
- *                               as `/projects/...`, then the log entry is ingested as usual, but the
- *                               forward-slash is removed. Listing the log entry will not show the leading
- *                               slash and filtering for a log name with a leading slash will never return
- *                               any results.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function write_log_entries_sample(string $entriesLogName): void
+function write_log_entries_sample(): void
 {
     // Create a client.
     $loggingServiceV2Client = new LoggingServiceV2Client();
 
     // Prepare the request message.
-    $entriesResource = new MonitoredResource();
-    $logEntry = (new LogEntry())
-        ->setLogName($entriesLogName)
-        ->setResource($entriesResource);
-    $entries = [$logEntry,];
-    $request = (new WriteLogEntriesRequest())
-        ->setEntries($entries);
+    $request = new WriteLogEntriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -85,21 +59,5 @@ function write_log_entries_sample(string $entriesLogName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $entriesLogName = '[LOG_NAME]';
-
-    write_log_entries_sample($entriesLogName);
 }
 // [END logging_v2_generated_LoggingServiceV2_WriteLogEntries_sync]

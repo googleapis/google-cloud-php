@@ -39,8 +39,7 @@ class ValidateImportJobRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string $name Required. The name of the import job to validate. Please see
-     *                     {@see MigrationCenterClient::importJobName()} for help formatting this field.
+     * @param string $name Required. The name of the import job to validate.
      *
      * @return \Google\Cloud\MigrationCenter\V1\ValidateImportJobRequest
      *

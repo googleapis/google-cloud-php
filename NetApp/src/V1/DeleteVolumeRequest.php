@@ -32,7 +32,6 @@ class DeleteVolumeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the volume
-     *                     Please see {@see NetAppClient::volumeName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetApp\V1\DeleteVolumeRequest
      *

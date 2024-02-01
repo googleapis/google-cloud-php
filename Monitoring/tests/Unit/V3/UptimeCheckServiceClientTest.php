@@ -80,20 +80,13 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsInternal($isInternal);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $uptimeCheckConfig = new UptimeCheckConfig();
-        $response = $gapicClient->createUptimeCheckConfig($parent, $uptimeCheckConfig);
+        $response = $gapicClient->createUptimeCheckConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/CreateUptimeCheckConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getUptimeCheckConfig();
-        $this->assertProtobufEquals($uptimeCheckConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -115,11 +108,8 @@ class UptimeCheckServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $uptimeCheckConfig = new UptimeCheckConfig();
         try {
-            $gapicClient->createUptimeCheckConfig($parent, $uptimeCheckConfig);
+            $gapicClient->createUptimeCheckConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -142,16 +132,12 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-        $gapicClient->deleteUptimeCheckConfig($formattedName);
+        $gapicClient->deleteUptimeCheckConfig();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/DeleteUptimeCheckConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -173,10 +159,8 @@ class UptimeCheckServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
         try {
-            $gapicClient->deleteUptimeCheckConfig($formattedName);
+            $gapicClient->deleteUptimeCheckConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -205,17 +189,13 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsInternal($isInternal);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-        $response = $gapicClient->getUptimeCheckConfig($formattedName);
+        $response = $gapicClient->getUptimeCheckConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/GetUptimeCheckConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -237,10 +217,8 @@ class UptimeCheckServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
         try {
-            $gapicClient->getUptimeCheckConfig($formattedName);
+            $gapicClient->getUptimeCheckConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -272,9 +250,7 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setUptimeCheckConfigs($uptimeCheckConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $response = $gapicClient->listUptimeCheckConfigs($parent);
+        $response = $gapicClient->listUptimeCheckConfigs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -284,8 +260,6 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/ListUptimeCheckConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -307,10 +281,8 @@ class UptimeCheckServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
         try {
-            $gapicClient->listUptimeCheckConfigs($parent);
+            $gapicClient->listUptimeCheckConfigs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -401,17 +373,13 @@ class UptimeCheckServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsInternal($isInternal);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $uptimeCheckConfig = new UptimeCheckConfig();
-        $response = $gapicClient->updateUptimeCheckConfig($uptimeCheckConfig);
+        $response = $gapicClient->updateUptimeCheckConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.UptimeCheckService/UpdateUptimeCheckConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUptimeCheckConfig();
-        $this->assertProtobufEquals($uptimeCheckConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -433,10 +401,8 @@ class UptimeCheckServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $uptimeCheckConfig = new UptimeCheckConfig();
         try {
-            $gapicClient->updateUptimeCheckConfig($uptimeCheckConfig);
+            $gapicClient->updateUptimeCheckConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

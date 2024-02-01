@@ -61,7 +61,6 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
      *
      *                       projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *                       workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
-     *                       Please see {@see ServiceMonitoringServiceClient::serviceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Monitoring\V3\ListServiceLevelObjectivesRequest
      *

@@ -83,20 +83,13 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $notificationChannel = new NotificationChannel();
-        $response = $gapicClient->createNotificationChannel($name, $notificationChannel);
+        $response = $gapicClient->createNotificationChannel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.NotificationChannelService/CreateNotificationChannel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getNotificationChannel();
-        $this->assertProtobufEquals($notificationChannel, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -118,11 +111,8 @@ class NotificationChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $notificationChannel = new NotificationChannel();
         try {
-            $gapicClient->createNotificationChannel($name, $notificationChannel);
+            $gapicClient->createNotificationChannel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -145,16 +135,12 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $gapicClient->deleteNotificationChannel($formattedName);
+        $gapicClient->deleteNotificationChannel();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.NotificationChannelService/DeleteNotificationChannel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -176,10 +162,8 @@ class NotificationChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
         try {
-            $gapicClient->deleteNotificationChannel($formattedName);
+            $gapicClient->deleteNotificationChannel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -210,17 +194,13 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $response = $gapicClient->getNotificationChannel($formattedName);
+        $response = $gapicClient->getNotificationChannel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.NotificationChannelService/GetNotificationChannel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -242,10 +222,8 @@ class NotificationChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
         try {
-            $gapicClient->getNotificationChannel($formattedName);
+            $gapicClient->getNotificationChannel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -276,17 +254,13 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelDescriptorName('[PROJECT]', '[CHANNEL_DESCRIPTOR]');
-        $response = $gapicClient->getNotificationChannelDescriptor($formattedName);
+        $response = $gapicClient->getNotificationChannelDescriptor();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.NotificationChannelService/GetNotificationChannelDescriptor', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -308,10 +282,8 @@ class NotificationChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelDescriptorName('[PROJECT]', '[CHANNEL_DESCRIPTOR]');
         try {
-            $gapicClient->getNotificationChannelDescriptor($formattedName);
+            $gapicClient->getNotificationChannelDescriptor();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -336,17 +308,13 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new GetNotificationChannelVerificationCodeResponse();
         $expectedResponse->setCode($code);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $response = $gapicClient->getNotificationChannelVerificationCode($formattedName);
+        $response = $gapicClient->getNotificationChannelVerificationCode();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.NotificationChannelService/GetNotificationChannelVerificationCode', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -368,10 +336,8 @@ class NotificationChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
         try {
-            $gapicClient->getNotificationChannelVerificationCode($formattedName);
+            $gapicClient->getNotificationChannelVerificationCode();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -401,9 +367,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannelDescriptors($channelDescriptors);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->listNotificationChannelDescriptors($name);
+        $response = $gapicClient->listNotificationChannelDescriptors();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -413,8 +377,6 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.NotificationChannelService/ListNotificationChannelDescriptors', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -436,10 +398,8 @@ class NotificationChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->listNotificationChannelDescriptors($name);
+            $gapicClient->listNotificationChannelDescriptors();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -471,9 +431,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setNotificationChannels($notificationChannels);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->listNotificationChannels($name);
+        $response = $gapicClient->listNotificationChannels();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -483,8 +441,6 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.NotificationChannelService/ListNotificationChannels', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -506,10 +462,8 @@ class NotificationChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->listNotificationChannels($name);
+            $gapicClient->listNotificationChannels();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -532,16 +486,12 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $gapicClient->sendNotificationChannelVerificationCode($formattedName);
+        $gapicClient->sendNotificationChannelVerificationCode();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.NotificationChannelService/SendNotificationChannelVerificationCode', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -563,10 +513,8 @@ class NotificationChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
         try {
-            $gapicClient->sendNotificationChannelVerificationCode($formattedName);
+            $gapicClient->sendNotificationChannelVerificationCode();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -597,17 +545,13 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $notificationChannel = new NotificationChannel();
-        $response = $gapicClient->updateNotificationChannel($notificationChannel);
+        $response = $gapicClient->updateNotificationChannel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.NotificationChannelService/UpdateNotificationChannel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNotificationChannel();
-        $this->assertProtobufEquals($notificationChannel, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -629,10 +573,8 @@ class NotificationChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $notificationChannel = new NotificationChannel();
         try {
-            $gapicClient->updateNotificationChannel($notificationChannel);
+            $gapicClient->updateNotificationChannel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -663,20 +605,13 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $code = 'code3059181';
-        $response = $gapicClient->verifyNotificationChannel($formattedName, $code);
+        $response = $gapicClient->verifyNotificationChannel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.NotificationChannelService/VerifyNotificationChannel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getCode();
-        $this->assertProtobufEquals($code, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -698,11 +633,8 @@ class NotificationChannelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $code = 'code3059181';
         try {
-            $gapicClient->verifyNotificationChannel($formattedName, $code);
+            $gapicClient->verifyNotificationChannel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

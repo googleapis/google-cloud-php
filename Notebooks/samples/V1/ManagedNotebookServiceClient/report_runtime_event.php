@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Notebooks\V1\Client\ManagedNotebookServiceClient;
-use Google\Cloud\Notebooks\V1\Event;
 use Google\Cloud\Notebooks\V1\ReportRuntimeEventRequest;
 use Google\Cloud\Notebooks\V1\Runtime;
 use Google\Rpc\Status;
@@ -34,23 +33,19 @@ use Google\Rpc\Status;
 /**
  * Report and process a runtime event.
  *
- * @param string $formattedName Format:
- *                              `projects/{project_id}/locations/{location}/runtimes/{runtime_id}`
- *                              Please see {@see ManagedNotebookServiceClient::runtimeName()} for help formatting this field.
- * @param string $vmId          The VM hardware token for authenticating the VM.
- *                              https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function report_runtime_event_sample(string $formattedName, string $vmId): void
+function report_runtime_event_sample(): void
 {
     // Create a client.
     $managedNotebookServiceClient = new ManagedNotebookServiceClient();
 
     // Prepare the request message.
-    $event = new Event();
-    $request = (new ReportRuntimeEventRequest())
-        ->setName($formattedName)
-        ->setVmId($vmId)
-        ->setEvent($event);
+    $request = new ReportRuntimeEventRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -70,22 +65,5 @@ function report_runtime_event_sample(string $formattedName, string $vmId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ManagedNotebookServiceClient::runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
-    $vmId = '[VM_ID]';
-
-    report_runtime_event_sample($formattedName, $vmId);
 }
 // [END notebooks_v1_generated_ManagedNotebookService_ReportRuntimeEvent_sync]

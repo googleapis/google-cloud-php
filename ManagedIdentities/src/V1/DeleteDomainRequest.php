@@ -27,7 +27,6 @@ class DeleteDomainRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The domain resource name using the form:
      *                     `projects/{project_id}/locations/global/domains/{domain_name}`
-     *                     Please see {@see ManagedIdentitiesServiceClient::domainName()} for help formatting this field.
      *
      * @return \Google\Cloud\ManagedIdentities\V1\DeleteDomainRequest
      *

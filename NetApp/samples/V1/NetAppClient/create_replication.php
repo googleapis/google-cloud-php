@@ -27,43 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetApp\V1\Client\NetAppClient;
 use Google\Cloud\NetApp\V1\CreateReplicationRequest;
-use Google\Cloud\NetApp\V1\DestinationVolumeParameters;
 use Google\Cloud\NetApp\V1\Replication;
-use Google\Cloud\NetApp\V1\Replication\ReplicationSchedule;
 use Google\Rpc\Status;
 
 /**
  * Create a new replication for a volume.
  *
- * @param string $formattedParent                                            The NetApp volume to create the replications of, in the format
- *                                                                           `projects/{project_id}/locations/{location}/volumes/{volume_id}`
- *                                                                           Please see {@see NetAppClient::volumeName()} for help formatting this field.
- * @param int    $replicationReplicationSchedule                             Indicates the schedule for replication.
- * @param string $formattedReplicationDestinationVolumeParametersStoragePool Existing destination StoragePool name. Please see
- *                                                                           {@see NetAppClient::storagePoolName()} for help formatting this field.
- * @param string $replicationId                                              ID of the replication to create.
- *                                                                           This value must start with a lowercase letter followed by up to 62
- *                                                                           lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_replication_sample(
-    string $formattedParent,
-    int $replicationReplicationSchedule,
-    string $formattedReplicationDestinationVolumeParametersStoragePool,
-    string $replicationId
-): void {
+function create_replication_sample(): void
+{
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $replicationDestinationVolumeParameters = (new DestinationVolumeParameters())
-        ->setStoragePool($formattedReplicationDestinationVolumeParametersStoragePool);
-    $replication = (new Replication())
-        ->setReplicationSchedule($replicationReplicationSchedule)
-        ->setDestinationVolumeParameters($replicationDestinationVolumeParameters);
-    $request = (new CreateReplicationRequest())
-        ->setParent($formattedParent)
-        ->setReplication($replication)
-        ->setReplicationId($replicationId);
+    $request = new CreateReplicationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -83,33 +65,5 @@ function create_replication_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NetAppClient::volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-    $replicationReplicationSchedule = ReplicationSchedule::REPLICATION_SCHEDULE_UNSPECIFIED;
-    $formattedReplicationDestinationVolumeParametersStoragePool = NetAppClient::storagePoolName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[STORAGE_POOL]'
-    );
-    $replicationId = '[REPLICATION_ID]';
-
-    create_replication_sample(
-        $formattedParent,
-        $replicationReplicationSchedule,
-        $formattedReplicationDestinationVolumeParametersStoragePool,
-        $replicationId
-    );
 }
 // [END netapp_v1_generated_NetApp_CreateReplication_sync]

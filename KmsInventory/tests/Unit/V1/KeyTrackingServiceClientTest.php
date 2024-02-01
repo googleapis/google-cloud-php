@@ -78,17 +78,13 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         $expectedResponse->setResourceCount($resourceCount);
         $expectedResponse->setProjectCount($projectCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->protectedResourcesSummaryName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-        $response = $gapicClient->getProtectedResourcesSummary($formattedName);
+        $response = $gapicClient->getProtectedResourcesSummary();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.inventory.v1.KeyTrackingService/GetProtectedResourcesSummary', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -110,10 +106,8 @@ class KeyTrackingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->protectedResourcesSummaryName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
         try {
-            $gapicClient->getProtectedResourcesSummary($formattedName);
+            $gapicClient->getProtectedResourcesSummary();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -143,10 +137,7 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProtectedResources($protectedResources);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedScope = $gapicClient->organizationName('[ORGANIZATION]');
-        $cryptoKey = 'cryptoKey-1992067615';
-        $response = $gapicClient->searchProtectedResources($formattedScope, $cryptoKey);
+        $response = $gapicClient->searchProtectedResources();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -156,10 +147,6 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.kms.inventory.v1.KeyTrackingService/SearchProtectedResources', $actualFuncCall);
-        $actualValue = $actualRequestObject->getScope();
-        $this->assertProtobufEquals($formattedScope, $actualValue);
-        $actualValue = $actualRequestObject->getCryptoKey();
-        $this->assertProtobufEquals($cryptoKey, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -181,11 +168,8 @@ class KeyTrackingServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedScope = $gapicClient->organizationName('[ORGANIZATION]');
-        $cryptoKey = 'cryptoKey-1992067615';
         try {
-            $gapicClient->searchProtectedResources($formattedScope, $cryptoKey);
+            $gapicClient->searchProtectedResources();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -25,8 +25,7 @@ class DeleteClientTlsPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. A name of the ClientTlsPolicy to delete. Must be in
-     *                     the format `projects/&#42;/locations/{location}/clientTlsPolicies/*`. Please see
-     *                     {@see NetworkSecurityClient::clientTlsPolicyName()} for help formatting this field.
+     *                     the format `projects/&#42;/locations/{location}/clientTlsPolicies/*`.
      *
      * @return \Google\Cloud\NetworkSecurity\V1\DeleteClientTlsPolicyRequest
      *

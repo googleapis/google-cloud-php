@@ -33,21 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new Network Connectivity Center hub in the specified project.
  *
- * @param string $formattedParent The parent resource. Please see
- *                                {@see HubServiceClient::locationName()} for help formatting this field.
- * @param string $hubId           A unique identifier for the hub.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_hub_sample(string $formattedParent, string $hubId): void
+function create_hub_sample(): void
 {
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
     // Prepare the request message.
-    $hub = new Hub();
-    $request = (new CreateHubRequest())
-        ->setParent($formattedParent)
-        ->setHubId($hubId)
-        ->setHub($hub);
+    $request = new CreateHubRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,22 +65,5 @@ function create_hub_sample(string $formattedParent, string $hubId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = HubServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $hubId = '[HUB_ID]';
-
-    create_hub_sample($formattedParent, $hubId);
 }
 // [END networkconnectivity_v1_generated_HubService_CreateHub_sync]

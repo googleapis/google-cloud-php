@@ -133,12 +133,7 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $formattedSpokeUri = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new AcceptHubSpokeRequest())
-            ->setName($formattedName)
-            ->setSpokeUri($formattedSpokeUri);
+        $request = new AcceptHubSpokeRequest();
         $response = $gapicClient->acceptHubSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -149,10 +144,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/AcceptHubSpoke', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getSpokeUri();
-        $this->assertProtobufEquals($formattedSpokeUri, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/acceptHubSpokeTest');
         $response->pollUntilComplete([
@@ -203,12 +194,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $formattedSpokeUri = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new AcceptHubSpokeRequest())
-            ->setName($formattedName)
-            ->setSpokeUri($formattedSpokeUri);
+        $request = new AcceptHubSpokeRequest();
         $response = $gapicClient->acceptHubSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -266,14 +252,7 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $hubId = 'hubId-1206469467';
-        $hub = new Hub();
-        $request = (new CreateHubRequest())
-            ->setParent($formattedParent)
-            ->setHubId($hubId)
-            ->setHub($hub);
+        $request = new CreateHubRequest();
         $response = $gapicClient->createHub($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -284,12 +263,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/CreateHub', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getHubId();
-        $this->assertProtobufEquals($hubId, $actualValue);
-        $actualValue = $actualApiRequestObject->getHub();
-        $this->assertProtobufEquals($hub, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createHubTest');
         $response->pollUntilComplete([
@@ -340,14 +313,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $hubId = 'hubId-1206469467';
-        $hub = new Hub();
-        $request = (new CreateHubRequest())
-            ->setParent($formattedParent)
-            ->setHubId($hubId)
-            ->setHub($hub);
+        $request = new CreateHubRequest();
         $response = $gapicClient->createHub($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -409,14 +375,7 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $spokeId = 'spokeId-1839321170';
-        $spoke = new Spoke();
-        $request = (new CreateSpokeRequest())
-            ->setParent($formattedParent)
-            ->setSpokeId($spokeId)
-            ->setSpoke($spoke);
+        $request = new CreateSpokeRequest();
         $response = $gapicClient->createSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -427,12 +386,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/CreateSpoke', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSpokeId();
-        $this->assertProtobufEquals($spokeId, $actualValue);
-        $actualValue = $actualApiRequestObject->getSpoke();
-        $this->assertProtobufEquals($spoke, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createSpokeTest');
         $response->pollUntilComplete([
@@ -483,14 +436,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $spokeId = 'spokeId-1839321170';
-        $spoke = new Spoke();
-        $request = (new CreateSpokeRequest())
-            ->setParent($formattedParent)
-            ->setSpokeId($spokeId)
-            ->setSpoke($spoke);
+        $request = new CreateSpokeRequest();
         $response = $gapicClient->createSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -542,10 +488,7 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new DeleteHubRequest())
-            ->setName($formattedName);
+        $request = new DeleteHubRequest();
         $response = $gapicClient->deleteHub($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -556,8 +499,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/DeleteHub', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteHubTest');
         $response->pollUntilComplete([
@@ -608,10 +549,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new DeleteHubRequest())
-            ->setName($formattedName);
+        $request = new DeleteHubRequest();
         $response = $gapicClient->deleteHub($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -663,10 +601,7 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new DeleteSpokeRequest())
-            ->setName($formattedName);
+        $request = new DeleteSpokeRequest();
         $response = $gapicClient->deleteSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -677,8 +612,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/DeleteSpoke', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteSpokeTest');
         $response->pollUntilComplete([
@@ -729,10 +662,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new DeleteSpokeRequest())
-            ->setName($formattedName);
+        $request = new DeleteSpokeRequest();
         $response = $gapicClient->deleteSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -772,10 +702,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[HUB]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setName($formattedName);
+        $request = new GetGroupRequest();
         $response = $gapicClient->getGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -783,8 +710,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/GetGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -806,10 +731,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->groupName('[PROJECT]', '[HUB]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setName($formattedName);
+        $request = new GetGroupRequest();
         try {
             $gapicClient->getGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -840,10 +762,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setUniqueId($uniqueId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new GetHubRequest())
-            ->setName($formattedName);
+        $request = new GetHubRequest();
         $response = $gapicClient->getHub($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -851,8 +770,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/GetHub', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -874,10 +791,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new GetHubRequest())
-            ->setName($formattedName);
+        $request = new GetHubRequest();
         try {
             $gapicClient->getHub($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -914,10 +828,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setSpoke($spoke);
         $expectedResponse->setLocation($location);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->hubRouteName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]', '[ROUTE]');
-        $request = (new GetRouteRequest())
-            ->setName($formattedName);
+        $request = new GetRouteRequest();
         $response = $gapicClient->getRoute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -925,8 +836,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/GetRoute', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -948,10 +857,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->hubRouteName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]', '[ROUTE]');
-        $request = (new GetRouteRequest())
-            ->setName($formattedName);
+        $request = new GetRouteRequest();
         try {
             $gapicClient->getRoute($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -982,10 +888,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-        $request = (new GetRouteTableRequest())
-            ->setName($formattedName);
+        $request = new GetRouteTableRequest();
         $response = $gapicClient->getRouteTable($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -993,8 +896,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/GetRouteTable', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1016,10 +917,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-        $request = (new GetRouteTableRequest())
-            ->setName($formattedName);
+        $request = new GetRouteTableRequest();
         try {
             $gapicClient->getRouteTable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1054,10 +952,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setGroup($group);
         $expectedResponse->setUniqueId($uniqueId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new GetSpokeRequest())
-            ->setName($formattedName);
+        $request = new GetSpokeRequest();
         $response = $gapicClient->getSpoke($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1065,8 +960,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/GetSpoke', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1088,10 +981,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new GetSpokeRequest())
-            ->setName($formattedName);
+        $request = new GetSpokeRequest();
         try {
             $gapicClient->getSpoke($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1123,10 +1013,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGroups($groups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListGroupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListGroupsRequest();
         $response = $gapicClient->listGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1137,8 +1024,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/ListGroups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1160,10 +1045,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListGroupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListGroupsRequest();
         try {
             $gapicClient->listGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1195,10 +1077,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSpokes($spokes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListHubSpokesRequest())
-            ->setName($formattedName);
+        $request = new ListHubSpokesRequest();
         $response = $gapicClient->listHubSpokes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1209,8 +1088,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/ListHubSpokes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1232,10 +1109,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListHubSpokesRequest())
-            ->setName($formattedName);
+        $request = new ListHubSpokesRequest();
         try {
             $gapicClient->listHubSpokes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1267,10 +1141,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setHubs($hubs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListHubsRequest())
-            ->setParent($formattedParent);
+        $request = new ListHubsRequest();
         $response = $gapicClient->listHubs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1281,8 +1152,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/ListHubs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1304,10 +1173,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListHubsRequest())
-            ->setParent($formattedParent);
+        $request = new ListHubsRequest();
         try {
             $gapicClient->listHubs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1339,10 +1205,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRouteTables($routeTables);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListRouteTablesRequest())
-            ->setParent($formattedParent);
+        $request = new ListRouteTablesRequest();
         $response = $gapicClient->listRouteTables($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1353,8 +1216,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/ListRouteTables', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1376,10 +1237,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListRouteTablesRequest())
-            ->setParent($formattedParent);
+        $request = new ListRouteTablesRequest();
         try {
             $gapicClient->listRouteTables($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1411,10 +1269,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRoutes($routes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-        $request = (new ListRoutesRequest())
-            ->setParent($formattedParent);
+        $request = new ListRoutesRequest();
         $response = $gapicClient->listRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1425,8 +1280,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/ListRoutes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1448,10 +1301,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-        $request = (new ListRoutesRequest())
-            ->setParent($formattedParent);
+        $request = new ListRoutesRequest();
         try {
             $gapicClient->listRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1483,10 +1333,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSpokes($spokes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSpokesRequest())
-            ->setParent($formattedParent);
+        $request = new ListSpokesRequest();
         $response = $gapicClient->listSpokes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1497,8 +1344,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/ListSpokes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1520,10 +1365,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSpokesRequest())
-            ->setParent($formattedParent);
+        $request = new ListSpokesRequest();
         try {
             $gapicClient->listSpokes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1566,12 +1408,7 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $formattedSpokeUri = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new RejectHubSpokeRequest())
-            ->setName($formattedName)
-            ->setSpokeUri($formattedSpokeUri);
+        $request = new RejectHubSpokeRequest();
         $response = $gapicClient->rejectHubSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1582,10 +1419,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/RejectHubSpoke', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getSpokeUri();
-        $this->assertProtobufEquals($formattedSpokeUri, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/rejectHubSpokeTest');
         $response->pollUntilComplete([
@@ -1636,12 +1469,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $formattedSpokeUri = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new RejectHubSpokeRequest())
-            ->setName($formattedName)
-            ->setSpokeUri($formattedSpokeUri);
+        $request = new RejectHubSpokeRequest();
         $response = $gapicClient->rejectHubSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1699,10 +1527,7 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $hub = new Hub();
-        $request = (new UpdateHubRequest())
-            ->setHub($hub);
+        $request = new UpdateHubRequest();
         $response = $gapicClient->updateHub($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1713,8 +1538,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/UpdateHub', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getHub();
-        $this->assertProtobufEquals($hub, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateHubTest');
         $response->pollUntilComplete([
@@ -1765,10 +1588,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $hub = new Hub();
-        $request = (new UpdateHubRequest())
-            ->setHub($hub);
+        $request = new UpdateHubRequest();
         $response = $gapicClient->updateHub($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1830,10 +1650,7 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $spoke = new Spoke();
-        $request = (new UpdateSpokeRequest())
-            ->setSpoke($spoke);
+        $request = new UpdateSpokeRequest();
         $response = $gapicClient->updateSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1844,8 +1661,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/UpdateSpoke', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getSpoke();
-        $this->assertProtobufEquals($spoke, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateSpokeTest');
         $response->pollUntilComplete([
@@ -1896,10 +1711,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $spoke = new Spoke();
-        $request = (new UpdateSpokeRequest())
-            ->setSpoke($spoke);
+        $request = new UpdateSpokeRequest();
         $response = $gapicClient->updateSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2061,10 +1873,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2072,8 +1881,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2095,10 +1902,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2127,12 +1931,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2140,10 +1939,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2165,12 +1960,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2195,12 +1985,7 @@ class HubServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2208,10 +1993,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2233,12 +2014,7 @@ class HubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2281,12 +2057,7 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $formattedSpokeUri = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new AcceptHubSpokeRequest())
-            ->setName($formattedName)
-            ->setSpokeUri($formattedSpokeUri);
+        $request = new AcceptHubSpokeRequest();
         $response = $gapicClient->acceptHubSpokeAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2297,10 +2068,6 @@ class HubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/AcceptHubSpoke', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getSpokeUri();
-        $this->assertProtobufEquals($formattedSpokeUri, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/acceptHubSpokeTest');
         $response->pollUntilComplete([

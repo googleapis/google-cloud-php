@@ -71,8 +71,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The device registry path. Required. For example,
-     *                       `projects/my-project/locations/us-central1/registries/my-registry`. Please see
-     *                       {@see DeviceManagerClient::registryName()} for help formatting this field.
+     *                       `projects/my-project/locations/us-central1/registries/my-registry`.
      *
      * @return \Google\Cloud\Iot\V1\ListDevicesRequest
      *

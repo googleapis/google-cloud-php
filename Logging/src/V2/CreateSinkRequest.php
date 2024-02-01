@@ -64,7 +64,6 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                 `"projects/my-project"`
      *                                                 `"organizations/123456789"`
-     *                                                 Please see {@see ConfigServiceV2Client::projectName()} for help formatting this field.
      * @param \Google\Cloud\Logging\V2\LogSink $sink   Required. The new sink, whose `name` parameter is a sink identifier that
      *                                                 is not already in use.
      *

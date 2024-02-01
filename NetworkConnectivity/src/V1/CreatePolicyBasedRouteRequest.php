@@ -51,8 +51,7 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string                                                $parent             Required. The parent resource's name of the PolicyBasedRoute. Please see
-     *                                                                                  {@see PolicyBasedRoutingServiceClient::locationName()} for help formatting this field.
+     * @param string                                                $parent             Required. The parent resource's name of the PolicyBasedRoute.
      * @param \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute $policyBasedRoute   Required. Initial values for a new Policy Based Route.
      * @param string                                                $policyBasedRouteId Required. Unique id for the Policy Based Route to create.
      *
