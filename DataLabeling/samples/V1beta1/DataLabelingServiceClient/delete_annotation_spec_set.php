@@ -30,18 +30,19 @@ use Google\Cloud\DataLabeling\V1beta1\DeleteAnnotationSpecSetRequest;
 /**
  * Deletes an annotation spec set by resource name.
  *
- * @param string $formattedName AnnotationSpec resource name, format:
- *                              `projects/{project_id}/annotationSpecSets/{annotation_spec_set_id}`. Please see
- *                              {@see DataLabelingServiceClient::annotationSpecSetName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_annotation_spec_set_sample(string $formattedName): void
+function delete_annotation_spec_set_sample(): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteAnnotationSpecSetRequest())
-        ->setName($formattedName);
+    $request = new DeleteAnnotationSpecSetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -50,24 +51,5 @@ function delete_annotation_spec_set_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataLabelingServiceClient::annotationSpecSetName(
-        '[PROJECT]',
-        '[ANNOTATION_SPEC_SET]'
-    );
-
-    delete_annotation_spec_set_sample($formattedName);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_DeleteAnnotationSpecSet_sync]

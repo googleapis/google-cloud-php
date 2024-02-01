@@ -25,36 +25,25 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataform_v1beta1_generated_Dataform_CommitRepositoryChanges_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
-use Google\Cloud\Dataform\V1beta1\CommitAuthor;
-use Google\Cloud\Dataform\V1beta1\CommitMetadata;
 use Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesRequest;
 
 /**
  * Applies a Git commit to a Repository. The Repository must not have a value
  * for `git_remote_settings.url`.
  *
- * @param string $formattedName                    The repository's name. Please see
- *                                                 {@see DataformClient::repositoryName()} for help formatting this field.
- * @param string $commitMetadataAuthorName         The commit author's name.
- * @param string $commitMetadataAuthorEmailAddress The commit author's email address.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function commit_repository_changes_sample(
-    string $formattedName,
-    string $commitMetadataAuthorName,
-    string $commitMetadataAuthorEmailAddress
-): void {
+function commit_repository_changes_sample(): void
+{
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $commitMetadataAuthor = (new CommitAuthor())
-        ->setName($commitMetadataAuthorName)
-        ->setEmailAddress($commitMetadataAuthorEmailAddress);
-    $commitMetadata = (new CommitMetadata())
-        ->setAuthor($commitMetadataAuthor);
-    $request = (new CommitRepositoryChangesRequest())
-        ->setName($formattedName)
-        ->setCommitMetadata($commitMetadata);
+    $request = new CommitRepositoryChangesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,27 +52,5 @@ function commit_repository_changes_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataformClient::repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-    $commitMetadataAuthorName = '[NAME]';
-    $commitMetadataAuthorEmailAddress = '[EMAIL_ADDRESS]';
-
-    commit_repository_changes_sample(
-        $formattedName,
-        $commitMetadataAuthorName,
-        $commitMetadataAuthorEmailAddress
-    );
 }
 // [END dataform_v1beta1_generated_Dataform_CommitRepositoryChanges_sync]

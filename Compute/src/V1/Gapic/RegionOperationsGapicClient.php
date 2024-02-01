@@ -49,10 +49,7 @@ use Google\Cloud\Compute\V1\WaitRegionOperationRequest;
  * ```
  * $regionOperationsClient = new RegionOperationsClient();
  * try {
- *     $operation = 'operation';
- *     $project = 'project';
- *     $region = 'region';
- *     $response = $regionOperationsClient->delete($operation, $project, $region);
+ *     $response = $regionOperationsClient->delete();
  * } finally {
  *     $regionOperationsClient->close();
  * }
@@ -186,21 +183,21 @@ class RegionOperationsGapicClient
      * ```
      * $regionOperationsClient = new RegionOperationsClient();
      * try {
-     *     $operation = 'operation';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $response = $regionOperationsClient->delete($operation, $project, $region);
+     *     $response = $regionOperationsClient->delete();
      * } finally {
      *     $regionOperationsClient->close();
      * }
      * ```
      *
-     * @param string $operation    Name of the Operations resource to delete.
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $operation
+     *           Name of the Operations resource to delete.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -211,16 +208,25 @@ class RegionOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($operation, $project, $region, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteRegionOperationRequest();
         $requestParamHeaders = [];
-        $request->setOperation($operation);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['operation'] = $operation;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['operation'])) {
+            $request->setOperation($optionalArgs['operation']);
+            $requestParamHeaders['operation'] = $optionalArgs['operation'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Delete', DeleteRegionOperationResponse::class, $optionalArgs, $request)->wait();
@@ -233,21 +239,21 @@ class RegionOperationsGapicClient
      * ```
      * $regionOperationsClient = new RegionOperationsClient();
      * try {
-     *     $operation = 'operation';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $response = $regionOperationsClient->get($operation, $project, $region);
+     *     $response = $regionOperationsClient->get();
      * } finally {
      *     $regionOperationsClient->close();
      * }
      * ```
      *
-     * @param string $operation    Name of the Operations resource to return.
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $operation
+     *           Name of the Operations resource to return.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -258,16 +264,25 @@ class RegionOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($operation, $project, $region, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetRegionOperationRequest();
         $requestParamHeaders = [];
-        $request->setOperation($operation);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['operation'] = $operation;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['operation'])) {
+            $request->setOperation($optionalArgs['operation']);
+            $requestParamHeaders['operation'] = $optionalArgs['operation'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Operation::class, $optionalArgs, $request)->wait();
@@ -280,10 +295,8 @@ class RegionOperationsGapicClient
      * ```
      * $regionOperationsClient = new RegionOperationsClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionOperationsClient->list($project, $region);
+     *     $pagedResponse = $regionOperationsClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -291,7 +304,7 @@ class RegionOperationsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionOperationsClient->list($project, $region);
+     *     $pagedResponse = $regionOperationsClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -300,9 +313,7 @@ class RegionOperationsGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -316,6 +327,10 @@ class RegionOperationsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -328,14 +343,10 @@ class RegionOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, $region, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListRegionOperationsRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -350,6 +361,16 @@ class RegionOperationsGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -368,21 +389,21 @@ class RegionOperationsGapicClient
      * ```
      * $regionOperationsClient = new RegionOperationsClient();
      * try {
-     *     $operation = 'operation';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $response = $regionOperationsClient->wait($operation, $project, $region);
+     *     $response = $regionOperationsClient->wait();
      * } finally {
      *     $regionOperationsClient->close();
      * }
      * ```
      *
-     * @param string $operation    Name of the Operations resource to return.
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $operation
+     *           Name of the Operations resource to return.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -393,16 +414,25 @@ class RegionOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function wait($operation, $project, $region, array $optionalArgs = [])
+    public function wait(array $optionalArgs = [])
     {
         $request = new WaitRegionOperationRequest();
         $requestParamHeaders = [];
-        $request->setOperation($operation);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['operation'] = $operation;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['operation'])) {
+            $request->setOperation($optionalArgs['operation']);
+            $requestParamHeaders['operation'] = $optionalArgs['operation'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Wait', Operation::class, $optionalArgs, $request)->wait();

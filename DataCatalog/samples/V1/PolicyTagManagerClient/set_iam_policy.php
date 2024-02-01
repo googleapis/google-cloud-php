@@ -31,19 +31,19 @@ use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 /**
  * Sets the IAM policy for a policy tag or a taxonomy.
  *
- * @param string $resource REQUIRED: The resource for which the policy is being specified.
- *                         See the operation documentation for the appropriate value for this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_iam_policy_sample(string $resource): void
+function set_iam_policy_sample(): void
 {
     // Create a client.
     $policyTagManagerClient = new PolicyTagManagerClient();
 
     // Prepare the request message.
-    $policy = new Policy();
-    $request = (new SetIamPolicyRequest())
-        ->setResource($resource)
-        ->setPolicy($policy);
+    $request = new SetIamPolicyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function set_iam_policy_sample(string $resource): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $resource = '[RESOURCE]';
-
-    set_iam_policy_sample($resource);
 }
 // [END datacatalog_v1_generated_PolicyTagManager_SetIamPolicy_sync]

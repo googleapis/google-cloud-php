@@ -41,8 +41,7 @@ class ListParticipantsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The conversation to list all participants from.
      *                       Format: `projects/<Project ID>/locations/<Location
-     *                       ID>/conversations/<Conversation ID>`. Please see
-     *                       {@see ParticipantsClient::conversationName()} for help formatting this field.
+     *                       ID>/conversations/<Conversation ID>`.
      *
      * @return \Google\Cloud\Dialogflow\V2\ListParticipantsRequest
      *

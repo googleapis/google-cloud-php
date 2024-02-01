@@ -51,10 +51,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
  * ```
  * $regionNotificationEndpointsClient = new RegionNotificationEndpointsClient();
  * try {
- *     $notificationEndpoint = 'notification_endpoint';
- *     $project = 'project';
- *     $region = 'region';
- *     $operationResponse = $regionNotificationEndpointsClient->delete($notificationEndpoint, $project, $region);
+ *     $operationResponse = $regionNotificationEndpointsClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -64,7 +61,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionNotificationEndpointsClient->delete($notificationEndpoint, $project, $region);
+ *     $operationResponse = $regionNotificationEndpointsClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionNotificationEndpointsClient->resumeOperation($operationName, 'delete');
@@ -164,10 +161,7 @@ class RegionNotificationEndpointsGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -263,10 +257,7 @@ class RegionNotificationEndpointsGapicClient
      * ```
      * $regionNotificationEndpointsClient = new RegionNotificationEndpointsClient();
      * try {
-     *     $notificationEndpoint = 'notification_endpoint';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $operationResponse = $regionNotificationEndpointsClient->delete($notificationEndpoint, $project, $region);
+     *     $operationResponse = $regionNotificationEndpointsClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -276,7 +267,7 @@ class RegionNotificationEndpointsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionNotificationEndpointsClient->delete($notificationEndpoint, $project, $region);
+     *     $operationResponse = $regionNotificationEndpointsClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionNotificationEndpointsClient->resumeOperation($operationName, 'delete');
@@ -295,12 +286,15 @@ class RegionNotificationEndpointsGapicClient
      * }
      * ```
      *
-     * @param string $notificationEndpoint Name of the NotificationEndpoint resource to delete.
-     * @param string $project              Project ID for this request.
-     * @param string $region               Name of the region scoping this request.
-     * @param array  $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $notificationEndpoint
+     *           Name of the NotificationEndpoint resource to delete.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -313,16 +307,25 @@ class RegionNotificationEndpointsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($notificationEndpoint, $project, $region, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteRegionNotificationEndpointRequest();
         $requestParamHeaders = [];
-        $request->setNotificationEndpoint($notificationEndpoint);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['notification_endpoint'] = $notificationEndpoint;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['notificationEndpoint'])) {
+            $request->setNotificationEndpoint($optionalArgs['notificationEndpoint']);
+            $requestParamHeaders['notification_endpoint'] = $optionalArgs['notificationEndpoint'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -339,21 +342,21 @@ class RegionNotificationEndpointsGapicClient
      * ```
      * $regionNotificationEndpointsClient = new RegionNotificationEndpointsClient();
      * try {
-     *     $notificationEndpoint = 'notification_endpoint';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $response = $regionNotificationEndpointsClient->get($notificationEndpoint, $project, $region);
+     *     $response = $regionNotificationEndpointsClient->get();
      * } finally {
      *     $regionNotificationEndpointsClient->close();
      * }
      * ```
      *
-     * @param string $notificationEndpoint Name of the NotificationEndpoint resource to return.
-     * @param string $project              Project ID for this request.
-     * @param string $region               Name of the region scoping this request.
-     * @param array  $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $notificationEndpoint
+     *           Name of the NotificationEndpoint resource to return.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -364,16 +367,25 @@ class RegionNotificationEndpointsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($notificationEndpoint, $project, $region, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetRegionNotificationEndpointRequest();
         $requestParamHeaders = [];
-        $request->setNotificationEndpoint($notificationEndpoint);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['notification_endpoint'] = $notificationEndpoint;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['notificationEndpoint'])) {
+            $request->setNotificationEndpoint($optionalArgs['notificationEndpoint']);
+            $requestParamHeaders['notification_endpoint'] = $optionalArgs['notificationEndpoint'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', NotificationEndpoint::class, $optionalArgs, $request)->wait();
@@ -386,10 +398,7 @@ class RegionNotificationEndpointsGapicClient
      * ```
      * $regionNotificationEndpointsClient = new RegionNotificationEndpointsClient();
      * try {
-     *     $notificationEndpointResource = new NotificationEndpoint();
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $operationResponse = $regionNotificationEndpointsClient->insert($notificationEndpointResource, $project, $region);
+     *     $operationResponse = $regionNotificationEndpointsClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -399,7 +408,7 @@ class RegionNotificationEndpointsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionNotificationEndpointsClient->insert($notificationEndpointResource, $project, $region);
+     *     $operationResponse = $regionNotificationEndpointsClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionNotificationEndpointsClient->resumeOperation($operationName, 'insert');
@@ -418,12 +427,15 @@ class RegionNotificationEndpointsGapicClient
      * }
      * ```
      *
-     * @param NotificationEndpoint $notificationEndpointResource The body resource for this request
-     * @param string               $project                      Project ID for this request.
-     * @param string               $region                       Name of the region scoping this request.
-     * @param array                $optionalArgs                 {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type NotificationEndpoint $notificationEndpointResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -436,15 +448,24 @@ class RegionNotificationEndpointsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($notificationEndpointResource, $project, $region, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertRegionNotificationEndpointRequest();
         $requestParamHeaders = [];
-        $request->setNotificationEndpointResource($notificationEndpointResource);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['notificationEndpointResource'])) {
+            $request->setNotificationEndpointResource($optionalArgs['notificationEndpointResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -461,10 +482,8 @@ class RegionNotificationEndpointsGapicClient
      * ```
      * $regionNotificationEndpointsClient = new RegionNotificationEndpointsClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionNotificationEndpointsClient->list($project, $region);
+     *     $pagedResponse = $regionNotificationEndpointsClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -472,7 +491,7 @@ class RegionNotificationEndpointsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionNotificationEndpointsClient->list($project, $region);
+     *     $pagedResponse = $regionNotificationEndpointsClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -481,9 +500,7 @@ class RegionNotificationEndpointsGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -497,6 +514,10 @@ class RegionNotificationEndpointsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -509,14 +530,10 @@ class RegionNotificationEndpointsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, $region, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListRegionNotificationEndpointsRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -531,6 +548,16 @@ class RegionNotificationEndpointsGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {

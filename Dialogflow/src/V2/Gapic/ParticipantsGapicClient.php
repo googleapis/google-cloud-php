@@ -72,8 +72,7 @@ use Google\Protobuf\Struct;
  * ```
  * $participantsClient = new ParticipantsClient();
  * try {
- *     $formattedParticipant = $participantsClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
- *     $response = $participantsClient->analyzeContent($formattedParticipant);
+ *     $response = $participantsClient->analyzeContent();
  * } finally {
  *     $participantsClient->close();
  * }
@@ -1052,19 +1051,19 @@ class ParticipantsGapicClient
      * ```
      * $participantsClient = new ParticipantsClient();
      * try {
-     *     $formattedParticipant = $participantsClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-     *     $response = $participantsClient->analyzeContent($formattedParticipant);
+     *     $response = $participantsClient->analyzeContent();
      * } finally {
      *     $participantsClient->close();
      * }
      * ```
      *
-     * @param string $participant  Required. The name of the participant this text comes from.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $participant
+     *           Required. The name of the participant this text comes from.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
      *     @type TextInput $textInput
      *           The natural language text to be processed.
      *     @type EventInput $eventInput
@@ -1102,12 +1101,15 @@ class ParticipantsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function analyzeContent($participant, array $optionalArgs = [])
+    public function analyzeContent(array $optionalArgs = [])
     {
         $request = new AnalyzeContentRequest();
         $requestParamHeaders = [];
-        $request->setParticipant($participant);
-        $requestParamHeaders['participant'] = $participant;
+        if (isset($optionalArgs['participant'])) {
+            $request->setParticipant($optionalArgs['participant']);
+            $requestParamHeaders['participant'] = $optionalArgs['participant'];
+        }
+
         if (isset($optionalArgs['textInput'])) {
             $request->setTextInput($optionalArgs['textInput']);
         }
@@ -1152,21 +1154,21 @@ class ParticipantsGapicClient
      * ```
      * $participantsClient = new ParticipantsClient();
      * try {
-     *     $formattedParent = $participantsClient->conversationName('[PROJECT]', '[CONVERSATION]');
-     *     $participant = new Participant();
-     *     $response = $participantsClient->createParticipant($formattedParent, $participant);
+     *     $response = $participantsClient->createParticipant();
      * } finally {
      *     $participantsClient->close();
      * }
      * ```
      *
-     * @param string      $parent       Required. Resource identifier of the conversation adding the participant.
-     *                                  Format: `projects/<Project ID>/locations/<Location
-     *                                  ID>/conversations/<Conversation ID>`.
-     * @param Participant $participant  Required. The participant to create.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource identifier of the conversation adding the participant.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>`.
+     *     @type Participant $participant
+     *           Required. The participant to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1177,13 +1179,19 @@ class ParticipantsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createParticipant($parent, $participant, array $optionalArgs = [])
+    public function createParticipant(array $optionalArgs = [])
     {
         $request = new CreateParticipantRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setParticipant($participant);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['participant'])) {
+            $request->setParticipant($optionalArgs['participant']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateParticipant', Participant::class, $optionalArgs, $request)->wait();
@@ -1196,19 +1204,19 @@ class ParticipantsGapicClient
      * ```
      * $participantsClient = new ParticipantsClient();
      * try {
-     *     $formattedName = $participantsClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-     *     $response = $participantsClient->getParticipant($formattedName);
+     *     $response = $participantsClient->getParticipant();
      * } finally {
      *     $participantsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the participant. Format:
-     *                             `projects/<Project ID>/locations/<Location ID>/conversations/<Conversation
-     *                             ID>/participants/<Participant ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the participant. Format:
+     *           `projects/<Project ID>/locations/<Location ID>/conversations/<Conversation
+     *           ID>/participants/<Participant ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1219,12 +1227,15 @@ class ParticipantsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getParticipant($name, array $optionalArgs = [])
+    public function getParticipant(array $optionalArgs = [])
     {
         $request = new GetParticipantRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetParticipant', Participant::class, $optionalArgs, $request)->wait();
@@ -1237,9 +1248,8 @@ class ParticipantsGapicClient
      * ```
      * $participantsClient = new ParticipantsClient();
      * try {
-     *     $formattedParent = $participantsClient->conversationName('[PROJECT]', '[CONVERSATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $participantsClient->listParticipants($formattedParent);
+     *     $pagedResponse = $participantsClient->listParticipants();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1247,7 +1257,7 @@ class ParticipantsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $participantsClient->listParticipants($formattedParent);
+     *     $pagedResponse = $participantsClient->listParticipants();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1256,12 +1266,13 @@ class ParticipantsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The conversation to list all participants from.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/conversations/<Conversation ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The conversation to list all participants from.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1281,12 +1292,15 @@ class ParticipantsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listParticipants($parent, array $optionalArgs = [])
+    public function listParticipants(array $optionalArgs = [])
     {
         $request = new ListParticipantsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1321,9 +1335,7 @@ class ParticipantsGapicClient
      * ```
      * $participantsClient = new ParticipantsClient();
      * try {
-     *     $participant = 'participant';
      *     $request = new StreamingAnalyzeContentRequest();
-     *     $request->setParticipant($participant);
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
      *     $requests = [
@@ -1383,19 +1395,19 @@ class ParticipantsGapicClient
      * ```
      * $participantsClient = new ParticipantsClient();
      * try {
-     *     $formattedParent = $participantsClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-     *     $response = $participantsClient->suggestArticles($formattedParent);
+     *     $response = $participantsClient->suggestArticles();
      * } finally {
      *     $participantsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the participant to fetch suggestion for.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the participant to fetch suggestion for.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
      *     @type string $latestMessage
      *           Optional. The name of the latest conversation message to compile suggestion
      *           for. If empty, it will be the latest message of the conversation.
@@ -1419,12 +1431,15 @@ class ParticipantsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function suggestArticles($parent, array $optionalArgs = [])
+    public function suggestArticles(array $optionalArgs = [])
     {
         $request = new SuggestArticlesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['latestMessage'])) {
             $request->setLatestMessage($optionalArgs['latestMessage']);
         }
@@ -1450,19 +1465,19 @@ class ParticipantsGapicClient
      * ```
      * $participantsClient = new ParticipantsClient();
      * try {
-     *     $formattedParent = $participantsClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-     *     $response = $participantsClient->suggestFaqAnswers($formattedParent);
+     *     $response = $participantsClient->suggestFaqAnswers();
      * } finally {
      *     $participantsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the participant to fetch suggestion for.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the participant to fetch suggestion for.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
      *     @type string $latestMessage
      *           Optional. The name of the latest conversation message to compile suggestion
      *           for. If empty, it will be the latest message of the conversation.
@@ -1485,12 +1500,15 @@ class ParticipantsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function suggestFaqAnswers($parent, array $optionalArgs = [])
+    public function suggestFaqAnswers(array $optionalArgs = [])
     {
         $request = new SuggestFaqAnswersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['latestMessage'])) {
             $request->setLatestMessage($optionalArgs['latestMessage']);
         }
@@ -1516,19 +1534,19 @@ class ParticipantsGapicClient
      * ```
      * $participantsClient = new ParticipantsClient();
      * try {
-     *     $formattedParent = $participantsClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
-     *     $response = $participantsClient->suggestSmartReplies($formattedParent);
+     *     $response = $participantsClient->suggestSmartReplies();
      * } finally {
      *     $participantsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the participant to fetch suggestion for.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the participant to fetch suggestion for.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
      *     @type TextInput $currentTextInput
      *           The current natural language text segment to compile suggestion
      *           for. This provides a way for user to get follow up smart reply suggestion
@@ -1553,12 +1571,15 @@ class ParticipantsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function suggestSmartReplies($parent, array $optionalArgs = [])
+    public function suggestSmartReplies(array $optionalArgs = [])
     {
         $request = new SuggestSmartRepliesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['currentTextInput'])) {
             $request->setCurrentTextInput($optionalArgs['currentTextInput']);
         }
@@ -1583,19 +1604,19 @@ class ParticipantsGapicClient
      * ```
      * $participantsClient = new ParticipantsClient();
      * try {
-     *     $participant = new Participant();
-     *     $updateMask = new FieldMask();
-     *     $response = $participantsClient->updateParticipant($participant, $updateMask);
+     *     $response = $participantsClient->updateParticipant();
      * } finally {
      *     $participantsClient->close();
      * }
      * ```
      *
-     * @param Participant $participant  Required. The participant to update.
-     * @param FieldMask   $updateMask   Required. The mask to specify which fields to update.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Participant $participant
+     *           Required. The participant to update.
+     *     @type FieldMask $updateMask
+     *           Required. The mask to specify which fields to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1606,13 +1627,18 @@ class ParticipantsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateParticipant($participant, $updateMask, array $optionalArgs = [])
+    public function updateParticipant(array $optionalArgs = [])
     {
         $request = new UpdateParticipantRequest();
         $requestParamHeaders = [];
-        $request->setParticipant($participant);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['participant.name'] = $participant->getName();
+        if (isset($optionalArgs['participant'])) {
+            $request->setParticipant($optionalArgs['participant']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateParticipant', Participant::class, $optionalArgs, $request)->wait();

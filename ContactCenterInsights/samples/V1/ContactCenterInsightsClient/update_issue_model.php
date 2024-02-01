@@ -43,9 +43,7 @@ function update_issue_model_sample(): void
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $issueModel = new IssueModel();
-    $request = (new UpdateIssueModelRequest())
-        ->setIssueModel($issueModel);
+    $request = new UpdateIssueModelRequest();
 
     // Call the API and handle any network failures.
     try {

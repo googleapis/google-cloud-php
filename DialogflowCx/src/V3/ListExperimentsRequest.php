@@ -43,8 +43,7 @@ class ListExperimentsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The [Environment][google.cloud.dialogflow.cx.v3.Environment] to
      *                       list all environments for. Format: `projects/<Project
      *                       ID>/locations/<Location ID>/agents/<Agent ID>/environments/<Environment
-     *                       ID>`. Please see
-     *                       {@see ExperimentsClient::environmentName()} for help formatting this field.
+     *                       ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListExperimentsRequest
      *

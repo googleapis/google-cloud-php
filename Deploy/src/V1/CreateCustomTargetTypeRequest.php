@@ -62,8 +62,7 @@ class CreateCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                   $parent             Required. The parent collection in which the `CustomTargetType` should be
      *                                                                     created. Format should be
-     *                                                                     `projects/{project_id}/locations/{location_name}`. Please see
-     *                                                                     {@see CloudDeployClient::locationName()} for help formatting this field.
+     *                                                                     `projects/{project_id}/locations/{location_name}`.
      * @param \Google\Cloud\Deploy\V1\CustomTargetType $customTargetType   Required. The `CustomTargetType` to create.
      * @param string                                   $customTargetTypeId Required. ID of the `CustomTargetType`.
      *

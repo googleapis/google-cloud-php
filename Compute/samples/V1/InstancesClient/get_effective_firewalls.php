@@ -30,46 +30,24 @@ use Google\Cloud\Compute\V1\InstancesGetEffectiveFirewallsResponse;
 /**
  * Returns effective firewalls applied to an interface of the instance.
  *
- * @param string $instance         Name of the instance scoping this request.
- * @param string $networkInterface The name of the network interface to get the effective firewalls.
- * @param string $project          Project ID for this request.
- * @param string $zone             The name of the zone for this request.
- */
-function get_effective_firewalls_sample(
-    string $instance,
-    string $networkInterface,
-    string $project,
-    string $zone
-): void {
-    // Create a client.
-    $instancesClient = new InstancesClient();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var InstancesGetEffectiveFirewallsResponse $response */
-        $response = $instancesClient->getEffectiveFirewalls($instance, $networkInterface, $project, $zone);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function get_effective_firewalls_sample(): void
 {
-    $instance = '[INSTANCE]';
-    $networkInterface = '[NETWORK_INTERFACE]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
+    // Create a client.
+    $instancesClient = new InstancesClient();
 
-    get_effective_firewalls_sample($instance, $networkInterface, $project, $zone);
+    // Call the API and handle any network failures.
+    try {
+        /** @var InstancesGetEffectiveFirewallsResponse $response */
+        $response = $instancesClient->getEffectiveFirewalls();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END compute_v1_generated_Instances_GetEffectiveFirewalls_sync]

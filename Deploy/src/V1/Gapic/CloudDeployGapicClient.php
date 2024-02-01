@@ -126,8 +126,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $cloudDeployClient = new CloudDeployClient();
  * try {
- *     $formattedName = $cloudDeployClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
- *     $response = $cloudDeployClient->abandonRelease($formattedName);
+ *     $response = $cloudDeployClient->abandonRelease();
  * } finally {
  *     $cloudDeployClient->close();
  * }
@@ -939,18 +938,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
-     *     $response = $cloudDeployClient->abandonRelease($formattedName);
+     *     $response = $cloudDeployClient->abandonRelease();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the Release. Format is
-     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the Release. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -961,12 +960,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function abandonRelease($name, array $optionalArgs = [])
+    public function abandonRelease(array $optionalArgs = [])
     {
         $request = new AbandonReleaseRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -988,20 +990,20 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
-     *     $phaseId = 'phase_id';
-     *     $response = $cloudDeployClient->advanceRollout($formattedName, $phaseId);
+     *     $response = $cloudDeployClient->advanceRollout();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the Rollout. Format is
-     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
-     * @param string $phaseId      Required. The phase ID to advance the `Rollout` to.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the Rollout. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
+     *     @type string $phaseId
+     *           Required. The phase ID to advance the `Rollout` to.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1012,13 +1014,19 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function advanceRollout($name, $phaseId, array $optionalArgs = [])
+    public function advanceRollout(array $optionalArgs = [])
     {
         $request = new AdvanceRolloutRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setPhaseId($phaseId);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['phaseId'])) {
+            $request->setPhaseId($optionalArgs['phaseId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1040,20 +1048,20 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
-     *     $approved = false;
-     *     $response = $cloudDeployClient->approveRollout($formattedName, $approved);
+     *     $response = $cloudDeployClient->approveRollout();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the Rollout. Format is
-     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
-     * @param bool   $approved     Required. True = approve; false = reject
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the Rollout. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
+     *     @type bool $approved
+     *           Required. True = approve; false = reject
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1064,13 +1072,19 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function approveRollout($name, $approved, array $optionalArgs = [])
+    public function approveRollout(array $optionalArgs = [])
     {
         $request = new ApproveRolloutRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setApproved($approved);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['approved'])) {
+            $request->setApproved($optionalArgs['approved']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1095,18 +1109,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->automationRunName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[AUTOMATION_RUN]');
-     *     $response = $cloudDeployClient->cancelAutomationRun($formattedName);
+     *     $response = $cloudDeployClient->cancelAutomationRun();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the `AutomationRun`. Format is
-     *                             `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the `AutomationRun`. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1117,12 +1131,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelAutomationRun($name, array $optionalArgs = [])
+    public function cancelAutomationRun(array $optionalArgs = [])
     {
         $request = new CancelAutomationRunRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1144,18 +1161,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
-     *     $response = $cloudDeployClient->cancelRollout($formattedName);
+     *     $response = $cloudDeployClient->cancelRollout();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the Rollout. Format is
-     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the Rollout. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1166,12 +1183,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelRollout($name, array $optionalArgs = [])
+    public function cancelRollout(array $optionalArgs = [])
     {
         $request = new CancelRolloutRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1193,10 +1213,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
-     *     $automationId = 'automation_id';
-     *     $automation = new Automation();
-     *     $operationResponse = $cloudDeployClient->createAutomation($formattedParent, $automationId, $automation);
+     *     $operationResponse = $cloudDeployClient->createAutomation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1207,7 +1224,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->createAutomation($formattedParent, $automationId, $automation);
+     *     $operationResponse = $cloudDeployClient->createAutomation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'createAutomation');
@@ -1227,14 +1244,17 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The parent collection in which the `Automation` should be
-     *                                 created. Format should be
-     *                                 `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
-     * @param string     $automationId Required. ID of the `Automation`.
-     * @param Automation $automation   Required. The `Automation` to create.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection in which the `Automation` should be
+     *           created. Format should be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
+     *     @type string $automationId
+     *           Required. ID of the `Automation`.
+     *     @type Automation $automation
+     *           Required. The `Automation` to create.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -1262,18 +1282,23 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAutomation(
-        $parent,
-        $automationId,
-        $automation,
-        array $optionalArgs = []
-    ) {
+    public function createAutomation(array $optionalArgs = [])
+    {
         $request = new CreateAutomationRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAutomationId($automationId);
-        $request->setAutomation($automation);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['automationId'])) {
+            $request->setAutomationId($optionalArgs['automationId']);
+        }
+
+        if (isset($optionalArgs['automation'])) {
+            $request->setAutomation($optionalArgs['automation']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1303,10 +1328,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $customTargetTypeId = 'custom_target_type_id';
-     *     $customTargetType = new CustomTargetType();
-     *     $operationResponse = $cloudDeployClient->createCustomTargetType($formattedParent, $customTargetTypeId, $customTargetType);
+     *     $operationResponse = $cloudDeployClient->createCustomTargetType();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1317,7 +1339,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->createCustomTargetType($formattedParent, $customTargetTypeId, $customTargetType);
+     *     $operationResponse = $cloudDeployClient->createCustomTargetType();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'createCustomTargetType');
@@ -1337,14 +1359,17 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string           $parent             Required. The parent collection in which the `CustomTargetType` should be
-     *                                             created. Format should be
-     *                                             `projects/{project_id}/locations/{location_name}`.
-     * @param string           $customTargetTypeId Required. ID of the `CustomTargetType`.
-     * @param CustomTargetType $customTargetType   Required. The `CustomTargetType` to create.
-     * @param array            $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection in which the `CustomTargetType` should be
+     *           created. Format should be
+     *           `projects/{project_id}/locations/{location_name}`.
+     *     @type string $customTargetTypeId
+     *           Required. ID of the `CustomTargetType`.
+     *     @type CustomTargetType $customTargetType
+     *           Required. The `CustomTargetType` to create.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -1372,18 +1397,25 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCustomTargetType(
-        $parent,
-        $customTargetTypeId,
-        $customTargetType,
-        array $optionalArgs = []
-    ) {
+    public function createCustomTargetType(array $optionalArgs = [])
+    {
         $request = new CreateCustomTargetTypeRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCustomTargetTypeId($customTargetTypeId);
-        $request->setCustomTargetType($customTargetType);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['customTargetTypeId'])) {
+            $request->setCustomTargetTypeId(
+                $optionalArgs['customTargetTypeId']
+            );
+        }
+
+        if (isset($optionalArgs['customTargetType'])) {
+            $request->setCustomTargetType($optionalArgs['customTargetType']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1413,10 +1445,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $deliveryPipelineId = 'delivery_pipeline_id';
-     *     $deliveryPipeline = new DeliveryPipeline();
-     *     $operationResponse = $cloudDeployClient->createDeliveryPipeline($formattedParent, $deliveryPipelineId, $deliveryPipeline);
+     *     $operationResponse = $cloudDeployClient->createDeliveryPipeline();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1427,7 +1456,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->createDeliveryPipeline($formattedParent, $deliveryPipelineId, $deliveryPipeline);
+     *     $operationResponse = $cloudDeployClient->createDeliveryPipeline();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'createDeliveryPipeline');
@@ -1447,14 +1476,17 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string           $parent             Required. The parent collection in which the `DeliveryPipeline` should be
-     *                                             created. Format should be
-     *                                             `projects/{project_id}/locations/{location_name}`.
-     * @param string           $deliveryPipelineId Required. ID of the `DeliveryPipeline`.
-     * @param DeliveryPipeline $deliveryPipeline   Required. The `DeliveryPipeline` to create.
-     * @param array            $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection in which the `DeliveryPipeline` should be
+     *           created. Format should be
+     *           `projects/{project_id}/locations/{location_name}`.
+     *     @type string $deliveryPipelineId
+     *           Required. ID of the `DeliveryPipeline`.
+     *     @type DeliveryPipeline $deliveryPipeline
+     *           Required. The `DeliveryPipeline` to create.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -1482,18 +1514,25 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDeliveryPipeline(
-        $parent,
-        $deliveryPipelineId,
-        $deliveryPipeline,
-        array $optionalArgs = []
-    ) {
+    public function createDeliveryPipeline(array $optionalArgs = [])
+    {
         $request = new CreateDeliveryPipelineRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDeliveryPipelineId($deliveryPipelineId);
-        $request->setDeliveryPipeline($deliveryPipeline);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['deliveryPipelineId'])) {
+            $request->setDeliveryPipelineId(
+                $optionalArgs['deliveryPipelineId']
+            );
+        }
+
+        if (isset($optionalArgs['deliveryPipeline'])) {
+            $request->setDeliveryPipeline($optionalArgs['deliveryPipeline']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1523,10 +1562,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
-     *     $releaseId = 'release_id';
-     *     $release = new Release();
-     *     $operationResponse = $cloudDeployClient->createRelease($formattedParent, $releaseId, $release);
+     *     $operationResponse = $cloudDeployClient->createRelease();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1537,7 +1573,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->createRelease($formattedParent, $releaseId, $release);
+     *     $operationResponse = $cloudDeployClient->createRelease();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'createRelease');
@@ -1557,14 +1593,17 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The parent collection in which the `Release` should be created.
-     *                              Format should be
-     *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
-     * @param string  $releaseId    Required. ID of the `Release`.
-     * @param Release $release      Required. The `Release` to create.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection in which the `Release` should be created.
+     *           Format should be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
+     *     @type string $releaseId
+     *           Required. ID of the `Release`.
+     *     @type Release $release
+     *           Required. The `Release` to create.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -1592,18 +1631,23 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createRelease(
-        $parent,
-        $releaseId,
-        $release,
-        array $optionalArgs = []
-    ) {
+    public function createRelease(array $optionalArgs = [])
+    {
         $request = new CreateReleaseRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setReleaseId($releaseId);
-        $request->setRelease($release);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['releaseId'])) {
+            $request->setReleaseId($optionalArgs['releaseId']);
+        }
+
+        if (isset($optionalArgs['release'])) {
+            $request->setRelease($optionalArgs['release']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1633,10 +1677,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
-     *     $rolloutId = 'rollout_id';
-     *     $rollout = new Rollout();
-     *     $operationResponse = $cloudDeployClient->createRollout($formattedParent, $rolloutId, $rollout);
+     *     $operationResponse = $cloudDeployClient->createRollout();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1647,7 +1688,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->createRollout($formattedParent, $rolloutId, $rollout);
+     *     $operationResponse = $cloudDeployClient->createRollout();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'createRollout');
@@ -1667,14 +1708,17 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The parent collection in which the `Rollout` should be created.
-     *                              Format should be
-     *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
-     * @param string  $rolloutId    Required. ID of the `Rollout`.
-     * @param Rollout $rollout      Required. The `Rollout` to create.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection in which the `Rollout` should be created.
+     *           Format should be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
+     *     @type string $rolloutId
+     *           Required. ID of the `Rollout`.
+     *     @type Rollout $rollout
+     *           Required. The `Rollout` to create.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -1705,18 +1749,23 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createRollout(
-        $parent,
-        $rolloutId,
-        $rollout,
-        array $optionalArgs = []
-    ) {
+    public function createRollout(array $optionalArgs = [])
+    {
         $request = new CreateRolloutRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRolloutId($rolloutId);
-        $request->setRollout($rollout);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['rolloutId'])) {
+            $request->setRolloutId($optionalArgs['rolloutId']);
+        }
+
+        if (isset($optionalArgs['rollout'])) {
+            $request->setRollout($optionalArgs['rollout']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1750,10 +1799,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $targetId = 'target_id';
-     *     $target = new Target();
-     *     $operationResponse = $cloudDeployClient->createTarget($formattedParent, $targetId, $target);
+     *     $operationResponse = $cloudDeployClient->createTarget();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1764,7 +1810,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->createTarget($formattedParent, $targetId, $target);
+     *     $operationResponse = $cloudDeployClient->createTarget();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'createTarget');
@@ -1784,14 +1830,17 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent collection in which the `Target` should be created.
-     *                             Format should be
-     *                             `projects/{project_id}/locations/{location_name}`.
-     * @param string $targetId     Required. ID of the `Target`.
-     * @param Target $target       Required. The `Target` to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent collection in which the `Target` should be created.
+     *           Format should be
+     *           `projects/{project_id}/locations/{location_name}`.
+     *     @type string $targetId
+     *           Required. ID of the `Target`.
+     *     @type Target $target
+     *           Required. The `Target` to create.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -1819,18 +1868,23 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTarget(
-        $parent,
-        $targetId,
-        $target,
-        array $optionalArgs = []
-    ) {
+    public function createTarget(array $optionalArgs = [])
+    {
         $request = new CreateTargetRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setTargetId($targetId);
-        $request->setTarget($target);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['targetId'])) {
+            $request->setTargetId($optionalArgs['targetId']);
+        }
+
+        if (isset($optionalArgs['target'])) {
+            $request->setTarget($optionalArgs['target']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1860,8 +1914,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->automationName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[AUTOMATION]');
-     *     $operationResponse = $cloudDeployClient->deleteAutomation($formattedName);
+     *     $operationResponse = $cloudDeployClient->deleteAutomation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1871,7 +1924,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->deleteAutomation($formattedName);
+     *     $operationResponse = $cloudDeployClient->deleteAutomation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'deleteAutomation');
@@ -1890,11 +1943,12 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the `Automation` to delete. Format should be
-     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the `Automation` to delete. Format should be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -1930,12 +1984,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAutomation($name, array $optionalArgs = [])
+    public function deleteAutomation(array $optionalArgs = [])
     {
         $request = new DeleteAutomationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1973,8 +2030,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->customTargetTypeName('[PROJECT]', '[LOCATION]', '[CUSTOM_TARGET_TYPE]');
-     *     $operationResponse = $cloudDeployClient->deleteCustomTargetType($formattedName);
+     *     $operationResponse = $cloudDeployClient->deleteCustomTargetType();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1984,7 +2040,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->deleteCustomTargetType($formattedName);
+     *     $operationResponse = $cloudDeployClient->deleteCustomTargetType();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'deleteCustomTargetType');
@@ -2003,11 +2059,12 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the `CustomTargetType` to delete. Format must be
-     *                             `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the `CustomTargetType` to delete. Format must be
+     *           `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -2042,12 +2099,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCustomTargetType($name, array $optionalArgs = [])
+    public function deleteCustomTargetType(array $optionalArgs = [])
     {
         $request = new DeleteCustomTargetTypeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -2085,8 +2145,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
-     *     $operationResponse = $cloudDeployClient->deleteDeliveryPipeline($formattedName);
+     *     $operationResponse = $cloudDeployClient->deleteDeliveryPipeline();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -2096,7 +2155,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->deleteDeliveryPipeline($formattedName);
+     *     $operationResponse = $cloudDeployClient->deleteDeliveryPipeline();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'deleteDeliveryPipeline');
@@ -2115,11 +2174,12 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the `DeliveryPipeline` to delete. Format should be
-     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the `DeliveryPipeline` to delete. Format should be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -2158,12 +2218,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDeliveryPipeline($name, array $optionalArgs = [])
+    public function deleteDeliveryPipeline(array $optionalArgs = [])
     {
         $request = new DeleteDeliveryPipelineRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -2205,8 +2268,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
-     *     $operationResponse = $cloudDeployClient->deleteTarget($formattedName);
+     *     $operationResponse = $cloudDeployClient->deleteTarget();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -2216,7 +2278,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->deleteTarget($formattedName);
+     *     $operationResponse = $cloudDeployClient->deleteTarget();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'deleteTarget');
@@ -2235,11 +2297,12 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the `Target` to delete. Format should be
-     *                             `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the `Target` to delete. Format should be
+     *           `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -2274,12 +2337,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTarget($name, array $optionalArgs = [])
+    public function deleteTarget(array $optionalArgs = [])
     {
         $request = new DeleteTargetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -2317,18 +2383,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->automationName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[AUTOMATION]');
-     *     $response = $cloudDeployClient->getAutomation($formattedName);
+     *     $response = $cloudDeployClient->getAutomation();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the `Automation`. Format must be
-     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the `Automation`. Format must be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2339,12 +2405,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAutomation($name, array $optionalArgs = [])
+    public function getAutomation(array $optionalArgs = [])
     {
         $request = new GetAutomationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2366,18 +2435,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->automationRunName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[AUTOMATION_RUN]');
-     *     $response = $cloudDeployClient->getAutomationRun($formattedName);
+     *     $response = $cloudDeployClient->getAutomationRun();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the `AutomationRun`. Format must be
-     *                             `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the `AutomationRun`. Format must be
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/automationRuns/{automation_run}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2388,12 +2457,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAutomationRun($name, array $optionalArgs = [])
+    public function getAutomationRun(array $optionalArgs = [])
     {
         $request = new GetAutomationRunRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2415,17 +2487,17 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->configName('[PROJECT]', '[LOCATION]');
-     *     $response = $cloudDeployClient->getConfig($formattedName);
+     *     $response = $cloudDeployClient->getConfig();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of requested configuration.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of requested configuration.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2436,12 +2508,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConfig($name, array $optionalArgs = [])
+    public function getConfig(array $optionalArgs = [])
     {
         $request = new GetConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2463,18 +2538,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->customTargetTypeName('[PROJECT]', '[LOCATION]', '[CUSTOM_TARGET_TYPE]');
-     *     $response = $cloudDeployClient->getCustomTargetType($formattedName);
+     *     $response = $cloudDeployClient->getCustomTargetType();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the `CustomTargetType`. Format must be
-     *                             `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the `CustomTargetType`. Format must be
+     *           `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2485,12 +2560,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCustomTargetType($name, array $optionalArgs = [])
+    public function getCustomTargetType(array $optionalArgs = [])
     {
         $request = new GetCustomTargetTypeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2512,18 +2590,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
-     *     $response = $cloudDeployClient->getDeliveryPipeline($formattedName);
+     *     $response = $cloudDeployClient->getDeliveryPipeline();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the `DeliveryPipeline`. Format must be
-     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the `DeliveryPipeline`. Format must be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2534,12 +2612,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDeliveryPipeline($name, array $optionalArgs = [])
+    public function getDeliveryPipeline(array $optionalArgs = [])
     {
         $request = new GetDeliveryPipelineRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2561,18 +2642,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->jobRunName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]', '[JOB_RUN]');
-     *     $response = $cloudDeployClient->getJobRun($formattedName);
+     *     $response = $cloudDeployClient->getJobRun();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the `JobRun`. Format must be
-     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the `JobRun`. Format must be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2583,12 +2664,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getJobRun($name, array $optionalArgs = [])
+    public function getJobRun(array $optionalArgs = [])
     {
         $request = new GetJobRunRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2610,18 +2694,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
-     *     $response = $cloudDeployClient->getRelease($formattedName);
+     *     $response = $cloudDeployClient->getRelease();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the `Release`. Format must be
-     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the `Release`. Format must be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2632,12 +2716,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRelease($name, array $optionalArgs = [])
+    public function getRelease(array $optionalArgs = [])
     {
         $request = new GetReleaseRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2659,18 +2746,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
-     *     $response = $cloudDeployClient->getRollout($formattedName);
+     *     $response = $cloudDeployClient->getRollout();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the `Rollout`. Format must be
-     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the `Rollout`. Format must be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2681,12 +2768,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRollout($name, array $optionalArgs = [])
+    public function getRollout(array $optionalArgs = [])
     {
         $request = new GetRolloutRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2708,18 +2798,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
-     *     $response = $cloudDeployClient->getTarget($formattedName);
+     *     $response = $cloudDeployClient->getTarget();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the `Target`. Format must be
-     *                             `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the `Target`. Format must be
+     *           `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2730,12 +2820,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTarget($name, array $optionalArgs = [])
+    public function getTarget(array $optionalArgs = [])
     {
         $request = new GetTargetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2757,22 +2850,22 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedRollout = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
-     *     $phaseId = 'phase_id';
-     *     $jobId = 'job_id';
-     *     $response = $cloudDeployClient->ignoreJob($formattedRollout, $phaseId, $jobId);
+     *     $response = $cloudDeployClient->ignoreJob();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $rollout      Required. Name of the Rollout. Format is
-     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
-     * @param string $phaseId      Required. The phase ID the Job to ignore belongs to.
-     * @param string $jobId        Required. The job ID for the Job to ignore.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $rollout
+     *           Required. Name of the Rollout. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
+     *     @type string $phaseId
+     *           Required. The phase ID the Job to ignore belongs to.
+     *     @type string $jobId
+     *           Required. The job ID for the Job to ignore.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2783,18 +2876,23 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function ignoreJob(
-        $rollout,
-        $phaseId,
-        $jobId,
-        array $optionalArgs = []
-    ) {
+    public function ignoreJob(array $optionalArgs = [])
+    {
         $request = new IgnoreJobRequest();
         $requestParamHeaders = [];
-        $request->setRollout($rollout);
-        $request->setPhaseId($phaseId);
-        $request->setJobId($jobId);
-        $requestParamHeaders['rollout'] = $rollout;
+        if (isset($optionalArgs['rollout'])) {
+            $request->setRollout($optionalArgs['rollout']);
+            $requestParamHeaders['rollout'] = $optionalArgs['rollout'];
+        }
+
+        if (isset($optionalArgs['phaseId'])) {
+            $request->setPhaseId($optionalArgs['phaseId']);
+        }
+
+        if (isset($optionalArgs['jobId'])) {
+            $request->setJobId($optionalArgs['jobId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2816,9 +2914,8 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudDeployClient->listAutomationRuns($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listAutomationRuns();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2826,7 +2923,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudDeployClient->listAutomationRuns($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listAutomationRuns();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2835,12 +2932,13 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent `Delivery Pipeline`, which owns this collection of
-     *                             automationRuns. Format must be
-     *                             `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent `Delivery Pipeline`, which owns this collection of
+     *           automationRuns. Format must be
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2865,12 +2963,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAutomationRuns($parent, array $optionalArgs = [])
+    public function listAutomationRuns(array $optionalArgs = [])
     {
         $request = new ListAutomationRunsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2908,9 +3009,8 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudDeployClient->listAutomations($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listAutomations();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2918,7 +3018,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudDeployClient->listAutomations($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listAutomations();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2927,12 +3027,13 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent `Delivery Pipeline`, which owns this collection of
-     *                             automations. Format must be
-     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent `Delivery Pipeline`, which owns this collection of
+     *           automations. Format must be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2957,12 +3058,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAutomations($parent, array $optionalArgs = [])
+    public function listAutomations(array $optionalArgs = [])
     {
         $request = new ListAutomationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3000,9 +3104,8 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudDeployClient->listCustomTargetTypes($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listCustomTargetTypes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3010,7 +3113,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudDeployClient->listCustomTargetTypes($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listCustomTargetTypes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3019,11 +3122,12 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent that owns this collection of custom target types.
-     *                             Format must be `projects/{project_id}/locations/{location_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent that owns this collection of custom target types.
+     *           Format must be `projects/{project_id}/locations/{location_name}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3049,12 +3153,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCustomTargetTypes($parent, array $optionalArgs = [])
+    public function listCustomTargetTypes(array $optionalArgs = [])
     {
         $request = new ListCustomTargetTypesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3092,9 +3199,8 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudDeployClient->listDeliveryPipelines($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listDeliveryPipelines();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3102,7 +3208,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudDeployClient->listDeliveryPipelines($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listDeliveryPipelines();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3111,11 +3217,12 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of pipelines. Format must
-     *                             be `projects/{project_id}/locations/{location_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of pipelines. Format must
+     *           be `projects/{project_id}/locations/{location_name}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3140,12 +3247,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDeliveryPipelines($parent, array $optionalArgs = [])
+    public function listDeliveryPipelines(array $optionalArgs = [])
     {
         $request = new ListDeliveryPipelinesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3183,9 +3293,8 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudDeployClient->listJobRuns($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listJobRuns();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3193,7 +3302,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudDeployClient->listJobRuns($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listJobRuns();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3202,10 +3311,11 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The `Rollout` which owns this collection of `JobRun` objects.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The `Rollout` which owns this collection of `JobRun` objects.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3231,12 +3341,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listJobRuns($parent, array $optionalArgs = [])
+    public function listJobRuns(array $optionalArgs = [])
     {
         $request = new ListJobRunsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3274,9 +3387,8 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudDeployClient->listReleases($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listReleases();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3284,7 +3396,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudDeployClient->listReleases($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listReleases();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3293,11 +3405,12 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The `DeliveryPipeline` which owns this collection of `Release`
-     *                             objects.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The `DeliveryPipeline` which owns this collection of `Release`
+     *           objects.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3323,12 +3436,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listReleases($parent, array $optionalArgs = [])
+    public function listReleases(array $optionalArgs = [])
     {
         $request = new ListReleasesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3366,9 +3482,8 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudDeployClient->listRollouts($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listRollouts();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3376,7 +3491,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudDeployClient->listRollouts($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listRollouts();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3385,10 +3500,11 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The `Release` which owns this collection of `Rollout` objects.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The `Release` which owns this collection of `Rollout` objects.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3414,12 +3530,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRollouts($parent, array $optionalArgs = [])
+    public function listRollouts(array $optionalArgs = [])
     {
         $request = new ListRolloutsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3457,9 +3576,8 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedParent = $cloudDeployClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudDeployClient->listTargets($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listTargets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3467,7 +3585,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudDeployClient->listTargets($formattedParent);
+     *     $pagedResponse = $cloudDeployClient->listTargets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3476,11 +3594,12 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of targets. Format must be
-     *                             `projects/{project_id}/locations/{location_name}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of targets. Format must be
+     *           `projects/{project_id}/locations/{location_name}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3506,12 +3625,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTargets($parent, array $optionalArgs = [])
+    public function listTargets(array $optionalArgs = [])
     {
         $request = new ListTargetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3549,22 +3671,22 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedRollout = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
-     *     $phaseId = 'phase_id';
-     *     $jobId = 'job_id';
-     *     $response = $cloudDeployClient->retryJob($formattedRollout, $phaseId, $jobId);
+     *     $response = $cloudDeployClient->retryJob();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $rollout      Required. Name of the Rollout. Format is
-     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
-     * @param string $phaseId      Required. The phase ID the Job to retry belongs to.
-     * @param string $jobId        Required. The job ID for the Job to retry.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $rollout
+     *           Required. Name of the Rollout. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
+     *     @type string $phaseId
+     *           Required. The phase ID the Job to retry belongs to.
+     *     @type string $jobId
+     *           Required. The job ID for the Job to retry.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3575,18 +3697,23 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function retryJob(
-        $rollout,
-        $phaseId,
-        $jobId,
-        array $optionalArgs = []
-    ) {
+    public function retryJob(array $optionalArgs = [])
+    {
         $request = new RetryJobRequest();
         $requestParamHeaders = [];
-        $request->setRollout($rollout);
-        $request->setPhaseId($phaseId);
-        $request->setJobId($jobId);
-        $requestParamHeaders['rollout'] = $rollout;
+        if (isset($optionalArgs['rollout'])) {
+            $request->setRollout($optionalArgs['rollout']);
+            $requestParamHeaders['rollout'] = $optionalArgs['rollout'];
+        }
+
+        if (isset($optionalArgs['phaseId'])) {
+            $request->setPhaseId($optionalArgs['phaseId']);
+        }
+
+        if (isset($optionalArgs['jobId'])) {
+            $request->setJobId($optionalArgs['jobId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3608,23 +3735,23 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
-     *     $targetId = 'target_id';
-     *     $rolloutId = 'rollout_id';
-     *     $response = $cloudDeployClient->rollbackTarget($formattedName, $targetId, $rolloutId);
+     *     $response = $cloudDeployClient->rollbackTarget();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     *                             created. Format should be
-     *                             `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
-     * @param string $targetId     Required. ID of the `Target` that is being rolled back.
-     * @param string $rolloutId    Required. ID of the rollback `Rollout` to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
+     *           created. Format should be
+     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
+     *     @type string $targetId
+     *           Required. ID of the `Target` that is being rolled back.
+     *     @type string $rolloutId
+     *           Required. ID of the rollback `Rollout` to create.
      *     @type string $releaseId
      *           Optional. ID of the `Release` to roll back to. If this isn't specified, the
      *           previous successful `Rollout` to the specified target will be used to
@@ -3647,18 +3774,23 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rollbackTarget(
-        $name,
-        $targetId,
-        $rolloutId,
-        array $optionalArgs = []
-    ) {
+    public function rollbackTarget(array $optionalArgs = [])
+    {
         $request = new RollbackTargetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setTargetId($targetId);
-        $request->setRolloutId($rolloutId);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['targetId'])) {
+            $request->setTargetId($optionalArgs['targetId']);
+        }
+
+        if (isset($optionalArgs['rolloutId'])) {
+            $request->setRolloutId($optionalArgs['rolloutId']);
+        }
+
         if (isset($optionalArgs['releaseId'])) {
             $request->setReleaseId($optionalArgs['releaseId']);
         }
@@ -3696,18 +3828,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $formattedName = $cloudDeployClient->jobRunName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]', '[JOB_RUN]');
-     *     $response = $cloudDeployClient->terminateJobRun($formattedName);
+     *     $response = $cloudDeployClient->terminateJobRun();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the `JobRun`. Format must be
-     *                             `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the `JobRun`. Format must be
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3718,12 +3850,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function terminateJobRun($name, array $optionalArgs = [])
+    public function terminateJobRun(array $optionalArgs = [])
     {
         $request = new TerminateJobRunRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3745,9 +3880,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $automation = new Automation();
-     *     $operationResponse = $cloudDeployClient->updateAutomation($updateMask, $automation);
+     *     $operationResponse = $cloudDeployClient->updateAutomation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3758,7 +3891,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->updateAutomation($updateMask, $automation);
+     *     $operationResponse = $cloudDeployClient->updateAutomation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'updateAutomation');
@@ -3778,15 +3911,17 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param FieldMask  $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
-     *                                 `Automation` resource by the update.
-     *                                 The fields specified in the update_mask are relative to the resource, not
-     *                                 the full request. A field will be overwritten if it's in the mask. If the
-     *                                 user doesn't provide a mask then all fields are overwritten.
-     * @param Automation $automation   Required. The `Automation` to update.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Field mask is used to specify the fields to be overwritten in the
+     *           `Automation` resource by the update.
+     *           The fields specified in the update_mask are relative to the resource, not
+     *           the full request. A field will be overwritten if it's in the mask. If the
+     *           user doesn't provide a mask then all fields are overwritten.
+     *     @type Automation $automation
+     *           Required. The `Automation` to update.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -3817,16 +3952,18 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAutomation(
-        $updateMask,
-        $automation,
-        array $optionalArgs = []
-    ) {
+    public function updateAutomation(array $optionalArgs = [])
+    {
         $request = new UpdateAutomationRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setAutomation($automation);
-        $requestParamHeaders['automation.name'] = $automation->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['automation'])) {
+            $request->setAutomation($optionalArgs['automation']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -3860,9 +3997,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $customTargetType = new CustomTargetType();
-     *     $operationResponse = $cloudDeployClient->updateCustomTargetType($updateMask, $customTargetType);
+     *     $operationResponse = $cloudDeployClient->updateCustomTargetType();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3873,7 +4008,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->updateCustomTargetType($updateMask, $customTargetType);
+     *     $operationResponse = $cloudDeployClient->updateCustomTargetType();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'updateCustomTargetType');
@@ -3893,15 +4028,17 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param FieldMask        $updateMask       Required. Field mask is used to specify the fields to be overwritten in the
-     *                                           `CustomTargetType` resource by the update.
-     *                                           The fields specified in the update_mask are relative to the resource, not
-     *                                           the full request. A field will be overwritten if it's in the mask. If the
-     *                                           user doesn't provide a mask then all fields are overwritten.
-     * @param CustomTargetType $customTargetType Required. The `CustomTargetType` to update.
-     * @param array            $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Field mask is used to specify the fields to be overwritten in the
+     *           `CustomTargetType` resource by the update.
+     *           The fields specified in the update_mask are relative to the resource, not
+     *           the full request. A field will be overwritten if it's in the mask. If the
+     *           user doesn't provide a mask then all fields are overwritten.
+     *     @type CustomTargetType $customTargetType
+     *           Required. The `CustomTargetType` to update.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -3932,18 +4069,18 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCustomTargetType(
-        $updateMask,
-        $customTargetType,
-        array $optionalArgs = []
-    ) {
+    public function updateCustomTargetType(array $optionalArgs = [])
+    {
         $request = new UpdateCustomTargetTypeRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setCustomTargetType($customTargetType);
-        $requestParamHeaders[
-            'custom_target_type.name'
-        ] = $customTargetType->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['customTargetType'])) {
+            $request->setCustomTargetType($optionalArgs['customTargetType']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -3977,9 +4114,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $deliveryPipeline = new DeliveryPipeline();
-     *     $operationResponse = $cloudDeployClient->updateDeliveryPipeline($updateMask, $deliveryPipeline);
+     *     $operationResponse = $cloudDeployClient->updateDeliveryPipeline();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3990,7 +4125,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->updateDeliveryPipeline($updateMask, $deliveryPipeline);
+     *     $operationResponse = $cloudDeployClient->updateDeliveryPipeline();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'updateDeliveryPipeline');
@@ -4010,15 +4145,17 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param FieldMask        $updateMask       Required. Field mask is used to specify the fields to be overwritten in the
-     *                                           `DeliveryPipeline` resource by the update.
-     *                                           The fields specified in the update_mask are relative to the resource, not
-     *                                           the full request. A field will be overwritten if it's in the mask. If the
-     *                                           user doesn't provide a mask then all fields are overwritten.
-     * @param DeliveryPipeline $deliveryPipeline Required. The `DeliveryPipeline` to update.
-     * @param array            $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Field mask is used to specify the fields to be overwritten in the
+     *           `DeliveryPipeline` resource by the update.
+     *           The fields specified in the update_mask are relative to the resource, not
+     *           the full request. A field will be overwritten if it's in the mask. If the
+     *           user doesn't provide a mask then all fields are overwritten.
+     *     @type DeliveryPipeline $deliveryPipeline
+     *           Required. The `DeliveryPipeline` to update.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -4049,18 +4186,18 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDeliveryPipeline(
-        $updateMask,
-        $deliveryPipeline,
-        array $optionalArgs = []
-    ) {
+    public function updateDeliveryPipeline(array $optionalArgs = [])
+    {
         $request = new UpdateDeliveryPipelineRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setDeliveryPipeline($deliveryPipeline);
-        $requestParamHeaders[
-            'delivery_pipeline.name'
-        ] = $deliveryPipeline->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['deliveryPipeline'])) {
+            $request->setDeliveryPipeline($optionalArgs['deliveryPipeline']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -4094,9 +4231,7 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $target = new Target();
-     *     $operationResponse = $cloudDeployClient->updateTarget($updateMask, $target);
+     *     $operationResponse = $cloudDeployClient->updateTarget();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -4107,7 +4242,7 @@ class CloudDeployGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudDeployClient->updateTarget($updateMask, $target);
+     *     $operationResponse = $cloudDeployClient->updateTarget();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudDeployClient->resumeOperation($operationName, 'updateTarget');
@@ -4127,15 +4262,17 @@ class CloudDeployGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
-     *                                Target resource by the update.
-     *                                The fields specified in the update_mask are relative to the resource, not
-     *                                the full request. A field will be overwritten if it's in the mask. If the
-     *                                user doesn't provide a mask then all fields are overwritten.
-     * @param Target    $target       Required. The `Target` to update.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Field mask is used to specify the fields to be overwritten in the
+     *           Target resource by the update.
+     *           The fields specified in the update_mask are relative to the resource, not
+     *           the full request. A field will be overwritten if it's in the mask. If the
+     *           user doesn't provide a mask then all fields are overwritten.
+     *     @type Target $target
+     *           Required. The `Target` to update.
      *     @type string $requestId
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -4166,13 +4303,18 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTarget($updateMask, $target, array $optionalArgs = [])
+    public function updateTarget(array $optionalArgs = [])
     {
         $request = new UpdateTargetRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setTarget($target);
-        $requestParamHeaders['target.name'] = $target->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['target'])) {
+            $request->setTarget($optionalArgs['target']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -4347,18 +4489,18 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $cloudDeployClient->getIamPolicy($resource);
+     *     $response = $cloudDeployClient->getIamPolicy();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -4372,12 +4514,15 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -4409,23 +4554,23 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $cloudDeployClient->setIamPolicy($resource, $policy);
+     *     $response = $cloudDeployClient->setIamPolicy();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -4442,13 +4587,19 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4482,23 +4633,23 @@ class CloudDeployGapicClient
      * ```
      * $cloudDeployClient = new CloudDeployClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $cloudDeployClient->testIamPermissions($resource, $permissions);
+     *     $response = $cloudDeployClient->testIamPermissions();
      * } finally {
      *     $cloudDeployClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4509,16 +4660,19 @@ class CloudDeployGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

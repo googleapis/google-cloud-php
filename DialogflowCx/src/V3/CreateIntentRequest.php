@@ -44,8 +44,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                $parent Required. The agent to create an intent for.
-     *                                                      Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
-     *                                                      {@see IntentsClient::agentName()} for help formatting this field.
+     *                                                      Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
      * @param \Google\Cloud\Dialogflow\Cx\V3\Intent $intent Required. The intent to create.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\CreateIntentRequest

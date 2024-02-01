@@ -31,11 +31,13 @@ use Google\Rpc\Status;
 /**
  * Copies rules to the specified network firewall policy.
  *
- * @param string $firewallPolicy Name of the firewall policy to update.
- * @param string $project        Project ID for this request.
- * @param string $region         Name of the region scoping this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function clone_rules_sample(string $firewallPolicy, string $project, string $region): void
+function clone_rules_sample(): void
 {
     // Create a client.
     $regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
@@ -43,7 +45,7 @@ function clone_rules_sample(string $firewallPolicy, string $project, string $reg
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionNetworkFirewallPoliciesClient->cloneRules($firewallPolicy, $project, $region);
+        $response = $regionNetworkFirewallPoliciesClient->cloneRules();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -56,23 +58,5 @@ function clone_rules_sample(string $firewallPolicy, string $project, string $reg
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $firewallPolicy = '[FIREWALL_POLICY]';
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-
-    clone_rules_sample($firewallPolicy, $project, $region);
 }
 // [END compute_v1_generated_RegionNetworkFirewallPolicies_CloneRules_sync]

@@ -97,10 +97,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListPublicDelegatedPrefixesRequest())
-            ->setProject($project);
+        $request = new AggregatedListPublicDelegatedPrefixesRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -113,8 +110,6 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -136,10 +131,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListPublicDelegatedPrefixesRequest())
-            ->setProject($project);
+        $request = new AggregatedListPublicDelegatedPrefixesRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -178,14 +170,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/announceTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
-        $region = 'region-934795532';
-        $request = (new AnnouncePublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
-            ->setRegion($region);
+        $request = new AnnouncePublicDelegatedPrefixeRequest();
         $response = $gapicClient->announce($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -195,16 +180,8 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Announce', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getPublicDelegatedPrefix();
-        $this->assertProtobufEquals($publicDelegatedPrefix, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -252,14 +229,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
-        $region = 'region-934795532';
-        $request = (new AnnouncePublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
-            ->setRegion($region);
+        $request = new AnnouncePublicDelegatedPrefixeRequest();
         $response = $gapicClient->announce($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -305,14 +275,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
-        $region = 'region-934795532';
-        $request = (new DeletePublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
-            ->setRegion($region);
+        $request = new DeletePublicDelegatedPrefixeRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -322,16 +285,8 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getPublicDelegatedPrefix();
-        $this->assertProtobufEquals($publicDelegatedPrefix, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -379,14 +334,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
-        $region = 'region-934795532';
-        $request = (new DeletePublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
-            ->setRegion($region);
+        $request = new DeletePublicDelegatedPrefixeRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -444,14 +392,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setStatus($status);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
-        $region = 'region-934795532';
-        $request = (new GetPublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
-            ->setRegion($region);
+        $request = new GetPublicDelegatedPrefixeRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -459,12 +400,6 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getPublicDelegatedPrefix();
-        $this->assertProtobufEquals($publicDelegatedPrefix, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -486,14 +421,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
-        $region = 'region-934795532';
-        $request = (new GetPublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
-            ->setRegion($region);
+        $request = new GetPublicDelegatedPrefixeRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -532,14 +460,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
-        $region = 'region-934795532';
-        $request = (new InsertPublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource)
-            ->setRegion($region);
+        $request = new InsertPublicDelegatedPrefixeRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -549,16 +470,8 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getPublicDelegatedPrefixResource();
-        $this->assertProtobufEquals($publicDelegatedPrefixResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -606,14 +519,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
-        $region = 'region-934795532';
-        $request = (new InsertPublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource)
-            ->setRegion($region);
+        $request = new InsertPublicDelegatedPrefixeRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -658,12 +564,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListPublicDelegatedPrefixesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListPublicDelegatedPrefixesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -674,10 +575,6 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -699,12 +596,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListPublicDelegatedPrefixesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListPublicDelegatedPrefixesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -743,16 +635,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
-        $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
-        $region = 'region-934795532';
-        $request = (new PatchPublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
-            ->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource)
-            ->setRegion($region);
+        $request = new PatchPublicDelegatedPrefixeRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -762,18 +645,8 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getPublicDelegatedPrefix();
-        $this->assertProtobufEquals($publicDelegatedPrefix, $actualValue);
-        $actualValue = $actualApiRequestObject->getPublicDelegatedPrefixResource();
-        $this->assertProtobufEquals($publicDelegatedPrefixResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -821,16 +694,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
-        $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
-        $region = 'region-934795532';
-        $request = (new PatchPublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
-            ->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource)
-            ->setRegion($region);
+        $request = new PatchPublicDelegatedPrefixeRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -876,14 +740,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/withdrawTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
-        $region = 'region-934795532';
-        $request = (new WithdrawPublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
-            ->setRegion($region);
+        $request = new WithdrawPublicDelegatedPrefixeRequest();
         $response = $gapicClient->withdraw($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -893,16 +750,8 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Withdraw', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getPublicDelegatedPrefix();
-        $this->assertProtobufEquals($publicDelegatedPrefix, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -950,14 +799,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
-        $region = 'region-934795532';
-        $request = (new WithdrawPublicDelegatedPrefixeRequest())
-            ->setProject($project)
-            ->setPublicDelegatedPrefix($publicDelegatedPrefix)
-            ->setRegion($region);
+        $request = new WithdrawPublicDelegatedPrefixeRequest();
         $response = $gapicClient->withdraw($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1001,10 +843,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListPublicDelegatedPrefixesRequest())
-            ->setProject($project);
+        $request = new AggregatedListPublicDelegatedPrefixesRequest();
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1017,8 +856,6 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

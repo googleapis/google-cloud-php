@@ -33,25 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new CustomTargetType in a given project and location.
  *
- * @param string $formattedParent    The parent collection in which the `CustomTargetType` should be
- *                                   created. Format should be
- *                                   `projects/{project_id}/locations/{location_name}`. Please see
- *                                   {@see CloudDeployClient::locationName()} for help formatting this field.
- * @param string $customTargetTypeId ID of the `CustomTargetType`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_custom_target_type_sample(
-    string $formattedParent,
-    string $customTargetTypeId
-): void {
+function create_custom_target_type_sample(): void
+{
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $customTargetType = new CustomTargetType();
-    $request = (new CreateCustomTargetTypeRequest())
-        ->setParent($formattedParent)
-        ->setCustomTargetTypeId($customTargetTypeId)
-        ->setCustomTargetType($customTargetType);
+    $request = new CreateCustomTargetTypeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,22 +65,5 @@ function create_custom_target_type_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudDeployClient::locationName('[PROJECT]', '[LOCATION]');
-    $customTargetTypeId = '[CUSTOM_TARGET_TYPE_ID]';
-
-    create_custom_target_type_sample($formattedParent, $customTargetTypeId);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_CreateCustomTargetType_sync]

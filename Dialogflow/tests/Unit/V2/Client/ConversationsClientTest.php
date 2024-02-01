@@ -29,10 +29,8 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\Client\ConversationsClient;
 use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
-use Google\Cloud\Dialogflow\V2\ConversationProfile;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
-use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest\MinimalConversation;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
 use Google\Cloud\Dialogflow\V2\GetConversationRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
@@ -44,7 +42,6 @@ use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
 use Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryRequest;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse;
-use Google\Cloud\Dialogflow\V2\TextInput;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -95,10 +92,7 @@ class ConversationsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setConversationProfile($conversationProfile);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new CompleteConversationRequest())
-            ->setName($formattedName);
+        $request = new CompleteConversationRequest();
         $response = $gapicClient->completeConversation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -106,8 +100,6 @@ class ConversationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Conversations/CompleteConversation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -129,10 +121,7 @@ class ConversationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new CompleteConversationRequest())
-            ->setName($formattedName);
+        $request = new CompleteConversationRequest();
         try {
             $gapicClient->completeConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -161,14 +150,7 @@ class ConversationsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setConversationProfile($conversationProfile);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $conversation = new Conversation();
-        $conversationConversationProfile = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-        $conversation->setConversationProfile($conversationConversationProfile);
-        $request = (new CreateConversationRequest())
-            ->setParent($formattedParent)
-            ->setConversation($conversation);
+        $request = new CreateConversationRequest();
         $response = $gapicClient->createConversation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -176,10 +158,6 @@ class ConversationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Conversations/CreateConversation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getConversation();
-        $this->assertProtobufEquals($conversation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -201,14 +179,7 @@ class ConversationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $conversation = new Conversation();
-        $conversationConversationProfile = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-        $conversation->setConversationProfile($conversationConversationProfile);
-        $request = (new CreateConversationRequest())
-            ->setParent($formattedParent)
-            ->setConversation($conversation);
+        $request = new CreateConversationRequest();
         try {
             $gapicClient->createConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -237,18 +208,7 @@ class ConversationsClientTest extends GeneratedTest
         $expectedResponse->setLatestMessage($latestMessage2);
         $expectedResponse->setContextSize($contextSize);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $statelessConversation = new MinimalConversation();
-        $statelessConversationMessages = [];
-        $statelessConversation->setMessages($statelessConversationMessages);
-        $statelessConversationParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $statelessConversation->setParent($statelessConversationParent);
-        $conversationProfile = new ConversationProfile();
-        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
-        $conversationProfile->setDisplayName($conversationProfileDisplayName);
-        $request = (new GenerateStatelessSummaryRequest())
-            ->setStatelessConversation($statelessConversation)
-            ->setConversationProfile($conversationProfile);
+        $request = new GenerateStatelessSummaryRequest();
         $response = $gapicClient->generateStatelessSummary($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -256,10 +216,6 @@ class ConversationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Conversations/GenerateStatelessSummary', $actualFuncCall);
-        $actualValue = $actualRequestObject->getStatelessConversation();
-        $this->assertProtobufEquals($statelessConversation, $actualValue);
-        $actualValue = $actualRequestObject->getConversationProfile();
-        $this->assertProtobufEquals($conversationProfile, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -281,18 +237,7 @@ class ConversationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $statelessConversation = new MinimalConversation();
-        $statelessConversationMessages = [];
-        $statelessConversation->setMessages($statelessConversationMessages);
-        $statelessConversationParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $statelessConversation->setParent($statelessConversationParent);
-        $conversationProfile = new ConversationProfile();
-        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
-        $conversationProfile->setDisplayName($conversationProfileDisplayName);
-        $request = (new GenerateStatelessSummaryRequest())
-            ->setStatelessConversation($statelessConversation)
-            ->setConversationProfile($conversationProfile);
+        $request = new GenerateStatelessSummaryRequest();
         try {
             $gapicClient->generateStatelessSummary($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -321,10 +266,7 @@ class ConversationsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setConversationProfile($conversationProfile);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new GetConversationRequest())
-            ->setName($formattedName);
+        $request = new GetConversationRequest();
         $response = $gapicClient->getConversation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -332,8 +274,6 @@ class ConversationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Conversations/GetConversation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -355,10 +295,7 @@ class ConversationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new GetConversationRequest())
-            ->setName($formattedName);
+        $request = new GetConversationRequest();
         try {
             $gapicClient->getConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -390,10 +327,7 @@ class ConversationsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversations($conversations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListConversationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListConversationsRequest();
         $response = $gapicClient->listConversations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -404,8 +338,6 @@ class ConversationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Conversations/ListConversations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -427,10 +359,7 @@ class ConversationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListConversationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListConversationsRequest();
         try {
             $gapicClient->listConversations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -462,10 +391,7 @@ class ConversationsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMessages($messages);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new ListMessagesRequest())
-            ->setParent($formattedParent);
+        $request = new ListMessagesRequest();
         $response = $gapicClient->listMessages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -476,8 +402,6 @@ class ConversationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Conversations/ListMessages', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -499,10 +423,7 @@ class ConversationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new ListMessagesRequest())
-            ->setParent($formattedParent);
+        $request = new ListMessagesRequest();
         try {
             $gapicClient->listMessages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -529,16 +450,7 @@ class ConversationsClientTest extends GeneratedTest
         $expectedResponse = new SearchKnowledgeResponse();
         $expectedResponse->setRewrittenQuery($rewrittenQuery);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $query = new TextInput();
-        $queryText = 'queryText-1806881259';
-        $query->setText($queryText);
-        $queryLanguageCode = 'queryLanguageCode66898509';
-        $query->setLanguageCode($queryLanguageCode);
-        $formattedConversationProfile = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-        $request = (new SearchKnowledgeRequest())
-            ->setQuery($query)
-            ->setConversationProfile($formattedConversationProfile);
+        $request = new SearchKnowledgeRequest();
         $response = $gapicClient->searchKnowledge($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -546,10 +458,6 @@ class ConversationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Conversations/SearchKnowledge', $actualFuncCall);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
-        $actualValue = $actualRequestObject->getConversationProfile();
-        $this->assertProtobufEquals($formattedConversationProfile, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -571,16 +479,7 @@ class ConversationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $query = new TextInput();
-        $queryText = 'queryText-1806881259';
-        $query->setText($queryText);
-        $queryLanguageCode = 'queryLanguageCode66898509';
-        $query->setLanguageCode($queryLanguageCode);
-        $formattedConversationProfile = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-        $request = (new SearchKnowledgeRequest())
-            ->setQuery($query)
-            ->setConversationProfile($formattedConversationProfile);
+        $request = new SearchKnowledgeRequest();
         try {
             $gapicClient->searchKnowledge($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -609,10 +508,7 @@ class ConversationsClientTest extends GeneratedTest
         $expectedResponse->setLatestMessage($latestMessage2);
         $expectedResponse->setContextSize($contextSize2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedConversation = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new SuggestConversationSummaryRequest())
-            ->setConversation($formattedConversation);
+        $request = new SuggestConversationSummaryRequest();
         $response = $gapicClient->suggestConversationSummary($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -620,8 +516,6 @@ class ConversationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Conversations/SuggestConversationSummary', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConversation();
-        $this->assertProtobufEquals($formattedConversation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -643,10 +537,7 @@ class ConversationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedConversation = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new SuggestConversationSummaryRequest())
-            ->setConversation($formattedConversation);
+        $request = new SuggestConversationSummaryRequest();
         try {
             $gapicClient->suggestConversationSummary($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -799,10 +690,7 @@ class ConversationsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setConversationProfile($conversationProfile);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
-        $request = (new CompleteConversationRequest())
-            ->setName($formattedName);
+        $request = new CompleteConversationRequest();
         $response = $gapicClient->completeConversationAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -810,8 +698,6 @@ class ConversationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Conversations/CompleteConversation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

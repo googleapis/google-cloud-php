@@ -26,36 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\InstancesClient;
-use Google\Cloud\Compute\V1\ShieldedInstanceConfig;
 use Google\Rpc\Status;
 
 /**
  * Updates the Shielded Instance config for an instance. You can only use this method on a stopped instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
  *
- * @param string $instance Name or id of the instance scoping this request.
- * @param string $project  Project ID for this request.
- * @param string $zone     The name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_shielded_instance_config_sample(
-    string $instance,
-    string $project,
-    string $zone
-): void {
+function update_shielded_instance_config_sample(): void
+{
     // Create a client.
     $instancesClient = new InstancesClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $shieldedInstanceConfigResource = new ShieldedInstanceConfig();
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->updateShieldedInstanceConfig(
-            $instance,
-            $project,
-            $shieldedInstanceConfigResource,
-            $zone
-        );
+        $response = $instancesClient->updateShieldedInstanceConfig();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -68,23 +58,5 @@ function update_shielded_instance_config_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $instance = '[INSTANCE]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    update_shielded_instance_config_sample($instance, $project, $zone);
 }
 // [END compute_v1_generated_Instances_UpdateShieldedInstanceConfig_sync]

@@ -44,8 +44,7 @@ class ListProcessesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the project and its location that owns this
-     *                       collection of processes. Please see
-     *                       {@see LineageClient::locationName()} for help formatting this field.
+     *                       collection of processes.
      *
      * @return \Google\Cloud\DataCatalog\Lineage\V1\ListProcessesRequest
      *

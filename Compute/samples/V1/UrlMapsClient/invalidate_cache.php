@@ -25,28 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_UrlMaps_InvalidateCache_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\CacheInvalidationRule;
 use Google\Cloud\Compute\V1\UrlMapsClient;
 use Google\Rpc\Status;
 
 /**
  * Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. For more information, see [Invalidating cached content](/cdn/docs/invalidating-cached-content).
  *
- * @param string $project Project ID for this request.
- * @param string $urlMap  Name of the UrlMap scoping this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function invalidate_cache_sample(string $project, string $urlMap): void
+function invalidate_cache_sample(): void
 {
     // Create a client.
     $urlMapsClient = new UrlMapsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $cacheInvalidationRuleResource = new CacheInvalidationRule();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $urlMapsClient->invalidateCache($cacheInvalidationRuleResource, $project, $urlMap);
+        $response = $urlMapsClient->invalidateCache();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,22 +58,5 @@ function invalidate_cache_sample(string $project, string $urlMap): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $urlMap = '[URL_MAP]';
-
-    invalidate_cache_sample($project, $urlMap);
 }
 // [END compute_v1_generated_UrlMaps_InvalidateCache_sync]

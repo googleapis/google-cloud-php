@@ -54,9 +54,7 @@ use Google\Cloud\Compute\V1\WithdrawPublicAdvertisedPrefixeRequest;
  * ```
  * $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
  * try {
- *     $project = 'project';
- *     $publicAdvertisedPrefix = 'public_advertised_prefix';
- *     $operationResponse = $publicAdvertisedPrefixesClient->announce($project, $publicAdvertisedPrefix);
+ *     $operationResponse = $publicAdvertisedPrefixesClient->announce();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -66,7 +64,7 @@ use Google\Cloud\Compute\V1\WithdrawPublicAdvertisedPrefixeRequest;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $publicAdvertisedPrefixesClient->announce($project, $publicAdvertisedPrefix);
+ *     $operationResponse = $publicAdvertisedPrefixesClient->announce();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $publicAdvertisedPrefixesClient->resumeOperation($operationName, 'announce');
@@ -166,9 +164,7 @@ class PublicAdvertisedPrefixesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -264,9 +260,7 @@ class PublicAdvertisedPrefixesGapicClient
      * ```
      * $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
      * try {
-     *     $project = 'project';
-     *     $publicAdvertisedPrefix = 'public_advertised_prefix';
-     *     $operationResponse = $publicAdvertisedPrefixesClient->announce($project, $publicAdvertisedPrefix);
+     *     $operationResponse = $publicAdvertisedPrefixesClient->announce();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -276,7 +270,7 @@ class PublicAdvertisedPrefixesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $publicAdvertisedPrefixesClient->announce($project, $publicAdvertisedPrefix);
+     *     $operationResponse = $publicAdvertisedPrefixesClient->announce();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $publicAdvertisedPrefixesClient->resumeOperation($operationName, 'announce');
@@ -295,11 +289,13 @@ class PublicAdvertisedPrefixesGapicClient
      * }
      * ```
      *
-     * @param string $project                Project ID for this request.
-     * @param string $publicAdvertisedPrefix The name of the public advertised prefix. It should comply with RFC1035.
-     * @param array  $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $publicAdvertisedPrefix
+     *           The name of the public advertised prefix. It should comply with RFC1035.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -312,14 +308,20 @@ class PublicAdvertisedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function announce($project, $publicAdvertisedPrefix, array $optionalArgs = [])
+    public function announce(array $optionalArgs = [])
     {
         $request = new AnnouncePublicAdvertisedPrefixeRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['public_advertised_prefix'] = $publicAdvertisedPrefix;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['publicAdvertisedPrefix'])) {
+            $request->setPublicAdvertisedPrefix($optionalArgs['publicAdvertisedPrefix']);
+            $requestParamHeaders['public_advertised_prefix'] = $optionalArgs['publicAdvertisedPrefix'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -336,9 +338,7 @@ class PublicAdvertisedPrefixesGapicClient
      * ```
      * $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
      * try {
-     *     $project = 'project';
-     *     $publicAdvertisedPrefix = 'public_advertised_prefix';
-     *     $operationResponse = $publicAdvertisedPrefixesClient->delete($project, $publicAdvertisedPrefix);
+     *     $operationResponse = $publicAdvertisedPrefixesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -348,7 +348,7 @@ class PublicAdvertisedPrefixesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $publicAdvertisedPrefixesClient->delete($project, $publicAdvertisedPrefix);
+     *     $operationResponse = $publicAdvertisedPrefixesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $publicAdvertisedPrefixesClient->resumeOperation($operationName, 'delete');
@@ -367,11 +367,13 @@ class PublicAdvertisedPrefixesGapicClient
      * }
      * ```
      *
-     * @param string $project                Project ID for this request.
-     * @param string $publicAdvertisedPrefix Name of the PublicAdvertisedPrefix resource to delete.
-     * @param array  $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $publicAdvertisedPrefix
+     *           Name of the PublicAdvertisedPrefix resource to delete.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -384,14 +386,20 @@ class PublicAdvertisedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($project, $publicAdvertisedPrefix, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeletePublicAdvertisedPrefixeRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['public_advertised_prefix'] = $publicAdvertisedPrefix;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['publicAdvertisedPrefix'])) {
+            $request->setPublicAdvertisedPrefix($optionalArgs['publicAdvertisedPrefix']);
+            $requestParamHeaders['public_advertised_prefix'] = $optionalArgs['publicAdvertisedPrefix'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -408,19 +416,19 @@ class PublicAdvertisedPrefixesGapicClient
      * ```
      * $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
      * try {
-     *     $project = 'project';
-     *     $publicAdvertisedPrefix = 'public_advertised_prefix';
-     *     $response = $publicAdvertisedPrefixesClient->get($project, $publicAdvertisedPrefix);
+     *     $response = $publicAdvertisedPrefixesClient->get();
      * } finally {
      *     $publicAdvertisedPrefixesClient->close();
      * }
      * ```
      *
-     * @param string $project                Project ID for this request.
-     * @param string $publicAdvertisedPrefix Name of the PublicAdvertisedPrefix resource to return.
-     * @param array  $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $publicAdvertisedPrefix
+     *           Name of the PublicAdvertisedPrefix resource to return.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -431,14 +439,20 @@ class PublicAdvertisedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($project, $publicAdvertisedPrefix, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetPublicAdvertisedPrefixeRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['public_advertised_prefix'] = $publicAdvertisedPrefix;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['publicAdvertisedPrefix'])) {
+            $request->setPublicAdvertisedPrefix($optionalArgs['publicAdvertisedPrefix']);
+            $requestParamHeaders['public_advertised_prefix'] = $optionalArgs['publicAdvertisedPrefix'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', PublicAdvertisedPrefix::class, $optionalArgs, $request)->wait();
@@ -451,9 +465,7 @@ class PublicAdvertisedPrefixesGapicClient
      * ```
      * $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
      * try {
-     *     $project = 'project';
-     *     $publicAdvertisedPrefixResource = new PublicAdvertisedPrefix();
-     *     $operationResponse = $publicAdvertisedPrefixesClient->insert($project, $publicAdvertisedPrefixResource);
+     *     $operationResponse = $publicAdvertisedPrefixesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -463,7 +475,7 @@ class PublicAdvertisedPrefixesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $publicAdvertisedPrefixesClient->insert($project, $publicAdvertisedPrefixResource);
+     *     $operationResponse = $publicAdvertisedPrefixesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $publicAdvertisedPrefixesClient->resumeOperation($operationName, 'insert');
@@ -482,11 +494,13 @@ class PublicAdvertisedPrefixesGapicClient
      * }
      * ```
      *
-     * @param string                 $project                        Project ID for this request.
-     * @param PublicAdvertisedPrefix $publicAdvertisedPrefixResource The body resource for this request
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type PublicAdvertisedPrefix $publicAdvertisedPrefixResource
+     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -499,13 +513,19 @@ class PublicAdvertisedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($project, $publicAdvertisedPrefixResource, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertPublicAdvertisedPrefixeRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setPublicAdvertisedPrefixResource($publicAdvertisedPrefixResource);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['publicAdvertisedPrefixResource'])) {
+            $request->setPublicAdvertisedPrefixResource($optionalArgs['publicAdvertisedPrefixResource']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -522,9 +542,8 @@ class PublicAdvertisedPrefixesGapicClient
      * ```
      * $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $publicAdvertisedPrefixesClient->list($project);
+     *     $pagedResponse = $publicAdvertisedPrefixesClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -532,7 +551,7 @@ class PublicAdvertisedPrefixesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $publicAdvertisedPrefixesClient->list($project);
+     *     $pagedResponse = $publicAdvertisedPrefixesClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -541,8 +560,7 @@ class PublicAdvertisedPrefixesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -556,6 +574,8 @@ class PublicAdvertisedPrefixesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -568,12 +588,10 @@ class PublicAdvertisedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListPublicAdvertisedPrefixesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -588,6 +606,11 @@ class PublicAdvertisedPrefixesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -606,10 +629,7 @@ class PublicAdvertisedPrefixesGapicClient
      * ```
      * $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
      * try {
-     *     $project = 'project';
-     *     $publicAdvertisedPrefix = 'public_advertised_prefix';
-     *     $publicAdvertisedPrefixResource = new PublicAdvertisedPrefix();
-     *     $operationResponse = $publicAdvertisedPrefixesClient->patch($project, $publicAdvertisedPrefix, $publicAdvertisedPrefixResource);
+     *     $operationResponse = $publicAdvertisedPrefixesClient->patch();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -619,7 +639,7 @@ class PublicAdvertisedPrefixesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $publicAdvertisedPrefixesClient->patch($project, $publicAdvertisedPrefix, $publicAdvertisedPrefixResource);
+     *     $operationResponse = $publicAdvertisedPrefixesClient->patch();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $publicAdvertisedPrefixesClient->resumeOperation($operationName, 'patch');
@@ -638,12 +658,15 @@ class PublicAdvertisedPrefixesGapicClient
      * }
      * ```
      *
-     * @param string                 $project                        Project ID for this request.
-     * @param string                 $publicAdvertisedPrefix         Name of the PublicAdvertisedPrefix resource to patch.
-     * @param PublicAdvertisedPrefix $publicAdvertisedPrefixResource The body resource for this request
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $publicAdvertisedPrefix
+     *           Name of the PublicAdvertisedPrefix resource to patch.
+     *     @type PublicAdvertisedPrefix $publicAdvertisedPrefixResource
+     *           The body resource for this request
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -656,15 +679,24 @@ class PublicAdvertisedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch($project, $publicAdvertisedPrefix, $publicAdvertisedPrefixResource, array $optionalArgs = [])
+    public function patch(array $optionalArgs = [])
     {
         $request = new PatchPublicAdvertisedPrefixeRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
-        $request->setPublicAdvertisedPrefixResource($publicAdvertisedPrefixResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['public_advertised_prefix'] = $publicAdvertisedPrefix;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['publicAdvertisedPrefix'])) {
+            $request->setPublicAdvertisedPrefix($optionalArgs['publicAdvertisedPrefix']);
+            $requestParamHeaders['public_advertised_prefix'] = $optionalArgs['publicAdvertisedPrefix'];
+        }
+
+        if (isset($optionalArgs['publicAdvertisedPrefixResource'])) {
+            $request->setPublicAdvertisedPrefixResource($optionalArgs['publicAdvertisedPrefixResource']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -681,9 +713,7 @@ class PublicAdvertisedPrefixesGapicClient
      * ```
      * $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
      * try {
-     *     $project = 'project';
-     *     $publicAdvertisedPrefix = 'public_advertised_prefix';
-     *     $operationResponse = $publicAdvertisedPrefixesClient->withdraw($project, $publicAdvertisedPrefix);
+     *     $operationResponse = $publicAdvertisedPrefixesClient->withdraw();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -693,7 +723,7 @@ class PublicAdvertisedPrefixesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $publicAdvertisedPrefixesClient->withdraw($project, $publicAdvertisedPrefix);
+     *     $operationResponse = $publicAdvertisedPrefixesClient->withdraw();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $publicAdvertisedPrefixesClient->resumeOperation($operationName, 'withdraw');
@@ -712,11 +742,13 @@ class PublicAdvertisedPrefixesGapicClient
      * }
      * ```
      *
-     * @param string $project                Project ID for this request.
-     * @param string $publicAdvertisedPrefix The name of the public advertised prefix. It should comply with RFC1035.
-     * @param array  $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $publicAdvertisedPrefix
+     *           The name of the public advertised prefix. It should comply with RFC1035.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -729,14 +761,20 @@ class PublicAdvertisedPrefixesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function withdraw($project, $publicAdvertisedPrefix, array $optionalArgs = [])
+    public function withdraw(array $optionalArgs = [])
     {
         $request = new WithdrawPublicAdvertisedPrefixeRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['public_advertised_prefix'] = $publicAdvertisedPrefix;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['publicAdvertisedPrefix'])) {
+            $request->setPublicAdvertisedPrefix($optionalArgs['publicAdvertisedPrefix']);
+            $requestParamHeaders['public_advertised_prefix'] = $optionalArgs['publicAdvertisedPrefix'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

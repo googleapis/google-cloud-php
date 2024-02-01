@@ -23,8 +23,7 @@ class GetIssueModelRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the issue model to get. Please see
-     *                     {@see ContactCenterInsightsClient::issueModelName()} for help formatting this field.
+     * @param string $name Required. The name of the issue model to get.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\GetIssueModelRequest
      *

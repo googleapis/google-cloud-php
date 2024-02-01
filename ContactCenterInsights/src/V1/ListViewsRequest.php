@@ -40,8 +40,7 @@ class ListViewsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The parent resource of the views. Please see
-     *                       {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent resource of the views.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\ListViewsRequest
      *

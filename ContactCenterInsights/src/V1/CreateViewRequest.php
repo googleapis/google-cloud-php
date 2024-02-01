@@ -36,7 +36,6 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
      *                                                            a view for.
      *                                                            Format: `projects/<Project ID>/locations/<Location ID>` or
      *                                                            `projects/<Project Number>/locations/<Location ID>`
-     *                                                            Please see {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\ContactCenterInsights\V1\View $view   Required. The view resource to create.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\CreateViewRequest

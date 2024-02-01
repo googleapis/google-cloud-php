@@ -331,10 +331,7 @@ class DatastoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $outputUrlPrefix = 'outputUrlPrefix1058210144';
-        $response = $gapicClient->exportEntities($projectId, $outputUrlPrefix);
+        $response = $gapicClient->exportEntities();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -344,10 +341,6 @@ class DatastoreAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.admin.v1.DatastoreAdmin/ExportEntities', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getOutputUrlPrefix();
-        $this->assertProtobufEquals($outputUrlPrefix, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportEntitiesTest');
         $response->pollUntilComplete([
@@ -398,10 +391,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $outputUrlPrefix = 'outputUrlPrefix1058210144';
-        $response = $gapicClient->exportEntities($projectId, $outputUrlPrefix);
+        $response = $gapicClient->exportEntities();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -510,10 +500,7 @@ class DatastoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $inputUrl = 'inputUrl1707300730';
-        $response = $gapicClient->importEntities($projectId, $inputUrl);
+        $response = $gapicClient->importEntities();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -523,10 +510,6 @@ class DatastoreAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.admin.v1.DatastoreAdmin/ImportEntities', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputUrl();
-        $this->assertProtobufEquals($inputUrl, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importEntitiesTest');
         $response->pollUntilComplete([
@@ -577,10 +560,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $inputUrl = 'inputUrl1707300730';
-        $response = $gapicClient->importEntities($projectId, $inputUrl);
+        $response = $gapicClient->importEntities();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

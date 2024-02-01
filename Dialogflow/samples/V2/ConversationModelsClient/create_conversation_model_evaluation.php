@@ -33,21 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates evaluation of a conversation model.
  *
- * @param string $formattedParent The conversation model resource name. Format:
- *                                `projects/<Project ID>/locations/<Location
- *                                ID>/conversationModels/<Conversation Model ID>`
- *                                Please see {@see ConversationModelsClient::conversationModelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_conversation_model_evaluation_sample(string $formattedParent): void
+function create_conversation_model_evaluation_sample(): void
 {
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
     // Prepare the request message.
-    $conversationModelEvaluation = new ConversationModelEvaluation();
-    $request = (new CreateConversationModelEvaluationRequest())
-        ->setParent($formattedParent)
-        ->setConversationModelEvaluation($conversationModelEvaluation);
+    $request = new CreateConversationModelEvaluationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,25 +65,5 @@ function create_conversation_model_evaluation_sample(string $formattedParent): v
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConversationModelsClient::conversationModelName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONVERSATION_MODEL]'
-    );
-
-    create_conversation_model_evaluation_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_ConversationModels_CreateConversationModelEvaluation_sync]

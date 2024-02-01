@@ -79,10 +79,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
  * try {
- *     $formattedParent = $dataprocMetastoreFederationClient->locationName('[PROJECT]', '[LOCATION]');
- *     $federationId = 'federation_id';
- *     $federation = new Federation();
- *     $operationResponse = $dataprocMetastoreFederationClient->createFederation($formattedParent, $federationId, $federation);
+ *     $operationResponse = $dataprocMetastoreFederationClient->createFederation();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -93,7 +90,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $dataprocMetastoreFederationClient->createFederation($formattedParent, $federationId, $federation);
+ *     $operationResponse = $dataprocMetastoreFederationClient->createFederation();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $dataprocMetastoreFederationClient->resumeOperation($operationName, 'createFederation');
@@ -394,10 +391,7 @@ class DataprocMetastoreFederationGapicClient
      * ```
      * $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
      * try {
-     *     $formattedParent = $dataprocMetastoreFederationClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $federationId = 'federation_id';
-     *     $federation = new Federation();
-     *     $operationResponse = $dataprocMetastoreFederationClient->createFederation($formattedParent, $federationId, $federation);
+     *     $operationResponse = $dataprocMetastoreFederationClient->createFederation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -408,7 +402,7 @@ class DataprocMetastoreFederationGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreFederationClient->createFederation($formattedParent, $federationId, $federation);
+     *     $operationResponse = $dataprocMetastoreFederationClient->createFederation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreFederationClient->resumeOperation($operationName, 'createFederation');
@@ -428,22 +422,25 @@ class DataprocMetastoreFederationGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The relative resource name of the location in which to create a
-     *                                 federation service, in the following form:
-     *
-     *                                 `projects/{project_number}/locations/{location_id}`.
-     * @param string     $federationId Required. The ID of the metastore federation, which is used as the final
-     *                                 component of the metastore federation's name.
-     *
-     *                                 This value must be between 2 and 63 characters long inclusive, begin with a
-     *                                 letter, end with a letter or number, and consist of alpha-numeric
-     *                                 ASCII characters or hyphens.
-     * @param Federation $federation   Required. The Metastore Federation to create. The `name` field is
-     *                                 ignored. The ID of the created metastore federation must be
-     *                                 provided in the request's `federation_id` field.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The relative resource name of the location in which to create a
+     *           federation service, in the following form:
+     *
+     *           `projects/{project_number}/locations/{location_id}`.
+     *     @type string $federationId
+     *           Required. The ID of the metastore federation, which is used as the final
+     *           component of the metastore federation's name.
+     *
+     *           This value must be between 2 and 63 characters long inclusive, begin with a
+     *           letter, end with a letter or number, and consist of alpha-numeric
+     *           ASCII characters or hyphens.
+     *     @type Federation $federation
+     *           Required. The Metastore Federation to create. The `name` field is
+     *           ignored. The ID of the created metastore federation must be
+     *           provided in the request's `federation_id` field.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -469,14 +466,23 @@ class DataprocMetastoreFederationGapicClient
      *
      * @experimental
      */
-    public function createFederation($parent, $federationId, $federation, array $optionalArgs = [])
+    public function createFederation(array $optionalArgs = [])
     {
         $request = new CreateFederationRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFederationId($federationId);
-        $request->setFederation($federation);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['federationId'])) {
+            $request->setFederationId($optionalArgs['federationId']);
+        }
+
+        if (isset($optionalArgs['federation'])) {
+            $request->setFederation($optionalArgs['federation']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -493,8 +499,7 @@ class DataprocMetastoreFederationGapicClient
      * ```
      * $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
      * try {
-     *     $formattedName = $dataprocMetastoreFederationClient->federationName('[PROJECT]', '[LOCATION]', '[FEDERATION]');
-     *     $operationResponse = $dataprocMetastoreFederationClient->deleteFederation($formattedName);
+     *     $operationResponse = $dataprocMetastoreFederationClient->deleteFederation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -504,7 +509,7 @@ class DataprocMetastoreFederationGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreFederationClient->deleteFederation($formattedName);
+     *     $operationResponse = $dataprocMetastoreFederationClient->deleteFederation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreFederationClient->resumeOperation($operationName, 'deleteFederation');
@@ -523,13 +528,14 @@ class DataprocMetastoreFederationGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The relative resource name of the metastore federation to delete,
-     *                             in the following form:
-     *
-     *                             `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The relative resource name of the metastore federation to delete,
+     *           in the following form:
+     *
+     *           `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -555,12 +561,15 @@ class DataprocMetastoreFederationGapicClient
      *
      * @experimental
      */
-    public function deleteFederation($name, array $optionalArgs = [])
+    public function deleteFederation(array $optionalArgs = [])
     {
         $request = new DeleteFederationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -577,20 +586,20 @@ class DataprocMetastoreFederationGapicClient
      * ```
      * $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
      * try {
-     *     $formattedName = $dataprocMetastoreFederationClient->federationName('[PROJECT]', '[LOCATION]', '[FEDERATION]');
-     *     $response = $dataprocMetastoreFederationClient->getFederation($formattedName);
+     *     $response = $dataprocMetastoreFederationClient->getFederation();
      * } finally {
      *     $dataprocMetastoreFederationClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The relative resource name of the metastore federation to
-     *                             retrieve, in the following form:
-     *
-     *                             `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The relative resource name of the metastore federation to
+     *           retrieve, in the following form:
+     *
+     *           `projects/{project_number}/locations/{location_id}/federations/{federation_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -603,12 +612,15 @@ class DataprocMetastoreFederationGapicClient
      *
      * @experimental
      */
-    public function getFederation($name, array $optionalArgs = [])
+    public function getFederation(array $optionalArgs = [])
     {
         $request = new GetFederationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetFederation', Federation::class, $optionalArgs, $request)->wait();
@@ -621,9 +633,8 @@ class DataprocMetastoreFederationGapicClient
      * ```
      * $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
      * try {
-     *     $formattedParent = $dataprocMetastoreFederationClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataprocMetastoreFederationClient->listFederations($formattedParent);
+     *     $pagedResponse = $dataprocMetastoreFederationClient->listFederations();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -631,7 +642,7 @@ class DataprocMetastoreFederationGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataprocMetastoreFederationClient->listFederations($formattedParent);
+     *     $pagedResponse = $dataprocMetastoreFederationClient->listFederations();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -640,12 +651,13 @@ class DataprocMetastoreFederationGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The relative resource name of the location of metastore
-     *                             federations to list, in the following form:
-     *                             `projects/{project_number}/locations/{location_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The relative resource name of the location of metastore
+     *           federations to list, in the following form:
+     *           `projects/{project_number}/locations/{location_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -673,12 +685,15 @@ class DataprocMetastoreFederationGapicClient
      *
      * @experimental
      */
-    public function listFederations($parent, array $optionalArgs = [])
+    public function listFederations(array $optionalArgs = [])
     {
         $request = new ListFederationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -707,9 +722,7 @@ class DataprocMetastoreFederationGapicClient
      * ```
      * $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $federation = new Federation();
-     *     $operationResponse = $dataprocMetastoreFederationClient->updateFederation($updateMask, $federation);
+     *     $operationResponse = $dataprocMetastoreFederationClient->updateFederation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -720,7 +733,7 @@ class DataprocMetastoreFederationGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataprocMetastoreFederationClient->updateFederation($updateMask, $federation);
+     *     $operationResponse = $dataprocMetastoreFederationClient->updateFederation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataprocMetastoreFederationClient->resumeOperation($operationName, 'updateFederation');
@@ -740,18 +753,20 @@ class DataprocMetastoreFederationGapicClient
      * }
      * ```
      *
-     * @param FieldMask  $updateMask   Required. A field mask used to specify the fields to be overwritten in the
-     *                                 metastore federation resource by the update.
-     *                                 Fields specified in the `update_mask` are relative to the resource (not
-     *                                 to the full request). A field is overwritten if it is in the mask.
-     * @param Federation $federation   Required. The metastore federation to update. The server only merges fields
-     *                                 in the service if they are specified in `update_mask`.
-     *
-     *                                 The metastore federation's `name` field is used to identify the
-     *                                 metastore service to be updated.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. A field mask used to specify the fields to be overwritten in the
+     *           metastore federation resource by the update.
+     *           Fields specified in the `update_mask` are relative to the resource (not
+     *           to the full request). A field is overwritten if it is in the mask.
+     *     @type Federation $federation
+     *           Required. The metastore federation to update. The server only merges fields
+     *           in the service if they are specified in `update_mask`.
+     *
+     *           The metastore federation's `name` field is used to identify the
+     *           metastore service to be updated.
      *     @type string $requestId
      *           Optional. A request ID. Specify a unique request ID to allow the server to
      *           ignore the request if it has completed. The server will ignore subsequent
@@ -777,13 +792,18 @@ class DataprocMetastoreFederationGapicClient
      *
      * @experimental
      */
-    public function updateFederation($updateMask, $federation, array $optionalArgs = [])
+    public function updateFederation(array $optionalArgs = [])
     {
         $request = new UpdateFederationRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setFederation($federation);
-        $requestParamHeaders['federation.name'] = $federation->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['federation'])) {
+            $request->setFederation($optionalArgs['federation']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -924,18 +944,18 @@ class DataprocMetastoreFederationGapicClient
      * ```
      * $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $dataprocMetastoreFederationClient->getIamPolicy($resource);
+     *     $response = $dataprocMetastoreFederationClient->getIamPolicy();
      * } finally {
      *     $dataprocMetastoreFederationClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -951,12 +971,15 @@ class DataprocMetastoreFederationGapicClient
      *
      * @experimental
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -977,23 +1000,23 @@ class DataprocMetastoreFederationGapicClient
      * ```
      * $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $dataprocMetastoreFederationClient->setIamPolicy($resource, $policy);
+     *     $response = $dataprocMetastoreFederationClient->setIamPolicy();
      * } finally {
      *     $dataprocMetastoreFederationClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1012,13 +1035,19 @@ class DataprocMetastoreFederationGapicClient
      *
      * @experimental
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1041,23 +1070,23 @@ class DataprocMetastoreFederationGapicClient
      * ```
      * $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $dataprocMetastoreFederationClient->testIamPermissions($resource, $permissions);
+     *     $response = $dataprocMetastoreFederationClient->testIamPermissions();
      * } finally {
      *     $dataprocMetastoreFederationClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1070,13 +1099,19 @@ class DataprocMetastoreFederationGapicClient
      *
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

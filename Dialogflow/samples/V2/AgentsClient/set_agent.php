@@ -35,36 +35,19 @@ use Google\Cloud\Dialogflow\V2\SetAgentRequest;
  * [training
  * documentation](https://cloud.google.com/dialogflow/es/docs/training).
  *
- * @param string $formattedAgentParent     The project of this agent.
- *                                         Format: `projects/<Project ID>`. Please see
- *                                         {@see AgentsClient::projectName()} for help formatting this field.
- * @param string $agentDisplayName         The name of this agent.
- * @param string $agentDefaultLanguageCode The default language of the agent as a language tag. See
- *                                         [Language
- *                                         Support](https://cloud.google.com/dialogflow/docs/reference/language)
- *                                         for a list of the currently supported language codes. This field cannot be
- *                                         set by the `Update` method.
- * @param string $agentTimeZone            The time zone of this agent from the
- *                                         [time zone database](https://www.iana.org/time-zones), e.g.,
- *                                         America/New_York, Europe/Paris.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_agent_sample(
-    string $formattedAgentParent,
-    string $agentDisplayName,
-    string $agentDefaultLanguageCode,
-    string $agentTimeZone
-): void {
+function set_agent_sample(): void
+{
     // Create a client.
     $agentsClient = new AgentsClient();
 
     // Prepare the request message.
-    $agent = (new Agent())
-        ->setParent($formattedAgentParent)
-        ->setDisplayName($agentDisplayName)
-        ->setDefaultLanguageCode($agentDefaultLanguageCode)
-        ->setTimeZone($agentTimeZone);
-    $request = (new SetAgentRequest())
-        ->setAgent($agent);
+    $request = new SetAgentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,29 +57,5 @@ function set_agent_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedAgentParent = AgentsClient::projectName('[PROJECT]');
-    $agentDisplayName = '[DISPLAY_NAME]';
-    $agentDefaultLanguageCode = '[DEFAULT_LANGUAGE_CODE]';
-    $agentTimeZone = '[TIME_ZONE]';
-
-    set_agent_sample(
-        $formattedAgentParent,
-        $agentDisplayName,
-        $agentDefaultLanguageCode,
-        $agentTimeZone
-    );
 }
 // [END dialogflow_v2_generated_Agents_SetAgent_sync]

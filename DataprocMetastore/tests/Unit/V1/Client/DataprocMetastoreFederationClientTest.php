@@ -47,7 +47,6 @@ use Google\Cloud\Metastore\V1\UpdateFederationRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -119,14 +118,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $federationId = 'federationId-1338699881';
-        $federation = new Federation();
-        $request = (new CreateFederationRequest())
-            ->setParent($formattedParent)
-            ->setFederationId($federationId)
-            ->setFederation($federation);
+        $request = new CreateFederationRequest();
         $response = $gapicClient->createFederation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -137,12 +129,6 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastoreFederation/CreateFederation', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFederationId();
-        $this->assertProtobufEquals($federationId, $actualValue);
-        $actualValue = $actualApiRequestObject->getFederation();
-        $this->assertProtobufEquals($federation, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createFederationTest');
         $response->pollUntilComplete([
@@ -193,14 +179,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $federationId = 'federationId-1338699881';
-        $federation = new Federation();
-        $request = (new CreateFederationRequest())
-            ->setParent($formattedParent)
-            ->setFederationId($federationId)
-            ->setFederation($federation);
+        $request = new CreateFederationRequest();
         $response = $gapicClient->createFederation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -252,10 +231,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->federationName('[PROJECT]', '[LOCATION]', '[FEDERATION]');
-        $request = (new DeleteFederationRequest())
-            ->setName($formattedName);
+        $request = new DeleteFederationRequest();
         $response = $gapicClient->deleteFederation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -266,8 +242,6 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastoreFederation/DeleteFederation', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteFederationTest');
         $response->pollUntilComplete([
@@ -318,10 +292,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->federationName('[PROJECT]', '[LOCATION]', '[FEDERATION]');
-        $request = (new DeleteFederationRequest())
-            ->setName($formattedName);
+        $request = new DeleteFederationRequest();
         $response = $gapicClient->deleteFederation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -365,10 +336,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $expectedResponse->setStateMessage($stateMessage);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->federationName('[PROJECT]', '[LOCATION]', '[FEDERATION]');
-        $request = (new GetFederationRequest())
-            ->setName($formattedName);
+        $request = new GetFederationRequest();
         $response = $gapicClient->getFederation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -376,8 +344,6 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastoreFederation/GetFederation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -399,10 +365,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->federationName('[PROJECT]', '[LOCATION]', '[FEDERATION]');
-        $request = (new GetFederationRequest())
-            ->setName($formattedName);
+        $request = new GetFederationRequest();
         try {
             $gapicClient->getFederation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -434,10 +397,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFederations($federations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFederationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListFederationsRequest();
         $response = $gapicClient->listFederations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -448,8 +408,6 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastoreFederation/ListFederations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -471,10 +429,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFederationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListFederationsRequest();
         try {
             $gapicClient->listFederations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -527,12 +482,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $federation = new Federation();
-        $request = (new UpdateFederationRequest())
-            ->setUpdateMask($updateMask)
-            ->setFederation($federation);
+        $request = new UpdateFederationRequest();
         $response = $gapicClient->updateFederation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -543,10 +493,6 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastoreFederation/UpdateFederation', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getFederation();
-        $this->assertProtobufEquals($federation, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateFederationTest');
         $response->pollUntilComplete([
@@ -597,12 +543,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $federation = new Federation();
-        $request = (new UpdateFederationRequest())
-            ->setUpdateMask($updateMask)
-            ->setFederation($federation);
+        $request = new UpdateFederationRequest();
         $response = $gapicClient->updateFederation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -764,10 +705,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -775,8 +713,6 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -798,10 +734,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -830,12 +763,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -843,10 +771,6 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -868,12 +792,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -898,12 +817,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -911,10 +825,6 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -936,12 +846,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -994,14 +899,7 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $federationId = 'federationId-1338699881';
-        $federation = new Federation();
-        $request = (new CreateFederationRequest())
-            ->setParent($formattedParent)
-            ->setFederationId($federationId)
-            ->setFederation($federation);
+        $request = new CreateFederationRequest();
         $response = $gapicClient->createFederationAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1012,12 +910,6 @@ class DataprocMetastoreFederationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.metastore.v1.DataprocMetastoreFederation/CreateFederation', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFederationId();
-        $this->assertProtobufEquals($federationId, $actualValue);
-        $actualValue = $actualApiRequestObject->getFederation();
-        $this->assertProtobufEquals($federation, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createFederationTest');
         $response->pollUntilComplete([

@@ -5,9 +5,7 @@ return [
         'google.cloud.compute.v1.Networks' => [
             'AddPeering' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -36,9 +34,7 @@ return [
             ],
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -67,9 +63,7 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -92,9 +86,7 @@ return [
             ],
             'Patch' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -123,9 +115,7 @@ return [
             ],
             'RemovePeering' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -154,9 +144,7 @@ return [
             ],
             'SwitchToCustomMode' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -185,9 +173,7 @@ return [
             ],
             'UpdatePeering' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

@@ -68,8 +68,7 @@ use Google\LongRunning\Operation;
  * ```
  * $conversationModelsClient = new ConversationModelsClient();
  * try {
- *     $conversationModel = new ConversationModel();
- *     $operationResponse = $conversationModelsClient->createConversationModel($conversationModel);
+ *     $operationResponse = $conversationModelsClient->createConversationModel();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -80,7 +79,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $conversationModelsClient->createConversationModel($conversationModel);
+ *     $operationResponse = $conversationModelsClient->createConversationModel();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $conversationModelsClient->resumeOperation($operationName, 'createConversationModel');
@@ -637,8 +636,7 @@ class ConversationModelsGapicClient
      * ```
      * $conversationModelsClient = new ConversationModelsClient();
      * try {
-     *     $conversationModel = new ConversationModel();
-     *     $operationResponse = $conversationModelsClient->createConversationModel($conversationModel);
+     *     $operationResponse = $conversationModelsClient->createConversationModel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -649,7 +647,7 @@ class ConversationModelsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $conversationModelsClient->createConversationModel($conversationModel);
+     *     $operationResponse = $conversationModelsClient->createConversationModel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $conversationModelsClient->resumeOperation($operationName, 'createConversationModel');
@@ -669,13 +667,14 @@ class ConversationModelsGapicClient
      * }
      * ```
      *
-     * @param ConversationModel $conversationModel Required. The conversation model to create.
-     * @param array             $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $parent
      *           The project to create conversation model for. Format:
      *           `projects/<Project ID>`
+     *     @type ConversationModel $conversationModel
+     *           Required. The conversation model to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -686,14 +685,17 @@ class ConversationModelsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createConversationModel($conversationModel, array $optionalArgs = [])
+    public function createConversationModel(array $optionalArgs = [])
     {
         $request = new CreateConversationModelRequest();
         $requestParamHeaders = [];
-        $request->setConversationModel($conversationModel);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['conversationModel'])) {
+            $request->setConversationModel($optionalArgs['conversationModel']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -708,9 +710,7 @@ class ConversationModelsGapicClient
      * ```
      * $conversationModelsClient = new ConversationModelsClient();
      * try {
-     *     $formattedParent = $conversationModelsClient->conversationModelName('[PROJECT]', '[LOCATION]', '[CONVERSATION_MODEL]');
-     *     $conversationModelEvaluation = new ConversationModelEvaluation();
-     *     $operationResponse = $conversationModelsClient->createConversationModelEvaluation($formattedParent, $conversationModelEvaluation);
+     *     $operationResponse = $conversationModelsClient->createConversationModelEvaluation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -721,7 +721,7 @@ class ConversationModelsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $conversationModelsClient->createConversationModelEvaluation($formattedParent, $conversationModelEvaluation);
+     *     $operationResponse = $conversationModelsClient->createConversationModelEvaluation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $conversationModelsClient->resumeOperation($operationName, 'createConversationModelEvaluation');
@@ -741,13 +741,15 @@ class ConversationModelsGapicClient
      * }
      * ```
      *
-     * @param string                      $parent                      Required. The conversation model resource name. Format:
-     *                                                                 `projects/<Project ID>/locations/<Location
-     *                                                                 ID>/conversationModels/<Conversation Model ID>`
-     * @param ConversationModelEvaluation $conversationModelEvaluation Required. The conversation model evaluation to be created.
-     * @param array                       $optionalArgs                {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The conversation model resource name. Format:
+     *           `projects/<Project ID>/locations/<Location
+     *           ID>/conversationModels/<Conversation Model ID>`
+     *     @type ConversationModelEvaluation $conversationModelEvaluation
+     *           Required. The conversation model evaluation to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -758,13 +760,19 @@ class ConversationModelsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createConversationModelEvaluation($parent, $conversationModelEvaluation, array $optionalArgs = [])
+    public function createConversationModelEvaluation(array $optionalArgs = [])
     {
         $request = new CreateConversationModelEvaluationRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setConversationModelEvaluation($conversationModelEvaluation);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['conversationModelEvaluation'])) {
+            $request->setConversationModelEvaluation($optionalArgs['conversationModelEvaluation']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateConversationModelEvaluation', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -786,8 +794,7 @@ class ConversationModelsGapicClient
      * ```
      * $conversationModelsClient = new ConversationModelsClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $conversationModelsClient->deleteConversationModel($name);
+     *     $operationResponse = $conversationModelsClient->deleteConversationModel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -797,7 +804,7 @@ class ConversationModelsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $conversationModelsClient->deleteConversationModel($name);
+     *     $operationResponse = $conversationModelsClient->deleteConversationModel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $conversationModelsClient->resumeOperation($operationName, 'deleteConversationModel');
@@ -816,11 +823,12 @@ class ConversationModelsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The conversation model to delete. Format:
-     *                             `projects/<Project ID>/conversationModels/<Conversation Model ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The conversation model to delete. Format:
+     *           `projects/<Project ID>/conversationModels/<Conversation Model ID>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -831,12 +839,15 @@ class ConversationModelsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteConversationModel($name, array $optionalArgs = [])
+    public function deleteConversationModel(array $optionalArgs = [])
     {
         $request = new DeleteConversationModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteConversationModel', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -861,8 +872,7 @@ class ConversationModelsGapicClient
      * ```
      * $conversationModelsClient = new ConversationModelsClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $conversationModelsClient->deployConversationModel($name);
+     *     $operationResponse = $conversationModelsClient->deployConversationModel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -872,7 +882,7 @@ class ConversationModelsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $conversationModelsClient->deployConversationModel($name);
+     *     $operationResponse = $conversationModelsClient->deployConversationModel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $conversationModelsClient->resumeOperation($operationName, 'deployConversationModel');
@@ -891,11 +901,12 @@ class ConversationModelsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The conversation model to deploy. Format:
-     *                             `projects/<Project ID>/conversationModels/<Conversation Model ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The conversation model to deploy. Format:
+     *           `projects/<Project ID>/conversationModels/<Conversation Model ID>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -906,12 +917,15 @@ class ConversationModelsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deployConversationModel($name, array $optionalArgs = [])
+    public function deployConversationModel(array $optionalArgs = [])
     {
         $request = new DeployConversationModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeployConversationModel', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -924,18 +938,18 @@ class ConversationModelsGapicClient
      * ```
      * $conversationModelsClient = new ConversationModelsClient();
      * try {
-     *     $name = 'name';
-     *     $response = $conversationModelsClient->getConversationModel($name);
+     *     $response = $conversationModelsClient->getConversationModel();
      * } finally {
      *     $conversationModelsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The conversation model to retrieve. Format:
-     *                             `projects/<Project ID>/conversationModels/<Conversation Model ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The conversation model to retrieve. Format:
+     *           `projects/<Project ID>/conversationModels/<Conversation Model ID>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -946,12 +960,15 @@ class ConversationModelsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConversationModel($name, array $optionalArgs = [])
+    public function getConversationModel(array $optionalArgs = [])
     {
         $request = new GetConversationModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetConversationModel', ConversationModel::class, $optionalArgs, $request)->wait();
@@ -964,19 +981,19 @@ class ConversationModelsGapicClient
      * ```
      * $conversationModelsClient = new ConversationModelsClient();
      * try {
-     *     $name = 'name';
-     *     $response = $conversationModelsClient->getConversationModelEvaluation($name);
+     *     $response = $conversationModelsClient->getConversationModelEvaluation();
      * } finally {
      *     $conversationModelsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The conversation model evaluation resource name. Format:
-     *                             `projects/<Project ID>/conversationModels/<Conversation Model
-     *                             ID>/evaluations/<Evaluation ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The conversation model evaluation resource name. Format:
+     *           `projects/<Project ID>/conversationModels/<Conversation Model
+     *           ID>/evaluations/<Evaluation ID>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -987,12 +1004,15 @@ class ConversationModelsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConversationModelEvaluation($name, array $optionalArgs = [])
+    public function getConversationModelEvaluation(array $optionalArgs = [])
     {
         $request = new GetConversationModelEvaluationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetConversationModelEvaluation', ConversationModelEvaluation::class, $optionalArgs, $request)->wait();
@@ -1005,9 +1025,8 @@ class ConversationModelsGapicClient
      * ```
      * $conversationModelsClient = new ConversationModelsClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $conversationModelsClient->listConversationModelEvaluations($parent);
+     *     $pagedResponse = $conversationModelsClient->listConversationModelEvaluations();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1015,7 +1034,7 @@ class ConversationModelsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $conversationModelsClient->listConversationModelEvaluations($parent);
+     *     $pagedResponse = $conversationModelsClient->listConversationModelEvaluations();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1024,11 +1043,12 @@ class ConversationModelsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The conversation model resource name. Format:
-     *                             `projects/<Project ID>/conversationModels/<Conversation Model ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The conversation model resource name. Format:
+     *           `projects/<Project ID>/conversationModels/<Conversation Model ID>`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1048,12 +1068,15 @@ class ConversationModelsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConversationModelEvaluations($parent, array $optionalArgs = [])
+    public function listConversationModelEvaluations(array $optionalArgs = [])
     {
         $request = new ListConversationModelEvaluationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1074,9 +1097,8 @@ class ConversationModelsGapicClient
      * ```
      * $conversationModelsClient = new ConversationModelsClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $conversationModelsClient->listConversationModels($parent);
+     *     $pagedResponse = $conversationModelsClient->listConversationModels();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1084,7 +1106,7 @@ class ConversationModelsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $conversationModelsClient->listConversationModels($parent);
+     *     $pagedResponse = $conversationModelsClient->listConversationModels();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1093,11 +1115,12 @@ class ConversationModelsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project to list all conversation models for.
-     *                             Format: `projects/<Project ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project to list all conversation models for.
+     *           Format: `projects/<Project ID>`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1117,12 +1140,15 @@ class ConversationModelsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConversationModels($parent, array $optionalArgs = [])
+    public function listConversationModels(array $optionalArgs = [])
     {
         $request = new ListConversationModelsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1155,8 +1181,7 @@ class ConversationModelsGapicClient
      * ```
      * $conversationModelsClient = new ConversationModelsClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $conversationModelsClient->undeployConversationModel($name);
+     *     $operationResponse = $conversationModelsClient->undeployConversationModel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1166,7 +1191,7 @@ class ConversationModelsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $conversationModelsClient->undeployConversationModel($name);
+     *     $operationResponse = $conversationModelsClient->undeployConversationModel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $conversationModelsClient->resumeOperation($operationName, 'undeployConversationModel');
@@ -1185,11 +1210,12 @@ class ConversationModelsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The conversation model to undeploy. Format:
-     *                             `projects/<Project ID>/conversationModels/<Conversation Model ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The conversation model to undeploy. Format:
+     *           `projects/<Project ID>/conversationModels/<Conversation Model ID>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1200,12 +1226,15 @@ class ConversationModelsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeployConversationModel($name, array $optionalArgs = [])
+    public function undeployConversationModel(array $optionalArgs = [])
     {
         $request = new UndeployConversationModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UndeployConversationModel', $optionalArgs, $request, $this->getOperationsClient())->wait();

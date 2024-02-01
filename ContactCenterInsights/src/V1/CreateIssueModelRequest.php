@@ -29,8 +29,7 @@ class CreateIssueModelRequest extends \Google\Protobuf\Internal\Message
     private $issue_model = null;
 
     /**
-     * @param string                                            $parent     Required. The parent resource of the issue model. Please see
-     *                                                                      {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+     * @param string                                            $parent     Required. The parent resource of the issue model.
      * @param \Google\Cloud\ContactCenterInsights\V1\IssueModel $issueModel Required. The issue model to create.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\CreateIssueModelRequest

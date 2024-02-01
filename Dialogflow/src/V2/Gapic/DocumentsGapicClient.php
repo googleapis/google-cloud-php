@@ -68,9 +68,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $documentsClient = new DocumentsClient();
  * try {
- *     $formattedParent = $documentsClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
- *     $document = new Document();
- *     $operationResponse = $documentsClient->createDocument($formattedParent, $document);
+ *     $operationResponse = $documentsClient->createDocument();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -81,7 +79,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $documentsClient->createDocument($formattedParent, $document);
+ *     $operationResponse = $documentsClient->createDocument();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $documentsClient->resumeOperation($operationName, 'createDocument');
@@ -505,9 +503,7 @@ class DocumentsGapicClient
      * ```
      * $documentsClient = new DocumentsClient();
      * try {
-     *     $formattedParent = $documentsClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-     *     $document = new Document();
-     *     $operationResponse = $documentsClient->createDocument($formattedParent, $document);
+     *     $operationResponse = $documentsClient->createDocument();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -518,7 +514,7 @@ class DocumentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentsClient->createDocument($formattedParent, $document);
+     *     $operationResponse = $documentsClient->createDocument();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentsClient->resumeOperation($operationName, 'createDocument');
@@ -538,13 +534,15 @@ class DocumentsGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The knowledge base to create a document for.
-     *                               Format: `projects/<Project ID>/locations/<Location
-     *                               ID>/knowledgeBases/<Knowledge Base ID>`.
-     * @param Document $document     Required. The document to create.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The knowledge base to create a document for.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/knowledgeBases/<Knowledge Base ID>`.
+     *     @type Document $document
+     *           Required. The document to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -555,13 +553,19 @@ class DocumentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDocument($parent, $document, array $optionalArgs = [])
+    public function createDocument(array $optionalArgs = [])
     {
         $request = new CreateDocumentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDocument($document);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateDocument', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -583,8 +587,7 @@ class DocumentsGapicClient
      * ```
      * $documentsClient = new DocumentsClient();
      * try {
-     *     $formattedName = $documentsClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-     *     $operationResponse = $documentsClient->deleteDocument($formattedName);
+     *     $operationResponse = $documentsClient->deleteDocument();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -594,7 +597,7 @@ class DocumentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentsClient->deleteDocument($formattedName);
+     *     $operationResponse = $documentsClient->deleteDocument();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentsClient->resumeOperation($operationName, 'deleteDocument');
@@ -613,12 +616,13 @@ class DocumentsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the document to delete.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the document to delete.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -629,12 +633,15 @@ class DocumentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDocument($name, array $optionalArgs = [])
+    public function deleteDocument(array $optionalArgs = [])
     {
         $request = new DeleteDocumentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteDocument', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -656,8 +663,7 @@ class DocumentsGapicClient
      * ```
      * $documentsClient = new DocumentsClient();
      * try {
-     *     $formattedName = $documentsClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-     *     $operationResponse = $documentsClient->exportDocument($formattedName);
+     *     $operationResponse = $documentsClient->exportDocument();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -668,7 +674,7 @@ class DocumentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentsClient->exportDocument($formattedName);
+     *     $operationResponse = $documentsClient->exportDocument();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentsClient->resumeOperation($operationName, 'exportDocument');
@@ -688,12 +694,13 @@ class DocumentsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the document to export.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the document to export.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      *     @type GcsDestination $gcsDestination
      *           Cloud Storage file path to export the document.
      *     @type bool $exportFullContent
@@ -712,12 +719,15 @@ class DocumentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportDocument($name, array $optionalArgs = [])
+    public function exportDocument(array $optionalArgs = [])
     {
         $request = new ExportDocumentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['gcsDestination'])) {
             $request->setGcsDestination($optionalArgs['gcsDestination']);
         }
@@ -742,19 +752,19 @@ class DocumentsGapicClient
      * ```
      * $documentsClient = new DocumentsClient();
      * try {
-     *     $formattedName = $documentsClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-     *     $response = $documentsClient->getDocument($formattedName);
+     *     $response = $documentsClient->getDocument();
      * } finally {
      *     $documentsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the document to retrieve.
-     *                             Format `projects/<Project ID>/locations/<Location
-     *                             ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the document to retrieve.
+     *           Format `projects/<Project ID>/locations/<Location
+     *           ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -765,12 +775,15 @@ class DocumentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDocument($name, array $optionalArgs = [])
+    public function getDocument(array $optionalArgs = [])
     {
         $request = new GetDocumentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDocument', Document::class, $optionalArgs, $request)->wait();
@@ -794,9 +807,7 @@ class DocumentsGapicClient
      * ```
      * $documentsClient = new DocumentsClient();
      * try {
-     *     $formattedParent = $documentsClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-     *     $documentTemplate = new ImportDocumentTemplate();
-     *     $operationResponse = $documentsClient->importDocuments($formattedParent, $documentTemplate);
+     *     $operationResponse = $documentsClient->importDocuments();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -807,7 +818,7 @@ class DocumentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentsClient->importDocuments($formattedParent, $documentTemplate);
+     *     $operationResponse = $documentsClient->importDocuments();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentsClient->resumeOperation($operationName, 'importDocuments');
@@ -827,13 +838,13 @@ class DocumentsGapicClient
      * }
      * ```
      *
-     * @param string                 $parent           Required. The knowledge base to import documents into.
-     *                                                 Format: `projects/<Project ID>/locations/<Location
-     *                                                 ID>/knowledgeBases/<Knowledge Base ID>`.
-     * @param ImportDocumentTemplate $documentTemplate Required. Document template used for importing all the documents.
-     * @param array                  $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The knowledge base to import documents into.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/knowledgeBases/<Knowledge Base ID>`.
      *     @type GcsSources $gcsSource
      *           Optional. The Google Cloud Storage location for the documents.
      *           The path can include a wildcard.
@@ -841,6 +852,8 @@ class DocumentsGapicClient
      *           These URIs may have the forms
      *           `gs://<bucket-name>/<object-name>`.
      *           `gs://<bucket-name>/<object-path>/*.<extension>`.
+     *     @type ImportDocumentTemplate $documentTemplate
+     *           Required. Document template used for importing all the documents.
      *     @type bool $importGcsCustomMetadata
      *           Whether to import custom metadata from Google Cloud Storage.
      *           Only valid when the document source is Google Cloud Storage URI.
@@ -854,15 +867,21 @@ class DocumentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importDocuments($parent, $documentTemplate, array $optionalArgs = [])
+    public function importDocuments(array $optionalArgs = [])
     {
         $request = new ImportDocumentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDocumentTemplate($documentTemplate);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['gcsSource'])) {
             $request->setGcsSource($optionalArgs['gcsSource']);
+        }
+
+        if (isset($optionalArgs['documentTemplate'])) {
+            $request->setDocumentTemplate($optionalArgs['documentTemplate']);
         }
 
         if (isset($optionalArgs['importGcsCustomMetadata'])) {
@@ -881,9 +900,8 @@ class DocumentsGapicClient
      * ```
      * $documentsClient = new DocumentsClient();
      * try {
-     *     $formattedParent = $documentsClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $documentsClient->listDocuments($formattedParent);
+     *     $pagedResponse = $documentsClient->listDocuments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -891,7 +909,7 @@ class DocumentsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $documentsClient->listDocuments($formattedParent);
+     *     $pagedResponse = $documentsClient->listDocuments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -900,12 +918,13 @@ class DocumentsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The knowledge base to list all documents for.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/knowledgeBases/<Knowledge Base ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The knowledge base to list all documents for.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/knowledgeBases/<Knowledge Base ID>`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -947,12 +966,15 @@ class DocumentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDocuments($parent, array $optionalArgs = [])
+    public function listDocuments(array $optionalArgs = [])
     {
         $request = new ListDocumentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -991,8 +1013,7 @@ class DocumentsGapicClient
      * ```
      * $documentsClient = new DocumentsClient();
      * try {
-     *     $formattedName = $documentsClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-     *     $operationResponse = $documentsClient->reloadDocument($formattedName);
+     *     $operationResponse = $documentsClient->reloadDocument();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1003,7 +1024,7 @@ class DocumentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentsClient->reloadDocument($formattedName);
+     *     $operationResponse = $documentsClient->reloadDocument();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentsClient->resumeOperation($operationName, 'reloadDocument');
@@ -1023,12 +1044,13 @@ class DocumentsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the document to reload.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the document to reload.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
      *     @type string $contentUri
      *           Optional. The path of gcs source file for reloading document content. For
      *           now, only gcs uri is supported.
@@ -1051,12 +1073,15 @@ class DocumentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function reloadDocument($name, array $optionalArgs = [])
+    public function reloadDocument(array $optionalArgs = [])
     {
         $request = new ReloadDocumentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['contentUri'])) {
             $request->setContentUri($optionalArgs['contentUri']);
         }
@@ -1089,8 +1114,7 @@ class DocumentsGapicClient
      * ```
      * $documentsClient = new DocumentsClient();
      * try {
-     *     $document = new Document();
-     *     $operationResponse = $documentsClient->updateDocument($document);
+     *     $operationResponse = $documentsClient->updateDocument();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1101,7 +1125,7 @@ class DocumentsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentsClient->updateDocument($document);
+     *     $operationResponse = $documentsClient->updateDocument();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentsClient->resumeOperation($operationName, 'updateDocument');
@@ -1121,10 +1145,11 @@ class DocumentsGapicClient
      * }
      * ```
      *
-     * @param Document $document     Required. The document to update.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Document $document
+     *           Required. The document to update.
      *     @type FieldMask $updateMask
      *           Optional. Not specified means `update all`.
      *           Currently, only `display_name` can be updated, an InvalidArgument will be
@@ -1139,12 +1164,14 @@ class DocumentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDocument($document, array $optionalArgs = [])
+    public function updateDocument(array $optionalArgs = [])
     {
         $request = new UpdateDocumentRequest();
         $requestParamHeaders = [];
-        $request->setDocument($document);
-        $requestParamHeaders['document.name'] = $document->getName();
+        if (isset($optionalArgs['document'])) {
+            $request->setDocument($optionalArgs['document']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

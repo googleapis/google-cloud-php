@@ -33,8 +33,7 @@ class GetGenerativeSettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name         Required. Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/agents/<Agent ID>/generativeSettings`. Please see
-     *                             {@see AgentsClient::agentGenerativeSettingsName()} for help formatting this field.
+     *                             ID>/agents/<Agent ID>/generativeSettings`.
      * @param string $languageCode Required. Language code of the generative settings.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetGenerativeSettingsRequest

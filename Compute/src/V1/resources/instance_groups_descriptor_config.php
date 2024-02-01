@@ -5,10 +5,7 @@ return [
         'google.cloud.compute.v1.InstanceGroups' => [
             'AddInstances' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getZone',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -43,10 +40,7 @@ return [
             ],
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getZone',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -81,10 +75,7 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getZone',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -113,10 +104,7 @@ return [
             ],
             'RemoveInstances' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getZone',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -151,10 +139,7 @@ return [
             ],
             'SetNamedPorts' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getZone',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

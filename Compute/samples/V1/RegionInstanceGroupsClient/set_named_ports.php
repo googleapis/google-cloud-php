@@ -26,33 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsClient;
-use Google\Cloud\Compute\V1\RegionInstanceGroupsSetNamedPortsRequest;
 use Google\Rpc\Status;
 
 /**
  * Sets the named ports for the specified regional instance group.
  *
- * @param string $instanceGroup The name of the regional instance group where the named ports are updated.
- * @param string $project       Project ID for this request.
- * @param string $region        Name of the region scoping this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_named_ports_sample(string $instanceGroup, string $project, string $region): void
+function set_named_ports_sample(): void
 {
     // Create a client.
     $regionInstanceGroupsClient = new RegionInstanceGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $regionInstanceGroupsSetNamedPortsRequestResource = new RegionInstanceGroupsSetNamedPortsRequest();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstanceGroupsClient->setNamedPorts(
-            $instanceGroup,
-            $project,
-            $region,
-            $regionInstanceGroupsSetNamedPortsRequestResource
-        );
+        $response = $regionInstanceGroupsClient->setNamedPorts();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -65,23 +58,5 @@ function set_named_ports_sample(string $instanceGroup, string $project, string $
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $instanceGroup = '[INSTANCE_GROUP]';
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-
-    set_named_ports_sample($instanceGroup, $project, $region);
 }
 // [END compute_v1_generated_RegionInstanceGroups_SetNamedPorts_sync]

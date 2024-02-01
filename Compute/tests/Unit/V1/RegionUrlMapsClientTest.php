@@ -31,7 +31,6 @@ use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RegionUrlMapsClient;
-use Google\Cloud\Compute\V1\RegionUrlMapsValidateRequest;
 use Google\Cloud\Compute\V1\UrlMap;
 use Google\Cloud\Compute\V1\UrlMapList;
 use Google\Cloud\Compute\V1\UrlMapsValidateResponse;
@@ -91,11 +90,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $urlMap = 'urlMap-169850228';
-        $response = $gapicClient->delete($project, $region, $urlMap);
+        $response = $gapicClient->delete();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -104,16 +99,8 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionUrlMaps/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getUrlMap();
-        $this->assertProtobufEquals($urlMap, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -161,11 +148,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $urlMap = 'urlMap-169850228';
-        $response = $gapicClient->delete($project, $region, $urlMap);
+        $response = $gapicClient->delete();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -214,23 +197,13 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $urlMap = 'urlMap-169850228';
-        $response = $gapicClient->get($project, $region, $urlMap);
+        $response = $gapicClient->get();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionUrlMaps/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getUrlMap();
-        $this->assertProtobufEquals($urlMap, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -252,12 +225,8 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $urlMap = 'urlMap-169850228';
         try {
-            $gapicClient->get($project, $region, $urlMap);
+            $gapicClient->get();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -294,11 +263,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $urlMapResource = new UrlMap();
-        $response = $gapicClient->insert($project, $region, $urlMapResource);
+        $response = $gapicClient->insert();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -307,16 +272,8 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionUrlMaps/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getUrlMapResource();
-        $this->assertProtobufEquals($urlMapResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -364,11 +321,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $urlMapResource = new UrlMap();
-        $response = $gapicClient->insert($project, $region, $urlMapResource);
+        $response = $gapicClient->insert();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -412,10 +365,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $response = $gapicClient->list($project, $region);
+        $response = $gapicClient->list();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -425,10 +375,6 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionUrlMaps/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -450,11 +396,8 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
         try {
-            $gapicClient->list($project, $region);
+            $gapicClient->list();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -491,12 +434,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $urlMap = 'urlMap-169850228';
-        $urlMapResource = new UrlMap();
-        $response = $gapicClient->patch($project, $region, $urlMap, $urlMapResource);
+        $response = $gapicClient->patch();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -505,18 +443,8 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionUrlMaps/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getUrlMap();
-        $this->assertProtobufEquals($urlMap, $actualValue);
-        $actualValue = $actualApiRequestObject->getUrlMapResource();
-        $this->assertProtobufEquals($urlMapResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -564,12 +492,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $urlMap = 'urlMap-169850228';
-        $urlMapResource = new UrlMap();
-        $response = $gapicClient->patch($project, $region, $urlMap, $urlMapResource);
+        $response = $gapicClient->patch();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -614,12 +537,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $urlMap = 'urlMap-169850228';
-        $urlMapResource = new UrlMap();
-        $response = $gapicClient->update($project, $region, $urlMap, $urlMapResource);
+        $response = $gapicClient->update();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -628,18 +546,8 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionUrlMaps/Update', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getUrlMap();
-        $this->assertProtobufEquals($urlMap, $actualValue);
-        $actualValue = $actualApiRequestObject->getUrlMapResource();
-        $this->assertProtobufEquals($urlMapResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -687,12 +595,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $urlMap = 'urlMap-169850228';
-        $urlMapResource = new UrlMap();
-        $response = $gapicClient->update($project, $region, $urlMap, $urlMapResource);
+        $response = $gapicClient->update();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -723,26 +626,13 @@ class RegionUrlMapsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new UrlMapsValidateResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionUrlMapsValidateRequestResource = new RegionUrlMapsValidateRequest();
-        $urlMap = 'urlMap-169850228';
-        $response = $gapicClient->validate($project, $region, $regionUrlMapsValidateRequestResource, $urlMap);
+        $response = $gapicClient->validate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionUrlMaps/Validate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getRegionUrlMapsValidateRequestResource();
-        $this->assertProtobufEquals($regionUrlMapsValidateRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getUrlMap();
-        $this->assertProtobufEquals($urlMap, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -764,13 +654,8 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionUrlMapsValidateRequestResource = new RegionUrlMapsValidateRequest();
-        $urlMap = 'urlMap-169850228';
         try {
-            $gapicClient->validate($project, $region, $regionUrlMapsValidateRequestResource, $urlMap);
+            $gapicClient->validate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -25,34 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ServiceAttachments_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ServiceAttachment;
 use Google\Cloud\Compute\V1\ServiceAttachmentsClient;
 use Google\Rpc\Status;
 
 /**
  * Patches the specified ServiceAttachment resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
  *
- * @param string $project           Project ID for this request.
- * @param string $region            The region scoping this request and should conform to RFC1035.
- * @param string $serviceAttachment The resource id of the ServiceAttachment to patch. It should conform to RFC1035 resource name or be a string form on an unsigned long number.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function patch_sample(string $project, string $region, string $serviceAttachment): void
+function patch_sample(): void
 {
     // Create a client.
     $serviceAttachmentsClient = new ServiceAttachmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $serviceAttachmentResource = new ServiceAttachment();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceAttachmentsClient->patch(
-            $project,
-            $region,
-            $serviceAttachment,
-            $serviceAttachmentResource
-        );
+        $response = $serviceAttachmentsClient->patch();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -65,23 +58,5 @@ function patch_sample(string $project, string $region, string $serviceAttachment
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-    $serviceAttachment = '[SERVICE_ATTACHMENT]';
-
-    patch_sample($project, $region, $serviceAttachment);
 }
 // [END compute_v1_generated_ServiceAttachments_Patch_sync]

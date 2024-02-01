@@ -33,18 +33,19 @@ use Google\Cloud\DataLabeling\V1beta1\ListDataItemsRequest;
  * Lists data items in a dataset. This API can be called after data
  * are imported into dataset. Pagination is supported.
  *
- * @param string $formattedParent Name of the dataset to list data items, format:
- *                                projects/{project_id}/datasets/{dataset_id}
- *                                Please see {@see DataLabelingServiceClient::datasetName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_data_items_sample(string $formattedParent): void
+function list_data_items_sample(): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = (new ListDataItemsRequest())
-        ->setParent($formattedParent);
+    $request = new ListDataItemsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +59,5 @@ function list_data_items_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataLabelingServiceClient::datasetName('[PROJECT]', '[DATASET]');
-
-    list_data_items_sample($formattedParent);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_ListDataItems_sync]

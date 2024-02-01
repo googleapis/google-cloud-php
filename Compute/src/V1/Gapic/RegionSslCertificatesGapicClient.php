@@ -51,10 +51,7 @@ use Google\Cloud\Compute\V1\SslCertificateList;
  * ```
  * $regionSslCertificatesClient = new RegionSslCertificatesClient();
  * try {
- *     $project = 'project';
- *     $region = 'region';
- *     $sslCertificate = 'ssl_certificate';
- *     $operationResponse = $regionSslCertificatesClient->delete($project, $region, $sslCertificate);
+ *     $operationResponse = $regionSslCertificatesClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -64,7 +61,7 @@ use Google\Cloud\Compute\V1\SslCertificateList;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionSslCertificatesClient->delete($project, $region, $sslCertificate);
+ *     $operationResponse = $regionSslCertificatesClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionSslCertificatesClient->resumeOperation($operationName, 'delete');
@@ -164,10 +161,7 @@ class RegionSslCertificatesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -263,10 +257,7 @@ class RegionSslCertificatesGapicClient
      * ```
      * $regionSslCertificatesClient = new RegionSslCertificatesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $sslCertificate = 'ssl_certificate';
-     *     $operationResponse = $regionSslCertificatesClient->delete($project, $region, $sslCertificate);
+     *     $operationResponse = $regionSslCertificatesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -276,7 +267,7 @@ class RegionSslCertificatesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSslCertificatesClient->delete($project, $region, $sslCertificate);
+     *     $operationResponse = $regionSslCertificatesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSslCertificatesClient->resumeOperation($operationName, 'delete');
@@ -295,14 +286,17 @@ class RegionSslCertificatesGapicClient
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $region         Name of the region scoping this request.
-     * @param string $sslCertificate Name of the SslCertificate resource to delete.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $sslCertificate
+     *           Name of the SslCertificate resource to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -313,18 +307,27 @@ class RegionSslCertificatesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($project, $region, $sslCertificate, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteRegionSslCertificateRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setSslCertificate($sslCertificate);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['ssl_certificate'] = $sslCertificate;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['sslCertificate'])) {
+            $request->setSslCertificate($optionalArgs['sslCertificate']);
+            $requestParamHeaders['ssl_certificate'] = $optionalArgs['sslCertificate'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -339,21 +342,21 @@ class RegionSslCertificatesGapicClient
      * ```
      * $regionSslCertificatesClient = new RegionSslCertificatesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $sslCertificate = 'ssl_certificate';
-     *     $response = $regionSslCertificatesClient->get($project, $region, $sslCertificate);
+     *     $response = $regionSslCertificatesClient->get();
      * } finally {
      *     $regionSslCertificatesClient->close();
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $region         Name of the region scoping this request.
-     * @param string $sslCertificate Name of the SslCertificate resource to return.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
+     *     @type string $sslCertificate
+     *           Name of the SslCertificate resource to return.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -364,16 +367,25 @@ class RegionSslCertificatesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($project, $region, $sslCertificate, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetRegionSslCertificateRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setSslCertificate($sslCertificate);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['ssl_certificate'] = $sslCertificate;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['sslCertificate'])) {
+            $request->setSslCertificate($optionalArgs['sslCertificate']);
+            $requestParamHeaders['ssl_certificate'] = $optionalArgs['sslCertificate'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', SslCertificate::class, $optionalArgs, $request)->wait();
@@ -386,10 +398,7 @@ class RegionSslCertificatesGapicClient
      * ```
      * $regionSslCertificatesClient = new RegionSslCertificatesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $sslCertificateResource = new SslCertificate();
-     *     $operationResponse = $regionSslCertificatesClient->insert($project, $region, $sslCertificateResource);
+     *     $operationResponse = $regionSslCertificatesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -399,7 +408,7 @@ class RegionSslCertificatesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionSslCertificatesClient->insert($project, $region, $sslCertificateResource);
+     *     $operationResponse = $regionSslCertificatesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionSslCertificatesClient->resumeOperation($operationName, 'insert');
@@ -418,14 +427,17 @@ class RegionSslCertificatesGapicClient
      * }
      * ```
      *
-     * @param string         $project                Project ID for this request.
-     * @param string         $region                 Name of the region scoping this request.
-     * @param SslCertificate $sslCertificateResource The body resource for this request
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type SslCertificate $sslCertificateResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -436,17 +448,26 @@ class RegionSslCertificatesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($project, $region, $sslCertificateResource, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertRegionSslCertificateRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setSslCertificateResource($sslCertificateResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['sslCertificateResource'])) {
+            $request->setSslCertificateResource($optionalArgs['sslCertificateResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -461,10 +482,8 @@ class RegionSslCertificatesGapicClient
      * ```
      * $regionSslCertificatesClient = new RegionSslCertificatesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionSslCertificatesClient->list($project, $region);
+     *     $pagedResponse = $regionSslCertificatesClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -472,7 +491,7 @@ class RegionSslCertificatesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionSslCertificatesClient->list($project, $region);
+     *     $pagedResponse = $regionSslCertificatesClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -481,9 +500,7 @@ class RegionSslCertificatesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -497,6 +514,10 @@ class RegionSslCertificatesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -509,14 +530,10 @@ class RegionSslCertificatesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, $region, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListRegionSslCertificatesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -531,6 +548,16 @@ class RegionSslCertificatesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {

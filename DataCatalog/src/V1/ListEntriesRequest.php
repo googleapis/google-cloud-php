@@ -50,8 +50,7 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The name of the entry group that contains the entries to list.
      *
-     *                       Can be provided in URL format. Please see
-     *                       {@see DataCatalogClient::entryGroupName()} for help formatting this field.
+     *                       Can be provided in URL format.
      *
      * @return \Google\Cloud\DataCatalog\V1\ListEntriesRequest
      *

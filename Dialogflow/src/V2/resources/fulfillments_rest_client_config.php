@@ -29,9 +29,6 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{fulfillment.name=projects/*/locations/*/agent/fulfillment}',
                         'body' => 'fulfillment',
-                        'queryParams' => [
-                            'update_mask',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -41,9 +38,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

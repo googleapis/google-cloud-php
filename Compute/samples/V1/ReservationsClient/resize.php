@@ -26,33 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\ReservationsClient;
-use Google\Cloud\Compute\V1\ReservationsResizeRequest;
 use Google\Rpc\Status;
 
 /**
  * Resizes the reservation (applicable to standalone reservations only). For more information, read Modifying reservations.
  *
- * @param string $project     Project ID for this request.
- * @param string $reservation Name of the reservation to update.
- * @param string $zone        Name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function resize_sample(string $project, string $reservation, string $zone): void
+function resize_sample(): void
 {
     // Create a client.
     $reservationsClient = new ReservationsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $reservationsResizeRequestResource = new ReservationsResizeRequest();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $reservationsClient->resize(
-            $project,
-            $reservation,
-            $reservationsResizeRequestResource,
-            $zone
-        );
+        $response = $reservationsClient->resize();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -65,23 +58,5 @@ function resize_sample(string $project, string $reservation, string $zone): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $reservation = '[RESERVATION]';
-    $zone = '[ZONE]';
-
-    resize_sample($project, $reservation, $zone);
 }
 // [END compute_v1_generated_Reservations_Resize_sync]

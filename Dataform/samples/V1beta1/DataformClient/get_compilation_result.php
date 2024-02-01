@@ -31,17 +31,19 @@ use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
 /**
  * Fetches a single CompilationResult.
  *
- * @param string $formattedName The compilation result's name. Please see
- *                              {@see DataformClient::compilationResultName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_compilation_result_sample(string $formattedName): void
+function get_compilation_result_sample(): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = (new GetCompilationResultRequest())
-        ->setName($formattedName);
+    $request = new GetCompilationResultRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,26 +53,5 @@ function get_compilation_result_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataformClient::compilationResultName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REPOSITORY]',
-        '[COMPILATION_RESULT]'
-    );
-
-    get_compilation_result_sample($formattedName);
 }
 // [END dataform_v1beta1_generated_Dataform_GetCompilationResult_sync]

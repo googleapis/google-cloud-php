@@ -31,18 +31,19 @@ use Google\Cloud\Dialogflow\Cx\V3\Webhook;
 /**
  * Updates the specified webhook.
  *
- * @param string $webhookDisplayName The human-readable name of the webhook, unique within the agent.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_webhook_sample(string $webhookDisplayName): void
+function update_webhook_sample(): void
 {
     // Create a client.
     $webhooksClient = new WebhooksClient();
 
     // Prepare the request message.
-    $webhook = (new Webhook())
-        ->setDisplayName($webhookDisplayName);
-    $request = (new UpdateWebhookRequest())
-        ->setWebhook($webhook);
+    $request = new UpdateWebhookRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function update_webhook_sample(string $webhookDisplayName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $webhookDisplayName = '[DISPLAY_NAME]';
-
-    update_webhook_sample($webhookDisplayName);
 }
 // [END dialogflow_v3_generated_Webhooks_UpdateWebhook_sync]

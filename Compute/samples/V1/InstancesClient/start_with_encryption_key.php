@@ -26,33 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\InstancesClient;
-use Google\Cloud\Compute\V1\InstancesStartWithEncryptionKeyRequest;
 use Google\Rpc\Status;
 
 /**
  * Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance.
  *
- * @param string $instance Name of the instance resource to start.
- * @param string $project  Project ID for this request.
- * @param string $zone     The name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function start_with_encryption_key_sample(string $instance, string $project, string $zone): void
+function start_with_encryption_key_sample(): void
 {
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $instancesStartWithEncryptionKeyRequestResource = new InstancesStartWithEncryptionKeyRequest();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->startWithEncryptionKey(
-            $instance,
-            $instancesStartWithEncryptionKeyRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->startWithEncryptionKey();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -65,23 +58,5 @@ function start_with_encryption_key_sample(string $instance, string $project, str
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $instance = '[INSTANCE]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    start_with_encryption_key_sample($instance, $project, $zone);
 }
 // [END compute_v1_generated_Instances_StartWithEncryptionKey_sync]

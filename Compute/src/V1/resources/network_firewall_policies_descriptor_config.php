@@ -5,9 +5,7 @@ return [
         'google.cloud.compute.v1.NetworkFirewallPolicies' => [
             'AddAssociation' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -36,9 +34,7 @@ return [
             ],
             'AddRule' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -67,9 +63,7 @@ return [
             ],
             'CloneRules' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -98,9 +92,7 @@ return [
             ],
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -129,9 +121,7 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -154,9 +144,7 @@ return [
             ],
             'Patch' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -185,9 +173,7 @@ return [
             ],
             'PatchRule' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -216,9 +202,7 @@ return [
             ],
             'RemoveAssociation' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -247,9 +231,7 @@ return [
             ],
             'RemoveRule' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

@@ -33,17 +33,19 @@ use Google\Cloud\DataCatalog\V1\Taxonomy;
  * Lists all taxonomies in a project in a particular location that you
  * have a permission to view.
  *
- * @param string $formattedParent Resource name of the project to list the taxonomies of. Please see
- *                                {@see PolicyTagManagerClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_taxonomies_sample(string $formattedParent): void
+function list_taxonomies_sample(): void
 {
     // Create a client.
     $policyTagManagerClient = new PolicyTagManagerClient();
 
     // Prepare the request message.
-    $request = (new ListTaxonomiesRequest())
-        ->setParent($formattedParent);
+    $request = new ListTaxonomiesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +59,5 @@ function list_taxonomies_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = PolicyTagManagerClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_taxonomies_sample($formattedParent);
 }
 // [END datacatalog_v1_generated_PolicyTagManager_ListTaxonomies_sync]

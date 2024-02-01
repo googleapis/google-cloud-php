@@ -24,9 +24,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'network_interface',
-                ],
             ],
             'AddResourcePolicies' => [
                 'method' => 'post',
@@ -141,10 +138,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'access_config',
-                    'network_interface',
-                ],
             ],
             'DetachDisk' => [
                 'method' => 'post',
@@ -165,9 +158,6 @@ return [
                             'getZone',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'device_name',
                 ],
             ],
             'Get' => [
@@ -210,9 +200,6 @@ return [
                             'getZone',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'network_interface',
                 ],
             ],
             'GetGuestAttributes' => [
@@ -499,10 +486,6 @@ return [
                             'getZone',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'auto_delete',
-                    'device_name',
                 ],
             ],
             'SetIamPolicy' => [
@@ -940,9 +923,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'network_interface',
-                ],
             ],
             'UpdateDisplayDevice' => [
                 'method' => 'patch',
@@ -986,9 +966,6 @@ return [
                             'getZone',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'network_interface',
                 ],
             ],
             'UpdateShieldedInstanceConfig' => [

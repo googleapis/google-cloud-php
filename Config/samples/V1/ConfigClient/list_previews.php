@@ -33,18 +33,19 @@ use Google\Cloud\Config\V1\Preview;
  * Lists [Preview][google.cloud.config.v1.Preview]s in a given project and
  * location.
  *
- * @param string $formattedParent The parent in whose context the Previews are listed. The parent
- *                                value is in the format: 'projects/{project_id}/locations/{location}'. Please see
- *                                {@see ConfigClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_previews_sample(string $formattedParent): void
+function list_previews_sample(): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $request = (new ListPreviewsRequest())
-        ->setParent($formattedParent);
+    $request = new ListPreviewsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +59,5 @@ function list_previews_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConfigClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_previews_sample($formattedParent);
 }
 // [END config_v1_generated_Config_ListPreviews_sync]

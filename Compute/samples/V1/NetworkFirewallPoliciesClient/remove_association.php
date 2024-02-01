@@ -31,10 +31,13 @@ use Google\Rpc\Status;
 /**
  * Removes an association for the specified firewall policy.
  *
- * @param string $firewallPolicy Name of the firewall policy to update.
- * @param string $project        Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function remove_association_sample(string $firewallPolicy, string $project): void
+function remove_association_sample(): void
 {
     // Create a client.
     $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
@@ -42,7 +45,7 @@ function remove_association_sample(string $firewallPolicy, string $project): voi
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkFirewallPoliciesClient->removeAssociation($firewallPolicy, $project);
+        $response = $networkFirewallPoliciesClient->removeAssociation();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -55,22 +58,5 @@ function remove_association_sample(string $firewallPolicy, string $project): voi
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $firewallPolicy = '[FIREWALL_POLICY]';
-    $project = '[PROJECT]';
-
-    remove_association_sample($firewallPolicy, $project);
 }
 // [END compute_v1_generated_NetworkFirewallPolicies_RemoveAssociation_sync]

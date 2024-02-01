@@ -36,19 +36,19 @@ use Google\Cloud\Dialogflow\Cx\V3\UpdateTransitionRouteGroupRequest;
  * [training
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
- * @param string $transitionRouteGroupDisplayName The human-readable name of the transition route group, unique
- *                                                within the flow. The display name can be no longer than 30 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_transition_route_group_sample(string $transitionRouteGroupDisplayName): void
+function update_transition_route_group_sample(): void
 {
     // Create a client.
     $transitionRouteGroupsClient = new TransitionRouteGroupsClient();
 
     // Prepare the request message.
-    $transitionRouteGroup = (new TransitionRouteGroup())
-        ->setDisplayName($transitionRouteGroupDisplayName);
-    $request = (new UpdateTransitionRouteGroupRequest())
-        ->setTransitionRouteGroup($transitionRouteGroup);
+    $request = new UpdateTransitionRouteGroupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +58,5 @@ function update_transition_route_group_sample(string $transitionRouteGroupDispla
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $transitionRouteGroupDisplayName = '[DISPLAY_NAME]';
-
-    update_transition_route_group_sample($transitionRouteGroupDisplayName);
 }
 // [END dialogflow_v3_generated_TransitionRouteGroups_UpdateTransitionRouteGroup_sync]

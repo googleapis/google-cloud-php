@@ -56,8 +56,7 @@ class ListWorkflowInvocationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent resource of the WorkflowInvocation type. Must be in
-     *                       the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
-     *                       {@see DataformClient::repositoryName()} for help formatting this field.
+     *                       the format `projects/&#42;/locations/&#42;/repositories/*`.
      *
      * @return \Google\Cloud\Dataform\V1beta1\ListWorkflowInvocationsRequest
      *

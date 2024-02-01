@@ -489,9 +489,7 @@ class DatastoreAdminGapicClient
      * ```
      * $datastoreAdminClient = new DatastoreAdminClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $outputUrlPrefix = 'output_url_prefix';
-     *     $operationResponse = $datastoreAdminClient->exportEntities($projectId, $outputUrlPrefix);
+     *     $operationResponse = $datastoreAdminClient->exportEntities();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -502,7 +500,7 @@ class DatastoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastoreAdminClient->exportEntities($projectId, $outputUrlPrefix);
+     *     $operationResponse = $datastoreAdminClient->exportEntities();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastoreAdminClient->resumeOperation($operationName, 'exportEntities');
@@ -522,32 +520,34 @@ class DatastoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $projectId       Required. Project ID against which to make the request.
-     * @param string $outputUrlPrefix Required. Location for the export metadata and data files.
-     *
-     *                                The full resource URL of the external storage location. Currently, only
-     *                                Google Cloud Storage is supported. So output_url_prefix should be of the
-     *                                form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the
-     *                                name of the Cloud Storage bucket and `NAMESPACE_PATH` is an optional Cloud
-     *                                Storage namespace path (this is not a Cloud Datastore namespace). For more
-     *                                information about Cloud Storage namespace paths, see
-     *                                [Object name
-     *                                considerations](https://cloud.google.com/storage/docs/naming#object-considerations).
-     *
-     *                                The resulting files will be nested deeper than the specified URL prefix.
-     *                                The final output URL will be provided in the
-     *                                [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url]
-     *                                field. That value should be used for subsequent ImportEntities operations.
-     *
-     *                                By nesting the data files deeper, the same Cloud Storage bucket can be used
-     *                                in multiple ExportEntities operations without conflict.
-     * @param array  $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. Project ID against which to make the request.
      *     @type array $labels
      *           Client-assigned labels.
      *     @type EntityFilter $entityFilter
      *           Description of what data from the project is included in the export.
+     *     @type string $outputUrlPrefix
+     *           Required. Location for the export metadata and data files.
+     *
+     *           The full resource URL of the external storage location. Currently, only
+     *           Google Cloud Storage is supported. So output_url_prefix should be of the
+     *           form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the
+     *           name of the Cloud Storage bucket and `NAMESPACE_PATH` is an optional Cloud
+     *           Storage namespace path (this is not a Cloud Datastore namespace). For more
+     *           information about Cloud Storage namespace paths, see
+     *           [Object name
+     *           considerations](https://cloud.google.com/storage/docs/naming#object-considerations).
+     *
+     *           The resulting files will be nested deeper than the specified URL prefix.
+     *           The final output URL will be provided in the
+     *           [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url]
+     *           field. That value should be used for subsequent ImportEntities operations.
+     *
+     *           By nesting the data files deeper, the same Cloud Storage bucket can be used
+     *           in multiple ExportEntities operations without conflict.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -558,22 +558,25 @@ class DatastoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportEntities(
-        $projectId,
-        $outputUrlPrefix,
-        array $optionalArgs = []
-    ) {
+    public function exportEntities(array $optionalArgs = [])
+    {
         $request = new ExportEntitiesRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setOutputUrlPrefix($outputUrlPrefix);
-        $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
         }
 
         if (isset($optionalArgs['entityFilter'])) {
             $request->setEntityFilter($optionalArgs['entityFilter']);
+        }
+
+        if (isset($optionalArgs['outputUrlPrefix'])) {
+            $request->setOutputUrlPrefix($optionalArgs['outputUrlPrefix']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -659,9 +662,7 @@ class DatastoreAdminGapicClient
      * ```
      * $datastoreAdminClient = new DatastoreAdminClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $inputUrl = 'input_url';
-     *     $operationResponse = $datastoreAdminClient->importEntities($projectId, $inputUrl);
+     *     $operationResponse = $datastoreAdminClient->importEntities();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -671,7 +672,7 @@ class DatastoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datastoreAdminClient->importEntities($projectId, $inputUrl);
+     *     $operationResponse = $datastoreAdminClient->importEntities();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datastoreAdminClient->resumeOperation($operationName, 'importEntities');
@@ -690,26 +691,28 @@ class DatastoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. Project ID against which to make the request.
-     * @param string $inputUrl     Required. The full resource URL of the external storage location.
-     *                             Currently, only Google Cloud Storage is supported. So input_url should be
-     *                             of the form:
-     *                             `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
-     *                             `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
-     *                             an optional Cloud Storage namespace path (this is not a Cloud Datastore
-     *                             namespace), and `OVERALL_EXPORT_METADATA_FILE` is the metadata file written
-     *                             by the ExportEntities operation. For more information about Cloud Storage
-     *                             namespace paths, see
-     *                             [Object name
-     *                             considerations](https://cloud.google.com/storage/docs/naming#object-considerations).
-     *
-     *                             For more information, see
-     *                             [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url].
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. Project ID against which to make the request.
      *     @type array $labels
      *           Client-assigned labels.
+     *     @type string $inputUrl
+     *           Required. The full resource URL of the external storage location.
+     *           Currently, only Google Cloud Storage is supported. So input_url should be
+     *           of the form:
+     *           `gs://BUCKET_NAME[/NAMESPACE_PATH]/OVERALL_EXPORT_METADATA_FILE`, where
+     *           `BUCKET_NAME` is the name of the Cloud Storage bucket, `NAMESPACE_PATH` is
+     *           an optional Cloud Storage namespace path (this is not a Cloud Datastore
+     *           namespace), and `OVERALL_EXPORT_METADATA_FILE` is the metadata file written
+     *           by the ExportEntities operation. For more information about Cloud Storage
+     *           namespace paths, see
+     *           [Object name
+     *           considerations](https://cloud.google.com/storage/docs/naming#object-considerations).
+     *
+     *           For more information, see
+     *           [google.datastore.admin.v1.ExportEntitiesResponse.output_url][google.datastore.admin.v1.ExportEntitiesResponse.output_url].
      *     @type EntityFilter $entityFilter
      *           Optionally specify which kinds/namespaces are to be imported. If provided,
      *           the list must be a subset of the EntityFilter used in creating the export,
@@ -725,18 +728,21 @@ class DatastoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importEntities(
-        $projectId,
-        $inputUrl,
-        array $optionalArgs = []
-    ) {
+    public function importEntities(array $optionalArgs = [])
+    {
         $request = new ImportEntitiesRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setInputUrl($inputUrl);
-        $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
+        }
+
+        if (isset($optionalArgs['inputUrl'])) {
+            $request->setInputUrl($optionalArgs['inputUrl']);
         }
 
         if (isset($optionalArgs['entityFilter'])) {

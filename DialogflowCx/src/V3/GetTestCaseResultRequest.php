@@ -28,8 +28,7 @@ class GetTestCaseResultRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the testcase.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/testCases/<TestCase ID>/results/<TestCaseResult ID>`. Please see
-     *                     {@see TestCasesClient::testCaseResultName()} for help formatting this field.
+     *                     ID>/testCases/<TestCase ID>/results/<TestCaseResult ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetTestCaseResultRequest
      *

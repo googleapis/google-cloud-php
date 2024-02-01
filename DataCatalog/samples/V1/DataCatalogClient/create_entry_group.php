@@ -57,27 +57,19 @@ use Google\Cloud\DataCatalog\V1\EntryGroup;
  * the `parent` parameter. For more information, see [Data Catalog resource
  * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
  *
- * @param string $formattedParent The names of the project and location that the new entry group
- *                                belongs to.
- *
- *                                Note: The entry group itself and its child resources might not be
- *                                stored in the location specified in its name. Please see
- *                                {@see DataCatalogClient::locationName()} for help formatting this field.
- * @param string $entryGroupId    The ID of the entry group to create.
- *
- *                                The ID must contain only letters (a-z, A-Z), numbers (0-9),
- *                                underscores (_), and must start with a letter or underscore.
- *                                The maximum size is 64 bytes when encoded in UTF-8.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_entry_group_sample(string $formattedParent, string $entryGroupId): void
+function create_entry_group_sample(): void
 {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $request = (new CreateEntryGroupRequest())
-        ->setParent($formattedParent)
-        ->setEntryGroupId($entryGroupId);
+    $request = new CreateEntryGroupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -87,22 +79,5 @@ function create_entry_group_sample(string $formattedParent, string $entryGroupId
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataCatalogClient::locationName('[PROJECT]', '[LOCATION]');
-    $entryGroupId = '[ENTRY_GROUP_ID]';
-
-    create_entry_group_sample($formattedParent, $entryGroupId);
 }
 // [END datacatalog_v1_generated_DataCatalog_CreateEntryGroup_sync]

@@ -64,8 +64,7 @@ class CreateStreamRequest extends \Google\Protobuf\Internal\Message
     private $force = false;
 
     /**
-     * @param string                             $parent   Required. The parent that owns the collection of streams. Please see
-     *                                                     {@see DatastreamClient::locationName()} for help formatting this field.
+     * @param string                             $parent   Required. The parent that owns the collection of streams.
      * @param \Google\Cloud\Datastream\V1\Stream $stream   Required. The stream resource to create.
      * @param string                             $streamId Required. The stream identifier.
      *

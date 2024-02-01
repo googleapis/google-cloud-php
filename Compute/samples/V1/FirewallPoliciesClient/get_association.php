@@ -30,9 +30,13 @@ use Google\Cloud\Compute\V1\FirewallPolicyAssociation;
 /**
  * Gets an association with the specified name.
  *
- * @param string $firewallPolicy Name of the firewall policy to which the queried rule belongs.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_association_sample(string $firewallPolicy): void
+function get_association_sample(): void
 {
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
@@ -40,26 +44,10 @@ function get_association_sample(string $firewallPolicy): void
     // Call the API and handle any network failures.
     try {
         /** @var FirewallPolicyAssociation $response */
-        $response = $firewallPoliciesClient->getAssociation($firewallPolicy);
+        $response = $firewallPoliciesClient->getAssociation();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $firewallPolicy = '[FIREWALL_POLICY]';
-
-    get_association_sample($firewallPolicy);
 }
 // [END compute_v1_generated_FirewallPolicies_GetAssociation_sync]

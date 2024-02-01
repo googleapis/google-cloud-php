@@ -83,15 +83,7 @@ class DeploymentsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setFlowVersion($flowVersion);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[AGENT]',
-            '[ENVIRONMENT]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new GetDeploymentRequest())->setName($formattedName);
+        $request = new GetDeploymentRequest();
         $response = $gapicClient->getDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -99,8 +91,6 @@ class DeploymentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Deployments/GetDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -125,15 +115,7 @@ class DeploymentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[AGENT]',
-            '[ENVIRONMENT]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new GetDeploymentRequest())->setName($formattedName);
+        $request = new GetDeploymentRequest();
         try {
             $gapicClient->getDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -163,9 +145,7 @@ class DeploymentsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeployments($deployments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
-        $request = (new ListDeploymentsRequest())->setParent($formattedParent);
+        $request = new ListDeploymentsRequest();
         $response = $gapicClient->listDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -176,8 +156,6 @@ class DeploymentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Deployments/ListDeployments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -202,9 +180,7 @@ class DeploymentsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[ENVIRONMENT]');
-        $request = (new ListDeploymentsRequest())->setParent($formattedParent);
+        $request = new ListDeploymentsRequest();
         try {
             $gapicClient->listDeployments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -361,15 +337,7 @@ class DeploymentsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setFlowVersion($flowVersion);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[AGENT]',
-            '[ENVIRONMENT]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new GetDeploymentRequest())->setName($formattedName);
+        $request = new GetDeploymentRequest();
         $response = $gapicClient->getDeploymentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -377,8 +345,6 @@ class DeploymentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Deployments/GetDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

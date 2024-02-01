@@ -35,33 +35,19 @@ use Google\Cloud\Dialogflow\Cx\V3\UpdateAgentRequest;
  * [training
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
- * @param string $agentDisplayName         The human-readable name of the agent, unique within the location.
- * @param string $agentDefaultLanguageCode Immutable. The default language of the agent as a language tag.
- *                                         See [Language
- *                                         Support](https://cloud.google.com/dialogflow/cx/docs/reference/language)
- *                                         for a list of the currently supported language codes.
- *                                         This field cannot be set by the
- *                                         [Agents.UpdateAgent][google.cloud.dialogflow.cx.v3.Agents.UpdateAgent]
- *                                         method.
- * @param string $agentTimeZone            The time zone of the agent from the [time zone
- *                                         database](https://www.iana.org/time-zones), e.g., America/New_York,
- *                                         Europe/Paris.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_agent_sample(
-    string $agentDisplayName,
-    string $agentDefaultLanguageCode,
-    string $agentTimeZone
-): void {
+function update_agent_sample(): void
+{
     // Create a client.
     $agentsClient = new AgentsClient();
 
     // Prepare the request message.
-    $agent = (new Agent())
-        ->setDisplayName($agentDisplayName)
-        ->setDefaultLanguageCode($agentDefaultLanguageCode)
-        ->setTimeZone($agentTimeZone);
-    $request = (new UpdateAgentRequest())
-        ->setAgent($agent);
+    $request = new UpdateAgentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,23 +57,5 @@ function update_agent_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $agentDisplayName = '[DISPLAY_NAME]';
-    $agentDefaultLanguageCode = '[DEFAULT_LANGUAGE_CODE]';
-    $agentTimeZone = '[TIME_ZONE]';
-
-    update_agent_sample($agentDisplayName, $agentDefaultLanguageCode, $agentTimeZone);
 }
 // [END dialogflow_v3_generated_Agents_UpdateAgent_sync]

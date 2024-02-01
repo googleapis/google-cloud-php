@@ -32,17 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes an issue model.
  *
- * @param string $formattedName The name of the issue model to delete. Please see
- *                              {@see ContactCenterInsightsClient::issueModelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_issue_model_sample(string $formattedName): void
+function delete_issue_model_sample(): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $request = (new DeleteIssueModelRequest())
-        ->setName($formattedName);
+    $request = new DeleteIssueModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,25 +62,5 @@ function delete_issue_model_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ContactCenterInsightsClient::issueModelName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ISSUE_MODEL]'
-    );
-
-    delete_issue_model_sample($formattedName);
 }
 // [END contactcenterinsights_v1_generated_ContactCenterInsights_DeleteIssueModel_sync]

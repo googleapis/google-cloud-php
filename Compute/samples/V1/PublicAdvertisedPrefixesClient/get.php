@@ -30,10 +30,13 @@ use Google\Cloud\Compute\V1\PublicAdvertisedPrefixesClient;
 /**
  * Returns the specified PublicAdvertisedPrefix resource.
  *
- * @param string $project                Project ID for this request.
- * @param string $publicAdvertisedPrefix Name of the PublicAdvertisedPrefix resource to return.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $project, string $publicAdvertisedPrefix): void
+function get_sample(): void
 {
     // Create a client.
     $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
@@ -41,27 +44,10 @@ function get_sample(string $project, string $publicAdvertisedPrefix): void
     // Call the API and handle any network failures.
     try {
         /** @var PublicAdvertisedPrefix $response */
-        $response = $publicAdvertisedPrefixesClient->get($project, $publicAdvertisedPrefix);
+        $response = $publicAdvertisedPrefixesClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $publicAdvertisedPrefix = '[PUBLIC_ADVERTISED_PREFIX]';
-
-    get_sample($project, $publicAdvertisedPrefix);
 }
 // [END compute_v1_generated_PublicAdvertisedPrefixes_Get_sync]

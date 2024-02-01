@@ -42,18 +42,19 @@ use Google\Rpc\Status;
  * - `response`:
  * [RunTestCaseResponse][google.cloud.dialogflow.cx.v3.RunTestCaseResponse]
  *
- * @param string $formattedName Format of test case name to run: `projects/<Project
- *                              ID>/locations/ <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`. Please see
- *                              {@see TestCasesClient::testCaseName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function run_test_case_sample(string $formattedName): void
+function run_test_case_sample(): void
 {
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
     // Prepare the request message.
-    $request = (new RunTestCaseRequest())
-        ->setName($formattedName);
+    $request = new RunTestCaseRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -73,21 +74,5 @@ function run_test_case_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = TestCasesClient::testCaseName('[PROJECT]', '[LOCATION]', '[AGENT]', '[TEST_CASE]');
-
-    run_test_case_sample($formattedName);
 }
 // [END dialogflow_v3_generated_TestCases_RunTestCase_sync]

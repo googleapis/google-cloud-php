@@ -36,8 +36,6 @@ use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
-use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
-use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -93,9 +91,7 @@ class NodeTemplatesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $response = $gapicClient->aggregatedList($project);
+        $response = $gapicClient->aggregatedList();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -107,8 +103,6 @@ class NodeTemplatesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeTemplates/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -130,10 +124,8 @@ class NodeTemplatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
         try {
-            $gapicClient->aggregatedList($project);
+            $gapicClient->aggregatedList();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -170,11 +162,7 @@ class NodeTemplatesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $nodeTemplate = 'nodeTemplate323154455';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $response = $gapicClient->delete($nodeTemplate, $project, $region);
+        $response = $gapicClient->delete();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -183,16 +171,8 @@ class NodeTemplatesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeTemplates/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getNodeTemplate();
-        $this->assertProtobufEquals($nodeTemplate, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -240,11 +220,7 @@ class NodeTemplatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $nodeTemplate = 'nodeTemplate323154455';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $response = $gapicClient->delete($nodeTemplate, $project, $region);
+        $response = $gapicClient->delete();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -297,23 +273,13 @@ class NodeTemplatesClientTest extends GeneratedTest
         $expectedResponse->setStatus($status);
         $expectedResponse->setStatusMessage($statusMessage);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $nodeTemplate = 'nodeTemplate323154455';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $response = $gapicClient->get($nodeTemplate, $project, $region);
+        $response = $gapicClient->get();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeTemplates/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNodeTemplate();
-        $this->assertProtobufEquals($nodeTemplate, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -335,12 +301,8 @@ class NodeTemplatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $nodeTemplate = 'nodeTemplate323154455';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
         try {
-            $gapicClient->get($nodeTemplate, $project, $region);
+            $gapicClient->get();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -369,23 +331,13 @@ class NodeTemplatesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($project, $region, $resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeTemplates/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -407,12 +359,8 @@ class NodeTemplatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($project, $region, $resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -449,11 +397,7 @@ class NodeTemplatesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $nodeTemplateResource = new NodeTemplate();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $response = $gapicClient->insert($nodeTemplateResource, $project, $region);
+        $response = $gapicClient->insert();
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -462,16 +406,8 @@ class NodeTemplatesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeTemplates/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getNodeTemplateResource();
-        $this->assertProtobufEquals($nodeTemplateResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -519,11 +455,7 @@ class NodeTemplatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $nodeTemplateResource = new NodeTemplate();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $response = $gapicClient->insert($nodeTemplateResource, $project, $region);
+        $response = $gapicClient->insert();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -567,10 +499,7 @@ class NodeTemplatesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $response = $gapicClient->list($project, $region);
+        $response = $gapicClient->list();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -580,10 +509,6 @@ class NodeTemplatesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeTemplates/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -605,11 +530,8 @@ class NodeTemplatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
         try {
-            $gapicClient->list($project, $region);
+            $gapicClient->list();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -638,26 +560,13 @@ class NodeTemplatesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
-        $resource = 'resource-341064690';
-        $response = $gapicClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeTemplates/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getRegionSetPolicyRequestResource();
-        $this->assertProtobufEquals($regionSetPolicyRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -679,13 +588,8 @@ class NodeTemplatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -708,26 +612,13 @@ class NodeTemplatesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $response = $gapicClient->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.NodeTemplates/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -749,13 +640,8 @@ class NodeTemplatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
         try {
-            $gapicClient->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

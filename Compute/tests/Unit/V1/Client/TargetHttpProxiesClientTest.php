@@ -42,7 +42,6 @@ use Google\Cloud\Compute\V1\TargetHttpProxiesScopedList;
 use Google\Cloud\Compute\V1\TargetHttpProxy;
 use Google\Cloud\Compute\V1\TargetHttpProxyAggregatedList;
 use Google\Cloud\Compute\V1\TargetHttpProxyList;
-use Google\Cloud\Compute\V1\UrlMapReference;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -97,10 +96,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListTargetHttpProxiesRequest())
-            ->setProject($project);
+        $request = new AggregatedListTargetHttpProxiesRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -113,8 +109,6 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetHttpProxies/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -136,10 +130,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListTargetHttpProxiesRequest())
-            ->setProject($project);
+        $request = new AggregatedListTargetHttpProxiesRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -178,12 +169,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $targetHttpProxy = 'targetHttpProxy206872421';
-        $request = (new DeleteTargetHttpProxyRequest())
-            ->setProject($project)
-            ->setTargetHttpProxy($targetHttpProxy);
+        $request = new DeleteTargetHttpProxyRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -193,13 +179,8 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetHttpProxies/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetHttpProxy();
-        $this->assertProtobufEquals($targetHttpProxy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -247,12 +228,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $targetHttpProxy = 'targetHttpProxy206872421';
-        $request = (new DeleteTargetHttpProxyRequest())
-            ->setProject($project)
-            ->setTargetHttpProxy($targetHttpProxy);
+        $request = new DeleteTargetHttpProxyRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -306,12 +282,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setUrlMap($urlMap);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $targetHttpProxy = 'targetHttpProxy206872421';
-        $request = (new GetTargetHttpProxyRequest())
-            ->setProject($project)
-            ->setTargetHttpProxy($targetHttpProxy);
+        $request = new GetTargetHttpProxyRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -319,10 +290,6 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetHttpProxies/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getTargetHttpProxy();
-        $this->assertProtobufEquals($targetHttpProxy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -344,12 +311,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $targetHttpProxy = 'targetHttpProxy206872421';
-        $request = (new GetTargetHttpProxyRequest())
-            ->setProject($project)
-            ->setTargetHttpProxy($targetHttpProxy);
+        $request = new GetTargetHttpProxyRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -388,12 +350,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $targetHttpProxyResource = new TargetHttpProxy();
-        $request = (new InsertTargetHttpProxyRequest())
-            ->setProject($project)
-            ->setTargetHttpProxyResource($targetHttpProxyResource);
+        $request = new InsertTargetHttpProxyRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -403,13 +360,8 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetHttpProxies/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetHttpProxyResource();
-        $this->assertProtobufEquals($targetHttpProxyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -457,12 +409,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $targetHttpProxyResource = new TargetHttpProxy();
-        $request = (new InsertTargetHttpProxyRequest())
-            ->setProject($project)
-            ->setTargetHttpProxyResource($targetHttpProxyResource);
+        $request = new InsertTargetHttpProxyRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -507,10 +454,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListTargetHttpProxiesRequest())
-            ->setProject($project);
+        $request = new ListTargetHttpProxiesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -521,8 +465,6 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetHttpProxies/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -544,10 +486,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListTargetHttpProxiesRequest())
-            ->setProject($project);
+        $request = new ListTargetHttpProxiesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -586,14 +525,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $targetHttpProxy = 'targetHttpProxy206872421';
-        $targetHttpProxyResource = new TargetHttpProxy();
-        $request = (new PatchTargetHttpProxyRequest())
-            ->setProject($project)
-            ->setTargetHttpProxy($targetHttpProxy)
-            ->setTargetHttpProxyResource($targetHttpProxyResource);
+        $request = new PatchTargetHttpProxyRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -603,15 +535,8 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetHttpProxies/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetHttpProxy();
-        $this->assertProtobufEquals($targetHttpProxy, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetHttpProxyResource();
-        $this->assertProtobufEquals($targetHttpProxyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -659,14 +584,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $targetHttpProxy = 'targetHttpProxy206872421';
-        $targetHttpProxyResource = new TargetHttpProxy();
-        $request = (new PatchTargetHttpProxyRequest())
-            ->setProject($project)
-            ->setTargetHttpProxy($targetHttpProxy)
-            ->setTargetHttpProxyResource($targetHttpProxyResource);
+        $request = new PatchTargetHttpProxyRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -712,14 +630,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setUrlMapTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $targetHttpProxy = 'targetHttpProxy206872421';
-        $urlMapReferenceResource = new UrlMapReference();
-        $request = (new SetUrlMapTargetHttpProxyRequest())
-            ->setProject($project)
-            ->setTargetHttpProxy($targetHttpProxy)
-            ->setUrlMapReferenceResource($urlMapReferenceResource);
+        $request = new SetUrlMapTargetHttpProxyRequest();
         $response = $gapicClient->setUrlMap($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -729,15 +640,8 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetHttpProxies/SetUrlMap', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetHttpProxy();
-        $this->assertProtobufEquals($targetHttpProxy, $actualValue);
-        $actualValue = $actualApiRequestObject->getUrlMapReferenceResource();
-        $this->assertProtobufEquals($urlMapReferenceResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -785,14 +689,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $targetHttpProxy = 'targetHttpProxy206872421';
-        $urlMapReferenceResource = new UrlMapReference();
-        $request = (new SetUrlMapTargetHttpProxyRequest())
-            ->setProject($project)
-            ->setTargetHttpProxy($targetHttpProxy)
-            ->setUrlMapReferenceResource($urlMapReferenceResource);
+        $request = new SetUrlMapTargetHttpProxyRequest();
         $response = $gapicClient->setUrlMap($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -836,10 +733,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListTargetHttpProxiesRequest())
-            ->setProject($project);
+        $request = new AggregatedListTargetHttpProxiesRequest();
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -852,8 +746,6 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetHttpProxies/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -31,10 +31,13 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified image.
  *
- * @param string $image   Name of the image resource to delete.
- * @param string $project Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_sample(string $image, string $project): void
+function delete_sample(): void
 {
     // Create a client.
     $imagesClient = new ImagesClient();
@@ -42,7 +45,7 @@ function delete_sample(string $image, string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $imagesClient->delete($image, $project);
+        $response = $imagesClient->delete();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -55,22 +58,5 @@ function delete_sample(string $image, string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $image = '[IMAGE]';
-    $project = '[PROJECT]';
-
-    delete_sample($image, $project);
 }
 // [END compute_v1_generated_Images_Delete_sync]

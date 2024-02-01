@@ -22,41 +22,41 @@ class KnowledgeBase
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Þ
-/google/cloud/dialogflow/v2/knowledge_base.protogoogle.cloud.dialogflow.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ü
+ç
+/google/cloud/dialogflow/v2/knowledge_base.protogoogle.cloud.dialogflow.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ý
 KnowledgeBase
-name (	
-display_name (	BàA
+name (	
+display_name (	BâA
 language_code (	:ªêA¦
-\'dialogflow.googleapis.com/KnowledgeBase2projects/{project}/knowledgeBases/{knowledge_base}Gprojects/{project}/locations/{location}/knowledgeBases/{knowledge_base}"“
-ListKnowledgeBasesRequest?
-parent (	B/àAúA)\'dialogflow.googleapis.com/KnowledgeBase
+\'dialogflow.googleapis.com/KnowledgeBase2projects/{project}/knowledgeBases/{knowledge_base}Gprojects/{project}/locations/{location}/knowledgeBases/{knowledge_base}"”
+ListKnowledgeBasesRequest@
+parent (	B0âAúA)\'dialogflow.googleapis.com/KnowledgeBase
 	page_size (
 
 page_token (	
 filter (	"y
 ListKnowledgeBasesResponseB
 knowledge_bases (2).google.cloud.dialogflow.v2.KnowledgeBase
-next_page_token (	"X
-GetKnowledgeBaseRequest=
-name (	B/àAúA)
-\'dialogflow.googleapis.com/KnowledgeBase"¥
-CreateKnowledgeBaseRequest?
-parent (	B/àAúA)\'dialogflow.googleapis.com/KnowledgeBaseF
-knowledge_base (2).google.cloud.dialogflow.v2.KnowledgeBaseBàA"o
-DeleteKnowledgeBaseRequest=
-name (	B/àAúA)
-\'dialogflow.googleapis.com/KnowledgeBase
-force (BàA"š
-UpdateKnowledgeBaseRequestF
-knowledge_base (2).google.cloud.dialogflow.v2.KnowledgeBaseBàA4
-update_mask (2.google.protobuf.FieldMaskBàA2´
+next_page_token (	"Y
+GetKnowledgeBaseRequest>
+name (	B0âAúA)
+\'dialogflow.googleapis.com/KnowledgeBase"§
+CreateKnowledgeBaseRequest@
+parent (	B0âAúA)\'dialogflow.googleapis.com/KnowledgeBaseG
+knowledge_base (2).google.cloud.dialogflow.v2.KnowledgeBaseBâA"q
+DeleteKnowledgeBaseRequest>
+name (	B0âAúA)
+\'dialogflow.googleapis.com/KnowledgeBase
+force (BâA"œ
+UpdateKnowledgeBaseRequestG
+knowledge_base (2).google.cloud.dialogflow.v2.KnowledgeBaseBâA5
+update_mask (2.google.protobuf.FieldMaskBâA2´
 KnowledgeBases¤
-ListKnowledgeBases5.google.cloud.dialogflow.v2.ListKnowledgeBasesRequest6.google.cloud.dialogflow.v2.ListKnowledgeBasesResponse"ž‚Óä“Ž&/v2/{parent=projects/*}/knowledgeBasesZ42/v2/{parent=projects/*/locations/*}/knowledgeBasesZ.,/v2/{parent=projects/*/agent}/knowledgeBasesÚAparent‘
-GetKnowledgeBase3.google.cloud.dialogflow.v2.GetKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"œ‚Óä“Ž&/v2/{name=projects/*/knowledgeBases/*}Z42/v2/{name=projects/*/locations/*/knowledgeBases/*}Z.,/v2/{name=projects/*/agent/knowledgeBases/*}ÚAnameØ
-CreateKnowledgeBase6.google.cloud.dialogflow.v2.CreateKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"Ý‚Óä“¾"&/v2/{parent=projects/*}/knowledgeBases:knowledge_baseZD"2/v2/{parent=projects/*/locations/*}/knowledgeBases:knowledge_baseZ>",/v2/{parent=projects/*/agent}/knowledgeBases:knowledge_baseÚAparent,knowledge_base„
-DeleteKnowledgeBase6.google.cloud.dialogflow.v2.DeleteKnowledgeBaseRequest.google.protobuf.Empty"œ‚Óä“Ž*&/v2/{name=projects/*/knowledgeBases/*}Z4*2/v2/{name=projects/*/locations/*/knowledgeBases/*}Z.*,/v2/{name=projects/*/agent/knowledgeBases/*}ÚAnameŠ
-UpdateKnowledgeBase6.google.cloud.dialogflow.v2.UpdateKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"‚Óä“ë25/v2/{knowledge_base.name=projects/*/knowledgeBases/*}:knowledge_baseZS2A/v2/{knowledge_base.name=projects/*/locations/*/knowledgeBases/*}:knowledge_baseZM2;/v2/{knowledge_base.name=projects/*/agent/knowledgeBases/*}:knowledge_baseÚAknowledge_base,update_maskxÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB›
+ListKnowledgeBases5.google.cloud.dialogflow.v2.ListKnowledgeBasesRequest6.google.cloud.dialogflow.v2.ListKnowledgeBasesResponse"žÚAparent‚Óä“Ž&/v2/{parent=projects/*}/knowledgeBasesZ42/v2/{parent=projects/*/locations/*}/knowledgeBasesZ.,/v2/{parent=projects/*/agent}/knowledgeBases‘
+GetKnowledgeBase3.google.cloud.dialogflow.v2.GetKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"œÚAname‚Óä“Ž&/v2/{name=projects/*/knowledgeBases/*}Z42/v2/{name=projects/*/locations/*/knowledgeBases/*}Z.,/v2/{name=projects/*/agent/knowledgeBases/*}Ø
+CreateKnowledgeBase6.google.cloud.dialogflow.v2.CreateKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"ÝÚAparent,knowledge_base‚Óä“¾"&/v2/{parent=projects/*}/knowledgeBases:knowledge_baseZD"2/v2/{parent=projects/*/locations/*}/knowledgeBases:knowledge_baseZ>",/v2/{parent=projects/*/agent}/knowledgeBases:knowledge_base„
+DeleteKnowledgeBase6.google.cloud.dialogflow.v2.DeleteKnowledgeBaseRequest.google.protobuf.Empty"œÚAname‚Óä“Ž*&/v2/{name=projects/*/knowledgeBases/*}Z4*2/v2/{name=projects/*/locations/*/knowledgeBases/*}Z.*,/v2/{name=projects/*/agent/knowledgeBases/*}Š
+UpdateKnowledgeBase6.google.cloud.dialogflow.v2.UpdateKnowledgeBaseRequest).google.cloud.dialogflow.v2.KnowledgeBase"ÚAknowledge_base,update_mask‚Óä“ë25/v2/{knowledge_base.name=projects/*/knowledgeBases/*}:knowledge_baseZS2A/v2/{knowledge_base.name=projects/*/locations/*/knowledgeBases/*}:knowledge_baseZM2;/v2/{knowledge_base.name=projects/*/agent/knowledgeBases/*}:knowledge_basexÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB›
 com.google.cloud.dialogflow.v2BKnowledgeBaseProtoPZ>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpbø¢DFªGoogle.Cloud.Dialogflow.V2bproto3'
         , true);
 

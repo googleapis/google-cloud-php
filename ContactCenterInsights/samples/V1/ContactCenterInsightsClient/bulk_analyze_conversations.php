@@ -33,25 +33,19 @@ use Google\Rpc\Status;
 /**
  * Analyzes multiple conversations in a single request.
  *
- * @param string $formattedParent    The parent resource to create analyses in. Please see
- *                                   {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
- * @param string $filter             Filter used to select the subset of conversations to analyze.
- * @param float  $analysisPercentage Percentage of selected conversation to analyze, between
- *                                   [0, 100].
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function bulk_analyze_conversations_sample(
-    string $formattedParent,
-    string $filter,
-    float $analysisPercentage
-): void {
+function bulk_analyze_conversations_sample(): void
+{
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $request = (new BulkAnalyzeConversationsRequest())
-        ->setParent($formattedParent)
-        ->setFilter($filter)
-        ->setAnalysisPercentage($analysisPercentage);
+    $request = new BulkAnalyzeConversationsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,23 +65,5 @@ function bulk_analyze_conversations_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ContactCenterInsightsClient::locationName('[PROJECT]', '[LOCATION]');
-    $filter = '[FILTER]';
-    $analysisPercentage = 0.0;
-
-    bulk_analyze_conversations_sample($formattedParent, $filter, $analysisPercentage);
 }
 // [END contactcenterinsights_v1_generated_ContactCenterInsights_BulkAnalyzeConversations_sync]

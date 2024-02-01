@@ -30,20 +30,19 @@ use Google\Cloud\Dataform\V1beta1\RemoveDirectoryRequest;
 /**
  * Deletes a directory (inside a Workspace) and all of its contents.
  *
- * @param string $formattedWorkspace The workspace's name. Please see
- *                                   {@see DataformClient::workspaceName()} for help formatting this field.
- * @param string $path               The directory's full path including directory name, relative to
- *                                   the workspace root.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function remove_directory_sample(string $formattedWorkspace, string $path): void
+function remove_directory_sample(): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = (new RemoveDirectoryRequest())
-        ->setWorkspace($formattedWorkspace)
-        ->setPath($path);
+    $request = new RemoveDirectoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,27 +51,5 @@ function remove_directory_sample(string $formattedWorkspace, string $path): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedWorkspace = DataformClient::workspaceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REPOSITORY]',
-        '[WORKSPACE]'
-    );
-    $path = '[PATH]';
-
-    remove_directory_sample($formattedWorkspace, $path);
 }
 // [END dataform_v1beta1_generated_Dataform_RemoveDirectory_sync]

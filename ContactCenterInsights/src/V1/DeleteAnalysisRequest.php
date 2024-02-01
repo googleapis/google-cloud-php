@@ -23,8 +23,7 @@ class DeleteAnalysisRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the analysis to delete. Please see
-     *                     {@see ContactCenterInsightsClient::analysisName()} for help formatting this field.
+     * @param string $name Required. The name of the analysis to delete.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\DeleteAnalysisRequest
      *

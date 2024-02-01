@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\Cloud\Dialogflow\Cx\V3\Client\SessionsClient;
-use Google\Cloud\Dialogflow\Cx\V3\QueryInput;
 use Google\Cloud\Dialogflow\Cx\V3\StreamingDetectIntentRequest;
 use Google\Cloud\Dialogflow\Cx\V3\StreamingDetectIntentResponse;
 
@@ -39,21 +38,19 @@ use Google\Cloud\Dialogflow\Cx\V3\StreamingDetectIntentResponse;
  * See [Versions and
  * environments](https://cloud.google.com/dialogflow/cx/docs/concept/version).
  *
- * @param string $queryInputLanguageCode The language of the input. See [Language
- *                                       Support](https://cloud.google.com/dialogflow/cx/docs/reference/language)
- *                                       for a list of the currently supported language codes. Note that queries in
- *                                       the same session do not necessarily need to specify the same language.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function streaming_detect_intent_sample(string $queryInputLanguageCode): void
+function streaming_detect_intent_sample(): void
 {
     // Create a client.
     $sessionsClient = new SessionsClient();
 
     // Prepare the request message.
-    $queryInput = (new QueryInput())
-        ->setLanguageCode($queryInputLanguageCode);
-    $request = (new StreamingDetectIntentRequest())
-        ->setQueryInput($queryInput);
+    $request = new StreamingDetectIntentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,21 +65,5 @@ function streaming_detect_intent_sample(string $queryInputLanguageCode): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $queryInputLanguageCode = '[LANGUAGE_CODE]';
-
-    streaming_detect_intent_sample($queryInputLanguageCode);
 }
 // [END dialogflow_v3_generated_Sessions_StreamingDetectIntent_sync]

@@ -32,18 +32,19 @@ use Google\Cloud\Config\V1\Resource;
  * Gets details about a [Resource][google.cloud.config.v1.Resource] deployed
  * by Infra Manager.
  *
- * @param string $formattedName The name of the Resource in the format:
- *                              'projects/{project_id}/locations/{location}/deployments/{deployment}/revisions/{revision}/resource/{resource}'. Please see
- *                              {@see ConfigClient::resourceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_resource_sample(string $formattedName): void
+function get_resource_sample(): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $request = (new GetResourceRequest())
-        ->setName($formattedName);
+    $request = new GetResourceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,27 +54,5 @@ function get_resource_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ConfigClient::resourceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DEPLOYMENT]',
-        '[REVISION]',
-        '[RESOURCE]'
-    );
-
-    get_resource_sample($formattedName);
 }
 // [END config_v1_generated_Config_GetResource_sync]

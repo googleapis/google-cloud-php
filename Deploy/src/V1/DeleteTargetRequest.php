@@ -63,8 +63,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the `Target` to delete. Format should be
-     *                     `projects/{project_id}/locations/{location_name}/targets/{target_name}`. Please see
-     *                     {@see CloudDeployClient::targetName()} for help formatting this field.
+     *                     `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * @return \Google\Cloud\Deploy\V1\DeleteTargetRequest
      *

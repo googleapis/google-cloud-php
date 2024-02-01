@@ -64,8 +64,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The relative resource name of the location of metastore services
      *                       to list, in the following form:
      *
-     *                       `projects/{project_number}/locations/{location_id}`. Please see
-     *                       {@see DataprocMetastoreClient::locationName()} for help formatting this field.
+     *                       `projects/{project_number}/locations/{location_id}`.
      *
      * @return \Google\Cloud\Metastore\V1\ListServicesRequest
      *

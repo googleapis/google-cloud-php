@@ -69,8 +69,7 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                          $parent    Required. The parent collection in which the `Rollout` should be created.
      *                                                   Format should be
-     *                                                   `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`. Please see
-     *                                                   {@see CloudDeployClient::releaseName()} for help formatting this field.
+     *                                                   `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
      * @param \Google\Cloud\Deploy\V1\Rollout $rollout   Required. The `Rollout` to create.
      * @param string                          $rolloutId Required. ID of the `Rollout`.
      *

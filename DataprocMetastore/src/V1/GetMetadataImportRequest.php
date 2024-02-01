@@ -29,8 +29,7 @@ class GetMetadataImportRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The relative resource name of the metadata import to retrieve, in
      *                     the following form:
      *
-     *                     `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{import_id}`. Please see
-     *                     {@see DataprocMetastoreClient::metadataImportName()} for help formatting this field.
+     *                     `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{import_id}`.
      *
      * @return \Google\Cloud\Metastore\V1\GetMetadataImportRequest
      *

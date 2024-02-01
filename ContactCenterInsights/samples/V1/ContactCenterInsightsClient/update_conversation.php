@@ -43,9 +43,7 @@ function update_conversation_sample(): void
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $conversation = new Conversation();
-    $request = (new UpdateConversationRequest())
-        ->setConversation($conversation);
+    $request = new UpdateConversationRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -30,9 +30,13 @@ use Google\Cloud\Compute\V1\SubnetworksClient;
 /**
  * Retrieves an aggregated list of all usable subnetworks in the project.
  *
- * @param string $project Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_usable_sample(string $project): void
+function list_usable_sample(): void
 {
     // Create a client.
     $subnetworksClient = new SubnetworksClient();
@@ -40,7 +44,7 @@ function list_usable_sample(string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $subnetworksClient->listUsable($project);
+        $response = $subnetworksClient->listUsable();
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -48,21 +52,5 @@ function list_usable_sample(string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-
-    list_usable_sample($project);
 }
 // [END compute_v1_generated_Subnetworks_ListUsable_sync]

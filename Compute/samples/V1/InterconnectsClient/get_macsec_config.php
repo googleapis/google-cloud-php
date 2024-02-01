@@ -30,10 +30,13 @@ use Google\Cloud\Compute\V1\InterconnectsGetMacsecConfigResponse;
 /**
  * Returns the interconnectMacsecConfig for the specified Interconnect.
  *
- * @param string $interconnect Name of the interconnect resource to query.
- * @param string $project      Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_macsec_config_sample(string $interconnect, string $project): void
+function get_macsec_config_sample(): void
 {
     // Create a client.
     $interconnectsClient = new InterconnectsClient();
@@ -41,27 +44,10 @@ function get_macsec_config_sample(string $interconnect, string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var InterconnectsGetMacsecConfigResponse $response */
-        $response = $interconnectsClient->getMacsecConfig($interconnect, $project);
+        $response = $interconnectsClient->getMacsecConfig();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $interconnect = '[INTERCONNECT]';
-    $project = '[PROJECT]';
-
-    get_macsec_config_sample($interconnect, $project);
 }
 // [END compute_v1_generated_Interconnects_GetMacsecConfig_sync]

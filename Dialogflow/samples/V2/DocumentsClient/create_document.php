@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dialogflow\V2\Client\DocumentsClient;
 use Google\Cloud\Dialogflow\V2\CreateDocumentRequest;
 use Google\Cloud\Dialogflow\V2\Document;
-use Google\Cloud\Dialogflow\V2\Document\KnowledgeType;
 use Google\Rpc\Status;
 
 /**
@@ -42,33 +41,19 @@ use Google\Rpc\Status;
  * [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
  * - `response`: [Document][google.cloud.dialogflow.v2.Document]
  *
- * @param string $formattedParent               The knowledge base to create a document for.
- *                                              Format: `projects/<Project ID>/locations/<Location
- *                                              ID>/knowledgeBases/<Knowledge Base ID>`. Please see
- *                                              {@see DocumentsClient::knowledgeBaseName()} for help formatting this field.
- * @param string $documentDisplayName           The display name of the document. The name must be 1024 bytes or
- *                                              less; otherwise, the creation request fails.
- * @param string $documentMimeType              The MIME type of this document.
- * @param int    $documentKnowledgeTypesElement The knowledge type of document content.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_document_sample(
-    string $formattedParent,
-    string $documentDisplayName,
-    string $documentMimeType,
-    int $documentKnowledgeTypesElement
-): void {
+function create_document_sample(): void
+{
     // Create a client.
     $documentsClient = new DocumentsClient();
 
     // Prepare the request message.
-    $documentKnowledgeTypes = [$documentKnowledgeTypesElement,];
-    $document = (new Document())
-        ->setDisplayName($documentDisplayName)
-        ->setMimeType($documentMimeType)
-        ->setKnowledgeTypes($documentKnowledgeTypes);
-    $request = (new CreateDocumentRequest())
-        ->setParent($formattedParent)
-        ->setDocument($document);
+    $request = new CreateDocumentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -88,29 +73,5 @@ function create_document_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DocumentsClient::knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-    $documentDisplayName = '[DISPLAY_NAME]';
-    $documentMimeType = '[MIME_TYPE]';
-    $documentKnowledgeTypesElement = KnowledgeType::KNOWLEDGE_TYPE_UNSPECIFIED;
-
-    create_document_sample(
-        $formattedParent,
-        $documentDisplayName,
-        $documentMimeType,
-        $documentKnowledgeTypesElement
-    );
 }
 // [END dialogflow_v2_generated_Documents_CreateDocument_sync]

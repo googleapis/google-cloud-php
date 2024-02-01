@@ -5,10 +5,7 @@ return [
         'google.cloud.compute.v1.ForwardingRules' => [
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -43,10 +40,7 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -75,10 +69,7 @@ return [
             ],
             'Patch' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -113,10 +104,7 @@ return [
             ],
             'SetLabels' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -151,10 +139,7 @@ return [
             ],
             'SetTarget' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

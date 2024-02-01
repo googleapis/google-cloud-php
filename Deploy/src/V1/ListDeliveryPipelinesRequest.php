@@ -56,8 +56,7 @@ class ListDeliveryPipelinesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent, which owns this collection of pipelines. Format must
-     *                       be `projects/{project_id}/locations/{location_name}`. Please see
-     *                       {@see CloudDeployClient::locationName()} for help formatting this field.
+     *                       be `projects/{project_id}/locations/{location_name}`.
      *
      * @return \Google\Cloud\Deploy\V1\ListDeliveryPipelinesRequest
      *

@@ -56,10 +56,7 @@ use Google\Cloud\Compute\V1\ValidateRegionUrlMapRequest;
  * ```
  * $regionUrlMapsClient = new RegionUrlMapsClient();
  * try {
- *     $project = 'project';
- *     $region = 'region';
- *     $urlMap = 'url_map';
- *     $operationResponse = $regionUrlMapsClient->delete($project, $region, $urlMap);
+ *     $operationResponse = $regionUrlMapsClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -69,7 +66,7 @@ use Google\Cloud\Compute\V1\ValidateRegionUrlMapRequest;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionUrlMapsClient->delete($project, $region, $urlMap);
+ *     $operationResponse = $regionUrlMapsClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionUrlMapsClient->resumeOperation($operationName, 'delete');
@@ -169,10 +166,7 @@ class RegionUrlMapsGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -268,10 +262,7 @@ class RegionUrlMapsGapicClient
      * ```
      * $regionUrlMapsClient = new RegionUrlMapsClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $urlMap = 'url_map';
-     *     $operationResponse = $regionUrlMapsClient->delete($project, $region, $urlMap);
+     *     $operationResponse = $regionUrlMapsClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -281,7 +272,7 @@ class RegionUrlMapsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionUrlMapsClient->delete($project, $region, $urlMap);
+     *     $operationResponse = $regionUrlMapsClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionUrlMapsClient->resumeOperation($operationName, 'delete');
@@ -300,14 +291,17 @@ class RegionUrlMapsGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request.
-     * @param string $urlMap       Name of the UrlMap resource to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     *     @type string $urlMap
+     *           Name of the UrlMap resource to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -318,18 +312,27 @@ class RegionUrlMapsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($project, $region, $urlMap, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteRegionUrlMapRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setUrlMap($urlMap);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['url_map'] = $urlMap;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['urlMap'])) {
+            $request->setUrlMap($optionalArgs['urlMap']);
+            $requestParamHeaders['url_map'] = $optionalArgs['urlMap'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -344,21 +347,21 @@ class RegionUrlMapsGapicClient
      * ```
      * $regionUrlMapsClient = new RegionUrlMapsClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $urlMap = 'url_map';
-     *     $response = $regionUrlMapsClient->get($project, $region, $urlMap);
+     *     $response = $regionUrlMapsClient->get();
      * } finally {
      *     $regionUrlMapsClient->close();
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request.
-     * @param string $urlMap       Name of the UrlMap resource to return.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
+     *     @type string $urlMap
+     *           Name of the UrlMap resource to return.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -369,16 +372,25 @@ class RegionUrlMapsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($project, $region, $urlMap, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetRegionUrlMapRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setUrlMap($urlMap);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['url_map'] = $urlMap;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['urlMap'])) {
+            $request->setUrlMap($optionalArgs['urlMap']);
+            $requestParamHeaders['url_map'] = $optionalArgs['urlMap'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', UrlMap::class, $optionalArgs, $request)->wait();
@@ -391,10 +403,7 @@ class RegionUrlMapsGapicClient
      * ```
      * $regionUrlMapsClient = new RegionUrlMapsClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $urlMapResource = new UrlMap();
-     *     $operationResponse = $regionUrlMapsClient->insert($project, $region, $urlMapResource);
+     *     $operationResponse = $regionUrlMapsClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -404,7 +413,7 @@ class RegionUrlMapsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionUrlMapsClient->insert($project, $region, $urlMapResource);
+     *     $operationResponse = $regionUrlMapsClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionUrlMapsClient->resumeOperation($operationName, 'insert');
@@ -423,14 +432,17 @@ class RegionUrlMapsGapicClient
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $region         Name of the region scoping this request.
-     * @param UrlMap $urlMapResource The body resource for this request
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     *     @type UrlMap $urlMapResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -441,17 +453,26 @@ class RegionUrlMapsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($project, $region, $urlMapResource, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertRegionUrlMapRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setUrlMapResource($urlMapResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['urlMapResource'])) {
+            $request->setUrlMapResource($optionalArgs['urlMapResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -466,10 +487,8 @@ class RegionUrlMapsGapicClient
      * ```
      * $regionUrlMapsClient = new RegionUrlMapsClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionUrlMapsClient->list($project, $region);
+     *     $pagedResponse = $regionUrlMapsClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -477,7 +496,7 @@ class RegionUrlMapsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionUrlMapsClient->list($project, $region);
+     *     $pagedResponse = $regionUrlMapsClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -486,9 +505,7 @@ class RegionUrlMapsGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -502,6 +519,10 @@ class RegionUrlMapsGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -514,14 +535,10 @@ class RegionUrlMapsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, $region, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListRegionUrlMapsRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -536,6 +553,16 @@ class RegionUrlMapsGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -554,11 +581,7 @@ class RegionUrlMapsGapicClient
      * ```
      * $regionUrlMapsClient = new RegionUrlMapsClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $urlMap = 'url_map';
-     *     $urlMapResource = new UrlMap();
-     *     $operationResponse = $regionUrlMapsClient->patch($project, $region, $urlMap, $urlMapResource);
+     *     $operationResponse = $regionUrlMapsClient->patch();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -568,7 +591,7 @@ class RegionUrlMapsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionUrlMapsClient->patch($project, $region, $urlMap, $urlMapResource);
+     *     $operationResponse = $regionUrlMapsClient->patch();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionUrlMapsClient->resumeOperation($operationName, 'patch');
@@ -587,15 +610,19 @@ class RegionUrlMapsGapicClient
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $region         Name of the region scoping this request.
-     * @param string $urlMap         Name of the UrlMap resource to patch.
-     * @param UrlMap $urlMapResource The body resource for this request
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     *     @type string $urlMap
+     *           Name of the UrlMap resource to patch.
+     *     @type UrlMap $urlMapResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -606,19 +633,31 @@ class RegionUrlMapsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch($project, $region, $urlMap, $urlMapResource, array $optionalArgs = [])
+    public function patch(array $optionalArgs = [])
     {
         $request = new PatchRegionUrlMapRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setUrlMap($urlMap);
-        $request->setUrlMapResource($urlMapResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['url_map'] = $urlMap;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['urlMap'])) {
+            $request->setUrlMap($optionalArgs['urlMap']);
+            $requestParamHeaders['url_map'] = $optionalArgs['urlMap'];
+        }
+
+        if (isset($optionalArgs['urlMapResource'])) {
+            $request->setUrlMapResource($optionalArgs['urlMapResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -633,11 +672,7 @@ class RegionUrlMapsGapicClient
      * ```
      * $regionUrlMapsClient = new RegionUrlMapsClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $urlMap = 'url_map';
-     *     $urlMapResource = new UrlMap();
-     *     $operationResponse = $regionUrlMapsClient->update($project, $region, $urlMap, $urlMapResource);
+     *     $operationResponse = $regionUrlMapsClient->update();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -647,7 +682,7 @@ class RegionUrlMapsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionUrlMapsClient->update($project, $region, $urlMap, $urlMapResource);
+     *     $operationResponse = $regionUrlMapsClient->update();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionUrlMapsClient->resumeOperation($operationName, 'update');
@@ -666,15 +701,19 @@ class RegionUrlMapsGapicClient
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $region         Name of the region scoping this request.
-     * @param string $urlMap         Name of the UrlMap resource to update.
-     * @param UrlMap $urlMapResource The body resource for this request
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     *     @type string $urlMap
+     *           Name of the UrlMap resource to update.
+     *     @type UrlMap $urlMapResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -685,19 +724,31 @@ class RegionUrlMapsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function update($project, $region, $urlMap, $urlMapResource, array $optionalArgs = [])
+    public function update(array $optionalArgs = [])
     {
         $request = new UpdateRegionUrlMapRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setUrlMap($urlMap);
-        $request->setUrlMapResource($urlMapResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['url_map'] = $urlMap;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['urlMap'])) {
+            $request->setUrlMap($optionalArgs['urlMap']);
+            $requestParamHeaders['url_map'] = $optionalArgs['urlMap'];
+        }
+
+        if (isset($optionalArgs['urlMapResource'])) {
+            $request->setUrlMapResource($optionalArgs['urlMapResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -712,23 +763,23 @@ class RegionUrlMapsGapicClient
      * ```
      * $regionUrlMapsClient = new RegionUrlMapsClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $regionUrlMapsValidateRequestResource = new RegionUrlMapsValidateRequest();
-     *     $urlMap = 'url_map';
-     *     $response = $regionUrlMapsClient->validate($project, $region, $regionUrlMapsValidateRequestResource, $urlMap);
+     *     $response = $regionUrlMapsClient->validate();
      * } finally {
      *     $regionUrlMapsClient->close();
      * }
      * ```
      *
-     * @param string                       $project                              Project ID for this request.
-     * @param string                       $region                               Name of the region scoping this request.
-     * @param RegionUrlMapsValidateRequest $regionUrlMapsValidateRequestResource The body resource for this request
-     * @param string                       $urlMap                               Name of the UrlMap resource to be validated as.
-     * @param array                        $optionalArgs                         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
+     *     @type RegionUrlMapsValidateRequest $regionUrlMapsValidateRequestResource
+     *           The body resource for this request
+     *     @type string $urlMap
+     *           Name of the UrlMap resource to be validated as.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -739,17 +790,29 @@ class RegionUrlMapsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function validate($project, $region, $regionUrlMapsValidateRequestResource, $urlMap, array $optionalArgs = [])
+    public function validate(array $optionalArgs = [])
     {
         $request = new ValidateRegionUrlMapRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setRegionUrlMapsValidateRequestResource($regionUrlMapsValidateRequestResource);
-        $request->setUrlMap($urlMap);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['url_map'] = $urlMap;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['regionUrlMapsValidateRequestResource'])) {
+            $request->setRegionUrlMapsValidateRequestResource($optionalArgs['regionUrlMapsValidateRequestResource']);
+        }
+
+        if (isset($optionalArgs['urlMap'])) {
+            $request->setUrlMap($optionalArgs['urlMap']);
+            $requestParamHeaders['url_map'] = $optionalArgs['urlMap'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Validate', UrlMapsValidateResponse::class, $optionalArgs, $request)->wait();

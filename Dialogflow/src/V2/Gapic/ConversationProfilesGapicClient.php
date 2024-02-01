@@ -68,10 +68,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $conversationProfilesClient = new ConversationProfilesClient();
  * try {
- *     $conversationProfile = 'conversation_profile';
- *     $participantRole = Role::ROLE_UNSPECIFIED;
- *     $suggestionFeatureType = Type::TYPE_UNSPECIFIED;
- *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType);
+ *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -82,7 +79,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType);
+ *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $conversationProfilesClient->resumeOperation($operationName, 'clearSuggestionFeatureConfig');
@@ -870,10 +867,7 @@ class ConversationProfilesGapicClient
      * ```
      * $conversationProfilesClient = new ConversationProfilesClient();
      * try {
-     *     $conversationProfile = 'conversation_profile';
-     *     $participantRole = Role::ROLE_UNSPECIFIED;
-     *     $suggestionFeatureType = Type::TYPE_UNSPECIFIED;
-     *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType);
+     *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -884,7 +878,7 @@ class ConversationProfilesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType);
+     *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $conversationProfilesClient->resumeOperation($operationName, 'clearSuggestionFeatureConfig');
@@ -904,17 +898,20 @@ class ConversationProfilesGapicClient
      * }
      * ```
      *
-     * @param string $conversationProfile   Required. The Conversation Profile to add or update the suggestion feature
-     *                                      config. Format: `projects/<Project ID>/locations/<Location
-     *                                      ID>/conversationProfiles/<Conversation Profile ID>`.
-     * @param int    $participantRole       Required. The participant role to remove the suggestion feature
-     *                                      config. Only HUMAN_AGENT or END_USER can be used.
-     *                                      For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\Participant\Role}
-     * @param int    $suggestionFeatureType Required. The type of the suggestion feature to remove.
-     *                                      For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\SuggestionFeature\Type}
-     * @param array  $optionalArgs          {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $conversationProfile
+     *           Required. The Conversation Profile to add or update the suggestion feature
+     *           config. Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversationProfiles/<Conversation Profile ID>`.
+     *     @type int $participantRole
+     *           Required. The participant role to remove the suggestion feature
+     *           config. Only HUMAN_AGENT or END_USER can be used.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\Participant\Role}
+     *     @type int $suggestionFeatureType
+     *           Required. The type of the suggestion feature to remove.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\SuggestionFeature\Type}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -925,14 +922,23 @@ class ConversationProfilesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType, array $optionalArgs = [])
+    public function clearSuggestionFeatureConfig(array $optionalArgs = [])
     {
         $request = new ClearSuggestionFeatureConfigRequest();
         $requestParamHeaders = [];
-        $request->setConversationProfile($conversationProfile);
-        $request->setParticipantRole($participantRole);
-        $request->setSuggestionFeatureType($suggestionFeatureType);
-        $requestParamHeaders['conversation_profile'] = $conversationProfile;
+        if (isset($optionalArgs['conversationProfile'])) {
+            $request->setConversationProfile($optionalArgs['conversationProfile']);
+            $requestParamHeaders['conversation_profile'] = $optionalArgs['conversationProfile'];
+        }
+
+        if (isset($optionalArgs['participantRole'])) {
+            $request->setParticipantRole($optionalArgs['participantRole']);
+        }
+
+        if (isset($optionalArgs['suggestionFeatureType'])) {
+            $request->setSuggestionFeatureType($optionalArgs['suggestionFeatureType']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ClearSuggestionFeatureConfig', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -950,20 +956,20 @@ class ConversationProfilesGapicClient
      * ```
      * $conversationProfilesClient = new ConversationProfilesClient();
      * try {
-     *     $formattedParent = $conversationProfilesClient->projectName('[PROJECT]');
-     *     $conversationProfile = new ConversationProfile();
-     *     $response = $conversationProfilesClient->createConversationProfile($formattedParent, $conversationProfile);
+     *     $response = $conversationProfilesClient->createConversationProfile();
      * } finally {
      *     $conversationProfilesClient->close();
      * }
      * ```
      *
-     * @param string              $parent              Required. The project to create a conversation profile for.
-     *                                                 Format: `projects/<Project ID>/locations/<Location ID>`.
-     * @param ConversationProfile $conversationProfile Required. The conversation profile to create.
-     * @param array               $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project to create a conversation profile for.
+     *           Format: `projects/<Project ID>/locations/<Location ID>`.
+     *     @type ConversationProfile $conversationProfile
+     *           Required. The conversation profile to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -974,13 +980,19 @@ class ConversationProfilesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createConversationProfile($parent, $conversationProfile, array $optionalArgs = [])
+    public function createConversationProfile(array $optionalArgs = [])
     {
         $request = new CreateConversationProfileRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setConversationProfile($conversationProfile);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['conversationProfile'])) {
+            $request->setConversationProfile($optionalArgs['conversationProfile']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateConversationProfile', ConversationProfile::class, $optionalArgs, $request)->wait();
@@ -993,19 +1005,19 @@ class ConversationProfilesGapicClient
      * ```
      * $conversationProfilesClient = new ConversationProfilesClient();
      * try {
-     *     $formattedName = $conversationProfilesClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-     *     $conversationProfilesClient->deleteConversationProfile($formattedName);
+     *     $conversationProfilesClient->deleteConversationProfile();
      * } finally {
      *     $conversationProfilesClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the conversation profile to delete.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/conversationProfiles/<Conversation Profile ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the conversation profile to delete.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversationProfiles/<Conversation Profile ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1014,12 +1026,15 @@ class ConversationProfilesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteConversationProfile($name, array $optionalArgs = [])
+    public function deleteConversationProfile(array $optionalArgs = [])
     {
         $request = new DeleteConversationProfileRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteConversationProfile', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1032,19 +1047,19 @@ class ConversationProfilesGapicClient
      * ```
      * $conversationProfilesClient = new ConversationProfilesClient();
      * try {
-     *     $formattedName = $conversationProfilesClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-     *     $response = $conversationProfilesClient->getConversationProfile($formattedName);
+     *     $response = $conversationProfilesClient->getConversationProfile();
      * } finally {
      *     $conversationProfilesClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the conversation profile.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/conversationProfiles/<Conversation Profile ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the conversation profile.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversationProfiles/<Conversation Profile ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1055,12 +1070,15 @@ class ConversationProfilesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConversationProfile($name, array $optionalArgs = [])
+    public function getConversationProfile(array $optionalArgs = [])
     {
         $request = new GetConversationProfileRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetConversationProfile', ConversationProfile::class, $optionalArgs, $request)->wait();
@@ -1073,9 +1091,8 @@ class ConversationProfilesGapicClient
      * ```
      * $conversationProfilesClient = new ConversationProfilesClient();
      * try {
-     *     $formattedParent = $conversationProfilesClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $conversationProfilesClient->listConversationProfiles($formattedParent);
+     *     $pagedResponse = $conversationProfilesClient->listConversationProfiles();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1083,7 +1100,7 @@ class ConversationProfilesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $conversationProfilesClient->listConversationProfiles($formattedParent);
+     *     $pagedResponse = $conversationProfilesClient->listConversationProfiles();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1092,11 +1109,12 @@ class ConversationProfilesGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project to list all conversation profiles from.
-     *                             Format: `projects/<Project ID>/locations/<Location ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project to list all conversation profiles from.
+     *           Format: `projects/<Project ID>/locations/<Location ID>`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1116,12 +1134,15 @@ class ConversationProfilesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConversationProfiles($parent, array $optionalArgs = [])
+    public function listConversationProfiles(array $optionalArgs = [])
     {
         $request = new ListConversationProfilesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1159,10 +1180,7 @@ class ConversationProfilesGapicClient
      * ```
      * $conversationProfilesClient = new ConversationProfilesClient();
      * try {
-     *     $conversationProfile = 'conversation_profile';
-     *     $participantRole = Role::ROLE_UNSPECIFIED;
-     *     $suggestionFeatureConfig = new SuggestionFeatureConfig();
-     *     $operationResponse = $conversationProfilesClient->setSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureConfig);
+     *     $operationResponse = $conversationProfilesClient->setSuggestionFeatureConfig();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1173,7 +1191,7 @@ class ConversationProfilesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $conversationProfilesClient->setSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureConfig);
+     *     $operationResponse = $conversationProfilesClient->setSuggestionFeatureConfig();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $conversationProfilesClient->resumeOperation($operationName, 'setSuggestionFeatureConfig');
@@ -1193,16 +1211,19 @@ class ConversationProfilesGapicClient
      * }
      * ```
      *
-     * @param string                  $conversationProfile     Required. The Conversation Profile to add or update the suggestion feature
-     *                                                         config. Format: `projects/<Project ID>/locations/<Location
-     *                                                         ID>/conversationProfiles/<Conversation Profile ID>`.
-     * @param int                     $participantRole         Required. The participant role to add or update the suggestion feature
-     *                                                         config. Only HUMAN_AGENT or END_USER can be used.
-     *                                                         For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\Participant\Role}
-     * @param SuggestionFeatureConfig $suggestionFeatureConfig Required. The suggestion feature config to add or update.
-     * @param array                   $optionalArgs            {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $conversationProfile
+     *           Required. The Conversation Profile to add or update the suggestion feature
+     *           config. Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversationProfiles/<Conversation Profile ID>`.
+     *     @type int $participantRole
+     *           Required. The participant role to add or update the suggestion feature
+     *           config. Only HUMAN_AGENT or END_USER can be used.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\Participant\Role}
+     *     @type SuggestionFeatureConfig $suggestionFeatureConfig
+     *           Required. The suggestion feature config to add or update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1213,14 +1234,23 @@ class ConversationProfilesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureConfig, array $optionalArgs = [])
+    public function setSuggestionFeatureConfig(array $optionalArgs = [])
     {
         $request = new SetSuggestionFeatureConfigRequest();
         $requestParamHeaders = [];
-        $request->setConversationProfile($conversationProfile);
-        $request->setParticipantRole($participantRole);
-        $request->setSuggestionFeatureConfig($suggestionFeatureConfig);
-        $requestParamHeaders['conversation_profile'] = $conversationProfile;
+        if (isset($optionalArgs['conversationProfile'])) {
+            $request->setConversationProfile($optionalArgs['conversationProfile']);
+            $requestParamHeaders['conversation_profile'] = $optionalArgs['conversationProfile'];
+        }
+
+        if (isset($optionalArgs['participantRole'])) {
+            $request->setParticipantRole($optionalArgs['participantRole']);
+        }
+
+        if (isset($optionalArgs['suggestionFeatureConfig'])) {
+            $request->setSuggestionFeatureConfig($optionalArgs['suggestionFeatureConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetSuggestionFeatureConfig', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1238,19 +1268,19 @@ class ConversationProfilesGapicClient
      * ```
      * $conversationProfilesClient = new ConversationProfilesClient();
      * try {
-     *     $conversationProfile = new ConversationProfile();
-     *     $updateMask = new FieldMask();
-     *     $response = $conversationProfilesClient->updateConversationProfile($conversationProfile, $updateMask);
+     *     $response = $conversationProfilesClient->updateConversationProfile();
      * } finally {
      *     $conversationProfilesClient->close();
      * }
      * ```
      *
-     * @param ConversationProfile $conversationProfile Required. The conversation profile to update.
-     * @param FieldMask           $updateMask          Required. The mask to control which fields to update.
-     * @param array               $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ConversationProfile $conversationProfile
+     *           Required. The conversation profile to update.
+     *     @type FieldMask $updateMask
+     *           Required. The mask to control which fields to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1261,13 +1291,18 @@ class ConversationProfilesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateConversationProfile($conversationProfile, $updateMask, array $optionalArgs = [])
+    public function updateConversationProfile(array $optionalArgs = [])
     {
         $request = new UpdateConversationProfileRequest();
         $requestParamHeaders = [];
-        $request->setConversationProfile($conversationProfile);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['conversation_profile.name'] = $conversationProfile->getName();
+        if (isset($optionalArgs['conversationProfile'])) {
+            $request->setConversationProfile($optionalArgs['conversationProfile']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateConversationProfile', ConversationProfile::class, $optionalArgs, $request)->wait();

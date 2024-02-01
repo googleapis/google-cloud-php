@@ -23,8 +23,7 @@ class GetConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the connection profile resource to get. Please see
-     *                     {@see DatastreamClient::connectionProfileName()} for help formatting this field.
+     * @param string $name Required. The name of the connection profile resource to get.
      *
      * @return \Google\Cloud\Datastream\V1\GetConnectionProfileRequest
      *

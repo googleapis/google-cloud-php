@@ -26,33 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\RegionSecurityPoliciesClient;
-use Google\Cloud\Compute\V1\SecurityPolicyRule;
 use Google\Rpc\Status;
 
 /**
  * Inserts a rule into a security policy.
  *
- * @param string $project        Project ID for this request.
- * @param string $region         Name of the region scoping this request.
- * @param string $securityPolicy Name of the security policy to update.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function add_rule_sample(string $project, string $region, string $securityPolicy): void
+function add_rule_sample(): void
 {
     // Create a client.
     $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $securityPolicyRuleResource = new SecurityPolicyRule();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionSecurityPoliciesClient->addRule(
-            $project,
-            $region,
-            $securityPolicy,
-            $securityPolicyRuleResource
-        );
+        $response = $regionSecurityPoliciesClient->addRule();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -65,23 +58,5 @@ function add_rule_sample(string $project, string $region, string $securityPolicy
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-    $securityPolicy = '[SECURITY_POLICY]';
-
-    add_rule_sample($project, $region, $securityPolicy);
 }
 // [END compute_v1_generated_RegionSecurityPolicies_AddRule_sync]

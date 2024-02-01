@@ -26,8 +26,7 @@ class DeleteAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project that the agent to delete is associated with.
-     *                       Format: `projects/<Project ID>`. Please see
-     *                       {@see AgentsClient::projectName()} for help formatting this field.
+     *                       Format: `projects/<Project ID>`.
      *
      * @return \Google\Cloud\Dialogflow\V2\DeleteAgentRequest
      *

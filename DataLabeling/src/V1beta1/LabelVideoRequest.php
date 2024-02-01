@@ -39,7 +39,6 @@ class LabelVideoRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                                   $parent      Required. Name of the dataset to request labeling task, format:
      *                                                                              projects/{project_id}/datasets/{dataset_id}
-     *                                                                              Please see {@see DataLabelingServiceClient::datasetName()} for help formatting this field.
      * @param \Google\Cloud\DataLabeling\V1beta1\HumanAnnotationConfig $basicConfig Required. Basic human annotation config.
      * @param int                                                      $feature     Required. The type of video labeling task.
      *                                                                              For allowed values, use constants defined on {@see \Google\Cloud\DataLabeling\V1beta1\LabelVideoRequest\Feature}

@@ -5,10 +5,7 @@ return [
         'google.cloud.compute.v1.RegionAutoscalers' => [
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -43,10 +40,7 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -75,10 +69,7 @@ return [
             ],
             'Patch' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -107,10 +98,7 @@ return [
             ],
             'Update' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

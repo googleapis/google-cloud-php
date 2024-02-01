@@ -30,9 +30,13 @@ use Google\Cloud\Compute\V1\InstancesClient;
 /**
  * Retrieves an aggregated list of all of the instances in your project across all regions and zones. The performance of this method degrades when a filter is specified on a project that has a very large number of instances.
  *
- * @param string $project Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function aggregated_list_sample(string $project): void
+function aggregated_list_sample(): void
 {
     // Create a client.
     $instancesClient = new InstancesClient();
@@ -40,7 +44,7 @@ function aggregated_list_sample(string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $instancesClient->aggregatedList($project);
+        $response = $instancesClient->aggregatedList();
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -48,21 +52,5 @@ function aggregated_list_sample(string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-
-    aggregated_list_sample($project);
 }
 // [END compute_v1_generated_Instances_AggregatedList_sync]

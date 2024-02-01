@@ -50,12 +50,10 @@ use Google\Cloud\Compute\V1\PatchRuleRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
-use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
 use Google\Cloud\Compute\V1\RemoveAssociationRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\RemoveRuleRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsRegionNetworkFirewallPolicyRequest;
-use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -113,16 +111,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addAssociationTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new AddAssociationRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new AddAssociationRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->addAssociation($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -132,18 +121,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/AddAssociation', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallPolicyAssociationResource();
-        $this->assertProtobufEquals($firewallPolicyAssociationResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -191,16 +170,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new AddAssociationRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new AddAssociationRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->addAssociation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -246,16 +216,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $firewallPolicyRuleResource = new FirewallPolicyRule();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new AddRuleRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new AddRuleRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->addRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -265,18 +226,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/AddRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallPolicyRuleResource();
-        $this->assertProtobufEquals($firewallPolicyRuleResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -324,16 +275,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $firewallPolicyRuleResource = new FirewallPolicyRule();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new AddRuleRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new AddRuleRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->addRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -379,14 +321,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/cloneRulesTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new CloneRulesRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new CloneRulesRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->cloneRules($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -396,16 +331,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/CloneRules', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -453,14 +380,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new CloneRulesRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new CloneRulesRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->cloneRules($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -506,14 +426,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -523,16 +436,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -580,14 +485,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -645,14 +543,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $expectedResponse->setShortName($shortName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -660,12 +551,6 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -687,14 +572,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetRegionNetworkFirewallPolicyRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -729,14 +607,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setShortName($shortName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetAssociationRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetAssociationRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->getAssociation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -744,12 +615,6 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/GetAssociation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -771,14 +636,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetAssociationRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetAssociationRegionNetworkFirewallPolicyRequest();
         try {
             $gapicClient->getAssociation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -803,14 +661,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $network = 'network1843485230';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest())
-            ->setNetwork($network)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->getEffectiveFirewalls($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -818,12 +669,6 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/GetEffectiveFirewalls', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNetwork();
-        $this->assertProtobufEquals($network, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -845,14 +690,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $network = 'network1843485230';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest())
-            ->setNetwork($network)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest();
         try {
             $gapicClient->getEffectiveFirewalls($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -883,14 +721,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRegionNetworkFirewallPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setResource($resource);
+        $request = new GetIamPolicyRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -898,12 +729,6 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -925,14 +750,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRegionNetworkFirewallPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setResource($resource);
+        $request = new GetIamPolicyRegionNetworkFirewallPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -975,14 +793,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setRuleName($ruleName);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetRuleRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetRuleRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->getRule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -990,12 +801,6 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/GetRule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1017,14 +822,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetRuleRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetRuleRegionNetworkFirewallPolicyRequest();
         try {
             $gapicClient->getRule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1063,14 +861,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallPolicyResource = new FirewallPolicy();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicyResource($firewallPolicyResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1080,16 +871,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallPolicyResource();
-        $this->assertProtobufEquals($firewallPolicyResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1137,14 +920,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicyResource = new FirewallPolicy();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicyResource($firewallPolicyResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1187,12 +963,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionNetworkFirewallPoliciesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionNetworkFirewallPoliciesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1203,10 +974,6 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1228,12 +995,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionNetworkFirewallPoliciesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionNetworkFirewallPoliciesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1272,16 +1034,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $firewallPolicyResource = new FirewallPolicy();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setFirewallPolicyResource($firewallPolicyResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1291,18 +1044,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallPolicyResource();
-        $this->assertProtobufEquals($firewallPolicyResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1350,16 +1093,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $firewallPolicyResource = new FirewallPolicy();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setFirewallPolicyResource($firewallPolicyResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1405,16 +1139,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $firewallPolicyRuleResource = new FirewallPolicyRule();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchRuleRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchRuleRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->patchRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1424,18 +1149,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/PatchRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallPolicyRuleResource();
-        $this->assertProtobufEquals($firewallPolicyRuleResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1483,16 +1198,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $firewallPolicyRuleResource = new FirewallPolicyRule();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchRuleRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setFirewallPolicyRuleResource($firewallPolicyRuleResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchRuleRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->patchRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1538,14 +1244,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/removeAssociationTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new RemoveAssociationRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new RemoveAssociationRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->removeAssociation($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1555,16 +1254,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/RemoveAssociation', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1612,14 +1303,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new RemoveAssociationRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new RemoveAssociationRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->removeAssociation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1665,14 +1349,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/removeRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new RemoveRuleRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new RemoveRuleRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1682,16 +1359,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/RemoveRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1739,14 +1408,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new RemoveRuleRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new RemoveRuleRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1784,16 +1446,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
-        $resource = 'resource-341064690';
-        $request = (new SetIamPolicyRegionNetworkFirewallPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource)
-            ->setResource($resource);
+        $request = new SetIamPolicyRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1801,14 +1454,6 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getRegionSetPolicyRequestResource();
-        $this->assertProtobufEquals($regionSetPolicyRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1830,16 +1475,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
-        $resource = 'resource-341064690';
-        $request = (new SetIamPolicyRegionNetworkFirewallPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource)
-            ->setResource($resource);
+        $request = new SetIamPolicyRegionNetworkFirewallPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1864,16 +1500,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $request = (new TestIamPermissionsRegionNetworkFirewallPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $request = new TestIamPermissionsRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1881,14 +1508,6 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1910,16 +1529,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $request = (new TestIamPermissionsRegionNetworkFirewallPolicyRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $request = new TestIamPermissionsRegionNetworkFirewallPolicyRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1958,16 +1568,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addAssociationAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $firewallPolicy = 'firewallPolicy1035044177';
-        $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new AddAssociationRegionNetworkFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy)
-            ->setFirewallPolicyAssociationResource($firewallPolicyAssociationResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new AddAssociationRegionNetworkFirewallPolicyRequest();
         $response = $gapicClient->addAssociation($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1977,18 +1578,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionNetworkFirewallPolicies/AddAssociation', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallPolicyAssociationResource();
-        $this->assertProtobufEquals($firewallPolicyAssociationResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datacatalog_v1_generated_DataCatalog_UpdateTagTemplateField_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
-use Google\Cloud\DataCatalog\V1\FieldType;
 use Google\Cloud\DataCatalog\V1\TagTemplateField;
 use Google\Cloud\DataCatalog\V1\UpdateTagTemplateFieldRequest;
 
@@ -39,21 +38,19 @@ use Google\Cloud\DataCatalog\V1\UpdateTagTemplateFieldRequest;
  * resource
  * project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
  *
- * @param string $formattedName The name of the tag template field. Please see
- *                              {@see DataCatalogClient::tagTemplateFieldName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_tag_template_field_sample(string $formattedName): void
+function update_tag_template_field_sample(): void
 {
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
     // Prepare the request message.
-    $tagTemplateFieldType = new FieldType();
-    $tagTemplateField = (new TagTemplateField())
-        ->setType($tagTemplateFieldType);
-    $request = (new UpdateTagTemplateFieldRequest())
-        ->setName($formattedName)
-        ->setTagTemplateField($tagTemplateField);
+    $request = new UpdateTagTemplateFieldRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,26 +60,5 @@ function update_tag_template_field_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataCatalogClient::tagTemplateFieldName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[TAG_TEMPLATE]',
-        '[FIELD]'
-    );
-
-    update_tag_template_field_sample($formattedName);
 }
 // [END datacatalog_v1_generated_DataCatalog_UpdateTagTemplateField_sync]

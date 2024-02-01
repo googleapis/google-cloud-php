@@ -67,10 +67,7 @@ use Google\Cloud\Compute\V1\UpdateRegionBackendServiceRequest;
  * ```
  * $regionBackendServicesClient = new RegionBackendServicesClient();
  * try {
- *     $backendService = 'backend_service';
- *     $project = 'project';
- *     $region = 'region';
- *     $operationResponse = $regionBackendServicesClient->delete($backendService, $project, $region);
+ *     $operationResponse = $regionBackendServicesClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -80,7 +77,7 @@ use Google\Cloud\Compute\V1\UpdateRegionBackendServiceRequest;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionBackendServicesClient->delete($backendService, $project, $region);
+ *     $operationResponse = $regionBackendServicesClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionBackendServicesClient->resumeOperation($operationName, 'delete');
@@ -180,10 +177,7 @@ class RegionBackendServicesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -279,10 +273,7 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $operationResponse = $regionBackendServicesClient->delete($backendService, $project, $region);
+     *     $operationResponse = $regionBackendServicesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -292,7 +283,7 @@ class RegionBackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionBackendServicesClient->delete($backendService, $project, $region);
+     *     $operationResponse = $regionBackendServicesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionBackendServicesClient->resumeOperation($operationName, 'delete');
@@ -311,12 +302,15 @@ class RegionBackendServicesGapicClient
      * }
      * ```
      *
-     * @param string $backendService Name of the BackendService resource to delete.
-     * @param string $project        Project ID for this request.
-     * @param string $region         Name of the region scoping this request.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to delete.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -329,16 +323,25 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($backendService, $project, $region, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteRegionBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -355,21 +358,21 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $response = $regionBackendServicesClient->get($backendService, $project, $region);
+     *     $response = $regionBackendServicesClient->get();
      * } finally {
      *     $regionBackendServicesClient->close();
      * }
      * ```
      *
-     * @param string $backendService Name of the BackendService resource to return.
-     * @param string $project        Project ID for this request.
-     * @param string $region         Name of the region scoping this request.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to return.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -380,16 +383,25 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($backendService, $project, $region, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetRegionBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', BackendService::class, $optionalArgs, $request)->wait();
@@ -402,23 +414,22 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $resourceGroupReferenceResource = new ResourceGroupReference();
-     *     $response = $regionBackendServicesClient->getHealth($backendService, $project, $region, $resourceGroupReferenceResource);
+     *     $response = $regionBackendServicesClient->getHealth();
      * } finally {
      *     $regionBackendServicesClient->close();
      * }
      * ```
      *
-     * @param string                 $backendService                 Name of the BackendService resource for which to get health.
-     * @param string                 $project
-     * @param string                 $region                         Name of the region scoping this request.
-     * @param ResourceGroupReference $resourceGroupReferenceResource The body resource for this request
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource for which to get health.
+     *     @type string $project
+     *     @type string $region
+     *           Name of the region scoping this request.
+     *     @type ResourceGroupReference $resourceGroupReferenceResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -429,17 +440,29 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getHealth($backendService, $project, $region, $resourceGroupReferenceResource, array $optionalArgs = [])
+    public function getHealth(array $optionalArgs = [])
     {
         $request = new GetHealthRegionBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setResourceGroupReferenceResource($resourceGroupReferenceResource);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['resourceGroupReferenceResource'])) {
+            $request->setResourceGroupReferenceResource($optionalArgs['resourceGroupReferenceResource']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetHealth', BackendServiceGroupHealth::class, $optionalArgs, $request)->wait();
@@ -452,23 +475,23 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $resource = 'resource';
-     *     $response = $regionBackendServicesClient->getIamPolicy($project, $region, $resource);
+     *     $response = $regionBackendServicesClient->getIamPolicy();
      * } finally {
      *     $regionBackendServicesClient->close();
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       The name of the region for this request.
-     * @param string $resource     Name or id of the resource for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type int $optionsRequestedPolicyVersion
      *           Requested IAM Policy version.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           The name of the region for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -479,18 +502,27 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($project, $region, $resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRegionBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setResource($resource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['optionsRequestedPolicyVersion'])) {
             $request->setOptionsRequestedPolicyVersion($optionalArgs['optionsRequestedPolicyVersion']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -505,10 +537,7 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $backendServiceResource = new BackendService();
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $operationResponse = $regionBackendServicesClient->insert($backendServiceResource, $project, $region);
+     *     $operationResponse = $regionBackendServicesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -518,7 +547,7 @@ class RegionBackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionBackendServicesClient->insert($backendServiceResource, $project, $region);
+     *     $operationResponse = $regionBackendServicesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionBackendServicesClient->resumeOperation($operationName, 'insert');
@@ -537,12 +566,15 @@ class RegionBackendServicesGapicClient
      * }
      * ```
      *
-     * @param BackendService $backendServiceResource The body resource for this request
-     * @param string         $project                Project ID for this request.
-     * @param string         $region                 Name of the region scoping this request.
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type BackendService $backendServiceResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -555,15 +587,24 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($backendServiceResource, $project, $region, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertRegionBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendServiceResource($backendServiceResource);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['backendServiceResource'])) {
+            $request->setBackendServiceResource($optionalArgs['backendServiceResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -580,10 +621,8 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionBackendServicesClient->list($project, $region);
+     *     $pagedResponse = $regionBackendServicesClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -591,7 +630,7 @@ class RegionBackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionBackendServicesClient->list($project, $region);
+     *     $pagedResponse = $regionBackendServicesClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -600,9 +639,7 @@ class RegionBackendServicesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -616,6 +653,10 @@ class RegionBackendServicesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -628,14 +669,10 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, $region, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListRegionBackendServicesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -650,6 +687,16 @@ class RegionBackendServicesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -668,10 +715,8 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionBackendServicesClient->listUsable($project, $region);
+     *     $pagedResponse = $regionBackendServicesClient->listUsable();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -679,7 +724,7 @@ class RegionBackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionBackendServicesClient->listUsable($project, $region);
+     *     $pagedResponse = $regionBackendServicesClient->listUsable();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -688,9 +733,7 @@ class RegionBackendServicesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request. It must be a string that meets the requirements in RFC1035.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -704,6 +747,10 @@ class RegionBackendServicesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request. It must be a string that meets the requirements in RFC1035.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -716,14 +763,10 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listUsable($project, $region, array $optionalArgs = [])
+    public function listUsable(array $optionalArgs = [])
     {
         $request = new ListUsableRegionBackendServicesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -738,6 +781,16 @@ class RegionBackendServicesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -756,11 +809,7 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $backendServiceResource = new BackendService();
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $operationResponse = $regionBackendServicesClient->patch($backendService, $backendServiceResource, $project, $region);
+     *     $operationResponse = $regionBackendServicesClient->patch();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -770,7 +819,7 @@ class RegionBackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionBackendServicesClient->patch($backendService, $backendServiceResource, $project, $region);
+     *     $operationResponse = $regionBackendServicesClient->patch();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionBackendServicesClient->resumeOperation($operationName, 'patch');
@@ -789,13 +838,17 @@ class RegionBackendServicesGapicClient
      * }
      * ```
      *
-     * @param string         $backendService         Name of the BackendService resource to patch.
-     * @param BackendService $backendServiceResource The body resource for this request
-     * @param string         $project                Project ID for this request.
-     * @param string         $region                 Name of the region scoping this request.
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to patch.
+     *     @type BackendService $backendServiceResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -808,17 +861,29 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch($backendService, $backendServiceResource, $project, $region, array $optionalArgs = [])
+    public function patch(array $optionalArgs = [])
     {
         $request = new PatchRegionBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setBackendServiceResource($backendServiceResource);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['backendServiceResource'])) {
+            $request->setBackendServiceResource($optionalArgs['backendServiceResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -835,23 +900,23 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
-     *     $resource = 'resource';
-     *     $response = $regionBackendServicesClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+     *     $response = $regionBackendServicesClient->setIamPolicy();
      * } finally {
      *     $regionBackendServicesClient->close();
      * }
      * ```
      *
-     * @param string                 $project                        Project ID for this request.
-     * @param string                 $region                         The name of the region for this request.
-     * @param RegionSetPolicyRequest $regionSetPolicyRequestResource The body resource for this request
-     * @param string                 $resource                       Name or id of the resource for this request.
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           The name of the region for this request.
+     *     @type RegionSetPolicyRequest $regionSetPolicyRequestResource
+     *           The body resource for this request
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -862,17 +927,29 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRegionBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource);
-        $request->setResource($resource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['regionSetPolicyRequestResource'])) {
+            $request->setRegionSetPolicyRequestResource($optionalArgs['regionSetPolicyRequestResource']);
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -885,11 +962,7 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $securityPolicyReferenceResource = new SecurityPolicyReference();
-     *     $operationResponse = $regionBackendServicesClient->setSecurityPolicy($backendService, $project, $region, $securityPolicyReferenceResource);
+     *     $operationResponse = $regionBackendServicesClient->setSecurityPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -899,7 +972,7 @@ class RegionBackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionBackendServicesClient->setSecurityPolicy($backendService, $project, $region, $securityPolicyReferenceResource);
+     *     $operationResponse = $regionBackendServicesClient->setSecurityPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionBackendServicesClient->resumeOperation($operationName, 'setSecurityPolicy');
@@ -918,15 +991,19 @@ class RegionBackendServicesGapicClient
      * }
      * ```
      *
-     * @param string                  $backendService                  Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
-     * @param string                  $project                         Project ID for this request.
-     * @param string                  $region                          Name of the region scoping this request.
-     * @param SecurityPolicyReference $securityPolicyReferenceResource The body resource for this request
-     * @param array                   $optionalArgs                    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type SecurityPolicyReference $securityPolicyReferenceResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -937,19 +1014,31 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setSecurityPolicy($backendService, $project, $region, $securityPolicyReferenceResource, array $optionalArgs = [])
+    public function setSecurityPolicy(array $optionalArgs = [])
     {
         $request = new SetSecurityPolicyRegionBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['securityPolicyReferenceResource'])) {
+            $request->setSecurityPolicyReferenceResource($optionalArgs['securityPolicyReferenceResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -964,23 +1053,23 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $resource = 'resource';
-     *     $testPermissionsRequestResource = new TestPermissionsRequest();
-     *     $response = $regionBackendServicesClient->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
+     *     $response = $regionBackendServicesClient->testIamPermissions();
      * } finally {
      *     $regionBackendServicesClient->close();
      * }
      * ```
      *
-     * @param string                 $project                        Project ID for this request.
-     * @param string                 $region                         The name of the region for this request.
-     * @param string                 $resource                       Name or id of the resource for this request.
-     * @param TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           The name of the region for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
+     *     @type TestPermissionsRequest $testPermissionsRequestResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -991,17 +1080,29 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($project, $region, $resource, $testPermissionsRequestResource, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRegionBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setResource($resource);
-        $request->setTestPermissionsRequestResource($testPermissionsRequestResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['testPermissionsRequestResource'])) {
+            $request->setTestPermissionsRequestResource($optionalArgs['testPermissionsRequestResource']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();
@@ -1014,11 +1115,7 @@ class RegionBackendServicesGapicClient
      * ```
      * $regionBackendServicesClient = new RegionBackendServicesClient();
      * try {
-     *     $backendService = 'backend_service';
-     *     $backendServiceResource = new BackendService();
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $operationResponse = $regionBackendServicesClient->update($backendService, $backendServiceResource, $project, $region);
+     *     $operationResponse = $regionBackendServicesClient->update();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -1028,7 +1125,7 @@ class RegionBackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionBackendServicesClient->update($backendService, $backendServiceResource, $project, $region);
+     *     $operationResponse = $regionBackendServicesClient->update();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionBackendServicesClient->resumeOperation($operationName, 'update');
@@ -1047,13 +1144,17 @@ class RegionBackendServicesGapicClient
      * }
      * ```
      *
-     * @param string         $backendService         Name of the BackendService resource to update.
-     * @param BackendService $backendServiceResource The body resource for this request
-     * @param string         $project                Project ID for this request.
-     * @param string         $region                 Name of the region scoping this request.
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $backendService
+     *           Name of the BackendService resource to update.
+     *     @type BackendService $backendServiceResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1066,17 +1167,29 @@ class RegionBackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function update($backendService, $backendServiceResource, $project, $region, array $optionalArgs = [])
+    public function update(array $optionalArgs = [])
     {
         $request = new UpdateRegionBackendServiceRequest();
         $requestParamHeaders = [];
-        $request->setBackendService($backendService);
-        $request->setBackendServiceResource($backendServiceResource);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['backend_service'] = $backendService;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['backendService'])) {
+            $request->setBackendService($optionalArgs['backendService']);
+            $requestParamHeaders['backend_service'] = $optionalArgs['backendService'];
+        }
+
+        if (isset($optionalArgs['backendServiceResource'])) {
+            $request->setBackendServiceResource($optionalArgs['backendServiceResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

@@ -42,29 +42,19 @@ use Google\Rpc\Status;
  * - `response`:
  * [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
  *
- * @param string $formattedParent The project that the agent to export is associated with.
- *                                Format: `projects/<Project ID>`. Please see
- *                                {@see AgentsClient::projectName()} for help formatting this field.
- * @param string $agentUri        The [Google Cloud
- *                                Storage](https://cloud.google.com/storage/docs/) URI to export the agent
- *                                to. The format of this URI must be `gs://<bucket-name>/<object-name>`. If
- *                                left unspecified, the serialized agent is returned inline.
- *
- *                                Dialogflow performs a write operation for the Cloud Storage object
- *                                on the caller's behalf, so your request authentication must
- *                                have write permissions for the object. For more information, see
- *                                [Dialogflow access
- *                                control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function export_agent_sample(string $formattedParent, string $agentUri): void
+function export_agent_sample(): void
 {
     // Create a client.
     $agentsClient = new AgentsClient();
 
     // Prepare the request message.
-    $request = (new ExportAgentRequest())
-        ->setParent($formattedParent)
-        ->setAgentUri($agentUri);
+    $request = new ExportAgentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -84,22 +74,5 @@ function export_agent_sample(string $formattedParent, string $agentUri): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AgentsClient::projectName('[PROJECT]');
-    $agentUri = '[AGENT_URI]';
-
-    export_agent_sample($formattedParent, $agentUri);
 }
 // [END dialogflow_v2_generated_Agents_ExportAgent_sync]

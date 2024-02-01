@@ -26,40 +26,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\ReservationsClient;
-use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
 
 /**
  * Sets the access control policy on the specified resource. Replaces any existing policy.
- *
- * @param string $project  Project ID for this request.
- * @param string $resource Name or id of the resource for this request.
- * @param string $zone     The name of the zone for this request.
- */
-function set_iam_policy_sample(string $project, string $resource, string $zone): void
-{
-    // Create a client.
-    $reservationsClient = new ReservationsClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Policy $response */
-        $response = $reservationsClient->setIamPolicy(
-            $project,
-            $resource,
-            $zone,
-            $zoneSetPolicyRequestResource
-        );
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -67,12 +36,18 @@ function set_iam_policy_sample(string $project, string $resource, string $zone):
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function set_iam_policy_sample(): void
 {
-    $project = '[PROJECT]';
-    $resource = '[RESOURCE]';
-    $zone = '[ZONE]';
+    // Create a client.
+    $reservationsClient = new ReservationsClient();
 
-    set_iam_policy_sample($project, $resource, $zone);
+    // Call the API and handle any network failures.
+    try {
+        /** @var Policy $response */
+        $response = $reservationsClient->setIamPolicy();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END compute_v1_generated_Reservations_SetIamPolicy_sync]

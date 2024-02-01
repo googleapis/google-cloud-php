@@ -29,16 +29,12 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
 use Google\Cloud\Dialogflow\V2\ConversationProfilesClient;
-use Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig;
 use Google\Cloud\Dialogflow\V2\ListConversationProfilesResponse;
-use Google\Cloud\Dialogflow\V2\Participant\Role;
-use Google\Cloud\Dialogflow\V2\SuggestionFeature\Type;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -110,11 +106,7 @@ class ConversationProfilesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $conversationProfile = 'conversationProfile-408626707';
-        $participantRole = Role::ROLE_UNSPECIFIED;
-        $suggestionFeatureType = Type::TYPE_UNSPECIFIED;
-        $response = $gapicClient->clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType);
+        $response = $gapicClient->clearSuggestionFeatureConfig();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -124,12 +116,6 @@ class ConversationProfilesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/ClearSuggestionFeatureConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getConversationProfile();
-        $this->assertProtobufEquals($conversationProfile, $actualValue);
-        $actualValue = $actualApiRequestObject->getParticipantRole();
-        $this->assertProtobufEquals($participantRole, $actualValue);
-        $actualValue = $actualApiRequestObject->getSuggestionFeatureType();
-        $this->assertProtobufEquals($suggestionFeatureType, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/clearSuggestionFeatureConfigTest');
         $response->pollUntilComplete([
@@ -180,11 +166,7 @@ class ConversationProfilesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $conversationProfile = 'conversationProfile-408626707';
-        $participantRole = Role::ROLE_UNSPECIFIED;
-        $suggestionFeatureType = Type::TYPE_UNSPECIFIED;
-        $response = $gapicClient->clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType);
+        $response = $gapicClient->clearSuggestionFeatureConfig();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -227,22 +209,13 @@ class ConversationProfilesClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setSecuritySettings($securitySettings);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $conversationProfile = new ConversationProfile();
-        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
-        $conversationProfile->setDisplayName($conversationProfileDisplayName);
-        $response = $gapicClient->createConversationProfile($formattedParent, $conversationProfile);
+        $response = $gapicClient->createConversationProfile();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/CreateConversationProfile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getConversationProfile();
-        $this->assertProtobufEquals($conversationProfile, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -264,13 +237,8 @@ class ConversationProfilesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $conversationProfile = new ConversationProfile();
-        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
-        $conversationProfile->setDisplayName($conversationProfileDisplayName);
         try {
-            $gapicClient->createConversationProfile($formattedParent, $conversationProfile);
+            $gapicClient->createConversationProfile();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -293,16 +261,12 @@ class ConversationProfilesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-        $gapicClient->deleteConversationProfile($formattedName);
+        $gapicClient->deleteConversationProfile();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/DeleteConversationProfile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -324,10 +288,8 @@ class ConversationProfilesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
         try {
-            $gapicClient->deleteConversationProfile($formattedName);
+            $gapicClient->deleteConversationProfile();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -360,17 +322,13 @@ class ConversationProfilesClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setSecuritySettings($securitySettings);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
-        $response = $gapicClient->getConversationProfile($formattedName);
+        $response = $gapicClient->getConversationProfile();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/GetConversationProfile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -392,10 +350,8 @@ class ConversationProfilesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
         try {
-            $gapicClient->getConversationProfile($formattedName);
+            $gapicClient->getConversationProfile();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -425,9 +381,7 @@ class ConversationProfilesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversationProfiles($conversationProfiles);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listConversationProfiles($formattedParent);
+        $response = $gapicClient->listConversationProfiles();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -437,8 +391,6 @@ class ConversationProfilesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/ListConversationProfiles', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -460,10 +412,8 @@ class ConversationProfilesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listConversationProfiles($formattedParent);
+            $gapicClient->listConversationProfiles();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -514,11 +464,7 @@ class ConversationProfilesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $conversationProfile = 'conversationProfile-408626707';
-        $participantRole = Role::ROLE_UNSPECIFIED;
-        $suggestionFeatureConfig = new SuggestionFeatureConfig();
-        $response = $gapicClient->setSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureConfig);
+        $response = $gapicClient->setSuggestionFeatureConfig();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -528,12 +474,6 @@ class ConversationProfilesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/SetSuggestionFeatureConfig', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getConversationProfile();
-        $this->assertProtobufEquals($conversationProfile, $actualValue);
-        $actualValue = $actualApiRequestObject->getParticipantRole();
-        $this->assertProtobufEquals($participantRole, $actualValue);
-        $actualValue = $actualApiRequestObject->getSuggestionFeatureConfig();
-        $this->assertProtobufEquals($suggestionFeatureConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/setSuggestionFeatureConfigTest');
         $response->pollUntilComplete([
@@ -584,11 +524,7 @@ class ConversationProfilesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $conversationProfile = 'conversationProfile-408626707';
-        $participantRole = Role::ROLE_UNSPECIFIED;
-        $suggestionFeatureConfig = new SuggestionFeatureConfig();
-        $response = $gapicClient->setSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureConfig);
+        $response = $gapicClient->setSuggestionFeatureConfig();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -631,22 +567,13 @@ class ConversationProfilesClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setSecuritySettings($securitySettings);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $conversationProfile = new ConversationProfile();
-        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
-        $conversationProfile->setDisplayName($conversationProfileDisplayName);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateConversationProfile($conversationProfile, $updateMask);
+        $response = $gapicClient->updateConversationProfile();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.ConversationProfiles/UpdateConversationProfile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConversationProfile();
-        $this->assertProtobufEquals($conversationProfile, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -668,13 +595,8 @@ class ConversationProfilesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $conversationProfile = new ConversationProfile();
-        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
-        $conversationProfile->setDisplayName($conversationProfileDisplayName);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateConversationProfile($conversationProfile, $updateMask);
+            $gapicClient->updateConversationProfile();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -32,19 +32,19 @@ use Google\Cloud\Dialogflow\Cx\V3\GetAgentValidationResultRequest;
  * Gets the latest agent validation result. Agent validation is performed
  * when ValidateAgent is called.
  *
- * @param string $formattedName The agent name.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/validationResult`. Please see
- *                              {@see AgentsClient::agentValidationResultName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_agent_validation_result_sample(string $formattedName): void
+function get_agent_validation_result_sample(): void
 {
     // Create a client.
     $agentsClient = new AgentsClient();
 
     // Prepare the request message.
-    $request = (new GetAgentValidationResultRequest())
-        ->setName($formattedName);
+    $request = new GetAgentValidationResultRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +54,5 @@ function get_agent_validation_result_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AgentsClient::agentValidationResultName('[PROJECT]', '[LOCATION]', '[AGENT]');
-
-    get_agent_validation_result_sample($formattedName);
 }
 // [END dialogflow_v3_generated_Agents_GetAgentValidationResult_sync]

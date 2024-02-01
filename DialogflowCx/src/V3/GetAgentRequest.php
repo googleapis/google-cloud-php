@@ -26,8 +26,7 @@ class GetAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the agent.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
-     *                     {@see AgentsClient::agentName()} for help formatting this field.
+     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetAgentRequest
      *

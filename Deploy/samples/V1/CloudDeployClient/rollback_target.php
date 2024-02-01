@@ -31,23 +31,19 @@ use Google\Cloud\Deploy\V1\RollbackTargetResponse;
 /**
  * Creates a `Rollout` to roll back the specified target.
  *
- * @param string $formattedName The `DeliveryPipeline` for which the rollback `Rollout` should be
- *                              created. Format should be
- *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
- *                              {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
- * @param string $targetId      ID of the `Target` that is being rolled back.
- * @param string $rolloutId     ID of the rollback `Rollout` to create.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rollback_target_sample(string $formattedName, string $targetId, string $rolloutId): void
+function rollback_target_sample(): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = (new RollbackTargetRequest())
-        ->setName($formattedName)
-        ->setTargetId($targetId)
-        ->setRolloutId($rolloutId);
+    $request = new RollbackTargetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,27 +53,5 @@ function rollback_target_sample(string $formattedName, string $targetId, string 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudDeployClient::deliveryPipelineName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DELIVERY_PIPELINE]'
-    );
-    $targetId = '[TARGET_ID]';
-    $rolloutId = '[ROLLOUT_ID]';
-
-    rollback_target_sample($formattedName, $targetId, $rolloutId);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_RollbackTarget_sync]

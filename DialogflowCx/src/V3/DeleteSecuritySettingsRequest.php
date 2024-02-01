@@ -29,8 +29,7 @@ class DeleteSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the
      *                     [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] to
      *                     delete. Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/securitySettings/<Security Settings ID>`. Please see
-     *                     {@see SecuritySettingsServiceClient::securitySettingsName()} for help formatting this field.
+     *                     ID>/securitySettings/<Security Settings ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteSecuritySettingsRequest
      *

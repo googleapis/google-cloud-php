@@ -66,9 +66,7 @@ use Google\LongRunning\Operation;
  * ```
  * $conversationDatasetsClient = new ConversationDatasetsClient();
  * try {
- *     $parent = 'parent';
- *     $conversationDataset = new ConversationDataset();
- *     $operationResponse = $conversationDatasetsClient->createConversationDataset($parent, $conversationDataset);
+ *     $operationResponse = $conversationDatasetsClient->createConversationDataset();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -79,7 +77,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $conversationDatasetsClient->createConversationDataset($parent, $conversationDataset);
+ *     $operationResponse = $conversationDatasetsClient->createConversationDataset();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $conversationDatasetsClient->resumeOperation($operationName, 'createConversationDataset');
@@ -376,9 +374,7 @@ class ConversationDatasetsGapicClient
      * ```
      * $conversationDatasetsClient = new ConversationDatasetsClient();
      * try {
-     *     $parent = 'parent';
-     *     $conversationDataset = new ConversationDataset();
-     *     $operationResponse = $conversationDatasetsClient->createConversationDataset($parent, $conversationDataset);
+     *     $operationResponse = $conversationDatasetsClient->createConversationDataset();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -389,7 +385,7 @@ class ConversationDatasetsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $conversationDatasetsClient->createConversationDataset($parent, $conversationDataset);
+     *     $operationResponse = $conversationDatasetsClient->createConversationDataset();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $conversationDatasetsClient->resumeOperation($operationName, 'createConversationDataset');
@@ -409,12 +405,14 @@ class ConversationDatasetsGapicClient
      * }
      * ```
      *
-     * @param string              $parent              Required. The project to create conversation dataset for. Format:
-     *                                                 `projects/<Project ID>/locations/<Location ID>`
-     * @param ConversationDataset $conversationDataset Required. The conversation dataset to create.
-     * @param array               $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project to create conversation dataset for. Format:
+     *           `projects/<Project ID>/locations/<Location ID>`
+     *     @type ConversationDataset $conversationDataset
+     *           Required. The conversation dataset to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -425,13 +423,19 @@ class ConversationDatasetsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createConversationDataset($parent, $conversationDataset, array $optionalArgs = [])
+    public function createConversationDataset(array $optionalArgs = [])
     {
         $request = new CreateConversationDatasetRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setConversationDataset($conversationDataset);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['conversationDataset'])) {
+            $request->setConversationDataset($optionalArgs['conversationDataset']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateConversationDataset', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -453,8 +457,7 @@ class ConversationDatasetsGapicClient
      * ```
      * $conversationDatasetsClient = new ConversationDatasetsClient();
      * try {
-     *     $formattedName = $conversationDatasetsClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-     *     $operationResponse = $conversationDatasetsClient->deleteConversationDataset($formattedName);
+     *     $operationResponse = $conversationDatasetsClient->deleteConversationDataset();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -464,7 +467,7 @@ class ConversationDatasetsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $conversationDatasetsClient->deleteConversationDataset($formattedName);
+     *     $operationResponse = $conversationDatasetsClient->deleteConversationDataset();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $conversationDatasetsClient->resumeOperation($operationName, 'deleteConversationDataset');
@@ -483,12 +486,13 @@ class ConversationDatasetsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The conversation dataset to delete. Format:
-     *                             `projects/<Project ID>/locations/<Location
-     *                             ID>/conversationDatasets/<Conversation Dataset ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The conversation dataset to delete. Format:
+     *           `projects/<Project ID>/locations/<Location
+     *           ID>/conversationDatasets/<Conversation Dataset ID>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -499,12 +503,15 @@ class ConversationDatasetsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteConversationDataset($name, array $optionalArgs = [])
+    public function deleteConversationDataset(array $optionalArgs = [])
     {
         $request = new DeleteConversationDatasetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteConversationDataset', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -517,19 +524,19 @@ class ConversationDatasetsGapicClient
      * ```
      * $conversationDatasetsClient = new ConversationDatasetsClient();
      * try {
-     *     $formattedName = $conversationDatasetsClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-     *     $response = $conversationDatasetsClient->getConversationDataset($formattedName);
+     *     $response = $conversationDatasetsClient->getConversationDataset();
      * } finally {
      *     $conversationDatasetsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The conversation dataset to retrieve. Format:
-     *                             `projects/<Project ID>/locations/<Location
-     *                             ID>/conversationDatasets/<Conversation Dataset ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The conversation dataset to retrieve. Format:
+     *           `projects/<Project ID>/locations/<Location
+     *           ID>/conversationDatasets/<Conversation Dataset ID>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -540,12 +547,15 @@ class ConversationDatasetsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConversationDataset($name, array $optionalArgs = [])
+    public function getConversationDataset(array $optionalArgs = [])
     {
         $request = new GetConversationDatasetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetConversationDataset', ConversationDataset::class, $optionalArgs, $request)->wait();
@@ -569,9 +579,7 @@ class ConversationDatasetsGapicClient
      * ```
      * $conversationDatasetsClient = new ConversationDatasetsClient();
      * try {
-     *     $formattedName = $conversationDatasetsClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
-     *     $inputConfig = new InputConfig();
-     *     $operationResponse = $conversationDatasetsClient->importConversationData($formattedName, $inputConfig);
+     *     $operationResponse = $conversationDatasetsClient->importConversationData();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -582,7 +590,7 @@ class ConversationDatasetsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $conversationDatasetsClient->importConversationData($formattedName, $inputConfig);
+     *     $operationResponse = $conversationDatasetsClient->importConversationData();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $conversationDatasetsClient->resumeOperation($operationName, 'importConversationData');
@@ -602,13 +610,15 @@ class ConversationDatasetsGapicClient
      * }
      * ```
      *
-     * @param string      $name         Required. Dataset resource name. Format:
-     *                                  `projects/<Project ID>/locations/<Location
-     *                                  ID>/conversationDatasets/<Conversation Dataset ID>`
-     * @param InputConfig $inputConfig  Required. Configuration describing where to import data from.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Dataset resource name. Format:
+     *           `projects/<Project ID>/locations/<Location
+     *           ID>/conversationDatasets/<Conversation Dataset ID>`
+     *     @type InputConfig $inputConfig
+     *           Required. Configuration describing where to import data from.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -619,13 +629,19 @@ class ConversationDatasetsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importConversationData($name, $inputConfig, array $optionalArgs = [])
+    public function importConversationData(array $optionalArgs = [])
     {
         $request = new ImportConversationDataRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setInputConfig($inputConfig);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['inputConfig'])) {
+            $request->setInputConfig($optionalArgs['inputConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ImportConversationData', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -639,9 +655,8 @@ class ConversationDatasetsGapicClient
      * ```
      * $conversationDatasetsClient = new ConversationDatasetsClient();
      * try {
-     *     $formattedParent = $conversationDatasetsClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $conversationDatasetsClient->listConversationDatasets($formattedParent);
+     *     $pagedResponse = $conversationDatasetsClient->listConversationDatasets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -649,7 +664,7 @@ class ConversationDatasetsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $conversationDatasetsClient->listConversationDatasets($formattedParent);
+     *     $pagedResponse = $conversationDatasetsClient->listConversationDatasets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -658,11 +673,12 @@ class ConversationDatasetsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location name to list all conversation datasets
-     *                             for. Format: `projects/<Project ID>/locations/<Location ID>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location name to list all conversation datasets
+     *           for. Format: `projects/<Project ID>/locations/<Location ID>`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -682,12 +698,15 @@ class ConversationDatasetsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConversationDatasets($parent, array $optionalArgs = [])
+    public function listConversationDatasets(array $optionalArgs = [])
     {
         $request = new ListConversationDatasetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

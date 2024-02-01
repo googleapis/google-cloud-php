@@ -31,24 +31,19 @@ use Google\Cloud\Debugger\V2\GetBreakpointResponse;
 /**
  * Gets breakpoint information.
  *
- * @param string $debuggeeId    ID of the debuggee whose breakpoint to get.
- * @param string $breakpointId  ID of the breakpoint to get.
- * @param string $clientVersion The client version making the call.
- *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_breakpoint_sample(
-    string $debuggeeId,
-    string $breakpointId,
-    string $clientVersion
-): void {
+function get_breakpoint_sample(): void
+{
     // Create a client.
     $debugger2Client = new Debugger2Client();
 
     // Prepare the request message.
-    $request = (new GetBreakpointRequest())
-        ->setDebuggeeId($debuggeeId)
-        ->setBreakpointId($breakpointId)
-        ->setClientVersion($clientVersion);
+    $request = new GetBreakpointRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,23 +53,5 @@ function get_breakpoint_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $debuggeeId = '[DEBUGGEE_ID]';
-    $breakpointId = '[BREAKPOINT_ID]';
-    $clientVersion = '[CLIENT_VERSION]';
-
-    get_breakpoint_sample($debuggeeId, $breakpointId, $clientVersion);
 }
 // [END clouddebugger_v2_generated_Debugger2_GetBreakpoint_sync]

@@ -86,14 +86,7 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setLifespanCount($lifespanCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $context = new Context();
-        $contextName = 'contextName-103041830';
-        $context->setName($contextName);
-        $request = (new CreateContextRequest())
-            ->setParent($formattedParent)
-            ->setContext($context);
+        $request = new CreateContextRequest();
         $response = $gapicClient->createContext($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -101,10 +94,6 @@ class ContextsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/CreateContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($context, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -126,14 +115,7 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $context = new Context();
-        $contextName = 'contextName-103041830';
-        $context->setName($contextName);
-        $request = (new CreateContextRequest())
-            ->setParent($formattedParent)
-            ->setContext($context);
+        $request = new CreateContextRequest();
         try {
             $gapicClient->createContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -158,18 +140,13 @@ class ContextsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $request = (new DeleteAllContextsRequest())
-            ->setParent($formattedParent);
+        $request = new DeleteAllContextsRequest();
         $gapicClient->deleteAllContexts($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/DeleteAllContexts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -191,10 +168,7 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $request = (new DeleteAllContextsRequest())
-            ->setParent($formattedParent);
+        $request = new DeleteAllContextsRequest();
         try {
             $gapicClient->deleteAllContexts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -219,18 +193,13 @@ class ContextsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $request = (new DeleteContextRequest())
-            ->setName($formattedName);
+        $request = new DeleteContextRequest();
         $gapicClient->deleteContext($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/DeleteContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -252,10 +221,7 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $request = (new DeleteContextRequest())
-            ->setName($formattedName);
+        $request = new DeleteContextRequest();
         try {
             $gapicClient->deleteContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -284,10 +250,7 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setLifespanCount($lifespanCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $request = (new GetContextRequest())
-            ->setName($formattedName);
+        $request = new GetContextRequest();
         $response = $gapicClient->getContext($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -295,8 +258,6 @@ class ContextsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/GetContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -318,10 +279,7 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $request = (new GetContextRequest())
-            ->setName($formattedName);
+        $request = new GetContextRequest();
         try {
             $gapicClient->getContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -353,10 +311,7 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setContexts($contexts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $request = (new ListContextsRequest())
-            ->setParent($formattedParent);
+        $request = new ListContextsRequest();
         $response = $gapicClient->listContexts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -367,8 +322,6 @@ class ContextsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/ListContexts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -390,10 +343,7 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $request = (new ListContextsRequest())
-            ->setParent($formattedParent);
+        $request = new ListContextsRequest();
         try {
             $gapicClient->listContexts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -422,12 +372,7 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setLifespanCount($lifespanCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $context = new Context();
-        $contextName = 'contextName-103041830';
-        $context->setName($contextName);
-        $request = (new UpdateContextRequest())
-            ->setContext($context);
+        $request = new UpdateContextRequest();
         $response = $gapicClient->updateContext($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -435,8 +380,6 @@ class ContextsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/UpdateContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($context, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -458,12 +401,7 @@ class ContextsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $context = new Context();
-        $contextName = 'contextName-103041830';
-        $context->setName($contextName);
-        $request = (new UpdateContextRequest())
-            ->setContext($context);
+        $request = new UpdateContextRequest();
         try {
             $gapicClient->updateContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -616,14 +554,7 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setLifespanCount($lifespanCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $context = new Context();
-        $contextName = 'contextName-103041830';
-        $context->setName($contextName);
-        $request = (new CreateContextRequest())
-            ->setParent($formattedParent)
-            ->setContext($context);
+        $request = new CreateContextRequest();
         $response = $gapicClient->createContextAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -631,10 +562,6 @@ class ContextsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Contexts/CreateContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($context, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

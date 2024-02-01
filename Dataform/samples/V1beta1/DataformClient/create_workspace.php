@@ -31,23 +31,19 @@ use Google\Cloud\Dataform\V1beta1\Workspace;
 /**
  * Creates a new Workspace in a given Repository.
  *
- * @param string $formattedParent The repository in which to create the workspace. Must be in the
- *                                format `projects/&#42;/locations/&#42;/repositories/*`. Please see
- *                                {@see DataformClient::repositoryName()} for help formatting this field.
- * @param string $workspaceId     The ID to use for the workspace, which will become the final
- *                                component of the workspace's resource name.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_workspace_sample(string $formattedParent, string $workspaceId): void
+function create_workspace_sample(): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $workspace = new Workspace();
-    $request = (new CreateWorkspaceRequest())
-        ->setParent($formattedParent)
-        ->setWorkspace($workspace)
-        ->setWorkspaceId($workspaceId);
+    $request = new CreateWorkspaceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,22 +53,5 @@ function create_workspace_sample(string $formattedParent, string $workspaceId): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataformClient::repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-    $workspaceId = '[WORKSPACE_ID]';
-
-    create_workspace_sample($formattedParent, $workspaceId);
 }
 // [END dataform_v1beta1_generated_Dataform_CreateWorkspace_sync]

@@ -41,8 +41,7 @@ class ListContinuousTestResultsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The environment to list results for.
      *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     *                       environments/<Environment ID>`. Please see
-     *                       {@see EnvironmentsClient::environmentName()} for help formatting this field.
+     *                       environments/<Environment ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListContinuousTestResultsRequest
      *

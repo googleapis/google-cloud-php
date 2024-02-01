@@ -30,11 +30,13 @@ use Google\Cloud\Compute\V1\ReservationsClient;
 /**
  * Retrieves information about the specified reservation.
  *
- * @param string $project     Project ID for this request.
- * @param string $reservation Name of the reservation to retrieve.
- * @param string $zone        Name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $project, string $reservation, string $zone): void
+function get_sample(): void
 {
     // Create a client.
     $reservationsClient = new ReservationsClient();
@@ -42,28 +44,10 @@ function get_sample(string $project, string $reservation, string $zone): void
     // Call the API and handle any network failures.
     try {
         /** @var Reservation $response */
-        $response = $reservationsClient->get($project, $reservation, $zone);
+        $response = $reservationsClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $reservation = '[RESERVATION]';
-    $zone = '[ZONE]';
-
-    get_sample($project, $reservation, $zone);
 }
 // [END compute_v1_generated_Reservations_Get_sync]

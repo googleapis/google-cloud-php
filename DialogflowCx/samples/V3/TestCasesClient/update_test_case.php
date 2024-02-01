@@ -27,26 +27,23 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
 use Google\Cloud\Dialogflow\Cx\V3\TestCase;
 use Google\Cloud\Dialogflow\Cx\V3\UpdateTestCaseRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the specified test case.
  *
- * @param string $testCaseDisplayName The human-readable name of the test case, unique within the
- *                                    agent. Limit of 200 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_test_case_sample(string $testCaseDisplayName): void
+function update_test_case_sample(): void
 {
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
     // Prepare the request message.
-    $testCase = (new TestCase())
-        ->setDisplayName($testCaseDisplayName);
-    $updateMask = new FieldMask();
-    $request = (new UpdateTestCaseRequest())
-        ->setTestCase($testCase)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateTestCaseRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +53,5 @@ function update_test_case_sample(string $testCaseDisplayName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $testCaseDisplayName = '[DISPLAY_NAME]';
-
-    update_test_case_sample($testCaseDisplayName);
 }
 // [END dialogflow_v3_generated_TestCases_UpdateTestCase_sync]

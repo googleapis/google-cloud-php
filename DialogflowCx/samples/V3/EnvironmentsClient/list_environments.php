@@ -33,19 +33,19 @@ use Google\Cloud\Dialogflow\Cx\V3\ListEnvironmentsRequest;
  * Returns the list of all environments in the specified
  * [Agent][google.cloud.dialogflow.cx.v3.Agent].
  *
- * @param string $formattedParent The [Agent][google.cloud.dialogflow.cx.v3.Agent] to list all
- *                                environments for. Format: `projects/<Project ID>/locations/<Location
- *                                ID>/agents/<Agent ID>`. Please see
- *                                {@see EnvironmentsClient::agentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_environments_sample(string $formattedParent): void
+function list_environments_sample(): void
 {
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
     // Prepare the request message.
-    $request = (new ListEnvironmentsRequest())
-        ->setParent($formattedParent);
+    $request = new ListEnvironmentsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +59,5 @@ function list_environments_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EnvironmentsClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
-
-    list_environments_sample($formattedParent);
 }
 // [END dialogflow_v3_generated_Environments_ListEnvironments_sync]

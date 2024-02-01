@@ -52,7 +52,6 @@ use Google\Cloud\DataCatalog\Lineage\V1\ProcessLinks;
 use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
-use Google\Cloud\DataCatalog\Lineage\V1\Run\State;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest;
@@ -61,8 +60,6 @@ use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use Google\Protobuf\Struct;
-use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -112,12 +109,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProcessLinks($processLinks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $links = [];
-        $request = (new BatchSearchLinkProcessesRequest())
-            ->setParent($formattedParent)
-            ->setLinks($links);
+        $request = new BatchSearchLinkProcessesRequest();
         $response = $gapicClient->batchSearchLinkProcesses($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -128,10 +120,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/BatchSearchLinkProcesses', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getLinks();
-        $this->assertProtobufEquals($links, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -153,12 +141,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $links = [];
-        $request = (new BatchSearchLinkProcessesRequest())
-            ->setParent($formattedParent)
-            ->setLinks($links);
+        $request = new BatchSearchLinkProcessesRequest();
         try {
             $gapicClient->batchSearchLinkProcesses($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -185,14 +168,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse = new LineageEvent();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $lineageEvent = new LineageEvent();
-        $lineageEventStartTime = new Timestamp();
-        $lineageEvent->setStartTime($lineageEventStartTime);
-        $request = (new CreateLineageEventRequest())
-            ->setParent($formattedParent)
-            ->setLineageEvent($lineageEvent);
+        $request = new CreateLineageEventRequest();
         $response = $gapicClient->createLineageEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -200,10 +176,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/CreateLineageEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getLineageEvent();
-        $this->assertProtobufEquals($lineageEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -225,14 +197,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $lineageEvent = new LineageEvent();
-        $lineageEventStartTime = new Timestamp();
-        $lineageEvent->setStartTime($lineageEventStartTime);
-        $request = (new CreateLineageEventRequest())
-            ->setParent($formattedParent)
-            ->setLineageEvent($lineageEvent);
+        $request = new CreateLineageEventRequest();
         try {
             $gapicClient->createLineageEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -261,12 +226,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $process = new Process();
-        $request = (new CreateProcessRequest())
-            ->setParent($formattedParent)
-            ->setProcess($process);
+        $request = new CreateProcessRequest();
         $response = $gapicClient->createProcess($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -274,10 +234,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/CreateProcess', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getProcess();
-        $this->assertProtobufEquals($process, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -299,12 +255,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $process = new Process();
-        $request = (new CreateProcessRequest())
-            ->setParent($formattedParent)
-            ->setProcess($process);
+        $request = new CreateProcessRequest();
         try {
             $gapicClient->createProcess($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -333,16 +284,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $run = new Run();
-        $runStartTime = new Timestamp();
-        $run->setStartTime($runStartTime);
-        $runState = State::UNKNOWN;
-        $run->setState($runState);
-        $request = (new CreateRunRequest())
-            ->setParent($formattedParent)
-            ->setRun($run);
+        $request = new CreateRunRequest();
         $response = $gapicClient->createRun($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -350,10 +292,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/CreateRun', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRun();
-        $this->assertProtobufEquals($run, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -375,16 +313,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $run = new Run();
-        $runStartTime = new Timestamp();
-        $run->setStartTime($runStartTime);
-        $runState = State::UNKNOWN;
-        $run->setState($runState);
-        $request = (new CreateRunRequest())
-            ->setParent($formattedParent)
-            ->setRun($run);
+        $request = new CreateRunRequest();
         try {
             $gapicClient->createRun($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -409,18 +338,13 @@ class LineageClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->lineageEventName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]', '[LINEAGE_EVENT]');
-        $request = (new DeleteLineageEventRequest())
-            ->setName($formattedName);
+        $request = new DeleteLineageEventRequest();
         $gapicClient->deleteLineageEvent($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/DeleteLineageEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -442,10 +366,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->lineageEventName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]', '[LINEAGE_EVENT]');
-        $request = (new DeleteLineageEventRequest())
-            ->setName($formattedName);
+        $request = new DeleteLineageEventRequest();
         try {
             $gapicClient->deleteLineageEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -488,10 +409,7 @@ class LineageClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new DeleteProcessRequest())
-            ->setName($formattedName);
+        $request = new DeleteProcessRequest();
         $response = $gapicClient->deleteProcess($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -502,8 +420,6 @@ class LineageClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/DeleteProcess', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteProcessTest');
         $response->pollUntilComplete([
@@ -554,10 +470,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new DeleteProcessRequest())
-            ->setName($formattedName);
+        $request = new DeleteProcessRequest();
         $response = $gapicClient->deleteProcess($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -609,10 +522,7 @@ class LineageClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new DeleteRunRequest())
-            ->setName($formattedName);
+        $request = new DeleteRunRequest();
         $response = $gapicClient->deleteRun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -623,8 +533,6 @@ class LineageClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/DeleteRun', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteRunTest');
         $response->pollUntilComplete([
@@ -675,10 +583,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new DeleteRunRequest())
-            ->setName($formattedName);
+        $request = new DeleteRunRequest();
         $response = $gapicClient->deleteRun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -714,10 +619,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse = new LineageEvent();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->lineageEventName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]', '[LINEAGE_EVENT]');
-        $request = (new GetLineageEventRequest())
-            ->setName($formattedName);
+        $request = new GetLineageEventRequest();
         $response = $gapicClient->getLineageEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -725,8 +627,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/GetLineageEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -748,10 +648,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->lineageEventName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]', '[LINEAGE_EVENT]');
-        $request = (new GetLineageEventRequest())
-            ->setName($formattedName);
+        $request = new GetLineageEventRequest();
         try {
             $gapicClient->getLineageEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -780,10 +677,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new GetProcessRequest())
-            ->setName($formattedName);
+        $request = new GetProcessRequest();
         $response = $gapicClient->getProcess($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -791,8 +685,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/GetProcess', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -814,10 +706,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new GetProcessRequest())
-            ->setName($formattedName);
+        $request = new GetProcessRequest();
         try {
             $gapicClient->getProcess($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -846,10 +735,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new GetRunRequest())
-            ->setName($formattedName);
+        $request = new GetRunRequest();
         $response = $gapicClient->getRun($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -857,8 +743,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/GetRun', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -880,10 +764,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new GetRunRequest())
-            ->setName($formattedName);
+        $request = new GetRunRequest();
         try {
             $gapicClient->getRun($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -915,10 +796,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLineageEvents($lineageEvents);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new ListLineageEventsRequest())
-            ->setParent($formattedParent);
+        $request = new ListLineageEventsRequest();
         $response = $gapicClient->listLineageEvents($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -929,8 +807,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/ListLineageEvents', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -952,10 +828,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new ListLineageEventsRequest())
-            ->setParent($formattedParent);
+        $request = new ListLineageEventsRequest();
         try {
             $gapicClient->listLineageEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -987,10 +860,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProcesses($processes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProcessesRequest())
-            ->setParent($formattedParent);
+        $request = new ListProcessesRequest();
         $response = $gapicClient->listProcesses($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1001,8 +871,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/ListProcesses', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1024,10 +892,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProcessesRequest())
-            ->setParent($formattedParent);
+        $request = new ListProcessesRequest();
         try {
             $gapicClient->listProcesses($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1059,10 +924,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRuns($runs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new ListRunsRequest())
-            ->setParent($formattedParent);
+        $request = new ListRunsRequest();
         $response = $gapicClient->listRuns($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1073,8 +935,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/ListRuns', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1096,10 +956,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new ListRunsRequest())
-            ->setParent($formattedParent);
+        $request = new ListRunsRequest();
         try {
             $gapicClient->listRuns($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1128,12 +985,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setProcess($process);
         $expectedResponse->setRun($run);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $openLineage = new Struct();
-        $request = (new ProcessOpenLineageRunEventRequest())
-            ->setParent($parent)
-            ->setOpenLineage($openLineage);
+        $request = new ProcessOpenLineageRunEventRequest();
         $response = $gapicClient->processOpenLineageRunEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1141,10 +993,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/ProcessOpenLineageRunEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getOpenLineage();
-        $this->assertProtobufEquals($openLineage, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1166,12 +1014,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $openLineage = new Struct();
-        $request = (new ProcessOpenLineageRunEventRequest())
-            ->setParent($parent)
-            ->setOpenLineage($openLineage);
+        $request = new ProcessOpenLineageRunEventRequest();
         try {
             $gapicClient->processOpenLineageRunEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1203,10 +1046,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLinks($links);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchLinksRequest())
-            ->setParent($formattedParent);
+        $request = new SearchLinksRequest();
         $response = $gapicClient->searchLinks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1217,8 +1057,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/SearchLinks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1240,10 +1078,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchLinksRequest())
-            ->setParent($formattedParent);
+        $request = new SearchLinksRequest();
         try {
             $gapicClient->searchLinks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1272,10 +1107,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $process = new Process();
-        $request = (new UpdateProcessRequest())
-            ->setProcess($process);
+        $request = new UpdateProcessRequest();
         $response = $gapicClient->updateProcess($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1283,8 +1115,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/UpdateProcess', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProcess();
-        $this->assertProtobufEquals($process, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1306,10 +1136,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $process = new Process();
-        $request = (new UpdateProcessRequest())
-            ->setProcess($process);
+        $request = new UpdateProcessRequest();
         try {
             $gapicClient->updateProcess($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1338,14 +1165,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $run = new Run();
-        $runStartTime = new Timestamp();
-        $run->setStartTime($runStartTime);
-        $runState = State::UNKNOWN;
-        $run->setState($runState);
-        $request = (new UpdateRunRequest())
-            ->setRun($run);
+        $request = new UpdateRunRequest();
         $response = $gapicClient->updateRun($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1353,8 +1173,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/UpdateRun', $actualFuncCall);
-        $actualValue = $actualRequestObject->getRun();
-        $this->assertProtobufEquals($run, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1376,14 +1194,7 @@ class LineageClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $run = new Run();
-        $runStartTime = new Timestamp();
-        $run->setStartTime($runStartTime);
-        $runState = State::UNKNOWN;
-        $run->setState($runState);
-        $request = (new UpdateRunRequest())
-            ->setRun($run);
+        $request = new UpdateRunRequest();
         try {
             $gapicClient->updateRun($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1415,12 +1226,7 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProcessLinks($processLinks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $links = [];
-        $request = (new BatchSearchLinkProcessesRequest())
-            ->setParent($formattedParent)
-            ->setLinks($links);
+        $request = new BatchSearchLinkProcessesRequest();
         $response = $gapicClient->batchSearchLinkProcessesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1431,10 +1237,6 @@ class LineageClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/BatchSearchLinkProcesses', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getLinks();
-        $this->assertProtobufEquals($links, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

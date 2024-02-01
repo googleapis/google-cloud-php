@@ -31,11 +31,13 @@ use Google\Rpc\Status;
 /**
  * This method suspends a running instance, saving its state to persistent storage, and allows you to resume the instance at a later time. Suspended instances have no compute costs (cores or RAM), and incur only storage charges for the saved VM memory and localSSD data. Any charged resources the virtual machine was using, such as persistent disks and static IP addresses, will continue to be charged while the instance is suspended. For more information, see Suspending and resuming an instance.
  *
- * @param string $instance Name of the instance resource to suspend.
- * @param string $project  Project ID for this request.
- * @param string $zone     The name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function suspend_sample(string $instance, string $project, string $zone): void
+function suspend_sample(): void
 {
     // Create a client.
     $instancesClient = new InstancesClient();
@@ -43,7 +45,7 @@ function suspend_sample(string $instance, string $project, string $zone): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->suspend($instance, $project, $zone);
+        $response = $instancesClient->suspend();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -56,23 +58,5 @@ function suspend_sample(string $instance, string $project, string $zone): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $instance = '[INSTANCE]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    suspend_sample($instance, $project, $zone);
 }
 // [END compute_v1_generated_Instances_Suspend_sync]

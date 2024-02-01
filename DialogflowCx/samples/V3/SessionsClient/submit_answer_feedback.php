@@ -32,22 +32,19 @@ use Google\Cloud\Dialogflow\Cx\V3\SubmitAnswerFeedbackRequest;
  * Updates the feedback received from the user for a single turn of the bot
  * response.
  *
- * @param string $formattedSession The name of the session the feedback was sent to. Please see
- *                                 {@see SessionsClient::sessionName()} for help formatting this field.
- * @param string $responseId       ID of the response to update its feedback. This is the same as
- *                                 DetectIntentResponse.response_id.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function submit_answer_feedback_sample(string $formattedSession, string $responseId): void
+function submit_answer_feedback_sample(): void
 {
     // Create a client.
     $sessionsClient = new SessionsClient();
 
     // Prepare the request message.
-    $answerFeedback = new AnswerFeedback();
-    $request = (new SubmitAnswerFeedbackRequest())
-        ->setSession($formattedSession)
-        ->setResponseId($responseId)
-        ->setAnswerFeedback($answerFeedback);
+    $request = new SubmitAnswerFeedbackRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,22 +54,5 @@ function submit_answer_feedback_sample(string $formattedSession, string $respons
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSession = SessionsClient::sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
-    $responseId = '[RESPONSE_ID]';
-
-    submit_answer_feedback_sample($formattedSession, $responseId);
 }
 // [END dialogflow_v3_generated_Sessions_SubmitAnswerFeedback_sync]

@@ -42,8 +42,7 @@ class ListEntryGroupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The name of the location that contains the entry groups to list.
      *
-     *                       Can be provided as a URL. Please see
-     *                       {@see DataCatalogClient::locationName()} for help formatting this field.
+     *                       Can be provided as a URL.
      *
      * @return \Google\Cloud\DataCatalog\V1\ListEntryGroupsRequest
      *

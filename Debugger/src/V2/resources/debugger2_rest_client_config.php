@@ -18,9 +18,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'client_version',
-                ],
             ],
             'GetBreakpoint' => [
                 'method' => 'get',
@@ -37,9 +34,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'client_version',
-                ],
             ],
             'ListBreakpoints' => [
                 'method' => 'get',
@@ -51,17 +45,10 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'client_version',
-                ],
             ],
             'ListDebuggees' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/debugger/debuggees',
-                'queryParams' => [
-                    'project',
-                    'client_version',
-                ],
             ],
             'SetBreakpoint' => [
                 'method' => 'post',
@@ -73,9 +60,6 @@ return [
                             'getDebuggeeId',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'client_version',
                 ],
             ],
         ],

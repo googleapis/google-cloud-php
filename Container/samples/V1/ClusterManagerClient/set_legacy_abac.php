@@ -31,16 +31,19 @@ use Google\Cloud\Container\V1\SetLegacyAbacRequest;
 /**
  * Enables or disables the ABAC authorization mechanism on a cluster.
  *
- * @param bool $enabled Whether ABAC authorization will be enabled in the cluster.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_legacy_abac_sample(bool $enabled): void
+function set_legacy_abac_sample(): void
 {
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
     // Prepare the request message.
-    $request = (new SetLegacyAbacRequest())
-        ->setEnabled($enabled);
+    $request = new SetLegacyAbacRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -50,21 +53,5 @@ function set_legacy_abac_sample(bool $enabled): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $enabled = false;
-
-    set_legacy_abac_sample($enabled);
 }
 // [END container_v1_generated_ClusterManager_SetLegacyAbac_sync]

@@ -93,14 +93,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $sslCertificate = 'sslCertificate-1027298332';
-        $request = (new DeleteRegionSslCertificateRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSslCertificate($sslCertificate);
+        $request = new DeleteRegionSslCertificateRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -110,16 +103,8 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSslCertificates/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSslCertificate();
-        $this->assertProtobufEquals($sslCertificate, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -167,14 +152,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $sslCertificate = 'sslCertificate-1027298332';
-        $request = (new DeleteRegionSslCertificateRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSslCertificate($sslCertificate);
+        $request = new DeleteRegionSslCertificateRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -228,14 +206,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setType($type);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $sslCertificate = 'sslCertificate-1027298332';
-        $request = (new GetRegionSslCertificateRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSslCertificate($sslCertificate);
+        $request = new GetRegionSslCertificateRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -243,12 +214,6 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSslCertificates/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getSslCertificate();
-        $this->assertProtobufEquals($sslCertificate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -270,14 +235,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $sslCertificate = 'sslCertificate-1027298332';
-        $request = (new GetRegionSslCertificateRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSslCertificate($sslCertificate);
+        $request = new GetRegionSslCertificateRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -316,14 +274,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $sslCertificateResource = new SslCertificate();
-        $request = (new InsertRegionSslCertificateRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSslCertificateResource($sslCertificateResource);
+        $request = new InsertRegionSslCertificateRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -333,16 +284,8 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSslCertificates/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSslCertificateResource();
-        $this->assertProtobufEquals($sslCertificateResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -390,14 +333,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $sslCertificateResource = new SslCertificate();
-        $request = (new InsertRegionSslCertificateRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSslCertificateResource($sslCertificateResource);
+        $request = new InsertRegionSslCertificateRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -442,12 +378,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionSslCertificatesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionSslCertificatesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -458,10 +389,6 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSslCertificates/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -483,12 +410,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionSslCertificatesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionSslCertificatesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -527,14 +449,7 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $sslCertificate = 'sslCertificate-1027298332';
-        $request = (new DeleteRegionSslCertificateRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setSslCertificate($sslCertificate);
+        $request = new DeleteRegionSslCertificateRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -544,16 +459,8 @@ class RegionSslCertificatesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionSslCertificates/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getSslCertificate();
-        $this->assertProtobufEquals($sslCertificate, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

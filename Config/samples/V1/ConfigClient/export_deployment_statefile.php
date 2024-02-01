@@ -31,19 +31,19 @@ use Google\Cloud\Config\V1\Statefile;
 /**
  * Exports Terraform state file from a given deployment.
  *
- * @param string $formattedParent The parent in whose context the statefile is listed. The parent
- *                                value is in the format:
- *                                'projects/{project_id}/locations/{location}/deployments/{deployment}'. Please see
- *                                {@see ConfigClient::deploymentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function export_deployment_statefile_sample(string $formattedParent): void
+function export_deployment_statefile_sample(): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $request = (new ExportDeploymentStatefileRequest())
-        ->setParent($formattedParent);
+    $request = new ExportDeploymentStatefileRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function export_deployment_statefile_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConfigClient::deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-
-    export_deployment_statefile_sample($formattedParent);
 }
 // [END config_v1_generated_Config_ExportDeploymentStatefile_sync]

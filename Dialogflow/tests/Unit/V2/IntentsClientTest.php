@@ -97,10 +97,7 @@ class IntentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $intents = [];
-        $response = $gapicClient->batchDeleteIntents($formattedParent, $intents);
+        $response = $gapicClient->batchDeleteIntents();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -110,10 +107,6 @@ class IntentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Intents/BatchDeleteIntents', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getIntents();
-        $this->assertProtobufEquals($intents, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchDeleteIntentsTest');
         $response->pollUntilComplete([
@@ -164,10 +157,7 @@ class IntentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $intents = [];
-        $response = $gapicClient->batchDeleteIntents($formattedParent, $intents);
+        $response = $gapicClient->batchDeleteIntents();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -218,9 +208,7 @@ class IntentsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $response = $gapicClient->batchUpdateIntents($formattedParent);
+        $response = $gapicClient->batchUpdateIntents();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -230,8 +218,6 @@ class IntentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Intents/BatchUpdateIntents', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchUpdateIntentsTest');
         $response->pollUntilComplete([
@@ -282,9 +268,7 @@ class IntentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $response = $gapicClient->batchUpdateIntents($formattedParent);
+        $response = $gapicClient->batchUpdateIntents();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -339,22 +323,13 @@ class IntentsClientTest extends GeneratedTest
         $expectedResponse->setRootFollowupIntentName($rootFollowupIntentName);
         $expectedResponse->setParentFollowupIntentName($parentFollowupIntentName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $intent = new Intent();
-        $intentDisplayName = 'intentDisplayName-1733865935';
-        $intent->setDisplayName($intentDisplayName);
-        $response = $gapicClient->createIntent($formattedParent, $intent);
+        $response = $gapicClient->createIntent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Intents/CreateIntent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getIntent();
-        $this->assertProtobufEquals($intent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -376,13 +351,8 @@ class IntentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $intent = new Intent();
-        $intentDisplayName = 'intentDisplayName-1733865935';
-        $intent->setDisplayName($intentDisplayName);
         try {
-            $gapicClient->createIntent($formattedParent, $intent);
+            $gapicClient->createIntent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -405,16 +375,12 @@ class IntentsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->intentName('[PROJECT]', '[INTENT]');
-        $gapicClient->deleteIntent($formattedName);
+        $gapicClient->deleteIntent();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Intents/DeleteIntent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -436,10 +402,8 @@ class IntentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->intentName('[PROJECT]', '[INTENT]');
         try {
-            $gapicClient->deleteIntent($formattedName);
+            $gapicClient->deleteIntent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -484,17 +448,13 @@ class IntentsClientTest extends GeneratedTest
         $expectedResponse->setRootFollowupIntentName($rootFollowupIntentName);
         $expectedResponse->setParentFollowupIntentName($parentFollowupIntentName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->intentName('[PROJECT]', '[INTENT]');
-        $response = $gapicClient->getIntent($formattedName);
+        $response = $gapicClient->getIntent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Intents/GetIntent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -516,10 +476,8 @@ class IntentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->intentName('[PROJECT]', '[INTENT]');
         try {
-            $gapicClient->getIntent($formattedName);
+            $gapicClient->getIntent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -549,9 +507,7 @@ class IntentsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIntents($intents);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $response = $gapicClient->listIntents($formattedParent);
+        $response = $gapicClient->listIntents();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -561,8 +517,6 @@ class IntentsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Intents/ListIntents', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -584,10 +538,8 @@ class IntentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
         try {
-            $gapicClient->listIntents($formattedParent);
+            $gapicClient->listIntents();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -632,19 +584,13 @@ class IntentsClientTest extends GeneratedTest
         $expectedResponse->setRootFollowupIntentName($rootFollowupIntentName);
         $expectedResponse->setParentFollowupIntentName($parentFollowupIntentName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $intent = new Intent();
-        $intentDisplayName = 'intentDisplayName-1733865935';
-        $intent->setDisplayName($intentDisplayName);
-        $response = $gapicClient->updateIntent($intent);
+        $response = $gapicClient->updateIntent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Intents/UpdateIntent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getIntent();
-        $this->assertProtobufEquals($intent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -666,12 +612,8 @@ class IntentsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $intent = new Intent();
-        $intentDisplayName = 'intentDisplayName-1733865935';
-        $intent->setDisplayName($intentDisplayName);
         try {
-            $gapicClient->updateIntent($intent);
+            $gapicClient->updateIntent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

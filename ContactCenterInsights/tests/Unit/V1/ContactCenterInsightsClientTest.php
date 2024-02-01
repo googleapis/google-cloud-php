@@ -46,14 +46,12 @@ use Google\Cloud\ContactCenterInsights\V1\ListIssuesResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListPhraseMatchersResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListViewsResponse;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
-use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher\PhraseMatcherType;
 use Google\Cloud\ContactCenterInsights\V1\Settings;
 use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelResponse;
 use Google\Cloud\ContactCenterInsights\V1\View;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -119,11 +117,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $filter = 'filter-1274492040';
-        $analysisPercentage = 9980822;
-        $response = $gapicClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
+        $response = $gapicClient->bulkAnalyzeConversations();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -133,12 +127,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkAnalyzeConversations', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualValue);
-        $actualValue = $actualApiRequestObject->getAnalysisPercentage();
-        $this->assertProtobufEquals($analysisPercentage, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/bulkAnalyzeConversationsTest');
         $response->pollUntilComplete([
@@ -189,11 +177,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $filter = 'filter-1274492040';
-        $analysisPercentage = 9980822;
-        $response = $gapicClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
+        $response = $gapicClient->bulkAnalyzeConversations();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -244,9 +228,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->bulkDeleteConversations($formattedParent);
+        $response = $gapicClient->bulkDeleteConversations();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -256,8 +238,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkDeleteConversations', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/bulkDeleteConversationsTest');
         $response->pollUntilComplete([
@@ -308,9 +288,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->bulkDeleteConversations($formattedParent);
+        $response = $gapicClient->bulkDeleteConversations();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -343,17 +321,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new CalculateIssueModelStatsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedIssueModel = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $gapicClient->calculateIssueModelStats($formattedIssueModel);
+        $response = $gapicClient->calculateIssueModelStats();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CalculateIssueModelStats', $actualFuncCall);
-        $actualValue = $actualRequestObject->getIssueModel();
-        $this->assertProtobufEquals($formattedIssueModel, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -375,10 +349,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedIssueModel = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
         try {
-            $gapicClient->calculateIssueModelStats($formattedIssueModel);
+            $gapicClient->calculateIssueModelStats();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -405,17 +377,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setAverageTurnCount($averageTurnCount);
         $expectedResponse->setConversationCount($conversationCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->calculateStats($formattedLocation);
+        $response = $gapicClient->calculateStats();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CalculateStats', $actualFuncCall);
-        $actualValue = $actualRequestObject->getLocation();
-        $this->assertProtobufEquals($formattedLocation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -437,10 +405,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->calculateStats($formattedLocation);
+            $gapicClient->calculateStats();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -483,10 +449,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $analysis = new Analysis();
-        $response = $gapicClient->createAnalysis($formattedParent, $analysis);
+        $response = $gapicClient->createAnalysis();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -496,10 +459,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateAnalysis', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAnalysis();
-        $this->assertProtobufEquals($analysis, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAnalysisTest');
         $response->pollUntilComplete([
@@ -550,10 +509,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $analysis = new Analysis();
-        $response = $gapicClient->createAnalysis($formattedParent, $analysis);
+        $response = $gapicClient->createAnalysis();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -596,20 +552,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setTurnCount($turnCount);
         $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $conversation = new Conversation();
-        $response = $gapicClient->createConversation($formattedParent, $conversation);
+        $response = $gapicClient->createConversation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateConversation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getConversation();
-        $this->assertProtobufEquals($conversation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -631,11 +580,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $conversation = new Conversation();
         try {
-            $gapicClient->createConversation($formattedParent, $conversation);
+            $gapicClient->createConversation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -684,10 +630,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $issueModel = new IssueModel();
-        $response = $gapicClient->createIssueModel($formattedParent, $issueModel);
+        $response = $gapicClient->createIssueModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -697,10 +640,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateIssueModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getIssueModel();
-        $this->assertProtobufEquals($issueModel, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createIssueModelTest');
         $response->pollUntilComplete([
@@ -751,10 +690,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $issueModel = new IssueModel();
-        $response = $gapicClient->createIssueModel($formattedParent, $issueModel);
+        $response = $gapicClient->createIssueModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -797,22 +733,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setActive($active);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $phraseMatcher = new PhraseMatcher();
-        $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
-        $phraseMatcher->setType($phraseMatcherType);
-        $response = $gapicClient->createPhraseMatcher($formattedParent, $phraseMatcher);
+        $response = $gapicClient->createPhraseMatcher();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreatePhraseMatcher', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPhraseMatcher();
-        $this->assertProtobufEquals($phraseMatcher, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -834,13 +761,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $phraseMatcher = new PhraseMatcher();
-        $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
-        $phraseMatcher->setType($phraseMatcherType);
         try {
-            $gapicClient->createPhraseMatcher($formattedParent, $phraseMatcher);
+            $gapicClient->createPhraseMatcher();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -869,20 +791,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setValue($value);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $view = new View();
-        $response = $gapicClient->createView($formattedParent, $view);
+        $response = $gapicClient->createView();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateView', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getView();
-        $this->assertProtobufEquals($view, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -904,11 +819,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $view = new View();
         try {
-            $gapicClient->createView($formattedParent, $view);
+            $gapicClient->createView();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -931,16 +843,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
-        $gapicClient->deleteAnalysis($formattedName);
+        $gapicClient->deleteAnalysis();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteAnalysis', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -962,10 +870,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
         try {
-            $gapicClient->deleteAnalysis($formattedName);
+            $gapicClient->deleteAnalysis();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -988,16 +894,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $gapicClient->deleteConversation($formattedName);
+        $gapicClient->deleteConversation();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteConversation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1019,10 +921,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
         try {
-            $gapicClient->deleteConversation($formattedName);
+            $gapicClient->deleteConversation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1045,16 +945,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
-        $gapicClient->deleteIssue($formattedName);
+        $gapicClient->deleteIssue();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteIssue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1076,10 +972,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
         try {
-            $gapicClient->deleteIssue($formattedName);
+            $gapicClient->deleteIssue();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1120,9 +1014,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $gapicClient->deleteIssueModel($formattedName);
+        $response = $gapicClient->deleteIssueModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1132,8 +1024,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteIssueModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteIssueModelTest');
         $response->pollUntilComplete([
@@ -1184,9 +1074,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $gapicClient->deleteIssueModel($formattedName);
+        $response = $gapicClient->deleteIssueModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1219,16 +1107,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
-        $gapicClient->deletePhraseMatcher($formattedName);
+        $gapicClient->deletePhraseMatcher();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeletePhraseMatcher', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1250,10 +1134,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
         try {
-            $gapicClient->deletePhraseMatcher($formattedName);
+            $gapicClient->deletePhraseMatcher();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1276,16 +1158,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
-        $gapicClient->deleteView($formattedName);
+        $gapicClient->deleteView();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteView', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1307,10 +1185,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
         try {
-            $gapicClient->deleteView($formattedName);
+            $gapicClient->deleteView();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1351,9 +1227,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $gapicClient->deployIssueModel($formattedName);
+        $response = $gapicClient->deployIssueModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1363,8 +1237,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeployIssueModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deployIssueModelTest');
         $response->pollUntilComplete([
@@ -1415,9 +1287,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $gapicClient->deployIssueModel($formattedName);
+        $response = $gapicClient->deployIssueModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1468,9 +1338,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->exportInsightsData($formattedParent);
+        $response = $gapicClient->exportInsightsData();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1480,8 +1348,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ExportInsightsData', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportInsightsDataTest');
         $response->pollUntilComplete([
@@ -1532,9 +1398,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->exportInsightsData($formattedParent);
+        $response = $gapicClient->exportInsightsData();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1569,17 +1433,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse = new Analysis();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
-        $response = $gapicClient->getAnalysis($formattedName);
+        $response = $gapicClient->getAnalysis();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetAnalysis', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1601,10 +1461,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
         try {
-            $gapicClient->getAnalysis($formattedName);
+            $gapicClient->getAnalysis();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1637,17 +1495,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setTurnCount($turnCount);
         $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $response = $gapicClient->getConversation($formattedName);
+        $response = $gapicClient->getConversation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetConversation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1669,10 +1523,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
         try {
-            $gapicClient->getConversation($formattedName);
+            $gapicClient->getConversation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1699,17 +1551,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
-        $response = $gapicClient->getIssue($formattedName);
+        $response = $gapicClient->getIssue();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetIssue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1731,10 +1579,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
         try {
-            $gapicClient->getIssue($formattedName);
+            $gapicClient->getIssue();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1765,17 +1611,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setIssueCount($issueCount);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $gapicClient->getIssueModel($formattedName);
+        $response = $gapicClient->getIssueModel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetIssueModel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1797,10 +1639,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
         try {
-            $gapicClient->getIssueModel($formattedName);
+            $gapicClient->getIssueModel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1833,17 +1673,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setActive($active);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
-        $response = $gapicClient->getPhraseMatcher($formattedName);
+        $response = $gapicClient->getPhraseMatcher();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetPhraseMatcher', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1865,10 +1701,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
         try {
-            $gapicClient->getPhraseMatcher($formattedName);
+            $gapicClient->getPhraseMatcher();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1895,17 +1729,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->settingsName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->getSettings($formattedName);
+        $response = $gapicClient->getSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1927,10 +1757,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->settingsName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->getSettings($formattedName);
+            $gapicClient->getSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1959,17 +1787,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setValue($value);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
-        $response = $gapicClient->getView($formattedName);
+        $response = $gapicClient->getView();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetView', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1991,10 +1815,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
         try {
-            $gapicClient->getView($formattedName);
+            $gapicClient->getView();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2035,9 +1857,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->ingestConversations($formattedParent);
+        $response = $gapicClient->ingestConversations();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2047,8 +1867,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/IngestConversations', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/ingestConversationsTest');
         $response->pollUntilComplete([
@@ -2099,9 +1917,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->ingestConversations($formattedParent);
+        $response = $gapicClient->ingestConversations();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2141,9 +1957,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnalyses($analyses);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $response = $gapicClient->listAnalyses($formattedParent);
+        $response = $gapicClient->listAnalyses();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2153,8 +1967,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListAnalyses', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2176,10 +1988,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
         try {
-            $gapicClient->listAnalyses($formattedParent);
+            $gapicClient->listAnalyses();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2209,9 +2019,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversations($conversations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listConversations($formattedParent);
+        $response = $gapicClient->listConversations();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2221,8 +2029,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListConversations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2244,10 +2050,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listConversations($formattedParent);
+            $gapicClient->listConversations();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2270,17 +2074,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListIssueModelsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listIssueModels($formattedParent);
+        $response = $gapicClient->listIssueModels();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListIssueModels', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2302,10 +2102,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listIssueModels($formattedParent);
+            $gapicClient->listIssueModels();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2328,17 +2126,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListIssuesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $gapicClient->listIssues($formattedParent);
+        $response = $gapicClient->listIssues();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListIssues', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2360,10 +2154,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
         try {
-            $gapicClient->listIssues($formattedParent);
+            $gapicClient->listIssues();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2393,9 +2185,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPhraseMatchers($phraseMatchers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listPhraseMatchers($formattedParent);
+        $response = $gapicClient->listPhraseMatchers();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2405,8 +2195,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListPhraseMatchers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2428,10 +2216,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listPhraseMatchers($formattedParent);
+            $gapicClient->listPhraseMatchers();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2461,9 +2247,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setViews($views);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listViews($formattedParent);
+        $response = $gapicClient->listViews();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2473,8 +2257,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListViews', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2496,10 +2278,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listViews($formattedParent);
+            $gapicClient->listViews();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2540,9 +2320,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $gapicClient->undeployIssueModel($formattedName);
+        $response = $gapicClient->undeployIssueModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2552,8 +2330,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UndeployIssueModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeployIssueModelTest');
         $response->pollUntilComplete([
@@ -2604,9 +2380,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $gapicClient->undeployIssueModel($formattedName);
+        $response = $gapicClient->undeployIssueModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2649,17 +2423,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setTurnCount($turnCount);
         $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $conversation = new Conversation();
-        $response = $gapicClient->updateConversation($conversation);
+        $response = $gapicClient->updateConversation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateConversation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConversation();
-        $this->assertProtobufEquals($conversation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2681,10 +2451,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $conversation = new Conversation();
         try {
-            $gapicClient->updateConversation($conversation);
+            $gapicClient->updateConversation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2711,17 +2479,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $issue = new Issue();
-        $response = $gapicClient->updateIssue($issue);
+        $response = $gapicClient->updateIssue();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateIssue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getIssue();
-        $this->assertProtobufEquals($issue, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2743,10 +2507,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $issue = new Issue();
         try {
-            $gapicClient->updateIssue($issue);
+            $gapicClient->updateIssue();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2777,17 +2539,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setIssueCount($issueCount);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $issueModel = new IssueModel();
-        $response = $gapicClient->updateIssueModel($issueModel);
+        $response = $gapicClient->updateIssueModel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateIssueModel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getIssueModel();
-        $this->assertProtobufEquals($issueModel, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2809,10 +2567,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $issueModel = new IssueModel();
         try {
-            $gapicClient->updateIssueModel($issueModel);
+            $gapicClient->updateIssueModel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2845,19 +2601,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setActive($active);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $phraseMatcher = new PhraseMatcher();
-        $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
-        $phraseMatcher->setType($phraseMatcherType);
-        $response = $gapicClient->updatePhraseMatcher($phraseMatcher);
+        $response = $gapicClient->updatePhraseMatcher();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdatePhraseMatcher', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPhraseMatcher();
-        $this->assertProtobufEquals($phraseMatcher, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2879,12 +2629,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $phraseMatcher = new PhraseMatcher();
-        $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
-        $phraseMatcher->setType($phraseMatcherType);
         try {
-            $gapicClient->updatePhraseMatcher($phraseMatcher);
+            $gapicClient->updatePhraseMatcher();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2911,20 +2657,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $settings = new Settings();
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateSettings($settings, $updateMask);
+        $response = $gapicClient->updateSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSettings();
-        $this->assertProtobufEquals($settings, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2946,11 +2685,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $settings = new Settings();
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateSettings($settings, $updateMask);
+            $gapicClient->updateSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2979,17 +2715,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setValue($value);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $view = new View();
-        $response = $gapicClient->updateView($view);
+        $response = $gapicClient->updateView();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateView', $actualFuncCall);
-        $actualValue = $actualRequestObject->getView();
-        $this->assertProtobufEquals($view, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3011,10 +2743,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $view = new View();
         try {
-            $gapicClient->updateView($view);
+            $gapicClient->updateView();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3065,10 +2795,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $conversation = new Conversation();
-        $response = $gapicClient->uploadConversation($formattedParent, $conversation);
+        $response = $gapicClient->uploadConversation();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3078,10 +2805,6 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UploadConversation', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getConversation();
-        $this->assertProtobufEquals($conversation, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/uploadConversationTest');
         $response->pollUntilComplete([
@@ -3132,10 +2855,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $conversation = new Conversation();
-        $response = $gapicClient->uploadConversation($formattedParent, $conversation);
+        $response = $gapicClient->uploadConversation();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

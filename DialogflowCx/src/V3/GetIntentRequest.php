@@ -41,8 +41,7 @@ class GetIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the intent.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/intents/<Intent ID>`. Please see
-     *                     {@see IntentsClient::intentName()} for help formatting this field.
+     *                     ID>/intents/<Intent ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetIntentRequest
      *

@@ -109,10 +109,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $contactCenterInsightsClient = new ContactCenterInsightsClient();
  * try {
- *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
- *     $filter = 'filter';
- *     $analysisPercentage = 0.0;
- *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
+ *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -123,7 +120,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
+ *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'bulkAnalyzeConversations');
@@ -833,10 +830,7 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $filter = 'filter';
-     *     $analysisPercentage = 0.0;
-     *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
+     *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -847,7 +841,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations($formattedParent, $filter, $analysisPercentage);
+     *     $operationResponse = $contactCenterInsightsClient->bulkAnalyzeConversations();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'bulkAnalyzeConversations');
@@ -867,13 +861,16 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent             Required. The parent resource to create analyses in.
-     * @param string $filter             Required. Filter used to select the subset of conversations to analyze.
-     * @param float  $analysisPercentage Required. Percentage of selected conversation to analyze, between
-     *                                   [0, 100].
-     * @param array  $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource to create analyses in.
+     *     @type string $filter
+     *           Required. Filter used to select the subset of conversations to analyze.
+     *     @type float $analysisPercentage
+     *           Required. Percentage of selected conversation to analyze, between
+     *           [0, 100].
      *     @type AnnotatorSelector $annotatorSelector
      *           To select the annotators to run and the phrase matchers to use
      *           (if any). If not specified, all annotators will be run.
@@ -887,18 +884,25 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function bulkAnalyzeConversations(
-        $parent,
-        $filter,
-        $analysisPercentage,
-        array $optionalArgs = []
-    ) {
+    public function bulkAnalyzeConversations(array $optionalArgs = [])
+    {
         $request = new BulkAnalyzeConversationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFilter($filter);
-        $request->setAnalysisPercentage($analysisPercentage);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['analysisPercentage'])) {
+            $request->setAnalysisPercentage(
+                $optionalArgs['analysisPercentage']
+            );
+        }
+
         if (isset($optionalArgs['annotatorSelector'])) {
             $request->setAnnotatorSelector($optionalArgs['annotatorSelector']);
         }
@@ -924,8 +928,7 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $operationResponse = $contactCenterInsightsClient->bulkDeleteConversations($formattedParent);
+     *     $operationResponse = $contactCenterInsightsClient->bulkDeleteConversations();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -936,7 +939,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $contactCenterInsightsClient->bulkDeleteConversations($formattedParent);
+     *     $operationResponse = $contactCenterInsightsClient->bulkDeleteConversations();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'bulkDeleteConversations');
@@ -956,12 +959,13 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource to delete conversations from.
-     *                             Format:
-     *                             projects/{project}/locations/{location}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource to delete conversations from.
+     *           Format:
+     *           projects/{project}/locations/{location}
      *     @type string $filter
      *           Filter used to select the subset of conversations to delete.
      *     @type int $maxDeleteCount
@@ -980,12 +984,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function bulkDeleteConversations($parent, array $optionalArgs = [])
+    public function bulkDeleteConversations(array $optionalArgs = [])
     {
         $request = new BulkDeleteConversationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1019,17 +1026,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedIssueModel = $contactCenterInsightsClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-     *     $response = $contactCenterInsightsClient->calculateIssueModelStats($formattedIssueModel);
+     *     $response = $contactCenterInsightsClient->calculateIssueModelStats();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $issueModel   Required. The resource name of the issue model to query against.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $issueModel
+     *           Required. The resource name of the issue model to query against.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1040,14 +1047,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function calculateIssueModelStats(
-        $issueModel,
-        array $optionalArgs = []
-    ) {
+    public function calculateIssueModelStats(array $optionalArgs = [])
+    {
         $request = new CalculateIssueModelStatsRequest();
         $requestParamHeaders = [];
-        $request->setIssueModel($issueModel);
-        $requestParamHeaders['issue_model'] = $issueModel;
+        if (isset($optionalArgs['issueModel'])) {
+            $request->setIssueModel($optionalArgs['issueModel']);
+            $requestParamHeaders['issue_model'] = $optionalArgs['issueModel'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1069,17 +1077,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedLocation = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $contactCenterInsightsClient->calculateStats($formattedLocation);
+     *     $response = $contactCenterInsightsClient->calculateStats();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $location     Required. The location of the conversations.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $location
+     *           Required. The location of the conversations.
      *     @type string $filter
      *           A filter to reduce results to a specific subset. This field is useful for
      *           getting statistics about conversations with specific properties.
@@ -1093,12 +1101,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function calculateStats($location, array $optionalArgs = [])
+    public function calculateStats(array $optionalArgs = [])
     {
         $request = new CalculateStatsRequest();
         $requestParamHeaders = [];
-        $request->setLocation($location);
-        $requestParamHeaders['location'] = $location;
+        if (isset($optionalArgs['location'])) {
+            $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1125,9 +1136,7 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-     *     $analysis = new Analysis();
-     *     $operationResponse = $contactCenterInsightsClient->createAnalysis($formattedParent, $analysis);
+     *     $operationResponse = $contactCenterInsightsClient->createAnalysis();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1138,7 +1147,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $contactCenterInsightsClient->createAnalysis($formattedParent, $analysis);
+     *     $operationResponse = $contactCenterInsightsClient->createAnalysis();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'createAnalysis');
@@ -1158,11 +1167,13 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The parent resource of the analysis.
-     * @param Analysis $analysis     Required. The analysis to create.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the analysis.
+     *     @type Analysis $analysis
+     *           Required. The analysis to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1173,13 +1184,19 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAnalysis($parent, $analysis, array $optionalArgs = [])
+    public function createAnalysis(array $optionalArgs = [])
     {
         $request = new CreateAnalysisRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAnalysis($analysis);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['analysis'])) {
+            $request->setAnalysis($optionalArgs['analysis']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1201,19 +1218,19 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $conversation = new Conversation();
-     *     $response = $contactCenterInsightsClient->createConversation($formattedParent, $conversation);
+     *     $response = $contactCenterInsightsClient->createConversation();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string       $parent       Required. The parent resource of the conversation.
-     * @param Conversation $conversation Required. The conversation resource to create.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the conversation.
+     *     @type Conversation $conversation
+     *           Required. The conversation resource to create.
      *     @type string $conversationId
      *           A unique ID for the new conversation. This ID will become the final
      *           component of the conversation's resource name. If no ID is specified, a
@@ -1231,16 +1248,19 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createConversation(
-        $parent,
-        $conversation,
-        array $optionalArgs = []
-    ) {
+    public function createConversation(array $optionalArgs = [])
+    {
         $request = new CreateConversationRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setConversation($conversation);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['conversation'])) {
+            $request->setConversation($optionalArgs['conversation']);
+        }
+
         if (isset($optionalArgs['conversationId'])) {
             $request->setConversationId($optionalArgs['conversationId']);
         }
@@ -1266,9 +1286,7 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $issueModel = new IssueModel();
-     *     $operationResponse = $contactCenterInsightsClient->createIssueModel($formattedParent, $issueModel);
+     *     $operationResponse = $contactCenterInsightsClient->createIssueModel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1279,7 +1297,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $contactCenterInsightsClient->createIssueModel($formattedParent, $issueModel);
+     *     $operationResponse = $contactCenterInsightsClient->createIssueModel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'createIssueModel');
@@ -1299,11 +1317,13 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The parent resource of the issue model.
-     * @param IssueModel $issueModel   Required. The issue model to create.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the issue model.
+     *     @type IssueModel $issueModel
+     *           Required. The issue model to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1314,16 +1334,19 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createIssueModel(
-        $parent,
-        $issueModel,
-        array $optionalArgs = []
-    ) {
+    public function createIssueModel(array $optionalArgs = [])
+    {
         $request = new CreateIssueModelRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setIssueModel($issueModel);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['issueModel'])) {
+            $request->setIssueModel($optionalArgs['issueModel']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1345,22 +1368,22 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $phraseMatcher = new PhraseMatcher();
-     *     $response = $contactCenterInsightsClient->createPhraseMatcher($formattedParent, $phraseMatcher);
+     *     $response = $contactCenterInsightsClient->createPhraseMatcher();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string        $parent        Required. The parent resource of the phrase matcher. Required. The location
-     *                                     to create a phrase matcher for. Format: `projects/<Project
-     *                                     ID>/locations/<Location ID>` or `projects/<Project
-     *                                     Number>/locations/<Location ID>`
-     * @param PhraseMatcher $phraseMatcher Required. The phrase matcher resource to create.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the phrase matcher. Required. The location
+     *           to create a phrase matcher for. Format: `projects/<Project
+     *           ID>/locations/<Location ID>` or `projects/<Project
+     *           Number>/locations/<Location ID>`
+     *     @type PhraseMatcher $phraseMatcher
+     *           Required. The phrase matcher resource to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1371,16 +1394,19 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createPhraseMatcher(
-        $parent,
-        $phraseMatcher,
-        array $optionalArgs = []
-    ) {
+    public function createPhraseMatcher(array $optionalArgs = [])
+    {
         $request = new CreatePhraseMatcherRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setPhraseMatcher($phraseMatcher);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['phraseMatcher'])) {
+            $request->setPhraseMatcher($optionalArgs['phraseMatcher']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1402,22 +1428,22 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $view = new View();
-     *     $response = $contactCenterInsightsClient->createView($formattedParent, $view);
+     *     $response = $contactCenterInsightsClient->createView();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the view. Required. The location to create
-     *                             a view for.
-     *                             Format: `projects/<Project ID>/locations/<Location ID>` or
-     *                             `projects/<Project Number>/locations/<Location ID>`
-     * @param View   $view         Required. The view resource to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the view. Required. The location to create
+     *           a view for.
+     *           Format: `projects/<Project ID>/locations/<Location ID>` or
+     *           `projects/<Project Number>/locations/<Location ID>`
+     *     @type View $view
+     *           Required. The view resource to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1428,13 +1454,19 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createView($parent, $view, array $optionalArgs = [])
+    public function createView(array $optionalArgs = [])
     {
         $request = new CreateViewRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setView($view);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1456,17 +1488,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
-     *     $contactCenterInsightsClient->deleteAnalysis($formattedName);
+     *     $contactCenterInsightsClient->deleteAnalysis();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the analysis to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the analysis to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1475,12 +1507,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAnalysis($name, array $optionalArgs = [])
+    public function deleteAnalysis(array $optionalArgs = [])
     {
         $request = new DeleteAnalysisRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1502,17 +1537,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-     *     $contactCenterInsightsClient->deleteConversation($formattedName);
+     *     $contactCenterInsightsClient->deleteConversation();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the conversation to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the conversation to delete.
      *     @type bool $force
      *           If set to true, all of this conversation's analyses will also be deleted.
      *           Otherwise, the request will only succeed if the conversation has no
@@ -1525,12 +1560,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteConversation($name, array $optionalArgs = [])
+    public function deleteConversation(array $optionalArgs = [])
     {
         $request = new DeleteConversationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1556,17 +1594,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
-     *     $contactCenterInsightsClient->deleteIssue($formattedName);
+     *     $contactCenterInsightsClient->deleteIssue();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the issue to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the issue to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1575,12 +1613,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteIssue($name, array $optionalArgs = [])
+    public function deleteIssue(array $optionalArgs = [])
     {
         $request = new DeleteIssueRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1602,8 +1643,7 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-     *     $operationResponse = $contactCenterInsightsClient->deleteIssueModel($formattedName);
+     *     $operationResponse = $contactCenterInsightsClient->deleteIssueModel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1613,7 +1653,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $contactCenterInsightsClient->deleteIssueModel($formattedName);
+     *     $operationResponse = $contactCenterInsightsClient->deleteIssueModel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'deleteIssueModel');
@@ -1632,10 +1672,11 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the issue model to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the issue model to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1646,12 +1687,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteIssueModel($name, array $optionalArgs = [])
+    public function deleteIssueModel(array $optionalArgs = [])
     {
         $request = new DeleteIssueModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1673,17 +1717,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
-     *     $contactCenterInsightsClient->deletePhraseMatcher($formattedName);
+     *     $contactCenterInsightsClient->deletePhraseMatcher();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the phrase matcher to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the phrase matcher to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1692,12 +1736,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePhraseMatcher($name, array $optionalArgs = [])
+    public function deletePhraseMatcher(array $optionalArgs = [])
     {
         $request = new DeletePhraseMatcherRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1719,17 +1766,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
-     *     $contactCenterInsightsClient->deleteView($formattedName);
+     *     $contactCenterInsightsClient->deleteView();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the view to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the view to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1738,12 +1785,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteView($name, array $optionalArgs = [])
+    public function deleteView(array $optionalArgs = [])
     {
         $request = new DeleteViewRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1766,8 +1816,7 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-     *     $operationResponse = $contactCenterInsightsClient->deployIssueModel($formattedName);
+     *     $operationResponse = $contactCenterInsightsClient->deployIssueModel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1778,7 +1827,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $contactCenterInsightsClient->deployIssueModel($formattedName);
+     *     $operationResponse = $contactCenterInsightsClient->deployIssueModel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'deployIssueModel');
@@ -1798,10 +1847,11 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The issue model to deploy.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The issue model to deploy.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1812,12 +1862,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deployIssueModel($name, array $optionalArgs = [])
+    public function deployIssueModel(array $optionalArgs = [])
     {
         $request = new DeployIssueModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1839,8 +1892,7 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $operationResponse = $contactCenterInsightsClient->exportInsightsData($formattedParent);
+     *     $operationResponse = $contactCenterInsightsClient->exportInsightsData();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1851,7 +1903,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $contactCenterInsightsClient->exportInsightsData($formattedParent);
+     *     $operationResponse = $contactCenterInsightsClient->exportInsightsData();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'exportInsightsData');
@@ -1871,12 +1923,13 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource to export data from.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type BigQueryDestination $bigQueryDestination
      *           Specified if sink is a BigQuery table.
+     *     @type string $parent
+     *           Required. The parent resource to export data from.
      *     @type string $filter
      *           A filter to reduce results to a specific subset. Useful for exporting
      *           conversations with specific properties.
@@ -1897,16 +1950,19 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportInsightsData($parent, array $optionalArgs = [])
+    public function exportInsightsData(array $optionalArgs = [])
     {
         $request = new ExportInsightsDataRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['bigQueryDestination'])) {
             $request->setBigQueryDestination(
                 $optionalArgs['bigQueryDestination']
             );
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
         if (isset($optionalArgs['filter'])) {
@@ -1942,17 +1998,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
-     *     $response = $contactCenterInsightsClient->getAnalysis($formattedName);
+     *     $response = $contactCenterInsightsClient->getAnalysis();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the analysis to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the analysis to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1963,12 +2019,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAnalysis($name, array $optionalArgs = [])
+    public function getAnalysis(array $optionalArgs = [])
     {
         $request = new GetAnalysisRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1990,17 +2049,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-     *     $response = $contactCenterInsightsClient->getConversation($formattedName);
+     *     $response = $contactCenterInsightsClient->getConversation();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the conversation to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the conversation to get.
      *     @type int $view
      *           The level of details of the conversation. Default is `FULL`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\ContactCenterInsights\V1\ConversationView}
@@ -2014,12 +2073,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConversation($name, array $optionalArgs = [])
+    public function getConversation(array $optionalArgs = [])
     {
         $request = new GetConversationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -2045,17 +2107,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
-     *     $response = $contactCenterInsightsClient->getIssue($formattedName);
+     *     $response = $contactCenterInsightsClient->getIssue();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the issue to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the issue to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2066,12 +2128,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIssue($name, array $optionalArgs = [])
+    public function getIssue(array $optionalArgs = [])
     {
         $request = new GetIssueRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2093,17 +2158,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-     *     $response = $contactCenterInsightsClient->getIssueModel($formattedName);
+     *     $response = $contactCenterInsightsClient->getIssueModel();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the issue model to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the issue model to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2114,12 +2179,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIssueModel($name, array $optionalArgs = [])
+    public function getIssueModel(array $optionalArgs = [])
     {
         $request = new GetIssueModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2141,17 +2209,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
-     *     $response = $contactCenterInsightsClient->getPhraseMatcher($formattedName);
+     *     $response = $contactCenterInsightsClient->getPhraseMatcher();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the phrase matcher to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the phrase matcher to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2162,12 +2230,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPhraseMatcher($name, array $optionalArgs = [])
+    public function getPhraseMatcher(array $optionalArgs = [])
     {
         $request = new GetPhraseMatcherRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2189,17 +2260,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->settingsName('[PROJECT]', '[LOCATION]');
-     *     $response = $contactCenterInsightsClient->getSettings($formattedName);
+     *     $response = $contactCenterInsightsClient->getSettings();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the settings resource to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the settings resource to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2210,12 +2281,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSettings($name, array $optionalArgs = [])
+    public function getSettings(array $optionalArgs = [])
     {
         $request = new GetSettingsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2237,17 +2311,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
-     *     $response = $contactCenterInsightsClient->getView($formattedName);
+     *     $response = $contactCenterInsightsClient->getView();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the view to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the view to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2258,12 +2332,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getView($name, array $optionalArgs = [])
+    public function getView(array $optionalArgs = [])
     {
         $request = new GetViewRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2286,8 +2363,7 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $operationResponse = $contactCenterInsightsClient->ingestConversations($formattedParent);
+     *     $operationResponse = $contactCenterInsightsClient->ingestConversations();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2298,7 +2374,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $contactCenterInsightsClient->ingestConversations($formattedParent);
+     *     $operationResponse = $contactCenterInsightsClient->ingestConversations();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'ingestConversations');
@@ -2318,8 +2394,7 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource for new conversations.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type GcsSource $gcsSource
@@ -2327,6 +2402,8 @@ class ContactCenterInsightsGapicClient
      *           from the source will be skipped to avoid duplication.
      *     @type TranscriptObjectConfig $transcriptObjectConfig
      *           Configuration for when `source` contains conversation transcripts.
+     *     @type string $parent
+     *           Required. The parent resource for new conversations.
      *     @type ConversationConfig $conversationConfig
      *           Configuration that applies to all conversations.
      *     @type RedactionConfig $redactionConfig
@@ -2345,12 +2422,10 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function ingestConversations($parent, array $optionalArgs = [])
+    public function ingestConversations(array $optionalArgs = [])
     {
         $request = new IngestConversationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['gcsSource'])) {
             $request->setGcsSource($optionalArgs['gcsSource']);
         }
@@ -2359,6 +2434,11 @@ class ContactCenterInsightsGapicClient
             $request->setTranscriptObjectConfig(
                 $optionalArgs['transcriptObjectConfig']
             );
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
         if (isset($optionalArgs['conversationConfig'])) {
@@ -2396,9 +2476,8 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $contactCenterInsightsClient->listAnalyses($formattedParent);
+     *     $pagedResponse = $contactCenterInsightsClient->listAnalyses();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2406,7 +2485,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $contactCenterInsightsClient->listAnalyses($formattedParent);
+     *     $pagedResponse = $contactCenterInsightsClient->listAnalyses();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2415,10 +2494,11 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the analyses.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the analyses.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2441,12 +2521,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAnalyses($parent, array $optionalArgs = [])
+    public function listAnalyses(array $optionalArgs = [])
     {
         $request = new ListAnalysesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2480,9 +2563,8 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $contactCenterInsightsClient->listConversations($formattedParent);
+     *     $pagedResponse = $contactCenterInsightsClient->listConversations();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2490,7 +2572,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $contactCenterInsightsClient->listConversations($formattedParent);
+     *     $pagedResponse = $contactCenterInsightsClient->listConversations();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2499,10 +2581,11 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the conversation.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the conversation.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2528,12 +2611,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConversations($parent, array $optionalArgs = [])
+    public function listConversations(array $optionalArgs = [])
     {
         $request = new ListConversationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2571,17 +2657,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $contactCenterInsightsClient->listIssueModels($formattedParent);
+     *     $response = $contactCenterInsightsClient->listIssueModels();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the issue model.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the issue model.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2592,12 +2678,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listIssueModels($parent, array $optionalArgs = [])
+    public function listIssueModels(array $optionalArgs = [])
     {
         $request = new ListIssueModelsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2619,17 +2708,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-     *     $response = $contactCenterInsightsClient->listIssues($formattedParent);
+     *     $response = $contactCenterInsightsClient->listIssues();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the issue.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the issue.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2640,12 +2729,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listIssues($parent, array $optionalArgs = [])
+    public function listIssues(array $optionalArgs = [])
     {
         $request = new ListIssuesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2667,9 +2759,8 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $contactCenterInsightsClient->listPhraseMatchers($formattedParent);
+     *     $pagedResponse = $contactCenterInsightsClient->listPhraseMatchers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2677,7 +2768,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $contactCenterInsightsClient->listPhraseMatchers($formattedParent);
+     *     $pagedResponse = $contactCenterInsightsClient->listPhraseMatchers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2686,10 +2777,11 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the phrase matcher.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the phrase matcher.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2712,12 +2804,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPhraseMatchers($parent, array $optionalArgs = [])
+    public function listPhraseMatchers(array $optionalArgs = [])
     {
         $request = new ListPhraseMatchersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2751,9 +2846,8 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $contactCenterInsightsClient->listViews($formattedParent);
+     *     $pagedResponse = $contactCenterInsightsClient->listViews();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2761,7 +2855,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $contactCenterInsightsClient->listViews($formattedParent);
+     *     $pagedResponse = $contactCenterInsightsClient->listViews();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2770,10 +2864,11 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource of the views.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the views.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2793,12 +2888,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listViews($parent, array $optionalArgs = [])
+    public function listViews(array $optionalArgs = [])
     {
         $request = new ListViewsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2829,8 +2927,7 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedName = $contactCenterInsightsClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-     *     $operationResponse = $contactCenterInsightsClient->undeployIssueModel($formattedName);
+     *     $operationResponse = $contactCenterInsightsClient->undeployIssueModel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2841,7 +2938,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $contactCenterInsightsClient->undeployIssueModel($formattedName);
+     *     $operationResponse = $contactCenterInsightsClient->undeployIssueModel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'undeployIssueModel');
@@ -2861,10 +2958,11 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The issue model to undeploy.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The issue model to undeploy.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2875,12 +2973,15 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeployIssueModel($name, array $optionalArgs = [])
+    public function undeployIssueModel(array $optionalArgs = [])
     {
         $request = new UndeployIssueModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2902,17 +3003,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $conversation = new Conversation();
-     *     $response = $contactCenterInsightsClient->updateConversation($conversation);
+     *     $response = $contactCenterInsightsClient->updateConversation();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param Conversation $conversation Required. The new values for the conversation.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Conversation $conversation
+     *           Required. The new values for the conversation.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
@@ -2925,12 +3026,14 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateConversation($conversation, array $optionalArgs = [])
+    public function updateConversation(array $optionalArgs = [])
     {
         $request = new UpdateConversationRequest();
         $requestParamHeaders = [];
-        $request->setConversation($conversation);
-        $requestParamHeaders['conversation.name'] = $conversation->getName();
+        if (isset($optionalArgs['conversation'])) {
+            $request->setConversation($optionalArgs['conversation']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2956,17 +3059,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $issue = new Issue();
-     *     $response = $contactCenterInsightsClient->updateIssue($issue);
+     *     $response = $contactCenterInsightsClient->updateIssue();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param Issue $issue        Required. The new values for the issue.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Issue $issue
+     *           Required. The new values for the issue.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
@@ -2979,12 +3082,14 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateIssue($issue, array $optionalArgs = [])
+    public function updateIssue(array $optionalArgs = [])
     {
         $request = new UpdateIssueRequest();
         $requestParamHeaders = [];
-        $request->setIssue($issue);
-        $requestParamHeaders['issue.name'] = $issue->getName();
+        if (isset($optionalArgs['issue'])) {
+            $request->setIssue($optionalArgs['issue']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3010,17 +3115,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $issueModel = new IssueModel();
-     *     $response = $contactCenterInsightsClient->updateIssueModel($issueModel);
+     *     $response = $contactCenterInsightsClient->updateIssueModel();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param IssueModel $issueModel   Required. The new values for the issue model.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type IssueModel $issueModel
+     *           Required. The new values for the issue model.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
@@ -3033,12 +3138,14 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateIssueModel($issueModel, array $optionalArgs = [])
+    public function updateIssueModel(array $optionalArgs = [])
     {
         $request = new UpdateIssueModelRequest();
         $requestParamHeaders = [];
-        $request->setIssueModel($issueModel);
-        $requestParamHeaders['issue_model.name'] = $issueModel->getName();
+        if (isset($optionalArgs['issueModel'])) {
+            $request->setIssueModel($optionalArgs['issueModel']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3064,17 +3171,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $phraseMatcher = new PhraseMatcher();
-     *     $response = $contactCenterInsightsClient->updatePhraseMatcher($phraseMatcher);
+     *     $response = $contactCenterInsightsClient->updatePhraseMatcher();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param PhraseMatcher $phraseMatcher Required. The new values for the phrase matcher.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type PhraseMatcher $phraseMatcher
+     *           Required. The new values for the phrase matcher.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
@@ -3087,14 +3194,14 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updatePhraseMatcher(
-        $phraseMatcher,
-        array $optionalArgs = []
-    ) {
+    public function updatePhraseMatcher(array $optionalArgs = [])
+    {
         $request = new UpdatePhraseMatcherRequest();
         $requestParamHeaders = [];
-        $request->setPhraseMatcher($phraseMatcher);
-        $requestParamHeaders['phrase_matcher.name'] = $phraseMatcher->getName();
+        if (isset($optionalArgs['phraseMatcher'])) {
+            $request->setPhraseMatcher($optionalArgs['phraseMatcher']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3120,19 +3227,19 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $settings = new Settings();
-     *     $updateMask = new FieldMask();
-     *     $response = $contactCenterInsightsClient->updateSettings($settings, $updateMask);
+     *     $response = $contactCenterInsightsClient->updateSettings();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param Settings  $settings     Required. The new settings values.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Settings $settings
+     *           Required. The new settings values.
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3143,16 +3250,18 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSettings(
-        $settings,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateSettings(array $optionalArgs = [])
+    {
         $request = new UpdateSettingsRequest();
         $requestParamHeaders = [];
-        $request->setSettings($settings);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['settings.name'] = $settings->getName();
+        if (isset($optionalArgs['settings'])) {
+            $request->setSettings($optionalArgs['settings']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3174,17 +3283,17 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $view = new View();
-     *     $response = $contactCenterInsightsClient->updateView($view);
+     *     $response = $contactCenterInsightsClient->updateView();
      * } finally {
      *     $contactCenterInsightsClient->close();
      * }
      * ```
      *
-     * @param View  $view         Required. The new view.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type View $view
+     *           Required. The new view.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
@@ -3197,12 +3306,14 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateView($view, array $optionalArgs = [])
+    public function updateView(array $optionalArgs = [])
     {
         $request = new UpdateViewRequest();
         $requestParamHeaders = [];
-        $request->setView($view);
-        $requestParamHeaders['view.name'] = $view->getName();
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3230,9 +3341,7 @@ class ContactCenterInsightsGapicClient
      * ```
      * $contactCenterInsightsClient = new ContactCenterInsightsClient();
      * try {
-     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $conversation = new Conversation();
-     *     $operationResponse = $contactCenterInsightsClient->uploadConversation($formattedParent, $conversation);
+     *     $operationResponse = $contactCenterInsightsClient->uploadConversation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3243,7 +3352,7 @@ class ContactCenterInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $contactCenterInsightsClient->uploadConversation($formattedParent, $conversation);
+     *     $operationResponse = $contactCenterInsightsClient->uploadConversation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'uploadConversation');
@@ -3263,11 +3372,13 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string       $parent       Required. The parent resource of the conversation.
-     * @param Conversation $conversation Required. The conversation resource to create.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource of the conversation.
+     *     @type Conversation $conversation
+     *           Required. The conversation resource to create.
      *     @type string $conversationId
      *           Optional. A unique ID for the new conversation. This ID will become the
      *           final component of the conversation's resource name. If no ID is specified,
@@ -3291,16 +3402,19 @@ class ContactCenterInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function uploadConversation(
-        $parent,
-        $conversation,
-        array $optionalArgs = []
-    ) {
+    public function uploadConversation(array $optionalArgs = [])
+    {
         $request = new UploadConversationRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setConversation($conversation);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['conversation'])) {
+            $request->setConversation($optionalArgs['conversation']);
+        }
+
         if (isset($optionalArgs['conversationId'])) {
             $request->setConversationId($optionalArgs['conversationId']);
         }

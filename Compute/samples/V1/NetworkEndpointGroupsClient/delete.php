@@ -31,11 +31,13 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified network endpoint group. The network endpoints in the NEG and the VM instances they belong to are not terminated when the NEG is deleted. Note that the NEG cannot be deleted if there are backend services referencing it.
  *
- * @param string $networkEndpointGroup The name of the network endpoint group to delete. It should comply with RFC1035.
- * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_sample(string $networkEndpointGroup, string $project, string $zone): void
+function delete_sample(): void
 {
     // Create a client.
     $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
@@ -43,7 +45,7 @@ function delete_sample(string $networkEndpointGroup, string $project, string $zo
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkEndpointGroupsClient->delete($networkEndpointGroup, $project, $zone);
+        $response = $networkEndpointGroupsClient->delete();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -56,23 +58,5 @@ function delete_sample(string $networkEndpointGroup, string $project, string $zo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $networkEndpointGroup = '[NETWORK_ENDPOINT_GROUP]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    delete_sample($networkEndpointGroup, $project, $zone);
 }
 // [END compute_v1_generated_NetworkEndpointGroups_Delete_sync]

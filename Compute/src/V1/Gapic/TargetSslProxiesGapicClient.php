@@ -61,9 +61,7 @@ use Google\Cloud\Compute\V1\TargetSslProxyList;
  * ```
  * $targetSslProxiesClient = new TargetSslProxiesClient();
  * try {
- *     $project = 'project';
- *     $targetSslProxy = 'target_ssl_proxy';
- *     $operationResponse = $targetSslProxiesClient->delete($project, $targetSslProxy);
+ *     $operationResponse = $targetSslProxiesClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -73,7 +71,7 @@ use Google\Cloud\Compute\V1\TargetSslProxyList;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $targetSslProxiesClient->delete($project, $targetSslProxy);
+ *     $operationResponse = $targetSslProxiesClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $targetSslProxiesClient->resumeOperation($operationName, 'delete');
@@ -173,9 +171,7 @@ class TargetSslProxiesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -271,9 +267,7 @@ class TargetSslProxiesGapicClient
      * ```
      * $targetSslProxiesClient = new TargetSslProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetSslProxy = 'target_ssl_proxy';
-     *     $operationResponse = $targetSslProxiesClient->delete($project, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -283,7 +277,7 @@ class TargetSslProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetSslProxiesClient->delete($project, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetSslProxiesClient->resumeOperation($operationName, 'delete');
@@ -302,13 +296,15 @@ class TargetSslProxiesGapicClient
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $targetSslProxy Name of the TargetSslProxy resource to delete.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $targetSslProxy
+     *           Name of the TargetSslProxy resource to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -319,16 +315,22 @@ class TargetSslProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($project, $targetSslProxy, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteTargetSslProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetSslProxy($targetSslProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['target_ssl_proxy'] = $targetSslProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetSslProxy'])) {
+            $request->setTargetSslProxy($optionalArgs['targetSslProxy']);
+            $requestParamHeaders['target_ssl_proxy'] = $optionalArgs['targetSslProxy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -343,19 +345,19 @@ class TargetSslProxiesGapicClient
      * ```
      * $targetSslProxiesClient = new TargetSslProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetSslProxy = 'target_ssl_proxy';
-     *     $response = $targetSslProxiesClient->get($project, $targetSslProxy);
+     *     $response = $targetSslProxiesClient->get();
      * } finally {
      *     $targetSslProxiesClient->close();
      * }
      * ```
      *
-     * @param string $project        Project ID for this request.
-     * @param string $targetSslProxy Name of the TargetSslProxy resource to return.
-     * @param array  $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $targetSslProxy
+     *           Name of the TargetSslProxy resource to return.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -366,14 +368,20 @@ class TargetSslProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($project, $targetSslProxy, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetTargetSslProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetSslProxy($targetSslProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['target_ssl_proxy'] = $targetSslProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['targetSslProxy'])) {
+            $request->setTargetSslProxy($optionalArgs['targetSslProxy']);
+            $requestParamHeaders['target_ssl_proxy'] = $optionalArgs['targetSslProxy'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', TargetSslProxy::class, $optionalArgs, $request)->wait();
@@ -386,9 +394,7 @@ class TargetSslProxiesGapicClient
      * ```
      * $targetSslProxiesClient = new TargetSslProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetSslProxyResource = new TargetSslProxy();
-     *     $operationResponse = $targetSslProxiesClient->insert($project, $targetSslProxyResource);
+     *     $operationResponse = $targetSslProxiesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -398,7 +404,7 @@ class TargetSslProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetSslProxiesClient->insert($project, $targetSslProxyResource);
+     *     $operationResponse = $targetSslProxiesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetSslProxiesClient->resumeOperation($operationName, 'insert');
@@ -417,13 +423,15 @@ class TargetSslProxiesGapicClient
      * }
      * ```
      *
-     * @param string         $project                Project ID for this request.
-     * @param TargetSslProxy $targetSslProxyResource The body resource for this request
-     * @param array          $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type TargetSslProxy $targetSslProxyResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -434,15 +442,21 @@ class TargetSslProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($project, $targetSslProxyResource, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertTargetSslProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetSslProxyResource($targetSslProxyResource);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetSslProxyResource'])) {
+            $request->setTargetSslProxyResource($optionalArgs['targetSslProxyResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -457,9 +471,8 @@ class TargetSslProxiesGapicClient
      * ```
      * $targetSslProxiesClient = new TargetSslProxiesClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $targetSslProxiesClient->list($project);
+     *     $pagedResponse = $targetSslProxiesClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -467,7 +480,7 @@ class TargetSslProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $targetSslProxiesClient->list($project);
+     *     $pagedResponse = $targetSslProxiesClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -476,8 +489,7 @@ class TargetSslProxiesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -491,6 +503,8 @@ class TargetSslProxiesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -503,12 +517,10 @@ class TargetSslProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListTargetSslProxiesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -523,6 +535,11 @@ class TargetSslProxiesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -541,10 +558,7 @@ class TargetSslProxiesGapicClient
      * ```
      * $targetSslProxiesClient = new TargetSslProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetSslProxiesSetBackendServiceRequestResource = new TargetSslProxiesSetBackendServiceRequest();
-     *     $targetSslProxy = 'target_ssl_proxy';
-     *     $operationResponse = $targetSslProxiesClient->setBackendService($project, $targetSslProxiesSetBackendServiceRequestResource, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->setBackendService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -554,7 +568,7 @@ class TargetSslProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetSslProxiesClient->setBackendService($project, $targetSslProxiesSetBackendServiceRequestResource, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->setBackendService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetSslProxiesClient->resumeOperation($operationName, 'setBackendService');
@@ -573,14 +587,17 @@ class TargetSslProxiesGapicClient
      * }
      * ```
      *
-     * @param string                                   $project                                          Project ID for this request.
-     * @param TargetSslProxiesSetBackendServiceRequest $targetSslProxiesSetBackendServiceRequestResource The body resource for this request
-     * @param string                                   $targetSslProxy                                   Name of the TargetSslProxy resource whose BackendService resource is to be set.
-     * @param array                                    $optionalArgs                                     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type TargetSslProxiesSetBackendServiceRequest $targetSslProxiesSetBackendServiceRequestResource
+     *           The body resource for this request
+     *     @type string $targetSslProxy
+     *           Name of the TargetSslProxy resource whose BackendService resource is to be set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -591,17 +608,26 @@ class TargetSslProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setBackendService($project, $targetSslProxiesSetBackendServiceRequestResource, $targetSslProxy, array $optionalArgs = [])
+    public function setBackendService(array $optionalArgs = [])
     {
         $request = new SetBackendServiceTargetSslProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetSslProxiesSetBackendServiceRequestResource($targetSslProxiesSetBackendServiceRequestResource);
-        $request->setTargetSslProxy($targetSslProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['target_ssl_proxy'] = $targetSslProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetSslProxiesSetBackendServiceRequestResource'])) {
+            $request->setTargetSslProxiesSetBackendServiceRequestResource($optionalArgs['targetSslProxiesSetBackendServiceRequestResource']);
+        }
+
+        if (isset($optionalArgs['targetSslProxy'])) {
+            $request->setTargetSslProxy($optionalArgs['targetSslProxy']);
+            $requestParamHeaders['target_ssl_proxy'] = $optionalArgs['targetSslProxy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -616,10 +642,7 @@ class TargetSslProxiesGapicClient
      * ```
      * $targetSslProxiesClient = new TargetSslProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetSslProxiesSetCertificateMapRequestResource = new TargetSslProxiesSetCertificateMapRequest();
-     *     $targetSslProxy = 'target_ssl_proxy';
-     *     $operationResponse = $targetSslProxiesClient->setCertificateMap($project, $targetSslProxiesSetCertificateMapRequestResource, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->setCertificateMap();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -629,7 +652,7 @@ class TargetSslProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetSslProxiesClient->setCertificateMap($project, $targetSslProxiesSetCertificateMapRequestResource, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->setCertificateMap();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetSslProxiesClient->resumeOperation($operationName, 'setCertificateMap');
@@ -648,14 +671,17 @@ class TargetSslProxiesGapicClient
      * }
      * ```
      *
-     * @param string                                   $project                                          Project ID for this request.
-     * @param TargetSslProxiesSetCertificateMapRequest $targetSslProxiesSetCertificateMapRequestResource The body resource for this request
-     * @param string                                   $targetSslProxy                                   Name of the TargetSslProxy resource whose CertificateMap is to be set. The name must be 1-63 characters long, and comply with RFC1035.
-     * @param array                                    $optionalArgs                                     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type TargetSslProxiesSetCertificateMapRequest $targetSslProxiesSetCertificateMapRequestResource
+     *           The body resource for this request
+     *     @type string $targetSslProxy
+     *           Name of the TargetSslProxy resource whose CertificateMap is to be set. The name must be 1-63 characters long, and comply with RFC1035.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -666,17 +692,26 @@ class TargetSslProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setCertificateMap($project, $targetSslProxiesSetCertificateMapRequestResource, $targetSslProxy, array $optionalArgs = [])
+    public function setCertificateMap(array $optionalArgs = [])
     {
         $request = new SetCertificateMapTargetSslProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetSslProxiesSetCertificateMapRequestResource($targetSslProxiesSetCertificateMapRequestResource);
-        $request->setTargetSslProxy($targetSslProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['target_ssl_proxy'] = $targetSslProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetSslProxiesSetCertificateMapRequestResource'])) {
+            $request->setTargetSslProxiesSetCertificateMapRequestResource($optionalArgs['targetSslProxiesSetCertificateMapRequestResource']);
+        }
+
+        if (isset($optionalArgs['targetSslProxy'])) {
+            $request->setTargetSslProxy($optionalArgs['targetSslProxy']);
+            $requestParamHeaders['target_ssl_proxy'] = $optionalArgs['targetSslProxy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -691,10 +726,7 @@ class TargetSslProxiesGapicClient
      * ```
      * $targetSslProxiesClient = new TargetSslProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetSslProxiesSetProxyHeaderRequestResource = new TargetSslProxiesSetProxyHeaderRequest();
-     *     $targetSslProxy = 'target_ssl_proxy';
-     *     $operationResponse = $targetSslProxiesClient->setProxyHeader($project, $targetSslProxiesSetProxyHeaderRequestResource, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->setProxyHeader();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -704,7 +736,7 @@ class TargetSslProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetSslProxiesClient->setProxyHeader($project, $targetSslProxiesSetProxyHeaderRequestResource, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->setProxyHeader();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetSslProxiesClient->resumeOperation($operationName, 'setProxyHeader');
@@ -723,14 +755,17 @@ class TargetSslProxiesGapicClient
      * }
      * ```
      *
-     * @param string                                $project                                       Project ID for this request.
-     * @param TargetSslProxiesSetProxyHeaderRequest $targetSslProxiesSetProxyHeaderRequestResource The body resource for this request
-     * @param string                                $targetSslProxy                                Name of the TargetSslProxy resource whose ProxyHeader is to be set.
-     * @param array                                 $optionalArgs                                  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type TargetSslProxiesSetProxyHeaderRequest $targetSslProxiesSetProxyHeaderRequestResource
+     *           The body resource for this request
+     *     @type string $targetSslProxy
+     *           Name of the TargetSslProxy resource whose ProxyHeader is to be set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -741,17 +776,26 @@ class TargetSslProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setProxyHeader($project, $targetSslProxiesSetProxyHeaderRequestResource, $targetSslProxy, array $optionalArgs = [])
+    public function setProxyHeader(array $optionalArgs = [])
     {
         $request = new SetProxyHeaderTargetSslProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetSslProxiesSetProxyHeaderRequestResource($targetSslProxiesSetProxyHeaderRequestResource);
-        $request->setTargetSslProxy($targetSslProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['target_ssl_proxy'] = $targetSslProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetSslProxiesSetProxyHeaderRequestResource'])) {
+            $request->setTargetSslProxiesSetProxyHeaderRequestResource($optionalArgs['targetSslProxiesSetProxyHeaderRequestResource']);
+        }
+
+        if (isset($optionalArgs['targetSslProxy'])) {
+            $request->setTargetSslProxy($optionalArgs['targetSslProxy']);
+            $requestParamHeaders['target_ssl_proxy'] = $optionalArgs['targetSslProxy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -766,10 +810,7 @@ class TargetSslProxiesGapicClient
      * ```
      * $targetSslProxiesClient = new TargetSslProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetSslProxiesSetSslCertificatesRequestResource = new TargetSslProxiesSetSslCertificatesRequest();
-     *     $targetSslProxy = 'target_ssl_proxy';
-     *     $operationResponse = $targetSslProxiesClient->setSslCertificates($project, $targetSslProxiesSetSslCertificatesRequestResource, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->setSslCertificates();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -779,7 +820,7 @@ class TargetSslProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetSslProxiesClient->setSslCertificates($project, $targetSslProxiesSetSslCertificatesRequestResource, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->setSslCertificates();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetSslProxiesClient->resumeOperation($operationName, 'setSslCertificates');
@@ -798,14 +839,17 @@ class TargetSslProxiesGapicClient
      * }
      * ```
      *
-     * @param string                                    $project                                           Project ID for this request.
-     * @param TargetSslProxiesSetSslCertificatesRequest $targetSslProxiesSetSslCertificatesRequestResource The body resource for this request
-     * @param string                                    $targetSslProxy                                    Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
-     * @param array                                     $optionalArgs                                      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type TargetSslProxiesSetSslCertificatesRequest $targetSslProxiesSetSslCertificatesRequestResource
+     *           The body resource for this request
+     *     @type string $targetSslProxy
+     *           Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -816,17 +860,26 @@ class TargetSslProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setSslCertificates($project, $targetSslProxiesSetSslCertificatesRequestResource, $targetSslProxy, array $optionalArgs = [])
+    public function setSslCertificates(array $optionalArgs = [])
     {
         $request = new SetSslCertificatesTargetSslProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetSslProxiesSetSslCertificatesRequestResource($targetSslProxiesSetSslCertificatesRequestResource);
-        $request->setTargetSslProxy($targetSslProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['target_ssl_proxy'] = $targetSslProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetSslProxiesSetSslCertificatesRequestResource'])) {
+            $request->setTargetSslProxiesSetSslCertificatesRequestResource($optionalArgs['targetSslProxiesSetSslCertificatesRequestResource']);
+        }
+
+        if (isset($optionalArgs['targetSslProxy'])) {
+            $request->setTargetSslProxy($optionalArgs['targetSslProxy']);
+            $requestParamHeaders['target_ssl_proxy'] = $optionalArgs['targetSslProxy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -841,10 +894,7 @@ class TargetSslProxiesGapicClient
      * ```
      * $targetSslProxiesClient = new TargetSslProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $sslPolicyReferenceResource = new SslPolicyReference();
-     *     $targetSslProxy = 'target_ssl_proxy';
-     *     $operationResponse = $targetSslProxiesClient->setSslPolicy($project, $sslPolicyReferenceResource, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->setSslPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -854,7 +904,7 @@ class TargetSslProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetSslProxiesClient->setSslPolicy($project, $sslPolicyReferenceResource, $targetSslProxy);
+     *     $operationResponse = $targetSslProxiesClient->setSslPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetSslProxiesClient->resumeOperation($operationName, 'setSslPolicy');
@@ -873,14 +923,17 @@ class TargetSslProxiesGapicClient
      * }
      * ```
      *
-     * @param string             $project                    Project ID for this request.
-     * @param SslPolicyReference $sslPolicyReferenceResource The body resource for this request
-     * @param string             $targetSslProxy             Name of the TargetSslProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.
-     * @param array              $optionalArgs               {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type SslPolicyReference $sslPolicyReferenceResource
+     *           The body resource for this request
+     *     @type string $targetSslProxy
+     *           Name of the TargetSslProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -891,17 +944,26 @@ class TargetSslProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setSslPolicy($project, $sslPolicyReferenceResource, $targetSslProxy, array $optionalArgs = [])
+    public function setSslPolicy(array $optionalArgs = [])
     {
         $request = new SetSslPolicyTargetSslProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setSslPolicyReferenceResource($sslPolicyReferenceResource);
-        $request->setTargetSslProxy($targetSslProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['target_ssl_proxy'] = $targetSslProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['sslPolicyReferenceResource'])) {
+            $request->setSslPolicyReferenceResource($optionalArgs['sslPolicyReferenceResource']);
+        }
+
+        if (isset($optionalArgs['targetSslProxy'])) {
+            $request->setTargetSslProxy($optionalArgs['targetSslProxy']);
+            $requestParamHeaders['target_ssl_proxy'] = $optionalArgs['targetSslProxy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

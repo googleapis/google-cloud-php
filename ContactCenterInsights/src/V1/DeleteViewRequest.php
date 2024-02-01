@@ -23,8 +23,7 @@ class DeleteViewRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the view to delete. Please see
-     *                     {@see ContactCenterInsightsClient::viewName()} for help formatting this field.
+     * @param string $name Required. The name of the view to delete.
      *
      * @return \Google\Cloud\ContactCenterInsights\V1\DeleteViewRequest
      *

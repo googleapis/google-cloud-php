@@ -32,18 +32,19 @@ use Google\Cloud\Dialogflow\V2\ListEntityTypesRequest;
 /**
  * Returns the list of all entity types in the specified agent.
  *
- * @param string $formattedParent The agent to list all entity types from.
- *                                Format: `projects/<Project ID>/agent`. Please see
- *                                {@see EntityTypesClient::agentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_entity_types_sample(string $formattedParent): void
+function list_entity_types_sample(): void
 {
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
     // Prepare the request message.
-    $request = (new ListEntityTypesRequest())
-        ->setParent($formattedParent);
+    $request = new ListEntityTypesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_entity_types_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EntityTypesClient::agentName('[PROJECT]');
-
-    list_entity_types_sample($formattedParent);
 }
 // [END dialogflow_v2_generated_EntityTypes_ListEntityTypes_sync]

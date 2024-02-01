@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\BatchUpdateEntityTypesResponse;
 use Google\Cloud\Dialogflow\V2\EntityType;
-use Google\Cloud\Dialogflow\V2\EntityType\Kind;
 use Google\Cloud\Dialogflow\V2\EntityTypesClient;
 use Google\Cloud\Dialogflow\V2\ListEntityTypesResponse;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -98,10 +97,7 @@ class EntityTypesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $entities = [];
-        $response = $gapicClient->batchCreateEntities($formattedParent, $entities);
+        $response = $gapicClient->batchCreateEntities();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -111,10 +107,6 @@ class EntityTypesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/BatchCreateEntities', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEntities();
-        $this->assertProtobufEquals($entities, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchCreateEntitiesTest');
         $response->pollUntilComplete([
@@ -165,10 +157,7 @@ class EntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $entities = [];
-        $response = $gapicClient->batchCreateEntities($formattedParent, $entities);
+        $response = $gapicClient->batchCreateEntities();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -219,10 +208,7 @@ class EntityTypesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $entityValues = [];
-        $response = $gapicClient->batchDeleteEntities($formattedParent, $entityValues);
+        $response = $gapicClient->batchDeleteEntities();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -232,10 +218,6 @@ class EntityTypesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/BatchDeleteEntities', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEntityValues();
-        $this->assertProtobufEquals($entityValues, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchDeleteEntitiesTest');
         $response->pollUntilComplete([
@@ -286,10 +268,7 @@ class EntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $entityValues = [];
-        $response = $gapicClient->batchDeleteEntities($formattedParent, $entityValues);
+        $response = $gapicClient->batchDeleteEntities();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -340,10 +319,7 @@ class EntityTypesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $entityTypeNames = [];
-        $response = $gapicClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
+        $response = $gapicClient->batchDeleteEntityTypes();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -353,10 +329,6 @@ class EntityTypesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/BatchDeleteEntityTypes', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEntityTypeNames();
-        $this->assertProtobufEquals($entityTypeNames, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchDeleteEntityTypesTest');
         $response->pollUntilComplete([
@@ -407,10 +379,7 @@ class EntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $entityTypeNames = [];
-        $response = $gapicClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
+        $response = $gapicClient->batchDeleteEntityTypes();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -461,10 +430,7 @@ class EntityTypesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $entities = [];
-        $response = $gapicClient->batchUpdateEntities($formattedParent, $entities);
+        $response = $gapicClient->batchUpdateEntities();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -474,10 +440,6 @@ class EntityTypesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/BatchUpdateEntities', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEntities();
-        $this->assertProtobufEquals($entities, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchUpdateEntitiesTest');
         $response->pollUntilComplete([
@@ -528,10 +490,7 @@ class EntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $entities = [];
-        $response = $gapicClient->batchUpdateEntities($formattedParent, $entities);
+        $response = $gapicClient->batchUpdateEntities();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -582,9 +541,7 @@ class EntityTypesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $response = $gapicClient->batchUpdateEntityTypes($formattedParent);
+        $response = $gapicClient->batchUpdateEntityTypes();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -594,8 +551,6 @@ class EntityTypesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/BatchUpdateEntityTypes', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchUpdateEntityTypesTest');
         $response->pollUntilComplete([
@@ -646,9 +601,7 @@ class EntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $response = $gapicClient->batchUpdateEntityTypes($formattedParent);
+        $response = $gapicClient->batchUpdateEntityTypes();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -687,24 +640,13 @@ class EntityTypesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEnableFuzzyExtraction($enableFuzzyExtraction);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $entityType = new EntityType();
-        $entityTypeDisplayName = 'entityTypeDisplayName-441894800';
-        $entityType->setDisplayName($entityTypeDisplayName);
-        $entityTypeKind = Kind::KIND_UNSPECIFIED;
-        $entityType->setKind($entityTypeKind);
-        $response = $gapicClient->createEntityType($formattedParent, $entityType);
+        $response = $gapicClient->createEntityType();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/CreateEntityType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEntityType();
-        $this->assertProtobufEquals($entityType, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -726,15 +668,8 @@ class EntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $entityType = new EntityType();
-        $entityTypeDisplayName = 'entityTypeDisplayName-441894800';
-        $entityType->setDisplayName($entityTypeDisplayName);
-        $entityTypeKind = Kind::KIND_UNSPECIFIED;
-        $entityType->setKind($entityTypeKind);
         try {
-            $gapicClient->createEntityType($formattedParent, $entityType);
+            $gapicClient->createEntityType();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -757,16 +692,12 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $gapicClient->deleteEntityType($formattedName);
+        $gapicClient->deleteEntityType();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/DeleteEntityType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -788,10 +719,8 @@ class EntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         try {
-            $gapicClient->deleteEntityType($formattedName);
+            $gapicClient->deleteEntityType();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -820,17 +749,13 @@ class EntityTypesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEnableFuzzyExtraction($enableFuzzyExtraction);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $response = $gapicClient->getEntityType($formattedName);
+        $response = $gapicClient->getEntityType();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/GetEntityType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -852,10 +777,8 @@ class EntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         try {
-            $gapicClient->getEntityType($formattedName);
+            $gapicClient->getEntityType();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -885,9 +808,7 @@ class EntityTypesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntityTypes($entityTypes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $response = $gapicClient->listEntityTypes($formattedParent);
+        $response = $gapicClient->listEntityTypes();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -897,8 +818,6 @@ class EntityTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/ListEntityTypes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -920,10 +839,8 @@ class EntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]');
         try {
-            $gapicClient->listEntityTypes($formattedParent);
+            $gapicClient->listEntityTypes();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -952,21 +869,13 @@ class EntityTypesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEnableFuzzyExtraction($enableFuzzyExtraction);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $entityType = new EntityType();
-        $entityTypeDisplayName = 'entityTypeDisplayName-441894800';
-        $entityType->setDisplayName($entityTypeDisplayName);
-        $entityTypeKind = Kind::KIND_UNSPECIFIED;
-        $entityType->setKind($entityTypeKind);
-        $response = $gapicClient->updateEntityType($entityType);
+        $response = $gapicClient->updateEntityType();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.EntityTypes/UpdateEntityType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEntityType();
-        $this->assertProtobufEquals($entityType, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -988,14 +897,8 @@ class EntityTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $entityType = new EntityType();
-        $entityTypeDisplayName = 'entityTypeDisplayName-441894800';
-        $entityType->setDisplayName($entityTypeDisplayName);
-        $entityTypeKind = Kind::KIND_UNSPECIFIED;
-        $entityType->setKind($entityTypeKind);
         try {
-            $gapicClient->updateEntityType($entityType);
+            $gapicClient->updateEntityType();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

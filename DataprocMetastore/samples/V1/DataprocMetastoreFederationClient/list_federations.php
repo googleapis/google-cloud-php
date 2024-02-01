@@ -32,19 +32,19 @@ use Google\Cloud\Metastore\V1\ListFederationsRequest;
 /**
  * Lists federations in a project and location.
  *
- * @param string $formattedParent The relative resource name of the location of metastore
- *                                federations to list, in the following form:
- *                                `projects/{project_number}/locations/{location_id}`. Please see
- *                                {@see DataprocMetastoreFederationClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_federations_sample(string $formattedParent): void
+function list_federations_sample(): void
 {
     // Create a client.
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
     // Prepare the request message.
-    $request = (new ListFederationsRequest())
-        ->setParent($formattedParent);
+    $request = new ListFederationsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +58,5 @@ function list_federations_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataprocMetastoreFederationClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_federations_sample($formattedParent);
 }
 // [END metastore_v1_generated_DataprocMetastoreFederation_ListFederations_sync]

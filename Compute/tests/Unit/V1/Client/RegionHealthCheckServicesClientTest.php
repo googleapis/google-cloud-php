@@ -94,14 +94,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteRegionHealthCheckServiceRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -111,16 +104,8 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getHealthCheckService();
-        $this->assertProtobufEquals($healthCheckService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -168,14 +153,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteRegionHealthCheckServiceRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -225,14 +203,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetRegionHealthCheckServiceRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -240,12 +211,6 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getHealthCheckService();
-        $this->assertProtobufEquals($healthCheckService, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -267,14 +232,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetRegionHealthCheckServiceRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -313,14 +271,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $healthCheckServiceResource = new HealthCheckService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertRegionHealthCheckServiceRequest())
-            ->setHealthCheckServiceResource($healthCheckServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertRegionHealthCheckServiceRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -330,16 +281,8 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getHealthCheckServiceResource();
-        $this->assertProtobufEquals($healthCheckServiceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -387,14 +330,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $healthCheckServiceResource = new HealthCheckService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertRegionHealthCheckServiceRequest())
-            ->setHealthCheckServiceResource($healthCheckServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertRegionHealthCheckServiceRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -439,12 +375,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionHealthCheckServicesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionHealthCheckServicesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -455,10 +386,6 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -480,12 +407,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListRegionHealthCheckServicesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListRegionHealthCheckServicesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -524,16 +446,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
-        $healthCheckServiceResource = new HealthCheckService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
-            ->setHealthCheckServiceResource($healthCheckServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchRegionHealthCheckServiceRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -543,18 +456,8 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getHealthCheckService();
-        $this->assertProtobufEquals($healthCheckService, $actualValue);
-        $actualValue = $actualApiRequestObject->getHealthCheckServiceResource();
-        $this->assertProtobufEquals($healthCheckServiceResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -602,16 +505,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
-        $healthCheckServiceResource = new HealthCheckService();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
-            ->setHealthCheckServiceResource($healthCheckServiceResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchRegionHealthCheckServiceRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -657,14 +551,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteRegionHealthCheckServiceRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -674,16 +561,8 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getHealthCheckService();
-        $this->assertProtobufEquals($healthCheckService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

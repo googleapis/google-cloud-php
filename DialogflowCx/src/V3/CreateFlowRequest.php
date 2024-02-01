@@ -47,8 +47,7 @@ class CreateFlowRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                              $parent Required. The agent to create a flow for.
-     *                                                    Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
-     *                                                    {@see FlowsClient::agentName()} for help formatting this field.
+     *                                                    Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
      * @param \Google\Cloud\Dialogflow\Cx\V3\Flow $flow   Required. The flow to create.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\CreateFlowRequest

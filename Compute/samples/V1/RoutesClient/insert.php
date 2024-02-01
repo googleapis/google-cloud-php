@@ -25,27 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Routes_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\Route;
 use Google\Cloud\Compute\V1\RoutesClient;
 use Google\Rpc\Status;
 
 /**
  * Creates a Route resource in the specified project using the data included in the request.
  *
- * @param string $project Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function insert_sample(string $project): void
+function insert_sample(): void
 {
     // Create a client.
     $routesClient = new RoutesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $routeResource = new Route();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $routesClient->insert($project, $routeResource);
+        $response = $routesClient->insert();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -58,21 +58,5 @@ function insert_sample(string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-
-    insert_sample($project);
 }
 // [END compute_v1_generated_Routes_Insert_sync]

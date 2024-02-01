@@ -32,9 +32,13 @@ use Google\Cloud\Datastore\V1\RunQueryResponse;
 /**
  * Queries for entities.
  *
- * @param string $projectId The ID of the project against which to make the request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function run_query_sample(string $projectId): void
+function run_query_sample(): void
 {
     // Create a client.
     $datastoreClient = new DatastoreClient();
@@ -42,7 +46,6 @@ function run_query_sample(string $projectId): void
     // Prepare the request message.
     $partitionId = new PartitionId();
     $request = (new RunQueryRequest())
-        ->setProjectId($projectId)
         ->setPartitionId($partitionId);
 
     // Call the API and handle any network failures.
@@ -53,21 +56,5 @@ function run_query_sample(string $projectId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $projectId = '[PROJECT_ID]';
-
-    run_query_sample($projectId);
 }
 // [END datastore_v1_generated_Datastore_RunQuery_sync]

@@ -58,9 +58,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $knowledgeBasesClient = new KnowledgeBasesClient();
  * try {
- *     $formattedParent = $knowledgeBasesClient->projectName('[PROJECT]');
- *     $knowledgeBase = new KnowledgeBase();
- *     $response = $knowledgeBasesClient->createKnowledgeBase($formattedParent, $knowledgeBase);
+ *     $response = $knowledgeBasesClient->createKnowledgeBase();
  * } finally {
  *     $knowledgeBasesClient->close();
  * }
@@ -390,20 +388,20 @@ class KnowledgeBasesGapicClient
      * ```
      * $knowledgeBasesClient = new KnowledgeBasesClient();
      * try {
-     *     $formattedParent = $knowledgeBasesClient->projectName('[PROJECT]');
-     *     $knowledgeBase = new KnowledgeBase();
-     *     $response = $knowledgeBasesClient->createKnowledgeBase($formattedParent, $knowledgeBase);
+     *     $response = $knowledgeBasesClient->createKnowledgeBase();
      * } finally {
      *     $knowledgeBasesClient->close();
      * }
      * ```
      *
-     * @param string        $parent        Required. The project to create a knowledge base for.
-     *                                     Format: `projects/<Project ID>/locations/<Location ID>`.
-     * @param KnowledgeBase $knowledgeBase Required. The knowledge base to create.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project to create a knowledge base for.
+     *           Format: `projects/<Project ID>/locations/<Location ID>`.
+     *     @type KnowledgeBase $knowledgeBase
+     *           Required. The knowledge base to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -414,13 +412,19 @@ class KnowledgeBasesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createKnowledgeBase($parent, $knowledgeBase, array $optionalArgs = [])
+    public function createKnowledgeBase(array $optionalArgs = [])
     {
         $request = new CreateKnowledgeBaseRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setKnowledgeBase($knowledgeBase);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['knowledgeBase'])) {
+            $request->setKnowledgeBase($optionalArgs['knowledgeBase']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateKnowledgeBase', KnowledgeBase::class, $optionalArgs, $request)->wait();
@@ -433,19 +437,19 @@ class KnowledgeBasesGapicClient
      * ```
      * $knowledgeBasesClient = new KnowledgeBasesClient();
      * try {
-     *     $formattedName = $knowledgeBasesClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-     *     $knowledgeBasesClient->deleteKnowledgeBase($formattedName);
+     *     $knowledgeBasesClient->deleteKnowledgeBase();
      * } finally {
      *     $knowledgeBasesClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the knowledge base to delete.
-     *                             Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/knowledgeBases/<Knowledge Base ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the knowledge base to delete.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/knowledgeBases/<Knowledge Base ID>`.
      *     @type bool $force
      *           Optional. Force deletes the knowledge base. When set to true, any documents
      *           in the knowledge base are also deleted.
@@ -457,12 +461,15 @@ class KnowledgeBasesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteKnowledgeBase($name, array $optionalArgs = [])
+    public function deleteKnowledgeBase(array $optionalArgs = [])
     {
         $request = new DeleteKnowledgeBaseRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -479,19 +486,19 @@ class KnowledgeBasesGapicClient
      * ```
      * $knowledgeBasesClient = new KnowledgeBasesClient();
      * try {
-     *     $formattedName = $knowledgeBasesClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-     *     $response = $knowledgeBasesClient->getKnowledgeBase($formattedName);
+     *     $response = $knowledgeBasesClient->getKnowledgeBase();
      * } finally {
      *     $knowledgeBasesClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the knowledge base to retrieve.
-     *                             Format `projects/<Project ID>/locations/<Location
-     *                             ID>/knowledgeBases/<Knowledge Base ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the knowledge base to retrieve.
+     *           Format `projects/<Project ID>/locations/<Location
+     *           ID>/knowledgeBases/<Knowledge Base ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -502,12 +509,15 @@ class KnowledgeBasesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getKnowledgeBase($name, array $optionalArgs = [])
+    public function getKnowledgeBase(array $optionalArgs = [])
     {
         $request = new GetKnowledgeBaseRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetKnowledgeBase', KnowledgeBase::class, $optionalArgs, $request)->wait();
@@ -520,9 +530,8 @@ class KnowledgeBasesGapicClient
      * ```
      * $knowledgeBasesClient = new KnowledgeBasesClient();
      * try {
-     *     $formattedParent = $knowledgeBasesClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $knowledgeBasesClient->listKnowledgeBases($formattedParent);
+     *     $pagedResponse = $knowledgeBasesClient->listKnowledgeBases();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -530,7 +539,7 @@ class KnowledgeBasesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $knowledgeBasesClient->listKnowledgeBases($formattedParent);
+     *     $pagedResponse = $knowledgeBasesClient->listKnowledgeBases();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -539,11 +548,12 @@ class KnowledgeBasesGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project to list of knowledge bases for.
-     *                             Format: `projects/<Project ID>/locations/<Location ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project to list of knowledge bases for.
+     *           Format: `projects/<Project ID>/locations/<Location ID>`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -590,12 +600,15 @@ class KnowledgeBasesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listKnowledgeBases($parent, array $optionalArgs = [])
+    public function listKnowledgeBases(array $optionalArgs = [])
     {
         $request = new ListKnowledgeBasesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -620,17 +633,17 @@ class KnowledgeBasesGapicClient
      * ```
      * $knowledgeBasesClient = new KnowledgeBasesClient();
      * try {
-     *     $knowledgeBase = new KnowledgeBase();
-     *     $response = $knowledgeBasesClient->updateKnowledgeBase($knowledgeBase);
+     *     $response = $knowledgeBasesClient->updateKnowledgeBase();
      * } finally {
      *     $knowledgeBasesClient->close();
      * }
      * ```
      *
-     * @param KnowledgeBase $knowledgeBase Required. The knowledge base to update.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type KnowledgeBase $knowledgeBase
+     *           Required. The knowledge base to update.
      *     @type FieldMask $updateMask
      *           Optional. Not specified means `update all`.
      *           Currently, only `display_name` can be updated, an InvalidArgument will be
@@ -645,12 +658,14 @@ class KnowledgeBasesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateKnowledgeBase($knowledgeBase, array $optionalArgs = [])
+    public function updateKnowledgeBase(array $optionalArgs = [])
     {
         $request = new UpdateKnowledgeBaseRequest();
         $requestParamHeaders = [];
-        $request->setKnowledgeBase($knowledgeBase);
-        $requestParamHeaders['knowledge_base.name'] = $knowledgeBase->getName();
+        if (isset($optionalArgs['knowledgeBase'])) {
+            $request->setKnowledgeBase($optionalArgs['knowledgeBase']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

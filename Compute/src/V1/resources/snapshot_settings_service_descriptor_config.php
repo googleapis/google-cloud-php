@@ -5,9 +5,7 @@ return [
         'google.cloud.compute.v1.SnapshotSettingsService' => [
             'Patch' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

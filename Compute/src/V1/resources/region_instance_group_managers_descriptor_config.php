@@ -5,10 +5,7 @@ return [
         'google.cloud.compute.v1.RegionInstanceGroupManagers' => [
             'AbandonInstances' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -43,10 +40,7 @@ return [
             ],
             'ApplyUpdatesToInstances' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -81,10 +75,7 @@ return [
             ],
             'CreateInstances' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -119,10 +110,7 @@ return [
             ],
             'Delete' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -157,10 +145,7 @@ return [
             ],
             'DeleteInstances' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -195,10 +180,7 @@ return [
             ],
             'DeletePerInstanceConfigs' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -233,10 +215,7 @@ return [
             ],
             'Insert' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -265,10 +244,7 @@ return [
             ],
             'Patch' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -303,10 +279,7 @@ return [
             ],
             'PatchPerInstanceConfigs' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -341,10 +314,7 @@ return [
             ],
             'RecreateInstances' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -379,10 +349,7 @@ return [
             ],
             'Resize' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -417,10 +384,7 @@ return [
             ],
             'SetInstanceTemplate' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -455,10 +419,7 @@ return [
             ],
             'SetTargetPools' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',
@@ -493,10 +454,7 @@ return [
             ],
             'UpdatePerInstanceConfigs' => [
                 'longRunning' => [
-                    'additionalArgumentMethods' => [
-                        'getProject',
-                        'getRegion',
-                    ],
+                    'additionalArgumentMethods' => [],
                     'getOperationMethod' => 'get',
                     'cancelOperationMethod' => null,
                     'deleteOperationMethod' => 'delete',

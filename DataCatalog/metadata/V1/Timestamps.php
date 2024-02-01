@@ -18,12 +18,12 @@ class Timestamps
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê
-,google/cloud/datacatalog/v1/timestamps.protogoogle.cloud.datacatalog.v1google/protobuf/timestamp.proto"ª
+ë
+,google/cloud/datacatalog/v1/timestamps.protogoogle.cloud.datacatalog.v1google/protobuf/timestamp.proto"«
 SystemTimestamps/
 create_time (2.google.protobuf.Timestamp/
-update_time (2.google.protobuf.Timestamp4
-expire_time (2.google.protobuf.TimestampBàABÆ
+update_time (2.google.protobuf.Timestamp5
+expire_time (2.google.protobuf.TimestampBâABÆ
 com.google.cloud.datacatalog.v1PZAcloud.google.com/go/datacatalog/apiv1/datacatalogpb;datacatalogpbøªGoogle.Cloud.DataCatalog.V1ÊGoogle\\Cloud\\DataCatalog\\V1êGoogle::Cloud::DataCatalog::V1bproto3'
         , true);
 

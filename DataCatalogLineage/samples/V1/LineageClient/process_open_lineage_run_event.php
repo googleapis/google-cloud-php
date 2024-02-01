@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventResponse;
-use Google\Protobuf\Struct;
 
 /**
  * Creates new lineage events together with their parents: process and run.
@@ -35,19 +34,19 @@ use Google\Protobuf\Struct;
  * Mapped from Open Lineage specification:
  * https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json.
  *
- * @param string $parent The name of the project and its location that should own the
- *                       process, run, and lineage event.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function process_open_lineage_run_event_sample(string $parent): void
+function process_open_lineage_run_event_sample(): void
 {
     // Create a client.
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $openLineage = new Struct();
-    $request = (new ProcessOpenLineageRunEventRequest())
-        ->setParent($parent)
-        ->setOpenLineage($openLineage);
+    $request = new ProcessOpenLineageRunEventRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +56,5 @@ function process_open_lineage_run_event_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    process_open_lineage_run_event_sample($parent);
 }
 // [END datalineage_v1_generated_Lineage_ProcessOpenLineageRunEvent_sync]

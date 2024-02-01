@@ -27,7 +27,6 @@ class GetEvaluationJobRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. Name of the evaluation job. Format:
      *
      *                     "projects/<var>{project_id}</var>/evaluationJobs/<var>{evaluation_job_id}</var>"
-     *                     Please see {@see DataLabelingServiceClient::evaluationJobName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataLabeling\V1beta1\GetEvaluationJobRequest
      *

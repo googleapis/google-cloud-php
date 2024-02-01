@@ -32,19 +32,19 @@ use Google\Cloud\Dialogflow\Cx\V3\GetFlowValidationResultRequest;
  * Gets the latest flow validation result. Flow validation is performed
  * when ValidateFlow is called.
  *
- * @param string $formattedName The flow name.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/flows/<Flow ID>/validationResult`. Please see
- *                              {@see FlowsClient::flowValidationResultName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_flow_validation_result_sample(string $formattedName): void
+function get_flow_validation_result_sample(): void
 {
     // Create a client.
     $flowsClient = new FlowsClient();
 
     // Prepare the request message.
-    $request = (new GetFlowValidationResultRequest())
-        ->setName($formattedName);
+    $request = new GetFlowValidationResultRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,26 +54,5 @@ function get_flow_validation_result_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = FlowsClient::flowValidationResultName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AGENT]',
-        '[FLOW]'
-    );
-
-    get_flow_validation_result_sample($formattedName);
 }
 // [END dialogflow_v3_generated_Flows_GetFlowValidationResult_sync]

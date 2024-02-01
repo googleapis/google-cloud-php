@@ -52,9 +52,7 @@ use Google\Cloud\Compute\V1\TargetGrpcProxyList;
  * ```
  * $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
  * try {
- *     $project = 'project';
- *     $targetGrpcProxy = 'target_grpc_proxy';
- *     $operationResponse = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
+ *     $operationResponse = $targetGrpcProxiesClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -64,7 +62,7 @@ use Google\Cloud\Compute\V1\TargetGrpcProxyList;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
+ *     $operationResponse = $targetGrpcProxiesClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $targetGrpcProxiesClient->resumeOperation($operationName, 'delete');
@@ -164,9 +162,7 @@ class TargetGrpcProxiesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -262,9 +258,7 @@ class TargetGrpcProxiesGapicClient
      * ```
      * $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetGrpcProxy = 'target_grpc_proxy';
-     *     $operationResponse = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
+     *     $operationResponse = $targetGrpcProxiesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -274,7 +268,7 @@ class TargetGrpcProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
+     *     $operationResponse = $targetGrpcProxiesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetGrpcProxiesClient->resumeOperation($operationName, 'delete');
@@ -293,13 +287,15 @@ class TargetGrpcProxiesGapicClient
      * }
      * ```
      *
-     * @param string $project         Project ID for this request.
-     * @param string $targetGrpcProxy Name of the TargetGrpcProxy resource to delete.
-     * @param array  $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $targetGrpcProxy
+     *           Name of the TargetGrpcProxy resource to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -310,16 +306,22 @@ class TargetGrpcProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($project, $targetGrpcProxy, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteTargetGrpcProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetGrpcProxy($targetGrpcProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['target_grpc_proxy'] = $targetGrpcProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetGrpcProxy'])) {
+            $request->setTargetGrpcProxy($optionalArgs['targetGrpcProxy']);
+            $requestParamHeaders['target_grpc_proxy'] = $optionalArgs['targetGrpcProxy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -334,19 +336,19 @@ class TargetGrpcProxiesGapicClient
      * ```
      * $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetGrpcProxy = 'target_grpc_proxy';
-     *     $response = $targetGrpcProxiesClient->get($project, $targetGrpcProxy);
+     *     $response = $targetGrpcProxiesClient->get();
      * } finally {
      *     $targetGrpcProxiesClient->close();
      * }
      * ```
      *
-     * @param string $project         Project ID for this request.
-     * @param string $targetGrpcProxy Name of the TargetGrpcProxy resource to return.
-     * @param array  $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $targetGrpcProxy
+     *           Name of the TargetGrpcProxy resource to return.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -357,14 +359,20 @@ class TargetGrpcProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($project, $targetGrpcProxy, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetTargetGrpcProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetGrpcProxy($targetGrpcProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['target_grpc_proxy'] = $targetGrpcProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['targetGrpcProxy'])) {
+            $request->setTargetGrpcProxy($optionalArgs['targetGrpcProxy']);
+            $requestParamHeaders['target_grpc_proxy'] = $optionalArgs['targetGrpcProxy'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', TargetGrpcProxy::class, $optionalArgs, $request)->wait();
@@ -377,9 +385,7 @@ class TargetGrpcProxiesGapicClient
      * ```
      * $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetGrpcProxyResource = new TargetGrpcProxy();
-     *     $operationResponse = $targetGrpcProxiesClient->insert($project, $targetGrpcProxyResource);
+     *     $operationResponse = $targetGrpcProxiesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -389,7 +395,7 @@ class TargetGrpcProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetGrpcProxiesClient->insert($project, $targetGrpcProxyResource);
+     *     $operationResponse = $targetGrpcProxiesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetGrpcProxiesClient->resumeOperation($operationName, 'insert');
@@ -408,13 +414,15 @@ class TargetGrpcProxiesGapicClient
      * }
      * ```
      *
-     * @param string          $project                 Project ID for this request.
-     * @param TargetGrpcProxy $targetGrpcProxyResource The body resource for this request
-     * @param array           $optionalArgs            {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type TargetGrpcProxy $targetGrpcProxyResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -425,15 +433,21 @@ class TargetGrpcProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($project, $targetGrpcProxyResource, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertTargetGrpcProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetGrpcProxyResource($targetGrpcProxyResource);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetGrpcProxyResource'])) {
+            $request->setTargetGrpcProxyResource($optionalArgs['targetGrpcProxyResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -448,9 +462,8 @@ class TargetGrpcProxiesGapicClient
      * ```
      * $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $targetGrpcProxiesClient->list($project);
+     *     $pagedResponse = $targetGrpcProxiesClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -458,7 +471,7 @@ class TargetGrpcProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $targetGrpcProxiesClient->list($project);
+     *     $pagedResponse = $targetGrpcProxiesClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -467,8 +480,7 @@ class TargetGrpcProxiesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -482,6 +494,8 @@ class TargetGrpcProxiesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -494,12 +508,10 @@ class TargetGrpcProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListTargetGrpcProxiesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -514,6 +526,11 @@ class TargetGrpcProxiesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -532,10 +549,7 @@ class TargetGrpcProxiesGapicClient
      * ```
      * $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $targetGrpcProxy = 'target_grpc_proxy';
-     *     $targetGrpcProxyResource = new TargetGrpcProxy();
-     *     $operationResponse = $targetGrpcProxiesClient->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
+     *     $operationResponse = $targetGrpcProxiesClient->patch();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -545,7 +559,7 @@ class TargetGrpcProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetGrpcProxiesClient->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
+     *     $operationResponse = $targetGrpcProxiesClient->patch();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $targetGrpcProxiesClient->resumeOperation($operationName, 'patch');
@@ -564,14 +578,17 @@ class TargetGrpcProxiesGapicClient
      * }
      * ```
      *
-     * @param string          $project                 Project ID for this request.
-     * @param string          $targetGrpcProxy         Name of the TargetGrpcProxy resource to patch.
-     * @param TargetGrpcProxy $targetGrpcProxyResource The body resource for this request
-     * @param array           $optionalArgs            {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $targetGrpcProxy
+     *           Name of the TargetGrpcProxy resource to patch.
+     *     @type TargetGrpcProxy $targetGrpcProxyResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -582,17 +599,26 @@ class TargetGrpcProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch($project, $targetGrpcProxy, $targetGrpcProxyResource, array $optionalArgs = [])
+    public function patch(array $optionalArgs = [])
     {
         $request = new PatchTargetGrpcProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setTargetGrpcProxy($targetGrpcProxy);
-        $request->setTargetGrpcProxyResource($targetGrpcProxyResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['target_grpc_proxy'] = $targetGrpcProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetGrpcProxy'])) {
+            $request->setTargetGrpcProxy($optionalArgs['targetGrpcProxy']);
+            $requestParamHeaders['target_grpc_proxy'] = $optionalArgs['targetGrpcProxy'];
+        }
+
+        if (isset($optionalArgs['targetGrpcProxyResource'])) {
+            $request->setTargetGrpcProxyResource($optionalArgs['targetGrpcProxyResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

@@ -31,20 +31,19 @@ use Google\Cloud\Dialogflow\Cx\V3\DeleteSecuritySettingsRequest;
  * Deletes the specified
  * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings].
  *
- * @param string $formattedName The name of the
- *                              [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] to
- *                              delete. Format: `projects/<Project ID>/locations/<Location
- *                              ID>/securitySettings/<Security Settings ID>`. Please see
- *                              {@see SecuritySettingsServiceClient::securitySettingsName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_security_settings_sample(string $formattedName): void
+function delete_security_settings_sample(): void
 {
     // Create a client.
     $securitySettingsServiceClient = new SecuritySettingsServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteSecuritySettingsRequest())
-        ->setName($formattedName);
+    $request = new DeleteSecuritySettingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,25 +52,5 @@ function delete_security_settings_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SecuritySettingsServiceClient::securitySettingsName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[SECURITY_SETTINGS]'
-    );
-
-    delete_security_settings_sample($formattedName);
 }
 // [END dialogflow_v3_generated_SecuritySettingsService_DeleteSecuritySettings_sync]

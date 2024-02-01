@@ -31,23 +31,19 @@ use Google\Cloud\Dialogflow\Cx\V3\TestCase;
 /**
  * Creates a test case for the given agent.
  *
- * @param string $formattedParent     The agent to create the test case for.
- *                                    Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
- *                                    {@see TestCasesClient::agentName()} for help formatting this field.
- * @param string $testCaseDisplayName The human-readable name of the test case, unique within the
- *                                    agent. Limit of 200 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_test_case_sample(string $formattedParent, string $testCaseDisplayName): void
+function create_test_case_sample(): void
 {
     // Create a client.
     $testCasesClient = new TestCasesClient();
 
     // Prepare the request message.
-    $testCase = (new TestCase())
-        ->setDisplayName($testCaseDisplayName);
-    $request = (new CreateTestCaseRequest())
-        ->setParent($formattedParent)
-        ->setTestCase($testCase);
+    $request = new CreateTestCaseRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,22 +53,5 @@ function create_test_case_sample(string $formattedParent, string $testCaseDispla
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = TestCasesClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
-    $testCaseDisplayName = '[DISPLAY_NAME]';
-
-    create_test_case_sample($formattedParent, $testCaseDisplayName);
 }
 // [END dialogflow_v3_generated_TestCases_CreateTestCase_sync]

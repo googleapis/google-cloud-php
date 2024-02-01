@@ -31,8 +31,7 @@ class CreateCompilationResultRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                           $parent            Required. The repository in which to create the compilation result. Must be
-     *                                                                            in the format `projects/&#42;/locations/&#42;/repositories/*`. Please see
-     *                                                                            {@see DataformClient::repositoryName()} for help formatting this field.
+     *                                                                            in the format `projects/&#42;/locations/&#42;/repositories/*`.
      * @param \Google\Cloud\Dataform\V1beta1\CompilationResult $compilationResult Required. The compilation result to create.
      *
      * @return \Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest

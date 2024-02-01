@@ -26,33 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\NodeGroupsClient;
-use Google\Cloud\Compute\V1\NodeGroupsSetNodeTemplateRequest;
 use Google\Rpc\Status;
 
 /**
  * Updates the node template of the node group.
  *
- * @param string $nodeGroup Name of the NodeGroup resource to update.
- * @param string $project   Project ID for this request.
- * @param string $zone      The name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_node_template_sample(string $nodeGroup, string $project, string $zone): void
+function set_node_template_sample(): void
 {
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $nodeGroupsSetNodeTemplateRequestResource = new NodeGroupsSetNodeTemplateRequest();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeGroupsClient->setNodeTemplate(
-            $nodeGroup,
-            $nodeGroupsSetNodeTemplateRequestResource,
-            $project,
-            $zone
-        );
+        $response = $nodeGroupsClient->setNodeTemplate();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -65,23 +58,5 @@ function set_node_template_sample(string $nodeGroup, string $project, string $zo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $nodeGroup = '[NODE_GROUP]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    set_node_template_sample($nodeGroup, $project, $zone);
 }
 // [END compute_v1_generated_NodeGroups_SetNodeTemplate_sync]

@@ -46,8 +46,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                    $parent     Required. The agent to create a entity type for.
-     *                                                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
-     *                                                              {@see EntityTypesClient::agentName()} for help formatting this field.
+     *                                                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
      * @param \Google\Cloud\Dialogflow\Cx\V3\EntityType $entityType Required. The entity type to create.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\CreateEntityTypeRequest

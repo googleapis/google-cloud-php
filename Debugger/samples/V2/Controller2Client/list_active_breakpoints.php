@@ -43,16 +43,19 @@ use Google\Cloud\Debugger\V2\ListActiveBreakpointsResponse;
  * until the controller removes them from the active list to avoid
  * setting those breakpoints again.
  *
- * @param string $debuggeeId Identifies the debuggee.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_active_breakpoints_sample(string $debuggeeId): void
+function list_active_breakpoints_sample(): void
 {
     // Create a client.
     $controller2Client = new Controller2Client();
 
     // Prepare the request message.
-    $request = (new ListActiveBreakpointsRequest())
-        ->setDebuggeeId($debuggeeId);
+    $request = new ListActiveBreakpointsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,21 +65,5 @@ function list_active_breakpoints_sample(string $debuggeeId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $debuggeeId = '[DEBUGGEE_ID]';
-
-    list_active_breakpoints_sample($debuggeeId);
 }
 // [END clouddebugger_v2_generated_Controller2_ListActiveBreakpoints_sync]

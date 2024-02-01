@@ -27,37 +27,23 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Dialogflow\Cx\V3\Client\GeneratorsClient;
 use Google\Cloud\Dialogflow\Cx\V3\CreateGeneratorRequest;
 use Google\Cloud\Dialogflow\Cx\V3\Generator;
-use Google\Cloud\Dialogflow\Cx\V3\Phrase;
 
 /**
  * Creates a generator in the specified agent.
  *
- * @param string $formattedParent         The agent to create a generator for.
- *                                        Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
- *                                        {@see GeneratorsClient::agentName()} for help formatting this field.
- * @param string $generatorDisplayName    The human-readable name of the generator, unique within the
- *                                        agent. The prompt contains pre-defined parameters such as $conversation,
- *                                        $last-user-utterance, etc. populated by Dialogflow. It can also contain
- *                                        custom placeholders which will be resolved during fulfillment.
- * @param string $generatorPromptTextText Text input which can be used for prompt or banned phrases.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_generator_sample(
-    string $formattedParent,
-    string $generatorDisplayName,
-    string $generatorPromptTextText
-): void {
+function create_generator_sample(): void
+{
     // Create a client.
     $generatorsClient = new GeneratorsClient();
 
     // Prepare the request message.
-    $generatorPromptText = (new Phrase())
-        ->setText($generatorPromptTextText);
-    $generator = (new Generator())
-        ->setDisplayName($generatorDisplayName)
-        ->setPromptText($generatorPromptText);
-    $request = (new CreateGeneratorRequest())
-        ->setParent($formattedParent)
-        ->setGenerator($generator);
+    $request = new CreateGeneratorRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,23 +53,5 @@ function create_generator_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = GeneratorsClient::agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
-    $generatorDisplayName = '[DISPLAY_NAME]';
-    $generatorPromptTextText = '[TEXT]';
-
-    create_generator_sample($formattedParent, $generatorDisplayName, $generatorPromptTextText);
 }
 // [END dialogflow_v3_generated_Generators_CreateGenerator_sync]

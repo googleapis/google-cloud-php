@@ -26,31 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\TargetHttpsProxiesClient;
-use Google\Cloud\Compute\V1\TargetHttpsProxiesSetCertificateMapRequest;
 use Google\Rpc\Status;
 
 /**
  * Changes the Certificate Map for TargetHttpsProxy.
  *
- * @param string $project          Project ID for this request.
- * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource whose CertificateMap is to be set. The name must be 1-63 characters long, and comply with RFC1035.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_certificate_map_sample(string $project, string $targetHttpsProxy): void
+function set_certificate_map_sample(): void
 {
     // Create a client.
     $targetHttpsProxiesClient = new TargetHttpsProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $targetHttpsProxiesSetCertificateMapRequestResource = new TargetHttpsProxiesSetCertificateMapRequest();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetHttpsProxiesClient->setCertificateMap(
-            $project,
-            $targetHttpsProxiesSetCertificateMapRequestResource,
-            $targetHttpsProxy
-        );
+        $response = $targetHttpsProxiesClient->setCertificateMap();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -63,22 +58,5 @@ function set_certificate_map_sample(string $project, string $targetHttpsProxy): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $targetHttpsProxy = '[TARGET_HTTPS_PROXY]';
-
-    set_certificate_map_sample($project, $targetHttpsProxy);
 }
 // [END compute_v1_generated_TargetHttpsProxies_SetCertificateMap_sync]

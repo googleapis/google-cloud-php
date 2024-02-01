@@ -64,9 +64,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  * ```
  * $imagesClient = new ImagesClient();
  * try {
- *     $image = 'image';
- *     $project = 'project';
- *     $operationResponse = $imagesClient->delete($image, $project);
+ *     $operationResponse = $imagesClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -76,7 +74,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $imagesClient->delete($image, $project);
+ *     $operationResponse = $imagesClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $imagesClient->resumeOperation($operationName, 'delete');
@@ -176,9 +174,7 @@ class ImagesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -274,9 +270,7 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $image = 'image';
-     *     $project = 'project';
-     *     $operationResponse = $imagesClient->delete($image, $project);
+     *     $operationResponse = $imagesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -286,7 +280,7 @@ class ImagesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $imagesClient->delete($image, $project);
+     *     $operationResponse = $imagesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $imagesClient->resumeOperation($operationName, 'delete');
@@ -305,11 +299,13 @@ class ImagesGapicClient
      * }
      * ```
      *
-     * @param string $image        Name of the image resource to delete.
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $image
+     *           Name of the image resource to delete.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -322,14 +318,20 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($image, $project, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteImageRequest();
         $requestParamHeaders = [];
-        $request->setImage($image);
-        $request->setProject($project);
-        $requestParamHeaders['image'] = $image;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['image'])) {
+            $request->setImage($optionalArgs['image']);
+            $requestParamHeaders['image'] = $optionalArgs['image'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -346,10 +348,7 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $deprecationStatusResource = new DeprecationStatus();
-     *     $image = 'image';
-     *     $project = 'project';
-     *     $operationResponse = $imagesClient->deprecate($deprecationStatusResource, $image, $project);
+     *     $operationResponse = $imagesClient->deprecate();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -359,7 +358,7 @@ class ImagesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $imagesClient->deprecate($deprecationStatusResource, $image, $project);
+     *     $operationResponse = $imagesClient->deprecate();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $imagesClient->resumeOperation($operationName, 'deprecate');
@@ -378,12 +377,15 @@ class ImagesGapicClient
      * }
      * ```
      *
-     * @param DeprecationStatus $deprecationStatusResource The body resource for this request
-     * @param string            $image                     Image name.
-     * @param string            $project                   Project ID for this request.
-     * @param array             $optionalArgs              {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type DeprecationStatus $deprecationStatusResource
+     *           The body resource for this request
+     *     @type string $image
+     *           Image name.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -396,15 +398,24 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deprecate($deprecationStatusResource, $image, $project, array $optionalArgs = [])
+    public function deprecate(array $optionalArgs = [])
     {
         $request = new DeprecateImageRequest();
         $requestParamHeaders = [];
-        $request->setDeprecationStatusResource($deprecationStatusResource);
-        $request->setImage($image);
-        $request->setProject($project);
-        $requestParamHeaders['image'] = $image;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['deprecationStatusResource'])) {
+            $request->setDeprecationStatusResource($optionalArgs['deprecationStatusResource']);
+        }
+
+        if (isset($optionalArgs['image'])) {
+            $request->setImage($optionalArgs['image']);
+            $requestParamHeaders['image'] = $optionalArgs['image'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -421,19 +432,19 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $image = 'image';
-     *     $project = 'project';
-     *     $response = $imagesClient->get($image, $project);
+     *     $response = $imagesClient->get();
      * } finally {
      *     $imagesClient->close();
      * }
      * ```
      *
-     * @param string $image        Name of the image resource to return.
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $image
+     *           Name of the image resource to return.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -444,14 +455,20 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($image, $project, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetImageRequest();
         $requestParamHeaders = [];
-        $request->setImage($image);
-        $request->setProject($project);
-        $requestParamHeaders['image'] = $image;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['image'])) {
+            $request->setImage($optionalArgs['image']);
+            $requestParamHeaders['image'] = $optionalArgs['image'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Image::class, $optionalArgs, $request)->wait();
@@ -464,19 +481,19 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $family = 'family';
-     *     $project = 'project';
-     *     $response = $imagesClient->getFromFamily($family, $project);
+     *     $response = $imagesClient->getFromFamily();
      * } finally {
      *     $imagesClient->close();
      * }
      * ```
      *
-     * @param string $family       Name of the image family to search for.
-     * @param string $project      The image project that the image belongs to. For example, to get a CentOS image, specify centos-cloud as the image project.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $family
+     *           Name of the image family to search for.
+     *     @type string $project
+     *           The image project that the image belongs to. For example, to get a CentOS image, specify centos-cloud as the image project.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -487,14 +504,20 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFromFamily($family, $project, array $optionalArgs = [])
+    public function getFromFamily(array $optionalArgs = [])
     {
         $request = new GetFromFamilyImageRequest();
         $requestParamHeaders = [];
-        $request->setFamily($family);
-        $request->setProject($project);
-        $requestParamHeaders['family'] = $family;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['family'])) {
+            $request->setFamily($optionalArgs['family']);
+            $requestParamHeaders['family'] = $optionalArgs['family'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetFromFamily', Image::class, $optionalArgs, $request)->wait();
@@ -507,21 +530,21 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $project = 'project';
-     *     $resource = 'resource';
-     *     $response = $imagesClient->getIamPolicy($project, $resource);
+     *     $response = $imagesClient->getIamPolicy();
      * } finally {
      *     $imagesClient->close();
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $resource     Name or id of the resource for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type int $optionsRequestedPolicyVersion
      *           Requested IAM Policy version.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -532,16 +555,22 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($project, $resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyImageRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setResource($resource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['optionsRequestedPolicyVersion'])) {
             $request->setOptionsRequestedPolicyVersion($optionalArgs['optionsRequestedPolicyVersion']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -556,9 +585,7 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $imageResource = new Image();
-     *     $project = 'project';
-     *     $operationResponse = $imagesClient->insert($imageResource, $project);
+     *     $operationResponse = $imagesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -568,7 +595,7 @@ class ImagesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $imagesClient->insert($imageResource, $project);
+     *     $operationResponse = $imagesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $imagesClient->resumeOperation($operationName, 'insert');
@@ -587,13 +614,15 @@ class ImagesGapicClient
      * }
      * ```
      *
-     * @param Image  $imageResource The body resource for this request
-     * @param string $project       Project ID for this request.
-     * @param array  $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type bool $forceCreate
      *           Force image creation if true.
+     *     @type Image $imageResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -606,15 +635,21 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($imageResource, $project, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertImageRequest();
         $requestParamHeaders = [];
-        $request->setImageResource($imageResource);
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['forceCreate'])) {
             $request->setForceCreate($optionalArgs['forceCreate']);
+        }
+
+        if (isset($optionalArgs['imageResource'])) {
+            $request->setImageResource($optionalArgs['imageResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -633,9 +668,8 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $imagesClient->list($project);
+     *     $pagedResponse = $imagesClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -643,7 +677,7 @@ class ImagesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $imagesClient->list($project);
+     *     $pagedResponse = $imagesClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -652,8 +686,7 @@ class ImagesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -667,6 +700,8 @@ class ImagesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -679,12 +714,10 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListImagesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -699,6 +732,11 @@ class ImagesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -717,10 +755,7 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $image = 'image';
-     *     $imageResource = new Image();
-     *     $project = 'project';
-     *     $operationResponse = $imagesClient->patch($image, $imageResource, $project);
+     *     $operationResponse = $imagesClient->patch();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -730,7 +765,7 @@ class ImagesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $imagesClient->patch($image, $imageResource, $project);
+     *     $operationResponse = $imagesClient->patch();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $imagesClient->resumeOperation($operationName, 'patch');
@@ -749,12 +784,15 @@ class ImagesGapicClient
      * }
      * ```
      *
-     * @param string $image         Name of the image resource to patch.
-     * @param Image  $imageResource The body resource for this request
-     * @param string $project       Project ID for this request.
-     * @param array  $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $image
+     *           Name of the image resource to patch.
+     *     @type Image $imageResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -767,15 +805,24 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch($image, $imageResource, $project, array $optionalArgs = [])
+    public function patch(array $optionalArgs = [])
     {
         $request = new PatchImageRequest();
         $requestParamHeaders = [];
-        $request->setImage($image);
-        $request->setImageResource($imageResource);
-        $request->setProject($project);
-        $requestParamHeaders['image'] = $image;
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['image'])) {
+            $request->setImage($optionalArgs['image']);
+            $requestParamHeaders['image'] = $optionalArgs['image'];
+        }
+
+        if (isset($optionalArgs['imageResource'])) {
+            $request->setImageResource($optionalArgs['imageResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -792,21 +839,21 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
-     *     $project = 'project';
-     *     $resource = 'resource';
-     *     $response = $imagesClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
+     *     $response = $imagesClient->setIamPolicy();
      * } finally {
      *     $imagesClient->close();
      * }
      * ```
      *
-     * @param GlobalSetPolicyRequest $globalSetPolicyRequestResource The body resource for this request
-     * @param string                 $project                        Project ID for this request.
-     * @param string                 $resource                       Name or id of the resource for this request.
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type GlobalSetPolicyRequest $globalSetPolicyRequestResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -817,15 +864,24 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($globalSetPolicyRequestResource, $project, $resource, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyImageRequest();
         $requestParamHeaders = [];
-        $request->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource);
-        $request->setProject($project);
-        $request->setResource($resource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['globalSetPolicyRequestResource'])) {
+            $request->setGlobalSetPolicyRequestResource($optionalArgs['globalSetPolicyRequestResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -838,10 +894,7 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
-     *     $project = 'project';
-     *     $resource = 'resource';
-     *     $operationResponse = $imagesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationResponse = $imagesClient->setLabels();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -851,7 +904,7 @@ class ImagesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $imagesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationResponse = $imagesClient->setLabels();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $imagesClient->resumeOperation($operationName, 'setLabels');
@@ -870,12 +923,15 @@ class ImagesGapicClient
      * }
      * ```
      *
-     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
-     * @param string                 $project                        Project ID for this request.
-     * @param string                 $resource                       Name or id of the resource for this request.
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type GlobalSetLabelsRequest $globalSetLabelsRequestResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -886,15 +942,24 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
+    public function setLabels(array $optionalArgs = [])
     {
         $request = new SetLabelsImageRequest();
         $requestParamHeaders = [];
-        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
-        $request->setProject($project);
-        $request->setResource($resource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['globalSetLabelsRequestResource'])) {
+            $request->setGlobalSetLabelsRequestResource($optionalArgs['globalSetLabelsRequestResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
@@ -907,21 +972,21 @@ class ImagesGapicClient
      * ```
      * $imagesClient = new ImagesClient();
      * try {
-     *     $project = 'project';
-     *     $resource = 'resource';
-     *     $testPermissionsRequestResource = new TestPermissionsRequest();
-     *     $response = $imagesClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
+     *     $response = $imagesClient->testIamPermissions();
      * } finally {
      *     $imagesClient->close();
      * }
      * ```
      *
-     * @param string                 $project                        Project ID for this request.
-     * @param string                 $resource                       Name or id of the resource for this request.
-     * @param TestPermissionsRequest $testPermissionsRequestResource The body resource for this request
-     * @param array                  $optionalArgs                   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $resource
+     *           Name or id of the resource for this request.
+     *     @type TestPermissionsRequest $testPermissionsRequestResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -932,15 +997,24 @@ class ImagesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($project, $resource, $testPermissionsRequestResource, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsImageRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setResource($resource);
-        $request->setTestPermissionsRequestResource($testPermissionsRequestResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['testPermissionsRequestResource'])) {
+            $request->setTestPermissionsRequestResource($optionalArgs['testPermissionsRequestResource']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestPermissionsResponse::class, $optionalArgs, $request)->wait();

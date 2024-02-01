@@ -88,10 +88,7 @@ class AcceleratorTypesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListAcceleratorTypesRequest())
-            ->setProject($project);
+        $request = new AggregatedListAcceleratorTypesRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -104,8 +101,6 @@ class AcceleratorTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.AcceleratorTypes/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -127,10 +122,7 @@ class AcceleratorTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListAcceleratorTypesRequest())
-            ->setProject($project);
+        $request = new AggregatedListAcceleratorTypesRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -171,14 +163,7 @@ class AcceleratorTypesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $acceleratorType = 'acceleratorType1748643982';
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new GetAcceleratorTypeRequest())
-            ->setAcceleratorType($acceleratorType)
-            ->setProject($project)
-            ->setZone($zone);
+        $request = new GetAcceleratorTypeRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -186,12 +171,6 @@ class AcceleratorTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.AcceleratorTypes/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAcceleratorType();
-        $this->assertProtobufEquals($acceleratorType, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -213,14 +192,7 @@ class AcceleratorTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $acceleratorType = 'acceleratorType1748643982';
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new GetAcceleratorTypeRequest())
-            ->setAcceleratorType($acceleratorType)
-            ->setProject($project)
-            ->setZone($zone);
+        $request = new GetAcceleratorTypeRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -258,12 +230,7 @@ class AcceleratorTypesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new ListAcceleratorTypesRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = new ListAcceleratorTypesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -274,10 +241,6 @@ class AcceleratorTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.AcceleratorTypes/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -299,12 +262,7 @@ class AcceleratorTypesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new ListAcceleratorTypesRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = new ListAcceleratorTypesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -341,10 +299,7 @@ class AcceleratorTypesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListAcceleratorTypesRequest())
-            ->setProject($project);
+        $request = new AggregatedListAcceleratorTypesRequest();
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -357,8 +312,6 @@ class AcceleratorTypesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.AcceleratorTypes/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

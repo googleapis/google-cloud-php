@@ -43,9 +43,7 @@ function update_issue_sample(): void
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $issue = new Issue();
-    $request = (new UpdateIssueRequest())
-        ->setIssue($issue);
+    $request = new UpdateIssueRequest();
 
     // Call the API and handle any network failures.
     try {

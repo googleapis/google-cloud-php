@@ -43,9 +43,7 @@ function update_repository_sample(): void
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $repository = new Repository();
-    $request = (new UpdateRepositoryRequest())
-        ->setRepository($repository);
+    $request = new UpdateRepositoryRequest();
 
     // Call the API and handle any network failures.
     try {

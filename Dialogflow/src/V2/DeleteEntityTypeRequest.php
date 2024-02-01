@@ -26,8 +26,7 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the entity type to delete.
-     *                     Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`. Please see
-     *                     {@see EntityTypesClient::entityTypeName()} for help formatting this field.
+     *                     Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      *
      * @return \Google\Cloud\Dialogflow\V2\DeleteEntityTypeRequest
      *

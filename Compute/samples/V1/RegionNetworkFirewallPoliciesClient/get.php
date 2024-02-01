@@ -30,11 +30,13 @@ use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesClient;
 /**
  * Returns the specified network firewall policy.
  *
- * @param string $firewallPolicy Name of the firewall policy to get.
- * @param string $project        Project ID for this request.
- * @param string $region         Name of the region scoping this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $firewallPolicy, string $project, string $region): void
+function get_sample(): void
 {
     // Create a client.
     $regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
@@ -42,28 +44,10 @@ function get_sample(string $firewallPolicy, string $project, string $region): vo
     // Call the API and handle any network failures.
     try {
         /** @var FirewallPolicy $response */
-        $response = $regionNetworkFirewallPoliciesClient->get($firewallPolicy, $project, $region);
+        $response = $regionNetworkFirewallPoliciesClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $firewallPolicy = '[FIREWALL_POLICY]';
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-
-    get_sample($firewallPolicy, $project, $region);
 }
 // [END compute_v1_generated_RegionNetworkFirewallPolicies_Get_sync]

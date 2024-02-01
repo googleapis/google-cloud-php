@@ -97,9 +97,6 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/locations/global/firewallPolicies',
                 'body' => 'firewall_policy_resource',
-                'queryParams' => [
-                    'parent_id',
-                ],
             ],
             'List' => [
                 'method' => 'get',
@@ -118,9 +115,6 @@ return [
                             'getFirewallPolicy',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'parent_id',
                 ],
             ],
             'Patch' => [

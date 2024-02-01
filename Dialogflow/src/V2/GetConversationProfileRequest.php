@@ -28,8 +28,7 @@ class GetConversationProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the conversation profile.
      *                     Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/conversationProfiles/<Conversation Profile ID>`. Please see
-     *                     {@see ConversationProfilesClient::conversationProfileName()} for help formatting this field.
+     *                     ID>/conversationProfiles/<Conversation Profile ID>`.
      *
      * @return \Google\Cloud\Dialogflow\V2\GetConversationProfileRequest
      *

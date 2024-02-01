@@ -28,7 +28,6 @@ class GetAnnotatedDatasetRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. Name of the annotated dataset to get, format:
      *                     projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
      *                     {annotated_dataset_id}
-     *                     Please see {@see DataLabelingServiceClient::annotatedDatasetName()} for help formatting this field.
      *
      * @return \Google\Cloud\DataLabeling\V1beta1\GetAnnotatedDatasetRequest
      *

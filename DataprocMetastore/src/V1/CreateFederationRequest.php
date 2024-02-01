@@ -61,8 +61,7 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
      * @param string                                $parent       Required. The relative resource name of the location in which to create a
      *                                                            federation service, in the following form:
      *
-     *                                                            `projects/{project_number}/locations/{location_id}`. Please see
-     *                                                            {@see DataprocMetastoreFederationClient::locationName()} for help formatting this field.
+     *                                                            `projects/{project_number}/locations/{location_id}`.
      * @param \Google\Cloud\Metastore\V1\Federation $federation   Required. The Metastore Federation to create. The `name` field is
      *                                                            ignored. The ID of the created metastore federation must be
      *                                                            provided in the request's `federation_id` field.

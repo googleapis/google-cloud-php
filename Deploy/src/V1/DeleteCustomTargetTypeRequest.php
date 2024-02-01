@@ -63,8 +63,7 @@ class DeleteCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the `CustomTargetType` to delete. Format must be
-     *                     `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`. Please see
-     *                     {@see CloudDeployClient::customTargetTypeName()} for help formatting this field.
+     *                     `projects/{project_id}/locations/{location_name}/customTargetTypes/{custom_target_type}`.
      *
      * @return \Google\Cloud\Deploy\V1\DeleteCustomTargetTypeRequest
      *

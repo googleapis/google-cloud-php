@@ -30,8 +30,7 @@ class GetEntryGroupRequest extends \Google\Protobuf\Internal\Message
     private $read_mask = null;
 
     /**
-     * @param string $name Required. The name of the entry group to get. Please see
-     *                     {@see DataCatalogClient::entryGroupName()} for help formatting this field.
+     * @param string $name Required. The name of the entry group to get.
      *
      * @return \Google\Cloud\DataCatalog\V1\GetEntryGroupRequest
      *
@@ -44,8 +43,7 @@ class GetEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * @param string                     $name     Required. The name of the entry group to get. Please see
-     *                                             {@see DataCatalogClient::entryGroupName()} for help formatting this field.
+     * @param string                     $name     Required. The name of the entry group to get.
      * @param \Google\Protobuf\FieldMask $readMask The fields to return. If empty or omitted, all fields are returned.
      *
      * @return \Google\Cloud\DataCatalog\V1\GetEntryGroupRequest

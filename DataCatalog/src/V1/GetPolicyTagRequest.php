@@ -24,8 +24,7 @@ class GetPolicyTagRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Resource name of the policy tag. Please see
-     *                     {@see PolicyTagManagerClient::policyTagName()} for help formatting this field.
+     * @param string $name Required. Resource name of the policy tag.
      *
      * @return \Google\Cloud\DataCatalog\V1\GetPolicyTagRequest
      *

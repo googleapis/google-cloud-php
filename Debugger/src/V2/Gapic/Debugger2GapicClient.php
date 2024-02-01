@@ -65,10 +65,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $debugger2Client = new Debugger2Client();
  * try {
- *     $debuggeeId = 'debuggee_id';
- *     $breakpointId = 'breakpoint_id';
- *     $clientVersion = 'client_version';
- *     $debugger2Client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+ *     $debugger2Client->deleteBreakpoint();
  * } finally {
  *     $debugger2Client->close();
  * }
@@ -197,22 +194,22 @@ class Debugger2GapicClient
      * ```
      * $debugger2Client = new Debugger2Client();
      * try {
-     *     $debuggeeId = 'debuggee_id';
-     *     $breakpointId = 'breakpoint_id';
-     *     $clientVersion = 'client_version';
-     *     $debugger2Client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+     *     $debugger2Client->deleteBreakpoint();
      * } finally {
      *     $debugger2Client->close();
      * }
      * ```
      *
-     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoint to delete.
-     * @param string $breakpointId  Required. ID of the breakpoint to delete.
-     * @param string $clientVersion Required. The client version making the call.
-     *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param array  $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $debuggeeId
+     *           Required. ID of the debuggee whose breakpoint to delete.
+     *     @type string $breakpointId
+     *           Required. ID of the breakpoint to delete.
+     *     @type string $clientVersion
+     *           Required. The client version making the call.
+     *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -221,19 +218,25 @@ class Debugger2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBreakpoint(
-        $debuggeeId,
-        $breakpointId,
-        $clientVersion,
-        array $optionalArgs = []
-    ) {
+    public function deleteBreakpoint(array $optionalArgs = [])
+    {
         $request = new DeleteBreakpointRequest();
         $requestParamHeaders = [];
-        $request->setDebuggeeId($debuggeeId);
-        $request->setBreakpointId($breakpointId);
-        $request->setClientVersion($clientVersion);
-        $requestParamHeaders['debuggee_id'] = $debuggeeId;
-        $requestParamHeaders['breakpoint_id'] = $breakpointId;
+        if (isset($optionalArgs['debuggeeId'])) {
+            $request->setDebuggeeId($optionalArgs['debuggeeId']);
+            $requestParamHeaders['debuggee_id'] = $optionalArgs['debuggeeId'];
+        }
+
+        if (isset($optionalArgs['breakpointId'])) {
+            $request->setBreakpointId($optionalArgs['breakpointId']);
+            $requestParamHeaders['breakpoint_id'] =
+                $optionalArgs['breakpointId'];
+        }
+
+        if (isset($optionalArgs['clientVersion'])) {
+            $request->setClientVersion($optionalArgs['clientVersion']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -255,22 +258,22 @@ class Debugger2GapicClient
      * ```
      * $debugger2Client = new Debugger2Client();
      * try {
-     *     $debuggeeId = 'debuggee_id';
-     *     $breakpointId = 'breakpoint_id';
-     *     $clientVersion = 'client_version';
-     *     $response = $debugger2Client->getBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+     *     $response = $debugger2Client->getBreakpoint();
      * } finally {
      *     $debugger2Client->close();
      * }
      * ```
      *
-     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoint to get.
-     * @param string $breakpointId  Required. ID of the breakpoint to get.
-     * @param string $clientVersion Required. The client version making the call.
-     *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param array  $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $debuggeeId
+     *           Required. ID of the debuggee whose breakpoint to get.
+     *     @type string $breakpointId
+     *           Required. ID of the breakpoint to get.
+     *     @type string $clientVersion
+     *           Required. The client version making the call.
+     *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -281,19 +284,25 @@ class Debugger2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBreakpoint(
-        $debuggeeId,
-        $breakpointId,
-        $clientVersion,
-        array $optionalArgs = []
-    ) {
+    public function getBreakpoint(array $optionalArgs = [])
+    {
         $request = new GetBreakpointRequest();
         $requestParamHeaders = [];
-        $request->setDebuggeeId($debuggeeId);
-        $request->setBreakpointId($breakpointId);
-        $request->setClientVersion($clientVersion);
-        $requestParamHeaders['debuggee_id'] = $debuggeeId;
-        $requestParamHeaders['breakpoint_id'] = $breakpointId;
+        if (isset($optionalArgs['debuggeeId'])) {
+            $request->setDebuggeeId($optionalArgs['debuggeeId']);
+            $requestParamHeaders['debuggee_id'] = $optionalArgs['debuggeeId'];
+        }
+
+        if (isset($optionalArgs['breakpointId'])) {
+            $request->setBreakpointId($optionalArgs['breakpointId']);
+            $requestParamHeaders['breakpoint_id'] =
+                $optionalArgs['breakpointId'];
+        }
+
+        if (isset($optionalArgs['clientVersion'])) {
+            $request->setClientVersion($optionalArgs['clientVersion']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -315,20 +324,17 @@ class Debugger2GapicClient
      * ```
      * $debugger2Client = new Debugger2Client();
      * try {
-     *     $debuggeeId = 'debuggee_id';
-     *     $clientVersion = 'client_version';
-     *     $response = $debugger2Client->listBreakpoints($debuggeeId, $clientVersion);
+     *     $response = $debugger2Client->listBreakpoints();
      * } finally {
      *     $debugger2Client->close();
      * }
      * ```
      *
-     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoints to list.
-     * @param string $clientVersion Required. The client version making the call.
-     *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param array  $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $debuggeeId
+     *           Required. ID of the debuggee whose breakpoints to list.
      *     @type bool $includeAllUsers
      *           When set to `true`, the response includes the list of breakpoints set by
      *           any user. Otherwise, it includes only breakpoints set by the caller.
@@ -346,6 +352,9 @@ class Debugger2GapicClient
      *           should be set from the last response. The error code
      *           `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which
      *           should be called again with the same `wait_token`.
+     *     @type string $clientVersion
+     *           Required. The client version making the call.
+     *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -356,16 +365,15 @@ class Debugger2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBreakpoints(
-        $debuggeeId,
-        $clientVersion,
-        array $optionalArgs = []
-    ) {
+    public function listBreakpoints(array $optionalArgs = [])
+    {
         $request = new ListBreakpointsRequest();
         $requestParamHeaders = [];
-        $request->setDebuggeeId($debuggeeId);
-        $request->setClientVersion($clientVersion);
-        $requestParamHeaders['debuggee_id'] = $debuggeeId;
+        if (isset($optionalArgs['debuggeeId'])) {
+            $request->setDebuggeeId($optionalArgs['debuggeeId']);
+            $requestParamHeaders['debuggee_id'] = $optionalArgs['debuggeeId'];
+        }
+
         if (isset($optionalArgs['includeAllUsers'])) {
             $request->setIncludeAllUsers($optionalArgs['includeAllUsers']);
         }
@@ -384,6 +392,10 @@ class Debugger2GapicClient
 
         if (isset($optionalArgs['waitToken'])) {
             $request->setWaitToken($optionalArgs['waitToken']);
+        }
+
+        if (isset($optionalArgs['clientVersion'])) {
+            $request->setClientVersion($optionalArgs['clientVersion']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -407,23 +419,23 @@ class Debugger2GapicClient
      * ```
      * $debugger2Client = new Debugger2Client();
      * try {
-     *     $project = 'project';
-     *     $clientVersion = 'client_version';
-     *     $response = $debugger2Client->listDebuggees($project, $clientVersion);
+     *     $response = $debugger2Client->listDebuggees();
      * } finally {
      *     $debugger2Client->close();
      * }
      * ```
      *
-     * @param string $project       Required. Project number of a Google Cloud project whose debuggees to list.
-     * @param string $clientVersion Required. The client version making the call.
-     *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param array  $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Required. Project number of a Google Cloud project whose debuggees to list.
      *     @type bool $includeInactive
      *           When set to `true`, the result includes all debuggees. Otherwise, the
      *           result includes only debuggees that are active.
+     *     @type string $clientVersion
+     *           Required. The client version making the call.
+     *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -434,16 +446,19 @@ class Debugger2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDebuggees(
-        $project,
-        $clientVersion,
-        array $optionalArgs = []
-    ) {
+    public function listDebuggees(array $optionalArgs = [])
+    {
         $request = new ListDebuggeesRequest();
-        $request->setProject($project);
-        $request->setClientVersion($clientVersion);
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+        }
+
         if (isset($optionalArgs['includeInactive'])) {
             $request->setIncludeInactive($optionalArgs['includeInactive']);
+        }
+
+        if (isset($optionalArgs['clientVersion'])) {
+            $request->setClientVersion($optionalArgs['clientVersion']);
         }
 
         return $this->startCall(
@@ -461,23 +476,23 @@ class Debugger2GapicClient
      * ```
      * $debugger2Client = new Debugger2Client();
      * try {
-     *     $debuggeeId = 'debuggee_id';
-     *     $breakpoint = new Breakpoint();
-     *     $clientVersion = 'client_version';
-     *     $response = $debugger2Client->setBreakpoint($debuggeeId, $breakpoint, $clientVersion);
+     *     $response = $debugger2Client->setBreakpoint();
      * } finally {
      *     $debugger2Client->close();
      * }
      * ```
      *
-     * @param string     $debuggeeId    Required. ID of the debuggee where the breakpoint is to be set.
-     * @param Breakpoint $breakpoint    Required. Breakpoint specification to set.
-     *                                  The field `location` of the breakpoint must be set.
-     * @param string     $clientVersion Required. The client version making the call.
-     *                                  Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param array      $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $debuggeeId
+     *           Required. ID of the debuggee where the breakpoint is to be set.
+     *     @type Breakpoint $breakpoint
+     *           Required. Breakpoint specification to set.
+     *           The field `location` of the breakpoint must be set.
+     *     @type string $clientVersion
+     *           Required. The client version making the call.
+     *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -488,18 +503,23 @@ class Debugger2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setBreakpoint(
-        $debuggeeId,
-        $breakpoint,
-        $clientVersion,
-        array $optionalArgs = []
-    ) {
+    public function setBreakpoint(array $optionalArgs = [])
+    {
         $request = new SetBreakpointRequest();
         $requestParamHeaders = [];
-        $request->setDebuggeeId($debuggeeId);
-        $request->setBreakpoint($breakpoint);
-        $request->setClientVersion($clientVersion);
-        $requestParamHeaders['debuggee_id'] = $debuggeeId;
+        if (isset($optionalArgs['debuggeeId'])) {
+            $request->setDebuggeeId($optionalArgs['debuggeeId']);
+            $requestParamHeaders['debuggee_id'] = $optionalArgs['debuggeeId'];
+        }
+
+        if (isset($optionalArgs['breakpoint'])) {
+            $request->setBreakpoint($optionalArgs['breakpoint']);
+        }
+
+        if (isset($optionalArgs['clientVersion'])) {
+            $request->setClientVersion($optionalArgs['clientVersion']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

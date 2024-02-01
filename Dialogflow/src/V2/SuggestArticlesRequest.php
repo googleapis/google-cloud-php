@@ -52,8 +52,7 @@ class SuggestArticlesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The name of the participant to fetch suggestion for.
      *                       Format: `projects/<Project ID>/locations/<Location
-     *                       ID>/conversations/<Conversation ID>/participants/<Participant ID>`. Please see
-     *                       {@see ParticipantsClient::participantName()} for help formatting this field.
+     *                       ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
      *
      * @return \Google\Cloud\Dialogflow\V2\SuggestArticlesRequest
      *

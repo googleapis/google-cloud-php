@@ -34,7 +34,6 @@ use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GetRuleSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\GetSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
-use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\ListPreconfiguredExpressionSetsSecurityPoliciesRequest;
 use Google\Cloud\Compute\V1\ListSecurityPoliciesRequest;
@@ -106,14 +105,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyRuleResource = new SecurityPolicyRule();
-        $request = (new AddRuleSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $request = new AddRuleSecurityPolicyRequest();
         $response = $gapicClient->addRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -123,15 +115,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/AddRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyRuleResource();
-        $this->assertProtobufEquals($securityPolicyRuleResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -179,14 +164,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyRuleResource = new SecurityPolicyRule();
-        $request = (new AddRuleSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $request = new AddRuleSecurityPolicyRequest();
         $response = $gapicClient->addRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -232,10 +210,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListSecurityPoliciesRequest())
-            ->setProject($project);
+        $request = new AggregatedListSecurityPoliciesRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -248,8 +223,6 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -271,10 +244,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListSecurityPoliciesRequest())
-            ->setProject($project);
+        $request = new AggregatedListSecurityPoliciesRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -313,12 +283,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new DeleteSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new DeleteSecurityPolicyRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -328,13 +293,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -382,12 +342,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new DeleteSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new DeleteSecurityPolicyRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -439,12 +394,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setType($type);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new GetSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new GetSecurityPolicyRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -452,10 +402,6 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -477,12 +423,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new GetSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new GetSecurityPolicyRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -517,12 +458,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $expectedResponse->setPreview($preview);
         $expectedResponse->setPriority($priority2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new GetRuleSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new GetRuleSecurityPolicyRequest();
         $response = $gapicClient->getRule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -530,10 +466,6 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/GetRule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -555,12 +487,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new GetRuleSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new GetRuleSecurityPolicyRequest();
         try {
             $gapicClient->getRule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -599,12 +526,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicyResource = new SecurityPolicy();
-        $request = (new InsertSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicyResource($securityPolicyResource);
+        $request = new InsertSecurityPolicyRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -614,13 +536,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyResource();
-        $this->assertProtobufEquals($securityPolicyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -668,12 +585,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicyResource = new SecurityPolicy();
-        $request = (new InsertSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicyResource($securityPolicyResource);
+        $request = new InsertSecurityPolicyRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -716,10 +628,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListSecurityPoliciesRequest())
-            ->setProject($project);
+        $request = new ListSecurityPoliciesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -730,8 +639,6 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -753,10 +660,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListSecurityPoliciesRequest())
-            ->setProject($project);
+        $request = new ListSecurityPoliciesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -781,10 +685,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SecurityPoliciesListPreconfiguredExpressionSetsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListPreconfiguredExpressionSetsSecurityPoliciesRequest())
-            ->setProject($project);
+        $request = new ListPreconfiguredExpressionSetsSecurityPoliciesRequest();
         $response = $gapicClient->listPreconfiguredExpressionSets($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -792,8 +693,6 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/ListPreconfiguredExpressionSets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -815,10 +714,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListPreconfiguredExpressionSetsSecurityPoliciesRequest())
-            ->setProject($project);
+        $request = new ListPreconfiguredExpressionSetsSecurityPoliciesRequest();
         try {
             $gapicClient->listPreconfiguredExpressionSets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -857,14 +753,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyResource = new SecurityPolicy();
-        $request = (new PatchSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyResource($securityPolicyResource);
+        $request = new PatchSecurityPolicyRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -874,15 +763,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyResource();
-        $this->assertProtobufEquals($securityPolicyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -930,14 +812,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyResource = new SecurityPolicy();
-        $request = (new PatchSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyResource($securityPolicyResource);
+        $request = new PatchSecurityPolicyRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -983,14 +858,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyRuleResource = new SecurityPolicyRule();
-        $request = (new PatchRuleSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $request = new PatchRuleSecurityPolicyRequest();
         $response = $gapicClient->patchRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1000,15 +868,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/PatchRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyRuleResource();
-        $this->assertProtobufEquals($securityPolicyRuleResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1056,14 +917,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyRuleResource = new SecurityPolicyRule();
-        $request = (new PatchRuleSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $request = new PatchRuleSecurityPolicyRequest();
         $response = $gapicClient->patchRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1109,12 +963,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/removeRuleTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new RemoveRuleSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new RemoveRuleSecurityPolicyRequest();
         $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1124,13 +973,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/RemoveRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1178,12 +1022,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $request = (new RemoveRuleSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy);
+        $request = new RemoveRuleSecurityPolicyRequest();
         $response = $gapicClient->removeRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1229,14 +1068,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setLabelsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $request = (new SetLabelsSecurityPolicyRequest())
-            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
-            ->setProject($project)
-            ->setResource($resource);
+        $request = new SetLabelsSecurityPolicyRequest();
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1246,15 +1078,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/SetLabels', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getGlobalSetLabelsRequestResource();
-        $this->assertProtobufEquals($globalSetLabelsRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1302,14 +1127,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $request = (new SetLabelsSecurityPolicyRequest())
-            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
-            ->setProject($project)
-            ->setResource($resource);
+        $request = new SetLabelsSecurityPolicyRequest();
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1355,14 +1173,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/addRuleAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $securityPolicy = 'securityPolicy1781695249';
-        $securityPolicyRuleResource = new SecurityPolicyRule();
-        $request = (new AddRuleSecurityPolicyRequest())
-            ->setProject($project)
-            ->setSecurityPolicy($securityPolicy)
-            ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
+        $request = new AddRuleSecurityPolicyRequest();
         $response = $gapicClient->addRule($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1372,15 +1183,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.SecurityPolicies/AddRule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicy();
-        $this->assertProtobufEquals($securityPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getSecurityPolicyRuleResource();
-        $this->assertProtobufEquals($securityPolicyRuleResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

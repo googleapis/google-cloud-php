@@ -30,26 +30,21 @@ use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
 /**
  * Lists all of the per-instance configurations defined for the managed instance group. The orderBy query parameter is not supported.
  *
- * @param string $instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
- * @param string $project              Project ID for this request.
- * @param string $region               Name of the region scoping this request, should conform to RFC1035.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_per_instance_configs_sample(
-    string $instanceGroupManager,
-    string $project,
-    string $region
-): void {
+function list_per_instance_configs_sample(): void
+{
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionInstanceGroupManagersClient->listPerInstanceConfigs(
-            $instanceGroupManager,
-            $project,
-            $region
-        );
+        $response = $regionInstanceGroupManagersClient->listPerInstanceConfigs();
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -57,23 +52,5 @@ function list_per_instance_configs_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $instanceGroupManager = '[INSTANCE_GROUP_MANAGER]';
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-
-    list_per_instance_configs_sample($instanceGroupManager, $project, $region);
 }
 // [END compute_v1_generated_RegionInstanceGroupManagers_ListPerInstanceConfigs_sync]

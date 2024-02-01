@@ -23,8 +23,7 @@ class DeleteReleaseConfigRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The release config's name. Please see
-     *                     {@see DataformClient::releaseConfigName()} for help formatting this field.
+     * @param string $name Required. The release config's name.
      *
      * @return \Google\Cloud\Dataform\V1beta1\DeleteReleaseConfigRequest
      *

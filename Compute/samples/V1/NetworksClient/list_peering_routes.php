@@ -30,10 +30,13 @@ use Google\Cloud\Compute\V1\NetworksClient;
 /**
  * Lists the peering routes exchanged over peering connection.
  *
- * @param string $network Name of the network for this request.
- * @param string $project Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_peering_routes_sample(string $network, string $project): void
+function list_peering_routes_sample(): void
 {
     // Create a client.
     $networksClient = new NetworksClient();
@@ -41,7 +44,7 @@ function list_peering_routes_sample(string $network, string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networksClient->listPeeringRoutes($network, $project);
+        $response = $networksClient->listPeeringRoutes();
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
@@ -49,22 +52,5 @@ function list_peering_routes_sample(string $network, string $project): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $network = '[NETWORK]';
-    $project = '[PROJECT]';
-
-    list_peering_routes_sample($network, $project);
 }
 // [END compute_v1_generated_Networks_ListPeeringRoutes_sync]

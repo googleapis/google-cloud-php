@@ -26,31 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\TargetHttpProxiesClient;
-use Google\Cloud\Compute\V1\UrlMapReference;
 use Google\Rpc\Status;
 
 /**
  * Changes the URL map for TargetHttpProxy.
  *
- * @param string $project         Project ID for this request.
- * @param string $targetHttpProxy Name of the TargetHttpProxy to set a URL map for.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_url_map_sample(string $project, string $targetHttpProxy): void
+function set_url_map_sample(): void
 {
     // Create a client.
     $targetHttpProxiesClient = new TargetHttpProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $urlMapReferenceResource = new UrlMapReference();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetHttpProxiesClient->setUrlMap(
-            $project,
-            $targetHttpProxy,
-            $urlMapReferenceResource
-        );
+        $response = $targetHttpProxiesClient->setUrlMap();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -63,22 +58,5 @@ function set_url_map_sample(string $project, string $targetHttpProxy): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $targetHttpProxy = '[TARGET_HTTP_PROXY]';
-
-    set_url_map_sample($project, $targetHttpProxy);
 }
 // [END compute_v1_generated_TargetHttpProxies_SetUrlMap_sync]

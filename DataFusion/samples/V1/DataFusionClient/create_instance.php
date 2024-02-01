@@ -33,20 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new Data Fusion instance in the specified project and location.
  *
- * @param string $formattedParent The instance's project and location in the format
- *                                projects/{project}/locations/{location}. Please see
- *                                {@see DataFusionClient::locationName()} for help formatting this field.
- * @param string $instanceId      The name of the instance to create.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_instance_sample(string $formattedParent, string $instanceId): void
+function create_instance_sample(): void
 {
     // Create a client.
     $dataFusionClient = new DataFusionClient();
 
     // Prepare the request message.
-    $request = (new CreateInstanceRequest())
-        ->setParent($formattedParent)
-        ->setInstanceId($instanceId);
+    $request = new CreateInstanceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,22 +65,5 @@ function create_instance_sample(string $formattedParent, string $instanceId): vo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataFusionClient::locationName('[PROJECT]', '[LOCATION]');
-    $instanceId = '[INSTANCE_ID]';
-
-    create_instance_sample($formattedParent, $instanceId);
 }
 // [END datafusion_v1_generated_DataFusion_CreateInstance_sync]

@@ -30,10 +30,13 @@ use Google\Cloud\Compute\V1\InstanceTemplatesClient;
 /**
  * Returns the specified instance template.
  *
- * @param string $instanceTemplate The name of the instance template.
- * @param string $project          Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_sample(string $instanceTemplate, string $project): void
+function get_sample(): void
 {
     // Create a client.
     $instanceTemplatesClient = new InstanceTemplatesClient();
@@ -41,27 +44,10 @@ function get_sample(string $instanceTemplate, string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var InstanceTemplate $response */
-        $response = $instanceTemplatesClient->get($instanceTemplate, $project);
+        $response = $instanceTemplatesClient->get();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $instanceTemplate = '[INSTANCE_TEMPLATE]';
-    $project = '[PROJECT]';
-
-    get_sample($instanceTemplate, $project);
 }
 // [END compute_v1_generated_InstanceTemplates_Get_sync]

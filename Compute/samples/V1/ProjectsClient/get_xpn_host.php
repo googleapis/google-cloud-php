@@ -30,9 +30,13 @@ use Google\Cloud\Compute\V1\ProjectsClient;
 /**
  * Gets the shared VPC host project that this project links to. May be empty if no link exists.
  *
- * @param string $project Project ID for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_xpn_host_sample(string $project): void
+function get_xpn_host_sample(): void
 {
     // Create a client.
     $projectsClient = new ProjectsClient();
@@ -40,26 +44,10 @@ function get_xpn_host_sample(string $project): void
     // Call the API and handle any network failures.
     try {
         /** @var Project $response */
-        $response = $projectsClient->getXpnHost($project);
+        $response = $projectsClient->getXpnHost();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-
-    get_xpn_host_sample($project);
 }
 // [END compute_v1_generated_Projects_GetXpnHost_sync]

@@ -26,7 +26,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Debugger\V2\Breakpoint;
 use Google\Cloud\Debugger\V2\Client\Debugger2Client;
 use Google\Cloud\Debugger\V2\DeleteBreakpointRequest;
 use Google\Cloud\Debugger\V2\GetBreakpointRequest;
@@ -80,26 +79,13 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new DeleteBreakpointRequest())
-            ->setDebuggeeId($debuggeeId)
-            ->setBreakpointId($breakpointId)
-            ->setClientVersion($clientVersion);
+        $request = new DeleteBreakpointRequest();
         $gapicClient->deleteBreakpoint($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/DeleteBreakpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDebuggeeId();
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getBreakpointId();
-        $this->assertProtobufEquals($breakpointId, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -121,14 +107,7 @@ class Debugger2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new DeleteBreakpointRequest())
-            ->setDebuggeeId($debuggeeId)
-            ->setBreakpointId($breakpointId)
-            ->setClientVersion($clientVersion);
+        $request = new DeleteBreakpointRequest();
         try {
             $gapicClient->deleteBreakpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -153,14 +132,7 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GetBreakpointResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new GetBreakpointRequest())
-            ->setDebuggeeId($debuggeeId)
-            ->setBreakpointId($breakpointId)
-            ->setClientVersion($clientVersion);
+        $request = new GetBreakpointRequest();
         $response = $gapicClient->getBreakpoint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -168,12 +140,6 @@ class Debugger2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/GetBreakpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDebuggeeId();
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getBreakpointId();
-        $this->assertProtobufEquals($breakpointId, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -195,14 +161,7 @@ class Debugger2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new GetBreakpointRequest())
-            ->setDebuggeeId($debuggeeId)
-            ->setBreakpointId($breakpointId)
-            ->setClientVersion($clientVersion);
+        $request = new GetBreakpointRequest();
         try {
             $gapicClient->getBreakpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -229,12 +188,7 @@ class Debugger2ClientTest extends GeneratedTest
         $expectedResponse = new ListBreakpointsResponse();
         $expectedResponse->setNextWaitToken($nextWaitToken);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new ListBreakpointsRequest())
-            ->setDebuggeeId($debuggeeId)
-            ->setClientVersion($clientVersion);
+        $request = new ListBreakpointsRequest();
         $response = $gapicClient->listBreakpoints($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -242,10 +196,6 @@ class Debugger2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/ListBreakpoints', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDebuggeeId();
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -267,12 +217,7 @@ class Debugger2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new ListBreakpointsRequest())
-            ->setDebuggeeId($debuggeeId)
-            ->setClientVersion($clientVersion);
+        $request = new ListBreakpointsRequest();
         try {
             $gapicClient->listBreakpoints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -297,12 +242,7 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListDebuggeesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new ListDebuggeesRequest())
-            ->setProject($project)
-            ->setClientVersion($clientVersion);
+        $request = new ListDebuggeesRequest();
         $response = $gapicClient->listDebuggees($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -310,10 +250,6 @@ class Debugger2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/ListDebuggees', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -335,12 +271,7 @@ class Debugger2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new ListDebuggeesRequest())
-            ->setProject($project)
-            ->setClientVersion($clientVersion);
+        $request = new ListDebuggeesRequest();
         try {
             $gapicClient->listDebuggees($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -365,14 +296,7 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SetBreakpointResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpoint = new Breakpoint();
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new SetBreakpointRequest())
-            ->setDebuggeeId($debuggeeId)
-            ->setBreakpoint($breakpoint)
-            ->setClientVersion($clientVersion);
+        $request = new SetBreakpointRequest();
         $response = $gapicClient->setBreakpoint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -380,12 +304,6 @@ class Debugger2ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/SetBreakpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDebuggeeId();
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getBreakpoint();
-        $this->assertProtobufEquals($breakpoint, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -407,14 +325,7 @@ class Debugger2ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpoint = new Breakpoint();
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new SetBreakpointRequest())
-            ->setDebuggeeId($debuggeeId)
-            ->setBreakpoint($breakpoint)
-            ->setClientVersion($clientVersion);
+        $request = new SetBreakpointRequest();
         try {
             $gapicClient->setBreakpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -439,26 +350,13 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
-        $request = (new DeleteBreakpointRequest())
-            ->setDebuggeeId($debuggeeId)
-            ->setBreakpointId($breakpointId)
-            ->setClientVersion($clientVersion);
+        $request = new DeleteBreakpointRequest();
         $gapicClient->deleteBreakpointAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/DeleteBreakpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDebuggeeId();
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getBreakpointId();
-        $this->assertProtobufEquals($breakpointId, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-        $this->assertProtobufEquals($clientVersion, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

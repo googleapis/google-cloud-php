@@ -71,8 +71,7 @@ class ListRevisionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent in whose context the Revisions are listed. The parent
      *                       value is in the format:
-     *                       'projects/{project_id}/locations/{location}/deployments/{deployment}'. Please see
-     *                       {@see ConfigClient::deploymentName()} for help formatting this field.
+     *                       'projects/{project_id}/locations/{location}/deployments/{deployment}'.
      *
      * @return \Google\Cloud\Config\V1\ListRevisionsRequest
      *

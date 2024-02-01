@@ -33,14 +33,12 @@ use Google\Cloud\Compute\V1\ExternalVpnGatewayList;
 use Google\Cloud\Compute\V1\GetExternalVpnGatewayRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
-use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertExternalVpnGatewayRequest;
 use Google\Cloud\Compute\V1\ListExternalVpnGatewaysRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\SetLabelsExternalVpnGatewayRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsExternalVpnGatewayRequest;
-use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -98,12 +96,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $externalVpnGateway = 'externalVpnGateway-2037585019';
-        $project = 'project-309310695';
-        $request = (new DeleteExternalVpnGatewayRequest())
-            ->setExternalVpnGateway($externalVpnGateway)
-            ->setProject($project);
+        $request = new DeleteExternalVpnGatewayRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -113,13 +106,8 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getExternalVpnGateway();
-        $this->assertProtobufEquals($externalVpnGateway, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -167,12 +155,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $externalVpnGateway = 'externalVpnGateway-2037585019';
-        $project = 'project-309310695';
-        $request = (new DeleteExternalVpnGatewayRequest())
-            ->setExternalVpnGateway($externalVpnGateway)
-            ->setProject($project);
+        $request = new DeleteExternalVpnGatewayRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -220,12 +203,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setRedundancyType($redundancyType);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $externalVpnGateway = 'externalVpnGateway-2037585019';
-        $project = 'project-309310695';
-        $request = (new GetExternalVpnGatewayRequest())
-            ->setExternalVpnGateway($externalVpnGateway)
-            ->setProject($project);
+        $request = new GetExternalVpnGatewayRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -233,10 +211,6 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getExternalVpnGateway();
-        $this->assertProtobufEquals($externalVpnGateway, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -258,12 +232,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $externalVpnGateway = 'externalVpnGateway-2037585019';
-        $project = 'project-309310695';
-        $request = (new GetExternalVpnGatewayRequest())
-            ->setExternalVpnGateway($externalVpnGateway)
-            ->setProject($project);
+        $request = new GetExternalVpnGatewayRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -302,12 +271,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $externalVpnGatewayResource = new ExternalVpnGateway();
-        $project = 'project-309310695';
-        $request = (new InsertExternalVpnGatewayRequest())
-            ->setExternalVpnGatewayResource($externalVpnGatewayResource)
-            ->setProject($project);
+        $request = new InsertExternalVpnGatewayRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -317,13 +281,8 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getExternalVpnGatewayResource();
-        $this->assertProtobufEquals($externalVpnGatewayResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -371,12 +330,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $externalVpnGatewayResource = new ExternalVpnGateway();
-        $project = 'project-309310695';
-        $request = (new InsertExternalVpnGatewayRequest())
-            ->setExternalVpnGatewayResource($externalVpnGatewayResource)
-            ->setProject($project);
+        $request = new InsertExternalVpnGatewayRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -423,10 +377,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListExternalVpnGatewaysRequest())
-            ->setProject($project);
+        $request = new ListExternalVpnGatewaysRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -437,8 +388,6 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -460,10 +409,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListExternalVpnGatewaysRequest())
-            ->setProject($project);
+        $request = new ListExternalVpnGatewaysRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -502,14 +448,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setLabelsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $request = (new SetLabelsExternalVpnGatewayRequest())
-            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
-            ->setProject($project)
-            ->setResource($resource);
+        $request = new SetLabelsExternalVpnGatewayRequest();
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -519,15 +458,8 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/SetLabels', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getGlobalSetLabelsRequestResource();
-        $this->assertProtobufEquals($globalSetLabelsRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -575,14 +507,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $request = (new SetLabelsExternalVpnGatewayRequest())
-            ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
-            ->setProject($project)
-            ->setResource($resource);
+        $request = new SetLabelsExternalVpnGatewayRequest();
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -614,14 +539,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $request = (new TestIamPermissionsExternalVpnGatewayRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $request = new TestIamPermissionsExternalVpnGatewayRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -629,12 +547,6 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -656,14 +568,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $request = (new TestIamPermissionsExternalVpnGatewayRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
+        $request = new TestIamPermissionsExternalVpnGatewayRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -702,12 +607,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteAsyncTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $externalVpnGateway = 'externalVpnGateway-2037585019';
-        $project = 'project-309310695';
-        $request = (new DeleteExternalVpnGatewayRequest())
-            ->setExternalVpnGateway($externalVpnGateway)
-            ->setProject($project);
+        $request = new DeleteExternalVpnGatewayRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -717,13 +617,8 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getExternalVpnGateway();
-        $this->assertProtobufEquals($externalVpnGateway, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

@@ -33,7 +33,6 @@ use Google\Cloud\Dialogflow\Cx\V3\Generator;
 use Google\Cloud\Dialogflow\Cx\V3\GetGeneratorRequest;
 use Google\Cloud\Dialogflow\Cx\V3\ListGeneratorsRequest;
 use Google\Cloud\Dialogflow\Cx\V3\ListGeneratorsResponse;
-use Google\Cloud\Dialogflow\Cx\V3\Phrase;
 use Google\Cloud\Dialogflow\Cx\V3\UpdateGeneratorRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
@@ -88,16 +87,7 @@ class GeneratorsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
-        $generator = new Generator();
-        $generatorDisplayName = 'generatorDisplayName421654938';
-        $generator->setDisplayName($generatorDisplayName);
-        $generatorPromptText = new Phrase();
-        $promptTextText = 'promptTextText-1712080514';
-        $generatorPromptText->setText($promptTextText);
-        $generator->setPromptText($generatorPromptText);
-        $request = (new CreateGeneratorRequest())->setParent($formattedParent)->setGenerator($generator);
+        $request = new CreateGeneratorRequest();
         $response = $gapicClient->createGenerator($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -105,10 +95,6 @@ class GeneratorsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/CreateGenerator', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGenerator();
-        $this->assertProtobufEquals($generator, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -133,16 +119,7 @@ class GeneratorsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
-        $generator = new Generator();
-        $generatorDisplayName = 'generatorDisplayName421654938';
-        $generator->setDisplayName($generatorDisplayName);
-        $generatorPromptText = new Phrase();
-        $promptTextText = 'promptTextText-1712080514';
-        $generatorPromptText->setText($promptTextText);
-        $generator->setPromptText($generatorPromptText);
-        $request = (new CreateGeneratorRequest())->setParent($formattedParent)->setGenerator($generator);
+        $request = new CreateGeneratorRequest();
         try {
             $gapicClient->createGenerator($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -167,17 +144,13 @@ class GeneratorsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[AGENT]', '[GENERATOR]');
-        $request = (new DeleteGeneratorRequest())->setName($formattedName);
+        $request = new DeleteGeneratorRequest();
         $gapicClient->deleteGenerator($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/DeleteGenerator', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -202,9 +175,7 @@ class GeneratorsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[AGENT]', '[GENERATOR]');
-        $request = (new DeleteGeneratorRequest())->setName($formattedName);
+        $request = new DeleteGeneratorRequest();
         try {
             $gapicClient->deleteGenerator($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -233,9 +204,7 @@ class GeneratorsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[AGENT]', '[GENERATOR]');
-        $request = (new GetGeneratorRequest())->setName($formattedName);
+        $request = new GetGeneratorRequest();
         $response = $gapicClient->getGenerator($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -243,8 +212,6 @@ class GeneratorsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/GetGenerator', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -269,9 +236,7 @@ class GeneratorsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->generatorName('[PROJECT]', '[LOCATION]', '[AGENT]', '[GENERATOR]');
-        $request = (new GetGeneratorRequest())->setName($formattedName);
+        $request = new GetGeneratorRequest();
         try {
             $gapicClient->getGenerator($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -301,9 +266,7 @@ class GeneratorsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGenerators($generators);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
-        $request = (new ListGeneratorsRequest())->setParent($formattedParent);
+        $request = new ListGeneratorsRequest();
         $response = $gapicClient->listGenerators($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -314,8 +277,6 @@ class GeneratorsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/ListGenerators', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -340,9 +301,7 @@ class GeneratorsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
-        $request = (new ListGeneratorsRequest())->setParent($formattedParent);
+        $request = new ListGeneratorsRequest();
         try {
             $gapicClient->listGenerators($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -371,15 +330,7 @@ class GeneratorsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $generator = new Generator();
-        $generatorDisplayName = 'generatorDisplayName421654938';
-        $generator->setDisplayName($generatorDisplayName);
-        $generatorPromptText = new Phrase();
-        $promptTextText = 'promptTextText-1712080514';
-        $generatorPromptText->setText($promptTextText);
-        $generator->setPromptText($generatorPromptText);
-        $request = (new UpdateGeneratorRequest())->setGenerator($generator);
+        $request = new UpdateGeneratorRequest();
         $response = $gapicClient->updateGenerator($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -387,8 +338,6 @@ class GeneratorsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/UpdateGenerator', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGenerator();
-        $this->assertProtobufEquals($generator, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -413,15 +362,7 @@ class GeneratorsClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $generator = new Generator();
-        $generatorDisplayName = 'generatorDisplayName421654938';
-        $generator->setDisplayName($generatorDisplayName);
-        $generatorPromptText = new Phrase();
-        $promptTextText = 'promptTextText-1712080514';
-        $generatorPromptText->setText($promptTextText);
-        $generator->setPromptText($generatorPromptText);
-        $request = (new UpdateGeneratorRequest())->setGenerator($generator);
+        $request = new UpdateGeneratorRequest();
         try {
             $gapicClient->updateGenerator($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -578,16 +519,7 @@ class GeneratorsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
-        $generator = new Generator();
-        $generatorDisplayName = 'generatorDisplayName421654938';
-        $generator->setDisplayName($generatorDisplayName);
-        $generatorPromptText = new Phrase();
-        $promptTextText = 'promptTextText-1712080514';
-        $generatorPromptText->setText($promptTextText);
-        $generator->setPromptText($generatorPromptText);
-        $request = (new CreateGeneratorRequest())->setParent($formattedParent)->setGenerator($generator);
+        $request = new CreateGeneratorRequest();
         $response = $gapicClient->createGeneratorAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -595,10 +527,6 @@ class GeneratorsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.cx.v3.Generators/CreateGenerator', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGenerator();
-        $this->assertProtobufEquals($generator, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

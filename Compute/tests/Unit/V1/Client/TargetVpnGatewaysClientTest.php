@@ -36,7 +36,6 @@ use Google\Cloud\Compute\V1\ListTargetVpnGatewaysRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
-use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
 use Google\Cloud\Compute\V1\SetLabelsTargetVpnGatewayRequest;
 use Google\Cloud\Compute\V1\TargetVpnGateway;
 use Google\Cloud\Compute\V1\TargetVpnGatewayAggregatedList;
@@ -96,10 +95,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListTargetVpnGatewaysRequest())
-            ->setProject($project);
+        $request = new AggregatedListTargetVpnGatewaysRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -112,8 +108,6 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetVpnGateways/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -135,10 +129,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListTargetVpnGatewaysRequest())
-            ->setProject($project);
+        $request = new AggregatedListTargetVpnGatewaysRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -177,14 +168,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetVpnGateway = 'targetVpnGateway-4358069';
-        $request = (new DeleteTargetVpnGatewayRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetVpnGateway($targetVpnGateway);
+        $request = new DeleteTargetVpnGatewayRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -194,16 +178,8 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetVpnGateways/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetVpnGateway();
-        $this->assertProtobufEquals($targetVpnGateway, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -251,14 +227,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetVpnGateway = 'targetVpnGateway-4358069';
-        $request = (new DeleteTargetVpnGatewayRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetVpnGateway($targetVpnGateway);
+        $request = new DeleteTargetVpnGatewayRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -310,14 +279,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setStatus($status);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetVpnGateway = 'targetVpnGateway-4358069';
-        $request = (new GetTargetVpnGatewayRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetVpnGateway($targetVpnGateway);
+        $request = new GetTargetVpnGatewayRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -325,12 +287,6 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetVpnGateways/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getTargetVpnGateway();
-        $this->assertProtobufEquals($targetVpnGateway, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -352,14 +308,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetVpnGateway = 'targetVpnGateway-4358069';
-        $request = (new GetTargetVpnGatewayRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetVpnGateway($targetVpnGateway);
+        $request = new GetTargetVpnGatewayRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -398,14 +347,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetVpnGatewayResource = new TargetVpnGateway();
-        $request = (new InsertTargetVpnGatewayRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetVpnGatewayResource($targetVpnGatewayResource);
+        $request = new InsertTargetVpnGatewayRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -415,16 +357,8 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetVpnGateways/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetVpnGatewayResource();
-        $this->assertProtobufEquals($targetVpnGatewayResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -472,14 +406,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetVpnGatewayResource = new TargetVpnGateway();
-        $request = (new InsertTargetVpnGatewayRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetVpnGatewayResource($targetVpnGatewayResource);
+        $request = new InsertTargetVpnGatewayRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -524,12 +451,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListTargetVpnGatewaysRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListTargetVpnGatewaysRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -540,10 +462,6 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetVpnGateways/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -565,12 +483,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListTargetVpnGatewaysRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListTargetVpnGatewaysRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -609,16 +522,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setLabelsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
-        $resource = 'resource-341064690';
-        $request = (new SetLabelsTargetVpnGatewayRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource)
-            ->setResource($resource);
+        $request = new SetLabelsTargetVpnGatewayRequest();
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -628,18 +532,8 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetVpnGateways/SetLabels', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegionSetLabelsRequestResource();
-        $this->assertProtobufEquals($regionSetLabelsRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -687,16 +581,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
-        $resource = 'resource-341064690';
-        $request = (new SetLabelsTargetVpnGatewayRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource)
-            ->setResource($resource);
+        $request = new SetLabelsTargetVpnGatewayRequest();
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -740,10 +625,7 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListTargetVpnGatewaysRequest())
-            ->setProject($project);
+        $request = new AggregatedListTargetVpnGatewaysRequest();
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -756,8 +638,6 @@ class TargetVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetVpnGateways/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

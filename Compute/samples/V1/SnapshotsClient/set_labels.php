@@ -25,28 +25,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Snapshots_SetLabels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\SnapshotsClient;
 use Google\Rpc\Status;
 
 /**
  * Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation.
  *
- * @param string $project  Project ID for this request.
- * @param string $resource Name or id of the resource for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_labels_sample(string $project, string $resource): void
+function set_labels_sample(): void
 {
     // Create a client.
     $snapshotsClient = new SnapshotsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $snapshotsClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+        $response = $snapshotsClient->setLabels();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -59,22 +58,5 @@ function set_labels_sample(string $project, string $resource): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $project = '[PROJECT]';
-    $resource = '[RESOURCE]';
-
-    set_labels_sample($project, $resource);
 }
 // [END compute_v1_generated_Snapshots_SetLabels_sync]

@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Container\V1\Client\ClusterManagerClient;
 use Google\Cloud\Container\V1\CreateNodePoolRequest;
-use Google\Cloud\Container\V1\NodePool;
 use Google\Cloud\Container\V1\Operation;
 
 /**
@@ -44,9 +43,7 @@ function create_node_pool_sample(): void
     $clusterManagerClient = new ClusterManagerClient();
 
     // Prepare the request message.
-    $nodePool = new NodePool();
-    $request = (new CreateNodePoolRequest())
-        ->setNodePool($nodePool);
+    $request = new CreateNodePoolRequest();
 
     // Call the API and handle any network failures.
     try {

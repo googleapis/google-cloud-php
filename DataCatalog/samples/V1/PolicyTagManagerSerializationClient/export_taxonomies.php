@@ -36,24 +36,19 @@ use Google\Cloud\DataCatalog\V1\ExportTaxonomiesResponse;
  * This method generates `SerializedTaxonomy` protocol buffers with nested
  * policy tags that can be used as input for `ImportTaxonomies` calls.
  *
- * @param string $formattedParent            Resource name of the project that the exported taxonomies belong
- *                                           to. Please see
- *                                           {@see PolicyTagManagerSerializationClient::locationName()} for help formatting this field.
- * @param string $formattedTaxonomiesElement Resource names of the taxonomies to export. Please see
- *                                           {@see PolicyTagManagerSerializationClient::taxonomyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function export_taxonomies_sample(
-    string $formattedParent,
-    string $formattedTaxonomiesElement
-): void {
+function export_taxonomies_sample(): void
+{
     // Create a client.
     $policyTagManagerSerializationClient = new PolicyTagManagerSerializationClient();
 
     // Prepare the request message.
-    $formattedTaxonomies = [$formattedTaxonomiesElement,];
-    $request = (new ExportTaxonomiesRequest())
-        ->setParent($formattedParent)
-        ->setTaxonomies($formattedTaxonomies);
+    $request = new ExportTaxonomiesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,26 +58,5 @@ function export_taxonomies_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = PolicyTagManagerSerializationClient::locationName('[PROJECT]', '[LOCATION]');
-    $formattedTaxonomiesElement = PolicyTagManagerSerializationClient::taxonomyName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[TAXONOMY]'
-    );
-
-    export_taxonomies_sample($formattedParent, $formattedTaxonomiesElement);
 }
 // [END datacatalog_v1_generated_PolicyTagManagerSerialization_ExportTaxonomies_sync]

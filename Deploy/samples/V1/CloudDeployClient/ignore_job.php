@@ -31,22 +31,19 @@ use Google\Cloud\Deploy\V1\IgnoreJobResponse;
 /**
  * Ignores the specified Job in a Rollout.
  *
- * @param string $formattedRollout Name of the Rollout. Format is
- *                                 `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
- *                                 {@see CloudDeployClient::rolloutName()} for help formatting this field.
- * @param string $phaseId          The phase ID the Job to ignore belongs to.
- * @param string $jobId            The job ID for the Job to ignore.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function ignore_job_sample(string $formattedRollout, string $phaseId, string $jobId): void
+function ignore_job_sample(): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = (new IgnoreJobRequest())
-        ->setRollout($formattedRollout)
-        ->setPhaseId($phaseId)
-        ->setJobId($jobId);
+    $request = new IgnoreJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,29 +53,5 @@ function ignore_job_sample(string $formattedRollout, string $phaseId, string $jo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedRollout = CloudDeployClient::rolloutName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DELIVERY_PIPELINE]',
-        '[RELEASE]',
-        '[ROLLOUT]'
-    );
-    $phaseId = '[PHASE_ID]';
-    $jobId = '[JOB_ID]';
-
-    ignore_job_sample($formattedRollout, $phaseId, $jobId);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_IgnoreJob_sync]

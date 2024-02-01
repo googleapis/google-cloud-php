@@ -58,8 +58,7 @@ class ListAutomationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent `Delivery Pipeline`, which owns this collection of
      *                       automations. Format must be
-     *                       `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
-     *                       {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
+     *                       `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * @return \Google\Cloud\Deploy\V1\ListAutomationsRequest
      *

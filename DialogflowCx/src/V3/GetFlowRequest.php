@@ -44,8 +44,7 @@ class GetFlowRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the flow to get.
      *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/flows/<Flow ID>`. Please see
-     *                     {@see FlowsClient::flowName()} for help formatting this field.
+     *                     ID>/flows/<Flow ID>`.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetFlowRequest
      *

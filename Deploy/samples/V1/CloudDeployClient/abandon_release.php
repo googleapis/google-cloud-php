@@ -31,18 +31,19 @@ use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
 /**
  * Abandons a Release in the Delivery Pipeline.
  *
- * @param string $formattedName Name of the Release. Format is
- *                              `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`. Please see
- *                              {@see CloudDeployClient::releaseName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function abandon_release_sample(string $formattedName): void
+function abandon_release_sample(): void
 {
     // Create a client.
     $cloudDeployClient = new CloudDeployClient();
 
     // Prepare the request message.
-    $request = (new AbandonReleaseRequest())
-        ->setName($formattedName);
+    $request = new AbandonReleaseRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,26 +53,5 @@ function abandon_release_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudDeployClient::releaseName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DELIVERY_PIPELINE]',
-        '[RELEASE]'
-    );
-
-    abandon_release_sample($formattedName);
 }
 // [END clouddeploy_v1_generated_CloudDeploy_AbandonRelease_sync]

@@ -31,11 +31,13 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified NodeGroup resource.
  *
- * @param string $nodeGroup Name of the NodeGroup resource to delete.
- * @param string $project   Project ID for this request.
- * @param string $zone      The name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_sample(string $nodeGroup, string $project, string $zone): void
+function delete_sample(): void
 {
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
@@ -43,7 +45,7 @@ function delete_sample(string $nodeGroup, string $project, string $zone): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeGroupsClient->delete($nodeGroup, $project, $zone);
+        $response = $nodeGroupsClient->delete();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -56,23 +58,5 @@ function delete_sample(string $nodeGroup, string $project, string $zone): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $nodeGroup = '[NODE_GROUP]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    delete_sample($nodeGroup, $project, $zone);
 }
 // [END compute_v1_generated_NodeGroups_Delete_sync]

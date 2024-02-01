@@ -70,8 +70,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $policyTagManagerClient = new PolicyTagManagerClient();
  * try {
- *     $formattedParent = $policyTagManagerClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
- *     $response = $policyTagManagerClient->createPolicyTag($formattedParent);
+ *     $response = $policyTagManagerClient->createPolicyTag();
  * } finally {
  *     $policyTagManagerClient->close();
  * }
@@ -346,17 +345,17 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $formattedParent = $policyTagManagerClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
-     *     $response = $policyTagManagerClient->createPolicyTag($formattedParent);
+     *     $response = $policyTagManagerClient->createPolicyTag();
      * } finally {
      *     $policyTagManagerClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the taxonomy that the policy tag will belong to.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the taxonomy that the policy tag will belong to.
      *     @type PolicyTag $policyTag
      *           The policy tag to create.
      *     @type RetrySettings|array $retrySettings
@@ -369,12 +368,15 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createPolicyTag($parent, array $optionalArgs = [])
+    public function createPolicyTag(array $optionalArgs = [])
     {
         $request = new CreatePolicyTagRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['policyTag'])) {
             $request->setPolicyTag($optionalArgs['policyTag']);
         }
@@ -393,17 +395,17 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $formattedParent = $policyTagManagerClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $response = $policyTagManagerClient->createTaxonomy($formattedParent);
+     *     $response = $policyTagManagerClient->createTaxonomy();
      * } finally {
      *     $policyTagManagerClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the project that the taxonomy will belong to.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the project that the taxonomy will belong to.
      *     @type Taxonomy $taxonomy
      *           The taxonomy to create.
      *     @type RetrySettings|array $retrySettings
@@ -416,12 +418,15 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTaxonomy($parent, array $optionalArgs = [])
+    public function createTaxonomy(array $optionalArgs = [])
     {
         $request = new CreateTaxonomyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['taxonomy'])) {
             $request->setTaxonomy($optionalArgs['taxonomy']);
         }
@@ -443,19 +448,19 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $formattedName = $policyTagManagerClient->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
-     *     $policyTagManagerClient->deletePolicyTag($formattedName);
+     *     $policyTagManagerClient->deletePolicyTag();
      * } finally {
      *     $policyTagManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the policy tag to delete.
-     *
-     *                             Note: All of its descendant policy tags are also deleted.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the policy tag to delete.
+     *
+     *           Note: All of its descendant policy tags are also deleted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -464,12 +469,15 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePolicyTag($name, array $optionalArgs = [])
+    public function deletePolicyTag(array $optionalArgs = [])
     {
         $request = new DeletePolicyTagRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeletePolicyTag', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -484,19 +492,19 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $formattedName = $policyTagManagerClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
-     *     $policyTagManagerClient->deleteTaxonomy($formattedName);
+     *     $policyTagManagerClient->deleteTaxonomy();
      * } finally {
      *     $policyTagManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the taxonomy to delete.
-     *
-     *                             Note: All policy tags in this taxonomy are also deleted.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the taxonomy to delete.
+     *
+     *           Note: All policy tags in this taxonomy are also deleted.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -505,12 +513,15 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTaxonomy($name, array $optionalArgs = [])
+    public function deleteTaxonomy(array $optionalArgs = [])
     {
         $request = new DeleteTaxonomyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteTaxonomy', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -523,18 +534,18 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $policyTagManagerClient->getIamPolicy($resource);
+     *     $response = $policyTagManagerClient->getIamPolicy();
      * } finally {
      *     $policyTagManagerClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -548,12 +559,15 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -570,17 +584,17 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $formattedName = $policyTagManagerClient->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
-     *     $response = $policyTagManagerClient->getPolicyTag($formattedName);
+     *     $response = $policyTagManagerClient->getPolicyTag();
      * } finally {
      *     $policyTagManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the policy tag.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the policy tag.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -591,12 +605,15 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPolicyTag($name, array $optionalArgs = [])
+    public function getPolicyTag(array $optionalArgs = [])
     {
         $request = new GetPolicyTagRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetPolicyTag', PolicyTag::class, $optionalArgs, $request)->wait();
@@ -609,17 +626,17 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $formattedName = $policyTagManagerClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
-     *     $response = $policyTagManagerClient->getTaxonomy($formattedName);
+     *     $response = $policyTagManagerClient->getTaxonomy();
      * } finally {
      *     $policyTagManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the taxonomy to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name of the taxonomy to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -630,12 +647,15 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTaxonomy($name, array $optionalArgs = [])
+    public function getTaxonomy(array $optionalArgs = [])
     {
         $request = new GetTaxonomyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetTaxonomy', Taxonomy::class, $optionalArgs, $request)->wait();
@@ -648,9 +668,8 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $formattedParent = $policyTagManagerClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $policyTagManagerClient->listPolicyTags($formattedParent);
+     *     $pagedResponse = $policyTagManagerClient->listPolicyTags();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -658,7 +677,7 @@ class PolicyTagManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $policyTagManagerClient->listPolicyTags($formattedParent);
+     *     $pagedResponse = $policyTagManagerClient->listPolicyTags();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -667,10 +686,11 @@ class PolicyTagManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the taxonomy to list the policy tags of.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the taxonomy to list the policy tags of.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -690,12 +710,15 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPolicyTags($parent, array $optionalArgs = [])
+    public function listPolicyTags(array $optionalArgs = [])
     {
         $request = new ListPolicyTagsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -717,9 +740,8 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $formattedParent = $policyTagManagerClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $policyTagManagerClient->listTaxonomies($formattedParent);
+     *     $pagedResponse = $policyTagManagerClient->listTaxonomies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -727,7 +749,7 @@ class PolicyTagManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $policyTagManagerClient->listTaxonomies($formattedParent);
+     *     $pagedResponse = $policyTagManagerClient->listTaxonomies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -736,10 +758,11 @@ class PolicyTagManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the project to list the taxonomies of.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the project to list the taxonomies of.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -762,12 +785,15 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTaxonomies($parent, array $optionalArgs = [])
+    public function listTaxonomies(array $optionalArgs = [])
     {
         $request = new ListTaxonomiesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -792,23 +818,23 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $policyTagManagerClient->setIamPolicy($resource, $policy);
+     *     $response = $policyTagManagerClient->setIamPolicy();
      * } finally {
      *     $policyTagManagerClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -825,13 +851,19 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -849,23 +881,23 @@ class PolicyTagManagerGapicClient
      * ```
      * $policyTagManagerClient = new PolicyTagManagerClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $policyTagManagerClient->testIamPermissions($resource, $permissions);
+     *     $response = $policyTagManagerClient->testIamPermissions();
      * } finally {
      *     $policyTagManagerClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -876,13 +908,19 @@ class PolicyTagManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();

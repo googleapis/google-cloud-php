@@ -31,11 +31,13 @@ use Google\Rpc\Status;
 /**
  * Stops asynchronous replication. Can be invoked either on the primary or on the secondary disk.
  *
- * @param string $disk    The name of the persistent disk.
- * @param string $project Project ID for this request.
- * @param string $zone    The name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function stop_async_replication_sample(string $disk, string $project, string $zone): void
+function stop_async_replication_sample(): void
 {
     // Create a client.
     $disksClient = new DisksClient();
@@ -43,7 +45,7 @@ function stop_async_replication_sample(string $disk, string $project, string $zo
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $disksClient->stopAsyncReplication($disk, $project, $zone);
+        $response = $disksClient->stopAsyncReplication();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -56,23 +58,5 @@ function stop_async_replication_sample(string $disk, string $project, string $zo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $disk = '[DISK]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    stop_async_replication_sample($disk, $project, $zone);
 }
 // [END compute_v1_generated_Disks_StopAsyncReplication_sync]

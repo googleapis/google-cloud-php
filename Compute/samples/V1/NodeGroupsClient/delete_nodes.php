@@ -26,33 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\NodeGroupsClient;
-use Google\Cloud\Compute\V1\NodeGroupsDeleteNodesRequest;
 use Google\Rpc\Status;
 
 /**
  * Deletes specified nodes from the node group.
  *
- * @param string $nodeGroup Name of the NodeGroup resource whose nodes will be deleted.
- * @param string $project   Project ID for this request.
- * @param string $zone      The name of the zone for this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_nodes_sample(string $nodeGroup, string $project, string $zone): void
+function delete_nodes_sample(): void
 {
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $nodeGroupsDeleteNodesRequestResource = new NodeGroupsDeleteNodesRequest();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeGroupsClient->deleteNodes(
-            $nodeGroup,
-            $nodeGroupsDeleteNodesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $nodeGroupsClient->deleteNodes();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -65,23 +58,5 @@ function delete_nodes_sample(string $nodeGroup, string $project, string $zone): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $nodeGroup = '[NODE_GROUP]';
-    $project = '[PROJECT]';
-    $zone = '[ZONE]';
-
-    delete_nodes_sample($nodeGroup, $project, $zone);
 }
 // [END compute_v1_generated_NodeGroups_DeleteNodes_sync]

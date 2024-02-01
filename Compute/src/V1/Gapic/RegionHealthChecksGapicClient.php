@@ -53,10 +53,7 @@ use Google\Cloud\Compute\V1\UpdateRegionHealthCheckRequest;
  * ```
  * $regionHealthChecksClient = new RegionHealthChecksClient();
  * try {
- *     $healthCheck = 'health_check';
- *     $project = 'project';
- *     $region = 'region';
- *     $operationResponse = $regionHealthChecksClient->delete($healthCheck, $project, $region);
+ *     $operationResponse = $regionHealthChecksClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -66,7 +63,7 @@ use Google\Cloud\Compute\V1\UpdateRegionHealthCheckRequest;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionHealthChecksClient->delete($healthCheck, $project, $region);
+ *     $operationResponse = $regionHealthChecksClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionHealthChecksClient->resumeOperation($operationName, 'delete');
@@ -166,10 +163,7 @@ class RegionHealthChecksGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -265,10 +259,7 @@ class RegionHealthChecksGapicClient
      * ```
      * $regionHealthChecksClient = new RegionHealthChecksClient();
      * try {
-     *     $healthCheck = 'health_check';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $operationResponse = $regionHealthChecksClient->delete($healthCheck, $project, $region);
+     *     $operationResponse = $regionHealthChecksClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -278,7 +269,7 @@ class RegionHealthChecksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionHealthChecksClient->delete($healthCheck, $project, $region);
+     *     $operationResponse = $regionHealthChecksClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionHealthChecksClient->resumeOperation($operationName, 'delete');
@@ -297,12 +288,15 @@ class RegionHealthChecksGapicClient
      * }
      * ```
      *
-     * @param string $healthCheck  Name of the HealthCheck resource to delete.
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $healthCheck
+     *           Name of the HealthCheck resource to delete.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -315,16 +309,25 @@ class RegionHealthChecksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($healthCheck, $project, $region, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteRegionHealthCheckRequest();
         $requestParamHeaders = [];
-        $request->setHealthCheck($healthCheck);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['health_check'] = $healthCheck;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['healthCheck'])) {
+            $request->setHealthCheck($optionalArgs['healthCheck']);
+            $requestParamHeaders['health_check'] = $optionalArgs['healthCheck'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -341,21 +344,21 @@ class RegionHealthChecksGapicClient
      * ```
      * $regionHealthChecksClient = new RegionHealthChecksClient();
      * try {
-     *     $healthCheck = 'health_check';
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $response = $regionHealthChecksClient->get($healthCheck, $project, $region);
+     *     $response = $regionHealthChecksClient->get();
      * } finally {
      *     $regionHealthChecksClient->close();
      * }
      * ```
      *
-     * @param string $healthCheck  Name of the HealthCheck resource to return.
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $healthCheck
+     *           Name of the HealthCheck resource to return.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -366,16 +369,25 @@ class RegionHealthChecksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($healthCheck, $project, $region, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetRegionHealthCheckRequest();
         $requestParamHeaders = [];
-        $request->setHealthCheck($healthCheck);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['health_check'] = $healthCheck;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['healthCheck'])) {
+            $request->setHealthCheck($optionalArgs['healthCheck']);
+            $requestParamHeaders['health_check'] = $optionalArgs['healthCheck'];
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', HealthCheck::class, $optionalArgs, $request)->wait();
@@ -388,10 +400,7 @@ class RegionHealthChecksGapicClient
      * ```
      * $regionHealthChecksClient = new RegionHealthChecksClient();
      * try {
-     *     $healthCheckResource = new HealthCheck();
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $operationResponse = $regionHealthChecksClient->insert($healthCheckResource, $project, $region);
+     *     $operationResponse = $regionHealthChecksClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -401,7 +410,7 @@ class RegionHealthChecksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionHealthChecksClient->insert($healthCheckResource, $project, $region);
+     *     $operationResponse = $regionHealthChecksClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionHealthChecksClient->resumeOperation($operationName, 'insert');
@@ -420,12 +429,15 @@ class RegionHealthChecksGapicClient
      * }
      * ```
      *
-     * @param HealthCheck $healthCheckResource The body resource for this request
-     * @param string      $project             Project ID for this request.
-     * @param string      $region              Name of the region scoping this request.
-     * @param array       $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type HealthCheck $healthCheckResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -438,15 +450,24 @@ class RegionHealthChecksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($healthCheckResource, $project, $region, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertRegionHealthCheckRequest();
         $requestParamHeaders = [];
-        $request->setHealthCheckResource($healthCheckResource);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['healthCheckResource'])) {
+            $request->setHealthCheckResource($optionalArgs['healthCheckResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -463,10 +484,8 @@ class RegionHealthChecksGapicClient
      * ```
      * $regionHealthChecksClient = new RegionHealthChecksClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionHealthChecksClient->list($project, $region);
+     *     $pagedResponse = $regionHealthChecksClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -474,7 +493,7 @@ class RegionHealthChecksGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionHealthChecksClient->list($project, $region);
+     *     $pagedResponse = $regionHealthChecksClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -483,9 +502,7 @@ class RegionHealthChecksGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -499,6 +516,10 @@ class RegionHealthChecksGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -511,14 +532,10 @@ class RegionHealthChecksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, $region, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListRegionHealthChecksRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -533,6 +550,16 @@ class RegionHealthChecksGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -551,11 +578,7 @@ class RegionHealthChecksGapicClient
      * ```
      * $regionHealthChecksClient = new RegionHealthChecksClient();
      * try {
-     *     $healthCheck = 'health_check';
-     *     $healthCheckResource = new HealthCheck();
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $operationResponse = $regionHealthChecksClient->patch($healthCheck, $healthCheckResource, $project, $region);
+     *     $operationResponse = $regionHealthChecksClient->patch();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -565,7 +588,7 @@ class RegionHealthChecksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionHealthChecksClient->patch($healthCheck, $healthCheckResource, $project, $region);
+     *     $operationResponse = $regionHealthChecksClient->patch();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionHealthChecksClient->resumeOperation($operationName, 'patch');
@@ -584,13 +607,17 @@ class RegionHealthChecksGapicClient
      * }
      * ```
      *
-     * @param string      $healthCheck         Name of the HealthCheck resource to patch.
-     * @param HealthCheck $healthCheckResource The body resource for this request
-     * @param string      $project             Project ID for this request.
-     * @param string      $region              Name of the region scoping this request.
-     * @param array       $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $healthCheck
+     *           Name of the HealthCheck resource to patch.
+     *     @type HealthCheck $healthCheckResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -603,17 +630,29 @@ class RegionHealthChecksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function patch($healthCheck, $healthCheckResource, $project, $region, array $optionalArgs = [])
+    public function patch(array $optionalArgs = [])
     {
         $request = new PatchRegionHealthCheckRequest();
         $requestParamHeaders = [];
-        $request->setHealthCheck($healthCheck);
-        $request->setHealthCheckResource($healthCheckResource);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['health_check'] = $healthCheck;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['healthCheck'])) {
+            $request->setHealthCheck($optionalArgs['healthCheck']);
+            $requestParamHeaders['health_check'] = $optionalArgs['healthCheck'];
+        }
+
+        if (isset($optionalArgs['healthCheckResource'])) {
+            $request->setHealthCheckResource($optionalArgs['healthCheckResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -630,11 +669,7 @@ class RegionHealthChecksGapicClient
      * ```
      * $regionHealthChecksClient = new RegionHealthChecksClient();
      * try {
-     *     $healthCheck = 'health_check';
-     *     $healthCheckResource = new HealthCheck();
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $operationResponse = $regionHealthChecksClient->update($healthCheck, $healthCheckResource, $project, $region);
+     *     $operationResponse = $regionHealthChecksClient->update();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -644,7 +679,7 @@ class RegionHealthChecksGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionHealthChecksClient->update($healthCheck, $healthCheckResource, $project, $region);
+     *     $operationResponse = $regionHealthChecksClient->update();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionHealthChecksClient->resumeOperation($operationName, 'update');
@@ -663,13 +698,17 @@ class RegionHealthChecksGapicClient
      * }
      * ```
      *
-     * @param string      $healthCheck         Name of the HealthCheck resource to update.
-     * @param HealthCheck $healthCheckResource The body resource for this request
-     * @param string      $project             Project ID for this request.
-     * @param string      $region              Name of the region scoping this request.
-     * @param array       $optionalArgs        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $healthCheck
+     *           Name of the HealthCheck resource to update.
+     *     @type HealthCheck $healthCheckResource
+     *           The body resource for this request
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -682,17 +721,29 @@ class RegionHealthChecksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function update($healthCheck, $healthCheckResource, $project, $region, array $optionalArgs = [])
+    public function update(array $optionalArgs = [])
     {
         $request = new UpdateRegionHealthCheckRequest();
         $requestParamHeaders = [];
-        $request->setHealthCheck($healthCheck);
-        $request->setHealthCheckResource($healthCheckResource);
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['health_check'] = $healthCheck;
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['healthCheck'])) {
+            $request->setHealthCheck($optionalArgs['healthCheck']);
+            $requestParamHeaders['health_check'] = $optionalArgs['healthCheck'];
+        }
+
+        if (isset($optionalArgs['healthCheckResource'])) {
+            $request->setHealthCheckResource($optionalArgs['healthCheckResource']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

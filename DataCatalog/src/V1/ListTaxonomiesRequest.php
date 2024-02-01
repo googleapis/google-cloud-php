@@ -46,8 +46,7 @@ class ListTaxonomiesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
-     * @param string $parent Required. Resource name of the project to list the taxonomies of. Please see
-     *                       {@see PolicyTagManagerClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Resource name of the project to list the taxonomies of.
      *
      * @return \Google\Cloud\DataCatalog\V1\ListTaxonomiesRequest
      *

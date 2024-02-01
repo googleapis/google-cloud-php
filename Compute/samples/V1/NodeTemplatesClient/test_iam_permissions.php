@@ -25,41 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeTemplates_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\NodeTemplatesClient;
-use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 
 /**
  * Returns permissions that a caller has on the specified resource.
- *
- * @param string $project  Project ID for this request.
- * @param string $region   The name of the region for this request.
- * @param string $resource Name or id of the resource for this request.
- */
-function test_iam_permissions_sample(string $project, string $region, string $resource): void
-{
-    // Create a client.
-    $nodeTemplatesClient = new NodeTemplatesClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $testPermissionsRequestResource = new TestPermissionsRequest();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var TestPermissionsResponse $response */
-        $response = $nodeTemplatesClient->testIamPermissions(
-            $project,
-            $region,
-            $resource,
-            $testPermissionsRequestResource
-        );
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -67,12 +36,18 @@ function test_iam_permissions_sample(string $project, string $region, string $re
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function test_iam_permissions_sample(): void
 {
-    $project = '[PROJECT]';
-    $region = '[REGION]';
-    $resource = '[RESOURCE]';
+    // Create a client.
+    $nodeTemplatesClient = new NodeTemplatesClient();
 
-    test_iam_permissions_sample($project, $region, $resource);
+    // Call the API and handle any network failures.
+    try {
+        /** @var TestPermissionsResponse $response */
+        $response = $nodeTemplatesClient->testIamPermissions();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END compute_v1_generated_NodeTemplates_TestIamPermissions_sync]

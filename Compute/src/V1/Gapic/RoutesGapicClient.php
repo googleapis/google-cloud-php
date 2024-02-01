@@ -51,9 +51,7 @@ use Google\Cloud\Compute\V1\RouteList;
  * ```
  * $routesClient = new RoutesClient();
  * try {
- *     $project = 'project';
- *     $route = 'route';
- *     $operationResponse = $routesClient->delete($project, $route);
+ *     $operationResponse = $routesClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -63,7 +61,7 @@ use Google\Cloud\Compute\V1\RouteList;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $routesClient->delete($project, $route);
+ *     $operationResponse = $routesClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $routesClient->resumeOperation($operationName, 'delete');
@@ -163,9 +161,7 @@ class RoutesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -261,9 +257,7 @@ class RoutesGapicClient
      * ```
      * $routesClient = new RoutesClient();
      * try {
-     *     $project = 'project';
-     *     $route = 'route';
-     *     $operationResponse = $routesClient->delete($project, $route);
+     *     $operationResponse = $routesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -273,7 +267,7 @@ class RoutesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $routesClient->delete($project, $route);
+     *     $operationResponse = $routesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $routesClient->resumeOperation($operationName, 'delete');
@@ -292,13 +286,15 @@ class RoutesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $route        Name of the Route resource to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $route
+     *           Name of the Route resource to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -309,16 +305,22 @@ class RoutesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($project, $route, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteRouteRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRoute($route);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['route'] = $route;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['route'])) {
+            $request->setRoute($optionalArgs['route']);
+            $requestParamHeaders['route'] = $optionalArgs['route'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -333,19 +335,19 @@ class RoutesGapicClient
      * ```
      * $routesClient = new RoutesClient();
      * try {
-     *     $project = 'project';
-     *     $route = 'route';
-     *     $response = $routesClient->get($project, $route);
+     *     $response = $routesClient->get();
      * } finally {
      *     $routesClient->close();
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $route        Name of the Route resource to return.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $route
+     *           Name of the Route resource to return.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -356,14 +358,20 @@ class RoutesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($project, $route, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetRouteRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRoute($route);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['route'] = $route;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['route'])) {
+            $request->setRoute($optionalArgs['route']);
+            $requestParamHeaders['route'] = $optionalArgs['route'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Route::class, $optionalArgs, $request)->wait();
@@ -376,9 +384,7 @@ class RoutesGapicClient
      * ```
      * $routesClient = new RoutesClient();
      * try {
-     *     $project = 'project';
-     *     $routeResource = new Route();
-     *     $operationResponse = $routesClient->insert($project, $routeResource);
+     *     $operationResponse = $routesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -388,7 +394,7 @@ class RoutesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $routesClient->insert($project, $routeResource);
+     *     $operationResponse = $routesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $routesClient->resumeOperation($operationName, 'insert');
@@ -407,13 +413,15 @@ class RoutesGapicClient
      * }
      * ```
      *
-     * @param string $project       Project ID for this request.
-     * @param Route  $routeResource The body resource for this request
-     * @param array  $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type Route $routeResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -424,15 +432,21 @@ class RoutesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($project, $routeResource, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertRouteRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRouteResource($routeResource);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['routeResource'])) {
+            $request->setRouteResource($optionalArgs['routeResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -447,9 +461,8 @@ class RoutesGapicClient
      * ```
      * $routesClient = new RoutesClient();
      * try {
-     *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $routesClient->list($project);
+     *     $pagedResponse = $routesClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -457,7 +470,7 @@ class RoutesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $routesClient->list($project);
+     *     $pagedResponse = $routesClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -466,8 +479,7 @@ class RoutesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -481,6 +493,8 @@ class RoutesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -493,12 +507,10 @@ class RoutesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListRoutesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -513,6 +525,11 @@ class RoutesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {

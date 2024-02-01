@@ -24,8 +24,7 @@ class DeleteEntryRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the entry to delete. Please see
-     *                     {@see DataCatalogClient::entryName()} for help formatting this field.
+     * @param string $name Required. The name of the entry to delete.
      *
      * @return \Google\Cloud\DataCatalog\V1\DeleteEntryRequest
      *

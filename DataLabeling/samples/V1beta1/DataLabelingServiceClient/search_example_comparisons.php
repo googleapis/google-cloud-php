@@ -34,20 +34,19 @@ use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsResponse\ExampleCo
  * list of example comparisons that show ground truth and prediction(s) for
  * a single input. Search by providing an evaluation ID.
  *
- * @param string $formattedParent Name of the [Evaluation][google.cloud.datalabeling.v1beta1.Evaluation] resource to search for example
- *                                comparisons from. Format:
- *
- *                                "projects/<var>{project_id}</var>/datasets/<var>{dataset_id}</var>/evaluations/<var>{evaluation_id}</var>"
- *                                Please see {@see DataLabelingServiceClient::evaluationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_example_comparisons_sample(string $formattedParent): void
+function search_example_comparisons_sample(): void
 {
     // Create a client.
     $dataLabelingServiceClient = new DataLabelingServiceClient();
 
     // Prepare the request message.
-    $request = (new SearchExampleComparisonsRequest())
-        ->setParent($formattedParent);
+    $request = new SearchExampleComparisonsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,25 +60,5 @@ function search_example_comparisons_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataLabelingServiceClient::evaluationName(
-        '[PROJECT]',
-        '[DATASET]',
-        '[EVALUATION]'
-    );
-
-    search_example_comparisons_sample($formattedParent);
 }
 // [END datalabeling_v1beta1_generated_DataLabelingService_SearchExampleComparisons_sync]

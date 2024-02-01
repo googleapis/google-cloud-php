@@ -57,8 +57,7 @@ class ListCustomTargetTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent that owns this collection of custom target types.
-     *                       Format must be `projects/{project_id}/locations/{location_name}`. Please see
-     *                       {@see CloudDeployClient::locationName()} for help formatting this field.
+     *                       Format must be `projects/{project_id}/locations/{location_name}`.
      *
      * @return \Google\Cloud\Deploy\V1\ListCustomTargetTypesRequest
      *

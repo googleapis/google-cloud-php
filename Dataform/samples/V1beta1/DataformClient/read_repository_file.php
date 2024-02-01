@@ -32,19 +32,19 @@ use Google\Cloud\Dataform\V1beta1\ReadRepositoryFileResponse;
  * Returns the contents of a file (inside a Repository). The Repository
  * must not have a value for `git_remote_settings.url`.
  *
- * @param string $formattedName The repository's name. Please see
- *                              {@see DataformClient::repositoryName()} for help formatting this field.
- * @param string $path          Full file path to read including filename, from repository root.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function read_repository_file_sample(string $formattedName, string $path): void
+function read_repository_file_sample(): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = (new ReadRepositoryFileRequest())
-        ->setName($formattedName)
-        ->setPath($path);
+    $request = new ReadRepositoryFileRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,22 +54,5 @@ function read_repository_file_sample(string $formattedName, string $path): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataformClient::repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-    $path = '[PATH]';
-
-    read_repository_file_sample($formattedName, $path);
 }
 // [END dataform_v1beta1_generated_Dataform_ReadRepositoryFile_sync]

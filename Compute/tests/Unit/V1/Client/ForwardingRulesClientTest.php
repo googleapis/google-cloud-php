@@ -41,10 +41,8 @@ use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchForwardingRuleRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
-use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
 use Google\Cloud\Compute\V1\SetLabelsForwardingRuleRequest;
 use Google\Cloud\Compute\V1\SetTargetForwardingRuleRequest;
-use Google\Cloud\Compute\V1\TargetReference;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -99,10 +97,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListForwardingRulesRequest())
-            ->setProject($project);
+        $request = new AggregatedListForwardingRulesRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -115,8 +110,6 @@ class ForwardingRulesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ForwardingRules/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -138,10 +131,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListForwardingRulesRequest())
-            ->setProject($project);
+        $request = new AggregatedListForwardingRulesRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -180,14 +170,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $forwardingRule = 'forwardingRule-1340648706';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteForwardingRuleRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -197,16 +180,8 @@ class ForwardingRulesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ForwardingRules/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getForwardingRule();
-        $this->assertProtobufEquals($forwardingRule, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -254,14 +229,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $forwardingRule = 'forwardingRule-1340648706';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new DeleteForwardingRuleRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -351,14 +319,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setSubnetwork($subnetwork);
         $expectedResponse->setTarget($target);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $forwardingRule = 'forwardingRule-1340648706';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetForwardingRuleRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -366,12 +327,6 @@ class ForwardingRulesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ForwardingRules/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getForwardingRule();
-        $this->assertProtobufEquals($forwardingRule, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -393,14 +348,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $forwardingRule = 'forwardingRule-1340648706';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new GetForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new GetForwardingRuleRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -439,14 +387,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $forwardingRuleResource = new ForwardingRule();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertForwardingRuleRequest())
-            ->setForwardingRuleResource($forwardingRuleResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertForwardingRuleRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -456,16 +397,8 @@ class ForwardingRulesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ForwardingRules/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getForwardingRuleResource();
-        $this->assertProtobufEquals($forwardingRuleResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -513,14 +446,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $forwardingRuleResource = new ForwardingRule();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new InsertForwardingRuleRequest())
-            ->setForwardingRuleResource($forwardingRuleResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new InsertForwardingRuleRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -565,12 +491,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListForwardingRulesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListForwardingRulesRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -581,10 +502,6 @@ class ForwardingRulesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ForwardingRules/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -606,12 +523,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new ListForwardingRulesRequest())
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new ListForwardingRulesRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -650,16 +562,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/patchTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $forwardingRule = 'forwardingRule-1340648706';
-        $forwardingRuleResource = new ForwardingRule();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setForwardingRuleResource($forwardingRuleResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchForwardingRuleRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -669,18 +572,8 @@ class ForwardingRulesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ForwardingRules/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getForwardingRule();
-        $this->assertProtobufEquals($forwardingRule, $actualValue);
-        $actualValue = $actualApiRequestObject->getForwardingRuleResource();
-        $this->assertProtobufEquals($forwardingRuleResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -728,16 +621,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $forwardingRule = 'forwardingRule-1340648706';
-        $forwardingRuleResource = new ForwardingRule();
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new PatchForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setForwardingRuleResource($forwardingRuleResource)
-            ->setProject($project)
-            ->setRegion($region);
+        $request = new PatchForwardingRuleRequest();
         $response = $gapicClient->patch($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -783,16 +667,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setLabelsTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
-        $resource = 'resource-341064690';
-        $request = (new SetLabelsForwardingRuleRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource)
-            ->setResource($resource);
+        $request = new SetLabelsForwardingRuleRequest();
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -802,18 +677,8 @@ class ForwardingRulesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ForwardingRules/SetLabels', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegionSetLabelsRequestResource();
-        $this->assertProtobufEquals($regionSetLabelsRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -861,16 +726,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
-        $resource = 'resource-341064690';
-        $request = (new SetLabelsForwardingRuleRequest())
-            ->setProject($project)
-            ->setRegion($region)
-            ->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource)
-            ->setResource($resource);
+        $request = new SetLabelsForwardingRuleRequest();
         $response = $gapicClient->setLabels($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -916,16 +772,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/setTargetTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $forwardingRule = 'forwardingRule-1340648706';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetReferenceResource = new TargetReference();
-        $request = (new SetTargetForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetReferenceResource($targetReferenceResource);
+        $request = new SetTargetForwardingRuleRequest();
         $response = $gapicClient->setTarget($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -935,18 +782,8 @@ class ForwardingRulesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ForwardingRules/SetTarget', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getForwardingRule();
-        $this->assertProtobufEquals($forwardingRule, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetReferenceResource();
-        $this->assertProtobufEquals($targetReferenceResource, $actualValue);
         $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -994,16 +831,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $forwardingRule = 'forwardingRule-1340648706';
-        $project = 'project-309310695';
-        $region = 'region-934795532';
-        $targetReferenceResource = new TargetReference();
-        $request = (new SetTargetForwardingRuleRequest())
-            ->setForwardingRule($forwardingRule)
-            ->setProject($project)
-            ->setRegion($region)
-            ->setTargetReferenceResource($targetReferenceResource);
+        $request = new SetTargetForwardingRuleRequest();
         $response = $gapicClient->setTarget($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1047,10 +875,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListForwardingRulesRequest())
-            ->setProject($project);
+        $request = new AggregatedListForwardingRulesRequest();
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1063,8 +888,6 @@ class ForwardingRulesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ForwardingRules/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

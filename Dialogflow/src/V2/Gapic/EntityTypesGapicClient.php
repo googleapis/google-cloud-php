@@ -69,9 +69,7 @@ use Google\Protobuf\Struct;
  * ```
  * $entityTypesClient = new EntityTypesClient();
  * try {
- *     $formattedParent = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
- *     $entities = [];
- *     $operationResponse = $entityTypesClient->batchCreateEntities($formattedParent, $entities);
+ *     $operationResponse = $entityTypesClient->batchCreateEntities();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // operation succeeded and returns no value
@@ -81,7 +79,7 @@ use Google\Protobuf\Struct;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $entityTypesClient->batchCreateEntities($formattedParent, $entities);
+ *     $operationResponse = $entityTypesClient->batchCreateEntities();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchCreateEntities');
@@ -497,9 +495,7 @@ class EntityTypesGapicClient
      * ```
      * $entityTypesClient = new EntityTypesClient();
      * try {
-     *     $formattedParent = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-     *     $entities = [];
-     *     $operationResponse = $entityTypesClient->batchCreateEntities($formattedParent, $entities);
+     *     $operationResponse = $entityTypesClient->batchCreateEntities();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -509,7 +505,7 @@ class EntityTypesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $entityTypesClient->batchCreateEntities($formattedParent, $entities);
+     *     $operationResponse = $entityTypesClient->batchCreateEntities();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchCreateEntities');
@@ -528,12 +524,14 @@ class EntityTypesGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The name of the entity type to create entities in. Format:
-     *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param Entity[] $entities     Required. The entities to create.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the entity type to create entities in. Format:
+     *           `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     @type Entity[] $entities
+     *           Required. The entities to create.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -550,13 +548,19 @@ class EntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCreateEntities($parent, $entities, array $optionalArgs = [])
+    public function batchCreateEntities(array $optionalArgs = [])
     {
         $request = new BatchCreateEntitiesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEntities($entities);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['entities'])) {
+            $request->setEntities($optionalArgs['entities']);
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -586,9 +590,7 @@ class EntityTypesGapicClient
      * ```
      * $entityTypesClient = new EntityTypesClient();
      * try {
-     *     $formattedParent = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-     *     $entityValues = [];
-     *     $operationResponse = $entityTypesClient->batchDeleteEntities($formattedParent, $entityValues);
+     *     $operationResponse = $entityTypesClient->batchDeleteEntities();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -598,7 +600,7 @@ class EntityTypesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $entityTypesClient->batchDeleteEntities($formattedParent, $entityValues);
+     *     $operationResponse = $entityTypesClient->batchDeleteEntities();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchDeleteEntities');
@@ -617,14 +619,16 @@ class EntityTypesGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The name of the entity type to delete entries for. Format:
-     *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param string[] $entityValues Required. The reference `values` of the entities to delete. Note that
-     *                               these are not fully-qualified names, i.e. they don't start with
-     *                               `projects/<Project ID>`.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the entity type to delete entries for. Format:
+     *           `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     @type string[] $entityValues
+     *           Required. The reference `values` of the entities to delete. Note that
+     *           these are not fully-qualified names, i.e. they don't start with
+     *           `projects/<Project ID>`.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -641,13 +645,19 @@ class EntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchDeleteEntities($parent, $entityValues, array $optionalArgs = [])
+    public function batchDeleteEntities(array $optionalArgs = [])
     {
         $request = new BatchDeleteEntitiesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEntityValues($entityValues);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['entityValues'])) {
+            $request->setEntityValues($optionalArgs['entityValues']);
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -677,9 +687,7 @@ class EntityTypesGapicClient
      * ```
      * $entityTypesClient = new EntityTypesClient();
      * try {
-     *     $formattedParent = $entityTypesClient->agentName('[PROJECT]');
-     *     $entityTypeNames = [];
-     *     $operationResponse = $entityTypesClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
+     *     $operationResponse = $entityTypesClient->batchDeleteEntityTypes();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -689,7 +697,7 @@ class EntityTypesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $entityTypesClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
+     *     $operationResponse = $entityTypesClient->batchDeleteEntityTypes();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchDeleteEntityTypes');
@@ -708,13 +716,15 @@ class EntityTypesGapicClient
      * }
      * ```
      *
-     * @param string   $parent          Required. The name of the agent to delete all entities types for. Format:
-     *                                  `projects/<Project ID>/agent`.
-     * @param string[] $entityTypeNames Required. The names entity types to delete. All names must point to the
-     *                                  same agent as `parent`.
-     * @param array    $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the agent to delete all entities types for. Format:
+     *           `projects/<Project ID>/agent`.
+     *     @type string[] $entityTypeNames
+     *           Required. The names entity types to delete. All names must point to the
+     *           same agent as `parent`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -725,13 +735,19 @@ class EntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchDeleteEntityTypes($parent, $entityTypeNames, array $optionalArgs = [])
+    public function batchDeleteEntityTypes(array $optionalArgs = [])
     {
         $request = new BatchDeleteEntityTypesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEntityTypeNames($entityTypeNames);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['entityTypeNames'])) {
+            $request->setEntityTypeNames($optionalArgs['entityTypeNames']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('BatchDeleteEntityTypes', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -760,9 +776,7 @@ class EntityTypesGapicClient
      * ```
      * $entityTypesClient = new EntityTypesClient();
      * try {
-     *     $formattedParent = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-     *     $entities = [];
-     *     $operationResponse = $entityTypesClient->batchUpdateEntities($formattedParent, $entities);
+     *     $operationResponse = $entityTypesClient->batchUpdateEntities();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -772,7 +786,7 @@ class EntityTypesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $entityTypesClient->batchUpdateEntities($formattedParent, $entities);
+     *     $operationResponse = $entityTypesClient->batchUpdateEntities();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchUpdateEntities');
@@ -791,12 +805,14 @@ class EntityTypesGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The name of the entity type to update or create entities in.
-     *                               Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param Entity[] $entities     Required. The entities to update or create.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the entity type to update or create entities in.
+     *           Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     @type Entity[] $entities
+     *           Required. The entities to update or create.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -815,13 +831,19 @@ class EntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchUpdateEntities($parent, $entities, array $optionalArgs = [])
+    public function batchUpdateEntities(array $optionalArgs = [])
     {
         $request = new BatchUpdateEntitiesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEntities($entities);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['entities'])) {
+            $request->setEntities($optionalArgs['entities']);
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -855,8 +877,7 @@ class EntityTypesGapicClient
      * ```
      * $entityTypesClient = new EntityTypesClient();
      * try {
-     *     $formattedParent = $entityTypesClient->agentName('[PROJECT]');
-     *     $operationResponse = $entityTypesClient->batchUpdateEntityTypes($formattedParent);
+     *     $operationResponse = $entityTypesClient->batchUpdateEntityTypes();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -867,7 +888,7 @@ class EntityTypesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $entityTypesClient->batchUpdateEntityTypes($formattedParent);
+     *     $operationResponse = $entityTypesClient->batchUpdateEntityTypes();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $entityTypesClient->resumeOperation($operationName, 'batchUpdateEntityTypes');
@@ -887,11 +908,12 @@ class EntityTypesGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the agent to update or create entity types in.
-     *                             Format: `projects/<Project ID>/agent`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the agent to update or create entity types in.
+     *           Format: `projects/<Project ID>/agent`.
      *     @type string $entityTypeBatchUri
      *           The URI to a Google Cloud Storage file containing entity types to update
      *           or create. The file format can either be a serialized proto (of
@@ -917,12 +939,15 @@ class EntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchUpdateEntityTypes($parent, array $optionalArgs = [])
+    public function batchUpdateEntityTypes(array $optionalArgs = [])
     {
         $request = new BatchUpdateEntityTypesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['entityTypeBatchUri'])) {
             $request->setEntityTypeBatchUri($optionalArgs['entityTypeBatchUri']);
         }
@@ -955,20 +980,20 @@ class EntityTypesGapicClient
      * ```
      * $entityTypesClient = new EntityTypesClient();
      * try {
-     *     $formattedParent = $entityTypesClient->agentName('[PROJECT]');
-     *     $entityType = new EntityType();
-     *     $response = $entityTypesClient->createEntityType($formattedParent, $entityType);
+     *     $response = $entityTypesClient->createEntityType();
      * } finally {
      *     $entityTypesClient->close();
      * }
      * ```
      *
-     * @param string     $parent       Required. The agent to create a entity type for.
-     *                                 Format: `projects/<Project ID>/agent`.
-     * @param EntityType $entityType   Required. The entity type to create.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The agent to create a entity type for.
+     *           Format: `projects/<Project ID>/agent`.
+     *     @type EntityType $entityType
+     *           Required. The entity type to create.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -985,13 +1010,19 @@ class EntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEntityType($parent, $entityType, array $optionalArgs = [])
+    public function createEntityType(array $optionalArgs = [])
     {
         $request = new CreateEntityTypeRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEntityType($entityType);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['entityType'])) {
+            $request->setEntityType($optionalArgs['entityType']);
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -1012,18 +1043,18 @@ class EntityTypesGapicClient
      * ```
      * $entityTypesClient = new EntityTypesClient();
      * try {
-     *     $formattedName = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-     *     $entityTypesClient->deleteEntityType($formattedName);
+     *     $entityTypesClient->deleteEntityType();
      * } finally {
      *     $entityTypesClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the entity type to delete.
-     *                             Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the entity type to delete.
+     *           Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1032,12 +1063,15 @@ class EntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteEntityType($name, array $optionalArgs = [])
+    public function deleteEntityType(array $optionalArgs = [])
     {
         $request = new DeleteEntityTypeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteEntityType', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1050,18 +1084,18 @@ class EntityTypesGapicClient
      * ```
      * $entityTypesClient = new EntityTypesClient();
      * try {
-     *     $formattedName = $entityTypesClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-     *     $response = $entityTypesClient->getEntityType($formattedName);
+     *     $response = $entityTypesClient->getEntityType();
      * } finally {
      *     $entityTypesClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the entity type.
-     *                             Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the entity type.
+     *           Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -1078,12 +1112,15 @@ class EntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEntityType($name, array $optionalArgs = [])
+    public function getEntityType(array $optionalArgs = [])
     {
         $request = new GetEntityTypeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -1100,9 +1137,8 @@ class EntityTypesGapicClient
      * ```
      * $entityTypesClient = new EntityTypesClient();
      * try {
-     *     $formattedParent = $entityTypesClient->agentName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $entityTypesClient->listEntityTypes($formattedParent);
+     *     $pagedResponse = $entityTypesClient->listEntityTypes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1110,7 +1146,7 @@ class EntityTypesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $entityTypesClient->listEntityTypes($formattedParent);
+     *     $pagedResponse = $entityTypesClient->listEntityTypes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1119,11 +1155,12 @@ class EntityTypesGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The agent to list all entity types from.
-     *                             Format: `projects/<Project ID>/agent`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The agent to list all entity types from.
+     *           Format: `projects/<Project ID>/agent`.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -1149,12 +1186,15 @@ class EntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEntityTypes($parent, array $optionalArgs = [])
+    public function listEntityTypes(array $optionalArgs = [])
     {
         $request = new ListEntityTypesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
@@ -1183,17 +1223,17 @@ class EntityTypesGapicClient
      * ```
      * $entityTypesClient = new EntityTypesClient();
      * try {
-     *     $entityType = new EntityType();
-     *     $response = $entityTypesClient->updateEntityType($entityType);
+     *     $response = $entityTypesClient->updateEntityType();
      * } finally {
      *     $entityTypesClient->close();
      * }
      * ```
      *
-     * @param EntityType $entityType   Required. The entity type to update.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type EntityType $entityType
+     *           Required. The entity type to update.
      *     @type string $languageCode
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -1212,12 +1252,14 @@ class EntityTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEntityType($entityType, array $optionalArgs = [])
+    public function updateEntityType(array $optionalArgs = [])
     {
         $request = new UpdateEntityTypeRequest();
         $requestParamHeaders = [];
-        $request->setEntityType($entityType);
-        $requestParamHeaders['entity_type.name'] = $entityType->getName();
+        if (isset($optionalArgs['entityType'])) {
+            $request->setEntityType($optionalArgs['entityType']);
+        }
+
         if (isset($optionalArgs['languageCode'])) {
             $request->setLanguageCode($optionalArgs['languageCode']);
         }

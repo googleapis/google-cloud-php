@@ -44,7 +44,6 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
      * @param string $name       Required. The name of the document to reload.
      *                           Format: `projects/<Project ID>/locations/<Location
      *                           ID>/knowledgeBases/<Knowledge Base ID>/documents/<Document ID>`
-     *                           Please see {@see DocumentsClient::documentName()} for help formatting this field.
      * @param string $contentUri Optional. The path of gcs source file for reloading document content. For
      *                           now, only gcs uri is supported.
      *

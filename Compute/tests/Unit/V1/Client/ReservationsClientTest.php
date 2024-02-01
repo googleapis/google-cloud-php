@@ -40,16 +40,13 @@ use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\Reservation;
 use Google\Cloud\Compute\V1\ReservationAggregatedList;
 use Google\Cloud\Compute\V1\ReservationList;
-use Google\Cloud\Compute\V1\ReservationsResizeRequest;
 use Google\Cloud\Compute\V1\ReservationsScopedList;
 use Google\Cloud\Compute\V1\ResizeReservationRequest;
 use Google\Cloud\Compute\V1\SetIamPolicyReservationRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsReservationRequest;
-use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateReservationRequest;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
-use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -104,10 +101,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListReservationsRequest())
-            ->setProject($project);
+        $request = new AggregatedListReservationsRequest();
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -120,8 +114,6 @@ class ReservationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -143,10 +135,7 @@ class ReservationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListReservationsRequest())
-            ->setProject($project);
+        $request = new AggregatedListReservationsRequest();
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -185,14 +174,7 @@ class ReservationsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/deleteTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $reservation = 'reservation-1563081780';
-        $zone = 'zone3744684';
-        $request = (new DeleteReservationRequest())
-            ->setProject($project)
-            ->setReservation($reservation)
-            ->setZone($zone);
+        $request = new DeleteReservationRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -202,16 +184,8 @@ class ReservationsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getReservation();
-        $this->assertProtobufEquals($reservation, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -259,14 +233,7 @@ class ReservationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $reservation = 'reservation-1563081780';
-        $zone = 'zone3744684';
-        $request = (new DeleteReservationRequest())
-            ->setProject($project)
-            ->setReservation($reservation)
-            ->setZone($zone);
+        $request = new DeleteReservationRequest();
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -320,14 +287,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse->setStatus($status);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $reservation = 'reservation-1563081780';
-        $zone = 'zone3744684';
-        $request = (new GetReservationRequest())
-            ->setProject($project)
-            ->setReservation($reservation)
-            ->setZone($zone);
+        $request = new GetReservationRequest();
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -335,12 +295,6 @@ class ReservationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getReservation();
-        $this->assertProtobufEquals($reservation, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -362,14 +316,7 @@ class ReservationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $reservation = 'reservation-1563081780';
-        $zone = 'zone3744684';
-        $request = (new GetReservationRequest())
-            ->setProject($project)
-            ->setReservation($reservation)
-            ->setZone($zone);
+        $request = new GetReservationRequest();
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -400,14 +347,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $request = (new GetIamPolicyReservationRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setZone($zone);
+        $request = new GetIamPolicyReservationRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -415,12 +355,6 @@ class ReservationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -442,14 +376,7 @@ class ReservationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $request = (new GetIamPolicyReservationRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setZone($zone);
+        $request = new GetIamPolicyReservationRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -488,14 +415,7 @@ class ReservationsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/insertTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $reservationResource = new Reservation();
-        $zone = 'zone3744684';
-        $request = (new InsertReservationRequest())
-            ->setProject($project)
-            ->setReservationResource($reservationResource)
-            ->setZone($zone);
+        $request = new InsertReservationRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -505,16 +425,8 @@ class ReservationsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getReservationResource();
-        $this->assertProtobufEquals($reservationResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -562,14 +474,7 @@ class ReservationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $reservationResource = new Reservation();
-        $zone = 'zone3744684';
-        $request = (new InsertReservationRequest())
-            ->setProject($project)
-            ->setReservationResource($reservationResource)
-            ->setZone($zone);
+        $request = new InsertReservationRequest();
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -614,12 +519,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new ListReservationsRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = new ListReservationsRequest();
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -630,10 +530,6 @@ class ReservationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/List', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -655,12 +551,7 @@ class ReservationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new ListReservationsRequest())
-            ->setProject($project)
-            ->setZone($zone);
+        $request = new ListReservationsRequest();
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -699,16 +590,7 @@ class ReservationsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/resizeTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $reservation = 'reservation-1563081780';
-        $reservationsResizeRequestResource = new ReservationsResizeRequest();
-        $zone = 'zone3744684';
-        $request = (new ResizeReservationRequest())
-            ->setProject($project)
-            ->setReservation($reservation)
-            ->setReservationsResizeRequestResource($reservationsResizeRequestResource)
-            ->setZone($zone);
+        $request = new ResizeReservationRequest();
         $response = $gapicClient->resize($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -718,18 +600,8 @@ class ReservationsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/Resize', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getReservation();
-        $this->assertProtobufEquals($reservation, $actualValue);
-        $actualValue = $actualApiRequestObject->getReservationsResizeRequestResource();
-        $this->assertProtobufEquals($reservationsResizeRequestResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -777,16 +649,7 @@ class ReservationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $reservation = 'reservation-1563081780';
-        $reservationsResizeRequestResource = new ReservationsResizeRequest();
-        $zone = 'zone3744684';
-        $request = (new ResizeReservationRequest())
-            ->setProject($project)
-            ->setReservation($reservation)
-            ->setReservationsResizeRequestResource($reservationsResizeRequestResource)
-            ->setZone($zone);
+        $request = new ResizeReservationRequest();
         $response = $gapicClient->resize($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -824,16 +687,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
-        $request = (new SetIamPolicyReservationRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setZone($zone)
-            ->setZoneSetPolicyRequestResource($zoneSetPolicyRequestResource);
+        $request = new SetIamPolicyReservationRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -841,14 +695,6 @@ class ReservationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getZoneSetPolicyRequestResource();
-        $this->assertProtobufEquals($zoneSetPolicyRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -870,16 +716,7 @@ class ReservationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
-        $request = (new SetIamPolicyReservationRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setZone($zone)
-            ->setZoneSetPolicyRequestResource($zoneSetPolicyRequestResource);
+        $request = new SetIamPolicyReservationRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -904,16 +741,7 @@ class ReservationsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $zone = 'zone3744684';
-        $request = (new TestIamPermissionsReservationRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource)
-            ->setZone($zone);
+        $request = new TestIamPermissionsReservationRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -921,14 +749,6 @@ class ReservationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -950,16 +770,7 @@ class ReservationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $testPermissionsRequestResource = new TestPermissionsRequest();
-        $zone = 'zone3744684';
-        $request = (new TestIamPermissionsReservationRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource)
-            ->setZone($zone);
+        $request = new TestIamPermissionsReservationRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -998,16 +809,7 @@ class ReservationsClientTest extends GeneratedTest
         $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $reservation = 'reservation-1563081780';
-        $reservationResource = new Reservation();
-        $zone = 'zone3744684';
-        $request = (new UpdateReservationRequest())
-            ->setProject($project)
-            ->setReservation($reservation)
-            ->setReservationResource($reservationResource)
-            ->setZone($zone);
+        $request = new UpdateReservationRequest();
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -1017,18 +819,8 @@ class ReservationsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/Update', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getReservation();
-        $this->assertProtobufEquals($reservation, $actualValue);
-        $actualValue = $actualApiRequestObject->getReservationResource();
-        $this->assertProtobufEquals($reservationResource, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $expectedOperationsRequestObject = new GetZoneOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1076,16 +868,7 @@ class ReservationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $reservation = 'reservation-1563081780';
-        $reservationResource = new Reservation();
-        $zone = 'zone3744684';
-        $request = (new UpdateReservationRequest())
-            ->setProject($project)
-            ->setReservation($reservation)
-            ->setReservationResource($reservationResource)
-            ->setZone($zone);
+        $request = new UpdateReservationRequest();
         $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1129,10 +912,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListReservationsRequest())
-            ->setProject($project);
+        $request = new AggregatedListReservationsRequest();
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1145,8 +925,6 @@ class ReservationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Reservations/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

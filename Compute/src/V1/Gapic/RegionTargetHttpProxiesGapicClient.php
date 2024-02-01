@@ -53,10 +53,7 @@ use Google\Cloud\Compute\V1\UrlMapReference;
  * ```
  * $regionTargetHttpProxiesClient = new RegionTargetHttpProxiesClient();
  * try {
- *     $project = 'project';
- *     $region = 'region';
- *     $targetHttpProxy = 'target_http_proxy';
- *     $operationResponse = $regionTargetHttpProxiesClient->delete($project, $region, $targetHttpProxy);
+ *     $operationResponse = $regionTargetHttpProxiesClient->delete();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         // if creating/modifying, retrieve the target resource
@@ -66,7 +63,7 @@ use Google\Cloud\Compute\V1\UrlMapReference;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $regionTargetHttpProxiesClient->delete($project, $region, $targetHttpProxy);
+ *     $operationResponse = $regionTargetHttpProxiesClient->delete();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $regionTargetHttpProxiesClient->resumeOperation($operationName, 'delete');
@@ -166,10 +163,7 @@ class RegionTargetHttpProxiesGapicClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getRegion',
-            ],
+            'additionalArgumentMethods' => [],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -265,10 +259,7 @@ class RegionTargetHttpProxiesGapicClient
      * ```
      * $regionTargetHttpProxiesClient = new RegionTargetHttpProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $targetHttpProxy = 'target_http_proxy';
-     *     $operationResponse = $regionTargetHttpProxiesClient->delete($project, $region, $targetHttpProxy);
+     *     $operationResponse = $regionTargetHttpProxiesClient->delete();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -278,7 +269,7 @@ class RegionTargetHttpProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionTargetHttpProxiesClient->delete($project, $region, $targetHttpProxy);
+     *     $operationResponse = $regionTargetHttpProxiesClient->delete();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionTargetHttpProxiesClient->resumeOperation($operationName, 'delete');
@@ -297,14 +288,17 @@ class RegionTargetHttpProxiesGapicClient
      * }
      * ```
      *
-     * @param string $project         Project ID for this request.
-     * @param string $region          Name of the region scoping this request.
-     * @param string $targetHttpProxy Name of the TargetHttpProxy resource to delete.
-     * @param array  $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $targetHttpProxy
+     *           Name of the TargetHttpProxy resource to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -315,18 +309,27 @@ class RegionTargetHttpProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function delete($project, $region, $targetHttpProxy, array $optionalArgs = [])
+    public function delete(array $optionalArgs = [])
     {
         $request = new DeleteRegionTargetHttpProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setTargetHttpProxy($targetHttpProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['target_http_proxy'] = $targetHttpProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetHttpProxy'])) {
+            $request->setTargetHttpProxy($optionalArgs['targetHttpProxy']);
+            $requestParamHeaders['target_http_proxy'] = $optionalArgs['targetHttpProxy'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -341,21 +344,21 @@ class RegionTargetHttpProxiesGapicClient
      * ```
      * $regionTargetHttpProxiesClient = new RegionTargetHttpProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $targetHttpProxy = 'target_http_proxy';
-     *     $response = $regionTargetHttpProxiesClient->get($project, $region, $targetHttpProxy);
+     *     $response = $regionTargetHttpProxiesClient->get();
      * } finally {
      *     $regionTargetHttpProxiesClient->close();
      * }
      * ```
      *
-     * @param string $project         Project ID for this request.
-     * @param string $region          Name of the region scoping this request.
-     * @param string $targetHttpProxy Name of the TargetHttpProxy resource to return.
-     * @param array  $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
+     *     @type string $targetHttpProxy
+     *           Name of the TargetHttpProxy resource to return.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -366,16 +369,25 @@ class RegionTargetHttpProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function get($project, $region, $targetHttpProxy, array $optionalArgs = [])
+    public function get(array $optionalArgs = [])
     {
         $request = new GetRegionTargetHttpProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setTargetHttpProxy($targetHttpProxy);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['target_http_proxy'] = $targetHttpProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['targetHttpProxy'])) {
+            $request->setTargetHttpProxy($optionalArgs['targetHttpProxy']);
+            $requestParamHeaders['target_http_proxy'] = $optionalArgs['targetHttpProxy'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', TargetHttpProxy::class, $optionalArgs, $request)->wait();
@@ -388,10 +400,7 @@ class RegionTargetHttpProxiesGapicClient
      * ```
      * $regionTargetHttpProxiesClient = new RegionTargetHttpProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $targetHttpProxyResource = new TargetHttpProxy();
-     *     $operationResponse = $regionTargetHttpProxiesClient->insert($project, $region, $targetHttpProxyResource);
+     *     $operationResponse = $regionTargetHttpProxiesClient->insert();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -401,7 +410,7 @@ class RegionTargetHttpProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionTargetHttpProxiesClient->insert($project, $region, $targetHttpProxyResource);
+     *     $operationResponse = $regionTargetHttpProxiesClient->insert();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionTargetHttpProxiesClient->resumeOperation($operationName, 'insert');
@@ -420,14 +429,17 @@ class RegionTargetHttpProxiesGapicClient
      * }
      * ```
      *
-     * @param string          $project                 Project ID for this request.
-     * @param string          $region                  Name of the region scoping this request.
-     * @param TargetHttpProxy $targetHttpProxyResource The body resource for this request
-     * @param array           $optionalArgs            {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type TargetHttpProxy $targetHttpProxyResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -438,17 +450,26 @@ class RegionTargetHttpProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($project, $region, $targetHttpProxyResource, array $optionalArgs = [])
+    public function insert(array $optionalArgs = [])
     {
         $request = new InsertRegionTargetHttpProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setTargetHttpProxyResource($targetHttpProxyResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetHttpProxyResource'])) {
+            $request->setTargetHttpProxyResource($optionalArgs['targetHttpProxyResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -463,10 +484,8 @@ class RegionTargetHttpProxiesGapicClient
      * ```
      * $regionTargetHttpProxiesClient = new RegionTargetHttpProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionTargetHttpProxiesClient->list($project, $region);
+     *     $pagedResponse = $regionTargetHttpProxiesClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -474,7 +493,7 @@ class RegionTargetHttpProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionTargetHttpProxiesClient->list($project, $region);
+     *     $pagedResponse = $regionTargetHttpProxiesClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -483,9 +502,7 @@ class RegionTargetHttpProxiesGapicClient
      * }
      * ```
      *
-     * @param string $project      Project ID for this request.
-     * @param string $region       Name of the region scoping this request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $filter
@@ -499,6 +516,10 @@ class RegionTargetHttpProxiesGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
@@ -511,14 +532,10 @@ class RegionTargetHttpProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, $region, array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListRegionTargetHttpProxiesRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -533,6 +550,16 @@ class RegionTargetHttpProxiesGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
@@ -551,11 +578,7 @@ class RegionTargetHttpProxiesGapicClient
      * ```
      * $regionTargetHttpProxiesClient = new RegionTargetHttpProxiesClient();
      * try {
-     *     $project = 'project';
-     *     $region = 'region';
-     *     $targetHttpProxy = 'target_http_proxy';
-     *     $urlMapReferenceResource = new UrlMapReference();
-     *     $operationResponse = $regionTargetHttpProxiesClient->setUrlMap($project, $region, $targetHttpProxy, $urlMapReferenceResource);
+     *     $operationResponse = $regionTargetHttpProxiesClient->setUrlMap();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -565,7 +588,7 @@ class RegionTargetHttpProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $regionTargetHttpProxiesClient->setUrlMap($project, $region, $targetHttpProxy, $urlMapReferenceResource);
+     *     $operationResponse = $regionTargetHttpProxiesClient->setUrlMap();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $regionTargetHttpProxiesClient->resumeOperation($operationName, 'setUrlMap');
@@ -584,15 +607,19 @@ class RegionTargetHttpProxiesGapicClient
      * }
      * ```
      *
-     * @param string          $project                 Project ID for this request.
-     * @param string          $region                  Name of the region scoping this request.
-     * @param string          $targetHttpProxy         Name of the TargetHttpProxy to set a URL map for.
-     * @param UrlMapReference $urlMapReferenceResource The body resource for this request
-     * @param array           $optionalArgs            {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Project ID for this request.
+     *     @type string $region
+     *           Name of the region scoping this request.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type string $targetHttpProxy
+     *           Name of the TargetHttpProxy to set a URL map for.
+     *     @type UrlMapReference $urlMapReferenceResource
+     *           The body resource for this request
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -603,19 +630,31 @@ class RegionTargetHttpProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setUrlMap($project, $region, $targetHttpProxy, $urlMapReferenceResource, array $optionalArgs = [])
+    public function setUrlMap(array $optionalArgs = [])
     {
         $request = new SetUrlMapRegionTargetHttpProxyRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $request->setRegion($region);
-        $request->setTargetHttpProxy($targetHttpProxy);
-        $request->setUrlMapReferenceResource($urlMapReferenceResource);
-        $requestParamHeaders['project'] = $project;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['target_http_proxy'] = $targetHttpProxy;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['targetHttpProxy'])) {
+            $request->setTargetHttpProxy($optionalArgs['targetHttpProxy']);
+            $requestParamHeaders['target_http_proxy'] = $optionalArgs['targetHttpProxy'];
+        }
+
+        if (isset($optionalArgs['urlMapReferenceResource'])) {
+            $request->setUrlMapReferenceResource($optionalArgs['urlMapReferenceResource']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
