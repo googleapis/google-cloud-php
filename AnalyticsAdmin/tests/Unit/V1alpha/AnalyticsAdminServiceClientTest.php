@@ -30,34 +30,24 @@ use Google\Analytics\Admin\V1alpha\AdSenseLink;
 use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalResponse;
 use Google\Analytics\Admin\V1alpha\AttributionSettings;
-use Google\Analytics\Admin\V1alpha\AttributionSettings\AcquisitionConversionEventLookbackWindow;
-use Google\Analytics\Admin\V1alpha\AttributionSettings\AdsWebConversionDataExportScope;
-use Google\Analytics\Admin\V1alpha\AttributionSettings\OtherConversionEventLookbackWindow;
-use Google\Analytics\Admin\V1alpha\AttributionSettings\ReportingAttributionModel;
 use Google\Analytics\Admin\V1alpha\Audience;
 use Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BatchGetAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\BigQueryLink;
 use Google\Analytics\Admin\V1alpha\CalculatedMetric;
-use Google\Analytics\Admin\V1alpha\CalculatedMetric\MetricUnit;
 use Google\Analytics\Admin\V1alpha\ChangeHistoryEvent;
 use Google\Analytics\Admin\V1alpha\ChannelGroup;
-use Google\Analytics\Admin\V1alpha\ConnectedSiteTag;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertyResponse;
 use Google\Analytics\Admin\V1alpha\CreateSubpropertyResponse;
 use Google\Analytics\Admin\V1alpha\CustomDimension;
-use Google\Analytics\Admin\V1alpha\CustomDimension\DimensionScope;
 use Google\Analytics\Admin\V1alpha\CustomMetric;
-use Google\Analytics\Admin\V1alpha\CustomMetric\MeasurementUnit;
-use Google\Analytics\Admin\V1alpha\CustomMetric\MetricScope;
 use Google\Analytics\Admin\V1alpha\DataRedactionSettings;
 use Google\Analytics\Admin\V1alpha\DataRetentionSettings;
 use Google\Analytics\Admin\V1alpha\DataSharingSettings;
 use Google\Analytics\Admin\V1alpha\DataStream;
-use Google\Analytics\Admin\V1alpha\DataStream\DataStreamType;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
 use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
@@ -95,7 +85,6 @@ use Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasResponse
 use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksResponse;
 use Google\Analytics\Admin\V1alpha\ListSubpropertyEventFiltersResponse;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
-use Google\Analytics\Admin\V1alpha\PostbackWindow;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
 use Google\Analytics\Admin\V1alpha\RollupPropertySourceLink;
@@ -109,7 +98,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -153,20 +141,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new AcknowledgeUserDataCollectionResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
-        $acknowledgement = 'acknowledgement1769490938';
-        $response = $gapicClient->acknowledgeUserDataCollection($formattedProperty, $acknowledgement);
+        $response = $gapicClient->acknowledgeUserDataCollection();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/AcknowledgeUserDataCollection', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProperty();
-        $this->assertProtobufEquals($formattedProperty, $actualValue);
-        $actualValue = $actualRequestObject->getAcknowledgement();
-        $this->assertProtobufEquals($acknowledgement, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -188,11 +169,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
-        $acknowledgement = 'acknowledgement1769490938';
         try {
-            $gapicClient->acknowledgeUserDataCollection($formattedProperty, $acknowledgement);
+            $gapicClient->acknowledgeUserDataCollection();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -215,17 +193,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ApproveDisplayVideo360AdvertiserLinkProposalResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
-        $response = $gapicClient->approveDisplayVideo360AdvertiserLinkProposal($formattedName);
+        $response = $gapicClient->approveDisplayVideo360AdvertiserLinkProposal();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ApproveDisplayVideo360AdvertiserLinkProposal', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -247,10 +221,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
         try {
-            $gapicClient->approveDisplayVideo360AdvertiserLinkProposal($formattedName);
+            $gapicClient->approveDisplayVideo360AdvertiserLinkProposal();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -273,16 +245,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->propertyName('[PROPERTY]');
-        $gapicClient->archiveAudience($formattedName);
+        $gapicClient->archiveAudience();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ArchiveAudience', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -304,10 +272,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->archiveAudience($formattedName);
+            $gapicClient->archiveAudience();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -330,16 +296,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
-        $gapicClient->archiveCustomDimension($formattedName);
+        $gapicClient->archiveCustomDimension();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ArchiveCustomDimension', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -361,10 +323,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
         try {
-            $gapicClient->archiveCustomDimension($formattedName);
+            $gapicClient->archiveCustomDimension();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -387,16 +347,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
-        $gapicClient->archiveCustomMetric($formattedName);
+        $gapicClient->archiveCustomMetric();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ArchiveCustomMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -418,10 +374,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
         try {
-            $gapicClient->archiveCustomMetric($formattedName);
+            $gapicClient->archiveCustomMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -444,20 +398,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchCreateAccessBindingsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $requests = [];
-        $response = $gapicClient->batchCreateAccessBindings($formattedParent, $requests);
+        $response = $gapicClient->batchCreateAccessBindings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchCreateAccessBindings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -479,11 +426,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $requests = [];
         try {
-            $gapicClient->batchCreateAccessBindings($formattedParent, $requests);
+            $gapicClient->batchCreateAccessBindings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -506,19 +450,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $requests = [];
-        $gapicClient->batchDeleteAccessBindings($formattedParent, $requests);
+        $gapicClient->batchDeleteAccessBindings();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchDeleteAccessBindings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -540,11 +477,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $requests = [];
         try {
-            $gapicClient->batchDeleteAccessBindings($formattedParent, $requests);
+            $gapicClient->batchDeleteAccessBindings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -567,22 +501,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchGetAccessBindingsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $formattedNames = [
-            $gapicClient->accessBindingName('[ACCOUNT]', '[ACCESS_BINDING]'),
-        ];
-        $response = $gapicClient->batchGetAccessBindings($formattedParent, $formattedNames);
+        $response = $gapicClient->batchGetAccessBindings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchGetAccessBindings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getNames();
-        $this->assertProtobufEquals($formattedNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -604,13 +529,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $formattedNames = [
-            $gapicClient->accessBindingName('[ACCOUNT]', '[ACCESS_BINDING]'),
-        ];
         try {
-            $gapicClient->batchGetAccessBindings($formattedParent, $formattedNames);
+            $gapicClient->batchGetAccessBindings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -633,20 +553,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchUpdateAccessBindingsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $requests = [];
-        $response = $gapicClient->batchUpdateAccessBindings($formattedParent, $requests);
+        $response = $gapicClient->batchUpdateAccessBindings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/BatchUpdateAccessBindings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -668,11 +581,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $requests = [];
         try {
-            $gapicClient->batchUpdateAccessBindings($formattedParent, $requests);
+            $gapicClient->batchUpdateAccessBindings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -703,17 +613,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setAdvertiserDisplayName($advertiserDisplayName);
         $expectedResponse->setValidationEmail($validationEmail);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
-        $response = $gapicClient->cancelDisplayVideo360AdvertiserLinkProposal($formattedName);
+        $response = $gapicClient->cancelDisplayVideo360AdvertiserLinkProposal();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CancelDisplayVideo360AdvertiserLinkProposal', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -735,10 +641,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
         try {
-            $gapicClient->cancelDisplayVideo360AdvertiserLinkProposal($formattedName);
+            $gapicClient->cancelDisplayVideo360AdvertiserLinkProposal();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -765,20 +669,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $accessBinding = new AccessBinding();
-        $response = $gapicClient->createAccessBinding($formattedParent, $accessBinding);
+        $response = $gapicClient->createAccessBinding();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAccessBinding', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getAccessBinding();
-        $this->assertProtobufEquals($accessBinding, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -800,11 +697,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $accessBinding = new AccessBinding();
         try {
-            $gapicClient->createAccessBinding($formattedParent, $accessBinding);
+            $gapicClient->createAccessBinding();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -831,20 +725,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setAdClientCode($adClientCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $adsenseLink = new AdSenseLink();
-        $response = $gapicClient->createAdSenseLink($formattedParent, $adsenseLink);
+        $response = $gapicClient->createAdSenseLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAdSenseLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getAdsenseLink();
-        $this->assertProtobufEquals($adsenseLink, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -866,11 +753,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $adsenseLink = new AdSenseLink();
         try {
-            $gapicClient->createAdSenseLink($formattedParent, $adsenseLink);
+            $gapicClient->createAdSenseLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -903,28 +787,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setMembershipDurationDays($membershipDurationDays);
         $expectedResponse->setAdsPersonalizationEnabled($adsPersonalizationEnabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $audience = new Audience();
-        $audienceDisplayName = 'audienceDisplayName1537141193';
-        $audience->setDisplayName($audienceDisplayName);
-        $audienceDescription = 'audienceDescription-1901553832';
-        $audience->setDescription($audienceDescription);
-        $audienceMembershipDurationDays = 1530655195;
-        $audience->setMembershipDurationDays($audienceMembershipDurationDays);
-        $audienceFilterClauses = [];
-        $audience->setFilterClauses($audienceFilterClauses);
-        $response = $gapicClient->createAudience($formattedParent, $audience);
+        $response = $gapicClient->createAudience();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAudience', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getAudience();
-        $this->assertProtobufEquals($audience, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -946,19 +815,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $audience = new Audience();
-        $audienceDisplayName = 'audienceDisplayName1537141193';
-        $audience->setDisplayName($audienceDisplayName);
-        $audienceDescription = 'audienceDescription-1901553832';
-        $audience->setDescription($audienceDescription);
-        $audienceMembershipDurationDays = 1530655195;
-        $audience->setMembershipDurationDays($audienceMembershipDurationDays);
-        $audienceFilterClauses = [];
-        $audience->setFilterClauses($audienceFilterClauses);
         try {
-            $gapicClient->createAudience($formattedParent, $audience);
+            $gapicClient->createAudience();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -993,29 +851,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setFormula($formula);
         $expectedResponse->setInvalidMetricReference($invalidMetricReference);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $calculatedMetricId = 'calculatedMetricId8203465';
-        $calculatedMetric = new CalculatedMetric();
-        $calculatedMetricDisplayName = 'calculatedMetricDisplayName-1927551873';
-        $calculatedMetric->setDisplayName($calculatedMetricDisplayName);
-        $calculatedMetricMetricUnit = MetricUnit::METRIC_UNIT_UNSPECIFIED;
-        $calculatedMetric->setMetricUnit($calculatedMetricMetricUnit);
-        $calculatedMetricFormula = 'calculatedMetricFormula752695416';
-        $calculatedMetric->setFormula($calculatedMetricFormula);
-        $response = $gapicClient->createCalculatedMetric($formattedParent, $calculatedMetricId, $calculatedMetric);
+        $response = $gapicClient->createCalculatedMetric();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateCalculatedMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getCalculatedMetricId();
-        $this->assertProtobufEquals($calculatedMetricId, $actualValue);
-        $actualValue = $actualRequestObject->getCalculatedMetric();
-        $this->assertProtobufEquals($calculatedMetric, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1037,18 +879,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $calculatedMetricId = 'calculatedMetricId8203465';
-        $calculatedMetric = new CalculatedMetric();
-        $calculatedMetricDisplayName = 'calculatedMetricDisplayName-1927551873';
-        $calculatedMetric->setDisplayName($calculatedMetricDisplayName);
-        $calculatedMetricMetricUnit = MetricUnit::METRIC_UNIT_UNSPECIFIED;
-        $calculatedMetric->setMetricUnit($calculatedMetricMetricUnit);
-        $calculatedMetricFormula = 'calculatedMetricFormula752695416';
-        $calculatedMetric->setFormula($calculatedMetricFormula);
         try {
-            $gapicClient->createCalculatedMetric($formattedParent, $calculatedMetricId, $calculatedMetric);
+            $gapicClient->createCalculatedMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1079,24 +911,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setSystemDefined($systemDefined);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $channelGroup = new ChannelGroup();
-        $channelGroupDisplayName = 'channelGroupDisplayName1156787601';
-        $channelGroup->setDisplayName($channelGroupDisplayName);
-        $channelGroupGroupingRule = [];
-        $channelGroup->setGroupingRule($channelGroupGroupingRule);
-        $response = $gapicClient->createChannelGroup($formattedParent, $channelGroup);
+        $response = $gapicClient->createChannelGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateChannelGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getChannelGroup();
-        $this->assertProtobufEquals($channelGroup, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1118,15 +939,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $channelGroup = new ChannelGroup();
-        $channelGroupDisplayName = 'channelGroupDisplayName1156787601';
-        $channelGroup->setDisplayName($channelGroupDisplayName);
-        $channelGroupGroupingRule = [];
-        $channelGroup->setGroupingRule($channelGroupGroupingRule);
         try {
-            $gapicClient->createChannelGroup($formattedParent, $channelGroup);
+            $gapicClient->createChannelGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1149,21 +963,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new CreateConnectedSiteTagResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $connectedSiteTag = new ConnectedSiteTag();
-        $connectedSiteTagDisplayName = 'connectedSiteTagDisplayName-1608704893';
-        $connectedSiteTag->setDisplayName($connectedSiteTagDisplayName);
-        $connectedSiteTagTagId = 'connectedSiteTagTagId-937600789';
-        $connectedSiteTag->setTagId($connectedSiteTagTagId);
-        $response = $gapicClient->createConnectedSiteTag($connectedSiteTag);
+        $response = $gapicClient->createConnectedSiteTag();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateConnectedSiteTag', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConnectedSiteTag();
-        $this->assertProtobufEquals($connectedSiteTag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1185,14 +991,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $connectedSiteTag = new ConnectedSiteTag();
-        $connectedSiteTagDisplayName = 'connectedSiteTagDisplayName-1608704893';
-        $connectedSiteTag->setDisplayName($connectedSiteTagDisplayName);
-        $connectedSiteTagTagId = 'connectedSiteTagTagId-937600789';
-        $connectedSiteTag->setTagId($connectedSiteTagTagId);
         try {
-            $gapicClient->createConnectedSiteTag($connectedSiteTag);
+            $gapicClient->createConnectedSiteTag();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1223,20 +1023,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDeletable($deletable);
         $expectedResponse->setCustom($custom);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $conversionEvent = new ConversionEvent();
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->createConversionEvent($conversionEvent, $formattedParent);
+        $response = $gapicClient->createConversionEvent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateConversionEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConversionEvent();
-        $this->assertProtobufEquals($conversionEvent, $actualValue);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1258,11 +1051,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $conversionEvent = new ConversionEvent();
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->createConversionEvent($conversionEvent, $formattedParent);
+            $gapicClient->createConversionEvent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1295,26 +1085,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDisallowAdsPersonalization($disallowAdsPersonalization);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $customDimension = new CustomDimension();
-        $customDimensionParameterName = 'customDimensionParameterName-405505313';
-        $customDimension->setParameterName($customDimensionParameterName);
-        $customDimensionDisplayName = 'customDimensionDisplayName2102948408';
-        $customDimension->setDisplayName($customDimensionDisplayName);
-        $customDimensionScope = DimensionScope::DIMENSION_SCOPE_UNSPECIFIED;
-        $customDimension->setScope($customDimensionScope);
-        $response = $gapicClient->createCustomDimension($formattedParent, $customDimension);
+        $response = $gapicClient->createCustomDimension();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateCustomDimension', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getCustomDimension();
-        $this->assertProtobufEquals($customDimension, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1336,17 +1113,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $customDimension = new CustomDimension();
-        $customDimensionParameterName = 'customDimensionParameterName-405505313';
-        $customDimension->setParameterName($customDimensionParameterName);
-        $customDimensionDisplayName = 'customDimensionDisplayName2102948408';
-        $customDimension->setDisplayName($customDimensionDisplayName);
-        $customDimensionScope = DimensionScope::DIMENSION_SCOPE_UNSPECIFIED;
-        $customDimension->setScope($customDimensionScope);
         try {
-            $gapicClient->createCustomDimension($formattedParent, $customDimension);
+            $gapicClient->createCustomDimension();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1377,28 +1145,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $customMetric = new CustomMetric();
-        $customMetricParameterName = 'customMetricParameterName1627167443';
-        $customMetric->setParameterName($customMetricParameterName);
-        $customMetricDisplayName = 'customMetricDisplayName-835715284';
-        $customMetric->setDisplayName($customMetricDisplayName);
-        $customMetricMeasurementUnit = MeasurementUnit::MEASUREMENT_UNIT_UNSPECIFIED;
-        $customMetric->setMeasurementUnit($customMetricMeasurementUnit);
-        $customMetricScope = MetricScope::METRIC_SCOPE_UNSPECIFIED;
-        $customMetric->setScope($customMetricScope);
-        $response = $gapicClient->createCustomMetric($formattedParent, $customMetric);
+        $response = $gapicClient->createCustomMetric();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateCustomMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getCustomMetric();
-        $this->assertProtobufEquals($customMetric, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1420,19 +1173,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $customMetric = new CustomMetric();
-        $customMetricParameterName = 'customMetricParameterName1627167443';
-        $customMetric->setParameterName($customMetricParameterName);
-        $customMetricDisplayName = 'customMetricDisplayName-835715284';
-        $customMetric->setDisplayName($customMetricDisplayName);
-        $customMetricMeasurementUnit = MeasurementUnit::MEASUREMENT_UNIT_UNSPECIFIED;
-        $customMetric->setMeasurementUnit($customMetricMeasurementUnit);
-        $customMetricScope = MetricScope::METRIC_SCOPE_UNSPECIFIED;
-        $customMetric->setScope($customMetricScope);
         try {
-            $gapicClient->createCustomMetric($formattedParent, $customMetric);
+            $gapicClient->createCustomMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1459,22 +1201,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $dataStream = new DataStream();
-        $dataStreamType = DataStreamType::DATA_STREAM_TYPE_UNSPECIFIED;
-        $dataStream->setType($dataStreamType);
-        $response = $gapicClient->createDataStream($formattedParent, $dataStream);
+        $response = $gapicClient->createDataStream();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDataStream();
-        $this->assertProtobufEquals($dataStream, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1496,13 +1229,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $dataStream = new DataStream();
-        $dataStreamType = DataStreamType::DATA_STREAM_TYPE_UNSPECIFIED;
-        $dataStream->setType($dataStreamType);
         try {
-            $gapicClient->createDataStream($formattedParent, $dataStream);
+            $gapicClient->createDataStream();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1531,20 +1259,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setAdvertiserId($advertiserId);
         $expectedResponse->setAdvertiserDisplayName($advertiserDisplayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $displayVideo360AdvertiserLink = new DisplayVideo360AdvertiserLink();
-        $response = $gapicClient->createDisplayVideo360AdvertiserLink($formattedParent, $displayVideo360AdvertiserLink);
+        $response = $gapicClient->createDisplayVideo360AdvertiserLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateDisplayVideo360AdvertiserLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDisplayVideo360AdvertiserLink();
-        $this->assertProtobufEquals($displayVideo360AdvertiserLink, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1566,11 +1287,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $displayVideo360AdvertiserLink = new DisplayVideo360AdvertiserLink();
         try {
-            $gapicClient->createDisplayVideo360AdvertiserLink($formattedParent, $displayVideo360AdvertiserLink);
+            $gapicClient->createDisplayVideo360AdvertiserLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1601,20 +1319,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setAdvertiserDisplayName($advertiserDisplayName);
         $expectedResponse->setValidationEmail($validationEmail);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $displayVideo360AdvertiserLinkProposal = new DisplayVideo360AdvertiserLinkProposal();
-        $response = $gapicClient->createDisplayVideo360AdvertiserLinkProposal($formattedParent, $displayVideo360AdvertiserLinkProposal);
+        $response = $gapicClient->createDisplayVideo360AdvertiserLinkProposal();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateDisplayVideo360AdvertiserLinkProposal', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDisplayVideo360AdvertiserLinkProposal();
-        $this->assertProtobufEquals($displayVideo360AdvertiserLinkProposal, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1636,11 +1347,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $displayVideo360AdvertiserLinkProposal = new DisplayVideo360AdvertiserLinkProposal();
         try {
-            $gapicClient->createDisplayVideo360AdvertiserLinkProposal($formattedParent, $displayVideo360AdvertiserLinkProposal);
+            $gapicClient->createDisplayVideo360AdvertiserLinkProposal();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1669,24 +1377,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDestinationEvent($destinationEvent);
         $expectedResponse->setSourceCopyParameters($sourceCopyParameters);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $eventCreateRule = new EventCreateRule();
-        $eventCreateRuleDestinationEvent = 'eventCreateRuleDestinationEvent598875038';
-        $eventCreateRule->setDestinationEvent($eventCreateRuleDestinationEvent);
-        $eventCreateRuleEventConditions = [];
-        $eventCreateRule->setEventConditions($eventCreateRuleEventConditions);
-        $response = $gapicClient->createEventCreateRule($formattedParent, $eventCreateRule);
+        $response = $gapicClient->createEventCreateRule();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateEventCreateRule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEventCreateRule();
-        $this->assertProtobufEquals($eventCreateRule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1708,15 +1405,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $eventCreateRule = new EventCreateRule();
-        $eventCreateRuleDestinationEvent = 'eventCreateRuleDestinationEvent598875038';
-        $eventCreateRule->setDestinationEvent($eventCreateRuleDestinationEvent);
-        $eventCreateRuleEventConditions = [];
-        $eventCreateRule->setEventConditions($eventCreateRuleEventConditions);
         try {
-            $gapicClient->createEventCreateRule($formattedParent, $eventCreateRule);
+            $gapicClient->createEventCreateRule();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1745,22 +1435,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $expandedDataSet = new ExpandedDataSet();
-        $expandedDataSetDisplayName = 'expandedDataSetDisplayName629188494';
-        $expandedDataSet->setDisplayName($expandedDataSetDisplayName);
-        $response = $gapicClient->createExpandedDataSet($formattedParent, $expandedDataSet);
+        $response = $gapicClient->createExpandedDataSet();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateExpandedDataSet', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getExpandedDataSet();
-        $this->assertProtobufEquals($expandedDataSet, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1782,13 +1463,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $expandedDataSet = new ExpandedDataSet();
-        $expandedDataSetDisplayName = 'expandedDataSetDisplayName629188494';
-        $expandedDataSet->setDisplayName($expandedDataSetDisplayName);
         try {
-            $gapicClient->createExpandedDataSet($formattedParent, $expandedDataSet);
+            $gapicClient->createExpandedDataSet();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1815,20 +1491,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setProject($project);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $firebaseLink = new FirebaseLink();
-        $response = $gapicClient->createFirebaseLink($formattedParent, $firebaseLink);
+        $response = $gapicClient->createFirebaseLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateFirebaseLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getFirebaseLink();
-        $this->assertProtobufEquals($firebaseLink, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1850,11 +1519,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $firebaseLink = new FirebaseLink();
         try {
-            $gapicClient->createFirebaseLink($formattedParent, $firebaseLink);
+            $gapicClient->createFirebaseLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1885,20 +1551,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setCanManageClients($canManageClients);
         $expectedResponse->setCreatorEmailAddress($creatorEmailAddress);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $googleAdsLink = new GoogleAdsLink();
-        $response = $gapicClient->createGoogleAdsLink($formattedParent, $googleAdsLink);
+        $response = $gapicClient->createGoogleAdsLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateGoogleAdsLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGoogleAdsLink();
-        $this->assertProtobufEquals($googleAdsLink, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1920,11 +1579,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $googleAdsLink = new GoogleAdsLink();
         try {
-            $gapicClient->createGoogleAdsLink($formattedParent, $googleAdsLink);
+            $gapicClient->createGoogleAdsLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1953,22 +1609,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setSecretValue($secretValue);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $measurementProtocolSecret = new MeasurementProtocolSecret();
-        $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
-        $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
-        $response = $gapicClient->createMeasurementProtocolSecret($formattedParent, $measurementProtocolSecret);
+        $response = $gapicClient->createMeasurementProtocolSecret();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateMeasurementProtocolSecret', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getMeasurementProtocolSecret();
-        $this->assertProtobufEquals($measurementProtocolSecret, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1990,13 +1637,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $measurementProtocolSecret = new MeasurementProtocolSecret();
-        $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
-        $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
         try {
-            $gapicClient->createMeasurementProtocolSecret($formattedParent, $measurementProtocolSecret);
+            $gapicClient->createMeasurementProtocolSecret();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2031,21 +1673,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setCurrencyCode($currencyCode);
         $expectedResponse->setAccount($account);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $property = new Property();
-        $propertyDisplayName = 'propertyDisplayName-1254483624';
-        $property->setDisplayName($propertyDisplayName);
-        $propertyTimeZone = 'propertyTimeZone-1600366322';
-        $property->setTimeZone($propertyTimeZone);
-        $response = $gapicClient->createProperty($property);
+        $response = $gapicClient->createProperty();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateProperty', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProperty();
-        $this->assertProtobufEquals($property, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2067,14 +1701,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $property = new Property();
-        $propertyDisplayName = 'propertyDisplayName-1254483624';
-        $property->setDisplayName($propertyDisplayName);
-        $propertyTimeZone = 'propertyTimeZone-1600366322';
-        $property->setTimeZone($propertyTimeZone);
         try {
-            $gapicClient->createProperty($property);
+            $gapicClient->createProperty();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2097,21 +1725,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new CreateRollupPropertyResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $rollupProperty = new Property();
-        $rollupPropertyDisplayName = 'rollupPropertyDisplayName1210744416';
-        $rollupProperty->setDisplayName($rollupPropertyDisplayName);
-        $rollupPropertyTimeZone = 'rollupPropertyTimeZone1768247558';
-        $rollupProperty->setTimeZone($rollupPropertyTimeZone);
-        $response = $gapicClient->createRollupProperty($rollupProperty);
+        $response = $gapicClient->createRollupProperty();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateRollupProperty', $actualFuncCall);
-        $actualValue = $actualRequestObject->getRollupProperty();
-        $this->assertProtobufEquals($rollupProperty, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2133,14 +1753,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $rollupProperty = new Property();
-        $rollupPropertyDisplayName = 'rollupPropertyDisplayName1210744416';
-        $rollupProperty->setDisplayName($rollupPropertyDisplayName);
-        $rollupPropertyTimeZone = 'rollupPropertyTimeZone1768247558';
-        $rollupProperty->setTimeZone($rollupPropertyTimeZone);
         try {
-            $gapicClient->createRollupProperty($rollupProperty);
+            $gapicClient->createRollupProperty();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2167,20 +1781,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setSourceProperty($sourceProperty);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $rollupPropertySourceLink = new RollupPropertySourceLink();
-        $response = $gapicClient->createRollupPropertySourceLink($formattedParent, $rollupPropertySourceLink);
+        $response = $gapicClient->createRollupPropertySourceLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateRollupPropertySourceLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRollupPropertySourceLink();
-        $this->assertProtobufEquals($rollupPropertySourceLink, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2202,11 +1809,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $rollupPropertySourceLink = new RollupPropertySourceLink();
         try {
-            $gapicClient->createRollupPropertySourceLink($formattedParent, $rollupPropertySourceLink);
+            $gapicClient->createRollupPropertySourceLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2233,22 +1837,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setApplyConversionValues($applyConversionValues);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
-        $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
-        $skadnetworkConversionValueSchema->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
-        $response = $gapicClient->createSKAdNetworkConversionValueSchema($formattedParent, $skadnetworkConversionValueSchema);
+        $response = $gapicClient->createSKAdNetworkConversionValueSchema();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateSKAdNetworkConversionValueSchema', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSkadnetworkConversionValueSchema();
-        $this->assertProtobufEquals($skadnetworkConversionValueSchema, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2270,13 +1865,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
-        $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
-        $skadnetworkConversionValueSchema->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
         try {
-            $gapicClient->createSKAdNetworkConversionValueSchema($formattedParent, $skadnetworkConversionValueSchema);
+            $gapicClient->createSKAdNetworkConversionValueSchema();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2305,20 +1895,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setAdvertiserId($advertiserId);
         $expectedResponse->setAdvertiserDisplayName($advertiserDisplayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $searchAds360Link = new SearchAds360Link();
-        $response = $gapicClient->createSearchAds360Link($formattedParent, $searchAds360Link);
+        $response = $gapicClient->createSearchAds360Link();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateSearchAds360Link', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSearchAds360Link();
-        $this->assertProtobufEquals($searchAds360Link, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2340,11 +1923,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $searchAds360Link = new SearchAds360Link();
         try {
-            $gapicClient->createSearchAds360Link($formattedParent, $searchAds360Link);
+            $gapicClient->createSearchAds360Link();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2367,24 +1947,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new CreateSubpropertyResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $subproperty = new Property();
-        $subpropertyDisplayName = 'subpropertyDisplayName-1859570920';
-        $subproperty->setDisplayName($subpropertyDisplayName);
-        $subpropertyTimeZone = 'subpropertyTimeZone-1143367858';
-        $subproperty->setTimeZone($subpropertyTimeZone);
-        $response = $gapicClient->createSubproperty($formattedParent, $subproperty);
+        $response = $gapicClient->createSubproperty();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateSubproperty', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSubproperty();
-        $this->assertProtobufEquals($subproperty, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2406,15 +1975,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $subproperty = new Property();
-        $subpropertyDisplayName = 'subpropertyDisplayName-1859570920';
-        $subproperty->setDisplayName($subpropertyDisplayName);
-        $subpropertyTimeZone = 'subpropertyTimeZone-1143367858';
-        $subproperty->setTimeZone($subpropertyTimeZone);
         try {
-            $gapicClient->createSubproperty($formattedParent, $subproperty);
+            $gapicClient->createSubproperty();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2441,22 +2003,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setApplyToProperty($applyToProperty);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $subpropertyEventFilter = new SubpropertyEventFilter();
-        $subpropertyEventFilterFilterClauses = [];
-        $subpropertyEventFilter->setFilterClauses($subpropertyEventFilterFilterClauses);
-        $response = $gapicClient->createSubpropertyEventFilter($formattedParent, $subpropertyEventFilter);
+        $response = $gapicClient->createSubpropertyEventFilter();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateSubpropertyEventFilter', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSubpropertyEventFilter();
-        $this->assertProtobufEquals($subpropertyEventFilter, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2478,13 +2031,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $subpropertyEventFilter = new SubpropertyEventFilter();
-        $subpropertyEventFilterFilterClauses = [];
-        $subpropertyEventFilter->setFilterClauses($subpropertyEventFilterFilterClauses);
         try {
-            $gapicClient->createSubpropertyEventFilter($formattedParent, $subpropertyEventFilter);
+            $gapicClient->createSubpropertyEventFilter();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2507,16 +2055,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->accessBindingName('[ACCOUNT]', '[ACCESS_BINDING]');
-        $gapicClient->deleteAccessBinding($formattedName);
+        $gapicClient->deleteAccessBinding();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAccessBinding', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2538,10 +2082,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->accessBindingName('[ACCOUNT]', '[ACCESS_BINDING]');
         try {
-            $gapicClient->deleteAccessBinding($formattedName);
+            $gapicClient->deleteAccessBinding();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2564,16 +2106,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->accountName('[ACCOUNT]');
-        $gapicClient->deleteAccount($formattedName);
+        $gapicClient->deleteAccount();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAccount', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2595,10 +2133,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->accountName('[ACCOUNT]');
         try {
-            $gapicClient->deleteAccount($formattedName);
+            $gapicClient->deleteAccount();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2621,16 +2157,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->adSenseLinkName('[PROPERTY]', '[ADSENSE_LINK]');
-        $gapicClient->deleteAdSenseLink($formattedName);
+        $gapicClient->deleteAdSenseLink();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAdSenseLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2652,10 +2184,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->adSenseLinkName('[PROPERTY]', '[ADSENSE_LINK]');
         try {
-            $gapicClient->deleteAdSenseLink($formattedName);
+            $gapicClient->deleteAdSenseLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2678,16 +2208,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->calculatedMetricName('[PROPERTY]', '[CALCULATED_METRIC]');
-        $gapicClient->deleteCalculatedMetric($formattedName);
+        $gapicClient->deleteCalculatedMetric();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteCalculatedMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2709,10 +2235,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->calculatedMetricName('[PROPERTY]', '[CALCULATED_METRIC]');
         try {
-            $gapicClient->deleteCalculatedMetric($formattedName);
+            $gapicClient->deleteCalculatedMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2735,16 +2259,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
-        $gapicClient->deleteChannelGroup($formattedName);
+        $gapicClient->deleteChannelGroup();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteChannelGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2766,10 +2286,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
         try {
-            $gapicClient->deleteChannelGroup($formattedName);
+            $gapicClient->deleteChannelGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2843,16 +2361,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversionEventName('[PROPERTY]', '[CONVERSION_EVENT]');
-        $gapicClient->deleteConversionEvent($formattedName);
+        $gapicClient->deleteConversionEvent();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteConversionEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2874,10 +2388,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversionEventName('[PROPERTY]', '[CONVERSION_EVENT]');
         try {
-            $gapicClient->deleteConversionEvent($formattedName);
+            $gapicClient->deleteConversionEvent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2900,16 +2412,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $gapicClient->deleteDataStream($formattedName);
+        $gapicClient->deleteDataStream();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2931,10 +2439,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
         try {
-            $gapicClient->deleteDataStream($formattedName);
+            $gapicClient->deleteDataStream();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2957,16 +2463,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK]');
-        $gapicClient->deleteDisplayVideo360AdvertiserLink($formattedName);
+        $gapicClient->deleteDisplayVideo360AdvertiserLink();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteDisplayVideo360AdvertiserLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2988,10 +2490,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK]');
         try {
-            $gapicClient->deleteDisplayVideo360AdvertiserLink($formattedName);
+            $gapicClient->deleteDisplayVideo360AdvertiserLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3014,16 +2514,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
-        $gapicClient->deleteDisplayVideo360AdvertiserLinkProposal($formattedName);
+        $gapicClient->deleteDisplayVideo360AdvertiserLinkProposal();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteDisplayVideo360AdvertiserLinkProposal', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3045,10 +2541,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
         try {
-            $gapicClient->deleteDisplayVideo360AdvertiserLinkProposal($formattedName);
+            $gapicClient->deleteDisplayVideo360AdvertiserLinkProposal();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3071,16 +2565,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->eventCreateRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_CREATE_RULE]');
-        $gapicClient->deleteEventCreateRule($formattedName);
+        $gapicClient->deleteEventCreateRule();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteEventCreateRule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3102,10 +2592,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->eventCreateRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_CREATE_RULE]');
         try {
-            $gapicClient->deleteEventCreateRule($formattedName);
+            $gapicClient->deleteEventCreateRule();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3128,16 +2616,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->expandedDataSetName('[PROPERTY]', '[EXPANDED_DATA_SET]');
-        $gapicClient->deleteExpandedDataSet($formattedName);
+        $gapicClient->deleteExpandedDataSet();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteExpandedDataSet', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3159,10 +2643,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->expandedDataSetName('[PROPERTY]', '[EXPANDED_DATA_SET]');
         try {
-            $gapicClient->deleteExpandedDataSet($formattedName);
+            $gapicClient->deleteExpandedDataSet();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3185,16 +2667,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->firebaseLinkName('[PROPERTY]', '[FIREBASE_LINK]');
-        $gapicClient->deleteFirebaseLink($formattedName);
+        $gapicClient->deleteFirebaseLink();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteFirebaseLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3216,10 +2694,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->firebaseLinkName('[PROPERTY]', '[FIREBASE_LINK]');
         try {
-            $gapicClient->deleteFirebaseLink($formattedName);
+            $gapicClient->deleteFirebaseLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3242,16 +2718,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->googleAdsLinkName('[PROPERTY]', '[GOOGLE_ADS_LINK]');
-        $gapicClient->deleteGoogleAdsLink($formattedName);
+        $gapicClient->deleteGoogleAdsLink();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteGoogleAdsLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3273,10 +2745,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->googleAdsLinkName('[PROPERTY]', '[GOOGLE_ADS_LINK]');
         try {
-            $gapicClient->deleteGoogleAdsLink($formattedName);
+            $gapicClient->deleteGoogleAdsLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3299,16 +2769,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->measurementProtocolSecretName('[PROPERTY]', '[DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
-        $gapicClient->deleteMeasurementProtocolSecret($formattedName);
+        $gapicClient->deleteMeasurementProtocolSecret();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteMeasurementProtocolSecret', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3330,10 +2796,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->measurementProtocolSecretName('[PROPERTY]', '[DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
         try {
-            $gapicClient->deleteMeasurementProtocolSecret($formattedName);
+            $gapicClient->deleteMeasurementProtocolSecret();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3368,17 +2832,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setCurrencyCode($currencyCode);
         $expectedResponse->setAccount($account);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->deleteProperty($formattedName);
+        $response = $gapicClient->deleteProperty();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteProperty', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3400,10 +2860,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->deleteProperty($formattedName);
+            $gapicClient->deleteProperty();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3426,16 +2884,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->rollupPropertySourceLinkName('[PROPERTY]', '[ROLLUP_PROPERTY_SOURCE_LINK]');
-        $gapicClient->deleteRollupPropertySourceLink($formattedName);
+        $gapicClient->deleteRollupPropertySourceLink();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteRollupPropertySourceLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3457,10 +2911,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->rollupPropertySourceLinkName('[PROPERTY]', '[ROLLUP_PROPERTY_SOURCE_LINK]');
         try {
-            $gapicClient->deleteRollupPropertySourceLink($formattedName);
+            $gapicClient->deleteRollupPropertySourceLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3483,16 +2935,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
-        $gapicClient->deleteSKAdNetworkConversionValueSchema($formattedName);
+        $gapicClient->deleteSKAdNetworkConversionValueSchema();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteSKAdNetworkConversionValueSchema', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3514,10 +2962,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
         try {
-            $gapicClient->deleteSKAdNetworkConversionValueSchema($formattedName);
+            $gapicClient->deleteSKAdNetworkConversionValueSchema();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3540,16 +2986,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->searchAds360LinkName('[PROPERTY]', '[SEARCH_ADS_360_LINK]');
-        $gapicClient->deleteSearchAds360Link($formattedName);
+        $gapicClient->deleteSearchAds360Link();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteSearchAds360Link', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3571,10 +3013,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->searchAds360LinkName('[PROPERTY]', '[SEARCH_ADS_360_LINK]');
         try {
-            $gapicClient->deleteSearchAds360Link($formattedName);
+            $gapicClient->deleteSearchAds360Link();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3597,16 +3037,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->subpropertyEventFilterName('[PROPERTY]', '[SUB_PROPERTY_EVENT_FILTER]');
-        $gapicClient->deleteSubpropertyEventFilter($formattedName);
+        $gapicClient->deleteSubpropertyEventFilter();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteSubpropertyEventFilter', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3628,10 +3064,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->subpropertyEventFilterName('[PROPERTY]', '[SUB_PROPERTY_EVENT_FILTER]');
         try {
-            $gapicClient->deleteSubpropertyEventFilter($formattedName);
+            $gapicClient->deleteSubpropertyEventFilter();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3656,17 +3090,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new FetchAutomatedGa4ConfigurationOptOutResponse();
         $expectedResponse->setOptOut($optOut);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $property = 'property-993141291';
-        $response = $gapicClient->fetchAutomatedGa4ConfigurationOptOut($property);
+        $response = $gapicClient->fetchAutomatedGa4ConfigurationOptOut();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/FetchAutomatedGa4ConfigurationOptOut', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProperty();
-        $this->assertProtobufEquals($property, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3688,10 +3118,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $property = 'property-993141291';
         try {
-            $gapicClient->fetchAutomatedGa4ConfigurationOptOut($property);
+            $gapicClient->fetchAutomatedGa4ConfigurationOptOut();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3716,17 +3144,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new FetchConnectedGa4PropertyResponse();
         $expectedResponse->setProperty($property2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->fetchConnectedGa4Property($formattedProperty);
+        $response = $gapicClient->fetchConnectedGa4Property();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/FetchConnectedGa4Property', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProperty();
-        $this->assertProtobufEquals($formattedProperty, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3748,10 +3172,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->fetchConnectedGa4Property($formattedProperty);
+            $gapicClient->fetchConnectedGa4Property();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3778,17 +3200,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->accessBindingName('[ACCOUNT]', '[ACCESS_BINDING]');
-        $response = $gapicClient->getAccessBinding($formattedName);
+        $response = $gapicClient->getAccessBinding();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAccessBinding', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3810,10 +3228,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->accessBindingName('[ACCOUNT]', '[ACCESS_BINDING]');
         try {
-            $gapicClient->getAccessBinding($formattedName);
+            $gapicClient->getAccessBinding();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3844,17 +3260,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setRegionCode($regionCode);
         $expectedResponse->setDeleted($deleted);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->accountName('[ACCOUNT]');
-        $response = $gapicClient->getAccount($formattedName);
+        $response = $gapicClient->getAccount();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAccount', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3876,10 +3288,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->accountName('[ACCOUNT]');
         try {
-            $gapicClient->getAccount($formattedName);
+            $gapicClient->getAccount();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3906,17 +3316,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setAdClientCode($adClientCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->adSenseLinkName('[PROPERTY]', '[ADSENSE_LINK]');
-        $response = $gapicClient->getAdSenseLink($formattedName);
+        $response = $gapicClient->getAdSenseLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAdSenseLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3938,10 +3344,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->adSenseLinkName('[PROPERTY]', '[ADSENSE_LINK]');
         try {
-            $gapicClient->getAdSenseLink($formattedName);
+            $gapicClient->getAdSenseLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3966,17 +3370,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new AttributionSettings();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->attributionSettingsName('[PROPERTY]');
-        $response = $gapicClient->getAttributionSettings($formattedName);
+        $response = $gapicClient->getAttributionSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAttributionSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3998,10 +3398,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->attributionSettingsName('[PROPERTY]');
         try {
-            $gapicClient->getAttributionSettings($formattedName);
+            $gapicClient->getAttributionSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4034,17 +3432,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setMembershipDurationDays($membershipDurationDays);
         $expectedResponse->setAdsPersonalizationEnabled($adsPersonalizationEnabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->audienceName('[PROPERTY]', '[AUDIENCE]');
-        $response = $gapicClient->getAudience($formattedName);
+        $response = $gapicClient->getAudience();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAudience', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4066,10 +3460,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->audienceName('[PROPERTY]', '[AUDIENCE]');
         try {
-            $gapicClient->getAudience($formattedName);
+            $gapicClient->getAudience();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4104,17 +3496,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setFreshDailyExportEnabled($freshDailyExportEnabled);
         $expectedResponse->setIncludeAdvertisingId($includeAdvertisingId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->bigQueryLinkName('[PROPERTY]', '[BIGQUERY_LINK]');
-        $response = $gapicClient->getBigQueryLink($formattedName);
+        $response = $gapicClient->getBigQueryLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetBigQueryLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4136,10 +3524,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->bigQueryLinkName('[PROPERTY]', '[BIGQUERY_LINK]');
         try {
-            $gapicClient->getBigQueryLink($formattedName);
+            $gapicClient->getBigQueryLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4174,17 +3560,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setFormula($formula);
         $expectedResponse->setInvalidMetricReference($invalidMetricReference);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->calculatedMetricName('[PROPERTY]', '[CALCULATED_METRIC]');
-        $response = $gapicClient->getCalculatedMetric($formattedName);
+        $response = $gapicClient->getCalculatedMetric();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetCalculatedMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4206,10 +3588,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->calculatedMetricName('[PROPERTY]', '[CALCULATED_METRIC]');
         try {
-            $gapicClient->getCalculatedMetric($formattedName);
+            $gapicClient->getCalculatedMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4240,17 +3620,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setSystemDefined($systemDefined);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
-        $response = $gapicClient->getChannelGroup($formattedName);
+        $response = $gapicClient->getChannelGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetChannelGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4272,10 +3648,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
         try {
-            $gapicClient->getChannelGroup($formattedName);
+            $gapicClient->getChannelGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4306,17 +3680,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDeletable($deletable);
         $expectedResponse->setCustom($custom);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->conversionEventName('[PROPERTY]', '[CONVERSION_EVENT]');
-        $response = $gapicClient->getConversionEvent($formattedName);
+        $response = $gapicClient->getConversionEvent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetConversionEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4338,10 +3708,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->conversionEventName('[PROPERTY]', '[CONVERSION_EVENT]');
         try {
-            $gapicClient->getConversionEvent($formattedName);
+            $gapicClient->getConversionEvent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4374,17 +3742,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDisallowAdsPersonalization($disallowAdsPersonalization);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
-        $response = $gapicClient->getCustomDimension($formattedName);
+        $response = $gapicClient->getCustomDimension();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetCustomDimension', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4406,10 +3770,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
         try {
-            $gapicClient->getCustomDimension($formattedName);
+            $gapicClient->getCustomDimension();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4440,17 +3802,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
-        $response = $gapicClient->getCustomMetric($formattedName);
+        $response = $gapicClient->getCustomMetric();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetCustomMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4472,10 +3830,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
         try {
-            $gapicClient->getCustomMetric($formattedName);
+            $gapicClient->getCustomMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4504,17 +3860,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setEmailRedactionEnabled($emailRedactionEnabled);
         $expectedResponse->setQueryParameterRedactionEnabled($queryParameterRedactionEnabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dataRedactionSettingsName('[PROPERTY]', '[DATA_STREAM]');
-        $response = $gapicClient->getDataRedactionSettings($formattedName);
+        $response = $gapicClient->getDataRedactionSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataRedactionSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4536,10 +3888,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dataRedactionSettingsName('[PROPERTY]', '[DATA_STREAM]');
         try {
-            $gapicClient->getDataRedactionSettings($formattedName);
+            $gapicClient->getDataRedactionSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4566,17 +3916,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setResetUserDataOnNewActivity($resetUserDataOnNewActivity);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dataRetentionSettingsName('[PROPERTY]');
-        $response = $gapicClient->getDataRetentionSettings($formattedName);
+        $response = $gapicClient->getDataRetentionSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataRetentionSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4598,10 +3944,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dataRetentionSettingsName('[PROPERTY]');
         try {
-            $gapicClient->getDataRetentionSettings($formattedName);
+            $gapicClient->getDataRetentionSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4636,17 +3980,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setSharingWithGoogleProductsEnabled($sharingWithGoogleProductsEnabled);
         $expectedResponse->setSharingWithOthersEnabled($sharingWithOthersEnabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dataSharingSettingsName('[ACCOUNT]');
-        $response = $gapicClient->getDataSharingSettings($formattedName);
+        $response = $gapicClient->getDataSharingSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataSharingSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4668,10 +4008,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dataSharingSettingsName('[ACCOUNT]');
         try {
-            $gapicClient->getDataSharingSettings($formattedName);
+            $gapicClient->getDataSharingSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4698,17 +4036,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $response = $gapicClient->getDataStream($formattedName);
+        $response = $gapicClient->getDataStream();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4730,10 +4064,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
         try {
-            $gapicClient->getDataStream($formattedName);
+            $gapicClient->getDataStream();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4762,17 +4094,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setAdvertiserId($advertiserId);
         $expectedResponse->setAdvertiserDisplayName($advertiserDisplayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK]');
-        $response = $gapicClient->getDisplayVideo360AdvertiserLink($formattedName);
+        $response = $gapicClient->getDisplayVideo360AdvertiserLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDisplayVideo360AdvertiserLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4794,10 +4122,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK]');
         try {
-            $gapicClient->getDisplayVideo360AdvertiserLink($formattedName);
+            $gapicClient->getDisplayVideo360AdvertiserLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4828,17 +4154,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setAdvertiserDisplayName($advertiserDisplayName);
         $expectedResponse->setValidationEmail($validationEmail);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
-        $response = $gapicClient->getDisplayVideo360AdvertiserLinkProposal($formattedName);
+        $response = $gapicClient->getDisplayVideo360AdvertiserLinkProposal();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDisplayVideo360AdvertiserLinkProposal', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4860,10 +4182,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
         try {
-            $gapicClient->getDisplayVideo360AdvertiserLinkProposal($formattedName);
+            $gapicClient->getDisplayVideo360AdvertiserLinkProposal();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4908,17 +4228,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setSearchQueryParameter($searchQueryParameter);
         $expectedResponse->setUriQueryParameter($uriQueryParameter);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->enhancedMeasurementSettingsName('[PROPERTY]', '[DATA_STREAM]');
-        $response = $gapicClient->getEnhancedMeasurementSettings($formattedName);
+        $response = $gapicClient->getEnhancedMeasurementSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEnhancedMeasurementSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4940,10 +4256,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->enhancedMeasurementSettingsName('[PROPERTY]', '[DATA_STREAM]');
         try {
-            $gapicClient->getEnhancedMeasurementSettings($formattedName);
+            $gapicClient->getEnhancedMeasurementSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4972,17 +4286,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDestinationEvent($destinationEvent);
         $expectedResponse->setSourceCopyParameters($sourceCopyParameters);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->eventCreateRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_CREATE_RULE]');
-        $response = $gapicClient->getEventCreateRule($formattedName);
+        $response = $gapicClient->getEventCreateRule();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEventCreateRule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5004,10 +4314,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->eventCreateRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_CREATE_RULE]');
         try {
-            $gapicClient->getEventCreateRule($formattedName);
+            $gapicClient->getEventCreateRule();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5036,17 +4344,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->expandedDataSetName('[PROPERTY]', '[EXPANDED_DATA_SET]');
-        $response = $gapicClient->getExpandedDataSet($formattedName);
+        $response = $gapicClient->getExpandedDataSet();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetExpandedDataSet', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5068,10 +4372,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->expandedDataSetName('[PROPERTY]', '[EXPANDED_DATA_SET]');
         try {
-            $gapicClient->getExpandedDataSet($formattedName);
+            $gapicClient->getExpandedDataSet();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5098,17 +4400,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setSnippet($snippet);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->globalSiteTagName('[PROPERTY]', '[DATA_STREAM]');
-        $response = $gapicClient->getGlobalSiteTag($formattedName);
+        $response = $gapicClient->getGlobalSiteTag();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetGlobalSiteTag', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5130,10 +4428,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->globalSiteTagName('[PROPERTY]', '[DATA_STREAM]');
         try {
-            $gapicClient->getGlobalSiteTag($formattedName);
+            $gapicClient->getGlobalSiteTag();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5158,17 +4454,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new GoogleSignalsSettings();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->googleSignalsSettingsName('[PROPERTY]');
-        $response = $gapicClient->getGoogleSignalsSettings($formattedName);
+        $response = $gapicClient->getGoogleSignalsSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetGoogleSignalsSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5190,10 +4482,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->googleSignalsSettingsName('[PROPERTY]');
         try {
-            $gapicClient->getGoogleSignalsSettings($formattedName);
+            $gapicClient->getGoogleSignalsSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5222,17 +4512,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setSecretValue($secretValue);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->measurementProtocolSecretName('[PROPERTY]', '[DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
-        $response = $gapicClient->getMeasurementProtocolSecret($formattedName);
+        $response = $gapicClient->getMeasurementProtocolSecret();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetMeasurementProtocolSecret', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5254,10 +4540,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->measurementProtocolSecretName('[PROPERTY]', '[DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
         try {
-            $gapicClient->getMeasurementProtocolSecret($formattedName);
+            $gapicClient->getMeasurementProtocolSecret();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5292,17 +4576,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setCurrencyCode($currencyCode);
         $expectedResponse->setAccount($account);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->getProperty($formattedName);
+        $response = $gapicClient->getProperty();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetProperty', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5324,10 +4604,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->getProperty($formattedName);
+            $gapicClient->getProperty();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5354,17 +4632,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setSourceProperty($sourceProperty);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->rollupPropertySourceLinkName('[PROPERTY]', '[ROLLUP_PROPERTY_SOURCE_LINK]');
-        $response = $gapicClient->getRollupPropertySourceLink($formattedName);
+        $response = $gapicClient->getRollupPropertySourceLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetRollupPropertySourceLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5386,10 +4660,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->rollupPropertySourceLinkName('[PROPERTY]', '[ROLLUP_PROPERTY_SOURCE_LINK]');
         try {
-            $gapicClient->getRollupPropertySourceLink($formattedName);
+            $gapicClient->getRollupPropertySourceLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5416,17 +4688,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setApplyConversionValues($applyConversionValues);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
-        $response = $gapicClient->getSKAdNetworkConversionValueSchema($formattedName);
+        $response = $gapicClient->getSKAdNetworkConversionValueSchema();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetSKAdNetworkConversionValueSchema', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5448,10 +4716,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->sKAdNetworkConversionValueSchemaName('[PROPERTY]', '[DATA_STREAM]', '[SKADNETWORK_CONVERSION_VALUE_SCHEMA]');
         try {
-            $gapicClient->getSKAdNetworkConversionValueSchema($formattedName);
+            $gapicClient->getSKAdNetworkConversionValueSchema();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5480,17 +4746,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setAdvertiserId($advertiserId);
         $expectedResponse->setAdvertiserDisplayName($advertiserDisplayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->searchAds360LinkName('[PROPERTY]', '[SEARCH_ADS_360_LINK]');
-        $response = $gapicClient->getSearchAds360Link($formattedName);
+        $response = $gapicClient->getSearchAds360Link();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetSearchAds360Link', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5512,10 +4774,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->searchAds360LinkName('[PROPERTY]', '[SEARCH_ADS_360_LINK]');
         try {
-            $gapicClient->getSearchAds360Link($formattedName);
+            $gapicClient->getSearchAds360Link();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5542,17 +4802,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setApplyToProperty($applyToProperty);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->subpropertyEventFilterName('[PROPERTY]', '[SUB_PROPERTY_EVENT_FILTER]');
-        $response = $gapicClient->getSubpropertyEventFilter($formattedName);
+        $response = $gapicClient->getSubpropertyEventFilter();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetSubpropertyEventFilter', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5574,10 +4830,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->subpropertyEventFilterName('[PROPERTY]', '[SUB_PROPERTY_EVENT_FILTER]');
         try {
-            $gapicClient->getSubpropertyEventFilter($formattedName);
+            $gapicClient->getSubpropertyEventFilter();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5607,9 +4861,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAccessBindings($accessBindings);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $response = $gapicClient->listAccessBindings($formattedParent);
+        $response = $gapicClient->listAccessBindings();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -5619,8 +4871,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAccessBindings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5642,10 +4892,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
         try {
-            $gapicClient->listAccessBindings($formattedParent);
+            $gapicClient->listAccessBindings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5799,9 +5047,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAdsenseLinks($adsenseLinks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listAdSenseLinks($formattedParent);
+        $response = $gapicClient->listAdSenseLinks();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -5811,8 +5057,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAdSenseLinks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5834,10 +5078,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listAdSenseLinks($formattedParent);
+            $gapicClient->listAdSenseLinks();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5867,9 +5109,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAudiences($audiences);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listAudiences($formattedParent);
+        $response = $gapicClient->listAudiences();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -5879,8 +5119,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAudiences', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5902,10 +5140,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listAudiences($formattedParent);
+            $gapicClient->listAudiences();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5935,9 +5171,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBigqueryLinks($bigqueryLinks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listBigQueryLinks($formattedParent);
+        $response = $gapicClient->listBigQueryLinks();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -5947,8 +5181,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListBigQueryLinks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -5970,10 +5202,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listBigQueryLinks($formattedParent);
+            $gapicClient->listBigQueryLinks();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6003,9 +5233,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCalculatedMetrics($calculatedMetrics);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listCalculatedMetrics($formattedParent);
+        $response = $gapicClient->listCalculatedMetrics();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6015,8 +5243,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListCalculatedMetrics', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6038,10 +5264,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listCalculatedMetrics($formattedParent);
+            $gapicClient->listCalculatedMetrics();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6071,9 +5295,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannelGroups($channelGroups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listChannelGroups($formattedParent);
+        $response = $gapicClient->listChannelGroups();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6083,8 +5305,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListChannelGroups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6106,10 +5326,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listChannelGroups($formattedParent);
+            $gapicClient->listChannelGroups();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6191,9 +5409,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversionEvents($conversionEvents);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listConversionEvents($formattedParent);
+        $response = $gapicClient->listConversionEvents();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6203,8 +5419,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListConversionEvents', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6226,10 +5440,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listConversionEvents($formattedParent);
+            $gapicClient->listConversionEvents();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6259,9 +5471,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomDimensions($customDimensions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listCustomDimensions($formattedParent);
+        $response = $gapicClient->listCustomDimensions();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6271,8 +5481,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListCustomDimensions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6294,10 +5502,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listCustomDimensions($formattedParent);
+            $gapicClient->listCustomDimensions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6327,9 +5533,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomMetrics($customMetrics);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listCustomMetrics($formattedParent);
+        $response = $gapicClient->listCustomMetrics();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6339,8 +5543,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListCustomMetrics', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6362,10 +5564,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listCustomMetrics($formattedParent);
+            $gapicClient->listCustomMetrics();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6395,9 +5595,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataStreams($dataStreams);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listDataStreams($formattedParent);
+        $response = $gapicClient->listDataStreams();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6407,8 +5605,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListDataStreams', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6430,10 +5626,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listDataStreams($formattedParent);
+            $gapicClient->listDataStreams();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6463,9 +5657,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDisplayVideo360AdvertiserLinkProposals($displayVideo360AdvertiserLinkProposals);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listDisplayVideo360AdvertiserLinkProposals($formattedParent);
+        $response = $gapicClient->listDisplayVideo360AdvertiserLinkProposals();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6475,8 +5667,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListDisplayVideo360AdvertiserLinkProposals', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6498,10 +5688,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listDisplayVideo360AdvertiserLinkProposals($formattedParent);
+            $gapicClient->listDisplayVideo360AdvertiserLinkProposals();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6531,9 +5719,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDisplayVideo360AdvertiserLinks($displayVideo360AdvertiserLinks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listDisplayVideo360AdvertiserLinks($formattedParent);
+        $response = $gapicClient->listDisplayVideo360AdvertiserLinks();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6543,8 +5729,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListDisplayVideo360AdvertiserLinks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6566,10 +5750,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listDisplayVideo360AdvertiserLinks($formattedParent);
+            $gapicClient->listDisplayVideo360AdvertiserLinks();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6599,9 +5781,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEventCreateRules($eventCreateRules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $response = $gapicClient->listEventCreateRules($formattedParent);
+        $response = $gapicClient->listEventCreateRules();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6611,8 +5791,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListEventCreateRules', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6634,10 +5812,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
         try {
-            $gapicClient->listEventCreateRules($formattedParent);
+            $gapicClient->listEventCreateRules();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6667,9 +5843,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExpandedDataSets($expandedDataSets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listExpandedDataSets($formattedParent);
+        $response = $gapicClient->listExpandedDataSets();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6679,8 +5853,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListExpandedDataSets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6702,10 +5874,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listExpandedDataSets($formattedParent);
+            $gapicClient->listExpandedDataSets();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6735,9 +5905,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFirebaseLinks($firebaseLinks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listFirebaseLinks($formattedParent);
+        $response = $gapicClient->listFirebaseLinks();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6747,8 +5915,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListFirebaseLinks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6770,10 +5936,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listFirebaseLinks($formattedParent);
+            $gapicClient->listFirebaseLinks();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6803,9 +5967,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGoogleAdsLinks($googleAdsLinks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listGoogleAdsLinks($formattedParent);
+        $response = $gapicClient->listGoogleAdsLinks();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6815,8 +5977,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListGoogleAdsLinks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6838,10 +5998,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listGoogleAdsLinks($formattedParent);
+            $gapicClient->listGoogleAdsLinks();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6871,9 +6029,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMeasurementProtocolSecrets($measurementProtocolSecrets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $response = $gapicClient->listMeasurementProtocolSecrets($formattedParent);
+        $response = $gapicClient->listMeasurementProtocolSecrets();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6883,8 +6039,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListMeasurementProtocolSecrets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6906,10 +6060,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
         try {
-            $gapicClient->listMeasurementProtocolSecrets($formattedParent);
+            $gapicClient->listMeasurementProtocolSecrets();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -6939,9 +6091,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProperties($properties);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->listProperties($filter);
+        $response = $gapicClient->listProperties();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -6951,8 +6101,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListProperties', $actualFuncCall);
-        $actualValue = $actualRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -6974,10 +6122,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $filter = 'filter-1274492040';
         try {
-            $gapicClient->listProperties($filter);
+            $gapicClient->listProperties();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7007,9 +6153,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRollupPropertySourceLinks($rollupPropertySourceLinks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listRollupPropertySourceLinks($formattedParent);
+        $response = $gapicClient->listRollupPropertySourceLinks();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -7019,8 +6163,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListRollupPropertySourceLinks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7042,10 +6184,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listRollupPropertySourceLinks($formattedParent);
+            $gapicClient->listRollupPropertySourceLinks();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7075,9 +6215,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSkadnetworkConversionValueSchemas($skadnetworkConversionValueSchemas);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-        $response = $gapicClient->listSKAdNetworkConversionValueSchemas($formattedParent);
+        $response = $gapicClient->listSKAdNetworkConversionValueSchemas();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -7087,8 +6225,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListSKAdNetworkConversionValueSchemas', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7110,10 +6246,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
         try {
-            $gapicClient->listSKAdNetworkConversionValueSchemas($formattedParent);
+            $gapicClient->listSKAdNetworkConversionValueSchemas();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7143,9 +6277,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSearchAds360Links($searchAds360Links);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listSearchAds360Links($formattedParent);
+        $response = $gapicClient->listSearchAds360Links();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -7155,8 +6287,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListSearchAds360Links', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7178,10 +6308,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listSearchAds360Links($formattedParent);
+            $gapicClient->listSearchAds360Links();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7211,9 +6339,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubpropertyEventFilters($subpropertyEventFilters);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $response = $gapicClient->listSubpropertyEventFilters($formattedParent);
+        $response = $gapicClient->listSubpropertyEventFilters();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -7223,8 +6349,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListSubpropertyEventFilters', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7246,10 +6370,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         try {
-            $gapicClient->listSubpropertyEventFilters($formattedParent);
+            $gapicClient->listSubpropertyEventFilters();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7387,9 +6509,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChangeHistoryEvents($changeHistoryEvents);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedAccount = $gapicClient->accountName('[ACCOUNT]');
-        $response = $gapicClient->searchChangeHistoryEvents($formattedAccount);
+        $response = $gapicClient->searchChangeHistoryEvents();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -7399,8 +6519,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/SearchChangeHistoryEvents', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAccount();
-        $this->assertProtobufEquals($formattedAccount, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7422,10 +6540,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedAccount = $gapicClient->accountName('[ACCOUNT]');
         try {
-            $gapicClient->searchChangeHistoryEvents($formattedAccount);
+            $gapicClient->searchChangeHistoryEvents();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7448,17 +6564,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SetAutomatedGa4ConfigurationOptOutResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $property = 'property-993141291';
-        $response = $gapicClient->setAutomatedGa4ConfigurationOptOut($property);
+        $response = $gapicClient->setAutomatedGa4ConfigurationOptOut();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/SetAutomatedGa4ConfigurationOptOut', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProperty();
-        $this->assertProtobufEquals($property, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7480,10 +6592,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $property = 'property-993141291';
         try {
-            $gapicClient->setAutomatedGa4ConfigurationOptOut($property);
+            $gapicClient->setAutomatedGa4ConfigurationOptOut();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7510,17 +6620,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $accessBinding = new AccessBinding();
-        $response = $gapicClient->updateAccessBinding($accessBinding);
+        $response = $gapicClient->updateAccessBinding();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAccessBinding', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAccessBinding();
-        $this->assertProtobufEquals($accessBinding, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7542,10 +6648,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $accessBinding = new AccessBinding();
         try {
-            $gapicClient->updateAccessBinding($accessBinding);
+            $gapicClient->updateAccessBinding();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7576,22 +6680,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setRegionCode($regionCode);
         $expectedResponse->setDeleted($deleted);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $account = new Account();
-        $accountDisplayName = 'accountDisplayName-616446464';
-        $account->setDisplayName($accountDisplayName);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateAccount($account, $updateMask);
+        $response = $gapicClient->updateAccount();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAccount', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAccount();
-        $this->assertProtobufEquals($account, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7613,13 +6708,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $account = new Account();
-        $accountDisplayName = 'accountDisplayName-616446464';
-        $account->setDisplayName($accountDisplayName);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateAccount($account, $updateMask);
+            $gapicClient->updateAccount();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7644,28 +6734,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new AttributionSettings();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $attributionSettings = new AttributionSettings();
-        $attributionSettingsAcquisitionConversionEventLookbackWindow = AcquisitionConversionEventLookbackWindow::ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED;
-        $attributionSettings->setAcquisitionConversionEventLookbackWindow($attributionSettingsAcquisitionConversionEventLookbackWindow);
-        $attributionSettingsOtherConversionEventLookbackWindow = OtherConversionEventLookbackWindow::OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED;
-        $attributionSettings->setOtherConversionEventLookbackWindow($attributionSettingsOtherConversionEventLookbackWindow);
-        $attributionSettingsReportingAttributionModel = ReportingAttributionModel::REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED;
-        $attributionSettings->setReportingAttributionModel($attributionSettingsReportingAttributionModel);
-        $attributionSettingsAdsWebConversionDataExportScope = AdsWebConversionDataExportScope::ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED;
-        $attributionSettings->setAdsWebConversionDataExportScope($attributionSettingsAdsWebConversionDataExportScope);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateAttributionSettings($attributionSettings, $updateMask);
+        $response = $gapicClient->updateAttributionSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAttributionSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAttributionSettings();
-        $this->assertProtobufEquals($attributionSettings, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7687,19 +6762,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $attributionSettings = new AttributionSettings();
-        $attributionSettingsAcquisitionConversionEventLookbackWindow = AcquisitionConversionEventLookbackWindow::ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED;
-        $attributionSettings->setAcquisitionConversionEventLookbackWindow($attributionSettingsAcquisitionConversionEventLookbackWindow);
-        $attributionSettingsOtherConversionEventLookbackWindow = OtherConversionEventLookbackWindow::OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED;
-        $attributionSettings->setOtherConversionEventLookbackWindow($attributionSettingsOtherConversionEventLookbackWindow);
-        $attributionSettingsReportingAttributionModel = ReportingAttributionModel::REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED;
-        $attributionSettings->setReportingAttributionModel($attributionSettingsReportingAttributionModel);
-        $attributionSettingsAdsWebConversionDataExportScope = AdsWebConversionDataExportScope::ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED;
-        $attributionSettings->setAdsWebConversionDataExportScope($attributionSettingsAdsWebConversionDataExportScope);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateAttributionSettings($attributionSettings, $updateMask);
+            $gapicClient->updateAttributionSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7732,28 +6796,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setMembershipDurationDays($membershipDurationDays);
         $expectedResponse->setAdsPersonalizationEnabled($adsPersonalizationEnabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $audience = new Audience();
-        $audienceDisplayName = 'audienceDisplayName1537141193';
-        $audience->setDisplayName($audienceDisplayName);
-        $audienceDescription = 'audienceDescription-1901553832';
-        $audience->setDescription($audienceDescription);
-        $audienceMembershipDurationDays = 1530655195;
-        $audience->setMembershipDurationDays($audienceMembershipDurationDays);
-        $audienceFilterClauses = [];
-        $audience->setFilterClauses($audienceFilterClauses);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateAudience($audience, $updateMask);
+        $response = $gapicClient->updateAudience();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAudience', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAudience();
-        $this->assertProtobufEquals($audience, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7775,19 +6824,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $audience = new Audience();
-        $audienceDisplayName = 'audienceDisplayName1537141193';
-        $audience->setDisplayName($audienceDisplayName);
-        $audienceDescription = 'audienceDescription-1901553832';
-        $audience->setDescription($audienceDescription);
-        $audienceMembershipDurationDays = 1530655195;
-        $audience->setMembershipDurationDays($audienceMembershipDurationDays);
-        $audienceFilterClauses = [];
-        $audience->setFilterClauses($audienceFilterClauses);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateAudience($audience, $updateMask);
+            $gapicClient->updateAudience();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7822,26 +6860,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setFormula($formula);
         $expectedResponse->setInvalidMetricReference($invalidMetricReference);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $calculatedMetric = new CalculatedMetric();
-        $calculatedMetricDisplayName = 'calculatedMetricDisplayName-1927551873';
-        $calculatedMetric->setDisplayName($calculatedMetricDisplayName);
-        $calculatedMetricMetricUnit = MetricUnit::METRIC_UNIT_UNSPECIFIED;
-        $calculatedMetric->setMetricUnit($calculatedMetricMetricUnit);
-        $calculatedMetricFormula = 'calculatedMetricFormula752695416';
-        $calculatedMetric->setFormula($calculatedMetricFormula);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateCalculatedMetric($calculatedMetric, $updateMask);
+        $response = $gapicClient->updateCalculatedMetric();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateCalculatedMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCalculatedMetric();
-        $this->assertProtobufEquals($calculatedMetric, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7863,17 +6888,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $calculatedMetric = new CalculatedMetric();
-        $calculatedMetricDisplayName = 'calculatedMetricDisplayName-1927551873';
-        $calculatedMetric->setDisplayName($calculatedMetricDisplayName);
-        $calculatedMetricMetricUnit = MetricUnit::METRIC_UNIT_UNSPECIFIED;
-        $calculatedMetric->setMetricUnit($calculatedMetricMetricUnit);
-        $calculatedMetricFormula = 'calculatedMetricFormula752695416';
-        $calculatedMetric->setFormula($calculatedMetricFormula);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateCalculatedMetric($calculatedMetric, $updateMask);
+            $gapicClient->updateCalculatedMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7904,24 +6920,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setSystemDefined($systemDefined);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $channelGroup = new ChannelGroup();
-        $channelGroupDisplayName = 'channelGroupDisplayName1156787601';
-        $channelGroup->setDisplayName($channelGroupDisplayName);
-        $channelGroupGroupingRule = [];
-        $channelGroup->setGroupingRule($channelGroupGroupingRule);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateChannelGroup($channelGroup, $updateMask);
+        $response = $gapicClient->updateChannelGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateChannelGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getChannelGroup();
-        $this->assertProtobufEquals($channelGroup, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -7943,15 +6948,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $channelGroup = new ChannelGroup();
-        $channelGroupDisplayName = 'channelGroupDisplayName1156787601';
-        $channelGroup->setDisplayName($channelGroupDisplayName);
-        $channelGroupGroupingRule = [];
-        $channelGroup->setGroupingRule($channelGroupGroupingRule);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateChannelGroup($channelGroup, $updateMask);
+            $gapicClient->updateChannelGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7982,20 +6980,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDeletable($deletable);
         $expectedResponse->setCustom($custom);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $conversionEvent = new ConversionEvent();
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateConversionEvent($conversionEvent, $updateMask);
+        $response = $gapicClient->updateConversionEvent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateConversionEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConversionEvent();
-        $this->assertProtobufEquals($conversionEvent, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8017,11 +7008,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $conversionEvent = new ConversionEvent();
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateConversionEvent($conversionEvent, $updateMask);
+            $gapicClient->updateConversionEvent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8054,17 +7042,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDisallowAdsPersonalization($disallowAdsPersonalization);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateCustomDimension($updateMask);
+        $response = $gapicClient->updateCustomDimension();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateCustomDimension', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8086,10 +7070,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateCustomDimension($updateMask);
+            $gapicClient->updateCustomDimension();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8120,17 +7102,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateCustomMetric($updateMask);
+        $response = $gapicClient->updateCustomMetric();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateCustomMetric', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8152,10 +7130,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateCustomMetric($updateMask);
+            $gapicClient->updateCustomMetric();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8184,20 +7160,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setEmailRedactionEnabled($emailRedactionEnabled);
         $expectedResponse->setQueryParameterRedactionEnabled($queryParameterRedactionEnabled);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $dataRedactionSettings = new DataRedactionSettings();
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateDataRedactionSettings($dataRedactionSettings, $updateMask);
+        $response = $gapicClient->updateDataRedactionSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateDataRedactionSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDataRedactionSettings();
-        $this->assertProtobufEquals($dataRedactionSettings, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8219,11 +7188,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $dataRedactionSettings = new DataRedactionSettings();
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateDataRedactionSettings($dataRedactionSettings, $updateMask);
+            $gapicClient->updateDataRedactionSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8250,20 +7216,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setResetUserDataOnNewActivity($resetUserDataOnNewActivity);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $dataRetentionSettings = new DataRetentionSettings();
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateDataRetentionSettings($dataRetentionSettings, $updateMask);
+        $response = $gapicClient->updateDataRetentionSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateDataRetentionSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDataRetentionSettings();
-        $this->assertProtobufEquals($dataRetentionSettings, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8285,11 +7244,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $dataRetentionSettings = new DataRetentionSettings();
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateDataRetentionSettings($dataRetentionSettings, $updateMask);
+            $gapicClient->updateDataRetentionSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8316,17 +7272,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateDataStream($updateMask);
+        $response = $gapicClient->updateDataStream();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8348,10 +7300,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateDataStream($updateMask);
+            $gapicClient->updateDataStream();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8380,17 +7330,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setAdvertiserId($advertiserId);
         $expectedResponse->setAdvertiserDisplayName($advertiserDisplayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateDisplayVideo360AdvertiserLink($updateMask);
+        $response = $gapicClient->updateDisplayVideo360AdvertiserLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateDisplayVideo360AdvertiserLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8412,10 +7358,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateDisplayVideo360AdvertiserLink($updateMask);
+            $gapicClient->updateDisplayVideo360AdvertiserLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8460,22 +7404,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setSearchQueryParameter($searchQueryParameter);
         $expectedResponse->setUriQueryParameter($uriQueryParameter);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $enhancedMeasurementSettings = new EnhancedMeasurementSettings();
-        $enhancedMeasurementSettingsSearchQueryParameter = 'enhancedMeasurementSettingsSearchQueryParameter1139945938';
-        $enhancedMeasurementSettings->setSearchQueryParameter($enhancedMeasurementSettingsSearchQueryParameter);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask);
+        $response = $gapicClient->updateEnhancedMeasurementSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEnhancedMeasurementSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEnhancedMeasurementSettings();
-        $this->assertProtobufEquals($enhancedMeasurementSettings, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8497,13 +7432,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $enhancedMeasurementSettings = new EnhancedMeasurementSettings();
-        $enhancedMeasurementSettingsSearchQueryParameter = 'enhancedMeasurementSettingsSearchQueryParameter1139945938';
-        $enhancedMeasurementSettings->setSearchQueryParameter($enhancedMeasurementSettingsSearchQueryParameter);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask);
+            $gapicClient->updateEnhancedMeasurementSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8532,24 +7462,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDestinationEvent($destinationEvent);
         $expectedResponse->setSourceCopyParameters($sourceCopyParameters);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $eventCreateRule = new EventCreateRule();
-        $eventCreateRuleDestinationEvent = 'eventCreateRuleDestinationEvent598875038';
-        $eventCreateRule->setDestinationEvent($eventCreateRuleDestinationEvent);
-        $eventCreateRuleEventConditions = [];
-        $eventCreateRule->setEventConditions($eventCreateRuleEventConditions);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateEventCreateRule($eventCreateRule, $updateMask);
+        $response = $gapicClient->updateEventCreateRule();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEventCreateRule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEventCreateRule();
-        $this->assertProtobufEquals($eventCreateRule, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8571,15 +7490,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $eventCreateRule = new EventCreateRule();
-        $eventCreateRuleDestinationEvent = 'eventCreateRuleDestinationEvent598875038';
-        $eventCreateRule->setDestinationEvent($eventCreateRuleDestinationEvent);
-        $eventCreateRuleEventConditions = [];
-        $eventCreateRule->setEventConditions($eventCreateRuleEventConditions);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateEventCreateRule($eventCreateRule, $updateMask);
+            $gapicClient->updateEventCreateRule();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8608,22 +7520,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $expandedDataSet = new ExpandedDataSet();
-        $expandedDataSetDisplayName = 'expandedDataSetDisplayName629188494';
-        $expandedDataSet->setDisplayName($expandedDataSetDisplayName);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateExpandedDataSet($expandedDataSet, $updateMask);
+        $response = $gapicClient->updateExpandedDataSet();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateExpandedDataSet', $actualFuncCall);
-        $actualValue = $actualRequestObject->getExpandedDataSet();
-        $this->assertProtobufEquals($expandedDataSet, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8645,13 +7548,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $expandedDataSet = new ExpandedDataSet();
-        $expandedDataSetDisplayName = 'expandedDataSetDisplayName629188494';
-        $expandedDataSet->setDisplayName($expandedDataSetDisplayName);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateExpandedDataSet($expandedDataSet, $updateMask);
+            $gapicClient->updateExpandedDataSet();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8682,17 +7580,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setCanManageClients($canManageClients);
         $expectedResponse->setCreatorEmailAddress($creatorEmailAddress);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateGoogleAdsLink($updateMask);
+        $response = $gapicClient->updateGoogleAdsLink();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateGoogleAdsLink', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8714,10 +7608,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateGoogleAdsLink($updateMask);
+            $gapicClient->updateGoogleAdsLink();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8742,20 +7634,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new GoogleSignalsSettings();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $googleSignalsSettings = new GoogleSignalsSettings();
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateGoogleSignalsSettings($googleSignalsSettings, $updateMask);
+        $response = $gapicClient->updateGoogleSignalsSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateGoogleSignalsSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGoogleSignalsSettings();
-        $this->assertProtobufEquals($googleSignalsSettings, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8777,11 +7662,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $googleSignalsSettings = new GoogleSignalsSettings();
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateGoogleSignalsSettings($googleSignalsSettings, $updateMask);
+            $gapicClient->updateGoogleSignalsSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8810,22 +7692,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setSecretValue($secretValue);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $measurementProtocolSecret = new MeasurementProtocolSecret();
-        $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
-        $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask);
+        $response = $gapicClient->updateMeasurementProtocolSecret();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateMeasurementProtocolSecret', $actualFuncCall);
-        $actualValue = $actualRequestObject->getMeasurementProtocolSecret();
-        $this->assertProtobufEquals($measurementProtocolSecret, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8847,13 +7720,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $measurementProtocolSecret = new MeasurementProtocolSecret();
-        $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
-        $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask);
+            $gapicClient->updateMeasurementProtocolSecret();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8888,24 +7756,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setCurrencyCode($currencyCode);
         $expectedResponse->setAccount($account);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $property = new Property();
-        $propertyDisplayName = 'propertyDisplayName-1254483624';
-        $property->setDisplayName($propertyDisplayName);
-        $propertyTimeZone = 'propertyTimeZone-1600366322';
-        $property->setTimeZone($propertyTimeZone);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateProperty($property, $updateMask);
+        $response = $gapicClient->updateProperty();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateProperty', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProperty();
-        $this->assertProtobufEquals($property, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8927,15 +7784,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $property = new Property();
-        $propertyDisplayName = 'propertyDisplayName-1254483624';
-        $property->setDisplayName($propertyDisplayName);
-        $propertyTimeZone = 'propertyTimeZone-1600366322';
-        $property->setTimeZone($propertyTimeZone);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateProperty($property, $updateMask);
+            $gapicClient->updateProperty();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -8962,22 +7812,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setApplyConversionValues($applyConversionValues);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
-        $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
-        $skadnetworkConversionValueSchema->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateSKAdNetworkConversionValueSchema($skadnetworkConversionValueSchema, $updateMask);
+        $response = $gapicClient->updateSKAdNetworkConversionValueSchema();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateSKAdNetworkConversionValueSchema', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSkadnetworkConversionValueSchema();
-        $this->assertProtobufEquals($skadnetworkConversionValueSchema, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -8999,13 +7840,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $skadnetworkConversionValueSchema = new SKAdNetworkConversionValueSchema();
-        $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
-        $skadnetworkConversionValueSchema->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateSKAdNetworkConversionValueSchema($skadnetworkConversionValueSchema, $updateMask);
+            $gapicClient->updateSKAdNetworkConversionValueSchema();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -9034,17 +7870,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setAdvertiserId($advertiserId);
         $expectedResponse->setAdvertiserDisplayName($advertiserDisplayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateSearchAds360Link($updateMask);
+        $response = $gapicClient->updateSearchAds360Link();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateSearchAds360Link', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -9066,10 +7898,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateSearchAds360Link($updateMask);
+            $gapicClient->updateSearchAds360Link();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -9096,22 +7926,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setApplyToProperty($applyToProperty);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $subpropertyEventFilter = new SubpropertyEventFilter();
-        $subpropertyEventFilterFilterClauses = [];
-        $subpropertyEventFilter->setFilterClauses($subpropertyEventFilterFilterClauses);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateSubpropertyEventFilter($subpropertyEventFilter, $updateMask);
+        $response = $gapicClient->updateSubpropertyEventFilter();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateSubpropertyEventFilter', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubpropertyEventFilter();
-        $this->assertProtobufEquals($subpropertyEventFilter, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -9133,13 +7954,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $subpropertyEventFilter = new SubpropertyEventFilter();
-        $subpropertyEventFilterFilterClauses = [];
-        $subpropertyEventFilter->setFilterClauses($subpropertyEventFilterFilterClauses);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateSubpropertyEventFilter($subpropertyEventFilter, $updateMask);
+            $gapicClient->updateSubpropertyEventFilter();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

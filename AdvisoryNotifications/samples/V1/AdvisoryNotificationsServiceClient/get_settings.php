@@ -31,19 +31,19 @@ use Google\Cloud\AdvisoryNotifications\V1\Settings;
 /**
  * Get notification settings.
  *
- * @param string $formattedName The resource name of the settings to retrieve.
- *                              Format:
- *                              organizations/{organization}/locations/{location}/settings. Please see
- *                              {@see AdvisoryNotificationsServiceClient::settingsName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_settings_sample(string $formattedName): void
+function get_settings_sample(): void
 {
     // Create a client.
     $advisoryNotificationsServiceClient = new AdvisoryNotificationsServiceClient();
 
     // Prepare the request message.
-    $request = (new GetSettingsRequest())
-        ->setName($formattedName);
+    $request = new GetSettingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function get_settings_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AdvisoryNotificationsServiceClient::settingsName('[ORGANIZATION]', '[LOCATION]');
-
-    get_settings_sample($formattedName);
 }
 // [END advisorynotifications_v1_generated_AdvisoryNotificationsService_GetSettings_sync]

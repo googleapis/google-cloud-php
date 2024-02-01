@@ -28,7 +28,6 @@ class DeleteCalculatedMetricRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the CalculatedMetric to delete.
      *                     Format: properties/{property_id}/calculatedMetrics/{calculated_metric_id}
      *                     Example: properties/1234/calculatedMetrics/Metric01
-     *                     Please see {@see AnalyticsAdminServiceClient::calculatedMetricName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\DeleteCalculatedMetricRequest
      *

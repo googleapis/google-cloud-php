@@ -162,9 +162,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'filter',
-                ],
             ],
             'ListModels' => [
                 'method' => 'get',
@@ -201,9 +198,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateModel' => [
                 'method' => 'patch',
@@ -216,9 +210,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

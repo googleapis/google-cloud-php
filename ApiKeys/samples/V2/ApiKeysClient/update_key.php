@@ -49,9 +49,7 @@ function update_key_sample(): void
     $apiKeysClient = new ApiKeysClient();
 
     // Prepare the request message.
-    $key = new Key();
-    $request = (new UpdateKeyRequest())
-        ->setKey($key);
+    $request = new UpdateKeyRequest();
 
     // Call the API and handle any network failures.
     try {

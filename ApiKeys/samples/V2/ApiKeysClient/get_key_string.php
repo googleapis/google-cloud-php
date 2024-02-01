@@ -34,17 +34,19 @@ use Google\Cloud\ApiKeys\V2\GetKeyStringResponse;
  * NOTE: Key is a global resource; hence the only supported value for
  * location is `global`.
  *
- * @param string $formattedName The resource name of the API key to be retrieved. Please see
- *                              {@see ApiKeysClient::keyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_key_string_sample(string $formattedName): void
+function get_key_string_sample(): void
 {
     // Create a client.
     $apiKeysClient = new ApiKeysClient();
 
     // Prepare the request message.
-    $request = (new GetKeyStringRequest())
-        ->setName($formattedName);
+    $request = new GetKeyStringRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +56,5 @@ function get_key_string_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ApiKeysClient::keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-
-    get_key_string_sample($formattedName);
 }
 // [END apikeys_v2_generated_ApiKeys_GetKeyString_sync]

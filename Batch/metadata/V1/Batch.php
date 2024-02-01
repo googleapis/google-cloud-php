@@ -26,35 +26,35 @@ class Batch
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ü
-!google/cloud/batch/v1/batch.protogoogle.cloud.batch.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.protogoogle/cloud/batch/v1/job.proto google/cloud/batch/v1/task.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"õ
-CreateJobRequest0
-parent (	B ‡A˙Abatch.googleapis.com/Job
-job_id (	,
-job (2.google.cloud.batch.v1.JobB‡A
+ñ
+!google/cloud/batch/v1/batch.protogoogle.cloud.batch.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.protogoogle/cloud/batch/v1/job.proto google/cloud/batch/v1/task.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"û
+CreateJobRequest1
+parent (	B!‚A˙Abatch.googleapis.com/Job
+job_id (	-
+job (2.google.cloud.batch.v1.JobB‚A
 
-request_id (	B‡A"?
-GetJobRequest.
-name (	B ‡A˙A
-batch.googleapis.com/Job"N
+request_id (	B‚A"@
+GetJobRequest/
+name (	B!‚A˙A
+batch.googleapis.com/Job"P
 DeleteJobRequest
-name (	
-reason (	B‡A
+name (	
+reason (	B‚A
 
-request_id (	B‡A"o
+request_id (	B‚A"p
 ListJobsRequest
 parent (	
-filter (	
-order_by (	B‡A
+filter (	
+order_by (	B‚A
 	page_size (
 
 page_token (	"j
 ListJobsResponse(
 jobs (2.google.cloud.batch.v1.Job
 next_page_token (	
-unreachable (	"Å
-ListTasksRequest6
-parent (	B&‡A˙A 
+unreachable (	"Ç
+ListTasksRequest7
+parent (	B\'‚A˙A 
 batch.googleapis.com/TaskGroup
 filter (	
 	page_size (
@@ -63,26 +63,26 @@ page_token (	"m
 ListTasksResponse*
 tasks (2.google.cloud.batch.v1.Task
 next_page_token (	
-unreachable (	"A
-GetTaskRequest/
-name (	B!‡A˙A
-batch.googleapis.com/Task"Ä
-OperationMetadata4
-create_time (2.google.protobuf.TimestampB‡A1
-end_time (2.google.protobuf.TimestampB‡A
-target (	B‡A
-verb (	B‡A
-status_message (	B‡A#
-requested_cancellation (B‡A
-api_version (	B‡A2∂
+unreachable (	"B
+GetTaskRequest0
+name (	B"‚A˙A
+batch.googleapis.com/Task"á
+OperationMetadata5
+create_time (2.google.protobuf.TimestampB‚A2
+end_time (2.google.protobuf.TimestampB‚A
+target (	B‚A
+verb (	B‚A
+status_message (	B‚A$
+requested_cancellation (B‚A
+api_version (	B‚A2∂
 BatchServiceõ
-	CreateJob\'.google.cloud.batch.v1.CreateJobRequest.google.cloud.batch.v1.Job"IÇ”‰ì/"(/v1/{parent=projects/*/locations/*}/jobs:job⁄Aparent,job,job_idÉ
-GetJob$.google.cloud.batch.v1.GetJobRequest.google.cloud.batch.v1.Job"7Ç”‰ì*(/v1/{name=projects/*/locations/*/jobs/*}⁄Anameœ
-	DeleteJob\'.google.cloud.batch.v1.DeleteJobRequest.google.longrunning.Operation"zÇ”‰ì**(/v1/{name=projects/*/locations/*/jobs/*}⁄Aname A@
-google.protobuf.Empty\'google.cloud.batch.v1.OperationMetadatañ
-ListJobs&.google.cloud.batch.v1.ListJobsRequest\'.google.cloud.batch.v1.ListJobsResponse"9Ç”‰ì*(/v1/{parent=projects/*/locations/*}/jobs⁄Aparentõ
-GetTask%.google.cloud.batch.v1.GetTaskRequest.google.cloud.batch.v1.Task"LÇ”‰ì?=/v1/{name=projects/*/locations/*/jobs/*/taskGroups/*/tasks/*}⁄AnameÆ
-	ListTasks\'.google.cloud.batch.v1.ListTasksRequest(.google.cloud.batch.v1.ListTasksResponse"NÇ”‰ì?=/v1/{parent=projects/*/locations/*/jobs/*/taskGroups/*}/tasks⁄AparentH Abatch.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB´
+	CreateJob\'.google.cloud.batch.v1.CreateJobRequest.google.cloud.batch.v1.Job"I⁄Aparent,job,job_idÇ”‰ì/"(/v1/{parent=projects/*/locations/*}/jobs:jobÉ
+GetJob$.google.cloud.batch.v1.GetJobRequest.google.cloud.batch.v1.Job"7⁄AnameÇ”‰ì*(/v1/{name=projects/*/locations/*/jobs/*}œ
+	DeleteJob\'.google.cloud.batch.v1.DeleteJobRequest.google.longrunning.Operation"z A@
+google.protobuf.Empty\'google.cloud.batch.v1.OperationMetadata⁄AnameÇ”‰ì**(/v1/{name=projects/*/locations/*/jobs/*}ñ
+ListJobs&.google.cloud.batch.v1.ListJobsRequest\'.google.cloud.batch.v1.ListJobsResponse"9⁄AparentÇ”‰ì*(/v1/{parent=projects/*/locations/*}/jobsõ
+GetTask%.google.cloud.batch.v1.GetTaskRequest.google.cloud.batch.v1.Task"L⁄AnameÇ”‰ì?=/v1/{name=projects/*/locations/*/jobs/*/taskGroups/*/tasks/*}Æ
+	ListTasks\'.google.cloud.batch.v1.ListTasksRequest(.google.cloud.batch.v1.ListTasksResponse"N⁄AparentÇ”‰ì?=/v1/{parent=projects/*/locations/*/jobs/*/taskGroups/*}/tasksH Abatch.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB´
 com.google.cloud.batch.v1B
 BatchProtoPZ/cloud.google.com/go/batch/apiv1/batchpb;batchpb¢GCB™Google.Cloud.Batch.V1 Google\\Cloud\\Batch\\V1ÍGoogle::Cloud::Batch::V1bproto3'
         , true);

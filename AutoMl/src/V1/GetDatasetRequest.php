@@ -23,8 +23,7 @@ class GetDatasetRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The resource name of the dataset to retrieve. Please see
-     *                     {@see AutoMlClient::datasetName()} for help formatting this field.
+     * @param string $name Required. The resource name of the dataset to retrieve.
      *
      * @return \Google\Cloud\AutoMl\V1\GetDatasetRequest
      *

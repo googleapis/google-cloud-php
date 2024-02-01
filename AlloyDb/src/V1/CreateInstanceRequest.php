@@ -61,8 +61,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                            $parent     Required. The name of the parent resource. For the required format, see the
-     *                                                      comment on the Instance.name field. Please see
-     *                                                      {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
+     *                                                      comment on the Instance.name field.
      * @param \Google\Cloud\AlloyDb\V1\Instance $instance   Required. The resource being created
      * @param string                            $instanceId Required. ID of the requesting object.
      *

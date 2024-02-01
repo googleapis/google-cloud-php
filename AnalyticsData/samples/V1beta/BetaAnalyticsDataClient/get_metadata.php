@@ -40,27 +40,19 @@ use Google\ApiCore\ApiException;
  * `customEvent:levels_unlocked`. Universal metadata are dimensions and
  * metrics applicable to any property such as `country` and `totalUsers`.
  *
- * @param string $formattedName The resource name of the metadata to retrieve. This name field is
- *                              specified in the URL path and not URL parameters. Property is a numeric
- *                              Google Analytics GA4 Property identifier. To learn more, see [where to find
- *                              your Property
- *                              ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
- *
- *                              Example: properties/1234/metadata
- *
- *                              Set the Property ID to 0 for dimensions and metrics common to all
- *                              properties. In this special mode, this method will not return custom
- *                              dimensions and metrics. Please see
- *                              {@see BetaAnalyticsDataClient::metadataName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_metadata_sample(string $formattedName): void
+function get_metadata_sample(): void
 {
     // Create a client.
     $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
 
     // Prepare the request message.
-    $request = (new GetMetadataRequest())
-        ->setName($formattedName);
+    $request = new GetMetadataRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -70,21 +62,5 @@ function get_metadata_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = BetaAnalyticsDataClient::metadataName('[PROPERTY]');
-
-    get_metadata_sample($formattedName);
 }
 // [END analyticsdata_v1beta_generated_BetaAnalyticsData_GetMetadata_sync]

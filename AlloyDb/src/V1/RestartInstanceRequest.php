@@ -46,8 +46,7 @@ class RestartInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the resource. For the required format, see the
-     *                     comment on the Instance.name field. Please see
-     *                     {@see AlloyDBAdminClient::instanceName()} for help formatting this field.
+     *                     comment on the Instance.name field.
      *
      * @return \Google\Cloud\AlloyDb\V1\RestartInstanceRequest
      *

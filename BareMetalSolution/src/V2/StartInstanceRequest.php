@@ -23,8 +23,7 @@ class StartInstanceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Name of the resource. Please see
-     *                     {@see BareMetalSolutionClient::instanceName()} for help formatting this field.
+     * @param string $name Required. Name of the resource.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\StartInstanceRequest
      *

@@ -33,20 +33,19 @@ use Google\ApiCore\PagedListResponse;
  * Lists SKAdNetworkConversionValueSchema on a stream.
  * Properties can have at most one SKAdNetworkConversionValueSchema.
  *
- * @param string $formattedParent The DataStream resource to list schemas for.
- *                                Format:
- *                                properties/{property_id}/dataStreams/{dataStream}
- *                                Example: properties/1234/dataStreams/5678
- *                                Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_sk_ad_network_conversion_value_schemas_sample(string $formattedParent): void
+function list_sk_ad_network_conversion_value_schemas_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new ListSKAdNetworkConversionValueSchemasRequest())
-        ->setParent($formattedParent);
+    $request = new ListSKAdNetworkConversionValueSchemasRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +59,5 @@ function list_sk_ad_network_conversion_value_schemas_sample(string $formattedPar
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AnalyticsAdminServiceClient::dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-
-    list_sk_ad_network_conversion_value_schemas_sample($formattedParent);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListSKAdNetworkConversionValueSchemas_sync]

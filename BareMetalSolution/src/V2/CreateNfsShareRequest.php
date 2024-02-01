@@ -29,8 +29,7 @@ class CreateNfsShareRequest extends \Google\Protobuf\Internal\Message
     private $nfs_share = null;
 
     /**
-     * @param string                                      $parent   Required. The parent project and location. Please see
-     *                                                              {@see BareMetalSolutionClient::locationName()} for help formatting this field.
+     * @param string                                      $parent   Required. The parent project and location.
      * @param \Google\Cloud\BareMetalSolution\V2\NfsShare $nfsShare Required. The NfsShare to create.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\CreateNfsShareRequest

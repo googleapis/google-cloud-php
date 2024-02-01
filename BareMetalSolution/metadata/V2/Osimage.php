@@ -18,17 +18,17 @@ class Osimage
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Á
-/google/cloud/baremetalsolution/v2/osimage.proto!google.cloud.baremetalsolution.v2google/api/resource.proto"Ü
-OSImage
-name (	B‡A
+È
+/google/cloud/baremetalsolution/v2/osimage.proto!google.cloud.baremetalsolution.v2google/api/resource.proto"á
+OSImage
+name (	B‚A
 code (	
 description (	!
 applicable_instance_types (	#
 supported_network_templates (	:}ÍAz
-(baremetalsolution.googleapis.com/OsImage;projects/{project}/locations/{location}/osImages/{os_image}*osImages2osImage"w
-ListOSImagesRequest9
-parent (	B)‡A˙A#
+(baremetalsolution.googleapis.com/OsImage;projects/{project}/locations/{location}/osImages/{os_image}*osImages2osImage"x
+ListOSImagesRequest:
+parent (	B*‚A˙A#
 !locations.googleapis.com/Location
 	page_size (
 

@@ -27,40 +27,26 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
-use Google\Cloud\AssuredWorkloads\V1beta1\Workload\ComplianceRegime;
 use Google\Rpc\Status;
 
 /**
  * Creates Assured Workload.
  *
- * @param string $formattedParent          The resource name of the new Workload's parent.
- *                                         Must be of the form `organizations/{org_id}/locations/{location_id}`. Please see
- *                                         {@see AssuredWorkloadsServiceClient::locationName()} for help formatting this field.
- * @param string $workloadDisplayName      The user-assigned display name of the Workload.
- *                                         When present it must be between 4 to 30 characters.
- *                                         Allowed characters are: lowercase and uppercase letters, numbers,
- *                                         hyphen, and spaces.
- *
- *                                         Example: My Workload
- * @param int    $workloadComplianceRegime Immutable. Compliance Regime associated with this workload.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_workload_sample(
-    string $formattedParent,
-    string $workloadDisplayName,
-    int $workloadComplianceRegime
-): void {
+function create_workload_sample(): void
+{
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $workload = (new Workload())
-        ->setDisplayName($workloadDisplayName)
-        ->setComplianceRegime($workloadComplianceRegime);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $assuredWorkloadsServiceClient->createWorkload($formattedParent, $workload);
+        $response = $assuredWorkloadsServiceClient->createWorkload();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -75,23 +61,5 @@ function create_workload_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AssuredWorkloadsServiceClient::locationName('[ORGANIZATION]', '[LOCATION]');
-    $workloadDisplayName = '[DISPLAY_NAME]';
-    $workloadComplianceRegime = ComplianceRegime::COMPLIANCE_REGIME_UNSPECIFIED;
-
-    create_workload_sample($formattedParent, $workloadDisplayName, $workloadComplianceRegime);
 }
 // [END assuredworkloads_v1beta1_generated_AssuredWorkloadsService_CreateWorkload_sync]

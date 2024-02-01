@@ -28,7 +28,6 @@ class GetConversionEventRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the conversion event to retrieve.
      *                     Format: properties/{property}/conversionEvents/{conversion_event}
      *                     Example: "properties/123/conversionEvents/456"
-     *                     Please see {@see AnalyticsAdminServiceClient::conversionEventName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetConversionEventRequest
      *

@@ -55,8 +55,7 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Resource name of the model to list the model evaluations for.
      *                       If modelId is set as "-", this will list model evaluations from across all
-     *                       models of the parent location. Please see
-     *                       {@see AutoMlClient::modelName()} for help formatting this field.
+     *                       models of the parent location.
      * @param string $filter Required. An expression for filtering the results of the request.
      *
      *                       * `annotation_spec_id` - for =, !=  or existence. See example below for

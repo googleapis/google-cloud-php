@@ -32,7 +32,6 @@ class CreateGcpUserAccessBindingRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * @param string                                                        $parent               Required. Example: "organizations/256"
-     *                                                                                            Please see {@see AccessContextManagerClient::organizationName()} for help formatting this field.
      * @param \Google\Identity\AccessContextManager\V1\GcpUserAccessBinding $gcpUserAccessBinding Required. [GcpUserAccessBinding]
      *                                                                                            [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]
      *

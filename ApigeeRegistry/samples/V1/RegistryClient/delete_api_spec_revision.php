@@ -31,21 +31,19 @@ use Google\Cloud\ApigeeRegistry\V1\DeleteApiSpecRevisionRequest;
 /**
  * Deletes a revision of a spec.
  *
- * @param string $formattedName The name of the spec revision to be deleted,
- *                              with a revision ID explicitly included.
- *
- *                              Example:
- *                              `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8`
- *                              Please see {@see RegistryClient::apiSpecName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_api_spec_revision_sample(string $formattedName): void
+function delete_api_spec_revision_sample(): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = (new DeleteApiSpecRevisionRequest())
-        ->setName($formattedName);
+    $request = new DeleteApiSpecRevisionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,27 +53,5 @@ function delete_api_spec_revision_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RegistryClient::apiSpecName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[API]',
-        '[VERSION]',
-        '[SPEC]'
-    );
-
-    delete_api_spec_revision_sample($formattedName);
 }
 // [END apigeeregistry_v1_generated_Registry_DeleteApiSpecRevision_sync]

@@ -31,8 +31,6 @@ use Google\Cloud\AutoMl\V1beta1\AnnotationSpec;
 use Google\Cloud\AutoMl\V1beta1\AutoMlClient;
 use Google\Cloud\AutoMl\V1beta1\ColumnSpec;
 use Google\Cloud\AutoMl\V1beta1\Dataset;
-use Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig;
-use Google\Cloud\AutoMl\V1beta1\InputConfig;
 use Google\Cloud\AutoMl\V1beta1\ListColumnSpecsResponse;
 use Google\Cloud\AutoMl\V1beta1\ListDatasetsResponse;
 use Google\Cloud\AutoMl\V1beta1\ListModelEvaluationsResponse;
@@ -40,8 +38,6 @@ use Google\Cloud\AutoMl\V1beta1\ListModelsResponse;
 use Google\Cloud\AutoMl\V1beta1\ListTableSpecsResponse;
 use Google\Cloud\AutoMl\V1beta1\Model;
 use Google\Cloud\AutoMl\V1beta1\ModelEvaluation;
-use Google\Cloud\AutoMl\V1beta1\ModelExportOutputConfig;
-use Google\Cloud\AutoMl\V1beta1\OutputConfig;
 use Google\Cloud\AutoMl\V1beta1\TableSpec;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -99,20 +95,13 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setExampleCount($exampleCount);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $dataset = new Dataset();
-        $response = $gapicClient->createDataset($formattedParent, $dataset);
+        $response = $gapicClient->createDataset();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/CreateDataset', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDataset();
-        $this->assertProtobufEquals($dataset, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -134,11 +123,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $dataset = new Dataset();
         try {
-            $gapicClient->createDataset($formattedParent, $dataset);
+            $gapicClient->createDataset();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -185,10 +171,7 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $model = new Model();
-        $response = $gapicClient->createModel($formattedParent, $model);
+        $response = $gapicClient->createModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -198,10 +181,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/CreateModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getModel();
-        $this->assertProtobufEquals($model, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createModelTest');
         $response->pollUntilComplete([
@@ -252,10 +231,7 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $model = new Model();
-        $response = $gapicClient->createModel($formattedParent, $model);
+        $response = $gapicClient->createModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -306,9 +282,7 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $gapicClient->deleteDataset($formattedName);
+        $response = $gapicClient->deleteDataset();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -318,8 +292,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/DeleteDataset', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDatasetTest');
         $response->pollUntilComplete([
@@ -370,9 +342,7 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $gapicClient->deleteDataset($formattedName);
+        $response = $gapicClient->deleteDataset();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -423,9 +393,7 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $gapicClient->deleteModel($formattedName);
+        $response = $gapicClient->deleteModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -435,8 +403,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/DeleteModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteModelTest');
         $response->pollUntilComplete([
@@ -487,9 +453,7 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $gapicClient->deleteModel($formattedName);
+        $response = $gapicClient->deleteModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -540,9 +504,7 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $gapicClient->deployModel($formattedName);
+        $response = $gapicClient->deployModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -552,8 +514,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/DeployModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deployModelTest');
         $response->pollUntilComplete([
@@ -604,9 +564,7 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $gapicClient->deployModel($formattedName);
+        $response = $gapicClient->deployModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -657,10 +615,7 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $outputConfig = new OutputConfig();
-        $response = $gapicClient->exportData($formattedName, $outputConfig);
+        $response = $gapicClient->exportData();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -670,10 +625,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/ExportData', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getOutputConfig();
-        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportDataTest');
         $response->pollUntilComplete([
@@ -724,10 +675,7 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $outputConfig = new OutputConfig();
-        $response = $gapicClient->exportData($formattedName, $outputConfig);
+        $response = $gapicClient->exportData();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -778,10 +726,7 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $outputConfig = new ExportEvaluatedExamplesOutputConfig();
-        $response = $gapicClient->exportEvaluatedExamples($formattedName, $outputConfig);
+        $response = $gapicClient->exportEvaluatedExamples();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -791,10 +736,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/ExportEvaluatedExamples', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getOutputConfig();
-        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportEvaluatedExamplesTest');
         $response->pollUntilComplete([
@@ -845,10 +786,7 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $outputConfig = new ExportEvaluatedExamplesOutputConfig();
-        $response = $gapicClient->exportEvaluatedExamples($formattedName, $outputConfig);
+        $response = $gapicClient->exportEvaluatedExamples();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -899,10 +837,7 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $outputConfig = new ModelExportOutputConfig();
-        $response = $gapicClient->exportModel($formattedName, $outputConfig);
+        $response = $gapicClient->exportModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -912,10 +847,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/ExportModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getOutputConfig();
-        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportModelTest');
         $response->pollUntilComplete([
@@ -966,10 +897,7 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $outputConfig = new ModelExportOutputConfig();
-        $response = $gapicClient->exportModel($formattedName, $outputConfig);
+        $response = $gapicClient->exportModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1008,17 +936,13 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setExampleCount($exampleCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
-        $response = $gapicClient->getAnnotationSpec($formattedName);
+        $response = $gapicClient->getAnnotationSpec();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/GetAnnotationSpec', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1040,10 +964,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
         try {
-            $gapicClient->getAnnotationSpec($formattedName);
+            $gapicClient->getAnnotationSpec();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1072,17 +994,13 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->columnSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]', '[COLUMN_SPEC]');
-        $response = $gapicClient->getColumnSpec($formattedName);
+        $response = $gapicClient->getColumnSpec();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/GetColumnSpec', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1104,10 +1022,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->columnSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]', '[COLUMN_SPEC]');
         try {
-            $gapicClient->getColumnSpec($formattedName);
+            $gapicClient->getColumnSpec();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1140,17 +1056,13 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setExampleCount($exampleCount);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $gapicClient->getDataset($formattedName);
+        $response = $gapicClient->getDataset();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/GetDataset', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1172,10 +1084,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         try {
-            $gapicClient->getDataset($formattedName);
+            $gapicClient->getDataset();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1204,17 +1114,13 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDatasetId($datasetId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $gapicClient->getModel($formattedName);
+        $response = $gapicClient->getModel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/GetModel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1236,10 +1142,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         try {
-            $gapicClient->getModel($formattedName);
+            $gapicClient->getModel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1270,17 +1174,13 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEvaluatedExampleCount($evaluatedExampleCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[MODEL_EVALUATION]');
-        $response = $gapicClient->getModelEvaluation($formattedName);
+        $response = $gapicClient->getModelEvaluation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/GetModelEvaluation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1302,10 +1202,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[MODEL_EVALUATION]');
         try {
-            $gapicClient->getModelEvaluation($formattedName);
+            $gapicClient->getModelEvaluation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1340,17 +1238,13 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setColumnCount($columnCount);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
-        $response = $gapicClient->getTableSpec($formattedName);
+        $response = $gapicClient->getTableSpec();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/GetTableSpec', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1372,10 +1266,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
         try {
-            $gapicClient->getTableSpec($formattedName);
+            $gapicClient->getTableSpec();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1416,10 +1308,7 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $inputConfig = new InputConfig();
-        $response = $gapicClient->importData($formattedName, $inputConfig);
+        $response = $gapicClient->importData();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1429,10 +1318,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/ImportData', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputConfig();
-        $this->assertProtobufEquals($inputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importDataTest');
         $response->pollUntilComplete([
@@ -1483,10 +1368,7 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $inputConfig = new InputConfig();
-        $response = $gapicClient->importData($formattedName, $inputConfig);
+        $response = $gapicClient->importData();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1526,9 +1408,7 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setColumnSpecs($columnSpecs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
-        $response = $gapicClient->listColumnSpecs($formattedParent);
+        $response = $gapicClient->listColumnSpecs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1538,8 +1418,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/ListColumnSpecs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1561,10 +1439,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
         try {
-            $gapicClient->listColumnSpecs($formattedParent);
+            $gapicClient->listColumnSpecs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1594,9 +1470,7 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatasets($datasets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listDatasets($formattedParent);
+        $response = $gapicClient->listDatasets();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1606,8 +1480,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/ListDatasets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1629,10 +1501,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listDatasets($formattedParent);
+            $gapicClient->listDatasets();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1662,9 +1532,7 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModelEvaluation($modelEvaluation);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $gapicClient->listModelEvaluations($formattedParent);
+        $response = $gapicClient->listModelEvaluations();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1674,8 +1542,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/ListModelEvaluations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1697,10 +1563,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         try {
-            $gapicClient->listModelEvaluations($formattedParent);
+            $gapicClient->listModelEvaluations();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1730,9 +1594,7 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModel($model);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listModels($formattedParent);
+        $response = $gapicClient->listModels();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1742,8 +1604,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/ListModels', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1765,10 +1625,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listModels($formattedParent);
+            $gapicClient->listModels();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1798,9 +1656,7 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTableSpecs($tableSpecs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $gapicClient->listTableSpecs($formattedParent);
+        $response = $gapicClient->listTableSpecs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1810,8 +1666,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/ListTableSpecs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1833,10 +1687,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         try {
-            $gapicClient->listTableSpecs($formattedParent);
+            $gapicClient->listTableSpecs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1877,9 +1729,7 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $gapicClient->undeployModel($formattedName);
+        $response = $gapicClient->undeployModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1889,8 +1739,6 @@ class AutoMlClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/UndeployModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeployModelTest');
         $response->pollUntilComplete([
@@ -1941,9 +1789,7 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $gapicClient->undeployModel($formattedName);
+        $response = $gapicClient->undeployModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1982,17 +1828,13 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $columnSpec = new ColumnSpec();
-        $response = $gapicClient->updateColumnSpec($columnSpec);
+        $response = $gapicClient->updateColumnSpec();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/UpdateColumnSpec', $actualFuncCall);
-        $actualValue = $actualRequestObject->getColumnSpec();
-        $this->assertProtobufEquals($columnSpec, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2014,10 +1856,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $columnSpec = new ColumnSpec();
         try {
-            $gapicClient->updateColumnSpec($columnSpec);
+            $gapicClient->updateColumnSpec();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2050,17 +1890,13 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setExampleCount($exampleCount);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $dataset = new Dataset();
-        $response = $gapicClient->updateDataset($dataset);
+        $response = $gapicClient->updateDataset();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/UpdateDataset', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDataset();
-        $this->assertProtobufEquals($dataset, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2082,10 +1918,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $dataset = new Dataset();
         try {
-            $gapicClient->updateDataset($dataset);
+            $gapicClient->updateDataset();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2120,17 +1954,13 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setColumnCount($columnCount);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $tableSpec = new TableSpec();
-        $response = $gapicClient->updateTableSpec($tableSpec);
+        $response = $gapicClient->updateTableSpec();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1beta1.AutoMl/UpdateTableSpec', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTableSpec();
-        $this->assertProtobufEquals($tableSpec, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2152,10 +1982,8 @@ class AutoMlClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $tableSpec = new TableSpec();
         try {
-            $gapicClient->updateTableSpec($tableSpec);
+            $gapicClient->updateTableSpec();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

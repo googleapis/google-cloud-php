@@ -32,22 +32,19 @@ use Google\Cloud\ApigeeRegistry\V1\RollbackApiSpecRequest;
  * Sets the current revision to a specified prior revision.
  * Note that this creates a new revision with a new revision ID.
  *
- * @param string $formattedName The spec being rolled back. Please see
- *                              {@see RegistryClient::apiSpecName()} for help formatting this field.
- * @param string $revisionId    The revision ID to roll back to.
- *                              It must be a revision of the same spec.
- *
- *                              Example: `c7cfa2a8`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rollback_api_spec_sample(string $formattedName, string $revisionId): void
+function rollback_api_spec_sample(): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = (new RollbackApiSpecRequest())
-        ->setName($formattedName)
-        ->setRevisionId($revisionId);
+    $request = new RollbackApiSpecRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,28 +54,5 @@ function rollback_api_spec_sample(string $formattedName, string $revisionId): vo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RegistryClient::apiSpecName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[API]',
-        '[VERSION]',
-        '[SPEC]'
-    );
-    $revisionId = '[REVISION_ID]';
-
-    rollback_api_spec_sample($formattedName, $revisionId);
 }
 // [END apigeeregistry_v1_generated_Registry_RollbackApiSpec_sync]

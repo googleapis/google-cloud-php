@@ -32,18 +32,19 @@ use Google\Cloud\ApigeeRegistry\V1\ListApiSpecsRequest;
 /**
  * Returns matching specs.
  *
- * @param string $formattedParent The parent, which owns this collection of specs.
- *                                Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
- *                                Please see {@see RegistryClient::apiVersionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_api_specs_sample(string $formattedParent): void
+function list_api_specs_sample(): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = (new ListApiSpecsRequest())
-        ->setParent($formattedParent);
+    $request = new ListApiSpecsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_api_specs_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RegistryClient::apiVersionName('[PROJECT]', '[LOCATION]', '[API]', '[VERSION]');
-
-    list_api_specs_sample($formattedParent);
 }
 // [END apigeeregistry_v1_generated_Registry_ListApiSpecs_sync]

@@ -37,8 +37,7 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the parent resource whose repositories will be
-     *                       listed. Please see
-     *                       {@see ArtifactRegistryClient::locationName()} for help formatting this field.
+     *                       listed.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\ListRepositoriesRequest
      *

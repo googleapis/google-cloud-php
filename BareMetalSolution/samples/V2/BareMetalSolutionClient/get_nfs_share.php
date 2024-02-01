@@ -31,17 +31,19 @@ use Google\Cloud\BareMetalSolution\V2\NfsShare;
 /**
  * Get details of a single NFS share.
  *
- * @param string $formattedName Name of the resource. Please see
- *                              {@see BareMetalSolutionClient::nFSShareName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_nfs_share_sample(string $formattedName): void
+function get_nfs_share_sample(): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = (new GetNfsShareRequest())
-        ->setName($formattedName);
+    $request = new GetNfsShareRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +53,5 @@ function get_nfs_share_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = BareMetalSolutionClient::nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
-
-    get_nfs_share_sample($formattedName);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_GetNfsShare_sync]

@@ -31,7 +31,6 @@ class DeleteApiDeploymentRevisionRequest extends \Google\Protobuf\Internal\Messa
      *
      *                     Example:
      *                     `projects/sample/locations/global/apis/petstore/deployments/prod&#64;c7cfa2a8`
-     *                     Please see {@see RegistryClient::apiDeploymentName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApigeeRegistry\V1\DeleteApiDeploymentRevisionRequest
      *

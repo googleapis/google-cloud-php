@@ -27,7 +27,6 @@ use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\DataStream;
 use Google\Analytics\Admin\V1alpha\UpdateDataStreamRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a DataStream on a property.
@@ -44,9 +43,7 @@ function update_data_stream_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $request = (new UpdateDataStreamRequest())
-        ->setUpdateMask($updateMask);
+    $request = new UpdateDataStreamRequest();
 
     // Call the API and handle any network failures.
     try {

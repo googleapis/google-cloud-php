@@ -45,9 +45,7 @@ function update_instance_sample(): void
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $instance = new Instance();
-    $request = (new UpdateInstanceRequest())
-        ->setInstance($instance);
+    $request = new UpdateInstanceRequest();
 
     // Call the API and handle any network failures.
     try {

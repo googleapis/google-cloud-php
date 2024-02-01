@@ -28,7 +28,6 @@ class DeleteMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
      * @param string $name Required. The name of the MeasurementProtocolSecret to delete.
      *                     Format:
      *                     properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
-     *                     Please see {@see AnalyticsAdminServiceClient::measurementProtocolSecretName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest
      *

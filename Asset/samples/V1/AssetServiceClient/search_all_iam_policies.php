@@ -35,27 +35,19 @@ use Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest;
  * `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
  * otherwise the request will be rejected.
  *
- * @param string $scope A scope can be a project, a folder, or an organization. The
- *                      search is limited to the IAM policies within the `scope`. The caller must
- *                      be granted the
- *                      [`cloudasset.assets.searchAllIamPolicies`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
- *                      permission on the desired scope.
- *
- *                      The allowed values are:
- *
- *                      * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
- *                      * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
- *                      * folders/{FOLDER_NUMBER} (e.g., "folders/1234567")
- *                      * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/123456")
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_all_iam_policies_sample(string $scope): void
+function search_all_iam_policies_sample(): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = (new SearchAllIamPoliciesRequest())
-        ->setScope($scope);
+    $request = new SearchAllIamPoliciesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,21 +61,5 @@ function search_all_iam_policies_sample(string $scope): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $scope = '[SCOPE]';
-
-    search_all_iam_policies_sample($scope);
 }
 // [END cloudasset_v1_generated_AssetService_SearchAllIamPolicies_sync]

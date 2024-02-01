@@ -33,23 +33,19 @@ use Google\Rpc\Status;
 /**
  * Updates the parameters of a single Cluster.
  *
- * @param string $formattedClusterNetwork The resource link for the VPC network in which cluster resources
- *                                        are created and from which they are accessible via Private IP. The network
- *                                        must belong to the same project as the cluster. It is specified in the
- *                                        form: "projects/{project}/global/networks/{network_id}". This is required
- *                                        to create a cluster. Deprecated, use network_config.network instead. Please see
- *                                        {@see AlloyDBAdminClient::networkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_cluster_sample(string $formattedClusterNetwork): void
+function update_cluster_sample(): void
 {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
     // Prepare the request message.
-    $cluster = (new Cluster())
-        ->setNetwork($formattedClusterNetwork);
-    $request = (new UpdateClusterRequest())
-        ->setCluster($cluster);
+    $request = new UpdateClusterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,21 +65,5 @@ function update_cluster_sample(string $formattedClusterNetwork): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedClusterNetwork = AlloyDBAdminClient::networkName('[PROJECT]', '[NETWORK]');
-
-    update_cluster_sample($formattedClusterNetwork);
 }
 // [END alloydb_v1_generated_AlloyDBAdmin_UpdateCluster_sync]

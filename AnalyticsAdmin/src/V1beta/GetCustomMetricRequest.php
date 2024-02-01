@@ -26,7 +26,6 @@ class GetCustomMetricRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the CustomMetric to get.
      *                     Example format: properties/1234/customMetrics/5678
-     *                     Please see {@see AnalyticsAdminServiceClient::customMetricName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1beta\GetCustomMetricRequest
      *

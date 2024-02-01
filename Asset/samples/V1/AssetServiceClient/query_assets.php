@@ -42,21 +42,19 @@ use Google\Cloud\Asset\V1\QueryAssetsResponse;
  * [BigQuery](https://cloud.google.com/bigquery/docs/best-practices-performance-output).
  * Queries return larger results will result in errors.
  *
- * @param string $parent The relative name of the root asset. This can only be an
- *                       organization number (such as "organizations/123"), a project ID (such as
- *                       "projects/my-project-id"), or a project number (such as "projects/12345"),
- *                       or a folder number (such as "folders/123").
- *
- *                       Only assets belonging to the `parent` will be returned.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function query_assets_sample(string $parent): void
+function query_assets_sample(): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = (new QueryAssetsRequest())
-        ->setParent($parent);
+    $request = new QueryAssetsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,21 +64,5 @@ function query_assets_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    query_assets_sample($parent);
 }
 // [END cloudasset_v1_generated_AssetService_QueryAssets_sync]

@@ -30,14 +30,11 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
 use Google\Cloud\AssuredWorkloads\V1beta1\ListWorkloadsResponse;
-use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest\RestrictionType;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
-use Google\Cloud\AssuredWorkloads\V1beta1\Workload\ComplianceRegime;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -81,17 +78,13 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new AnalyzeWorkloadMoveResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $target = 'target-880905839';
-        $response = $gapicClient->analyzeWorkloadMove($target);
+        $response = $gapicClient->analyzeWorkloadMove();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/AnalyzeWorkloadMove', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTarget();
-        $this->assertProtobufEquals($target, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -113,10 +106,8 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $target = 'target-880905839';
         try {
-            $gapicClient->analyzeWorkloadMove($target);
+            $gapicClient->analyzeWorkloadMove();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -169,14 +160,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[ORGANIZATION]', '[LOCATION]');
-        $workload = new Workload();
-        $workloadDisplayName = 'workloadDisplayName191619702';
-        $workload->setDisplayName($workloadDisplayName);
-        $workloadComplianceRegime = ComplianceRegime::COMPLIANCE_REGIME_UNSPECIFIED;
-        $workload->setComplianceRegime($workloadComplianceRegime);
-        $response = $gapicClient->createWorkload($formattedParent, $workload);
+        $response = $gapicClient->createWorkload();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -186,10 +170,6 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/CreateWorkload', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getWorkload();
-        $this->assertProtobufEquals($workload, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createWorkloadTest');
         $response->pollUntilComplete([
@@ -240,14 +220,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[ORGANIZATION]', '[LOCATION]');
-        $workload = new Workload();
-        $workloadDisplayName = 'workloadDisplayName191619702';
-        $workload->setDisplayName($workloadDisplayName);
-        $workloadComplianceRegime = ComplianceRegime::COMPLIANCE_REGIME_UNSPECIFIED;
-        $workload->setComplianceRegime($workloadComplianceRegime);
-        $response = $gapicClient->createWorkload($formattedParent, $workload);
+        $response = $gapicClient->createWorkload();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -280,16 +253,12 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
-        $gapicClient->deleteWorkload($formattedName);
+        $gapicClient->deleteWorkload();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/DeleteWorkload', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -311,10 +280,8 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
         try {
-            $gapicClient->deleteWorkload($formattedName);
+            $gapicClient->deleteWorkload();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -349,17 +316,13 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $expectedResponse->setProvisionedResourcesParent($provisionedResourcesParent);
         $expectedResponse->setEnableSovereignControls($enableSovereignControls);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
-        $response = $gapicClient->getWorkload($formattedName);
+        $response = $gapicClient->getWorkload();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/GetWorkload', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -381,10 +344,8 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
         try {
-            $gapicClient->getWorkload($formattedName);
+            $gapicClient->getWorkload();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -414,9 +375,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkloads($workloads);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[ORGANIZATION]', '[LOCATION]');
-        $response = $gapicClient->listWorkloads($formattedParent);
+        $response = $gapicClient->listWorkloads();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -426,8 +385,6 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/ListWorkloads', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -449,10 +406,8 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[ORGANIZATION]', '[LOCATION]');
         try {
-            $gapicClient->listWorkloads($formattedParent);
+            $gapicClient->listWorkloads();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -475,20 +430,13 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RestrictAllowedResourcesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $restrictionType = RestrictionType::RESTRICTION_TYPE_UNSPECIFIED;
-        $response = $gapicClient->restrictAllowedResources($name, $restrictionType);
+        $response = $gapicClient->restrictAllowedResources();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/RestrictAllowedResources', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getRestrictionType();
-        $this->assertProtobufEquals($restrictionType, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -510,11 +458,8 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $restrictionType = RestrictionType::RESTRICTION_TYPE_UNSPECIFIED;
         try {
-            $gapicClient->restrictAllowedResources($name, $restrictionType);
+            $gapicClient->restrictAllowedResources();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -549,24 +494,13 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $expectedResponse->setProvisionedResourcesParent($provisionedResourcesParent);
         $expectedResponse->setEnableSovereignControls($enableSovereignControls);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $workload = new Workload();
-        $workloadDisplayName = 'workloadDisplayName191619702';
-        $workload->setDisplayName($workloadDisplayName);
-        $workloadComplianceRegime = ComplianceRegime::COMPLIANCE_REGIME_UNSPECIFIED;
-        $workload->setComplianceRegime($workloadComplianceRegime);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateWorkload($workload, $updateMask);
+        $response = $gapicClient->updateWorkload();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/UpdateWorkload', $actualFuncCall);
-        $actualValue = $actualRequestObject->getWorkload();
-        $this->assertProtobufEquals($workload, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -588,15 +522,8 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $workload = new Workload();
-        $workloadDisplayName = 'workloadDisplayName191619702';
-        $workload->setDisplayName($workloadDisplayName);
-        $workloadComplianceRegime = ComplianceRegime::COMPLIANCE_REGIME_UNSPECIFIED;
-        $workload->setComplianceRegime($workloadComplianceRegime);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateWorkload($workload, $updateMask);
+            $gapicClient->updateWorkload();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

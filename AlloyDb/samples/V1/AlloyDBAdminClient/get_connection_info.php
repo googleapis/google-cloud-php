@@ -31,18 +31,19 @@ use Google\Cloud\AlloyDb\V1\GetConnectionInfoRequest;
 /**
  * Get instance metadata used for a connection.
  *
- * @param string $formattedParent The name of the parent resource. The required format is:
- *                                projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}
- *                                Please see {@see AlloyDBAdminClient::instanceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_connection_info_sample(string $formattedParent): void
+function get_connection_info_sample(): void
 {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
     // Prepare the request message.
-    $request = (new GetConnectionInfoRequest())
-        ->setParent($formattedParent);
+    $request = new GetConnectionInfoRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,26 +53,5 @@ function get_connection_info_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AlloyDBAdminClient::instanceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CLUSTER]',
-        '[INSTANCE]'
-    );
-
-    get_connection_info_sample($formattedParent);
 }
 // [END alloydb_v1_generated_AlloyDBAdmin_GetConnectionInfo_sync]

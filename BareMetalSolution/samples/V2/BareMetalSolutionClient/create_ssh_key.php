@@ -32,25 +32,19 @@ use Google\Cloud\BareMetalSolution\V2\SSHKey;
  * Register a public SSH key in the specified project for use with the
  * interactive serial console feature.
  *
- * @param string $formattedParent The parent containing the SSH keys. Please see
- *                                {@see BareMetalSolutionClient::locationName()} for help formatting this field.
- * @param string $sshKeyId        The ID to use for the key, which will become the final component
- *                                of the key's resource name.
- *
- *                                This value must match the regex:
- *                                [a-zA-Z0-9&#64;.\-_]{1,64}
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_ssh_key_sample(string $formattedParent, string $sshKeyId): void
+function create_ssh_key_sample(): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $sshKey = new SSHKey();
-    $request = (new CreateSSHKeyRequest())
-        ->setParent($formattedParent)
-        ->setSshKey($sshKey)
-        ->setSshKeyId($sshKeyId);
+    $request = new CreateSSHKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,22 +54,5 @@ function create_ssh_key_sample(string $formattedParent, string $sshKeyId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BareMetalSolutionClient::locationName('[PROJECT]', '[LOCATION]');
-    $sshKeyId = '[SSH_KEY_ID]';
-
-    create_ssh_key_sample($formattedParent, $sshKeyId);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_CreateSSHKey_sync]

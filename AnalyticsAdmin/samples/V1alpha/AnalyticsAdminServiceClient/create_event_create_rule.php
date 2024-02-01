@@ -26,54 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\CreateEventCreateRuleRequest;
 use Google\Analytics\Admin\V1alpha\EventCreateRule;
-use Google\Analytics\Admin\V1alpha\MatchingCondition;
-use Google\Analytics\Admin\V1alpha\MatchingCondition\ComparisonType;
 use Google\ApiCore\ApiException;
 
 /**
  * Creates an EventCreateRule.
  *
- * @param string $formattedParent                              Example format: properties/123/dataStreams/456
- *                                                             Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
- * @param string $eventCreateRuleDestinationEvent              The name of the new event to be created.
- *
- *                                                             This value must:
- *                                                             * be less than 40 characters
- *                                                             * consist only of letters, digits or _ (underscores)
- *                                                             * start with a letter
- * @param string $eventCreateRuleEventConditionsField          The name of the field that is compared against for the condition.
- *                                                             If 'event_name' is specified this condition will apply to the name of the
- *                                                             event.  Otherwise the condition will apply to a parameter with the
- *                                                             specified name.
- *
- *                                                             This value cannot contain spaces.
- * @param int    $eventCreateRuleEventConditionsComparisonType The type of comparison to be applied to the value.
- * @param string $eventCreateRuleEventConditionsValue          The value being compared against for this condition.  The runtime
- *                                                             implementation may perform type coercion of this value to evaluate this
- *                                                             condition based on the type of the parameter value.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_event_create_rule_sample(
-    string $formattedParent,
-    string $eventCreateRuleDestinationEvent,
-    string $eventCreateRuleEventConditionsField,
-    int $eventCreateRuleEventConditionsComparisonType,
-    string $eventCreateRuleEventConditionsValue
-): void {
+function create_event_create_rule_sample(): void
+{
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $matchingCondition = (new MatchingCondition())
-        ->setField($eventCreateRuleEventConditionsField)
-        ->setComparisonType($eventCreateRuleEventConditionsComparisonType)
-        ->setValue($eventCreateRuleEventConditionsValue);
-    $eventCreateRuleEventConditions = [$matchingCondition,];
-    $eventCreateRule = (new EventCreateRule())
-        ->setDestinationEvent($eventCreateRuleDestinationEvent)
-        ->setEventConditions($eventCreateRuleEventConditions);
-    $request = (new CreateEventCreateRuleRequest())
-        ->setParent($formattedParent)
-        ->setEventCreateRule($eventCreateRule);
+    $request = new CreateEventCreateRuleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -83,31 +53,5 @@ function create_event_create_rule_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AnalyticsAdminServiceClient::dataStreamName('[PROPERTY]', '[DATA_STREAM]');
-    $eventCreateRuleDestinationEvent = '[DESTINATION_EVENT]';
-    $eventCreateRuleEventConditionsField = '[FIELD]';
-    $eventCreateRuleEventConditionsComparisonType = ComparisonType::COMPARISON_TYPE_UNSPECIFIED;
-    $eventCreateRuleEventConditionsValue = '[VALUE]';
-
-    create_event_create_rule_sample(
-        $formattedParent,
-        $eventCreateRuleDestinationEvent,
-        $eventCreateRuleEventConditionsField,
-        $eventCreateRuleEventConditionsComparisonType,
-        $eventCreateRuleEventConditionsValue
-    );
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateEventCreateRule_sync]

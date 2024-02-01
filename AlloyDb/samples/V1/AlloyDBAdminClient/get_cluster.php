@@ -31,18 +31,19 @@ use Google\Cloud\AlloyDb\V1\GetClusterRequest;
 /**
  * Gets details of a single Cluster.
  *
- * @param string $formattedName The name of the resource. For the required format, see the
- *                              comment on the Cluster.name field. Please see
- *                              {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_cluster_sample(string $formattedName): void
+function get_cluster_sample(): void
 {
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
 
     // Prepare the request message.
-    $request = (new GetClusterRequest())
-        ->setName($formattedName);
+    $request = new GetClusterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function get_cluster_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AlloyDBAdminClient::clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-
-    get_cluster_sample($formattedName);
 }
 // [END alloydb_v1_generated_AlloyDBAdmin_GetCluster_sync]

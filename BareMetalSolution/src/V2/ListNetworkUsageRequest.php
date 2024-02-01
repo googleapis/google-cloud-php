@@ -23,8 +23,7 @@ class ListNetworkUsageRequest extends \Google\Protobuf\Internal\Message
     private $location = '';
 
     /**
-     * @param string $location Required. Parent value (project and location). Please see
-     *                         {@see BareMetalSolutionClient::locationName()} for help formatting this field.
+     * @param string $location Required. Parent value (project and location).
      *
      * @return \Google\Cloud\BareMetalSolution\V2\ListNetworkUsageRequest
      *

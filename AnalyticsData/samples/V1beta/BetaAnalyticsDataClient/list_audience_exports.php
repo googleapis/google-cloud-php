@@ -46,18 +46,19 @@ use Google\ApiCore\PagedListResponse;
  * [Google Analytics Audience Export API
  * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
  *
- * @param string $formattedParent All audience exports for this property will be listed in the
- *                                response. Format: `properties/{property}`
- *                                Please see {@see BetaAnalyticsDataClient::propertyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_audience_exports_sample(string $formattedParent): void
+function list_audience_exports_sample(): void
 {
     // Create a client.
     $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
 
     // Prepare the request message.
-    $request = (new ListAudienceExportsRequest())
-        ->setParent($formattedParent);
+    $request = new ListAudienceExportsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,21 +72,5 @@ function list_audience_exports_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BetaAnalyticsDataClient::propertyName('[PROPERTY]');
-
-    list_audience_exports_sample($formattedParent);
 }
 // [END analyticsdata_v1beta_generated_BetaAnalyticsData_ListAudienceExports_sync]

@@ -39,7 +39,6 @@ class CreateApiConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                $parent      Required. Parent resource of the API Config, of the form:
      *                                                           `projects/&#42;/locations/global/apis/*`
-     *                                                           Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
      * @param \Google\Cloud\ApiGateway\V1\ApiConfig $apiConfig   Required. API resource.
      * @param string                                $apiConfigId Required. Identifier to assign to the API Config. Must be unique within scope of
      *                                                           the parent resource.

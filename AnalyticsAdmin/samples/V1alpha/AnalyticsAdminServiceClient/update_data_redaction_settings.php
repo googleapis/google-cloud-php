@@ -27,7 +27,6 @@ use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\DataRedactionSettings;
 use Google\Analytics\Admin\V1alpha\UpdateDataRedactionSettingsRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a DataRedactionSettings on a property.
@@ -44,11 +43,7 @@ function update_data_redaction_settings_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $dataRedactionSettings = new DataRedactionSettings();
-    $updateMask = new FieldMask();
-    $request = (new UpdateDataRedactionSettingsRequest())
-        ->setDataRedactionSettings($dataRedactionSettings)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateDataRedactionSettingsRequest();
 
     // Call the API and handle any network failures.
     try {

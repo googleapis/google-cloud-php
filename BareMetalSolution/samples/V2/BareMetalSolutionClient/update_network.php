@@ -45,9 +45,7 @@ function update_network_sample(): void
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $network = new Network();
-    $request = (new UpdateNetworkRequest())
-        ->setNetwork($network);
+    $request = new UpdateNetworkRequest();
 
     // Call the API and handle any network failures.
     try {

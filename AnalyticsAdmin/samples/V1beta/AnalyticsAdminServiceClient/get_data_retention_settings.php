@@ -31,20 +31,19 @@ use Google\ApiCore\ApiException;
 /**
  * Returns the singleton data retention settings for this property.
  *
- * @param string $formattedName The name of the settings to lookup.
- *                              Format:
- *                              properties/{property}/dataRetentionSettings
- *                              Example: "properties/1000/dataRetentionSettings"
- *                              Please see {@see AnalyticsAdminServiceClient::dataRetentionSettingsName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_data_retention_settings_sample(string $formattedName): void
+function get_data_retention_settings_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new GetDataRetentionSettingsRequest())
-        ->setName($formattedName);
+    $request = new GetDataRetentionSettingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function get_data_retention_settings_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsAdminServiceClient::dataRetentionSettingsName('[PROPERTY]');
-
-    get_data_retention_settings_sample($formattedName);
 }
 // [END analyticsadmin_v1beta_generated_AnalyticsAdminService_GetDataRetentionSettings_sync]

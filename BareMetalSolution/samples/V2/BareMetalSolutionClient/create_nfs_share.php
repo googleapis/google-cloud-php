@@ -33,19 +33,19 @@ use Google\Rpc\Status;
 /**
  * Create an NFS share.
  *
- * @param string $formattedParent The parent project and location. Please see
- *                                {@see BareMetalSolutionClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_nfs_share_sample(string $formattedParent): void
+function create_nfs_share_sample(): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $nfsShare = new NfsShare();
-    $request = (new CreateNfsShareRequest())
-        ->setParent($formattedParent)
-        ->setNfsShare($nfsShare);
+    $request = new CreateNfsShareRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +65,5 @@ function create_nfs_share_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BareMetalSolutionClient::locationName('[PROJECT]', '[LOCATION]');
-
-    create_nfs_share_sample($formattedParent);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_CreateNfsShare_sync]

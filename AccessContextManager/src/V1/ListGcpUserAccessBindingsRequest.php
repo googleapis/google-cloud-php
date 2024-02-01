@@ -41,7 +41,6 @@ class ListGcpUserAccessBindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Example: "organizations/256"
-     *                       Please see {@see AccessContextManagerClient::organizationName()} for help formatting this field.
      *
      * @return \Google\Identity\AccessContextManager\V1\ListGcpUserAccessBindingsRequest
      *

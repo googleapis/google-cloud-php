@@ -53,7 +53,6 @@ class ListParticipantSessionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Format:
      *                       `conferenceRecords/{conference_record}/participants/{participant}`
-     *                       Please see {@see ConferenceRecordsServiceClient::participantName()} for help formatting this field.
      *
      * @return \Google\Apps\Meet\V2beta\ListParticipantSessionsRequest
      *

@@ -24,42 +24,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateChannelGroup_sync]
 use Google\Analytics\Admin\V1alpha\ChannelGroup;
-use Google\Analytics\Admin\V1alpha\ChannelGroupFilterExpression;
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
-use Google\Analytics\Admin\V1alpha\GroupingRule;
 use Google\ApiCore\ApiException;
 
 /**
  * Creates a ChannelGroup.
  *
- * @param string $formattedParent                     The property for which to create a ChannelGroup.
- *                                                    Example format: properties/1234
- *                                                    Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
- * @param string $channelGroupDisplayName             The display name of the Channel Group. Max length of 80
- *                                                    characters.
- * @param string $channelGroupGroupingRuleDisplayName Customer defined display name for the channel.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_channel_group_sample(
-    string $formattedParent,
-    string $channelGroupDisplayName,
-    string $channelGroupGroupingRuleDisplayName
-): void {
+function create_channel_group_sample(): void
+{
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $channelGroupGroupingRuleExpression = new ChannelGroupFilterExpression();
-    $groupingRule = (new GroupingRule())
-        ->setDisplayName($channelGroupGroupingRuleDisplayName)
-        ->setExpression($channelGroupGroupingRuleExpression);
-    $channelGroupGroupingRule = [$groupingRule,];
-    $channelGroup = (new ChannelGroup())
-        ->setDisplayName($channelGroupDisplayName)
-        ->setGroupingRule($channelGroupGroupingRule);
-    $request = (new CreateChannelGroupRequest())
-        ->setParent($formattedParent)
-        ->setChannelGroup($channelGroup);
+    $request = new CreateChannelGroupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,27 +53,5 @@ function create_channel_group_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
-    $channelGroupDisplayName = '[DISPLAY_NAME]';
-    $channelGroupGroupingRuleDisplayName = '[DISPLAY_NAME]';
-
-    create_channel_group_sample(
-        $formattedParent,
-        $channelGroupDisplayName,
-        $channelGroupGroupingRuleDisplayName
-    );
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateChannelGroup_sync]

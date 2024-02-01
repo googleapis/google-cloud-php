@@ -113,12 +113,7 @@ class ApiKeysClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $key = new Key();
-        $request = (new CreateKeyRequest())
-            ->setParent($formattedParent)
-            ->setKey($key);
+        $request = new CreateKeyRequest();
         $response = $gapicClient->createKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -129,10 +124,6 @@ class ApiKeysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.api.apikeys.v2.ApiKeys/CreateKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getKey();
-        $this->assertProtobufEquals($key, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createKeyTest');
         $response->pollUntilComplete([
@@ -183,12 +174,7 @@ class ApiKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $key = new Key();
-        $request = (new CreateKeyRequest())
-            ->setParent($formattedParent)
-            ->setKey($key);
+        $request = new CreateKeyRequest();
         $response = $gapicClient->createKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -250,10 +236,7 @@ class ApiKeysClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new DeleteKeyRequest())
-            ->setName($formattedName);
+        $request = new DeleteKeyRequest();
         $response = $gapicClient->deleteKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -264,8 +247,6 @@ class ApiKeysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.api.apikeys.v2.ApiKeys/DeleteKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteKeyTest');
         $response->pollUntilComplete([
@@ -316,10 +297,7 @@ class ApiKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new DeleteKeyRequest())
-            ->setName($formattedName);
+        $request = new DeleteKeyRequest();
         $response = $gapicClient->deleteKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -363,10 +341,7 @@ class ApiKeysClientTest extends GeneratedTest
         $expectedResponse->setKeyString($keyString);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new GetKeyRequest())
-            ->setName($formattedName);
+        $request = new GetKeyRequest();
         $response = $gapicClient->getKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -374,8 +349,6 @@ class ApiKeysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.apikeys.v2.ApiKeys/GetKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -397,10 +370,7 @@ class ApiKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new GetKeyRequest())
-            ->setName($formattedName);
+        $request = new GetKeyRequest();
         try {
             $gapicClient->getKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -427,10 +397,7 @@ class ApiKeysClientTest extends GeneratedTest
         $expectedResponse = new GetKeyStringResponse();
         $expectedResponse->setKeyString($keyString);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new GetKeyStringRequest())
-            ->setName($formattedName);
+        $request = new GetKeyStringRequest();
         $response = $gapicClient->getKeyString($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -438,8 +405,6 @@ class ApiKeysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.apikeys.v2.ApiKeys/GetKeyString', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -461,10 +426,7 @@ class ApiKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new GetKeyStringRequest())
-            ->setName($formattedName);
+        $request = new GetKeyStringRequest();
         try {
             $gapicClient->getKeyString($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -496,10 +458,7 @@ class ApiKeysClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setKeys($keys);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListKeysRequest())
-            ->setParent($formattedParent);
+        $request = new ListKeysRequest();
         $response = $gapicClient->listKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -510,8 +469,6 @@ class ApiKeysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.apikeys.v2.ApiKeys/ListKeys', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -533,10 +490,7 @@ class ApiKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListKeysRequest())
-            ->setParent($formattedParent);
+        $request = new ListKeysRequest();
         try {
             $gapicClient->listKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -565,10 +519,7 @@ class ApiKeysClientTest extends GeneratedTest
         $expectedResponse->setParent($parent);
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $keyString = 'keyString526755313';
-        $request = (new LookupKeyRequest())
-            ->setKeyString($keyString);
+        $request = new LookupKeyRequest();
         $response = $gapicClient->lookupKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -576,8 +527,6 @@ class ApiKeysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.apikeys.v2.ApiKeys/LookupKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getKeyString();
-        $this->assertProtobufEquals($keyString, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -599,10 +548,7 @@ class ApiKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $keyString = 'keyString526755313';
-        $request = (new LookupKeyRequest())
-            ->setKeyString($keyString);
+        $request = new LookupKeyRequest();
         try {
             $gapicClient->lookupKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -655,10 +601,7 @@ class ApiKeysClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new UndeleteKeyRequest())
-            ->setName($formattedName);
+        $request = new UndeleteKeyRequest();
         $response = $gapicClient->undeleteKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -669,8 +612,6 @@ class ApiKeysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.api.apikeys.v2.ApiKeys/UndeleteKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeleteKeyTest');
         $response->pollUntilComplete([
@@ -721,10 +662,7 @@ class ApiKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new UndeleteKeyRequest())
-            ->setName($formattedName);
+        $request = new UndeleteKeyRequest();
         $response = $gapicClient->undeleteKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -786,10 +724,7 @@ class ApiKeysClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $key = new Key();
-        $request = (new UpdateKeyRequest())
-            ->setKey($key);
+        $request = new UpdateKeyRequest();
         $response = $gapicClient->updateKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -800,8 +735,6 @@ class ApiKeysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.api.apikeys.v2.ApiKeys/UpdateKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getKey();
-        $this->assertProtobufEquals($key, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateKeyTest');
         $response->pollUntilComplete([
@@ -852,10 +785,7 @@ class ApiKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $key = new Key();
-        $request = (new UpdateKeyRequest())
-            ->setKey($key);
+        $request = new UpdateKeyRequest();
         $response = $gapicClient->updateKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -917,12 +847,7 @@ class ApiKeysClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $key = new Key();
-        $request = (new CreateKeyRequest())
-            ->setParent($formattedParent)
-            ->setKey($key);
+        $request = new CreateKeyRequest();
         $response = $gapicClient->createKeyAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -933,10 +858,6 @@ class ApiKeysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.api.apikeys.v2.ApiKeys/CreateKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getKey();
-        $this->assertProtobufEquals($key, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createKeyTest');
         $response->pollUntilComplete([

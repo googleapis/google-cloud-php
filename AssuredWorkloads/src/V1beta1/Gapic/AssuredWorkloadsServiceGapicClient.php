@@ -45,7 +45,6 @@ use Google\Cloud\AssuredWorkloads\V1beta1\GetWorkloadRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\ListWorkloadsRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\ListWorkloadsResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest;
-use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest\RestrictionType;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\UpdateWorkloadRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
@@ -62,8 +61,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
  * try {
- *     $target = 'target';
- *     $response = $assuredWorkloadsServiceClient->analyzeWorkloadMove($target);
+ *     $response = $assuredWorkloadsServiceClient->analyzeWorkloadMove();
  * } finally {
  *     $assuredWorkloadsServiceClient->close();
  * }
@@ -351,20 +349,13 @@ class AssuredWorkloadsServiceGapicClient
      * ```
      * $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
      * try {
-     *     $target = 'target';
-     *     $response = $assuredWorkloadsServiceClient->analyzeWorkloadMove($target);
+     *     $response = $assuredWorkloadsServiceClient->analyzeWorkloadMove();
      * } finally {
      *     $assuredWorkloadsServiceClient->close();
      * }
      * ```
      *
-     * @param string $target       Required. The resource ID of the folder-based destination workload. This workload is
-     *                             where the source project will hypothetically be moved to. Specify the
-     *                             workload's relative resource name, formatted as:
-     *                             "organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}"
-     *                             For example:
-     *                             "organizations/123/locations/us-east1/workloads/assured-workload-2"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $source
@@ -380,6 +371,13 @@ class AssuredWorkloadsServiceGapicClient
      *           For example:
      *           "projects/951040570662" when specifying a project number, or
      *           "projects/my-project-123" when specifying a project ID.
+     *     @type string $target
+     *           Required. The resource ID of the folder-based destination workload. This workload is
+     *           where the source project will hypothetically be moved to. Specify the
+     *           workload's relative resource name, formatted as:
+     *           "organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}"
+     *           For example:
+     *           "organizations/123/locations/us-east1/workloads/assured-workload-2"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -392,16 +390,19 @@ class AssuredWorkloadsServiceGapicClient
      *
      * @experimental
      */
-    public function analyzeWorkloadMove($target, array $optionalArgs = [])
+    public function analyzeWorkloadMove(array $optionalArgs = [])
     {
         $request = new AnalyzeWorkloadMoveRequest();
-        $request->setTarget($target);
         if (isset($optionalArgs['source'])) {
             $request->setSource($optionalArgs['source']);
         }
 
         if (isset($optionalArgs['project'])) {
             $request->setProject($optionalArgs['project']);
+        }
+
+        if (isset($optionalArgs['target'])) {
+            $request->setTarget($optionalArgs['target']);
         }
 
         return $this->startCall('AnalyzeWorkloadMove', AnalyzeWorkloadMoveResponse::class, $optionalArgs, $request)->wait();
@@ -414,9 +415,7 @@ class AssuredWorkloadsServiceGapicClient
      * ```
      * $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
      * try {
-     *     $formattedParent = $assuredWorkloadsServiceClient->locationName('[ORGANIZATION]', '[LOCATION]');
-     *     $workload = new Workload();
-     *     $operationResponse = $assuredWorkloadsServiceClient->createWorkload($formattedParent, $workload);
+     *     $operationResponse = $assuredWorkloadsServiceClient->createWorkload();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -427,7 +426,7 @@ class AssuredWorkloadsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $assuredWorkloadsServiceClient->createWorkload($formattedParent, $workload);
+     *     $operationResponse = $assuredWorkloadsServiceClient->createWorkload();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $assuredWorkloadsServiceClient->resumeOperation($operationName, 'createWorkload');
@@ -447,12 +446,14 @@ class AssuredWorkloadsServiceGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The resource name of the new Workload's parent.
-     *                               Must be of the form `organizations/{org_id}/locations/{location_id}`.
-     * @param Workload $workload     Required. Assured Workload to create
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the new Workload's parent.
+     *           Must be of the form `organizations/{org_id}/locations/{location_id}`.
+     *     @type Workload $workload
+     *           Required. Assured Workload to create
      *     @type string $externalId
      *           Optional. A identifier associated with the workload and underlying projects which
      *           allows for the break down of billing costs for a workload. The value
@@ -470,13 +471,19 @@ class AssuredWorkloadsServiceGapicClient
      *
      * @experimental
      */
-    public function createWorkload($parent, $workload, array $optionalArgs = [])
+    public function createWorkload(array $optionalArgs = [])
     {
         $request = new CreateWorkloadRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setWorkload($workload);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['workload'])) {
+            $request->setWorkload($optionalArgs['workload']);
+        }
+
         if (isset($optionalArgs['externalId'])) {
             $request->setExternalId($optionalArgs['externalId']);
         }
@@ -498,19 +505,19 @@ class AssuredWorkloadsServiceGapicClient
      * ```
      * $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
      * try {
-     *     $formattedName = $assuredWorkloadsServiceClient->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
-     *     $assuredWorkloadsServiceClient->deleteWorkload($formattedName);
+     *     $assuredWorkloadsServiceClient->deleteWorkload();
      * } finally {
      *     $assuredWorkloadsServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The `name` field is used to identify the workload.
-     *                             Format:
-     *                             organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The `name` field is used to identify the workload.
+     *           Format:
+     *           organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
      *     @type string $etag
      *           Optional. The etag of the workload.
      *           If this is provided, it must match the server's etag.
@@ -524,12 +531,15 @@ class AssuredWorkloadsServiceGapicClient
      *
      * @experimental
      */
-    public function deleteWorkload($name, array $optionalArgs = [])
+    public function deleteWorkload(array $optionalArgs = [])
     {
         $request = new DeleteWorkloadRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -546,21 +556,21 @@ class AssuredWorkloadsServiceGapicClient
      * ```
      * $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
      * try {
-     *     $formattedName = $assuredWorkloadsServiceClient->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
-     *     $response = $assuredWorkloadsServiceClient->getWorkload($formattedName);
+     *     $response = $assuredWorkloadsServiceClient->getWorkload();
      * } finally {
      *     $assuredWorkloadsServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the Workload to fetch. This is the workloads's
-     *                             relative path in the API, formatted as
-     *                             "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
-     *                             For example,
-     *                             "organizations/123/locations/us-east1/workloads/assured-workload-1".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Workload to fetch. This is the workloads's
+     *           relative path in the API, formatted as
+     *           "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
+     *           For example,
+     *           "organizations/123/locations/us-east1/workloads/assured-workload-1".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -573,10 +583,13 @@ class AssuredWorkloadsServiceGapicClient
      *
      * @experimental
      */
-    public function getWorkload($name, array $optionalArgs = [])
+    public function getWorkload(array $optionalArgs = [])
     {
         $request = new GetWorkloadRequest();
-        $request->setName($name);
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+        }
+
         return $this->startCall('GetWorkload', Workload::class, $optionalArgs, $request)->wait();
     }
 
@@ -587,9 +600,8 @@ class AssuredWorkloadsServiceGapicClient
      * ```
      * $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
      * try {
-     *     $formattedParent = $assuredWorkloadsServiceClient->locationName('[ORGANIZATION]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $assuredWorkloadsServiceClient->listWorkloads($formattedParent);
+     *     $pagedResponse = $assuredWorkloadsServiceClient->listWorkloads();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -597,7 +609,7 @@ class AssuredWorkloadsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $assuredWorkloadsServiceClient->listWorkloads($formattedParent);
+     *     $pagedResponse = $assuredWorkloadsServiceClient->listWorkloads();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -606,11 +618,12 @@ class AssuredWorkloadsServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent Resource to list workloads from.
-     *                             Must be of the form `organizations/{org_id}/locations/{location}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent Resource to list workloads from.
+     *           Must be of the form `organizations/{org_id}/locations/{location}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -635,10 +648,13 @@ class AssuredWorkloadsServiceGapicClient
      *
      * @experimental
      */
-    public function listWorkloads($parent, array $optionalArgs = [])
+    public function listWorkloads(array $optionalArgs = [])
     {
         $request = new ListWorkloadsRequest();
-        $request->setParent($parent);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -666,24 +682,24 @@ class AssuredWorkloadsServiceGapicClient
      * ```
      * $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
      * try {
-     *     $name = 'name';
-     *     $restrictionType = RestrictionType::RESTRICTION_TYPE_UNSPECIFIED;
-     *     $response = $assuredWorkloadsServiceClient->restrictAllowedResources($name, $restrictionType);
+     *     $response = $assuredWorkloadsServiceClient->restrictAllowedResources();
      * } finally {
      *     $assuredWorkloadsServiceClient->close();
      * }
      * ```
      *
-     * @param string $name            Required. The resource name of the Workload. This is the workloads's
-     *                                relative path in the API, formatted as
-     *                                "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
-     *                                For example,
-     *                                "organizations/123/locations/us-east1/workloads/assured-workload-1".
-     * @param int    $restrictionType Required. The type of restriction for using gcp products in the Workload environment.
-     *                                For allowed values, use constants defined on {@see \Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest\RestrictionType}
-     * @param array  $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Workload. This is the workloads's
+     *           relative path in the API, formatted as
+     *           "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
+     *           For example,
+     *           "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     *     @type int $restrictionType
+     *           Required. The type of restriction for using gcp products in the Workload environment.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest\RestrictionType}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -696,13 +712,19 @@ class AssuredWorkloadsServiceGapicClient
      *
      * @experimental
      */
-    public function restrictAllowedResources($name, $restrictionType, array $optionalArgs = [])
+    public function restrictAllowedResources(array $optionalArgs = [])
     {
         $request = new RestrictAllowedResourcesRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setRestrictionType($restrictionType);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['restrictionType'])) {
+            $request->setRestrictionType($optionalArgs['restrictionType']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RestrictAllowedResources', RestrictAllowedResourcesResponse::class, $optionalArgs, $request)->wait();
@@ -718,22 +740,22 @@ class AssuredWorkloadsServiceGapicClient
      * ```
      * $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
      * try {
-     *     $workload = new Workload();
-     *     $updateMask = new FieldMask();
-     *     $response = $assuredWorkloadsServiceClient->updateWorkload($workload, $updateMask);
+     *     $response = $assuredWorkloadsServiceClient->updateWorkload();
      * } finally {
      *     $assuredWorkloadsServiceClient->close();
      * }
      * ```
      *
-     * @param Workload  $workload     Required. The workload to update.
-     *                                The workload's `name` field is used to identify the workload to be updated.
-     *                                Format:
-     *                                organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
-     * @param FieldMask $updateMask   Required. The list of fields to be updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Workload $workload
+     *           Required. The workload to update.
+     *           The workload's `name` field is used to identify the workload to be updated.
+     *           Format:
+     *           organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
+     *     @type FieldMask $updateMask
+     *           Required. The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -746,11 +768,17 @@ class AssuredWorkloadsServiceGapicClient
      *
      * @experimental
      */
-    public function updateWorkload($workload, $updateMask, array $optionalArgs = [])
+    public function updateWorkload(array $optionalArgs = [])
     {
         $request = new UpdateWorkloadRequest();
-        $request->setWorkload($workload);
-        $request->setUpdateMask($updateMask);
+        if (isset($optionalArgs['workload'])) {
+            $request->setWorkload($optionalArgs['workload']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         return $this->startCall('UpdateWorkload', Workload::class, $optionalArgs, $request)->wait();
     }
 }

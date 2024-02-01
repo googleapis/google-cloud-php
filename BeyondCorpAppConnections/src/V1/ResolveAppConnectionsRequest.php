@@ -52,7 +52,6 @@ class ResolveAppConnectionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the AppConnection location using the form:
      *                       `projects/{project_id}/locations/{location_id}`
-     *                       Please see {@see AppConnectionsServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BeyondCorp\AppConnections\V1\ResolveAppConnectionsRequest
      *

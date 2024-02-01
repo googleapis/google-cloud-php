@@ -36,7 +36,6 @@ use Google\Cloud\AlloyDb\V1\ConnectionInfo;
 use Google\Cloud\AlloyDb\V1\CreateBackupRequest;
 use Google\Cloud\AlloyDb\V1\CreateClusterRequest;
 use Google\Cloud\AlloyDb\V1\CreateInstanceRequest;
-use Google\Cloud\AlloyDb\V1\CreateInstanceRequests;
 use Google\Cloud\AlloyDb\V1\CreateSecondaryClusterRequest;
 use Google\Cloud\AlloyDb\V1\CreateSecondaryInstanceRequest;
 use Google\Cloud\AlloyDb\V1\CreateUserRequest;
@@ -53,9 +52,7 @@ use Google\Cloud\AlloyDb\V1\GetConnectionInfoRequest;
 use Google\Cloud\AlloyDb\V1\GetInstanceRequest;
 use Google\Cloud\AlloyDb\V1\GetUserRequest;
 use Google\Cloud\AlloyDb\V1\InjectFaultRequest;
-use Google\Cloud\AlloyDb\V1\InjectFaultRequest\FaultType;
 use Google\Cloud\AlloyDb\V1\Instance;
-use Google\Cloud\AlloyDb\V1\Instance\InstanceType;
 use Google\Cloud\AlloyDb\V1\ListBackupsRequest;
 use Google\Cloud\AlloyDb\V1\ListBackupsResponse;
 use Google\Cloud\AlloyDb\V1\ListClustersRequest;
@@ -143,14 +140,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $requests = new CreateInstanceRequests();
-        $requestsCreateInstanceRequests = [];
-        $requests->setCreateInstanceRequests($requestsCreateInstanceRequests);
-        $request = (new BatchCreateInstancesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = new BatchCreateInstancesRequest();
         $response = $gapicClient->batchCreateInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -161,10 +151,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/BatchCreateInstances', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchCreateInstancesTest');
         $response->pollUntilComplete([
@@ -215,14 +201,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $requests = new CreateInstanceRequests();
-        $requestsCreateInstanceRequests = [];
-        $requests->setCreateInstanceRequests($requestsCreateInstanceRequests);
-        $request = (new BatchCreateInstancesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = new BatchCreateInstancesRequest();
         $response = $gapicClient->batchCreateInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -292,16 +271,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backupId = 'backupId1355353272';
-        $backup = new Backup();
-        $backupClusterName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $backup->setClusterName($backupClusterName);
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent)
-            ->setBackupId($backupId)
-            ->setBackup($backup);
+        $request = new CreateBackupRequest();
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -312,12 +282,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/CreateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupId();
-        $this->assertProtobufEquals($backupId, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackup();
-        $this->assertProtobufEquals($backup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupTest');
         $response->pollUntilComplete([
@@ -368,16 +332,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backupId = 'backupId1355353272';
-        $backup = new Backup();
-        $backupClusterName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $backup->setClusterName($backupClusterName);
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent)
-            ->setBackupId($backupId)
-            ->setBackup($backup);
+        $request = new CreateBackupRequest();
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -441,16 +396,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $cluster->setNetwork($clusterNetwork);
-        $request = (new CreateClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new CreateClusterRequest();
         $response = $gapicClient->createCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -461,12 +407,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/CreateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterId();
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createClusterTest');
         $response->pollUntilComplete([
@@ -517,16 +457,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $cluster->setNetwork($clusterNetwork);
-        $request = (new CreateClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new CreateClusterRequest();
         $response = $gapicClient->createCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -592,16 +523,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
-        $instance->setInstanceType($instanceInstanceType);
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -612,12 +534,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/CreateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([
@@ -668,16 +584,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
-        $instance->setInstanceType($instanceInstanceType);
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -741,16 +648,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $cluster->setNetwork($clusterNetwork);
-        $request = (new CreateSecondaryClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new CreateSecondaryClusterRequest();
         $response = $gapicClient->createSecondaryCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -761,12 +659,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/CreateSecondaryCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterId();
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createSecondaryClusterTest');
         $response->pollUntilComplete([
@@ -817,16 +709,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $cluster->setNetwork($clusterNetwork);
-        $request = (new CreateSecondaryClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new CreateSecondaryClusterRequest();
         $response = $gapicClient->createSecondaryCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -892,16 +775,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
-        $instance->setInstanceType($instanceInstanceType);
-        $request = (new CreateSecondaryInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateSecondaryInstanceRequest();
         $response = $gapicClient->createSecondaryInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -912,12 +786,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/CreateSecondaryInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createSecondaryInstanceTest');
         $response->pollUntilComplete([
@@ -968,16 +836,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
-        $instance->setInstanceType($instanceInstanceType);
-        $request = (new CreateSecondaryInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateSecondaryInstanceRequest();
         $response = $gapicClient->createSecondaryInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1015,14 +874,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setPassword($password);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $userId = 'userId-147132913';
-        $user = new User();
-        $request = (new CreateUserRequest())
-            ->setParent($formattedParent)
-            ->setUserId($userId)
-            ->setUser($user);
+        $request = new CreateUserRequest();
         $response = $gapicClient->createUser($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1030,12 +882,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/CreateUser', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getUserId();
-        $this->assertProtobufEquals($userId, $actualValue);
-        $actualValue = $actualRequestObject->getUser();
-        $this->assertProtobufEquals($user, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1057,14 +903,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $userId = 'userId-147132913';
-        $user = new User();
-        $request = (new CreateUserRequest())
-            ->setParent($formattedParent)
-            ->setUserId($userId)
-            ->setUser($user);
+        $request = new CreateUserRequest();
         try {
             $gapicClient->createUser($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1107,10 +946,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = new DeleteBackupRequest();
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1121,8 +957,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/DeleteBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteBackupTest');
         $response->pollUntilComplete([
@@ -1173,10 +1007,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = new DeleteBackupRequest();
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1228,10 +1059,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())
-            ->setName($formattedName);
+        $request = new DeleteClusterRequest();
         $response = $gapicClient->deleteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1242,8 +1070,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/DeleteCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteClusterTest');
         $response->pollUntilComplete([
@@ -1294,10 +1120,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())
-            ->setName($formattedName);
+        $request = new DeleteClusterRequest();
         $response = $gapicClient->deleteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1349,10 +1172,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = new DeleteInstanceRequest();
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1363,8 +1183,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/DeleteInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteInstanceTest');
         $response->pollUntilComplete([
@@ -1415,10 +1233,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = new DeleteInstanceRequest();
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1452,18 +1267,13 @@ class AlloyDBAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
-        $request = (new DeleteUserRequest())
-            ->setName($formattedName);
+        $request = new DeleteUserRequest();
         $gapicClient->deleteUser($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/DeleteUser', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1485,10 +1295,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
-        $request = (new DeleteUserRequest())
-            ->setName($formattedName);
+        $request = new DeleteUserRequest();
         try {
             $gapicClient->deleteUser($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1545,10 +1352,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new FailoverInstanceRequest())
-            ->setName($formattedName);
+        $request = new FailoverInstanceRequest();
         $response = $gapicClient->failoverInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1559,8 +1363,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/FailoverInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/failoverInstanceTest');
         $response->pollUntilComplete([
@@ -1611,10 +1413,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new FailoverInstanceRequest())
-            ->setName($formattedName);
+        $request = new FailoverInstanceRequest();
         $response = $gapicClient->failoverInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1650,10 +1449,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse = new GenerateClientCertificateResponse();
         $expectedResponse->setCaCert($caCert);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GenerateClientCertificateRequest())
-            ->setParent($formattedParent);
+        $request = new GenerateClientCertificateRequest();
         $response = $gapicClient->generateClientCertificate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1661,8 +1457,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/GenerateClientCertificate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1684,10 +1478,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GenerateClientCertificateRequest())
-            ->setParent($formattedParent);
+        $request = new GenerateClientCertificateRequest();
         try {
             $gapicClient->generateClientCertificate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1730,10 +1521,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSizeBytes($sizeBytes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = new GetBackupRequest();
         $response = $gapicClient->getBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1741,8 +1529,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/GetBackup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1764,10 +1550,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = new GetBackupRequest();
         try {
             $gapicClient->getBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1804,10 +1587,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GetClusterRequest())
-            ->setName($formattedName);
+        $request = new GetClusterRequest();
         $response = $gapicClient->getCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1815,8 +1595,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/GetCluster', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1838,10 +1616,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GetClusterRequest())
-            ->setName($formattedName);
+        $request = new GetClusterRequest();
         try {
             $gapicClient->getCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1872,10 +1647,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setIpAddress($ipAddress);
         $expectedResponse->setInstanceUid($instanceUid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new GetConnectionInfoRequest())
-            ->setParent($formattedParent);
+        $request = new GetConnectionInfoRequest();
         $response = $gapicClient->getConnectionInfo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1883,8 +1655,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/GetConnectionInfo', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1906,10 +1676,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new GetConnectionInfoRequest())
-            ->setParent($formattedParent);
+        $request = new GetConnectionInfoRequest();
         try {
             $gapicClient->getConnectionInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1948,10 +1715,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceRequest();
         $response = $gapicClient->getInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1959,8 +1723,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/GetInstance', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1982,10 +1744,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceRequest();
         try {
             $gapicClient->getInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2014,10 +1773,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setPassword($password);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
-        $request = (new GetUserRequest())
-            ->setName($formattedName);
+        $request = new GetUserRequest();
         $response = $gapicClient->getUser($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2025,8 +1781,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/GetUser', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2048,10 +1802,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
-        $request = (new GetUserRequest())
-            ->setName($formattedName);
+        $request = new GetUserRequest();
         try {
             $gapicClient->getUser($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2108,12 +1859,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $faultType = FaultType::FAULT_TYPE_UNSPECIFIED;
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new InjectFaultRequest())
-            ->setFaultType($faultType)
-            ->setName($formattedName);
+        $request = new InjectFaultRequest();
         $response = $gapicClient->injectFault($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2124,10 +1870,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/InjectFault', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFaultType();
-        $this->assertProtobufEquals($faultType, $actualValue);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/injectFaultTest');
         $response->pollUntilComplete([
@@ -2178,12 +1920,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $faultType = FaultType::FAULT_TYPE_UNSPECIFIED;
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new InjectFaultRequest())
-            ->setFaultType($faultType)
-            ->setName($formattedName);
+        $request = new InjectFaultRequest();
         $response = $gapicClient->injectFault($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2224,10 +1961,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListBackupsRequest();
         $response = $gapicClient->listBackups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2238,8 +1972,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/ListBackups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2261,10 +1993,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListBackupsRequest();
         try {
             $gapicClient->listBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2296,10 +2025,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setClusters($clusters);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClustersRequest())
-            ->setParent($formattedParent);
+        $request = new ListClustersRequest();
         $response = $gapicClient->listClusters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2310,8 +2036,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/ListClusters', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2333,10 +2057,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClustersRequest())
-            ->setParent($formattedParent);
+        $request = new ListClustersRequest();
         try {
             $gapicClient->listClusters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2368,10 +2089,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = new ListInstancesRequest();
         $response = $gapicClient->listInstances($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2382,8 +2100,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/ListInstances', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2405,10 +2121,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = new ListInstancesRequest();
         try {
             $gapicClient->listInstances($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2440,10 +2153,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSupportedDatabaseFlags($supportedDatabaseFlags);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSupportedDatabaseFlagsRequest())
-            ->setParent($formattedParent);
+        $request = new ListSupportedDatabaseFlagsRequest();
         $response = $gapicClient->listSupportedDatabaseFlags($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2454,8 +2164,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/ListSupportedDatabaseFlags', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2477,10 +2185,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSupportedDatabaseFlagsRequest())
-            ->setParent($formattedParent);
+        $request = new ListSupportedDatabaseFlagsRequest();
         try {
             $gapicClient->listSupportedDatabaseFlags($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2512,10 +2217,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setUsers($users);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListUsersRequest())
-            ->setParent($formattedParent);
+        $request = new ListUsersRequest();
         $response = $gapicClient->listUsers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2526,8 +2228,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/ListUsers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2549,10 +2249,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListUsersRequest())
-            ->setParent($formattedParent);
+        $request = new ListUsersRequest();
         try {
             $gapicClient->listUsers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2607,10 +2304,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new PromoteClusterRequest())
-            ->setName($formattedName);
+        $request = new PromoteClusterRequest();
         $response = $gapicClient->promoteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2621,8 +2315,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/PromoteCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/promoteClusterTest');
         $response->pollUntilComplete([
@@ -2673,10 +2365,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new PromoteClusterRequest())
-            ->setName($formattedName);
+        $request = new PromoteClusterRequest();
         $response = $gapicClient->promoteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2742,10 +2431,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new RestartInstanceRequest())
-            ->setName($formattedName);
+        $request = new RestartInstanceRequest();
         $response = $gapicClient->restartInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2756,8 +2442,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/RestartInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restartInstanceTest');
         $response->pollUntilComplete([
@@ -2808,10 +2492,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new RestartInstanceRequest())
-            ->setName($formattedName);
+        $request = new RestartInstanceRequest();
         $response = $gapicClient->restartInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2875,16 +2556,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $cluster->setNetwork($clusterNetwork);
-        $request = (new RestoreClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new RestoreClusterRequest();
         $response = $gapicClient->restoreCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2895,12 +2567,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/RestoreCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterId();
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restoreClusterTest');
         $response->pollUntilComplete([
@@ -2951,16 +2617,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $cluster->setNetwork($clusterNetwork);
-        $request = (new RestoreClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new RestoreClusterRequest();
         $response = $gapicClient->restoreCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3030,12 +2687,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backup = new Backup();
-        $backupClusterName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $backup->setClusterName($backupClusterName);
-        $request = (new UpdateBackupRequest())
-            ->setBackup($backup);
+        $request = new UpdateBackupRequest();
         $response = $gapicClient->updateBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3046,8 +2698,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/UpdateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackup();
-        $this->assertProtobufEquals($backup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBackupTest');
         $response->pollUntilComplete([
@@ -3098,12 +2748,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backup = new Backup();
-        $backupClusterName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $backup->setClusterName($backupClusterName);
-        $request = (new UpdateBackupRequest())
-            ->setBackup($backup);
+        $request = new UpdateBackupRequest();
         $response = $gapicClient->updateBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3167,12 +2812,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $cluster = new Cluster();
-        $clusterNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $cluster->setNetwork($clusterNetwork);
-        $request = (new UpdateClusterRequest())
-            ->setCluster($cluster);
+        $request = new UpdateClusterRequest();
         $response = $gapicClient->updateCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3183,8 +2823,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/UpdateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateClusterTest');
         $response->pollUntilComplete([
@@ -3235,12 +2873,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $cluster = new Cluster();
-        $clusterNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
-        $cluster->setNetwork($clusterNetwork);
-        $request = (new UpdateClusterRequest())
-            ->setCluster($cluster);
+        $request = new UpdateClusterRequest();
         $response = $gapicClient->updateCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3306,12 +2939,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $instance = new Instance();
-        $instanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
-        $instance->setInstanceType($instanceInstanceType);
-        $request = (new UpdateInstanceRequest())
-            ->setInstance($instance);
+        $request = new UpdateInstanceRequest();
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3322,8 +2950,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/UpdateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateInstanceTest');
         $response->pollUntilComplete([
@@ -3374,12 +3000,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $instance = new Instance();
-        $instanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
-        $instance->setInstanceType($instanceInstanceType);
-        $request = (new UpdateInstanceRequest())
-            ->setInstance($instance);
+        $request = new UpdateInstanceRequest();
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3417,10 +3038,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setPassword($password);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $user = new User();
-        $request = (new UpdateUserRequest())
-            ->setUser($user);
+        $request = new UpdateUserRequest();
         $response = $gapicClient->updateUser($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3428,8 +3046,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/UpdateUser', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUser();
-        $this->assertProtobufEquals($user, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3451,10 +3067,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $user = new User();
-        $request = (new UpdateUserRequest())
-            ->setUser($user);
+        $request = new UpdateUserRequest();
         try {
             $gapicClient->updateUser($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3621,14 +3234,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $requests = new CreateInstanceRequests();
-        $requestsCreateInstanceRequests = [];
-        $requests->setCreateInstanceRequests($requestsCreateInstanceRequests);
-        $request = (new BatchCreateInstancesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = new BatchCreateInstancesRequest();
         $response = $gapicClient->batchCreateInstancesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3639,10 +3245,6 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.alloydb.v1.AlloyDBAdmin/BatchCreateInstances', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchCreateInstancesTest');
         $response->pollUntilComplete([

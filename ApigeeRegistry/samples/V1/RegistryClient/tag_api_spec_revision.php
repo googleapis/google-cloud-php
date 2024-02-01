@@ -31,20 +31,19 @@ use Google\Cloud\ApigeeRegistry\V1\TagApiSpecRevisionRequest;
 /**
  * Adds a tag to a specified revision of a spec.
  *
- * @param string $formattedName The name of the spec to be tagged, including the revision ID. Please see
- *                              {@see RegistryClient::apiSpecName()} for help formatting this field.
- * @param string $tag           The tag to apply.
- *                              The tag should be at most 40 characters, and match `[a-z][a-z0-9-]{3,39}`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function tag_api_spec_revision_sample(string $formattedName, string $tag): void
+function tag_api_spec_revision_sample(): void
 {
     // Create a client.
     $registryClient = new RegistryClient();
 
     // Prepare the request message.
-    $request = (new TagApiSpecRevisionRequest())
-        ->setName($formattedName)
-        ->setTag($tag);
+    $request = new TagApiSpecRevisionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,28 +53,5 @@ function tag_api_spec_revision_sample(string $formattedName, string $tag): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RegistryClient::apiSpecName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[API]',
-        '[VERSION]',
-        '[SPEC]'
-    );
-    $tag = '[TAG]';
-
-    tag_api_spec_revision_sample($formattedName, $tag);
 }
 // [END apigeeregistry_v1_generated_Registry_TagApiSpecRevision_sync]

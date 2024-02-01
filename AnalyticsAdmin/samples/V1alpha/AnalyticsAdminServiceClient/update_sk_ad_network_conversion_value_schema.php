@@ -24,11 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateSKAdNetworkConversionValueSchema_sync]
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1alpha\PostbackWindow;
 use Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a SKAdNetworkConversionValueSchema.
@@ -45,13 +43,7 @@ function update_sk_ad_network_conversion_value_schema_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $skadnetworkConversionValueSchemaPostbackWindowOne = new PostbackWindow();
-    $skadnetworkConversionValueSchema = (new SKAdNetworkConversionValueSchema())
-        ->setPostbackWindowOne($skadnetworkConversionValueSchemaPostbackWindowOne);
-    $updateMask = new FieldMask();
-    $request = (new UpdateSKAdNetworkConversionValueSchemaRequest())
-        ->setSkadnetworkConversionValueSchema($skadnetworkConversionValueSchema)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateSKAdNetworkConversionValueSchemaRequest();
 
     // Call the API and handle any network failures.
     try {

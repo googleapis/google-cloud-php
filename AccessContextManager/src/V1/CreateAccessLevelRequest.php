@@ -39,7 +39,6 @@ class CreateAccessLevelRequest extends \Google\Protobuf\Internal\Message
      *                                                                          Level] [google.identity.accesscontextmanager.v1.AccessLevel].
      *
      *                                                                          Format: `accessPolicies/{policy_id}`
-     *                                                                          Please see {@see AccessContextManagerClient::accessPolicyName()} for help formatting this field.
      * @param \Google\Identity\AccessContextManager\V1\AccessLevel $accessLevel Required. The [Access Level]
      *                                                                          [google.identity.accesscontextmanager.v1.AccessLevel] to create.
      *                                                                          Syntactic correctness of the [Access Level]

@@ -30,17 +30,19 @@ use Google\ApiCore\ApiException;
 /**
  * Archives an Audience on a property.
  *
- * @param string $formattedName Example format: properties/1234/audiences/5678
- *                              Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function archive_audience_sample(string $formattedName): void
+function archive_audience_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new ArchiveAudienceRequest())
-        ->setName($formattedName);
+    $request = new ArchiveAudienceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -49,21 +51,5 @@ function archive_audience_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
-
-    archive_audience_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_ArchiveAudience_sync]

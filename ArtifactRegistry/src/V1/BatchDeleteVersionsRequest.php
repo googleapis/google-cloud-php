@@ -38,8 +38,7 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string   $parent The name of the repository holding all requested versions.
      * @param string[] $names  Required. The names of the versions to delete.
-     *                         A maximum of 10000 versions can be deleted in a batch. Please see
-     *                         {@see ArtifactRegistryClient::versionName()} for help formatting this field.
+     *                         A maximum of 10000 versions can be deleted in a batch.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\BatchDeleteVersionsRequest
      *

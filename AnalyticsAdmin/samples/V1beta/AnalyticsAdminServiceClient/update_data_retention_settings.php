@@ -27,7 +27,6 @@ use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1beta\DataRetentionSettings;
 use Google\Analytics\Admin\V1beta\UpdateDataRetentionSettingsRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the singleton data retention settings for this property.
@@ -44,11 +43,7 @@ function update_data_retention_settings_sample(): void
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $dataRetentionSettings = new DataRetentionSettings();
-    $updateMask = new FieldMask();
-    $request = (new UpdateDataRetentionSettingsRequest())
-        ->setDataRetentionSettings($dataRetentionSettings)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateDataRetentionSettingsRequest();
 
     // Call the API and handle any network failures.
     try {

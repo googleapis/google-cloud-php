@@ -23,11 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_BatchCreateAccessBindings_sync]
-use Google\Analytics\Admin\V1alpha\AccessBinding;
 use Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\BatchCreateAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\ApiCore\ApiException;
 
 /**
@@ -37,33 +35,19 @@ use Google\ApiCore\ApiException;
  * This method is transactional. If any AccessBinding cannot be created, none
  * of the AccessBindings will be created.
  *
- * @param string $formattedParent         The account or property that owns the access bindings. The parent
- *                                        field in the CreateAccessBindingRequest messages must either be empty or
- *                                        match this field. Formats:
- *                                        - accounts/{account}
- *                                        - properties/{property}
- *                                        Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
- * @param string $formattedRequestsParent Formats:
- *                                        - accounts/{account}
- *                                        - properties/{property}
- *                                        Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_create_access_bindings_sample(
-    string $formattedParent,
-    string $formattedRequestsParent
-): void {
+function batch_create_access_bindings_sample(): void
+{
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $requestsAccessBinding = new AccessBinding();
-    $createAccessBindingRequest = (new CreateAccessBindingRequest())
-        ->setParent($formattedRequestsParent)
-        ->setAccessBinding($requestsAccessBinding);
-    $requests = [$createAccessBindingRequest,];
-    $request = (new BatchCreateAccessBindingsRequest())
-        ->setParent($formattedParent)
-        ->setRequests($requests);
+    $request = new BatchCreateAccessBindingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -73,22 +57,5 @@ function batch_create_access_bindings_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AnalyticsAdminServiceClient::accountName('[ACCOUNT]');
-    $formattedRequestsParent = AnalyticsAdminServiceClient::accountName('[ACCOUNT]');
-
-    batch_create_access_bindings_sample($formattedParent, $formattedRequestsParent);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_BatchCreateAccessBindings_sync]

@@ -23,8 +23,7 @@ class GetFileRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the file to retrieve. Please see
-     *                     {@see ArtifactRegistryClient::fileName()} for help formatting this field.
+     * @param string $name Required. The name of the file to retrieve.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\GetFileRequest
      *

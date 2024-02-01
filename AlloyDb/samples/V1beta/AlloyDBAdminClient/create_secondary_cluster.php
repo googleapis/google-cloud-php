@@ -33,33 +33,21 @@ use Google\Rpc\Status;
  * Creates a cluster of type SECONDARY in the given location using
  * the primary cluster as the source.
  *
- * @param string $formattedParent         The location of the new cluster. For the required
- *                                        format, see the comment on the Cluster.name field. Please see
- *                                        {@see AlloyDBAdminClient::locationName()} for help formatting this field.
- * @param string $clusterId               ID of the requesting object (the secondary cluster).
- * @param string $formattedClusterNetwork The resource link for the VPC network in which cluster resources
- *                                        are created and from which they are accessible via Private IP. The network
- *                                        must belong to the same project as the cluster. It is specified in the
- *                                        form: "projects/{project}/global/networks/{network_id}". This is required
- *                                        to create a cluster. Deprecated, use network_config.network instead. Please see
- *                                        {@see AlloyDBAdminClient::networkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_secondary_cluster_sample(
-    string $formattedParent,
-    string $clusterId,
-    string $formattedClusterNetwork
-): void {
+function create_secondary_cluster_sample(): void
+{
     // Create a client.
     $alloyDBAdminClient = new AlloyDBAdminClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $cluster = (new Cluster())
-        ->setNetwork($formattedClusterNetwork);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $alloyDBAdminClient->createSecondaryCluster($formattedParent, $clusterId, $cluster);
+        $response = $alloyDBAdminClient->createSecondaryCluster();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -74,23 +62,5 @@ function create_secondary_cluster_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AlloyDBAdminClient::locationName('[PROJECT]', '[LOCATION]');
-    $clusterId = '[CLUSTER_ID]';
-    $formattedClusterNetwork = AlloyDBAdminClient::networkName('[PROJECT]', '[NETWORK]');
-
-    create_secondary_cluster_sample($formattedParent, $clusterId, $formattedClusterNetwork);
 }
 // [END alloydb_v1beta_generated_AlloyDBAdmin_CreateSecondaryCluster_sync]

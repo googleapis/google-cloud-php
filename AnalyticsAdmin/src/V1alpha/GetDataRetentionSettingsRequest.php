@@ -30,7 +30,6 @@ class GetDataRetentionSettingsRequest extends \Google\Protobuf\Internal\Message
      *                     Format:
      *                     properties/{property}/dataRetentionSettings
      *                     Example: "properties/1000/dataRetentionSettings"
-     *                     Please see {@see AnalyticsAdminServiceClient::dataRetentionSettingsName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetDataRetentionSettingsRequest
      *

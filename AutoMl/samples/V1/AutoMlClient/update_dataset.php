@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
 use Google\Cloud\AutoMl\V1\Dataset;
 use Google\Cloud\AutoMl\V1\UpdateDatasetRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a dataset.
@@ -44,11 +43,7 @@ function update_dataset_sample(): void
     $autoMlClient = new AutoMlClient();
 
     // Prepare the request message.
-    $dataset = new Dataset();
-    $updateMask = new FieldMask();
-    $request = (new UpdateDatasetRequest())
-        ->setDataset($dataset)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateDatasetRequest();
 
     // Call the API and handle any network failures.
     try {

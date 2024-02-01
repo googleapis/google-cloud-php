@@ -37,31 +37,19 @@ use Google\ApiCore\PagedListResponse;
  * Soft-deleted (ie: "trashed") properties are excluded by default.
  * Returns an empty list if no relevant properties are found.
  *
- * @param string $filter An expression for filtering the results of the request.
- *                       Fields eligible for filtering are:
- *                       `parent:`(The resource name of the parent account/property) or
- *                       `ancestor:`(The resource name of the parent account) or
- *                       `firebase_project:`(The id or number of the linked firebase project).
- *                       Some examples of filters:
- *
- *                       ```
- *                       | Filter                      | Description                               |
- *                       |-----------------------------|-------------------------------------------|
- *                       | parent:accounts/123         | The account with account id: 123.       |
- *                       | parent:properties/123       | The property with property id: 123.       |
- *                       | ancestor:accounts/123       | The account with account id: 123.         |
- *                       | firebase_project:project-id | The firebase project with id: project-id. |
- *                       | firebase_project:123        | The firebase project with number: 123.    |
- *                       ```
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_properties_sample(string $filter): void
+function list_properties_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new ListPropertiesRequest())
-        ->setFilter($filter);
+    $request = new ListPropertiesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,21 +63,5 @@ function list_properties_sample(string $filter): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $filter = '[FILTER]';
-
-    list_properties_sample($filter);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListProperties_sync]

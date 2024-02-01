@@ -29,8 +29,7 @@ class CreateVolumeSnapshotRequest extends \Google\Protobuf\Internal\Message
     private $volume_snapshot = null;
 
     /**
-     * @param string                                            $parent         Required. The volume to snapshot. Please see
-     *                                                                          {@see BareMetalSolutionClient::volumeName()} for help formatting this field.
+     * @param string                                            $parent         Required. The volume to snapshot.
      * @param \Google\Cloud\BareMetalSolution\V2\VolumeSnapshot $volumeSnapshot Required. The snapshot to create.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\CreateVolumeSnapshotRequest

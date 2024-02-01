@@ -32,19 +32,19 @@ use Google\Cloud\BareMetalSolution\V2\VolumeSnapshot;
  * Takes a snapshot of a boot volume.
  * Returns INVALID_ARGUMENT if called for a non-boot volume.
  *
- * @param string $formattedParent The volume to snapshot. Please see
- *                                {@see BareMetalSolutionClient::volumeName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_volume_snapshot_sample(string $formattedParent): void
+function create_volume_snapshot_sample(): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $volumeSnapshot = new VolumeSnapshot();
-    $request = (new CreateVolumeSnapshotRequest())
-        ->setParent($formattedParent)
-        ->setVolumeSnapshot($volumeSnapshot);
+    $request = new CreateVolumeSnapshotRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +54,5 @@ function create_volume_snapshot_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BareMetalSolutionClient::volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-
-    create_volume_snapshot_sample($formattedParent);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_CreateVolumeSnapshot_sync]

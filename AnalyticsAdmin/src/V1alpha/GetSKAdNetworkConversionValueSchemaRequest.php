@@ -28,7 +28,6 @@ class GetSKAdNetworkConversionValueSchemaRequest extends \Google\Protobuf\Intern
      * @param string $name Required. The resource name of SKAdNetwork conversion value schema to look
      *                     up. Format:
      *                     properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
-     *                     Please see {@see AnalyticsAdminServiceClient::sKAdNetworkConversionValueSchemaName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest
      *

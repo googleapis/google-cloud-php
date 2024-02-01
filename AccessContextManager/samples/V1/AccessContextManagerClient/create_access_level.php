@@ -39,22 +39,19 @@ use Google\Rpc\Status;
  * [google.identity.accesscontextmanager.v1.AccessLevel] contain
  * errors, an error response is returned for the first error encountered.
  *
- * @param string $formattedParent Resource name for the access policy which owns this [Access
- *                                Level] [google.identity.accesscontextmanager.v1.AccessLevel].
- *
- *                                Format: `accessPolicies/{policy_id}`
- *                                Please see {@see AccessContextManagerClient::accessPolicyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_access_level_sample(string $formattedParent): void
+function create_access_level_sample(): void
 {
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $accessLevel = new AccessLevel();
-    $request = (new CreateAccessLevelRequest())
-        ->setParent($formattedParent)
-        ->setAccessLevel($accessLevel);
+    $request = new CreateAccessLevelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,21 +71,5 @@ function create_access_level_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AccessContextManagerClient::accessPolicyName('[ACCESS_POLICY]');
-
-    create_access_level_sample($formattedParent);
 }
 // [END accesscontextmanager_v1_generated_AccessContextManager_CreateAccessLevel_sync]

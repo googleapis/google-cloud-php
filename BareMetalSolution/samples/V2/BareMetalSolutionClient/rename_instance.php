@@ -32,20 +32,19 @@ use Google\Cloud\BareMetalSolution\V2\RenameInstanceRequest;
  * RenameInstance sets a new name for an instance.
  * Use with caution, previous names become immediately invalidated.
  *
- * @param string $formattedName The `name` field is used to identify the instance.
- *                              Format: projects/{project}/locations/{location}/instances/{instance}
- *                              Please see {@see BareMetalSolutionClient::instanceName()} for help formatting this field.
- * @param string $newInstanceId The new `id` of the instance.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rename_instance_sample(string $formattedName, string $newInstanceId): void
+function rename_instance_sample(): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = (new RenameInstanceRequest())
-        ->setName($formattedName)
-        ->setNewInstanceId($newInstanceId);
+    $request = new RenameInstanceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,22 +54,5 @@ function rename_instance_sample(string $formattedName, string $newInstanceId): v
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = BareMetalSolutionClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-    $newInstanceId = '[NEW_INSTANCE_ID]';
-
-    rename_instance_sample($formattedName, $newInstanceId);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_RenameInstance_sync]

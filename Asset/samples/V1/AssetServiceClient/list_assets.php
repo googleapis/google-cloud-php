@@ -33,20 +33,19 @@ use Google\Cloud\Asset\V1\ListAssetsRequest;
  * Lists assets with time and resource types and returns paged results in
  * response.
  *
- * @param string $parent Name of the organization, folder, or project the assets belong
- *                       to. Format: "organizations/[organization-number]" (such as
- *                       "organizations/123"), "projects/[project-id]" (such as
- *                       "projects/my-project-id"), "projects/[project-number]" (such as
- *                       "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_assets_sample(string $parent): void
+function list_assets_sample(): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = (new ListAssetsRequest())
-        ->setParent($parent);
+    $request = new ListAssetsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +59,5 @@ function list_assets_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_assets_sample($parent);
 }
 // [END cloudasset_v1_generated_AssetService_ListAssets_sync]

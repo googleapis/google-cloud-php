@@ -58,8 +58,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     protected $validate_only = false;
 
     /**
-     * @param string                          $parent   Required. Value for parent. Please see
-     *                                                  {@see AlloyDBAdminClient::locationName()} for help formatting this field.
+     * @param string                          $parent   Required. Value for parent.
      * @param \Google\Cloud\AlloyDb\V1\Backup $backup   Required. The resource being created
      * @param string                          $backupId Required. ID of the requesting object.
      *

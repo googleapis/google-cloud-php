@@ -45,9 +45,7 @@ function update_api_config_sample(): void
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
     // Prepare the request message.
-    $apiConfig = new ApiConfig();
-    $request = (new UpdateApiConfigRequest())
-        ->setApiConfig($apiConfig);
+    $request = new UpdateApiConfigRequest();
 
     // Call the API and handle any network failures.
     try {

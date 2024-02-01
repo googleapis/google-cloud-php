@@ -33,18 +33,19 @@ use Google\Cloud\ApigeeConnect\V1\ListConnectionsRequest;
  * Lists connections that are currently active for the given Apigee Connect
  * endpoint.
  *
- * @param string $formattedParent Parent name of the form:
- *                                `projects/{project_number or project_id}/endpoints/{endpoint}`. Please see
- *                                {@see ConnectionServiceClient::endpointName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_connections_sample(string $formattedParent): void
+function list_connections_sample(): void
 {
     // Create a client.
     $connectionServiceClient = new ConnectionServiceClient();
 
     // Prepare the request message.
-    $request = (new ListConnectionsRequest())
-        ->setParent($formattedParent);
+    $request = new ListConnectionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +59,5 @@ function list_connections_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConnectionServiceClient::endpointName('[PROJECT]', '[ENDPOINT]');
-
-    list_connections_sample($formattedParent);
 }
 // [END apigeeconnect_v1_generated_ConnectionService_ListConnections_sync]

@@ -24,208 +24,208 @@ class RegistryService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Úr
-5google/cloud/apigeeregistry/v1/registry_service.protogoogle.cloud.apigeeregistry.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto4google/cloud/apigeeregistry/v1/registry_models.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"É
-ListApisRequest9
-parent (	B)‡A˙A#!apigeeregistry.googleapis.com/Api
+£s
+5google/cloud/apigeeregistry/v1/registry_service.protogoogle.cloud.apigeeregistry.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto4google/cloud/apigeeregistry/v1/registry_models.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ñ
+ListApisRequest:
+parent (	B*‚A˙A#!apigeeregistry.googleapis.com/Api
 	page_size (
 
 page_token (	
 filter (	"^
 ListApisResponse1
 apis (2#.google.cloud.apigeeregistry.v1.Api
-next_page_token (	"H
-GetApiRequest7
-name (	B)‡A˙A#
-!apigeeregistry.googleapis.com/Api"ô
-CreateApiRequest9
-parent (	B)‡A˙A#!apigeeregistry.googleapis.com/Api5
-api (2#.google.cloud.apigeeregistry.v1.ApiB‡A
-api_id (	B‡A"ë
-UpdateApiRequest5
-api (2#.google.cloud.apigeeregistry.v1.ApiB‡A/
+next_page_token (	"I
+GetApiRequest8
+name (	B*‚A˙A#
+!apigeeregistry.googleapis.com/Api"ú
+CreateApiRequest:
+parent (	B*‚A˙A#!apigeeregistry.googleapis.com/Api6
+api (2#.google.cloud.apigeeregistry.v1.ApiB‚A
+api_id (	B‚A"í
+UpdateApiRequest6
+api (2#.google.cloud.apigeeregistry.v1.ApiB‚A/
 update_mask (2.google.protobuf.FieldMask
-allow_missing ("Z
-DeleteApiRequest7
-name (	B)‡A˙A#
+allow_missing ("[
+DeleteApiRequest8
+name (	B*‚A˙A#
 !apigeeregistry.googleapis.com/Api
-force ("ë
-ListApiVersionsRequest@
-parent (	B0‡A˙A*(apigeeregistry.googleapis.com/ApiVersion
+force ("í
+ListApiVersionsRequestA
+parent (	B1‚A˙A*(apigeeregistry.googleapis.com/ApiVersion
 	page_size (
 
 page_token (	
 filter (	"t
 ListApiVersionsResponse@
 api_versions (2*.google.cloud.apigeeregistry.v1.ApiVersion
-next_page_token (	"V
-GetApiVersionRequest>
-name (	B0‡A˙A*
-(apigeeregistry.googleapis.com/ApiVersion"æ
-CreateApiVersionRequest@
-parent (	B0‡A˙A*(apigeeregistry.googleapis.com/ApiVersionD
-api_version (2*.google.cloud.apigeeregistry.v1.ApiVersionB‡A
-api_version_id (	B‡A"ß
-UpdateApiVersionRequestD
-api_version (2*.google.cloud.apigeeregistry.v1.ApiVersionB‡A/
+next_page_token (	"W
+GetApiVersionRequest?
+name (	B1‚A˙A*
+(apigeeregistry.googleapis.com/ApiVersion"¡
+CreateApiVersionRequestA
+parent (	B1‚A˙A*(apigeeregistry.googleapis.com/ApiVersionE
+api_version (2*.google.cloud.apigeeregistry.v1.ApiVersionB‚A
+api_version_id (	B‚A"®
+UpdateApiVersionRequestE
+api_version (2*.google.cloud.apigeeregistry.v1.ApiVersionB‚A/
 update_mask (2.google.protobuf.FieldMask
-allow_missing ("h
-DeleteApiVersionRequest>
-name (	B0‡A˙A*
+allow_missing ("i
+DeleteApiVersionRequest?
+name (	B1‚A˙A*
 (apigeeregistry.googleapis.com/ApiVersion
-force ("ã
-ListApiSpecsRequest=
-parent (	B-‡A˙A\'%apigeeregistry.googleapis.com/ApiSpec
+force ("å
+ListApiSpecsRequest>
+parent (	B.‚A˙A\'%apigeeregistry.googleapis.com/ApiSpec
 	page_size (
 
 page_token (	
 filter (	"k
 ListApiSpecsResponse:
 	api_specs (2\'.google.cloud.apigeeregistry.v1.ApiSpec
-next_page_token (	"P
-GetApiSpecRequest;
-name (	B-‡A˙A\'
-%apigeeregistry.googleapis.com/ApiSpec"X
-GetApiSpecContentsRequest;
-name (	B-‡A˙A\'
-%apigeeregistry.googleapis.com/ApiSpec"Ø
-CreateApiSpecRequest=
-parent (	B-‡A˙A\'%apigeeregistry.googleapis.com/ApiSpec>
-api_spec (2\'.google.cloud.apigeeregistry.v1.ApiSpecB‡A
-api_spec_id (	B‡A"û
-UpdateApiSpecRequest>
-api_spec (2\'.google.cloud.apigeeregistry.v1.ApiSpecB‡A/
+next_page_token (	"Q
+GetApiSpecRequest<
+name (	B.‚A˙A\'
+%apigeeregistry.googleapis.com/ApiSpec"Y
+GetApiSpecContentsRequest<
+name (	B.‚A˙A\'
+%apigeeregistry.googleapis.com/ApiSpec"≤
+CreateApiSpecRequest>
+parent (	B.‚A˙A\'%apigeeregistry.googleapis.com/ApiSpec?
+api_spec (2\'.google.cloud.apigeeregistry.v1.ApiSpecB‚A
+api_spec_id (	B‚A"ü
+UpdateApiSpecRequest?
+api_spec (2\'.google.cloud.apigeeregistry.v1.ApiSpecB‚A/
 update_mask (2.google.protobuf.FieldMask
-allow_missing ("b
-DeleteApiSpecRequest;
-name (	B-‡A˙A\'
+allow_missing ("c
+DeleteApiSpecRequest<
+name (	B.‚A˙A\'
 %apigeeregistry.googleapis.com/ApiSpec
-force ("j
-TagApiSpecRevisionRequest;
-name (	B-‡A˙A\'
-%apigeeregistry.googleapis.com/ApiSpec
-tag (	B‡A"Å
-ListApiSpecRevisionsRequest;
-name (	B-‡A˙A\'
+force ("l
+TagApiSpecRevisionRequest<
+name (	B.‚A˙A\'
+%apigeeregistry.googleapis.com/ApiSpec
+tag (	B‚A"Ç
+ListApiSpecRevisionsRequest<
+name (	B.‚A˙A\'
 %apigeeregistry.googleapis.com/ApiSpec
 	page_size (
 
 page_token (	"s
 ListApiSpecRevisionsResponse:
 	api_specs (2\'.google.cloud.apigeeregistry.v1.ApiSpec
-next_page_token (	"o
-RollbackApiSpecRequest;
-name (	B-‡A˙A\'
-%apigeeregistry.googleapis.com/ApiSpec
-revision_id (	B‡A"[
-DeleteApiSpecRevisionRequest;
-name (	B-‡A˙A\'
-%apigeeregistry.googleapis.com/ApiSpec"ó
-ListApiDeploymentsRequestC
-parent (	B3‡A˙A-+apigeeregistry.googleapis.com/ApiDeployment
+next_page_token (	"q
+RollbackApiSpecRequest<
+name (	B.‚A˙A\'
+%apigeeregistry.googleapis.com/ApiSpec
+revision_id (	B‚A"\\
+DeleteApiSpecRevisionRequest<
+name (	B.‚A˙A\'
+%apigeeregistry.googleapis.com/ApiSpec"ò
+ListApiDeploymentsRequestD
+parent (	B4‚A˙A-+apigeeregistry.googleapis.com/ApiDeployment
 	page_size (
 
 page_token (	
 filter (	"}
 ListApiDeploymentsResponseF
 api_deployments (2-.google.cloud.apigeeregistry.v1.ApiDeployment
-next_page_token (	"\\
-GetApiDeploymentRequestA
-name (	B3‡A˙A-
-+apigeeregistry.googleapis.com/ApiDeployment"Õ
-CreateApiDeploymentRequestC
-parent (	B3‡A˙A-+apigeeregistry.googleapis.com/ApiDeploymentJ
-api_deployment (2-.google.cloud.apigeeregistry.v1.ApiDeploymentB‡A
-api_deployment_id (	B‡A"∞
-UpdateApiDeploymentRequestJ
-api_deployment (2-.google.cloud.apigeeregistry.v1.ApiDeploymentB‡A/
+next_page_token (	"]
+GetApiDeploymentRequestB
+name (	B4‚A˙A-
++apigeeregistry.googleapis.com/ApiDeployment"–
+CreateApiDeploymentRequestD
+parent (	B4‚A˙A-+apigeeregistry.googleapis.com/ApiDeploymentK
+api_deployment (2-.google.cloud.apigeeregistry.v1.ApiDeploymentB‚A
+api_deployment_id (	B‚A"±
+UpdateApiDeploymentRequestK
+api_deployment (2-.google.cloud.apigeeregistry.v1.ApiDeploymentB‚A/
 update_mask (2.google.protobuf.FieldMask
-allow_missing ("n
-DeleteApiDeploymentRequestA
-name (	B3‡A˙A-
+allow_missing ("o
+DeleteApiDeploymentRequestB
+name (	B4‚A˙A-
 +apigeeregistry.googleapis.com/ApiDeployment
-force ("v
-TagApiDeploymentRevisionRequestA
-name (	B3‡A˙A-
-+apigeeregistry.googleapis.com/ApiDeployment
-tag (	B‡A"ç
-!ListApiDeploymentRevisionsRequestA
-name (	B3‡A˙A-
+force ("x
+TagApiDeploymentRevisionRequestB
+name (	B4‚A˙A-
++apigeeregistry.googleapis.com/ApiDeployment
+tag (	B‚A"é
+!ListApiDeploymentRevisionsRequestB
+name (	B4‚A˙A-
 +apigeeregistry.googleapis.com/ApiDeployment
 	page_size (
 
 page_token (	"Ö
 "ListApiDeploymentRevisionsResponseF
 api_deployments (2-.google.cloud.apigeeregistry.v1.ApiDeployment
-next_page_token (	"{
-RollbackApiDeploymentRequestA
-name (	B3‡A˙A-
-+apigeeregistry.googleapis.com/ApiDeployment
-revision_id (	B‡A"g
-"DeleteApiDeploymentRevisionRequestA
-name (	B3‡A˙A-
-+apigeeregistry.googleapis.com/ApiDeployment"ç
-ListArtifactsRequest>
-parent (	B.‡A˙A(&apigeeregistry.googleapis.com/Artifact
+next_page_token (	"}
+RollbackApiDeploymentRequestB
+name (	B4‚A˙A-
++apigeeregistry.googleapis.com/ApiDeployment
+revision_id (	B‚A"h
+"DeleteApiDeploymentRevisionRequestB
+name (	B4‚A˙A-
++apigeeregistry.googleapis.com/ApiDeployment"é
+ListArtifactsRequest?
+parent (	B/‚A˙A(&apigeeregistry.googleapis.com/Artifact
 	page_size (
 
 page_token (	
 filter (	"m
 ListArtifactsResponse;
 	artifacts (2(.google.cloud.apigeeregistry.v1.Artifact
-next_page_token (	"R
-GetArtifactRequest<
-name (	B.‡A˙A(
-&apigeeregistry.googleapis.com/Artifact"Z
-GetArtifactContentsRequest<
-name (	B.‡A˙A(
-&apigeeregistry.googleapis.com/Artifact"≤
-CreateArtifactRequest>
-parent (	B.‡A˙A(&apigeeregistry.googleapis.com/Artifact?
-artifact (2(.google.cloud.apigeeregistry.v1.ArtifactB‡A
-artifact_id (	B‡A"Y
-ReplaceArtifactRequest?
-artifact (2(.google.cloud.apigeeregistry.v1.ArtifactB‡A"U
-DeleteArtifactRequest<
-name (	B.‡A˙A(
+next_page_token (	"S
+GetArtifactRequest=
+name (	B/‚A˙A(
+&apigeeregistry.googleapis.com/Artifact"[
+GetArtifactContentsRequest=
+name (	B/‚A˙A(
+&apigeeregistry.googleapis.com/Artifact"µ
+CreateArtifactRequest?
+parent (	B/‚A˙A(&apigeeregistry.googleapis.com/Artifact@
+artifact (2(.google.cloud.apigeeregistry.v1.ArtifactB‚A
+artifact_id (	B‚A"Z
+ReplaceArtifactRequest@
+artifact (2(.google.cloud.apigeeregistry.v1.ArtifactB‚A"V
+DeleteArtifactRequest=
+name (	B/‚A˙A(
 &apigeeregistry.googleapis.com/Artifact2¿E
 Registry®
-ListApis/.google.cloud.apigeeregistry.v1.ListApisRequest0.google.cloud.apigeeregistry.v1.ListApisResponse"9Ç”‰ì*(/v1/{parent=projects/*/locations/*}/apis⁄Aparentï
-GetApi-.google.cloud.apigeeregistry.v1.GetApiRequest#.google.cloud.apigeeregistry.v1.Api"7Ç”‰ì*(/v1/{name=projects/*/locations/*/apis/*}⁄Aname≠
-	CreateApi0.google.cloud.apigeeregistry.v1.CreateApiRequest#.google.cloud.apigeeregistry.v1.Api"IÇ”‰ì/"(/v1/{parent=projects/*/locations/*}/apis:api⁄Aparent,api,api_idØ
-	UpdateApi0.google.cloud.apigeeregistry.v1.UpdateApiRequest#.google.cloud.apigeeregistry.v1.Api"KÇ”‰ì32,/v1/{api.name=projects/*/locations/*/apis/*}:api⁄Aapi,update_maské
-	DeleteApi0.google.cloud.apigeeregistry.v1.DeleteApiRequest.google.protobuf.Empty"7Ç”‰ì**(/v1/{name=projects/*/locations/*/apis/*}⁄Aname»
-ListApiVersions6.google.cloud.apigeeregistry.v1.ListApiVersionsRequest7.google.cloud.apigeeregistry.v1.ListApiVersionsResponse"DÇ”‰ì53/v1/{parent=projects/*/locations/*/apis/*}/versions⁄Aparentµ
-GetApiVersion4.google.cloud.apigeeregistry.v1.GetApiVersionRequest*.google.cloud.apigeeregistry.v1.ApiVersion"BÇ”‰ì53/v1/{name=projects/*/locations/*/apis/*/versions/*}⁄AnameÂ
-CreateApiVersion7.google.cloud.apigeeregistry.v1.CreateApiVersionRequest*.google.cloud.apigeeregistry.v1.ApiVersion"lÇ”‰ìB"3/v1/{parent=projects/*/locations/*/apis/*}/versions:api_version⁄A!parent,api_version,api_version_idÁ
-UpdateApiVersion7.google.cloud.apigeeregistry.v1.UpdateApiVersionRequest*.google.cloud.apigeeregistry.v1.ApiVersion"nÇ”‰ìN2?/v1/{api_version.name=projects/*/locations/*/apis/*/versions/*}:api_version⁄Aapi_version,update_maskß
-DeleteApiVersion7.google.cloud.apigeeregistry.v1.DeleteApiVersionRequest.google.protobuf.Empty"BÇ”‰ì5*3/v1/{name=projects/*/locations/*/apis/*/versions/*}⁄Aname«
-ListApiSpecs3.google.cloud.apigeeregistry.v1.ListApiSpecsRequest4.google.cloud.apigeeregistry.v1.ListApiSpecsResponse"LÇ”‰ì=;/v1/{parent=projects/*/locations/*/apis/*/versions/*}/specs⁄Aparent¥
+ListApis/.google.cloud.apigeeregistry.v1.ListApisRequest0.google.cloud.apigeeregistry.v1.ListApisResponse"9⁄AparentÇ”‰ì*(/v1/{parent=projects/*/locations/*}/apisï
+GetApi-.google.cloud.apigeeregistry.v1.GetApiRequest#.google.cloud.apigeeregistry.v1.Api"7⁄AnameÇ”‰ì*(/v1/{name=projects/*/locations/*/apis/*}≠
+	CreateApi0.google.cloud.apigeeregistry.v1.CreateApiRequest#.google.cloud.apigeeregistry.v1.Api"I⁄Aparent,api,api_idÇ”‰ì/"(/v1/{parent=projects/*/locations/*}/apis:apiØ
+	UpdateApi0.google.cloud.apigeeregistry.v1.UpdateApiRequest#.google.cloud.apigeeregistry.v1.Api"K⁄Aapi,update_maskÇ”‰ì32,/v1/{api.name=projects/*/locations/*/apis/*}:apié
+	DeleteApi0.google.cloud.apigeeregistry.v1.DeleteApiRequest.google.protobuf.Empty"7⁄AnameÇ”‰ì**(/v1/{name=projects/*/locations/*/apis/*}»
+ListApiVersions6.google.cloud.apigeeregistry.v1.ListApiVersionsRequest7.google.cloud.apigeeregistry.v1.ListApiVersionsResponse"D⁄AparentÇ”‰ì53/v1/{parent=projects/*/locations/*/apis/*}/versionsµ
+GetApiVersion4.google.cloud.apigeeregistry.v1.GetApiVersionRequest*.google.cloud.apigeeregistry.v1.ApiVersion"B⁄AnameÇ”‰ì53/v1/{name=projects/*/locations/*/apis/*/versions/*}Â
+CreateApiVersion7.google.cloud.apigeeregistry.v1.CreateApiVersionRequest*.google.cloud.apigeeregistry.v1.ApiVersion"l⁄A!parent,api_version,api_version_idÇ”‰ìB"3/v1/{parent=projects/*/locations/*/apis/*}/versions:api_versionÁ
+UpdateApiVersion7.google.cloud.apigeeregistry.v1.UpdateApiVersionRequest*.google.cloud.apigeeregistry.v1.ApiVersion"n⁄Aapi_version,update_maskÇ”‰ìN2?/v1/{api_version.name=projects/*/locations/*/apis/*/versions/*}:api_versionß
+DeleteApiVersion7.google.cloud.apigeeregistry.v1.DeleteApiVersionRequest.google.protobuf.Empty"B⁄AnameÇ”‰ì5*3/v1/{name=projects/*/locations/*/apis/*/versions/*}«
+ListApiSpecs3.google.cloud.apigeeregistry.v1.ListApiSpecsRequest4.google.cloud.apigeeregistry.v1.ListApiSpecsResponse"L⁄AparentÇ”‰ì=;/v1/{parent=projects/*/locations/*/apis/*/versions/*}/specs¥
 
-GetApiSpec1.google.cloud.apigeeregistry.v1.GetApiSpecRequest\'.google.cloud.apigeeregistry.v1.ApiSpec"JÇ”‰ì=;/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}⁄AnameΩ
-GetApiSpecContents9.google.cloud.apigeeregistry.v1.GetApiSpecContentsRequest.google.api.HttpBody"VÇ”‰ìIG/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}:getContents⁄Aname€
-CreateApiSpec4.google.cloud.apigeeregistry.v1.CreateApiSpecRequest\'.google.cloud.apigeeregistry.v1.ApiSpec"kÇ”‰ìG";/v1/{parent=projects/*/locations/*/apis/*/versions/*}/specs:api_spec⁄Aparent,api_spec,api_spec_id›
-UpdateApiSpec4.google.cloud.apigeeregistry.v1.UpdateApiSpecRequest\'.google.cloud.apigeeregistry.v1.ApiSpec"mÇ”‰ìP2D/v1/{api_spec.name=projects/*/locations/*/apis/*/versions/*/specs/*}:api_spec⁄Aapi_spec,update_mask©
-DeleteApiSpec4.google.cloud.apigeeregistry.v1.DeleteApiSpecRequest.google.protobuf.Empty"JÇ”‰ì=*;/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}⁄AnameÃ
+GetApiSpec1.google.cloud.apigeeregistry.v1.GetApiSpecRequest\'.google.cloud.apigeeregistry.v1.ApiSpec"J⁄AnameÇ”‰ì=;/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}Ω
+GetApiSpecContents9.google.cloud.apigeeregistry.v1.GetApiSpecContentsRequest.google.api.HttpBody"V⁄AnameÇ”‰ìIG/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}:getContents€
+CreateApiSpec4.google.cloud.apigeeregistry.v1.CreateApiSpecRequest\'.google.cloud.apigeeregistry.v1.ApiSpec"k⁄Aparent,api_spec,api_spec_idÇ”‰ìG";/v1/{parent=projects/*/locations/*/apis/*/versions/*}/specs:api_spec›
+UpdateApiSpec4.google.cloud.apigeeregistry.v1.UpdateApiSpecRequest\'.google.cloud.apigeeregistry.v1.ApiSpec"m⁄Aapi_spec,update_maskÇ”‰ìP2D/v1/{api_spec.name=projects/*/locations/*/apis/*/versions/*/specs/*}:api_spec©
+DeleteApiSpec4.google.cloud.apigeeregistry.v1.DeleteApiSpecRequest.google.protobuf.Empty"J⁄AnameÇ”‰ì=*;/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}Ã
 TagApiSpecRevision9.google.cloud.apigeeregistry.v1.TagApiSpecRevisionRequest\'.google.cloud.apigeeregistry.v1.ApiSpec"RÇ”‰ìL"G/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}:tagRevision:*‰
 ListApiSpecRevisions;.google.cloud.apigeeregistry.v1.ListApiSpecRevisionsRequest<.google.cloud.apigeeregistry.v1.ListApiSpecRevisionsResponse"QÇ”‰ìKI/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}:listRevisions√
 RollbackApiSpec6.google.cloud.apigeeregistry.v1.RollbackApiSpecRequest\'.google.cloud.apigeeregistry.v1.ApiSpec"OÇ”‰ìI"D/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}:rollback:*Ÿ
-DeleteApiSpecRevision<.google.cloud.apigeeregistry.v1.DeleteApiSpecRevisionRequest\'.google.cloud.apigeeregistry.v1.ApiSpec"YÇ”‰ìL*J/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}:deleteRevision⁄Aname‘
-ListApiDeployments9.google.cloud.apigeeregistry.v1.ListApiDeploymentsRequest:.google.cloud.apigeeregistry.v1.ListApiDeploymentsResponse"GÇ”‰ì86/v1/{parent=projects/*/locations/*/apis/*}/deployments⁄Aparent¡
-GetApiDeployment7.google.cloud.apigeeregistry.v1.GetApiDeploymentRequest-.google.cloud.apigeeregistry.v1.ApiDeployment"EÇ”‰ì86/v1/{name=projects/*/locations/*/apis/*/deployments/*}⁄Aname˙
-CreateApiDeployment:.google.cloud.apigeeregistry.v1.CreateApiDeploymentRequest-.google.cloud.apigeeregistry.v1.ApiDeployment"xÇ”‰ìH"6/v1/{parent=projects/*/locations/*/apis/*}/deployments:api_deployment⁄A\'parent,api_deployment,api_deployment_id¸
-UpdateApiDeployment:.google.cloud.apigeeregistry.v1.UpdateApiDeploymentRequest-.google.cloud.apigeeregistry.v1.ApiDeployment"zÇ”‰ìW2E/v1/{api_deployment.name=projects/*/locations/*/apis/*/deployments/*}:api_deployment⁄Aapi_deployment,update_mask∞
-DeleteApiDeployment:.google.cloud.apigeeregistry.v1.DeleteApiDeploymentRequest.google.protobuf.Empty"EÇ”‰ì8*6/v1/{name=projects/*/locations/*/apis/*/deployments/*}⁄AnameŸ
+DeleteApiSpecRevision<.google.cloud.apigeeregistry.v1.DeleteApiSpecRevisionRequest\'.google.cloud.apigeeregistry.v1.ApiSpec"Y⁄AnameÇ”‰ìL*J/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*}:deleteRevision‘
+ListApiDeployments9.google.cloud.apigeeregistry.v1.ListApiDeploymentsRequest:.google.cloud.apigeeregistry.v1.ListApiDeploymentsResponse"G⁄AparentÇ”‰ì86/v1/{parent=projects/*/locations/*/apis/*}/deployments¡
+GetApiDeployment7.google.cloud.apigeeregistry.v1.GetApiDeploymentRequest-.google.cloud.apigeeregistry.v1.ApiDeployment"E⁄AnameÇ”‰ì86/v1/{name=projects/*/locations/*/apis/*/deployments/*}˙
+CreateApiDeployment:.google.cloud.apigeeregistry.v1.CreateApiDeploymentRequest-.google.cloud.apigeeregistry.v1.ApiDeployment"x⁄A\'parent,api_deployment,api_deployment_idÇ”‰ìH"6/v1/{parent=projects/*/locations/*/apis/*}/deployments:api_deployment¸
+UpdateApiDeployment:.google.cloud.apigeeregistry.v1.UpdateApiDeploymentRequest-.google.cloud.apigeeregistry.v1.ApiDeployment"z⁄Aapi_deployment,update_maskÇ”‰ìW2E/v1/{api_deployment.name=projects/*/locations/*/apis/*/deployments/*}:api_deployment∞
+DeleteApiDeployment:.google.cloud.apigeeregistry.v1.DeleteApiDeploymentRequest.google.protobuf.Empty"E⁄AnameÇ”‰ì8*6/v1/{name=projects/*/locations/*/apis/*/deployments/*}Ÿ
 TagApiDeploymentRevision?.google.cloud.apigeeregistry.v1.TagApiDeploymentRevisionRequest-.google.cloud.apigeeregistry.v1.ApiDeployment"MÇ”‰ìG"B/v1/{name=projects/*/locations/*/apis/*/deployments/*}:tagRevision:*Ò
 ListApiDeploymentRevisionsA.google.cloud.apigeeregistry.v1.ListApiDeploymentRevisionsRequestB.google.cloud.apigeeregistry.v1.ListApiDeploymentRevisionsResponse"LÇ”‰ìFD/v1/{name=projects/*/locations/*/apis/*/deployments/*}:listRevisions–
 RollbackApiDeployment<.google.cloud.apigeeregistry.v1.RollbackApiDeploymentRequest-.google.cloud.apigeeregistry.v1.ApiDeployment"JÇ”‰ìD"?/v1/{name=projects/*/locations/*/apis/*/deployments/*}:rollback:*Ê
-DeleteApiDeploymentRevisionB.google.cloud.apigeeregistry.v1.DeleteApiDeploymentRevisionRequest-.google.cloud.apigeeregistry.v1.ApiDeployment"TÇ”‰ìG*E/v1/{name=projects/*/locations/*/apis/*/deployments/*}:deleteRevision⁄Aname 
-ListArtifacts4.google.cloud.apigeeregistry.v1.ListArtifactsRequest5.google.cloud.apigeeregistry.v1.ListArtifactsResponse"ÀÇ”‰ìª-/v1/{parent=projects/*/locations/*}/artifactsZ64/v1/{parent=projects/*/locations/*/apis/*}/artifactsZA?/v1/{parent=projects/*/locations/*/apis/*/versions/*}/artifactsZIG/v1/{parent=projects/*/locations/*/apis/*/versions/*/specs/*}/artifactsZDB/v1/{parent=projects/*/locations/*/apis/*/deployments/*}/artifacts⁄Aparent∑
-GetArtifact2.google.cloud.apigeeregistry.v1.GetArtifactRequest(.google.cloud.apigeeregistry.v1.Artifact"…Ç”‰ìª-/v1/{name=projects/*/locations/*/artifacts/*}Z64/v1/{name=projects/*/locations/*/apis/*/artifacts/*}ZA?/v1/{name=projects/*/locations/*/apis/*/versions/*/artifacts/*}ZIG/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}ZDB/v1/{name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}⁄AnameÔ
-GetArtifactContents:.google.cloud.apigeeregistry.v1.GetArtifactContentsRequest.google.api.HttpBody"ÖÇ”‰ì˜9/v1/{name=projects/*/locations/*/artifacts/*}:getContentsZB@/v1/{name=projects/*/locations/*/apis/*/artifacts/*}:getContentsZMK/v1/{name=projects/*/locations/*/apis/*/versions/*/artifacts/*}:getContentsZUS/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}:getContentsZPN/v1/{name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}:getContents⁄AnameÜ
-CreateArtifact5.google.cloud.apigeeregistry.v1.CreateArtifactRequest(.google.cloud.apigeeregistry.v1.Artifact"íÇ”‰ìÌ"-/v1/{parent=projects/*/locations/*}/artifacts:artifactZ@"4/v1/{parent=projects/*/locations/*/apis/*}/artifacts:artifactZK"?/v1/{parent=projects/*/locations/*/apis/*/versions/*}/artifacts:artifactZS"G/v1/{parent=projects/*/locations/*/apis/*/versions/*/specs/*}/artifacts:artifactZN"B/v1/{parent=projects/*/locations/*/apis/*/deployments/*}/artifacts:artifact⁄Aparent,artifact,artifact_id¢
-ReplaceArtifact6.google.cloud.apigeeregistry.v1.ReplaceArtifactRequest(.google.cloud.apigeeregistry.v1.Artifact"¨Ç”‰ìö6/v1/{artifact.name=projects/*/locations/*/artifacts/*}:artifactZI=/v1/{artifact.name=projects/*/locations/*/apis/*/artifacts/*}:artifactZTH/v1/{artifact.name=projects/*/locations/*/apis/*/versions/*/artifacts/*}:artifactZ\\P/v1/{artifact.name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}:artifactZWK/v1/{artifact.name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}:artifact⁄Aartifact´
-DeleteArtifact5.google.cloud.apigeeregistry.v1.DeleteArtifactRequest.google.protobuf.Empty"…Ç”‰ìª*-/v1/{name=projects/*/locations/*/artifacts/*}Z6*4/v1/{name=projects/*/locations/*/apis/*/artifacts/*}ZA*?/v1/{name=projects/*/locations/*/apis/*/versions/*/artifacts/*}ZI*G/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}ZD*B/v1/{name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}⁄AnameQ Aapigeeregistry.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÓ
+DeleteApiDeploymentRevisionB.google.cloud.apigeeregistry.v1.DeleteApiDeploymentRevisionRequest-.google.cloud.apigeeregistry.v1.ApiDeployment"T⁄AnameÇ”‰ìG*E/v1/{name=projects/*/locations/*/apis/*/deployments/*}:deleteRevision 
+ListArtifacts4.google.cloud.apigeeregistry.v1.ListArtifactsRequest5.google.cloud.apigeeregistry.v1.ListArtifactsResponse"À⁄AparentÇ”‰ìª-/v1/{parent=projects/*/locations/*}/artifactsZ64/v1/{parent=projects/*/locations/*/apis/*}/artifactsZA?/v1/{parent=projects/*/locations/*/apis/*/versions/*}/artifactsZIG/v1/{parent=projects/*/locations/*/apis/*/versions/*/specs/*}/artifactsZDB/v1/{parent=projects/*/locations/*/apis/*/deployments/*}/artifacts∑
+GetArtifact2.google.cloud.apigeeregistry.v1.GetArtifactRequest(.google.cloud.apigeeregistry.v1.Artifact"…⁄AnameÇ”‰ìª-/v1/{name=projects/*/locations/*/artifacts/*}Z64/v1/{name=projects/*/locations/*/apis/*/artifacts/*}ZA?/v1/{name=projects/*/locations/*/apis/*/versions/*/artifacts/*}ZIG/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}ZDB/v1/{name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}Ô
+GetArtifactContents:.google.cloud.apigeeregistry.v1.GetArtifactContentsRequest.google.api.HttpBody"Ö⁄AnameÇ”‰ì˜9/v1/{name=projects/*/locations/*/artifacts/*}:getContentsZB@/v1/{name=projects/*/locations/*/apis/*/artifacts/*}:getContentsZMK/v1/{name=projects/*/locations/*/apis/*/versions/*/artifacts/*}:getContentsZUS/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}:getContentsZPN/v1/{name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}:getContentsÜ
+CreateArtifact5.google.cloud.apigeeregistry.v1.CreateArtifactRequest(.google.cloud.apigeeregistry.v1.Artifact"í⁄Aparent,artifact,artifact_idÇ”‰ìÌ"-/v1/{parent=projects/*/locations/*}/artifacts:artifactZ@"4/v1/{parent=projects/*/locations/*/apis/*}/artifacts:artifactZK"?/v1/{parent=projects/*/locations/*/apis/*/versions/*}/artifacts:artifactZS"G/v1/{parent=projects/*/locations/*/apis/*/versions/*/specs/*}/artifacts:artifactZN"B/v1/{parent=projects/*/locations/*/apis/*/deployments/*}/artifacts:artifact¢
+ReplaceArtifact6.google.cloud.apigeeregistry.v1.ReplaceArtifactRequest(.google.cloud.apigeeregistry.v1.Artifact"¨⁄AartifactÇ”‰ìö6/v1/{artifact.name=projects/*/locations/*/artifacts/*}:artifactZI=/v1/{artifact.name=projects/*/locations/*/apis/*/artifacts/*}:artifactZTH/v1/{artifact.name=projects/*/locations/*/apis/*/versions/*/artifacts/*}:artifactZ\\P/v1/{artifact.name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}:artifactZWK/v1/{artifact.name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}:artifact´
+DeleteArtifact5.google.cloud.apigeeregistry.v1.DeleteArtifactRequest.google.protobuf.Empty"…⁄AnameÇ”‰ìª*-/v1/{name=projects/*/locations/*/artifacts/*}Z6*4/v1/{name=projects/*/locations/*/apis/*/artifacts/*}ZA*?/v1/{name=projects/*/locations/*/apis/*/versions/*/artifacts/*}ZI*G/v1/{name=projects/*/locations/*/apis/*/versions/*/specs/*/artifacts/*}ZD*B/v1/{name=projects/*/locations/*/apis/*/deployments/*/artifacts/*}Q Aapigeeregistry.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÓ
 "com.google.cloud.apigeeregistry.v1BRegistryServiceProtoPZJcloud.google.com/go/apigeeregistry/apiv1/apigeeregistrypb;apigeeregistrypb™Google.Cloud.ApigeeRegistry.V1 Google\\Cloud\\ApigeeRegistry\\V1Í!Google::Cloud::ApigeeRegistry::V1bproto3'
         , true);
 

@@ -23,8 +23,7 @@ class GetRepositoryRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the repository to retrieve. Please see
-     *                     {@see ArtifactRegistryClient::repositoryName()} for help formatting this field.
+     * @param string $name Required. The name of the repository to retrieve.
      *
      * @return \Google\Cloud\ArtifactRegistry\V1\GetRepositoryRequest
      *

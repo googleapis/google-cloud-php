@@ -49,7 +49,6 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
      *                       Format:
      *                       properties/{property_id}/dataStreams/{dataStream}
      *                       Example: properties/1234/dataStreams/5678
-     *                       Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasRequest
      *

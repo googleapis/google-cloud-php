@@ -31,18 +31,19 @@ use Google\Cloud\BeyondCorp\AppConnections\V1\GetAppConnectionRequest;
 /**
  * Gets details of a single AppConnection.
  *
- * @param string $formattedName BeyondCorp AppConnection name using the form:
- *                              `projects/{project_id}/locations/{location_id}/appConnections/{app_connection_id}`
- *                              Please see {@see AppConnectionsServiceClient::appConnectionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_app_connection_sample(string $formattedName): void
+function get_app_connection_sample(): void
 {
     // Create a client.
     $appConnectionsServiceClient = new AppConnectionsServiceClient();
 
     // Prepare the request message.
-    $request = (new GetAppConnectionRequest())
-        ->setName($formattedName);
+    $request = new GetAppConnectionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,25 +53,5 @@ function get_app_connection_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AppConnectionsServiceClient::appConnectionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[APP_CONNECTION]'
-    );
-
-    get_app_connection_sample($formattedName);
 }
 // [END beyondcorp_v1_generated_AppConnectionsService_GetAppConnection_sync]

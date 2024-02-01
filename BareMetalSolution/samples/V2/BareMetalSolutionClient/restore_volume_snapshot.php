@@ -34,18 +34,19 @@ use Google\Rpc\Status;
  * Uses the specified snapshot to restore its parent volume.
  * Returns INVALID_ARGUMENT if called for a non-boot volume.
  *
- * @param string $formattedVolumeSnapshot Name of the snapshot which will be used to restore its parent
- *                                        volume. Please see
- *                                        {@see BareMetalSolutionClient::volumeSnapshotName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function restore_volume_snapshot_sample(string $formattedVolumeSnapshot): void
+function restore_volume_snapshot_sample(): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = (new RestoreVolumeSnapshotRequest())
-        ->setVolumeSnapshot($formattedVolumeSnapshot);
+    $request = new RestoreVolumeSnapshotRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,26 +66,5 @@ function restore_volume_snapshot_sample(string $formattedVolumeSnapshot): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedVolumeSnapshot = BareMetalSolutionClient::volumeSnapshotName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[VOLUME]',
-        '[SNAPSHOT]'
-    );
-
-    restore_volume_snapshot_sample($formattedVolumeSnapshot);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_RestoreVolumeSnapshot_sync]

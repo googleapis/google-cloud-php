@@ -36,17 +36,19 @@ use Google\Rpc\Status;
  * the binding deletion is deployed onto all affected users, which may take
  * more time.
  *
- * @param string $formattedName Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
- *                              Please see {@see AccessContextManagerClient::gcpUserAccessBindingName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_gcp_user_access_binding_sample(string $formattedName): void
+function delete_gcp_user_access_binding_sample(): void
 {
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $request = (new DeleteGcpUserAccessBindingRequest())
-        ->setName($formattedName);
+    $request = new DeleteGcpUserAccessBindingRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -64,24 +66,5 @@ function delete_gcp_user_access_binding_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AccessContextManagerClient::gcpUserAccessBindingName(
-        '[ORGANIZATION]',
-        '[GCP_USER_ACCESS_BINDING]'
-    );
-
-    delete_gcp_user_access_binding_sample($formattedName);
 }
 // [END accesscontextmanager_v1_generated_AccessContextManager_DeleteGcpUserAccessBinding_sync]

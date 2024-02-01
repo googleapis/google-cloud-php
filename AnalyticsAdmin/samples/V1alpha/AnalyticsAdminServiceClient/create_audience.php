@@ -24,8 +24,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateAudience_sync]
 use Google\Analytics\Admin\V1alpha\Audience;
-use Google\Analytics\Admin\V1alpha\AudienceFilterClause;
-use Google\Analytics\Admin\V1alpha\AudienceFilterClause\AudienceClauseType;
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
 use Google\ApiCore\ApiException;
@@ -33,36 +31,19 @@ use Google\ApiCore\ApiException;
 /**
  * Creates an Audience.
  *
- * @param string $formattedParent                 Example format: properties/1234
- *                                                Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
- * @param string $audienceDisplayName             The display name of the Audience.
- * @param string $audienceDescription             The description of the Audience.
- * @param int    $audienceMembershipDurationDays  Immutable. The duration a user should stay in an Audience. It
- *                                                cannot be set to more than 540 days.
- * @param int    $audienceFilterClausesClauseType Specifies whether this is an include or exclude filter clause.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_audience_sample(
-    string $formattedParent,
-    string $audienceDisplayName,
-    string $audienceDescription,
-    int $audienceMembershipDurationDays,
-    int $audienceFilterClausesClauseType
-): void {
+function create_audience_sample(): void
+{
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $audienceFilterClause = (new AudienceFilterClause())
-        ->setClauseType($audienceFilterClausesClauseType);
-    $audienceFilterClauses = [$audienceFilterClause,];
-    $audience = (new Audience())
-        ->setDisplayName($audienceDisplayName)
-        ->setDescription($audienceDescription)
-        ->setMembershipDurationDays($audienceMembershipDurationDays)
-        ->setFilterClauses($audienceFilterClauses);
-    $request = (new CreateAudienceRequest())
-        ->setParent($formattedParent)
-        ->setAudience($audience);
+    $request = new CreateAudienceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,31 +53,5 @@ function create_audience_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
-    $audienceDisplayName = '[DISPLAY_NAME]';
-    $audienceDescription = '[DESCRIPTION]';
-    $audienceMembershipDurationDays = 0;
-    $audienceFilterClausesClauseType = AudienceClauseType::AUDIENCE_CLAUSE_TYPE_UNSPECIFIED;
-
-    create_audience_sample(
-        $formattedParent,
-        $audienceDisplayName,
-        $audienceDescription,
-        $audienceMembershipDurationDays,
-        $audienceFilterClausesClauseType
-    );
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateAudience_sync]

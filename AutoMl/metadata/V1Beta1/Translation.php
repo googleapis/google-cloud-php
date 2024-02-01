@@ -18,11 +18,11 @@ class Translation
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\DataItems::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Æ
--google/cloud/automl/v1beta1/translation.protogoogle.cloud.automl.v1beta1,google/cloud/automl/v1beta1/data_items.proto"b
-TranslationDatasetMetadata!
-source_language_code (	B‡A!
-target_language_code (	B‡A"K
+∞
+-google/cloud/automl/v1beta1/translation.protogoogle.cloud.automl.v1beta1,google/cloud/automl/v1beta1/data_items.proto"d
+TranslationDatasetMetadata"
+source_language_code (	B‚A"
+target_language_code (	B‚A"K
 TranslationEvaluationMetrics
 
 bleu_score (

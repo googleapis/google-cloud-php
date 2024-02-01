@@ -42,10 +42,13 @@ use Google\Rpc\Status;
  * Returns an empty response in the
  * [response][google.longrunning.Operation.response] field when it completes.
  *
- * @param string $formattedName Resource name of the model to deploy. Please see
- *                              {@see AutoMlClient::modelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function deploy_model_sample(string $formattedName): void
+function deploy_model_sample(): void
 {
     // Create a client.
     $autoMlClient = new AutoMlClient();
@@ -53,7 +56,7 @@ function deploy_model_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoMlClient->deployModel($formattedName);
+        $response = $autoMlClient->deployModel();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -66,21 +69,5 @@ function deploy_model_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AutoMlClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-
-    deploy_model_sample($formattedName);
 }
 // [END automl_v1beta1_generated_AutoMl_DeployModel_sync]

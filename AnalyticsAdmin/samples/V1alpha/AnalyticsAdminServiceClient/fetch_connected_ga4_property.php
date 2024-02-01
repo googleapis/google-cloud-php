@@ -32,21 +32,19 @@ use Google\ApiCore\ApiException;
  * Given a specified UA property, looks up the GA4 property connected to it.
  * Note: this cannot be used with GA4 properties.
  *
- * @param string $formattedProperty The UA property for which to look up the connected GA4 property.
- *                                  Note this request uses the
- *                                  internal property ID, not the tracking ID of the form UA-XXXXXX-YY.
- *                                  Format: properties/{internal_web_property_id}
- *                                  Example: properties/1234
- *                                  Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function fetch_connected_ga4_property_sample(string $formattedProperty): void
+function fetch_connected_ga4_property_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new FetchConnectedGa4PropertyRequest())
-        ->setProperty($formattedProperty);
+    $request = new FetchConnectedGa4PropertyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +54,5 @@ function fetch_connected_ga4_property_sample(string $formattedProperty): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedProperty = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
-
-    fetch_connected_ga4_property_sample($formattedProperty);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_FetchConnectedGa4Property_sync]

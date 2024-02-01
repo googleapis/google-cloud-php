@@ -32,18 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a single Api.
  *
- * @param string $formattedName Resource name of the form:
- *                              `projects/&#42;/locations/global/apis/*`
- *                              Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_api_sample(string $formattedName): void
+function delete_api_sample(): void
 {
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteApiRequest())
-        ->setName($formattedName);
+    $request = new DeleteApiRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +62,5 @@ function delete_api_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ApiGatewayServiceClient::apiName('[PROJECT]', '[API]');
-
-    delete_api_sample($formattedName);
 }
 // [END apigateway_v1_generated_ApiGatewayService_DeleteApi_sync]

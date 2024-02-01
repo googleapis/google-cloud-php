@@ -26,43 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection;
-use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection\ApplicationEndpoint;
-use Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection\Type;
 use Google\Cloud\BeyondCorp\AppConnections\V1\Client\AppConnectionsServiceClient;
 use Google\Cloud\BeyondCorp\AppConnections\V1\UpdateAppConnectionRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single AppConnection.
  *
- * @param string $appConnectionName                    Unique resource name of the AppConnection.
- *                                                     The name is ignored when creating a AppConnection.
- * @param int    $appConnectionType                    The type of network connectivity used by the AppConnection.
- * @param string $appConnectionApplicationEndpointHost Hostname or IP address of the remote application endpoint.
- * @param int    $appConnectionApplicationEndpointPort Port of the remote application endpoint.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_app_connection_sample(
-    string $appConnectionName,
-    int $appConnectionType,
-    string $appConnectionApplicationEndpointHost,
-    int $appConnectionApplicationEndpointPort
-): void {
+function update_app_connection_sample(): void
+{
     // Create a client.
     $appConnectionsServiceClient = new AppConnectionsServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $appConnectionApplicationEndpoint = (new ApplicationEndpoint())
-        ->setHost($appConnectionApplicationEndpointHost)
-        ->setPort($appConnectionApplicationEndpointPort);
-    $appConnection = (new AppConnection())
-        ->setName($appConnectionName)
-        ->setType($appConnectionType)
-        ->setApplicationEndpoint($appConnectionApplicationEndpoint);
-    $request = (new UpdateAppConnectionRequest())
-        ->setUpdateMask($updateMask)
-        ->setAppConnection($appConnection);
+    $request = new UpdateAppConnectionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -82,29 +65,5 @@ function update_app_connection_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $appConnectionName = '[NAME]';
-    $appConnectionType = Type::TYPE_UNSPECIFIED;
-    $appConnectionApplicationEndpointHost = '[HOST]';
-    $appConnectionApplicationEndpointPort = 0;
-
-    update_app_connection_sample(
-        $appConnectionName,
-        $appConnectionType,
-        $appConnectionApplicationEndpointHost,
-        $appConnectionApplicationEndpointPort
-    );
 }
 // [END beyondcorp_v1_generated_AppConnectionsService_UpdateAppConnection_sync]

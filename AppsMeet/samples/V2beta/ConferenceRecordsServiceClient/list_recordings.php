@@ -33,17 +33,19 @@ use Google\Apps\Meet\V2beta\Recording;
  * [Developer Preview](https://developers.google.com/workspace/preview).
  * Lists the recording resources from the conference record.
  *
- * @param string $formattedParent Format: `conferenceRecords/{conference_record}`
- *                                Please see {@see ConferenceRecordsServiceClient::conferenceRecordName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_recordings_sample(string $formattedParent): void
+function list_recordings_sample(): void
 {
     // Create a client.
     $conferenceRecordsServiceClient = new ConferenceRecordsServiceClient();
 
     // Prepare the request message.
-    $request = (new ListRecordingsRequest())
-        ->setParent($formattedParent);
+    $request = new ListRecordingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +59,5 @@ function list_recordings_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConferenceRecordsServiceClient::conferenceRecordName('[CONFERENCE_RECORD]');
-
-    list_recordings_sample($formattedParent);
 }
 // [END meet_v2beta_generated_ConferenceRecordsService_ListRecordings_sync]

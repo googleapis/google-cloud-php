@@ -23,8 +23,7 @@ class GetRecordingRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Resource name of the recording. Please see
-     *                     {@see ConferenceRecordsServiceClient::recordingName()} for help formatting this field.
+     * @param string $name Required. Resource name of the recording.
      *
      * @return \Google\Apps\Meet\V2beta\GetRecordingRequest
      *

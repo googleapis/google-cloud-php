@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'api_id',
-                ],
             ],
             'CreateApiConfig' => [
                 'method' => 'post',
@@ -29,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'api_config_id',
-                ],
             ],
             'CreateGateway' => [
                 'method' => 'post',
@@ -43,9 +37,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'gateway_id',
                 ],
             ],
             'DeleteApi' => [

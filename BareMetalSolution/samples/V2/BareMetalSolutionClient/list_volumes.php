@@ -32,17 +32,19 @@ use Google\Cloud\BareMetalSolution\V2\Volume;
 /**
  * List storage volumes in a given project and location.
  *
- * @param string $formattedParent Parent value for ListVolumesRequest. Please see
- *                                {@see BareMetalSolutionClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_volumes_sample(string $formattedParent): void
+function list_volumes_sample(): void
 {
     // Create a client.
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $request = (new ListVolumesRequest())
-        ->setParent($formattedParent);
+    $request = new ListVolumesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +58,5 @@ function list_volumes_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BareMetalSolutionClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_volumes_sample($formattedParent);
 }
 // [END baremetalsolution_v2_generated_BareMetalSolution_ListVolumes_sync]

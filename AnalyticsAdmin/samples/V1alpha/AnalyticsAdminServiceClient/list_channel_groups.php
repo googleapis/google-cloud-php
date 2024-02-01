@@ -32,18 +32,19 @@ use Google\ApiCore\PagedListResponse;
 /**
  * Lists ChannelGroups on a property.
  *
- * @param string $formattedParent The property for which to list ChannelGroups.
- *                                Example format: properties/1234
- *                                Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_channel_groups_sample(string $formattedParent): void
+function list_channel_groups_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new ListChannelGroupsRequest())
-        ->setParent($formattedParent);
+    $request = new ListChannelGroupsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_channel_groups_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
-
-    list_channel_groups_sample($formattedParent);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListChannelGroups_sync]

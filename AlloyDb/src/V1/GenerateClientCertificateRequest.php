@@ -67,7 +67,6 @@ class GenerateClientCertificateRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The name of the parent resource. The required format is:
      *                       * projects/{project}/locations/{location}/clusters/{cluster}
-     *                       Please see {@see AlloyDBAdminClient::clusterName()} for help formatting this field.
      *
      * @return \Google\Cloud\AlloyDb\V1\GenerateClientCertificateRequest
      *

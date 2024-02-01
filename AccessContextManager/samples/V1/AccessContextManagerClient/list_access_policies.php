@@ -34,21 +34,19 @@ use Google\Identity\AccessContextManager\V1\ListAccessPoliciesRequest;
  * [google.identity.accesscontextmanager.v1.AccessPolicy] in an
  * organization.
  *
- * @param string $formattedParent Resource name for the container to list AccessPolicy instances
- *                                from.
- *
- *                                Format:
- *                                `organizations/{org_id}`
- *                                Please see {@see AccessContextManagerClient::organizationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_access_policies_sample(string $formattedParent): void
+function list_access_policies_sample(): void
 {
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $request = (new ListAccessPoliciesRequest())
-        ->setParent($formattedParent);
+    $request = new ListAccessPoliciesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,21 +60,5 @@ function list_access_policies_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AccessContextManagerClient::organizationName('[ORGANIZATION]');
-
-    list_access_policies_sample($formattedParent);
 }
 // [END accesscontextmanager_v1_generated_AccessContextManager_ListAccessPolicies_sync]

@@ -30,7 +30,6 @@ class GetEnhancedMeasurementSettingsRequest extends \Google\Protobuf\Internal\Me
      *                     Format:
      *                     properties/{property}/dataStreams/{data_stream}/enhancedMeasurementSettings
      *                     Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
-     *                     Please see {@see AnalyticsAdminServiceClient::enhancedMeasurementSettingsName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetEnhancedMeasurementSettingsRequest
      *

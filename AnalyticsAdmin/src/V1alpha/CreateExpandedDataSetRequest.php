@@ -30,7 +30,6 @@ class CreateExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                          $parent          Required. Example format: properties/1234
-     *                                                                         Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      * @param \Google\Analytics\Admin\V1alpha\ExpandedDataSet $expandedDataSet Required. The ExpandedDataSet to create.
      *
      * @return \Google\Analytics\Admin\V1alpha\CreateExpandedDataSetRequest

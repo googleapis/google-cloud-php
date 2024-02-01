@@ -45,9 +45,7 @@ function update_api_sample(): void
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
     // Prepare the request message.
-    $api = new Api();
-    $request = (new UpdateApiRequest())
-        ->setApi($api);
+    $request = new UpdateApiRequest();
 
     // Call the API and handle any network failures.
     try {

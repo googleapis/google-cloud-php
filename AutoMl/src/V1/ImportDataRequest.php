@@ -32,8 +32,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                              $name        Required. Dataset name. Dataset must already exist. All imported
-     *                                                         annotations and examples will be added. Please see
-     *                                                         {@see AutoMlClient::datasetName()} for help formatting this field.
+     *                                                         annotations and examples will be added.
      * @param \Google\Cloud\AutoMl\V1\InputConfig $inputConfig Required. The desired input location and its domain specific semantics,
      *                                                         if any.
      *

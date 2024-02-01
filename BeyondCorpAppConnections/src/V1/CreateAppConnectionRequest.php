@@ -64,7 +64,6 @@ class CreateAppConnectionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                                   $parent          Required. The resource project name of the AppConnection location using the
      *                                                                                  form: `projects/{project_id}/locations/{location_id}`
-     *                                                                                  Please see {@see AppConnectionsServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection $appConnection   Required. A BeyondCorp AppConnection resource.
      * @param string                                                   $appConnectionId Optional. User-settable AppConnection resource ID.
      *                                                                                  * Must start with a letter.

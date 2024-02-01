@@ -23,8 +23,7 @@ class GetVolumeSnapshotRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the snapshot. Please see
-     *                     {@see BareMetalSolutionClient::volumeSnapshotName()} for help formatting this field.
+     * @param string $name Required. The name of the snapshot.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\GetVolumeSnapshotRequest
      *

@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Identity\AccessContextManager\V1\Client\AccessContextManagerClient;
 use Google\Identity\AccessContextManager\V1\ServicePerimeter;
 use Google\Identity\AccessContextManager\V1\UpdateServicePerimeterRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -53,11 +52,7 @@ function update_service_perimeter_sample(): void
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare the request message.
-    $servicePerimeter = new ServicePerimeter();
-    $updateMask = new FieldMask();
-    $request = (new UpdateServicePerimeterRequest())
-        ->setServicePerimeter($servicePerimeter)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateServicePerimeterRequest();
 
     // Call the API and handle any network failures.
     try {

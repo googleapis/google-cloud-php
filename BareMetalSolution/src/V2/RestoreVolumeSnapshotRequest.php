@@ -25,8 +25,7 @@ class RestoreVolumeSnapshotRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $volumeSnapshot Required. Name of the snapshot which will be used to restore its parent
-     *                               volume. Please see
-     *                               {@see BareMetalSolutionClient::volumeSnapshotName()} for help formatting this field.
+     *                               volume.
      *
      * @return \Google\Cloud\BareMetalSolution\V2\RestoreVolumeSnapshotRequest
      *

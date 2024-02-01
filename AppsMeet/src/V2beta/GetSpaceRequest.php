@@ -23,8 +23,7 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Resource name of the space. Please see
-     *                     {@see SpacesServiceClient::spaceName()} for help formatting this field.
+     * @param string $name Required. Resource name of the space.
      *
      * @return \Google\Apps\Meet\V2beta\GetSpaceRequest
      *

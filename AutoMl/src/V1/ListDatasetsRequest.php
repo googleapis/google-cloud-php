@@ -49,8 +49,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The resource name of the project from which to list datasets. Please see
-     *                       {@see AutoMlClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The resource name of the project from which to list datasets.
      *
      * @return \Google\Cloud\AutoMl\V1\ListDatasetsRequest
      *

@@ -33,20 +33,19 @@ use Google\ApiCore\ApiException;
  * Note that the stream must enable enhanced measurement for these settings to
  * take effect.
  *
- * @param string $formattedName The name of the settings to lookup.
- *                              Format:
- *                              properties/{property}/dataStreams/{data_stream}/enhancedMeasurementSettings
- *                              Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
- *                              Please see {@see AnalyticsAdminServiceClient::enhancedMeasurementSettingsName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_enhanced_measurement_settings_sample(string $formattedName): void
+function get_enhanced_measurement_settings_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new GetEnhancedMeasurementSettingsRequest())
-        ->setName($formattedName);
+    $request = new GetEnhancedMeasurementSettingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,24 +55,5 @@ function get_enhanced_measurement_settings_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsAdminServiceClient::enhancedMeasurementSettingsName(
-        '[PROPERTY]',
-        '[DATA_STREAM]'
-    );
-
-    get_enhanced_measurement_settings_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetEnhancedMeasurementSettings_sync]

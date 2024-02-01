@@ -29,8 +29,7 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
     private $model = null;
 
     /**
-     * @param string                        $parent Required. Resource name of the parent project where the model is being created. Please see
-     *                                              {@see AutoMlClient::locationName()} for help formatting this field.
+     * @param string                        $parent Required. Resource name of the parent project where the model is being created.
      * @param \Google\Cloud\AutoMl\V1\Model $model  Required. The model to create.
      *
      * @return \Google\Cloud\AutoMl\V1\CreateModelRequest

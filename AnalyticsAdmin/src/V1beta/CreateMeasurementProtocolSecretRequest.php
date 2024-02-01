@@ -32,7 +32,6 @@ class CreateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
     /**
      * @param string                                                   $parent                    Required. The parent resource where this secret will be created.
      *                                                                                            Format: properties/{property}/dataStreams/{dataStream}
-     *                                                                                            Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
      * @param \Google\Analytics\Admin\V1beta\MeasurementProtocolSecret $measurementProtocolSecret Required. The measurement protocol secret to create.
      *
      * @return \Google\Analytics\Admin\V1beta\CreateMeasurementProtocolSecretRequest

@@ -45,9 +45,7 @@ function update_nfs_share_sample(): void
     $bareMetalSolutionClient = new BareMetalSolutionClient();
 
     // Prepare the request message.
-    $nfsShare = new NfsShare();
-    $request = (new UpdateNfsShareRequest())
-        ->setNfsShare($nfsShare);
+    $request = new UpdateNfsShareRequest();
 
     // Call the API and handle any network failures.
     try {

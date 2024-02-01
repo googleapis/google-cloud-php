@@ -32,19 +32,19 @@ use Google\ApiCore\ApiException;
  * Only roll-up properties can have source links, so this method will throw an
  * error if used on other types of properties.
  *
- * @param string $formattedName Format:
- *                              properties/{property_id}/rollupPropertySourceLinks/{rollup_property_source_link_id}
- *                              Example: properties/1234/rollupPropertySourceLinks/5678
- *                              Please see {@see AnalyticsAdminServiceClient::rollupPropertySourceLinkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_rollup_property_source_link_sample(string $formattedName): void
+function delete_rollup_property_source_link_sample(): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteRollupPropertySourceLinkRequest())
-        ->setName($formattedName);
+    $request = new DeleteRollupPropertySourceLinkRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,24 +53,5 @@ function delete_rollup_property_source_link_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AnalyticsAdminServiceClient::rollupPropertySourceLinkName(
-        '[PROPERTY]',
-        '[ROLLUP_PROPERTY_SOURCE_LINK]'
-    );
-
-    delete_rollup_property_source_link_sample($formattedName);
 }
 // [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_DeleteRollupPropertySourceLink_sync]

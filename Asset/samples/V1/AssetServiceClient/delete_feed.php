@@ -30,20 +30,19 @@ use Google\Cloud\Asset\V1\DeleteFeedRequest;
 /**
  * Deletes an asset feed.
  *
- * @param string $formattedName The name of the feed and it must be in the format of:
- *                              projects/project_number/feeds/feed_id
- *                              folders/folder_number/feeds/feed_id
- *                              organizations/organization_number/feeds/feed_id
- *                              Please see {@see AssetServiceClient::feedName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_feed_sample(string $formattedName): void
+function delete_feed_sample(): void
 {
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteFeedRequest())
-        ->setName($formattedName);
+    $request = new DeleteFeedRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +51,5 @@ function delete_feed_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AssetServiceClient::feedName('[PROJECT]', '[FEED]');
-
-    delete_feed_sample($formattedName);
 }
 // [END cloudasset_v1_generated_AssetService_DeleteFeed_sync]

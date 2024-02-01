@@ -26,7 +26,6 @@ class GetArtifactContentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the artifact whose contents should be retrieved.
      *                     Format: `{parent}/artifacts/*`
-     *                     Please see {@see RegistryClient::artifactName()} for help formatting this field.
      *
      * @return \Google\Cloud\ApigeeRegistry\V1\GetArtifactContentsRequest
      *
