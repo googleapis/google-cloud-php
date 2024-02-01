@@ -26,8 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Asset;
-use Google\Cloud\Dataplex\V1\Asset\ResourceSpec;
-use Google\Cloud\Dataplex\V1\Asset\ResourceSpec\Type;
 use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\CreateAssetRequest;
 use Google\Rpc\Status;
@@ -35,36 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates an asset resource.
  *
- * @param string $formattedParent       The resource name of the parent zone:
- *                                      `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`. Please see
- *                                      {@see DataplexServiceClient::zoneName()} for help formatting this field.
- * @param string $assetId               Asset identifier.
- *                                      This ID will be used to generate names such as table names when publishing
- *                                      metadata to Hive Metastore and BigQuery.
- *                                      * Must contain only lowercase letters, numbers and hyphens.
- *                                      * Must start with a letter.
- *                                      * Must end with a number or a letter.
- *                                      * Must be between 1-63 characters.
- *                                      * Must be unique within the zone.
- * @param int    $assetResourceSpecType Immutable. Type of resource.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_asset_sample(
-    string $formattedParent,
-    string $assetId,
-    int $assetResourceSpecType
-): void {
+function create_asset_sample(): void
+{
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $assetResourceSpec = (new ResourceSpec())
-        ->setType($assetResourceSpecType);
-    $asset = (new Asset())
-        ->setResourceSpec($assetResourceSpec);
-    $request = (new CreateAssetRequest())
-        ->setParent($formattedParent)
-        ->setAssetId($assetId)
-        ->setAsset($asset);
+    $request = new CreateAssetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -84,23 +65,5 @@ function create_asset_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataplexServiceClient::zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-    $assetId = '[ASSET_ID]';
-    $assetResourceSpecType = Type::TYPE_UNSPECIFIED;
-
-    create_asset_sample($formattedParent, $assetId, $assetResourceSpecType);
 }
 // [END dataplex_v1_generated_DataplexService_CreateAsset_sync]

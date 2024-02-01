@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'data_attribute_id',
-                ],
             ],
             'CreateDataAttributeBinding' => [
                 'method' => 'post',
@@ -29,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'data_attribute_binding_id',
-                ],
             ],
             'CreateDataTaxonomy' => [
                 'method' => 'post',
@@ -43,9 +37,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'data_taxonomy_id',
                 ],
             ],
             'DeleteDataAttribute' => [
@@ -68,9 +59,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'etag',
                 ],
             ],
             'DeleteDataTaxonomy' => [
@@ -162,9 +150,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateDataAttributeBinding' => [
                 'method' => 'patch',
@@ -178,9 +163,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateDataTaxonomy' => [
                 'method' => 'patch',
@@ -193,9 +175,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

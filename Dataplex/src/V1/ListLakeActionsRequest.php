@@ -42,8 +42,7 @@ class ListLakeActionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the parent lake:
-     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`. Please see
-     *                       {@see DataplexServiceClient::lakeName()} for help formatting this field.
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      *
      * @return \Google\Cloud\Dataplex\V1\ListLakeActionsRequest
      *

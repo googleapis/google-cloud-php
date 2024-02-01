@@ -80,10 +80,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
  * try {
- *     $formattedParent = $dataTaxonomyServiceClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
- *     $dataAttributeId = 'data_attribute_id';
- *     $dataAttribute = new DataAttribute();
- *     $operationResponse = $dataTaxonomyServiceClient->createDataAttribute($formattedParent, $dataAttributeId, $dataAttribute);
+ *     $operationResponse = $dataTaxonomyServiceClient->createDataAttribute();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -94,7 +91,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $dataTaxonomyServiceClient->createDataAttribute($formattedParent, $dataAttributeId, $dataAttribute);
+ *     $operationResponse = $dataTaxonomyServiceClient->createDataAttribute();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $dataTaxonomyServiceClient->resumeOperation($operationName, 'createDataAttribute');
@@ -484,10 +481,7 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedParent = $dataTaxonomyServiceClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
-     *     $dataAttributeId = 'data_attribute_id';
-     *     $dataAttribute = new DataAttribute();
-     *     $operationResponse = $dataTaxonomyServiceClient->createDataAttribute($formattedParent, $dataAttributeId, $dataAttribute);
+     *     $operationResponse = $dataTaxonomyServiceClient->createDataAttribute();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -498,7 +492,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataTaxonomyServiceClient->createDataAttribute($formattedParent, $dataAttributeId, $dataAttribute);
+     *     $operationResponse = $dataTaxonomyServiceClient->createDataAttribute();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataTaxonomyServiceClient->resumeOperation($operationName, 'createDataAttribute');
@@ -518,18 +512,21 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param string        $parent          Required. The resource name of the parent data taxonomy
-     *                                       projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
-     * @param string        $dataAttributeId Required. DataAttribute identifier.
-     *                                       * Must contain only lowercase letters, numbers and hyphens.
-     *                                       * Must start with a letter.
-     *                                       * Must be between 1-63 characters.
-     *                                       * Must end with a number or a letter.
-     *                                       * Must be unique within the DataTaxonomy.
-     * @param DataAttribute $dataAttribute   Required. DataAttribute resource.
-     * @param array         $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent data taxonomy
+     *           projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
+     *     @type string $dataAttributeId
+     *           Required. DataAttribute identifier.
+     *           * Must contain only lowercase letters, numbers and hyphens.
+     *           * Must start with a letter.
+     *           * Must be between 1-63 characters.
+     *           * Must end with a number or a letter.
+     *           * Must be unique within the DataTaxonomy.
+     *     @type DataAttribute $dataAttribute
+     *           Required. DataAttribute resource.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -543,18 +540,23 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDataAttribute(
-        $parent,
-        $dataAttributeId,
-        $dataAttribute,
-        array $optionalArgs = []
-    ) {
+    public function createDataAttribute(array $optionalArgs = [])
+    {
         $request = new CreateDataAttributeRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDataAttributeId($dataAttributeId);
-        $request->setDataAttribute($dataAttribute);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['dataAttributeId'])) {
+            $request->setDataAttributeId($optionalArgs['dataAttributeId']);
+        }
+
+        if (isset($optionalArgs['dataAttribute'])) {
+            $request->setDataAttribute($optionalArgs['dataAttribute']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -580,10 +582,7 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedParent = $dataTaxonomyServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $dataAttributeBindingId = 'data_attribute_binding_id';
-     *     $dataAttributeBinding = new DataAttributeBinding();
-     *     $operationResponse = $dataTaxonomyServiceClient->createDataAttributeBinding($formattedParent, $dataAttributeBindingId, $dataAttributeBinding);
+     *     $operationResponse = $dataTaxonomyServiceClient->createDataAttributeBinding();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -594,7 +593,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataTaxonomyServiceClient->createDataAttributeBinding($formattedParent, $dataAttributeBindingId, $dataAttributeBinding);
+     *     $operationResponse = $dataTaxonomyServiceClient->createDataAttributeBinding();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataTaxonomyServiceClient->resumeOperation($operationName, 'createDataAttributeBinding');
@@ -614,18 +613,21 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param string               $parent                 Required. The resource name of the parent data taxonomy
-     *                                                     projects/{project_number}/locations/{location_id}
-     * @param string               $dataAttributeBindingId Required. DataAttributeBinding identifier.
-     *                                                     * Must contain only lowercase letters, numbers and hyphens.
-     *                                                     * Must start with a letter.
-     *                                                     * Must be between 1-63 characters.
-     *                                                     * Must end with a number or a letter.
-     *                                                     * Must be unique within the Location.
-     * @param DataAttributeBinding $dataAttributeBinding   Required. DataAttributeBinding resource.
-     * @param array                $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent data taxonomy
+     *           projects/{project_number}/locations/{location_id}
+     *     @type string $dataAttributeBindingId
+     *           Required. DataAttributeBinding identifier.
+     *           * Must contain only lowercase letters, numbers and hyphens.
+     *           * Must start with a letter.
+     *           * Must be between 1-63 characters.
+     *           * Must end with a number or a letter.
+     *           * Must be unique within the Location.
+     *     @type DataAttributeBinding $dataAttributeBinding
+     *           Required. DataAttributeBinding resource.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -639,18 +641,27 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDataAttributeBinding(
-        $parent,
-        $dataAttributeBindingId,
-        $dataAttributeBinding,
-        array $optionalArgs = []
-    ) {
+    public function createDataAttributeBinding(array $optionalArgs = [])
+    {
         $request = new CreateDataAttributeBindingRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDataAttributeBindingId($dataAttributeBindingId);
-        $request->setDataAttributeBinding($dataAttributeBinding);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['dataAttributeBindingId'])) {
+            $request->setDataAttributeBindingId(
+                $optionalArgs['dataAttributeBindingId']
+            );
+        }
+
+        if (isset($optionalArgs['dataAttributeBinding'])) {
+            $request->setDataAttributeBinding(
+                $optionalArgs['dataAttributeBinding']
+            );
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -676,10 +687,7 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedParent = $dataTaxonomyServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $dataTaxonomyId = 'data_taxonomy_id';
-     *     $dataTaxonomy = new DataTaxonomy();
-     *     $operationResponse = $dataTaxonomyServiceClient->createDataTaxonomy($formattedParent, $dataTaxonomyId, $dataTaxonomy);
+     *     $operationResponse = $dataTaxonomyServiceClient->createDataTaxonomy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -690,7 +698,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataTaxonomyServiceClient->createDataTaxonomy($formattedParent, $dataTaxonomyId, $dataTaxonomy);
+     *     $operationResponse = $dataTaxonomyServiceClient->createDataTaxonomy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataTaxonomyServiceClient->resumeOperation($operationName, 'createDataTaxonomy');
@@ -710,19 +718,22 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param string       $parent         Required. The resource name of the data taxonomy location, of the form:
-     *                                     projects/{project_number}/locations/{location_id}
-     *                                     where `location_id` refers to a GCP region.
-     * @param string       $dataTaxonomyId Required. DataTaxonomy identifier.
-     *                                     * Must contain only lowercase letters, numbers and hyphens.
-     *                                     * Must start with a letter.
-     *                                     * Must be between 1-63 characters.
-     *                                     * Must end with a number or a letter.
-     *                                     * Must be unique within the Project.
-     * @param DataTaxonomy $dataTaxonomy   Required. DataTaxonomy resource.
-     * @param array        $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the data taxonomy location, of the form:
+     *           projects/{project_number}/locations/{location_id}
+     *           where `location_id` refers to a GCP region.
+     *     @type string $dataTaxonomyId
+     *           Required. DataTaxonomy identifier.
+     *           * Must contain only lowercase letters, numbers and hyphens.
+     *           * Must start with a letter.
+     *           * Must be between 1-63 characters.
+     *           * Must end with a number or a letter.
+     *           * Must be unique within the Project.
+     *     @type DataTaxonomy $dataTaxonomy
+     *           Required. DataTaxonomy resource.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -736,18 +747,23 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDataTaxonomy(
-        $parent,
-        $dataTaxonomyId,
-        $dataTaxonomy,
-        array $optionalArgs = []
-    ) {
+    public function createDataTaxonomy(array $optionalArgs = [])
+    {
         $request = new CreateDataTaxonomyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDataTaxonomyId($dataTaxonomyId);
-        $request->setDataTaxonomy($dataTaxonomy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['dataTaxonomyId'])) {
+            $request->setDataTaxonomyId($optionalArgs['dataTaxonomyId']);
+        }
+
+        if (isset($optionalArgs['dataTaxonomy'])) {
+            $request->setDataTaxonomy($optionalArgs['dataTaxonomy']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -773,8 +789,7 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedName = $dataTaxonomyServiceClient->dataAttributeName('[PROJECT]', '[LOCATION]', '[DATATAXONOMY]', '[DATA_ATTRIBUTE_ID]');
-     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataAttribute($formattedName);
+     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataAttribute();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -784,7 +799,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataAttribute($formattedName);
+     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataAttribute();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataTaxonomyServiceClient->resumeOperation($operationName, 'deleteDataAttribute');
@@ -803,11 +818,12 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the DataAttribute:
-     *                             projects/{project_number}/locations/{location_id}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the DataAttribute:
+     *           projects/{project_number}/locations/{location_id}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
      *     @type string $etag
      *           Optional. If the client provided etag value does not match the current etag
      *           value, the DeleteDataAttribute method returns an ABORTED error response.
@@ -821,12 +837,15 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDataAttribute($name, array $optionalArgs = [])
+    public function deleteDataAttribute(array $optionalArgs = [])
     {
         $request = new DeleteDataAttributeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -854,9 +873,7 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedName = $dataTaxonomyServiceClient->dataAttributeBindingName('[PROJECT]', '[LOCATION]', '[DATA_ATTRIBUTE_BINDING_ID]');
-     *     $etag = 'etag';
-     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataAttributeBinding($formattedName, $etag);
+     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataAttributeBinding();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -866,7 +883,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataAttributeBinding($formattedName, $etag);
+     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataAttributeBinding();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataTaxonomyServiceClient->resumeOperation($operationName, 'deleteDataAttributeBinding');
@@ -885,15 +902,17 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the DataAttributeBinding:
-     *                             projects/{project_number}/locations/{location_id}/dataAttributeBindings/{data_attribute_binding_id}
-     * @param string $etag         Required. If the client provided etag value does not match the current etag
-     *                             value, the DeleteDataAttributeBindingRequest method returns an ABORTED
-     *                             error response. Etags must be used when calling the
-     *                             DeleteDataAttributeBinding.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the DataAttributeBinding:
+     *           projects/{project_number}/locations/{location_id}/dataAttributeBindings/{data_attribute_binding_id}
+     *     @type string $etag
+     *           Required. If the client provided etag value does not match the current etag
+     *           value, the DeleteDataAttributeBindingRequest method returns an ABORTED
+     *           error response. Etags must be used when calling the
+     *           DeleteDataAttributeBinding.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -904,16 +923,19 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDataAttributeBinding(
-        $name,
-        $etag,
-        array $optionalArgs = []
-    ) {
+    public function deleteDataAttributeBinding(array $optionalArgs = [])
+    {
         $request = new DeleteDataAttributeBindingRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setEtag($etag);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -936,8 +958,7 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedName = $dataTaxonomyServiceClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
-     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataTaxonomy($formattedName);
+     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataTaxonomy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -947,7 +968,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataTaxonomy($formattedName);
+     *     $operationResponse = $dataTaxonomyServiceClient->deleteDataTaxonomy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataTaxonomyServiceClient->resumeOperation($operationName, 'deleteDataTaxonomy');
@@ -966,11 +987,12 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the DataTaxonomy:
-     *                             projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the DataTaxonomy:
+     *           projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
      *     @type string $etag
      *           Optional. If the client provided etag value does not match the current etag
      *           value,the DeleteDataTaxonomy method returns an ABORTED error.
@@ -984,12 +1006,15 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDataTaxonomy($name, array $optionalArgs = [])
+    public function deleteDataTaxonomy(array $optionalArgs = [])
     {
         $request = new DeleteDataTaxonomyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -1015,18 +1040,18 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedName = $dataTaxonomyServiceClient->dataAttributeName('[PROJECT]', '[LOCATION]', '[DATATAXONOMY]', '[DATA_ATTRIBUTE_ID]');
-     *     $response = $dataTaxonomyServiceClient->getDataAttribute($formattedName);
+     *     $response = $dataTaxonomyServiceClient->getDataAttribute();
      * } finally {
      *     $dataTaxonomyServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the dataAttribute:
-     *                             projects/{project_number}/locations/{location_id}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the dataAttribute:
+     *           projects/{project_number}/locations/{location_id}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1037,12 +1062,15 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDataAttribute($name, array $optionalArgs = [])
+    public function getDataAttribute(array $optionalArgs = [])
     {
         $request = new GetDataAttributeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1064,18 +1092,18 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedName = $dataTaxonomyServiceClient->dataAttributeBindingName('[PROJECT]', '[LOCATION]', '[DATA_ATTRIBUTE_BINDING_ID]');
-     *     $response = $dataTaxonomyServiceClient->getDataAttributeBinding($formattedName);
+     *     $response = $dataTaxonomyServiceClient->getDataAttributeBinding();
      * } finally {
      *     $dataTaxonomyServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the DataAttributeBinding:
-     *                             projects/{project_number}/locations/{location_id}/dataAttributeBindings/{data_attribute_binding_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the DataAttributeBinding:
+     *           projects/{project_number}/locations/{location_id}/dataAttributeBindings/{data_attribute_binding_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1086,12 +1114,15 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDataAttributeBinding($name, array $optionalArgs = [])
+    public function getDataAttributeBinding(array $optionalArgs = [])
     {
         $request = new GetDataAttributeBindingRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1113,18 +1144,18 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedName = $dataTaxonomyServiceClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
-     *     $response = $dataTaxonomyServiceClient->getDataTaxonomy($formattedName);
+     *     $response = $dataTaxonomyServiceClient->getDataTaxonomy();
      * } finally {
      *     $dataTaxonomyServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the DataTaxonomy:
-     *                             projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the DataTaxonomy:
+     *           projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1135,12 +1166,15 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDataTaxonomy($name, array $optionalArgs = [])
+    public function getDataTaxonomy(array $optionalArgs = [])
     {
         $request = new GetDataTaxonomyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1162,9 +1196,8 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedParent = $dataTaxonomyServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataTaxonomyServiceClient->listDataAttributeBindings($formattedParent);
+     *     $pagedResponse = $dataTaxonomyServiceClient->listDataAttributeBindings();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1172,7 +1205,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataTaxonomyServiceClient->listDataAttributeBindings($formattedParent);
+     *     $pagedResponse = $dataTaxonomyServiceClient->listDataAttributeBindings();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1181,11 +1214,12 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location:
-     *                             projects/{project_number}/locations/{location_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location:
+     *           projects/{project_number}/locations/{location_id}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1213,12 +1247,15 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDataAttributeBindings($parent, array $optionalArgs = [])
+    public function listDataAttributeBindings(array $optionalArgs = [])
     {
         $request = new ListDataAttributeBindingsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1256,9 +1293,8 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedParent = $dataTaxonomyServiceClient->dataTaxonomyName('[PROJECT]', '[LOCATION]', '[DATA_TAXONOMY_ID]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataTaxonomyServiceClient->listDataAttributes($formattedParent);
+     *     $pagedResponse = $dataTaxonomyServiceClient->listDataAttributes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1266,7 +1302,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataTaxonomyServiceClient->listDataAttributes($formattedParent);
+     *     $pagedResponse = $dataTaxonomyServiceClient->listDataAttributes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1275,11 +1311,12 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the DataTaxonomy:
-     *                             projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the DataTaxonomy:
+     *           projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1303,12 +1340,15 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDataAttributes($parent, array $optionalArgs = [])
+    public function listDataAttributes(array $optionalArgs = [])
     {
         $request = new ListDataAttributesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1346,9 +1386,8 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $formattedParent = $dataTaxonomyServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataTaxonomyServiceClient->listDataTaxonomies($formattedParent);
+     *     $pagedResponse = $dataTaxonomyServiceClient->listDataTaxonomies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1356,7 +1395,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataTaxonomyServiceClient->listDataTaxonomies($formattedParent);
+     *     $pagedResponse = $dataTaxonomyServiceClient->listDataTaxonomies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1365,12 +1404,13 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the DataTaxonomy location, of the form:
-     *                             projects/{project_number}/locations/{location_id}
-     *                             where `location_id` refers to a GCP region.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the DataTaxonomy location, of the form:
+     *           projects/{project_number}/locations/{location_id}
+     *           where `location_id` refers to a GCP region.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1394,12 +1434,15 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDataTaxonomies($parent, array $optionalArgs = [])
+    public function listDataTaxonomies(array $optionalArgs = [])
     {
         $request = new ListDataTaxonomiesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1437,9 +1480,7 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $dataAttribute = new DataAttribute();
-     *     $operationResponse = $dataTaxonomyServiceClient->updateDataAttribute($updateMask, $dataAttribute);
+     *     $operationResponse = $dataTaxonomyServiceClient->updateDataAttribute();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1450,7 +1491,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataTaxonomyServiceClient->updateDataAttribute($updateMask, $dataAttribute);
+     *     $operationResponse = $dataTaxonomyServiceClient->updateDataAttribute();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataTaxonomyServiceClient->resumeOperation($operationName, 'updateDataAttribute');
@@ -1470,11 +1511,13 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask     $updateMask    Required. Mask of fields to update.
-     * @param DataAttribute $dataAttribute Required. Only fields specified in `update_mask` are updated.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
+     *     @type DataAttribute $dataAttribute
+     *           Required. Only fields specified in `update_mask` are updated.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -1488,16 +1531,18 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDataAttribute(
-        $updateMask,
-        $dataAttribute,
-        array $optionalArgs = []
-    ) {
+    public function updateDataAttribute(array $optionalArgs = [])
+    {
         $request = new UpdateDataAttributeRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setDataAttribute($dataAttribute);
-        $requestParamHeaders['data_attribute.name'] = $dataAttribute->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['dataAttribute'])) {
+            $request->setDataAttribute($optionalArgs['dataAttribute']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1523,9 +1568,7 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $dataAttributeBinding = new DataAttributeBinding();
-     *     $operationResponse = $dataTaxonomyServiceClient->updateDataAttributeBinding($updateMask, $dataAttributeBinding);
+     *     $operationResponse = $dataTaxonomyServiceClient->updateDataAttributeBinding();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1536,7 +1579,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataTaxonomyServiceClient->updateDataAttributeBinding($updateMask, $dataAttributeBinding);
+     *     $operationResponse = $dataTaxonomyServiceClient->updateDataAttributeBinding();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataTaxonomyServiceClient->resumeOperation($operationName, 'updateDataAttributeBinding');
@@ -1556,11 +1599,13 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask            $updateMask           Required. Mask of fields to update.
-     * @param DataAttributeBinding $dataAttributeBinding Required. Only fields specified in `update_mask` are updated.
-     * @param array                $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
+     *     @type DataAttributeBinding $dataAttributeBinding
+     *           Required. Only fields specified in `update_mask` are updated.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -1574,18 +1619,20 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDataAttributeBinding(
-        $updateMask,
-        $dataAttributeBinding,
-        array $optionalArgs = []
-    ) {
+    public function updateDataAttributeBinding(array $optionalArgs = [])
+    {
         $request = new UpdateDataAttributeBindingRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setDataAttributeBinding($dataAttributeBinding);
-        $requestParamHeaders[
-            'data_attribute_binding.name'
-        ] = $dataAttributeBinding->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['dataAttributeBinding'])) {
+            $request->setDataAttributeBinding(
+                $optionalArgs['dataAttributeBinding']
+            );
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1611,9 +1658,7 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $dataTaxonomy = new DataTaxonomy();
-     *     $operationResponse = $dataTaxonomyServiceClient->updateDataTaxonomy($updateMask, $dataTaxonomy);
+     *     $operationResponse = $dataTaxonomyServiceClient->updateDataTaxonomy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1624,7 +1669,7 @@ class DataTaxonomyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataTaxonomyServiceClient->updateDataTaxonomy($updateMask, $dataTaxonomy);
+     *     $operationResponse = $dataTaxonomyServiceClient->updateDataTaxonomy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataTaxonomyServiceClient->resumeOperation($operationName, 'updateDataTaxonomy');
@@ -1644,11 +1689,13 @@ class DataTaxonomyServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask    $updateMask   Required. Mask of fields to update.
-     * @param DataTaxonomy $dataTaxonomy Required. Only fields specified in `update_mask` are updated.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
+     *     @type DataTaxonomy $dataTaxonomy
+     *           Required. Only fields specified in `update_mask` are updated.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -1662,16 +1709,18 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDataTaxonomy(
-        $updateMask,
-        $dataTaxonomy,
-        array $optionalArgs = []
-    ) {
+    public function updateDataTaxonomy(array $optionalArgs = [])
+    {
         $request = new UpdateDataTaxonomyRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setDataTaxonomy($dataTaxonomy);
-        $requestParamHeaders['data_taxonomy.name'] = $dataTaxonomy->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['dataTaxonomy'])) {
+            $request->setDataTaxonomy($optionalArgs['dataTaxonomy']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1698,18 +1747,18 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $dataTaxonomyServiceClient->getIamPolicy($resource);
+     *     $response = $dataTaxonomyServiceClient->getIamPolicy();
      * } finally {
      *     $dataTaxonomyServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1723,12 +1772,15 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1760,23 +1812,23 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $dataTaxonomyServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $dataTaxonomyServiceClient->setIamPolicy();
      * } finally {
      *     $dataTaxonomyServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1793,13 +1845,19 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1833,23 +1891,23 @@ class DataTaxonomyServiceGapicClient
      * ```
      * $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $dataTaxonomyServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $dataTaxonomyServiceClient->testIamPermissions();
      * } finally {
      *     $dataTaxonomyServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1860,16 +1918,19 @@ class DataTaxonomyServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

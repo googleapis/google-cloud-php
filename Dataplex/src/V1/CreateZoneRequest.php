@@ -52,8 +52,7 @@ class CreateZoneRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                         $parent Required. The resource name of the parent lake:
-     *                                               `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`. Please see
-     *                                               {@see DataplexServiceClient::lakeName()} for help formatting this field.
+     *                                               `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      * @param \Google\Cloud\Dataplex\V1\Zone $zone   Required. Zone resource.
      * @param string                         $zoneId Required. Zone identifier.
      *                                               This ID will be used to generate names such as database and dataset names

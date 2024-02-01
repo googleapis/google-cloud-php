@@ -17,14 +17,14 @@ class Security
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-µ
-\'google/cloud/dataplex/v1/security.protogoogle.cloud.dataplex.v1"U
-ResourceAccessSpec
-readers (	B‡A
-writers (	B‡A
-owners (	B‡A"&
-DataAccessSpec
-readers (	B‡ABi
+π
+\'google/cloud/dataplex/v1/security.protogoogle.cloud.dataplex.v1"X
+ResourceAccessSpec
+readers (	B‚A
+writers (	B‚A
+owners (	B‚A"\'
+DataAccessSpec
+readers (	B‚ABi
 com.google.cloud.dataplex.v1BSecurityProtoPZ8cloud.google.com/go/dataplex/apiv1/dataplexpb;dataplexpbbproto3'
         , true);
 

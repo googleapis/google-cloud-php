@@ -26,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'asset_id',
-                ],
             ],
             'CreateEnvironment' => [
                 'method' => 'post',
@@ -40,9 +37,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'environment_id',
                 ],
             ],
             'CreateLake' => [
@@ -56,9 +50,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'lake_id',
-                ],
             ],
             'CreateTask' => [
                 'method' => 'post',
@@ -71,9 +62,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'task_id',
-                ],
             ],
             'CreateZone' => [
                 'method' => 'post',
@@ -85,9 +73,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'zone_id',
                 ],
             ],
             'DeleteAsset' => [
@@ -345,9 +330,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateEnvironment' => [
                 'method' => 'patch',
@@ -360,9 +342,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateLake' => [
@@ -377,9 +356,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateTask' => [
                 'method' => 'patch',
@@ -393,9 +369,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateZone' => [
                 'method' => 'patch',
@@ -408,9 +381,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

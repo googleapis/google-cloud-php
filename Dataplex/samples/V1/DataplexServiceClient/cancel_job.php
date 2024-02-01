@@ -30,18 +30,19 @@ use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 /**
  * Cancel jobs running for the task resource.
  *
- * @param string $formattedName The resource name of the job:
- *                              `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/task/{task_id}/job/{job_id}`. Please see
- *                              {@see DataplexServiceClient::jobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function cancel_job_sample(string $formattedName): void
+function cancel_job_sample(): void
 {
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $request = (new CancelJobRequest())
-        ->setName($formattedName);
+    $request = new CancelJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -50,27 +51,5 @@ function cancel_job_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataplexServiceClient::jobName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[LAKE]',
-        '[TASK]',
-        '[JOB]'
-    );
-
-    cancel_job_sample($formattedName);
 }
 // [END dataplex_v1_generated_DataplexService_CancelJob_sync]

@@ -25,8 +25,7 @@ class GetAssetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the asset:
-     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`. Please see
-     *                     {@see DataplexServiceClient::assetName()} for help formatting this field.
+     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`.
      *
      * @return \Google\Cloud\Dataplex\V1\GetAssetRequest
      *

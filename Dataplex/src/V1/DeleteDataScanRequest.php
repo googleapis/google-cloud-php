@@ -29,8 +29,7 @@ class DeleteDataScanRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the dataScan:
      *                     `projects/{project}/locations/{location_id}/dataScans/{data_scan_id}`
      *                     where `project` refers to a *project_id* or *project_number* and
-     *                     `location_id` refers to a GCP region. Please see
-     *                     {@see DataScanServiceClient::dataScanName()} for help formatting this field.
+     *                     `location_id` refers to a GCP region.
      *
      * @return \Google\Cloud\Dataplex\V1\DeleteDataScanRequest
      *

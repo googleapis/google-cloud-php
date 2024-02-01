@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Client\DataTaxonomyServiceClient;
 use Google\Cloud\Dataplex\V1\DataTaxonomy;
 use Google\Cloud\Dataplex\V1\UpdateDataTaxonomyRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_data_taxonomy_sample(): void
     $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $dataTaxonomy = new DataTaxonomy();
-    $request = (new UpdateDataTaxonomyRequest())
-        ->setUpdateMask($updateMask)
-        ->setDataTaxonomy($dataTaxonomy);
+    $request = new UpdateDataTaxonomyRequest();
 
     // Call the API and handle any network failures.
     try {

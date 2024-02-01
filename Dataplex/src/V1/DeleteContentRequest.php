@@ -26,7 +26,6 @@ class DeleteContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the content:
      *                     projects/{project_id}/locations/{location_id}/lakes/{lake_id}/content/{content_id}
-     *                     Please see {@see ContentServiceClient::contentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\DeleteContentRequest
      *

@@ -27,15 +27,10 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataplex\V1\Entity;
-use Google\Cloud\Dataplex\V1\Entity\Type;
-use Google\Cloud\Dataplex\V1\ListEntitiesRequest\EntityView;
 use Google\Cloud\Dataplex\V1\ListEntitiesResponse;
 use Google\Cloud\Dataplex\V1\ListPartitionsResponse;
 use Google\Cloud\Dataplex\V1\MetadataServiceClient;
 use Google\Cloud\Dataplex\V1\Partition;
-use Google\Cloud\Dataplex\V1\Schema;
-use Google\Cloud\Dataplex\V1\StorageFormat;
-use Google\Cloud\Dataplex\V1\StorageSystem;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -103,38 +98,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogEntry($catalogEntry);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $entity = new Entity();
-        $entityId = 'entityId-2102099874';
-        $entity->setId($entityId);
-        $entityType = Type::TYPE_UNSPECIFIED;
-        $entity->setType($entityType);
-        $entityAsset = 'entityAsset1253969101';
-        $entity->setAsset($entityAsset);
-        $entityDataPath = 'entityDataPath1530173426';
-        $entity->setDataPath($entityDataPath);
-        $entitySystem = StorageSystem::STORAGE_SYSTEM_UNSPECIFIED;
-        $entity->setSystem($entitySystem);
-        $entityFormat = new StorageFormat();
-        $formatMimeType = 'formatMimeType-1419746651';
-        $entityFormat->setMimeType($formatMimeType);
-        $entity->setFormat($entityFormat);
-        $entitySchema = new Schema();
-        $schemaUserManaged = false;
-        $entitySchema->setUserManaged($schemaUserManaged);
-        $entity->setSchema($entitySchema);
-        $response = $gapicClient->createEntity($formattedParent, $entity);
+        $response = $gapicClient->createEntity();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/CreateEntity', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEntity();
-        $this->assertProtobufEquals($entity, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -156,29 +126,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $entity = new Entity();
-        $entityId = 'entityId-2102099874';
-        $entity->setId($entityId);
-        $entityType = Type::TYPE_UNSPECIFIED;
-        $entity->setType($entityType);
-        $entityAsset = 'entityAsset1253969101';
-        $entity->setAsset($entityAsset);
-        $entityDataPath = 'entityDataPath1530173426';
-        $entity->setDataPath($entityDataPath);
-        $entitySystem = StorageSystem::STORAGE_SYSTEM_UNSPECIFIED;
-        $entity->setSystem($entitySystem);
-        $entityFormat = new StorageFormat();
-        $formatMimeType = 'formatMimeType-1419746651';
-        $entityFormat->setMimeType($formatMimeType);
-        $entity->setFormat($entityFormat);
-        $entitySchema = new Schema();
-        $schemaUserManaged = false;
-        $entitySchema->setUserManaged($schemaUserManaged);
-        $entity->setSchema($entitySchema);
         try {
-            $gapicClient->createEntity($formattedParent, $entity);
+            $gapicClient->createEntity();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -207,24 +156,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setLocation($location);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $partition = new Partition();
-        $partitionValues = [];
-        $partition->setValues($partitionValues);
-        $partitionLocation = 'partitionLocation-1757508417';
-        $partition->setLocation($partitionLocation);
-        $response = $gapicClient->createPartition($formattedParent, $partition);
+        $response = $gapicClient->createPartition();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/CreatePartition', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPartition();
-        $this->assertProtobufEquals($partition, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -246,15 +184,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $partition = new Partition();
-        $partitionValues = [];
-        $partition->setValues($partitionValues);
-        $partitionLocation = 'partitionLocation-1757508417';
-        $partition->setLocation($partitionLocation);
         try {
-            $gapicClient->createPartition($formattedParent, $partition);
+            $gapicClient->createPartition();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -277,19 +208,12 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $etag = 'etag3123477';
-        $gapicClient->deleteEntity($formattedName, $etag);
+        $gapicClient->deleteEntity();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/DeleteEntity', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getEtag();
-        $this->assertProtobufEquals($etag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -311,11 +235,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $etag = 'etag3123477';
         try {
-            $gapicClient->deleteEntity($formattedName, $etag);
+            $gapicClient->deleteEntity();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -338,16 +259,12 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
-        $gapicClient->deletePartition($formattedName);
+        $gapicClient->deletePartition();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/DeletePartition', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -369,10 +286,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
         try {
-            $gapicClient->deletePartition($formattedName);
+            $gapicClient->deletePartition();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -415,17 +330,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogEntry($catalogEntry);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $response = $gapicClient->getEntity($formattedName);
+        $response = $gapicClient->getEntity();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/GetEntity', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -447,10 +358,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
         try {
-            $gapicClient->getEntity($formattedName);
+            $gapicClient->getEntity();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -479,17 +388,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setLocation($location);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
-        $response = $gapicClient->getPartition($formattedName);
+        $response = $gapicClient->getPartition();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/GetPartition', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -511,10 +416,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
         try {
-            $gapicClient->getPartition($formattedName);
+            $gapicClient->getPartition();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -544,10 +447,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntities($entities);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $view = EntityView::ENTITY_VIEW_UNSPECIFIED;
-        $response = $gapicClient->listEntities($formattedParent, $view);
+        $response = $gapicClient->listEntities();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -557,10 +457,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/ListEntities', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getView();
-        $this->assertProtobufEquals($view, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -582,11 +478,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $view = EntityView::ENTITY_VIEW_UNSPECIFIED;
         try {
-            $gapicClient->listEntities($formattedParent, $view);
+            $gapicClient->listEntities();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -616,9 +509,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPartitions($partitions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $response = $gapicClient->listPartitions($formattedParent);
+        $response = $gapicClient->listPartitions();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -628,8 +519,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/ListPartitions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -651,10 +540,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
         try {
-            $gapicClient->listPartitions($formattedParent);
+            $gapicClient->listPartitions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -697,35 +584,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogEntry($catalogEntry);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $entity = new Entity();
-        $entityId = 'entityId-2102099874';
-        $entity->setId($entityId);
-        $entityType = Type::TYPE_UNSPECIFIED;
-        $entity->setType($entityType);
-        $entityAsset = 'entityAsset1253969101';
-        $entity->setAsset($entityAsset);
-        $entityDataPath = 'entityDataPath1530173426';
-        $entity->setDataPath($entityDataPath);
-        $entitySystem = StorageSystem::STORAGE_SYSTEM_UNSPECIFIED;
-        $entity->setSystem($entitySystem);
-        $entityFormat = new StorageFormat();
-        $formatMimeType = 'formatMimeType-1419746651';
-        $entityFormat->setMimeType($formatMimeType);
-        $entity->setFormat($entityFormat);
-        $entitySchema = new Schema();
-        $schemaUserManaged = false;
-        $entitySchema->setUserManaged($schemaUserManaged);
-        $entity->setSchema($entitySchema);
-        $response = $gapicClient->updateEntity($entity);
+        $response = $gapicClient->updateEntity();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/UpdateEntity', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEntity();
-        $this->assertProtobufEquals($entity, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -747,28 +612,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $entity = new Entity();
-        $entityId = 'entityId-2102099874';
-        $entity->setId($entityId);
-        $entityType = Type::TYPE_UNSPECIFIED;
-        $entity->setType($entityType);
-        $entityAsset = 'entityAsset1253969101';
-        $entity->setAsset($entityAsset);
-        $entityDataPath = 'entityDataPath1530173426';
-        $entity->setDataPath($entityDataPath);
-        $entitySystem = StorageSystem::STORAGE_SYSTEM_UNSPECIFIED;
-        $entity->setSystem($entitySystem);
-        $entityFormat = new StorageFormat();
-        $formatMimeType = 'formatMimeType-1419746651';
-        $entityFormat->setMimeType($formatMimeType);
-        $entity->setFormat($entityFormat);
-        $entitySchema = new Schema();
-        $schemaUserManaged = false;
-        $entitySchema->setUserManaged($schemaUserManaged);
-        $entity->setSchema($entitySchema);
         try {
-            $gapicClient->updateEntity($entity);
+            $gapicClient->updateEntity();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -795,17 +640,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -827,10 +668,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -857,20 +696,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -892,11 +724,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -919,20 +748,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -954,11 +776,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

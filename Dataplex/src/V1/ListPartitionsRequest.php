@@ -63,8 +63,7 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the parent entity:
-     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`. Please see
-     *                       {@see MetadataServiceClient::entityName()} for help formatting this field.
+     *                       `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.
      *
      * @return \Google\Cloud\Dataplex\V1\ListPartitionsRequest
      *

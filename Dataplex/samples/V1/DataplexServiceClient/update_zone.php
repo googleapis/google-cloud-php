@@ -28,34 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\UpdateZoneRequest;
 use Google\Cloud\Dataplex\V1\Zone;
-use Google\Cloud\Dataplex\V1\Zone\ResourceSpec;
-use Google\Cloud\Dataplex\V1\Zone\ResourceSpec\LocationType;
-use Google\Cloud\Dataplex\V1\Zone\Type;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates a zone resource.
  *
- * @param int $zoneType                     Immutable. The type of the zone.
- * @param int $zoneResourceSpecLocationType Immutable. The location type of the resources that are allowed
- *                                          to be attached to the assets within this zone.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_zone_sample(int $zoneType, int $zoneResourceSpecLocationType): void
+function update_zone_sample(): void
 {
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $zoneResourceSpec = (new ResourceSpec())
-        ->setLocationType($zoneResourceSpecLocationType);
-    $zone = (new Zone())
-        ->setType($zoneType)
-        ->setResourceSpec($zoneResourceSpec);
-    $request = (new UpdateZoneRequest())
-        ->setUpdateMask($updateMask)
-        ->setZone($zone);
+    $request = new UpdateZoneRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,22 +65,5 @@ function update_zone_sample(int $zoneType, int $zoneResourceSpecLocationType): v
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $zoneType = Type::TYPE_UNSPECIFIED;
-    $zoneResourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
-
-    update_zone_sample($zoneType, $zoneResourceSpecLocationType);
 }
 // [END dataplex_v1_generated_DataplexService_UpdateZone_sync]

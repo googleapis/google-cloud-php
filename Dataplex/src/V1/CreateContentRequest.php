@@ -39,7 +39,6 @@ class CreateContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                            $parent  Required. The resource name of the parent lake:
      *                                                   projects/{project_id}/locations/{location_id}/lakes/{lake_id}
-     *                                                   Please see {@see ContentServiceClient::lakeName()} for help formatting this field.
      * @param \Google\Cloud\Dataplex\V1\Content $content Required. Content resource.
      *
      * @return \Google\Cloud\Dataplex\V1\CreateContentRequest

@@ -34,23 +34,19 @@ use Google\Rpc\Status;
  * DataAttributeBinding must be deleted before the DataAttributeBinding can be
  * deleted.
  *
- * @param string $formattedName The resource name of the DataAttributeBinding:
- *                              projects/{project_number}/locations/{location_id}/dataAttributeBindings/{data_attribute_binding_id}
- *                              Please see {@see DataTaxonomyServiceClient::dataAttributeBindingName()} for help formatting this field.
- * @param string $etag          If the client provided etag value does not match the current etag
- *                              value, the DeleteDataAttributeBindingRequest method returns an ABORTED
- *                              error response. Etags must be used when calling the
- *                              DeleteDataAttributeBinding.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_data_attribute_binding_sample(string $formattedName, string $etag): void
+function delete_data_attribute_binding_sample(): void
 {
     // Create a client.
     $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteDataAttributeBindingRequest())
-        ->setName($formattedName)
-        ->setEtag($etag);
+    $request = new DeleteDataAttributeBindingRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,26 +64,5 @@ function delete_data_attribute_binding_sample(string $formattedName, string $eta
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataTaxonomyServiceClient::dataAttributeBindingName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_ATTRIBUTE_BINDING_ID]'
-    );
-    $etag = '[ETAG]';
-
-    delete_data_attribute_binding_sample($formattedName, $etag);
 }
 // [END dataplex_v1_generated_DataTaxonomyService_DeleteDataAttributeBinding_sync]

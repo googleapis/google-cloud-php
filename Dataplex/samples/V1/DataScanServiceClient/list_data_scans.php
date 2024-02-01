@@ -32,20 +32,19 @@ use Google\Cloud\Dataplex\V1\ListDataScansRequest;
 /**
  * Lists DataScans.
  *
- * @param string $formattedParent The resource name of the parent location:
- *                                `projects/{project}/locations/{location_id}`
- *                                where `project` refers to a *project_id* or *project_number* and
- *                                `location_id` refers to a GCP region. Please see
- *                                {@see DataScanServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_data_scans_sample(string $formattedParent): void
+function list_data_scans_sample(): void
 {
     // Create a client.
     $dataScanServiceClient = new DataScanServiceClient();
 
     // Prepare the request message.
-    $request = (new ListDataScansRequest())
-        ->setParent($formattedParent);
+    $request = new ListDataScansRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +58,5 @@ function list_data_scans_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataScanServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_data_scans_sample($formattedParent);
 }
 // [END dataplex_v1_generated_DataScanService_ListDataScans_sync]

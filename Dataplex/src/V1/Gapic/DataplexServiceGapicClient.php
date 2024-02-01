@@ -111,8 +111,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $dataplexServiceClient = new DataplexServiceClient();
  * try {
- *     $formattedName = $dataplexServiceClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
- *     $dataplexServiceClient->cancelJob($formattedName);
+ *     $dataplexServiceClient->cancelJob();
  * } finally {
  *     $dataplexServiceClient->close();
  * }
@@ -594,18 +593,18 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
-     *     $dataplexServiceClient->cancelJob($formattedName);
+     *     $dataplexServiceClient->cancelJob();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the job:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/task/{task_id}/job/{job_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the job:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/task/{task_id}/job/{job_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -614,12 +613,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelJob($name, array $optionalArgs = [])
+    public function cancelJob(array $optionalArgs = [])
     {
         $request = new CancelJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -641,10 +643,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-     *     $assetId = 'asset_id';
-     *     $asset = new Asset();
-     *     $operationResponse = $dataplexServiceClient->createAsset($formattedParent, $assetId, $asset);
+     *     $operationResponse = $dataplexServiceClient->createAsset();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -655,7 +654,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->createAsset($formattedParent, $assetId, $asset);
+     *     $operationResponse = $dataplexServiceClient->createAsset();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'createAsset');
@@ -675,20 +674,23 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent zone:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
-     * @param string $assetId      Required. Asset identifier.
-     *                             This ID will be used to generate names such as table names when publishing
-     *                             metadata to Hive Metastore and BigQuery.
-     *                             * Must contain only lowercase letters, numbers and hyphens.
-     *                             * Must start with a letter.
-     *                             * Must end with a number or a letter.
-     *                             * Must be between 1-63 characters.
-     *                             * Must be unique within the zone.
-     * @param Asset  $asset        Required. Asset resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent zone:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
+     *     @type string $assetId
+     *           Required. Asset identifier.
+     *           This ID will be used to generate names such as table names when publishing
+     *           metadata to Hive Metastore and BigQuery.
+     *           * Must contain only lowercase letters, numbers and hyphens.
+     *           * Must start with a letter.
+     *           * Must end with a number or a letter.
+     *           * Must be between 1-63 characters.
+     *           * Must be unique within the zone.
+     *     @type Asset $asset
+     *           Required. Asset resource.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -702,18 +704,23 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAsset(
-        $parent,
-        $assetId,
-        $asset,
-        array $optionalArgs = []
-    ) {
+    public function createAsset(array $optionalArgs = [])
+    {
         $request = new CreateAssetRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAssetId($assetId);
-        $request->setAsset($asset);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['assetId'])) {
+            $request->setAssetId($optionalArgs['assetId']);
+        }
+
+        if (isset($optionalArgs['asset'])) {
+            $request->setAsset($optionalArgs['asset']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -739,10 +746,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-     *     $environmentId = 'environment_id';
-     *     $environment = new Environment();
-     *     $operationResponse = $dataplexServiceClient->createEnvironment($formattedParent, $environmentId, $environment);
+     *     $operationResponse = $dataplexServiceClient->createEnvironment();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -753,7 +757,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->createEnvironment($formattedParent, $environmentId, $environment);
+     *     $operationResponse = $dataplexServiceClient->createEnvironment();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'createEnvironment');
@@ -773,18 +777,21 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent        Required. The resource name of the parent lake:
-     *                                   `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
-     * @param string      $environmentId Required. Environment identifier.
-     *                                   * Must contain only lowercase letters, numbers and hyphens.
-     *                                   * Must start with a letter.
-     *                                   * Must be between 1-63 characters.
-     *                                   * Must end with a number or a letter.
-     *                                   * Must be unique within the lake.
-     * @param Environment $environment   Required. Environment resource.
-     * @param array       $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent lake:
+     *           `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
+     *     @type string $environmentId
+     *           Required. Environment identifier.
+     *           * Must contain only lowercase letters, numbers and hyphens.
+     *           * Must start with a letter.
+     *           * Must be between 1-63 characters.
+     *           * Must end with a number or a letter.
+     *           * Must be unique within the lake.
+     *     @type Environment $environment
+     *           Required. Environment resource.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -798,18 +805,23 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEnvironment(
-        $parent,
-        $environmentId,
-        $environment,
-        array $optionalArgs = []
-    ) {
+    public function createEnvironment(array $optionalArgs = [])
+    {
         $request = new CreateEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEnvironmentId($environmentId);
-        $request->setEnvironment($environment);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['environmentId'])) {
+            $request->setEnvironmentId($optionalArgs['environmentId']);
+        }
+
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -835,10 +847,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $lakeId = 'lake_id';
-     *     $lake = new Lake();
-     *     $operationResponse = $dataplexServiceClient->createLake($formattedParent, $lakeId, $lake);
+     *     $operationResponse = $dataplexServiceClient->createLake();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -849,7 +858,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->createLake($formattedParent, $lakeId, $lake);
+     *     $operationResponse = $dataplexServiceClient->createLake();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'createLake');
@@ -869,21 +878,24 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the lake location, of the form:
-     *                             projects/{project_number}/locations/{location_id}
-     *                             where `location_id` refers to a GCP region.
-     * @param string $lakeId       Required. Lake identifier.
-     *                             This ID will be used to generate names such as database and dataset names
-     *                             when publishing metadata to Hive Metastore and BigQuery.
-     *                             * Must contain only lowercase letters, numbers and hyphens.
-     *                             * Must start with a letter.
-     *                             * Must end with a number or a letter.
-     *                             * Must be between 1-63 characters.
-     *                             * Must be unique within the customer project / location.
-     * @param Lake   $lake         Required. Lake resource
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the lake location, of the form:
+     *           projects/{project_number}/locations/{location_id}
+     *           where `location_id` refers to a GCP region.
+     *     @type string $lakeId
+     *           Required. Lake identifier.
+     *           This ID will be used to generate names such as database and dataset names
+     *           when publishing metadata to Hive Metastore and BigQuery.
+     *           * Must contain only lowercase letters, numbers and hyphens.
+     *           * Must start with a letter.
+     *           * Must end with a number or a letter.
+     *           * Must be between 1-63 characters.
+     *           * Must be unique within the customer project / location.
+     *     @type Lake $lake
+     *           Required. Lake resource
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -897,18 +909,23 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createLake(
-        $parent,
-        $lakeId,
-        $lake,
-        array $optionalArgs = []
-    ) {
+    public function createLake(array $optionalArgs = [])
+    {
         $request = new CreateLakeRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setLakeId($lakeId);
-        $request->setLake($lake);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['lakeId'])) {
+            $request->setLakeId($optionalArgs['lakeId']);
+        }
+
+        if (isset($optionalArgs['lake'])) {
+            $request->setLake($optionalArgs['lake']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -934,10 +951,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-     *     $taskId = 'task_id';
-     *     $task = new Task();
-     *     $operationResponse = $dataplexServiceClient->createTask($formattedParent, $taskId, $task);
+     *     $operationResponse = $dataplexServiceClient->createTask();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -948,7 +962,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->createTask($formattedParent, $taskId, $task);
+     *     $operationResponse = $dataplexServiceClient->createTask();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'createTask');
@@ -968,13 +982,16 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent lake:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
-     * @param string $taskId       Required. Task identifier.
-     * @param Task   $task         Required. Task resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent lake:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
+     *     @type string $taskId
+     *           Required. Task identifier.
+     *     @type Task $task
+     *           Required. Task resource.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -988,18 +1005,23 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTask(
-        $parent,
-        $taskId,
-        $task,
-        array $optionalArgs = []
-    ) {
+    public function createTask(array $optionalArgs = [])
+    {
         $request = new CreateTaskRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setTaskId($taskId);
-        $request->setTask($task);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['taskId'])) {
+            $request->setTaskId($optionalArgs['taskId']);
+        }
+
+        if (isset($optionalArgs['task'])) {
+            $request->setTask($optionalArgs['task']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1025,10 +1047,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-     *     $zoneId = 'zone_id';
-     *     $zone = new Zone();
-     *     $operationResponse = $dataplexServiceClient->createZone($formattedParent, $zoneId, $zone);
+     *     $operationResponse = $dataplexServiceClient->createZone();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1039,7 +1058,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->createZone($formattedParent, $zoneId, $zone);
+     *     $operationResponse = $dataplexServiceClient->createZone();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'createZone');
@@ -1059,21 +1078,24 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent lake:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
-     * @param string $zoneId       Required. Zone identifier.
-     *                             This ID will be used to generate names such as database and dataset names
-     *                             when publishing metadata to Hive Metastore and BigQuery.
-     *                             * Must contain only lowercase letters, numbers and hyphens.
-     *                             * Must start with a letter.
-     *                             * Must end with a number or a letter.
-     *                             * Must be between 1-63 characters.
-     *                             * Must be unique across all lakes from all locations in a project.
-     *                             * Must not be one of the reserved IDs (i.e. "default", "global-temp")
-     * @param Zone   $zone         Required. Zone resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent lake:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
+     *     @type string $zoneId
+     *           Required. Zone identifier.
+     *           This ID will be used to generate names such as database and dataset names
+     *           when publishing metadata to Hive Metastore and BigQuery.
+     *           * Must contain only lowercase letters, numbers and hyphens.
+     *           * Must start with a letter.
+     *           * Must end with a number or a letter.
+     *           * Must be between 1-63 characters.
+     *           * Must be unique across all lakes from all locations in a project.
+     *           * Must not be one of the reserved IDs (i.e. "default", "global-temp")
+     *     @type Zone $zone
+     *           Required. Zone resource.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -1087,18 +1109,23 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createZone(
-        $parent,
-        $zoneId,
-        $zone,
-        array $optionalArgs = []
-    ) {
+    public function createZone(array $optionalArgs = [])
+    {
         $request = new CreateZoneRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setZoneId($zoneId);
-        $request->setZone($zone);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['zoneId'])) {
+            $request->setZoneId($optionalArgs['zoneId']);
+        }
+
+        if (isset($optionalArgs['zone'])) {
+            $request->setZone($optionalArgs['zone']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1125,8 +1152,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-     *     $operationResponse = $dataplexServiceClient->deleteAsset($formattedName);
+     *     $operationResponse = $dataplexServiceClient->deleteAsset();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1136,7 +1162,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->deleteAsset($formattedName);
+     *     $operationResponse = $dataplexServiceClient->deleteAsset();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'deleteAsset');
@@ -1155,11 +1181,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the asset:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the asset:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1170,12 +1197,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAsset($name, array $optionalArgs = [])
+    public function deleteAsset(array $optionalArgs = [])
     {
         $request = new DeleteAssetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1198,8 +1228,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-     *     $operationResponse = $dataplexServiceClient->deleteEnvironment($formattedName);
+     *     $operationResponse = $dataplexServiceClient->deleteEnvironment();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1209,7 +1238,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->deleteEnvironment($formattedName);
+     *     $operationResponse = $dataplexServiceClient->deleteEnvironment();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'deleteEnvironment');
@@ -1228,11 +1257,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the environment:
-     *                             `projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the environment:
+     *           `projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1243,12 +1273,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteEnvironment($name, array $optionalArgs = [])
+    public function deleteEnvironment(array $optionalArgs = [])
     {
         $request = new DeleteEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1271,8 +1304,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-     *     $operationResponse = $dataplexServiceClient->deleteLake($formattedName);
+     *     $operationResponse = $dataplexServiceClient->deleteLake();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1282,7 +1314,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->deleteLake($formattedName);
+     *     $operationResponse = $dataplexServiceClient->deleteLake();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'deleteLake');
@@ -1301,11 +1333,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the lake:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the lake:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1316,12 +1349,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteLake($name, array $optionalArgs = [])
+    public function deleteLake(array $optionalArgs = [])
     {
         $request = new DeleteLakeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1343,8 +1379,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-     *     $operationResponse = $dataplexServiceClient->deleteTask($formattedName);
+     *     $operationResponse = $dataplexServiceClient->deleteTask();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1354,7 +1389,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->deleteTask($formattedName);
+     *     $operationResponse = $dataplexServiceClient->deleteTask();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'deleteTask');
@@ -1373,11 +1408,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the task:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/task/{task_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the task:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/task/{task_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1388,12 +1424,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTask($name, array $optionalArgs = [])
+    public function deleteTask(array $optionalArgs = [])
     {
         $request = new DeleteTaskRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1416,8 +1455,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-     *     $operationResponse = $dataplexServiceClient->deleteZone($formattedName);
+     *     $operationResponse = $dataplexServiceClient->deleteZone();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1427,7 +1465,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->deleteZone($formattedName);
+     *     $operationResponse = $dataplexServiceClient->deleteZone();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'deleteZone');
@@ -1446,11 +1484,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the zone:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the zone:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1461,12 +1500,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteZone($name, array $optionalArgs = [])
+    public function deleteZone(array $optionalArgs = [])
     {
         $request = new DeleteZoneRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1488,18 +1530,18 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-     *     $response = $dataplexServiceClient->getAsset($formattedName);
+     *     $response = $dataplexServiceClient->getAsset();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the asset:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the asset:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1510,12 +1552,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAsset($name, array $optionalArgs = [])
+    public function getAsset(array $optionalArgs = [])
     {
         $request = new GetAssetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1537,18 +1582,18 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-     *     $response = $dataplexServiceClient->getEnvironment($formattedName);
+     *     $response = $dataplexServiceClient->getEnvironment();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the environment:
-     *                             `projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the environment:
+     *           `projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1559,12 +1604,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEnvironment($name, array $optionalArgs = [])
+    public function getEnvironment(array $optionalArgs = [])
     {
         $request = new GetEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1586,18 +1634,18 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
-     *     $response = $dataplexServiceClient->getJob($formattedName);
+     *     $response = $dataplexServiceClient->getJob();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the job:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}/jobs/{job_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the job:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}/jobs/{job_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1608,12 +1656,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getJob($name, array $optionalArgs = [])
+    public function getJob(array $optionalArgs = [])
     {
         $request = new GetJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1635,18 +1686,18 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-     *     $response = $dataplexServiceClient->getLake($formattedName);
+     *     $response = $dataplexServiceClient->getLake();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the lake:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the lake:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1657,12 +1708,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getLake($name, array $optionalArgs = [])
+    public function getLake(array $optionalArgs = [])
     {
         $request = new GetLakeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1684,18 +1738,18 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-     *     $response = $dataplexServiceClient->getTask($formattedName);
+     *     $response = $dataplexServiceClient->getTask();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the task:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{tasks_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the task:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{tasks_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1706,12 +1760,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTask($name, array $optionalArgs = [])
+    public function getTask(array $optionalArgs = [])
     {
         $request = new GetTaskRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1733,18 +1790,18 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-     *     $response = $dataplexServiceClient->getZone($formattedName);
+     *     $response = $dataplexServiceClient->getZone();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the zone:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the zone:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1755,12 +1812,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getZone($name, array $optionalArgs = [])
+    public function getZone(array $optionalArgs = [])
     {
         $request = new GetZoneRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1782,9 +1842,8 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataplexServiceClient->listAssetActions($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listAssetActions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1792,7 +1851,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataplexServiceClient->listAssetActions($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listAssetActions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1801,11 +1860,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent asset:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent asset:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/assets/{asset_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1825,12 +1885,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAssetActions($parent, array $optionalArgs = [])
+    public function listAssetActions(array $optionalArgs = [])
     {
         $request = new ListAssetActionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1860,9 +1923,8 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataplexServiceClient->listAssets($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listAssets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1870,7 +1932,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataplexServiceClient->listAssets($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listAssets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1879,11 +1941,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent zone:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent zone:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1907,12 +1970,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAssets($parent, array $optionalArgs = [])
+    public function listAssets(array $optionalArgs = [])
     {
         $request = new ListAssetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1950,9 +2016,8 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataplexServiceClient->listEnvironments($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listEnvironments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1960,7 +2025,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataplexServiceClient->listEnvironments($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listEnvironments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1969,11 +2034,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent lake:
-     *                             `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent lake:
+     *           `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1997,12 +2063,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEnvironments($parent, array $optionalArgs = [])
+    public function listEnvironments(array $optionalArgs = [])
     {
         $request = new ListEnvironmentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2040,9 +2109,8 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataplexServiceClient->listJobs($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2050,7 +2118,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataplexServiceClient->listJobs($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2059,11 +2127,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent environment:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent environment:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2083,12 +2152,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listJobs($parent, array $optionalArgs = [])
+    public function listJobs(array $optionalArgs = [])
     {
         $request = new ListJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2118,9 +2190,8 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataplexServiceClient->listLakeActions($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listLakeActions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2128,7 +2199,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataplexServiceClient->listLakeActions($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listLakeActions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2137,11 +2208,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent lake:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent lake:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2161,12 +2233,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listLakeActions($parent, array $optionalArgs = [])
+    public function listLakeActions(array $optionalArgs = [])
     {
         $request = new ListLakeActionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2196,9 +2271,8 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataplexServiceClient->listLakes($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listLakes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2206,7 +2280,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataplexServiceClient->listLakes($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listLakes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2215,12 +2289,13 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the lake location, of the form:
-     *                             `projects/{project_number}/locations/{location_id}`
-     *                             where `location_id` refers to a GCP region.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the lake location, of the form:
+     *           `projects/{project_number}/locations/{location_id}`
+     *           where `location_id` refers to a GCP region.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2244,12 +2319,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listLakes($parent, array $optionalArgs = [])
+    public function listLakes(array $optionalArgs = [])
     {
         $request = new ListLakesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2287,9 +2365,8 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataplexServiceClient->listSessions($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listSessions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2297,7 +2374,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataplexServiceClient->listSessions($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listSessions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2306,11 +2383,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent environment:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent environment:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2339,12 +2417,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSessions($parent, array $optionalArgs = [])
+    public function listSessions(array $optionalArgs = [])
     {
         $request = new ListSessionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2378,9 +2459,8 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataplexServiceClient->listTasks($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listTasks();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2388,7 +2468,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataplexServiceClient->listTasks($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listTasks();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2397,11 +2477,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent lake:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent lake:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2425,12 +2506,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTasks($parent, array $optionalArgs = [])
+    public function listTasks(array $optionalArgs = [])
     {
         $request = new ListTasksRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2468,9 +2552,8 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataplexServiceClient->listZoneActions($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listZoneActions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2478,7 +2561,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataplexServiceClient->listZoneActions($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listZoneActions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2487,11 +2570,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent zone:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent zone:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2511,12 +2595,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listZoneActions($parent, array $optionalArgs = [])
+    public function listZoneActions(array $optionalArgs = [])
     {
         $request = new ListZoneActionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2546,9 +2633,8 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedParent = $dataplexServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataplexServiceClient->listZones($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listZones();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2556,7 +2642,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataplexServiceClient->listZones($formattedParent);
+     *     $pagedResponse = $dataplexServiceClient->listZones();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2565,11 +2651,12 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent lake:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent lake:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2593,12 +2680,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listZones($parent, array $optionalArgs = [])
+    public function listZones(array $optionalArgs = [])
     {
         $request = new ListZonesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2636,18 +2726,18 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $formattedName = $dataplexServiceClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-     *     $response = $dataplexServiceClient->runTask($formattedName);
+     *     $response = $dataplexServiceClient->runTask();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the task:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the task:
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{task_id}`.
      *     @type array $labels
      *           Optional. User-defined labels for the task. If the map is left empty, the
      *           task will run with existing labels from task definition. If the map
@@ -2674,12 +2764,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function runTask($name, array $optionalArgs = [])
+    public function runTask(array $optionalArgs = [])
     {
         $request = new RunTaskRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
         }
@@ -2709,9 +2802,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $asset = new Asset();
-     *     $operationResponse = $dataplexServiceClient->updateAsset($updateMask, $asset);
+     *     $operationResponse = $dataplexServiceClient->updateAsset();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2722,7 +2813,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->updateAsset($updateMask, $asset);
+     *     $operationResponse = $dataplexServiceClient->updateAsset();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'updateAsset');
@@ -2742,12 +2833,14 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Mask of fields to update.
-     * @param Asset     $asset        Required. Update description.
-     *                                Only fields specified in `update_mask` are updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
+     *     @type Asset $asset
+     *           Required. Update description.
+     *           Only fields specified in `update_mask` are updated.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -2761,13 +2854,18 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAsset($updateMask, $asset, array $optionalArgs = [])
+    public function updateAsset(array $optionalArgs = [])
     {
         $request = new UpdateAssetRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setAsset($asset);
-        $requestParamHeaders['asset.name'] = $asset->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['asset'])) {
+            $request->setAsset($optionalArgs['asset']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -2793,9 +2891,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $environment = new Environment();
-     *     $operationResponse = $dataplexServiceClient->updateEnvironment($updateMask, $environment);
+     *     $operationResponse = $dataplexServiceClient->updateEnvironment();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2806,7 +2902,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->updateEnvironment($updateMask, $environment);
+     *     $operationResponse = $dataplexServiceClient->updateEnvironment();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'updateEnvironment');
@@ -2826,12 +2922,14 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask   $updateMask   Required. Mask of fields to update.
-     * @param Environment $environment  Required. Update description.
-     *                                  Only fields specified in `update_mask` are updated.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
+     *     @type Environment $environment
+     *           Required. Update description.
+     *           Only fields specified in `update_mask` are updated.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -2845,16 +2943,18 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEnvironment(
-        $updateMask,
-        $environment,
-        array $optionalArgs = []
-    ) {
+    public function updateEnvironment(array $optionalArgs = [])
+    {
         $request = new UpdateEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setEnvironment($environment);
-        $requestParamHeaders['environment.name'] = $environment->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -2880,9 +2980,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $lake = new Lake();
-     *     $operationResponse = $dataplexServiceClient->updateLake($updateMask, $lake);
+     *     $operationResponse = $dataplexServiceClient->updateLake();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2893,7 +2991,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->updateLake($updateMask, $lake);
+     *     $operationResponse = $dataplexServiceClient->updateLake();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'updateLake');
@@ -2913,12 +3011,14 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Mask of fields to update.
-     * @param Lake      $lake         Required. Update description.
-     *                                Only fields specified in `update_mask` are updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
+     *     @type Lake $lake
+     *           Required. Update description.
+     *           Only fields specified in `update_mask` are updated.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -2932,13 +3032,18 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateLake($updateMask, $lake, array $optionalArgs = [])
+    public function updateLake(array $optionalArgs = [])
     {
         $request = new UpdateLakeRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setLake($lake);
-        $requestParamHeaders['lake.name'] = $lake->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['lake'])) {
+            $request->setLake($optionalArgs['lake']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -2964,9 +3069,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $task = new Task();
-     *     $operationResponse = $dataplexServiceClient->updateTask($updateMask, $task);
+     *     $operationResponse = $dataplexServiceClient->updateTask();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2977,7 +3080,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->updateTask($updateMask, $task);
+     *     $operationResponse = $dataplexServiceClient->updateTask();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'updateTask');
@@ -2997,12 +3100,14 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Mask of fields to update.
-     * @param Task      $task         Required. Update description.
-     *                                Only fields specified in `update_mask` are updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
+     *     @type Task $task
+     *           Required. Update description.
+     *           Only fields specified in `update_mask` are updated.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -3016,13 +3121,18 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTask($updateMask, $task, array $optionalArgs = [])
+    public function updateTask(array $optionalArgs = [])
     {
         $request = new UpdateTaskRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setTask($task);
-        $requestParamHeaders['task.name'] = $task->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['task'])) {
+            $request->setTask($optionalArgs['task']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -3048,9 +3158,7 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $zone = new Zone();
-     *     $operationResponse = $dataplexServiceClient->updateZone($updateMask, $zone);
+     *     $operationResponse = $dataplexServiceClient->updateZone();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3061,7 +3169,7 @@ class DataplexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $dataplexServiceClient->updateZone($updateMask, $zone);
+     *     $operationResponse = $dataplexServiceClient->updateZone();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $dataplexServiceClient->resumeOperation($operationName, 'updateZone');
@@ -3081,12 +3189,14 @@ class DataplexServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Mask of fields to update.
-     * @param Zone      $zone         Required. Update description.
-     *                                Only fields specified in `update_mask` are updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
+     *     @type Zone $zone
+     *           Required. Update description.
+     *           Only fields specified in `update_mask` are updated.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -3100,13 +3210,18 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateZone($updateMask, $zone, array $optionalArgs = [])
+    public function updateZone(array $optionalArgs = [])
     {
         $request = new UpdateZoneRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setZone($zone);
-        $requestParamHeaders['zone.name'] = $zone->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['zone'])) {
+            $request->setZone($optionalArgs['zone']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -3133,18 +3248,18 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $dataplexServiceClient->getIamPolicy($resource);
+     *     $response = $dataplexServiceClient->getIamPolicy();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -3158,12 +3273,15 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -3195,23 +3313,23 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $dataplexServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $dataplexServiceClient->setIamPolicy();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -3228,13 +3346,19 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3268,23 +3392,23 @@ class DataplexServiceGapicClient
      * ```
      * $dataplexServiceClient = new DataplexServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $dataplexServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $dataplexServiceClient->testIamPermissions();
      * } finally {
      *     $dataplexServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3295,16 +3419,19 @@ class DataplexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

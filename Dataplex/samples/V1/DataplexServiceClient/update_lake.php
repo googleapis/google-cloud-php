@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\Lake;
 use Google\Cloud\Dataplex\V1\UpdateLakeRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_lake_sample(): void
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $lake = new Lake();
-    $request = (new UpdateLakeRequest())
-        ->setUpdateMask($updateMask)
-        ->setLake($lake);
+    $request = new UpdateLakeRequest();
 
     // Call the API and handle any network failures.
     try {

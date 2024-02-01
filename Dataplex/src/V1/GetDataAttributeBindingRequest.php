@@ -26,7 +26,6 @@ class GetDataAttributeBindingRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the DataAttributeBinding:
      *                     projects/{project_number}/locations/{location_id}/dataAttributeBindings/{data_attribute_binding_id}
-     *                     Please see {@see DataTaxonomyServiceClient::dataAttributeBindingName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\GetDataAttributeBindingRequest
      *

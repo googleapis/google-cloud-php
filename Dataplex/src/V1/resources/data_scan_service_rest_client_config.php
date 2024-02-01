@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'data_scan_id',
-                ],
             ],
             'DeleteDataScan' => [
                 'method' => 'delete',
@@ -96,9 +93,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

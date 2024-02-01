@@ -30,21 +30,19 @@ use Google\Cloud\Dataplex\V1\DeleteEntityRequest;
 /**
  * Delete a metadata entity.
  *
- * @param string $formattedName The resource name of the entity:
- *                              `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`. Please see
- *                              {@see MetadataServiceClient::entityName()} for help formatting this field.
- * @param string $etag          The etag associated with the entity, which can be retrieved with
- *                              a [GetEntity][] request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_entity_sample(string $formattedName, string $etag): void
+function delete_entity_sample(): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteEntityRequest())
-        ->setName($formattedName)
-        ->setEtag($etag);
+    $request = new DeleteEntityRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,28 +51,5 @@ function delete_entity_sample(string $formattedName, string $etag): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = MetadataServiceClient::entityName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[LAKE]',
-        '[ZONE]',
-        '[ENTITY]'
-    );
-    $etag = '[ETAG]';
-
-    delete_entity_sample($formattedName, $etag);
 }
 // [END dataplex_v1_generated_MetadataService_DeleteEntity_sync]

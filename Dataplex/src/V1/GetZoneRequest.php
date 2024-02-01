@@ -25,8 +25,7 @@ class GetZoneRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the zone:
-     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`. Please see
-     *                     {@see DataplexServiceClient::zoneName()} for help formatting this field.
+     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *
      * @return \Google\Cloud\Dataplex\V1\GetZoneRequest
      *

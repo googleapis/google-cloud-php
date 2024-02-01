@@ -38,8 +38,7 @@ class CreateEntityRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                           $parent Required. The resource name of the parent zone:
-     *                                                 `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`. Please see
-     *                                                 {@see MetadataServiceClient::zoneName()} for help formatting this field.
+     *                                                 `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      * @param \Google\Cloud\Dataplex\V1\Entity $entity Required. Entity resource.
      *
      * @return \Google\Cloud\Dataplex\V1\CreateEntityRequest

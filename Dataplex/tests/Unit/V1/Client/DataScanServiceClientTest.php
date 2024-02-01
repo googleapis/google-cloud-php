@@ -31,7 +31,6 @@ use Google\Cloud\Dataplex\V1\Client\DataScanServiceClient;
 use Google\Cloud\Dataplex\V1\CreateDataScanRequest;
 use Google\Cloud\Dataplex\V1\DataScan;
 use Google\Cloud\Dataplex\V1\DataScanJob;
-use Google\Cloud\Dataplex\V1\DataSource;
 use Google\Cloud\Dataplex\V1\DeleteDataScanRequest;
 use Google\Cloud\Dataplex\V1\GetDataScanJobRequest;
 use Google\Cloud\Dataplex\V1\GetDataScanRequest;
@@ -54,7 +53,6 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -124,16 +122,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $dataScan = new DataScan();
-        $dataScanData = new DataSource();
-        $dataScan->setData($dataScanData);
-        $dataScanId = 'dataScanId1236798088';
-        $request = (new CreateDataScanRequest())
-            ->setParent($formattedParent)
-            ->setDataScan($dataScan)
-            ->setDataScanId($dataScanId);
+        $request = new CreateDataScanRequest();
         $response = $gapicClient->createDataScan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -144,12 +133,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataScanService/CreateDataScan', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getDataScan();
-        $this->assertProtobufEquals($dataScan, $actualValue);
-        $actualValue = $actualApiRequestObject->getDataScanId();
-        $this->assertProtobufEquals($dataScanId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDataScanTest');
         $response->pollUntilComplete([
@@ -200,16 +183,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $dataScan = new DataScan();
-        $dataScanData = new DataSource();
-        $dataScan->setData($dataScanData);
-        $dataScanId = 'dataScanId1236798088';
-        $request = (new CreateDataScanRequest())
-            ->setParent($formattedParent)
-            ->setDataScan($dataScan)
-            ->setDataScanId($dataScanId);
+        $request = new CreateDataScanRequest();
         $response = $gapicClient->createDataScan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -261,10 +235,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
-        $request = (new DeleteDataScanRequest())
-            ->setName($formattedName);
+        $request = new DeleteDataScanRequest();
         $response = $gapicClient->deleteDataScan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -275,8 +246,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataScanService/DeleteDataScan', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDataScanTest');
         $response->pollUntilComplete([
@@ -327,10 +296,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
-        $request = (new DeleteDataScanRequest())
-            ->setName($formattedName);
+        $request = new DeleteDataScanRequest();
         $response = $gapicClient->deleteDataScan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -372,10 +338,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
-        $request = (new GetDataScanRequest())
-            ->setName($formattedName);
+        $request = new GetDataScanRequest();
         $response = $gapicClient->getDataScan($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -383,8 +346,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataScanService/GetDataScan', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -406,10 +367,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
-        $request = (new GetDataScanRequest())
-            ->setName($formattedName);
+        $request = new GetDataScanRequest();
         try {
             $gapicClient->getDataScan($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -440,10 +398,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setMessage($message);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dataScanJobName('[PROJECT]', '[LOCATION]', '[DATASCAN]', '[JOB]');
-        $request = (new GetDataScanJobRequest())
-            ->setName($formattedName);
+        $request = new GetDataScanJobRequest();
         $response = $gapicClient->getDataScanJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -451,8 +406,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataScanService/GetDataScanJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -474,10 +427,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dataScanJobName('[PROJECT]', '[LOCATION]', '[DATASCAN]', '[JOB]');
-        $request = (new GetDataScanJobRequest())
-            ->setName($formattedName);
+        $request = new GetDataScanJobRequest();
         try {
             $gapicClient->getDataScanJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -509,10 +459,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataScanJobs($dataScanJobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
-        $request = (new ListDataScanJobsRequest())
-            ->setParent($formattedParent);
+        $request = new ListDataScanJobsRequest();
         $response = $gapicClient->listDataScanJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -523,8 +470,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataScanService/ListDataScanJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -546,10 +491,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
-        $request = (new ListDataScanJobsRequest())
-            ->setParent($formattedParent);
+        $request = new ListDataScanJobsRequest();
         try {
             $gapicClient->listDataScanJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -581,10 +523,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataScans($dataScans);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDataScansRequest())
-            ->setParent($formattedParent);
+        $request = new ListDataScansRequest();
         $response = $gapicClient->listDataScans($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -595,8 +534,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataScanService/ListDataScans', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -618,10 +555,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDataScansRequest())
-            ->setParent($formattedParent);
+        $request = new ListDataScansRequest();
         try {
             $gapicClient->listDataScans($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -646,10 +580,7 @@ class DataScanServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RunDataScanResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
-        $request = (new RunDataScanRequest())
-            ->setName($formattedName);
+        $request = new RunDataScanRequest();
         $response = $gapicClient->runDataScan($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -657,8 +588,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataScanService/RunDataScan', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -680,10 +609,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dataScanName('[PROJECT]', '[LOCATION]', '[DATASCAN]');
-        $request = (new RunDataScanRequest())
-            ->setName($formattedName);
+        $request = new RunDataScanRequest();
         try {
             $gapicClient->runDataScan($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -734,14 +660,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $dataScan = new DataScan();
-        $dataScanData = new DataSource();
-        $dataScan->setData($dataScanData);
-        $updateMask = new FieldMask();
-        $request = (new UpdateDataScanRequest())
-            ->setDataScan($dataScan)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateDataScanRequest();
         $response = $gapicClient->updateDataScan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -752,10 +671,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataScanService/UpdateDataScan', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getDataScan();
-        $this->assertProtobufEquals($dataScan, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDataScanTest');
         $response->pollUntilComplete([
@@ -806,14 +721,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $dataScan = new DataScan();
-        $dataScanData = new DataSource();
-        $dataScan->setData($dataScanData);
-        $updateMask = new FieldMask();
-        $request = (new UpdateDataScanRequest())
-            ->setDataScan($dataScan)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateDataScanRequest();
         $response = $gapicClient->updateDataScan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -851,10 +759,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -862,8 +767,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -885,10 +788,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -917,12 +817,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -930,10 +825,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -955,12 +846,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -985,12 +871,7 @@ class DataScanServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -998,10 +879,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1023,12 +900,7 @@ class DataScanServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1203,16 +1075,7 @@ class DataScanServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $dataScan = new DataScan();
-        $dataScanData = new DataSource();
-        $dataScan->setData($dataScanData);
-        $dataScanId = 'dataScanId1236798088';
-        $request = (new CreateDataScanRequest())
-            ->setParent($formattedParent)
-            ->setDataScan($dataScan)
-            ->setDataScanId($dataScanId);
+        $request = new CreateDataScanRequest();
         $response = $gapicClient->createDataScanAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1223,12 +1086,6 @@ class DataScanServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.DataScanService/CreateDataScan', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getDataScan();
-        $this->assertProtobufEquals($dataScan, $actualValue);
-        $actualValue = $actualApiRequestObject->getDataScanId();
-        $this->assertProtobufEquals($dataScanId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDataScanTest');
         $response->pollUntilComplete([

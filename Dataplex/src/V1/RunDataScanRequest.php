@@ -32,8 +32,7 @@ class RunDataScanRequest extends \Google\Protobuf\Internal\Message
      *                     where `project` refers to a *project_id* or *project_number* and
      *                     `location_id` refers to a GCP region.
      *
-     *                     Only **OnDemand** data scans are allowed. Please see
-     *                     {@see DataScanServiceClient::dataScanName()} for help formatting this field.
+     *                     Only **OnDemand** data scans are allowed.
      *
      * @return \Google\Cloud\Dataplex\V1\RunDataScanRequest
      *

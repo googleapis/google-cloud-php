@@ -25,8 +25,7 @@ class CancelJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the job:
-     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/task/{task_id}/job/{job_id}`. Please see
-     *                     {@see DataplexServiceClient::jobName()} for help formatting this field.
+     *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/task/{task_id}/job/{job_id}`.
      *
      * @return \Google\Cloud\Dataplex\V1\CancelJobRequest
      *

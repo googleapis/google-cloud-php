@@ -26,32 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Asset;
-use Google\Cloud\Dataplex\V1\Asset\ResourceSpec;
-use Google\Cloud\Dataplex\V1\Asset\ResourceSpec\Type;
 use Google\Cloud\Dataplex\V1\Client\DataplexServiceClient;
 use Google\Cloud\Dataplex\V1\UpdateAssetRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates an asset resource.
  *
- * @param int $assetResourceSpecType Immutable. Type of resource.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_asset_sample(int $assetResourceSpecType): void
+function update_asset_sample(): void
 {
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $assetResourceSpec = (new ResourceSpec())
-        ->setType($assetResourceSpecType);
-    $asset = (new Asset())
-        ->setResourceSpec($assetResourceSpec);
-    $request = (new UpdateAssetRequest())
-        ->setUpdateMask($updateMask)
-        ->setAsset($asset);
+    $request = new UpdateAssetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,21 +65,5 @@ function update_asset_sample(int $assetResourceSpecType): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $assetResourceSpecType = Type::TYPE_UNSPECIFIED;
-
-    update_asset_sample($assetResourceSpecType);
 }
 // [END dataplex_v1_generated_DataplexService_UpdateAsset_sync]

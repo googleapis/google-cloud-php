@@ -33,28 +33,19 @@ use Google\Rpc\Status;
 /**
  * Create a DataTaxonomy resource.
  *
- * @param string $formattedParent The resource name of the data taxonomy location, of the form:
- *                                projects/{project_number}/locations/{location_id}
- *                                where `location_id` refers to a GCP region. Please see
- *                                {@see DataTaxonomyServiceClient::locationName()} for help formatting this field.
- * @param string $dataTaxonomyId  DataTaxonomy identifier.
- *                                * Must contain only lowercase letters, numbers and hyphens.
- *                                * Must start with a letter.
- *                                * Must be between 1-63 characters.
- *                                * Must end with a number or a letter.
- *                                * Must be unique within the Project.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_data_taxonomy_sample(string $formattedParent, string $dataTaxonomyId): void
+function create_data_taxonomy_sample(): void
 {
     // Create a client.
     $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
 
     // Prepare the request message.
-    $dataTaxonomy = new DataTaxonomy();
-    $request = (new CreateDataTaxonomyRequest())
-        ->setParent($formattedParent)
-        ->setDataTaxonomyId($dataTaxonomyId)
-        ->setDataTaxonomy($dataTaxonomy);
+    $request = new CreateDataTaxonomyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,22 +65,5 @@ function create_data_taxonomy_sample(string $formattedParent, string $dataTaxono
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataTaxonomyServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $dataTaxonomyId = '[DATA_TAXONOMY_ID]';
-
-    create_data_taxonomy_sample($formattedParent, $dataTaxonomyId);
 }
 // [END dataplex_v1_generated_DataTaxonomyService_CreateDataTaxonomy_sync]

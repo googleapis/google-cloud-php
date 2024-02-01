@@ -28,25 +28,23 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dataplex\V1\Client\MetadataServiceClient;
 use Google\Cloud\Dataplex\V1\Entity;
 use Google\Cloud\Dataplex\V1\ListEntitiesRequest;
-use Google\Cloud\Dataplex\V1\ListEntitiesRequest\EntityView;
 
 /**
  * List metadata entities in a zone.
  *
- * @param string $formattedParent The resource name of the parent zone:
- *                                `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`. Please see
- *                                {@see MetadataServiceClient::zoneName()} for help formatting this field.
- * @param int    $view            Specify the entity view to make a partial list request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_entities_sample(string $formattedParent, int $view): void
+function list_entities_sample(): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = (new ListEntitiesRequest())
-        ->setParent($formattedParent)
-        ->setView($view);
+    $request = new ListEntitiesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,22 +58,5 @@ function list_entities_sample(string $formattedParent, int $view): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MetadataServiceClient::zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-    $view = EntityView::ENTITY_VIEW_UNSPECIFIED;
-
-    list_entities_sample($formattedParent, $view);
 }
 // [END dataplex_v1_generated_MetadataService_ListEntities_sync]

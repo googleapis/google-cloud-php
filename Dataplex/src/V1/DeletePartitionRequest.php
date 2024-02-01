@@ -38,8 +38,7 @@ class DeletePartitionRequest extends \Google\Protobuf\Internal\Message
      *                     format:
      *                     `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}/partitions/{partition_value_path}`.
      *                     The {partition_value_path} segment consists of an ordered sequence of
-     *                     partition values separated by "/". All values must be provided. Please see
-     *                     {@see MetadataServiceClient::partitionName()} for help formatting this field.
+     *                     partition values separated by "/". All values must be provided.
      *
      * @return \Google\Cloud\Dataplex\V1\DeletePartitionRequest
      *

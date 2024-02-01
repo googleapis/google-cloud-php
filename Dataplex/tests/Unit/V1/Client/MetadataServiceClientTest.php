@@ -32,18 +32,13 @@ use Google\Cloud\Dataplex\V1\CreatePartitionRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntityRequest;
 use Google\Cloud\Dataplex\V1\DeletePartitionRequest;
 use Google\Cloud\Dataplex\V1\Entity;
-use Google\Cloud\Dataplex\V1\Entity\Type;
 use Google\Cloud\Dataplex\V1\GetEntityRequest;
 use Google\Cloud\Dataplex\V1\GetPartitionRequest;
 use Google\Cloud\Dataplex\V1\ListEntitiesRequest;
-use Google\Cloud\Dataplex\V1\ListEntitiesRequest\EntityView;
 use Google\Cloud\Dataplex\V1\ListEntitiesResponse;
 use Google\Cloud\Dataplex\V1\ListPartitionsRequest;
 use Google\Cloud\Dataplex\V1\ListPartitionsResponse;
 use Google\Cloud\Dataplex\V1\Partition;
-use Google\Cloud\Dataplex\V1\Schema;
-use Google\Cloud\Dataplex\V1\StorageFormat;
-use Google\Cloud\Dataplex\V1\StorageSystem;
 use Google\Cloud\Dataplex\V1\UpdateEntityRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -117,30 +112,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogEntry($catalogEntry);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $entity = new Entity();
-        $entityId = 'entityId-2102099874';
-        $entity->setId($entityId);
-        $entityType = Type::TYPE_UNSPECIFIED;
-        $entity->setType($entityType);
-        $entityAsset = 'entityAsset1253969101';
-        $entity->setAsset($entityAsset);
-        $entityDataPath = 'entityDataPath1530173426';
-        $entity->setDataPath($entityDataPath);
-        $entitySystem = StorageSystem::STORAGE_SYSTEM_UNSPECIFIED;
-        $entity->setSystem($entitySystem);
-        $entityFormat = new StorageFormat();
-        $formatMimeType = 'formatMimeType-1419746651';
-        $entityFormat->setMimeType($formatMimeType);
-        $entity->setFormat($entityFormat);
-        $entitySchema = new Schema();
-        $schemaUserManaged = false;
-        $entitySchema->setUserManaged($schemaUserManaged);
-        $entity->setSchema($entitySchema);
-        $request = (new CreateEntityRequest())
-            ->setParent($formattedParent)
-            ->setEntity($entity);
+        $request = new CreateEntityRequest();
         $response = $gapicClient->createEntity($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -148,10 +120,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/CreateEntity', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEntity();
-        $this->assertProtobufEquals($entity, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -173,30 +141,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $entity = new Entity();
-        $entityId = 'entityId-2102099874';
-        $entity->setId($entityId);
-        $entityType = Type::TYPE_UNSPECIFIED;
-        $entity->setType($entityType);
-        $entityAsset = 'entityAsset1253969101';
-        $entity->setAsset($entityAsset);
-        $entityDataPath = 'entityDataPath1530173426';
-        $entity->setDataPath($entityDataPath);
-        $entitySystem = StorageSystem::STORAGE_SYSTEM_UNSPECIFIED;
-        $entity->setSystem($entitySystem);
-        $entityFormat = new StorageFormat();
-        $formatMimeType = 'formatMimeType-1419746651';
-        $entityFormat->setMimeType($formatMimeType);
-        $entity->setFormat($entityFormat);
-        $entitySchema = new Schema();
-        $schemaUserManaged = false;
-        $entitySchema->setUserManaged($schemaUserManaged);
-        $entity->setSchema($entitySchema);
-        $request = (new CreateEntityRequest())
-            ->setParent($formattedParent)
-            ->setEntity($entity);
+        $request = new CreateEntityRequest();
         try {
             $gapicClient->createEntity($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -227,16 +172,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setLocation($location);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $partition = new Partition();
-        $partitionValues = [];
-        $partition->setValues($partitionValues);
-        $partitionLocation = 'partitionLocation-1757508417';
-        $partition->setLocation($partitionLocation);
-        $request = (new CreatePartitionRequest())
-            ->setParent($formattedParent)
-            ->setPartition($partition);
+        $request = new CreatePartitionRequest();
         $response = $gapicClient->createPartition($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -244,10 +180,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/CreatePartition', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPartition();
-        $this->assertProtobufEquals($partition, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -269,16 +201,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $partition = new Partition();
-        $partitionValues = [];
-        $partition->setValues($partitionValues);
-        $partitionLocation = 'partitionLocation-1757508417';
-        $partition->setLocation($partitionLocation);
-        $request = (new CreatePartitionRequest())
-            ->setParent($formattedParent)
-            ->setPartition($partition);
+        $request = new CreatePartitionRequest();
         try {
             $gapicClient->createPartition($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -303,22 +226,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $etag = 'etag3123477';
-        $request = (new DeleteEntityRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = new DeleteEntityRequest();
         $gapicClient->deleteEntity($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/DeleteEntity', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getEtag();
-        $this->assertProtobufEquals($etag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -340,12 +254,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $etag = 'etag3123477';
-        $request = (new DeleteEntityRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = new DeleteEntityRequest();
         try {
             $gapicClient->deleteEntity($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -370,18 +279,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
-        $request = (new DeletePartitionRequest())
-            ->setName($formattedName);
+        $request = new DeletePartitionRequest();
         $gapicClient->deletePartition($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/DeletePartition', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -403,10 +307,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
-        $request = (new DeletePartitionRequest())
-            ->setName($formattedName);
+        $request = new DeletePartitionRequest();
         try {
             $gapicClient->deletePartition($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -451,10 +352,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogEntry($catalogEntry);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $request = (new GetEntityRequest())
-            ->setName($formattedName);
+        $request = new GetEntityRequest();
         $response = $gapicClient->getEntity($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -462,8 +360,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/GetEntity', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -485,10 +381,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $request = (new GetEntityRequest())
-            ->setName($formattedName);
+        $request = new GetEntityRequest();
         try {
             $gapicClient->getEntity($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -519,10 +412,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setLocation($location);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
-        $request = (new GetPartitionRequest())
-            ->setName($formattedName);
+        $request = new GetPartitionRequest();
         $response = $gapicClient->getPartition($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -530,8 +420,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/GetPartition', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -553,10 +441,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
-        $request = (new GetPartitionRequest())
-            ->setName($formattedName);
+        $request = new GetPartitionRequest();
         try {
             $gapicClient->getPartition($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -588,12 +473,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntities($entities);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $view = EntityView::ENTITY_VIEW_UNSPECIFIED;
-        $request = (new ListEntitiesRequest())
-            ->setParent($formattedParent)
-            ->setView($view);
+        $request = new ListEntitiesRequest();
         $response = $gapicClient->listEntities($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -604,10 +484,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/ListEntities', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getView();
-        $this->assertProtobufEquals($view, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -629,12 +505,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $view = EntityView::ENTITY_VIEW_UNSPECIFIED;
-        $request = (new ListEntitiesRequest())
-            ->setParent($formattedParent)
-            ->setView($view);
+        $request = new ListEntitiesRequest();
         try {
             $gapicClient->listEntities($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -666,10 +537,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPartitions($partitions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $request = (new ListPartitionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPartitionsRequest();
         $response = $gapicClient->listPartitions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -680,8 +548,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/ListPartitions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -703,10 +569,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $request = (new ListPartitionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPartitionsRequest();
         try {
             $gapicClient->listPartitions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -751,28 +614,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogEntry($catalogEntry);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $entity = new Entity();
-        $entityId = 'entityId-2102099874';
-        $entity->setId($entityId);
-        $entityType = Type::TYPE_UNSPECIFIED;
-        $entity->setType($entityType);
-        $entityAsset = 'entityAsset1253969101';
-        $entity->setAsset($entityAsset);
-        $entityDataPath = 'entityDataPath1530173426';
-        $entity->setDataPath($entityDataPath);
-        $entitySystem = StorageSystem::STORAGE_SYSTEM_UNSPECIFIED;
-        $entity->setSystem($entitySystem);
-        $entityFormat = new StorageFormat();
-        $formatMimeType = 'formatMimeType-1419746651';
-        $entityFormat->setMimeType($formatMimeType);
-        $entity->setFormat($entityFormat);
-        $entitySchema = new Schema();
-        $schemaUserManaged = false;
-        $entitySchema->setUserManaged($schemaUserManaged);
-        $entity->setSchema($entitySchema);
-        $request = (new UpdateEntityRequest())
-            ->setEntity($entity);
+        $request = new UpdateEntityRequest();
         $response = $gapicClient->updateEntity($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -780,8 +622,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/UpdateEntity', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEntity();
-        $this->assertProtobufEquals($entity, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -803,28 +643,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $entity = new Entity();
-        $entityId = 'entityId-2102099874';
-        $entity->setId($entityId);
-        $entityType = Type::TYPE_UNSPECIFIED;
-        $entity->setType($entityType);
-        $entityAsset = 'entityAsset1253969101';
-        $entity->setAsset($entityAsset);
-        $entityDataPath = 'entityDataPath1530173426';
-        $entity->setDataPath($entityDataPath);
-        $entitySystem = StorageSystem::STORAGE_SYSTEM_UNSPECIFIED;
-        $entity->setSystem($entitySystem);
-        $entityFormat = new StorageFormat();
-        $formatMimeType = 'formatMimeType-1419746651';
-        $entityFormat->setMimeType($formatMimeType);
-        $entity->setFormat($entityFormat);
-        $entitySchema = new Schema();
-        $schemaUserManaged = false;
-        $entitySchema->setUserManaged($schemaUserManaged);
-        $entity->setSchema($entitySchema);
-        $request = (new UpdateEntityRequest())
-            ->setEntity($entity);
+        $request = new UpdateEntityRequest();
         try {
             $gapicClient->updateEntity($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -853,10 +672,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -864,8 +680,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -887,10 +701,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -919,12 +730,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -932,10 +738,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -957,12 +759,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -987,12 +784,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1000,10 +792,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1025,12 +813,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1199,30 +982,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogEntry($catalogEntry);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $entity = new Entity();
-        $entityId = 'entityId-2102099874';
-        $entity->setId($entityId);
-        $entityType = Type::TYPE_UNSPECIFIED;
-        $entity->setType($entityType);
-        $entityAsset = 'entityAsset1253969101';
-        $entity->setAsset($entityAsset);
-        $entityDataPath = 'entityDataPath1530173426';
-        $entity->setDataPath($entityDataPath);
-        $entitySystem = StorageSystem::STORAGE_SYSTEM_UNSPECIFIED;
-        $entity->setSystem($entitySystem);
-        $entityFormat = new StorageFormat();
-        $formatMimeType = 'formatMimeType-1419746651';
-        $entityFormat->setMimeType($formatMimeType);
-        $entity->setFormat($entityFormat);
-        $entitySchema = new Schema();
-        $schemaUserManaged = false;
-        $entitySchema->setUserManaged($schemaUserManaged);
-        $entity->setSchema($entitySchema);
-        $request = (new CreateEntityRequest())
-            ->setParent($formattedParent)
-            ->setEntity($entity);
+        $request = new CreateEntityRequest();
         $response = $gapicClient->createEntityAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1230,10 +990,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.MetadataService/CreateEntity', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEntity();
-        $this->assertProtobufEquals($entity, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

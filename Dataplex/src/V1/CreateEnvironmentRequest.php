@@ -49,8 +49,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                $parent        Required. The resource name of the parent lake:
-     *                                                             `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`. Please see
-     *                                                             {@see DataplexServiceClient::lakeName()} for help formatting this field.
+     *                                                             `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      * @param \Google\Cloud\Dataplex\V1\Environment $environment   Required. Environment resource.
      * @param string                                $environmentId Required. Environment identifier.
      *                                                             * Must contain only lowercase letters, numbers and hyphens.

@@ -59,8 +59,7 @@ class ListDataScansRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The resource name of the parent location:
      *                       `projects/{project}/locations/{location_id}`
      *                       where `project` refers to a *project_id* or *project_number* and
-     *                       `location_id` refers to a GCP region. Please see
-     *                       {@see DataScanServiceClient::locationName()} for help formatting this field.
+     *                       `location_id` refers to a GCP region.
      *
      * @return \Google\Cloud\Dataplex\V1\ListDataScansRequest
      *

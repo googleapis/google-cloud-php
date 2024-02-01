@@ -137,9 +137,6 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{content.name=projects/*/locations/*/lakes/*/content/**}',
                         'body' => 'content',
-                        'queryParams' => [
-                            'update_mask',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -149,9 +146,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

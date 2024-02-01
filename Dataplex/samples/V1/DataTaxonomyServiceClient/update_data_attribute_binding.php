@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataplex\V1\Client\DataTaxonomyServiceClient;
 use Google\Cloud\Dataplex\V1\DataAttributeBinding;
 use Google\Cloud\Dataplex\V1\UpdateDataAttributeBindingRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_data_attribute_binding_sample(): void
     $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $dataAttributeBinding = new DataAttributeBinding();
-    $request = (new UpdateDataAttributeBindingRequest())
-        ->setUpdateMask($updateMask)
-        ->setDataAttributeBinding($dataAttributeBinding);
+    $request = new UpdateDataAttributeBindingRequest();
 
     // Call the API and handle any network failures.
     try {

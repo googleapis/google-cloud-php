@@ -32,18 +32,19 @@ use Google\Cloud\Dataplex\V1\ListEnvironmentsRequest;
 /**
  * Lists environments under the given lake.
  *
- * @param string $formattedParent The resource name of the parent lake:
- *                                `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`. Please see
- *                                {@see DataplexServiceClient::lakeName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_environments_sample(string $formattedParent): void
+function list_environments_sample(): void
 {
     // Create a client.
     $dataplexServiceClient = new DataplexServiceClient();
 
     // Prepare the request message.
-    $request = (new ListEnvironmentsRequest())
-        ->setParent($formattedParent);
+    $request = new ListEnvironmentsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_environments_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataplexServiceClient::lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-
-    list_environments_sample($formattedParent);
 }
 // [END dataplex_v1_generated_DataplexService_ListEnvironments_sync]

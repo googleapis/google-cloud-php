@@ -32,18 +32,19 @@ use Google\Cloud\Dataplex\V1\ListDataAttributesRequest;
 /**
  * Lists Data Attribute resources in a DataTaxonomy.
  *
- * @param string $formattedParent The resource name of the DataTaxonomy:
- *                                projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
- *                                Please see {@see DataTaxonomyServiceClient::dataTaxonomyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_data_attributes_sample(string $formattedParent): void
+function list_data_attributes_sample(): void
 {
     // Create a client.
     $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
 
     // Prepare the request message.
-    $request = (new ListDataAttributesRequest())
-        ->setParent($formattedParent);
+    $request = new ListDataAttributesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,25 +58,5 @@ function list_data_attributes_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataTaxonomyServiceClient::dataTaxonomyName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_TAXONOMY_ID]'
-    );
-
-    list_data_attributes_sample($formattedParent);
 }
 // [END dataplex_v1_generated_DataTaxonomyService_ListDataAttributes_sync]

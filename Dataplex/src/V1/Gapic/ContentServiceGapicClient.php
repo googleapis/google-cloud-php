@@ -63,9 +63,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $contentServiceClient = new ContentServiceClient();
  * try {
- *     $formattedParent = $contentServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
- *     $content = new Content();
- *     $response = $contentServiceClient->createContent($formattedParent, $content);
+ *     $response = $contentServiceClient->createContent();
  * } finally {
  *     $contentServiceClient->close();
  * }
@@ -324,20 +322,20 @@ class ContentServiceGapicClient
      * ```
      * $contentServiceClient = new ContentServiceClient();
      * try {
-     *     $formattedParent = $contentServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-     *     $content = new Content();
-     *     $response = $contentServiceClient->createContent($formattedParent, $content);
+     *     $response = $contentServiceClient->createContent();
      * } finally {
      *     $contentServiceClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. The resource name of the parent lake:
-     *                              projects/{project_id}/locations/{location_id}/lakes/{lake_id}
-     * @param Content $content      Required. Content resource.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent lake:
+     *           projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     *     @type Content $content
+     *           Required. Content resource.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -351,13 +349,19 @@ class ContentServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createContent($parent, $content, array $optionalArgs = [])
+    public function createContent(array $optionalArgs = [])
     {
         $request = new CreateContentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setContent($content);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['content'])) {
+            $request->setContent($optionalArgs['content']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -383,18 +387,18 @@ class ContentServiceGapicClient
      * ```
      * $contentServiceClient = new ContentServiceClient();
      * try {
-     *     $formattedName = $contentServiceClient->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
-     *     $contentServiceClient->deleteContent($formattedName);
+     *     $contentServiceClient->deleteContent();
      * } finally {
      *     $contentServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the content:
-     *                             projects/{project_id}/locations/{location_id}/lakes/{lake_id}/content/{content_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the content:
+     *           projects/{project_id}/locations/{location_id}/lakes/{lake_id}/content/{content_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -403,12 +407,15 @@ class ContentServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteContent($name, array $optionalArgs = [])
+    public function deleteContent(array $optionalArgs = [])
     {
         $request = new DeleteContentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -430,18 +437,18 @@ class ContentServiceGapicClient
      * ```
      * $contentServiceClient = new ContentServiceClient();
      * try {
-     *     $formattedName = $contentServiceClient->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
-     *     $response = $contentServiceClient->getContent($formattedName);
+     *     $response = $contentServiceClient->getContent();
      * } finally {
      *     $contentServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the content:
-     *                             projects/{project_id}/locations/{location_id}/lakes/{lake_id}/content/{content_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the content:
+     *           projects/{project_id}/locations/{location_id}/lakes/{lake_id}/content/{content_id}
      *     @type int $view
      *           Optional. Specify content view to make a partial request.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Dataplex\V1\GetContentRequest\ContentView}
@@ -455,12 +462,15 @@ class ContentServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getContent($name, array $optionalArgs = [])
+    public function getContent(array $optionalArgs = [])
     {
         $request = new GetContentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -491,18 +501,18 @@ class ContentServiceGapicClient
      * ```
      * $contentServiceClient = new ContentServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $contentServiceClient->getIamPolicy($resource);
+     *     $response = $contentServiceClient->getIamPolicy();
      * } finally {
      *     $contentServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -516,12 +526,15 @@ class ContentServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -547,9 +560,8 @@ class ContentServiceGapicClient
      * ```
      * $contentServiceClient = new ContentServiceClient();
      * try {
-     *     $formattedParent = $contentServiceClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $contentServiceClient->listContent($formattedParent);
+     *     $pagedResponse = $contentServiceClient->listContent();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -557,7 +569,7 @@ class ContentServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $contentServiceClient->listContent($formattedParent);
+     *     $pagedResponse = $contentServiceClient->listContent();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -566,11 +578,12 @@ class ContentServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent lake:
-     *                             projects/{project_id}/locations/{location_id}/lakes/{lake_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent lake:
+     *           projects/{project_id}/locations/{location_id}/lakes/{lake_id}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -600,12 +613,15 @@ class ContentServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listContent($parent, array $optionalArgs = [])
+    public function listContent(array $optionalArgs = [])
     {
         $request = new ListContentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -643,23 +659,23 @@ class ContentServiceGapicClient
      * ```
      * $contentServiceClient = new ContentServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $contentServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $contentServiceClient->setIamPolicy();
      * } finally {
      *     $contentServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -676,13 +692,19 @@ class ContentServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -717,23 +739,23 @@ class ContentServiceGapicClient
      * ```
      * $contentServiceClient = new ContentServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $contentServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $contentServiceClient->testIamPermissions();
      * } finally {
      *     $contentServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -744,16 +766,19 @@ class ContentServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -775,20 +800,20 @@ class ContentServiceGapicClient
      * ```
      * $contentServiceClient = new ContentServiceClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $content = new Content();
-     *     $response = $contentServiceClient->updateContent($updateMask, $content);
+     *     $response = $contentServiceClient->updateContent();
      * } finally {
      *     $contentServiceClient->close();
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Mask of fields to update.
-     * @param Content   $content      Required. Update description.
-     *                                Only fields specified in `update_mask` are updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update.
+     *     @type Content $content
+     *           Required. Update description.
+     *           Only fields specified in `update_mask` are updated.
      *     @type bool $validateOnly
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
@@ -802,16 +827,18 @@ class ContentServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateContent(
-        $updateMask,
-        $content,
-        array $optionalArgs = []
-    ) {
+    public function updateContent(array $optionalArgs = [])
+    {
         $request = new UpdateContentRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setContent($content);
-        $requestParamHeaders['content.name'] = $content->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['content'])) {
+            $request->setContent($optionalArgs['content']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }

@@ -33,18 +33,19 @@ use Google\Rpc\Status;
  * Deletes a DataTaxonomy resource. All attributes within the DataTaxonomy
  * must be deleted before the DataTaxonomy can be deleted.
  *
- * @param string $formattedName The resource name of the DataTaxonomy:
- *                              projects/{project_number}/locations/{location_id}/dataTaxonomies/{data_taxonomy_id}
- *                              Please see {@see DataTaxonomyServiceClient::dataTaxonomyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_data_taxonomy_sample(string $formattedName): void
+function delete_data_taxonomy_sample(): void
 {
     // Create a client.
     $dataTaxonomyServiceClient = new DataTaxonomyServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteDataTaxonomyRequest())
-        ->setName($formattedName);
+    $request = new DeleteDataTaxonomyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,25 +63,5 @@ function delete_data_taxonomy_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataTaxonomyServiceClient::dataTaxonomyName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_TAXONOMY_ID]'
-    );
-
-    delete_data_taxonomy_sample($formattedName);
 }
 // [END dataplex_v1_generated_DataTaxonomyService_DeleteDataTaxonomy_sync]
