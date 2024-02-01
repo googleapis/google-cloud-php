@@ -355,20 +355,13 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetProject($targetProject);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $instance = 'instance555127957';
-        $project = 'project-309310695';
-        $response = $gapicClient->demote($instance, $project);
+        $response = $gapicClient->demote();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.sql.v1beta4.SqlInstancesService/Demote', $actualFuncCall);
-        $actualValue = $actualRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -390,11 +383,8 @@ class SqlInstancesServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $instance = 'instance555127957';
-        $project = 'project-309310695';
         try {
-            $gapicClient->demote($instance, $project);
+            $gapicClient->demote();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
