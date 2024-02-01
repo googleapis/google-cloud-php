@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Retail\V2\Client\ProductServiceClient;
-use Google\Cloud\Retail\V2\Product;
 use Google\Cloud\Retail\V2\SetInventoryRequest;
 use Google\Cloud\Retail\V2\SetInventoryResponse;
 use Google\Rpc\Status;
@@ -82,25 +81,19 @@ use Google\Rpc\Status;
  * updates are not marked as [done][google.longrunning.Operation.done] until
  * they are obsolete.
  *
- * @param string $inventoryTitle Product title.
- *
- *                               This field must be a UTF-8 encoded string with a length limit of 1,000
- *                               characters. Otherwise, an INVALID_ARGUMENT error is returned.
- *
- *                               Corresponding properties: Google Merchant Center property
- *                               [title](https://support.google.com/merchants/answer/6324415). Schema.org
- *                               property [Product.name](https://schema.org/name).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_inventory_sample(string $inventoryTitle): void
+function set_inventory_sample(): void
 {
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
     // Prepare the request message.
-    $inventory = (new Product())
-        ->setTitle($inventoryTitle);
-    $request = (new SetInventoryRequest())
-        ->setInventory($inventory);
+    $request = new SetInventoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -120,21 +113,5 @@ function set_inventory_sample(string $inventoryTitle): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $inventoryTitle = '[TITLE]';
-
-    set_inventory_sample($inventoryTitle);
 }
 // [END retail_v2_generated_ProductService_SetInventory_sync]

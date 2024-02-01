@@ -48,10 +48,8 @@ use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
  * ```
  * $predictionServiceClient = new PredictionServiceClient();
  * try {
- *     $formattedName = $predictionServiceClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
- *     $userEvent = new UserEvent();
  *     // Iterate over pages of elements
- *     $pagedResponse = $predictionServiceClient->predict($formattedName, $userEvent);
+ *     $pagedResponse = $predictionServiceClient->predict();
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -59,7 +57,7 @@ use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
  *     }
  *     // Alternatively:
  *     // Iterate through all elements
- *     $pagedResponse = $predictionServiceClient->predict($formattedName, $userEvent);
+ *     $pagedResponse = $predictionServiceClient->predict();
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -288,10 +286,8 @@ class PredictionServiceGapicClient
      * ```
      * $predictionServiceClient = new PredictionServiceClient();
      * try {
-     *     $formattedName = $predictionServiceClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
-     *     $userEvent = new UserEvent();
      *     // Iterate over pages of elements
-     *     $pagedResponse = $predictionServiceClient->predict($formattedName, $userEvent);
+     *     $pagedResponse = $predictionServiceClient->predict();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -299,7 +295,7 @@ class PredictionServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $predictionServiceClient->predict($formattedName, $userEvent);
+     *     $pagedResponse = $predictionServiceClient->predict();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -308,42 +304,44 @@ class PredictionServiceGapicClient
      * }
      * ```
      *
-     * @param string    $name         Required. Full resource name of the format:
-     *                                `{name=projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/*}`
-     *                                The id of the recommendation engine placement. This id is used to identify
-     *                                the set of models that will be used to make the prediction.
-     *
-     *                                We currently support three placements with the following IDs by default:
-     *
-     *                                * `shopping_cart`: Predicts items frequently bought together with one or
-     *                                more catalog items in the same shopping session. Commonly displayed after
-     *                                `add-to-cart` events, on product detail pages, or on the shopping cart
-     *                                page.
-     *
-     *                                * `home_page`: Predicts the next product that a user will most likely
-     *                                engage with or purchase based on the shopping or viewing history of the
-     *                                specified `userId` or `visitorId`. For example - Recommendations for you.
-     *
-     *                                * `product_detail`: Predicts the next product that a user will most likely
-     *                                engage with or purchase. The prediction is based on the shopping or
-     *                                viewing history of the specified `userId` or `visitorId` and its
-     *                                relevance to a specified `CatalogItem`. Typically used on product detail
-     *                                pages. For example - More items like this.
-     *
-     *                                * `recently_viewed_default`: Returns up to 75 items recently viewed by the
-     *                                specified `userId` or `visitorId`, most recent ones first. Returns
-     *                                nothing if neither of them has viewed any items yet. For example -
-     *                                Recently viewed.
-     *
-     *                                The full list of available placements can be seen at
-     *                                https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
-     * @param UserEvent $userEvent    Required. Context about the user, what they are looking at and what action
-     *                                they took to trigger the predict request. Note that this user event detail
-     *                                won't be ingested to userEvent logs. Thus, a separate userEvent write
-     *                                request is required for event logging.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Full resource name of the format:
+     *           `{name=projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/*}`
+     *           The id of the recommendation engine placement. This id is used to identify
+     *           the set of models that will be used to make the prediction.
+     *
+     *           We currently support three placements with the following IDs by default:
+     *
+     *           * `shopping_cart`: Predicts items frequently bought together with one or
+     *           more catalog items in the same shopping session. Commonly displayed after
+     *           `add-to-cart` events, on product detail pages, or on the shopping cart
+     *           page.
+     *
+     *           * `home_page`: Predicts the next product that a user will most likely
+     *           engage with or purchase based on the shopping or viewing history of the
+     *           specified `userId` or `visitorId`. For example - Recommendations for you.
+     *
+     *           * `product_detail`: Predicts the next product that a user will most likely
+     *           engage with or purchase. The prediction is based on the shopping or
+     *           viewing history of the specified `userId` or `visitorId` and its
+     *           relevance to a specified `CatalogItem`. Typically used on product detail
+     *           pages. For example - More items like this.
+     *
+     *           * `recently_viewed_default`: Returns up to 75 items recently viewed by the
+     *           specified `userId` or `visitorId`, most recent ones first. Returns
+     *           nothing if neither of them has viewed any items yet. For example -
+     *           Recently viewed.
+     *
+     *           The full list of available placements can be seen at
+     *           https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
+     *     @type UserEvent $userEvent
+     *           Required. Context about the user, what they are looking at and what action
+     *           they took to trigger the predict request. Note that this user event detail
+     *           won't be ingested to userEvent logs. Thus, a separate userEvent write
+     *           request is required for event logging.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -413,13 +411,19 @@ class PredictionServiceGapicClient
      *
      * @experimental
      */
-    public function predict($name, $userEvent, array $optionalArgs = [])
+    public function predict(array $optionalArgs = [])
     {
         $request = new PredictRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setUserEvent($userEvent);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['userEvent'])) {
+            $request->setUserEvent($optionalArgs['userEvent']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

@@ -25,9 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_CompletionService_ImportCompletionData_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Retail\V2\BigQuerySource;
 use Google\Cloud\Retail\V2\Client\CompletionServiceClient;
-use Google\Cloud\Retail\V2\CompletionDataInputConfig;
 use Google\Cloud\Retail\V2\ImportCompletionDataRequest;
 use Google\Cloud\Retail\V2\ImportCompletionDataResponse;
 use Google\Rpc\Status;
@@ -43,32 +41,19 @@ use Google\Rpc\Status;
  * This feature is only available for users who have Retail Search enabled.
  * Enable Retail Search on Cloud Console before using this feature.
  *
- * @param string $formattedParent                    The catalog which the suggestions dataset belongs to.
- *
- *                                                   Format: `projects/1234/locations/global/catalogs/default_catalog`. Please see
- *                                                   {@see CompletionServiceClient::catalogName()} for help formatting this field.
- * @param string $inputConfigBigQuerySourceDatasetId The BigQuery data set to copy the data from with a length limit
- *                                                   of 1,024 characters.
- * @param string $inputConfigBigQuerySourceTableId   The BigQuery table to copy the data from with a length limit of
- *                                                   1,024 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_completion_data_sample(
-    string $formattedParent,
-    string $inputConfigBigQuerySourceDatasetId,
-    string $inputConfigBigQuerySourceTableId
-): void {
+function import_completion_data_sample(): void
+{
     // Create a client.
     $completionServiceClient = new CompletionServiceClient();
 
     // Prepare the request message.
-    $inputConfigBigQuerySource = (new BigQuerySource())
-        ->setDatasetId($inputConfigBigQuerySourceDatasetId)
-        ->setTableId($inputConfigBigQuerySourceTableId);
-    $inputConfig = (new CompletionDataInputConfig())
-        ->setBigQuerySource($inputConfigBigQuerySource);
-    $request = (new ImportCompletionDataRequest())
-        ->setParent($formattedParent)
-        ->setInputConfig($inputConfig);
+    $request = new ImportCompletionDataRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -88,27 +73,5 @@ function import_completion_data_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CompletionServiceClient::catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-    $inputConfigBigQuerySourceDatasetId = '[DATASET_ID]';
-    $inputConfigBigQuerySourceTableId = '[TABLE_ID]';
-
-    import_completion_data_sample(
-        $formattedParent,
-        $inputConfigBigQuerySourceDatasetId,
-        $inputConfigBigQuerySourceTableId
-    );
 }
 // [END retail_v2_generated_CompletionService_ImportCompletionData_sync]

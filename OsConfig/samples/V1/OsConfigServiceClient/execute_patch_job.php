@@ -26,25 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\OsConfig\V1\Client\OsConfigServiceClient;
 use Google\Cloud\OsConfig\V1\ExecutePatchJobRequest;
-use Google\Cloud\OsConfig\V1\PatchInstanceFilter;
 use Google\Cloud\OsConfig\V1\PatchJob;
 
 /**
  * Patch VM instances by creating and running a patch job.
  *
- * @param string $formattedParent The project in which to run this patch in the form `projects/*`
- *                                Please see {@see OsConfigServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function execute_patch_job_sample(string $formattedParent): void
+function execute_patch_job_sample(): void
 {
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
     // Prepare the request message.
-    $instanceFilter = new PatchInstanceFilter();
-    $request = (new ExecutePatchJobRequest())
-        ->setParent($formattedParent)
-        ->setInstanceFilter($instanceFilter);
+    $request = new ExecutePatchJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function execute_patch_job_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = OsConfigServiceClient::projectName('[PROJECT]');
-
-    execute_patch_job_sample($formattedParent);
 }
 // [END osconfig_v1_generated_OsConfigService_ExecutePatchJob_sync]

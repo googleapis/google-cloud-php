@@ -32,25 +32,19 @@ use Google\Cloud\PolicySimulator\V1\Replay;
  * Gets the specified [Replay][google.cloud.policysimulator.v1.Replay]. Each
  * `Replay` is available for at least 7 days.
  *
- * @param string $formattedName The name of the [Replay][google.cloud.policysimulator.v1.Replay]
- *                              to retrieve, in the following format:
- *
- *                              `{projects|folders|organizations}/{resource-id}/locations/global/replays/{replay-id}`,
- *                              where `{resource-id}` is the ID of the project, folder, or organization
- *                              that owns the `Replay`.
- *
- *                              Example:
- *                              `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
- *                              Please see {@see SimulatorClient::replayName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_replay_sample(string $formattedName): void
+function get_replay_sample(): void
 {
     // Create a client.
     $simulatorClient = new SimulatorClient();
 
     // Prepare the request message.
-    $request = (new GetReplayRequest())
-        ->setName($formattedName);
+    $request = new GetReplayRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +54,5 @@ function get_replay_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SimulatorClient::replayName('[PROJECT]', '[LOCATION]', '[REPLAY]');
-
-    get_replay_sample($formattedName);
 }
 // [END policysimulator_v1_generated_Simulator_GetReplay_sync]

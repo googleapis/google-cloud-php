@@ -50,13 +50,10 @@ function update_job_sample(): void
     // Create a client.
     $cloudSchedulerClient = new CloudSchedulerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $job = new Job();
-
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $cloudSchedulerClient->updateJob($job);
+        $response = $cloudSchedulerClient->updateJob();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -214,8 +214,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *                                                               in length, and it must not start with `"goog"`.
      * @param string                             $topic              Required. The name of the topic from which this subscription is receiving
      *                                                               messages. Format is `projects/{project}/topics/{topic}`. The value of this
-     *                                                               field will be `_deleted-topic_` if the topic has been deleted. Please see
-     *                                                               {@see SubscriberClient::topicName()} for help formatting this field.
+     *                                                               field will be `_deleted-topic_` if the topic has been deleted.
      * @param \Google\Cloud\PubSub\V1\PushConfig $pushConfig         Optional. If push delivery is used with this subscription, this field is
      *                                                               used to configure it.
      * @param int                                $ackDeadlineSeconds Optional. The approximate amount of time (on a best-effort basis) Pub/Sub

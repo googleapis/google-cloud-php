@@ -36,19 +36,19 @@ use Google\Cloud\Recommender\V1\MarkInsightAcceptedRequest;
  * MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
  * the recommender.*.update IAM permission for the specified insight.
  *
- * @param string $formattedName Name of the insight. Please see
- *                              {@see RecommenderClient::insightName()} for help formatting this field.
- * @param string $etag          Fingerprint of the Insight. Provides optimistic locking.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function mark_insight_accepted_sample(string $formattedName, string $etag): void
+function mark_insight_accepted_sample(): void
 {
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
     // Prepare the request message.
-    $request = (new MarkInsightAcceptedRequest())
-        ->setName($formattedName)
-        ->setEtag($etag);
+    $request = new MarkInsightAcceptedRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,27 +58,5 @@ function mark_insight_accepted_sample(string $formattedName, string $etag): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RecommenderClient::insightName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[INSIGHT_TYPE]',
-        '[INSIGHT]'
-    );
-    $etag = '[ETAG]';
-
-    mark_insight_accepted_sample($formattedName, $etag);
 }
 // [END recommender_v1_generated_Recommender_MarkInsightAccepted_sync]

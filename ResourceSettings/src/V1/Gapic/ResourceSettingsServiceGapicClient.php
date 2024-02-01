@@ -60,8 +60,7 @@ use Google\Cloud\ResourceSettings\V1\UpdateSettingRequest;
  * ```
  * $resourceSettingsServiceClient = new ResourceSettingsServiceClient();
  * try {
- *     $formattedName = $resourceSettingsServiceClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
- *     $response = $resourceSettingsServiceClient->getSetting($formattedName);
+ *     $response = $resourceSettingsServiceClient->getSetting();
  * } finally {
  *     $resourceSettingsServiceClient->close();
  * }
@@ -388,18 +387,18 @@ class ResourceSettingsServiceGapicClient
      * ```
      * $resourceSettingsServiceClient = new ResourceSettingsServiceClient();
      * try {
-     *     $formattedName = $resourceSettingsServiceClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
-     *     $response = $resourceSettingsServiceClient->getSetting($formattedName);
+     *     $response = $resourceSettingsServiceClient->getSetting();
      * } finally {
      *     $resourceSettingsServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
-     *                             requirements.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
+     *           requirements.
      *     @type int $view
      *           The SettingView for this request.
      *           For allowed values, use constants defined on {@see \Google\Cloud\ResourceSettings\V1\SettingView}
@@ -413,12 +412,15 @@ class ResourceSettingsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSetting($name, array $optionalArgs = [])
+    public function getSetting(array $optionalArgs = [])
     {
         $request = new GetSettingRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -444,9 +446,8 @@ class ResourceSettingsServiceGapicClient
      * ```
      * $resourceSettingsServiceClient = new ResourceSettingsServiceClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $resourceSettingsServiceClient->listSettings($parent);
+     *     $pagedResponse = $resourceSettingsServiceClient->listSettings();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -454,7 +455,7 @@ class ResourceSettingsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $resourceSettingsServiceClient->listSettings($parent);
+     *     $pagedResponse = $resourceSettingsServiceClient->listSettings();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -463,16 +464,17 @@ class ResourceSettingsServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Cloud resource that parents the setting. Must be in one of the
-     *                             following forms:
-     *
-     *                             * `projects/{project_number}`
-     *                             * `projects/{project_id}`
-     *                             * `folders/{folder_id}`
-     *                             * `organizations/{organization_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The Cloud resource that parents the setting. Must be in one of the
+     *           following forms:
+     *
+     *           * `projects/{project_number}`
+     *           * `projects/{project_id}`
+     *           * `folders/{folder_id}`
+     *           * `organizations/{organization_id}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -495,12 +497,15 @@ class ResourceSettingsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSettings($parent, array $optionalArgs = [])
+    public function listSettings(array $optionalArgs = [])
     {
         $request = new ListSettingsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -549,17 +554,17 @@ class ResourceSettingsServiceGapicClient
      * ```
      * $resourceSettingsServiceClient = new ResourceSettingsServiceClient();
      * try {
-     *     $setting = new Setting();
-     *     $response = $resourceSettingsServiceClient->updateSetting($setting);
+     *     $response = $resourceSettingsServiceClient->updateSetting();
      * } finally {
      *     $resourceSettingsServiceClient->close();
      * }
      * ```
      *
-     * @param Setting $setting      Required. The setting to update. See [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Setting $setting
+     *           Required. The setting to update. See [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -570,12 +575,14 @@ class ResourceSettingsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSetting($setting, array $optionalArgs = [])
+    public function updateSetting(array $optionalArgs = [])
     {
         $request = new UpdateSettingRequest();
         $requestParamHeaders = [];
-        $request->setSetting($setting);
-        $requestParamHeaders['setting.name'] = $setting->getName();
+        if (isset($optionalArgs['setting'])) {
+            $request->setSetting($optionalArgs['setting']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

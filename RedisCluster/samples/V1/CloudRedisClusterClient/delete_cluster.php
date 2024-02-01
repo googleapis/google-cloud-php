@@ -33,19 +33,19 @@ use Google\Rpc\Status;
  * Deletes a specific Redis cluster. Cluster stops serving and data is
  * deleted.
  *
- * @param string $formattedName Redis cluster resource name using the form:
- *                              `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`
- *                              where `location_id` refers to a GCP region. Please see
- *                              {@see CloudRedisClusterClient::clusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_cluster_sample(string $formattedName): void
+function delete_cluster_sample(): void
 {
     // Create a client.
     $cloudRedisClusterClient = new CloudRedisClusterClient();
 
     // Prepare the request message.
-    $request = (new DeleteClusterRequest())
-        ->setName($formattedName);
+    $request = new DeleteClusterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,21 +63,5 @@ function delete_cluster_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudRedisClusterClient::clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-
-    delete_cluster_sample($formattedName);
 }
 // [END redis_v1_generated_CloudRedisCluster_DeleteCluster_sync]

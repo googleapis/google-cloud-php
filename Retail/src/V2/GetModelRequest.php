@@ -28,7 +28,6 @@ class GetModelRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the [Model][google.cloud.retail.v2.Model] to
      *                     get. Format:
      *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog}/models/{model_id}`
-     *                     Please see {@see ModelServiceClient::modelName()} for help formatting this field.
      *
      * @return \Google\Cloud\Retail\V2\GetModelRequest
      *

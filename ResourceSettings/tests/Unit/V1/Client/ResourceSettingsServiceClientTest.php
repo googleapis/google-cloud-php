@@ -78,10 +78,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
-        $request = (new GetSettingRequest())
-            ->setName($formattedName);
+        $request = new GetSettingRequest();
         $response = $gapicClient->getSetting($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -89,8 +86,6 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcesettings.v1.ResourceSettingsService/GetSetting', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -112,10 +107,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
-        $request = (new GetSettingRequest())
-            ->setName($formattedName);
+        $request = new GetSettingRequest();
         try {
             $gapicClient->getSetting($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -147,10 +139,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSettings($settings);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListSettingsRequest())
-            ->setParent($parent);
+        $request = new ListSettingsRequest();
         $response = $gapicClient->listSettings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -161,8 +150,6 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcesettings.v1.ResourceSettingsService/ListSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -184,10 +171,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListSettingsRequest())
-            ->setParent($parent);
+        $request = new ListSettingsRequest();
         try {
             $gapicClient->listSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -216,10 +200,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $setting = new Setting();
-        $request = (new UpdateSettingRequest())
-            ->setSetting($setting);
+        $request = new UpdateSettingRequest();
         $response = $gapicClient->updateSetting($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -227,8 +208,6 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcesettings.v1.ResourceSettingsService/UpdateSetting', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSetting();
-        $this->assertProtobufEquals($setting, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -250,10 +229,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $setting = new Setting();
-        $request = (new UpdateSettingRequest())
-            ->setSetting($setting);
+        $request = new UpdateSettingRequest();
         try {
             $gapicClient->updateSetting($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -282,10 +258,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
-        $request = (new GetSettingRequest())
-            ->setName($formattedName);
+        $request = new GetSettingRequest();
         $response = $gapicClient->getSettingAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -293,8 +266,6 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcesettings.v1.ResourceSettingsService/GetSetting', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -26,41 +26,41 @@ class CatalogService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-≈
-?google/cloud/recommendationengine/v1beta1/catalog_service.proto)google.cloud.recommendationengine.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto7google/cloud/recommendationengine/v1beta1/catalog.proto6google/cloud/recommendationengine/v1beta1/import.protoNgoogle/cloud/recommendationengine/v1beta1/recommendationengine_resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"≤
-CreateCatalogItemRequestC
-parent (	B3‡A˙A-
-+recommendationengine.googleapis.com/CatalogQ
-catalog_item (26.google.cloud.recommendationengine.v1beta1.CatalogItemB‡A"b
-GetCatalogItemRequestI
-name (	B;‡A˙A5
-3recommendationengine.googleapis.com/CatalogItemPath"§
-ListCatalogItemsRequestC
-parent (	B3‡A˙A-
-+recommendationengine.googleapis.com/Catalog
-	page_size (B‡A
+œ
+?google/cloud/recommendationengine/v1beta1/catalog_service.proto)google.cloud.recommendationengine.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto7google/cloud/recommendationengine/v1beta1/catalog.proto6google/cloud/recommendationengine/v1beta1/import.protoNgoogle/cloud/recommendationengine/v1beta1/recommendationengine_resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¥
+CreateCatalogItemRequestD
+parent (	B4‚A˙A-
++recommendationengine.googleapis.com/CatalogR
+catalog_item (26.google.cloud.recommendationengine.v1beta1.CatalogItemB‚A"c
+GetCatalogItemRequestJ
+name (	B<‚A˙A5
+3recommendationengine.googleapis.com/CatalogItemPath"®
+ListCatalogItemsRequestD
+parent (	B4‚A˙A-
++recommendationengine.googleapis.com/Catalog
+	page_size (B‚A
 
-page_token (	B‡A
-filter (	B‡A"Ç
+page_token (	B‚A
+filter (	B‚A"Ç
 ListCatalogItemsResponseM
 catalog_items (26.google.cloud.recommendationengine.v1beta1.CatalogItem
-next_page_token (	"È
-UpdateCatalogItemRequestI
-name (	B;‡A˙A5
-3recommendationengine.googleapis.com/CatalogItemPathQ
-catalog_item (26.google.cloud.recommendationengine.v1beta1.CatalogItemB‡A/
-update_mask (2.google.protobuf.FieldMask"e
-DeleteCatalogItemRequestI
-name (	B;‡A˙A5
+next_page_token (	"Î
+UpdateCatalogItemRequestJ
+name (	B<‚A˙A5
+3recommendationengine.googleapis.com/CatalogItemPathR
+catalog_item (26.google.cloud.recommendationengine.v1beta1.CatalogItemB‚A/
+update_mask (2.google.protobuf.FieldMask"f
+DeleteCatalogItemRequestJ
+name (	B<‚A˙A5
 3recommendationengine.googleapis.com/CatalogItemPath2ñ
 CatalogService˛
-CreateCatalogItemC.google.cloud.recommendationengine.v1beta1.CreateCatalogItemRequest6.google.cloud.recommendationengine.v1beta1.CatalogItem"lÇ”‰ìP"@/v1beta1/{parent=projects/*/locations/*/catalogs/*}/catalogItems:catalog_item⁄Aparent,catalog_item‹
-GetCatalogItem@.google.cloud.recommendationengine.v1beta1.GetCatalogItemRequest6.google.cloud.recommendationengine.v1beta1.CatalogItem"PÇ”‰ìCA/v1beta1/{name=projects/*/locations/*/catalogs/*/catalogItems/**}⁄Anameı
-ListCatalogItemsB.google.cloud.recommendationengine.v1beta1.ListCatalogItemsRequestC.google.cloud.recommendationengine.v1beta1.ListCatalogItemsResponse"XÇ”‰ìB@/v1beta1/{parent=projects/*/locations/*/catalogs/*}/catalogItems⁄Aparent,filterâ
-UpdateCatalogItemC.google.cloud.recommendationengine.v1beta1.UpdateCatalogItemRequest6.google.cloud.recommendationengine.v1beta1.CatalogItem"wÇ”‰ìQ2A/v1beta1/{name=projects/*/locations/*/catalogs/*/catalogItems/**}:catalog_item⁄Aname,catalog_item,update_mask¬
-DeleteCatalogItemC.google.cloud.recommendationengine.v1beta1.DeleteCatalogItemRequest.google.protobuf.Empty"PÇ”‰ìC*A/v1beta1/{name=projects/*/locations/*/catalogs/*/catalogItems/**}⁄AnameÅ
-ImportCatalogItemsD.google.cloud.recommendationengine.v1beta1.ImportCatalogItemsRequest.google.longrunning.Operation"ÖÇ”‰ìL"G/v1beta1/{parent=projects/*/locations/*/catalogs/*}/catalogItems:import:* AÄ
-Dgoogle.cloud.recommendationengine.v1beta1.ImportCatalogItemsResponse8google.cloud.recommendationengine.v1beta1.ImportMetadata⁄A,parent,request_id,input_config,errors_configW A#recommendationengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB£
+CreateCatalogItemC.google.cloud.recommendationengine.v1beta1.CreateCatalogItemRequest6.google.cloud.recommendationengine.v1beta1.CatalogItem"l⁄Aparent,catalog_itemÇ”‰ìP"@/v1beta1/{parent=projects/*/locations/*/catalogs/*}/catalogItems:catalog_item‹
+GetCatalogItem@.google.cloud.recommendationengine.v1beta1.GetCatalogItemRequest6.google.cloud.recommendationengine.v1beta1.CatalogItem"P⁄AnameÇ”‰ìCA/v1beta1/{name=projects/*/locations/*/catalogs/*/catalogItems/**}ı
+ListCatalogItemsB.google.cloud.recommendationengine.v1beta1.ListCatalogItemsRequestC.google.cloud.recommendationengine.v1beta1.ListCatalogItemsResponse"X⁄Aparent,filterÇ”‰ìB@/v1beta1/{parent=projects/*/locations/*/catalogs/*}/catalogItemsâ
+UpdateCatalogItemC.google.cloud.recommendationengine.v1beta1.UpdateCatalogItemRequest6.google.cloud.recommendationengine.v1beta1.CatalogItem"w⁄Aname,catalog_item,update_maskÇ”‰ìQ2A/v1beta1/{name=projects/*/locations/*/catalogs/*/catalogItems/**}:catalog_item¬
+DeleteCatalogItemC.google.cloud.recommendationengine.v1beta1.DeleteCatalogItemRequest.google.protobuf.Empty"P⁄AnameÇ”‰ìC*A/v1beta1/{name=projects/*/locations/*/catalogs/*/catalogItems/**}Å
+ImportCatalogItemsD.google.cloud.recommendationengine.v1beta1.ImportCatalogItemsRequest.google.longrunning.Operation"Ö AÄ
+Dgoogle.cloud.recommendationengine.v1beta1.ImportCatalogItemsResponse8google.cloud.recommendationengine.v1beta1.ImportMetadata⁄A,parent,request_id,input_config,errors_configÇ”‰ìL"G/v1beta1/{parent=projects/*/locations/*/catalogs/*}/catalogItems:import:*W A#recommendationengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB£
 -com.google.cloud.recommendationengine.v1beta1PZacloud.google.com/go/recommendationengine/apiv1beta1/recommendationenginepb;recommendationenginepb¢RECAI™)Google.Cloud.RecommendationEngine.V1Beta1 )Google\\Cloud\\RecommendationEngine\\V1beta1Í,Google::Cloud::RecommendationEngine::V1beta1bproto3'
         , true);
 

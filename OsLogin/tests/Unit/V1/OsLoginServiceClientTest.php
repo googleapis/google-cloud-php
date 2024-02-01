@@ -81,20 +81,13 @@ class OsLoginServiceClientTest extends GeneratedTest
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->userName('[USER]');
-        $sshPublicKey = new SshPublicKey();
-        $response = $gapicClient->createSshPublicKey($formattedParent, $sshPublicKey);
+        $response = $gapicClient->createSshPublicKey();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1.OsLoginService/CreateSshPublicKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSshPublicKey();
-        $this->assertProtobufEquals($sshPublicKey, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -116,11 +109,8 @@ class OsLoginServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->userName('[USER]');
-        $sshPublicKey = new SshPublicKey();
         try {
-            $gapicClient->createSshPublicKey($formattedParent, $sshPublicKey);
+            $gapicClient->createSshPublicKey();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -143,16 +133,12 @@ class OsLoginServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->posixAccountName('[USER]', '[PROJECT]');
-        $gapicClient->deletePosixAccount($formattedName);
+        $gapicClient->deletePosixAccount();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1.OsLoginService/DeletePosixAccount', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -174,10 +160,8 @@ class OsLoginServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->posixAccountName('[USER]', '[PROJECT]');
         try {
-            $gapicClient->deletePosixAccount($formattedName);
+            $gapicClient->deletePosixAccount();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -200,16 +184,12 @@ class OsLoginServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
-        $gapicClient->deleteSshPublicKey($formattedName);
+        $gapicClient->deleteSshPublicKey();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1.OsLoginService/DeleteSshPublicKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -231,10 +211,8 @@ class OsLoginServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
         try {
-            $gapicClient->deleteSshPublicKey($formattedName);
+            $gapicClient->deleteSshPublicKey();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -259,17 +237,13 @@ class OsLoginServiceClientTest extends GeneratedTest
         $expectedResponse = new LoginProfile();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->userName('[USER]');
-        $response = $gapicClient->getLoginProfile($formattedName);
+        $response = $gapicClient->getLoginProfile();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1.OsLoginService/GetLoginProfile', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -291,10 +265,8 @@ class OsLoginServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->userName('[USER]');
         try {
-            $gapicClient->getLoginProfile($formattedName);
+            $gapicClient->getLoginProfile();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -325,17 +297,13 @@ class OsLoginServiceClientTest extends GeneratedTest
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
-        $response = $gapicClient->getSshPublicKey($formattedName);
+        $response = $gapicClient->getSshPublicKey();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1.OsLoginService/GetSshPublicKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -357,10 +325,8 @@ class OsLoginServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
         try {
-            $gapicClient->getSshPublicKey($formattedName);
+            $gapicClient->getSshPublicKey();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -385,17 +351,13 @@ class OsLoginServiceClientTest extends GeneratedTest
         $expectedResponse = new ImportSshPublicKeyResponse();
         $expectedResponse->setDetails($details);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->userName('[USER]');
-        $response = $gapicClient->importSshPublicKey($formattedParent);
+        $response = $gapicClient->importSshPublicKey();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1.OsLoginService/ImportSshPublicKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -417,10 +379,8 @@ class OsLoginServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->userName('[USER]');
         try {
-            $gapicClient->importSshPublicKey($formattedParent);
+            $gapicClient->importSshPublicKey();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -451,20 +411,13 @@ class OsLoginServiceClientTest extends GeneratedTest
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
-        $sshPublicKey = new SshPublicKey();
-        $response = $gapicClient->updateSshPublicKey($formattedName, $sshPublicKey);
+        $response = $gapicClient->updateSshPublicKey();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.oslogin.v1.OsLoginService/UpdateSshPublicKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getSshPublicKey();
-        $this->assertProtobufEquals($sshPublicKey, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -486,11 +439,8 @@ class OsLoginServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
-        $sshPublicKey = new SshPublicKey();
         try {
-            $gapicClient->updateSshPublicKey($formattedName, $sshPublicKey);
+            $gapicClient->updateSshPublicKey();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

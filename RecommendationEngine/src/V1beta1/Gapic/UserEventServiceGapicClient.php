@@ -59,9 +59,7 @@ use Google\LongRunning\Operation;
  * ```
  * $userEventServiceClient = new UserEventServiceClient();
  * try {
- *     $formattedParent = $userEventServiceClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
- *     $userEvent = 'user_event';
- *     $response = $userEventServiceClient->collectUserEvent($formattedParent, $userEvent);
+ *     $response = $userEventServiceClient->collectUserEvent();
  * } finally {
  *     $userEventServiceClient->close();
  * }
@@ -322,20 +320,20 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $formattedParent = $userEventServiceClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-     *     $userEvent = 'user_event';
-     *     $response = $userEventServiceClient->collectUserEvent($formattedParent, $userEvent);
+     *     $response = $userEventServiceClient->collectUserEvent();
      * } finally {
      *     $userEventServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The parent eventStore name, such as
-     *                             `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
-     * @param string $userEvent    Required. URL encoded UserEvent proto.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent eventStore name, such as
+     *           `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
+     *     @type string $userEvent
+     *           Required. URL encoded UserEvent proto.
      *     @type string $uri
      *           Optional. The url including cgi-parameters but excluding the hash fragment.
      *           The URL must be truncated to 1.5K bytes to conservatively be under the 2K
@@ -357,13 +355,19 @@ class UserEventServiceGapicClient
      *
      * @experimental
      */
-    public function collectUserEvent($parent, $userEvent, array $optionalArgs = [])
+    public function collectUserEvent(array $optionalArgs = [])
     {
         $request = new CollectUserEventRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setUserEvent($userEvent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['userEvent'])) {
+            $request->setUserEvent($optionalArgs['userEvent']);
+        }
+
         if (isset($optionalArgs['uri'])) {
             $request->setUri($optionalArgs['uri']);
         }
@@ -390,9 +394,7 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $formattedParent = $userEventServiceClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-     *     $inputConfig = new InputConfig();
-     *     $operationResponse = $userEventServiceClient->importUserEvents($formattedParent, $inputConfig);
+     *     $operationResponse = $userEventServiceClient->importUserEvents();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -403,7 +405,7 @@ class UserEventServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $userEventServiceClient->importUserEvents($formattedParent, $inputConfig);
+     *     $operationResponse = $userEventServiceClient->importUserEvents();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $userEventServiceClient->resumeOperation($operationName, 'importUserEvents');
@@ -423,12 +425,12 @@ class UserEventServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent       Required.
-     *                                  `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
-     * @param InputConfig $inputConfig  Required. The desired input location of the data.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required.
+     *           `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      *     @type string $requestId
      *           Optional. Unique identifier provided by client, within the ancestor
      *           dataset scope. Ensures idempotency for expensive long running operations.
@@ -436,6 +438,8 @@ class UserEventServiceGapicClient
      *           returned as google.longrunning.Operation.name in the response. Note that
      *           this field must not be set if the desired input config is
      *           catalog_inline_source.
+     *     @type InputConfig $inputConfig
+     *           Required. The desired input location of the data.
      *     @type ImportErrorsConfig $errorsConfig
      *           Optional. The desired location of errors incurred during the Import.
      *     @type RetrySettings|array $retrySettings
@@ -450,15 +454,21 @@ class UserEventServiceGapicClient
      *
      * @experimental
      */
-    public function importUserEvents($parent, $inputConfig, array $optionalArgs = [])
+    public function importUserEvents(array $optionalArgs = [])
     {
         $request = new ImportUserEventsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setInputConfig($inputConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['inputConfig'])) {
+            $request->setInputConfig($optionalArgs['inputConfig']);
         }
 
         if (isset($optionalArgs['errorsConfig'])) {
@@ -477,9 +487,8 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $formattedParent = $userEventServiceClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $userEventServiceClient->listUserEvents($formattedParent);
+     *     $pagedResponse = $userEventServiceClient->listUserEvents();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -487,7 +496,7 @@ class UserEventServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $userEventServiceClient->listUserEvents($formattedParent);
+     *     $pagedResponse = $userEventServiceClient->listUserEvents();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -496,11 +505,12 @@ class UserEventServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent eventStore resource name, such as
-     *                             `projects/&#42;/locations/&#42;/catalogs/default_catalog/eventStores/default_event_store`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent eventStore resource name, such as
+     *           `projects/&#42;/locations/&#42;/catalogs/default_catalog/eventStores/default_event_store`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -555,12 +565,15 @@ class UserEventServiceGapicClient
      *
      * @experimental
      */
-    public function listUserEvents($parent, array $optionalArgs = [])
+    public function listUserEvents(array $optionalArgs = [])
     {
         $request = new ListUserEventsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -588,9 +601,7 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $formattedParent = $userEventServiceClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-     *     $filter = 'filter';
-     *     $operationResponse = $userEventServiceClient->purgeUserEvents($formattedParent, $filter);
+     *     $operationResponse = $userEventServiceClient->purgeUserEvents();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -601,7 +612,7 @@ class UserEventServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $userEventServiceClient->purgeUserEvents($formattedParent, $filter);
+     *     $operationResponse = $userEventServiceClient->purgeUserEvents();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $userEventServiceClient->resumeOperation($operationName, 'purgeUserEvents');
@@ -621,30 +632,32 @@ class UserEventServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the event_store under which the events are
-     *                             created. The format is
-     *                             `projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}`
-     * @param string $filter       Required. The filter string to specify the events to be deleted. Empty
-     *                             string filter is not allowed. This filter can also be used with
-     *                             ListUserEvents API to list events that will be deleted. The eligible fields
-     *                             for filtering are:
-     *                             * eventType - UserEvent.eventType field of type string.
-     *                             * eventTime - in ISO 8601 "zulu" format.
-     *                             * visitorId - field of type string. Specifying this will delete all events
-     *                             associated with a visitor.
-     *                             * userId - field of type string. Specifying this will delete all events
-     *                             associated with a user.
-     *                             Example 1: Deleting all events in a time range.
-     *                             `eventTime > "2012-04-23T18:25:43.511Z" eventTime <
-     *                             "2012-04-23T18:30:43.511Z"`
-     *                             Example 2: Deleting specific eventType in time range.
-     *                             `eventTime > "2012-04-23T18:25:43.511Z" eventType = "detail-page-view"`
-     *                             Example 3: Deleting all events for a specific visitor
-     *                             `visitorId = visitor1024`
-     *                             The filtering fields are assumed to have an implicit AND.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the event_store under which the events are
+     *           created. The format is
+     *           `projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}`
+     *     @type string $filter
+     *           Required. The filter string to specify the events to be deleted. Empty
+     *           string filter is not allowed. This filter can also be used with
+     *           ListUserEvents API to list events that will be deleted. The eligible fields
+     *           for filtering are:
+     *           * eventType - UserEvent.eventType field of type string.
+     *           * eventTime - in ISO 8601 "zulu" format.
+     *           * visitorId - field of type string. Specifying this will delete all events
+     *           associated with a visitor.
+     *           * userId - field of type string. Specifying this will delete all events
+     *           associated with a user.
+     *           Example 1: Deleting all events in a time range.
+     *           `eventTime > "2012-04-23T18:25:43.511Z" eventTime <
+     *           "2012-04-23T18:30:43.511Z"`
+     *           Example 2: Deleting specific eventType in time range.
+     *           `eventTime > "2012-04-23T18:25:43.511Z" eventType = "detail-page-view"`
+     *           Example 3: Deleting all events for a specific visitor
+     *           `visitorId = visitor1024`
+     *           The filtering fields are assumed to have an implicit AND.
      *     @type bool $force
      *           Optional. The default value is false. Override this flag to true to
      *           actually perform the purge. If the field is not set to true, a sampling of
@@ -661,13 +674,19 @@ class UserEventServiceGapicClient
      *
      * @experimental
      */
-    public function purgeUserEvents($parent, $filter, array $optionalArgs = [])
+    public function purgeUserEvents(array $optionalArgs = [])
     {
         $request = new PurgeUserEventsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFilter($filter);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -684,20 +703,20 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $formattedParent = $userEventServiceClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-     *     $userEvent = new UserEvent();
-     *     $response = $userEventServiceClient->writeUserEvent($formattedParent, $userEvent);
+     *     $response = $userEventServiceClient->writeUserEvent();
      * } finally {
      *     $userEventServiceClient->close();
      * }
      * ```
      *
-     * @param string    $parent       Required. The parent eventStore resource name, such as
-     *                                `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
-     * @param UserEvent $userEvent    Required. User event to write.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent eventStore resource name, such as
+     *           `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
+     *     @type UserEvent $userEvent
+     *           Required. User event to write.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -710,13 +729,19 @@ class UserEventServiceGapicClient
      *
      * @experimental
      */
-    public function writeUserEvent($parent, $userEvent, array $optionalArgs = [])
+    public function writeUserEvent(array $optionalArgs = [])
     {
         $request = new WriteUserEventRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setUserEvent($userEvent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['userEvent'])) {
+            $request->setUserEvent($optionalArgs['userEvent']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('WriteUserEvent', UserEvent::class, $optionalArgs, $request)->wait();

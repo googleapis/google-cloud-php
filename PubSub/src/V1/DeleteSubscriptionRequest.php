@@ -25,8 +25,7 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $subscription Required. The subscription to delete.
-     *                             Format is `projects/{project}/subscriptions/{sub}`. Please see
-     *                             {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     *                             Format is `projects/{project}/subscriptions/{sub}`.
      *
      * @return \Google\Cloud\PubSub\V1\DeleteSubscriptionRequest
      *

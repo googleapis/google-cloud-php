@@ -41,8 +41,7 @@ class DeleteTagKeyRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of a TagKey to be deleted in the format
      *                     `tagKeys/123`. The TagKey cannot be a parent of any existing TagValues or
-     *                     it will not be deleted successfully. Please see
-     *                     {@see TagKeysClient::tagKeyName()} for help formatting this field.
+     *                     it will not be deleted successfully.
      *
      * @return \Google\Cloud\ResourceManager\V3\DeleteTagKeyRequest
      *

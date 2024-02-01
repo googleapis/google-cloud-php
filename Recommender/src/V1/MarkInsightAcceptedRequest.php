@@ -36,8 +36,7 @@ class MarkInsightAcceptedRequest extends \Google\Protobuf\Internal\Message
     private $etag = '';
 
     /**
-     * @param string $name          Required. Name of the insight. Please see
-     *                              {@see RecommenderClient::insightName()} for help formatting this field.
+     * @param string $name          Required. Name of the insight.
      * @param array  $stateMetadata Optional. State properties user wish to include with this state.  Full
      *                              replace of the current state_metadata.
      * @param string $etag          Required. Fingerprint of the Insight. Provides optimistic locking.

@@ -31,18 +31,19 @@ use Google\Cloud\Retail\V2\GetCompletionConfigRequest;
 /**
  * Gets a [CompletionConfig][google.cloud.retail.v2.CompletionConfig].
  *
- * @param string $formattedName Full CompletionConfig resource name. Format:
- *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig`
- *                              Please see {@see CatalogServiceClient::completionConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_completion_config_sample(string $formattedName): void
+function get_completion_config_sample(): void
 {
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
-    $request = (new GetCompletionConfigRequest())
-        ->setName($formattedName);
+    $request = new GetCompletionConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function get_completion_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CatalogServiceClient::completionConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-
-    get_completion_config_sample($formattedName);
 }
 // [END retail_v2_generated_CatalogService_GetCompletionConfig_sync]

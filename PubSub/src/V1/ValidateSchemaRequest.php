@@ -31,8 +31,7 @@ class ValidateSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                         $parent Required. The name of the project in which to validate schemas.
-     *                                               Format is `projects/{project-id}`. Please see
-     *                                               {@see SchemaServiceClient::projectName()} for help formatting this field.
+     *                                               Format is `projects/{project-id}`.
      * @param \Google\Cloud\PubSub\V1\Schema $schema Required. The schema object to validate.
      *
      * @return \Google\Cloud\PubSub\V1\ValidateSchemaRequest

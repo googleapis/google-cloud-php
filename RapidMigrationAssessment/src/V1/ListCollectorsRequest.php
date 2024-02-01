@@ -48,8 +48,7 @@ class ListCollectorsRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. Parent value for ListCollectorsRequest. Please see
-     *                       {@see RapidMigrationAssessmentClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Parent value for ListCollectorsRequest.
      *
      * @return \Google\Cloud\RapidMigrationAssessment\V1\ListCollectorsRequest
      *

@@ -45,9 +45,7 @@ function create_tag_binding_sample(): void
     $tagBindingsClient = new TagBindingsClient();
 
     // Prepare the request message.
-    $tagBinding = new TagBinding();
-    $request = (new CreateTagBindingRequest())
-        ->setTagBinding($tagBinding);
+    $request = new CreateTagBindingRequest();
 
     // Call the API and handle any network failures.
     try {

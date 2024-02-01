@@ -31,48 +31,19 @@ use Google\Cloud\Retail\V2\Product;
 /**
  * Creates a [Product][google.cloud.retail.v2.Product].
  *
- * @param string $formattedParent The parent catalog resource name, such as
- *                                `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch`. Please see
- *                                {@see ProductServiceClient::branchName()} for help formatting this field.
- * @param string $productTitle    Product title.
- *
- *                                This field must be a UTF-8 encoded string with a length limit of 1,000
- *                                characters. Otherwise, an INVALID_ARGUMENT error is returned.
- *
- *                                Corresponding properties: Google Merchant Center property
- *                                [title](https://support.google.com/merchants/answer/6324415). Schema.org
- *                                property [Product.name](https://schema.org/name).
- * @param string $productId       The ID to use for the [Product][google.cloud.retail.v2.Product],
- *                                which will become the final component of the
- *                                [Product.name][google.cloud.retail.v2.Product.name].
- *
- *                                If the caller does not have permission to create the
- *                                [Product][google.cloud.retail.v2.Product], regardless of whether or not it
- *                                exists, a PERMISSION_DENIED error is returned.
- *
- *                                This field must be unique among all
- *                                [Product][google.cloud.retail.v2.Product]s with the same
- *                                [parent][google.cloud.retail.v2.CreateProductRequest.parent]. Otherwise, an
- *                                ALREADY_EXISTS error is returned.
- *
- *                                This field must be a UTF-8 encoded string with a length limit of 128
- *                                characters. Otherwise, an INVALID_ARGUMENT error is returned.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_product_sample(
-    string $formattedParent,
-    string $productTitle,
-    string $productId
-): void {
+function create_product_sample(): void
+{
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
     // Prepare the request message.
-    $product = (new Product())
-        ->setTitle($productTitle);
-    $request = (new CreateProductRequest())
-        ->setParent($formattedParent)
-        ->setProduct($product)
-        ->setProductId($productId);
+    $request = new CreateProductRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -82,28 +53,5 @@ function create_product_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ProductServiceClient::branchName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]',
-        '[BRANCH]'
-    );
-    $productTitle = '[TITLE]';
-    $productId = '[PRODUCT_ID]';
-
-    create_product_sample($formattedParent, $productTitle, $productId);
 }
 // [END retail_v2_generated_ProductService_CreateProduct_sync]

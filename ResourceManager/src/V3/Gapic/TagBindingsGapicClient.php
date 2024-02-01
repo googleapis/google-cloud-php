@@ -54,8 +54,7 @@ use Google\LongRunning\Operation;
  * ```
  * $tagBindingsClient = new TagBindingsClient();
  * try {
- *     $tagBinding = new TagBinding();
- *     $operationResponse = $tagBindingsClient->createTagBinding($tagBinding);
+ *     $operationResponse = $tagBindingsClient->createTagBinding();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -66,7 +65,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $tagBindingsClient->createTagBinding($tagBinding);
+ *     $operationResponse = $tagBindingsClient->createTagBinding();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $tagBindingsClient->resumeOperation($operationName, 'createTagBinding');
@@ -320,8 +319,7 @@ class TagBindingsGapicClient
      * ```
      * $tagBindingsClient = new TagBindingsClient();
      * try {
-     *     $tagBinding = new TagBinding();
-     *     $operationResponse = $tagBindingsClient->createTagBinding($tagBinding);
+     *     $operationResponse = $tagBindingsClient->createTagBinding();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -332,7 +330,7 @@ class TagBindingsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tagBindingsClient->createTagBinding($tagBinding);
+     *     $operationResponse = $tagBindingsClient->createTagBinding();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tagBindingsClient->resumeOperation($operationName, 'createTagBinding');
@@ -352,10 +350,11 @@ class TagBindingsGapicClient
      * }
      * ```
      *
-     * @param TagBinding $tagBinding   Required. The TagBinding to be created.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type TagBinding $tagBinding
+     *           Required. The TagBinding to be created.
      *     @type bool $validateOnly
      *           Optional. Set to true to perform the validations necessary for creating the
      *           resource, but not actually perform the action.
@@ -369,10 +368,13 @@ class TagBindingsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTagBinding($tagBinding, array $optionalArgs = [])
+    public function createTagBinding(array $optionalArgs = [])
     {
         $request = new CreateTagBindingRequest();
-        $request->setTagBinding($tagBinding);
+        if (isset($optionalArgs['tagBinding'])) {
+            $request->setTagBinding($optionalArgs['tagBinding']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -387,8 +389,7 @@ class TagBindingsGapicClient
      * ```
      * $tagBindingsClient = new TagBindingsClient();
      * try {
-     *     $formattedName = $tagBindingsClient->tagBindingName('[TAG_BINDING]');
-     *     $operationResponse = $tagBindingsClient->deleteTagBinding($formattedName);
+     *     $operationResponse = $tagBindingsClient->deleteTagBinding();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -398,7 +399,7 @@ class TagBindingsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tagBindingsClient->deleteTagBinding($formattedName);
+     *     $operationResponse = $tagBindingsClient->deleteTagBinding();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tagBindingsClient->resumeOperation($operationName, 'deleteTagBinding');
@@ -417,12 +418,13 @@ class TagBindingsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the TagBinding. This is a String of the form:
-     *                             `tagBindings/{id}` (e.g.
-     *                             `tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2F123/tagValues/456`).
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the TagBinding. This is a String of the form:
+     *           `tagBindings/{id}` (e.g.
+     *           `tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2F123/tagValues/456`).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -433,12 +435,15 @@ class TagBindingsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTagBinding($name, array $optionalArgs = [])
+    public function deleteTagBinding(array $optionalArgs = [])
     {
         $request = new DeleteTagBindingRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteTagBinding', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -452,9 +457,8 @@ class TagBindingsGapicClient
      * ```
      * $tagBindingsClient = new TagBindingsClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tagBindingsClient->listEffectiveTags($parent);
+     *     $pagedResponse = $tagBindingsClient->listEffectiveTags();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -462,7 +466,7 @@ class TagBindingsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tagBindingsClient->listEffectiveTags($parent);
+     *     $pagedResponse = $tagBindingsClient->listEffectiveTags();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -471,12 +475,13 @@ class TagBindingsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The full resource name of a resource for which you want to list
-     *                             the effective tags. E.g.
-     *                             "//cloudresourcemanager.googleapis.com/projects/123"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The full resource name of a resource for which you want to list
+     *           the effective tags. E.g.
+     *           "//cloudresourcemanager.googleapis.com/projects/123"
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -496,10 +501,13 @@ class TagBindingsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEffectiveTags($parent, array $optionalArgs = [])
+    public function listEffectiveTags(array $optionalArgs = [])
     {
         $request = new ListEffectiveTagsRequest();
-        $request->setParent($parent);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -522,9 +530,8 @@ class TagBindingsGapicClient
      * ```
      * $tagBindingsClient = new TagBindingsClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tagBindingsClient->listTagBindings($parent);
+     *     $pagedResponse = $tagBindingsClient->listTagBindings();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -532,7 +539,7 @@ class TagBindingsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tagBindingsClient->listTagBindings($parent);
+     *     $pagedResponse = $tagBindingsClient->listTagBindings();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -541,12 +548,13 @@ class TagBindingsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The full resource name of a resource for which you want to list
-     *                             existing TagBindings. E.g.
-     *                             "//cloudresourcemanager.googleapis.com/projects/123"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The full resource name of a resource for which you want to list
+     *           existing TagBindings. E.g.
+     *           "//cloudresourcemanager.googleapis.com/projects/123"
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -566,10 +574,13 @@ class TagBindingsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTagBindings($parent, array $optionalArgs = [])
+    public function listTagBindings(array $optionalArgs = [])
     {
         $request = new ListTagBindingsRequest();
-        $request->setParent($parent);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

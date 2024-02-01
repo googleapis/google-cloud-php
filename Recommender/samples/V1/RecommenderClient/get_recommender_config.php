@@ -32,27 +32,19 @@ use Google\Cloud\Recommender\V1\RecommenderConfig;
  * Gets the requested Recommender Config. There is only one instance of the
  * config for each Recommender.
  *
- * @param string $formattedName Name of the Recommendation Config to get.
- *
- *                              Acceptable formats:
- *
- *                              * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
- *
- *                              * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
- *
- *                              * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
- *
- *                              * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
- *                              Please see {@see RecommenderClient::recommenderConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_recommender_config_sample(string $formattedName): void
+function get_recommender_config_sample(): void
 {
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
     // Prepare the request message.
-    $request = (new GetRecommenderConfigRequest())
-        ->setName($formattedName);
+    $request = new GetRecommenderConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,25 +54,5 @@ function get_recommender_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RecommenderClient::recommenderConfigName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[RECOMMENDER]'
-    );
-
-    get_recommender_config_sample($formattedName);
 }
 // [END recommender_v1_generated_Recommender_GetRecommenderConfig_sync]

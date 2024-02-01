@@ -28,7 +28,6 @@ class GetCompletionConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Full CompletionConfig resource name. Format:
      *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/completionConfig`
-     *                     Please see {@see CatalogServiceClient::completionConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\Retail\V2\GetCompletionConfigRequest
      *

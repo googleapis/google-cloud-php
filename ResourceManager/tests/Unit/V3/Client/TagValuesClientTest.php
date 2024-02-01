@@ -116,12 +116,7 @@ class TagValuesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $tagValue = new TagValue();
-        $tagValueShortName = 'tagValueShortName397125872';
-        $tagValue->setShortName($tagValueShortName);
-        $request = (new CreateTagValueRequest())
-            ->setTagValue($tagValue);
+        $request = new CreateTagValueRequest();
         $response = $gapicClient->createTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -132,8 +127,6 @@ class TagValuesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagValues/CreateTagValue', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getTagValue();
-        $this->assertProtobufEquals($tagValue, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTagValueTest');
         $response->pollUntilComplete([
@@ -184,12 +177,7 @@ class TagValuesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $tagValue = new TagValue();
-        $tagValueShortName = 'tagValueShortName397125872';
-        $tagValue->setShortName($tagValueShortName);
-        $request = (new CreateTagValueRequest())
-            ->setTagValue($tagValue);
+        $request = new CreateTagValueRequest();
         $response = $gapicClient->createTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -253,10 +241,7 @@ class TagValuesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new DeleteTagValueRequest())
-            ->setName($formattedName);
+        $request = new DeleteTagValueRequest();
         $response = $gapicClient->deleteTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -267,8 +252,6 @@ class TagValuesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagValues/DeleteTagValue', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTagValueTest');
         $response->pollUntilComplete([
@@ -319,10 +302,7 @@ class TagValuesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new DeleteTagValueRequest())
-            ->setName($formattedName);
+        $request = new DeleteTagValueRequest();
         $response = $gapicClient->deleteTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -434,10 +414,7 @@ class TagValuesClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new GetNamespacedTagValueRequest())
-            ->setName($formattedName);
+        $request = new GetNamespacedTagValueRequest();
         $response = $gapicClient->getNamespacedTagValue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -445,8 +422,6 @@ class TagValuesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagValues/GetNamespacedTagValue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -468,10 +443,7 @@ class TagValuesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new GetNamespacedTagValueRequest())
-            ->setName($formattedName);
+        $request = new GetNamespacedTagValueRequest();
         try {
             $gapicClient->getNamespacedTagValue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -508,10 +480,7 @@ class TagValuesClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new GetTagValueRequest())
-            ->setName($formattedName);
+        $request = new GetTagValueRequest();
         $response = $gapicClient->getTagValue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -519,8 +488,6 @@ class TagValuesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagValues/GetTagValue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -542,10 +509,7 @@ class TagValuesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new GetTagValueRequest())
-            ->setName($formattedName);
+        $request = new GetTagValueRequest();
         try {
             $gapicClient->getTagValue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -577,10 +541,7 @@ class TagValuesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTagValues($tagValues);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListTagValuesRequest())
-            ->setParent($parent);
+        $request = new ListTagValuesRequest();
         $response = $gapicClient->listTagValues($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -591,8 +552,6 @@ class TagValuesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagValues/ListTagValues', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -614,10 +573,7 @@ class TagValuesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListTagValuesRequest())
-            ->setParent($parent);
+        $request = new ListTagValuesRequest();
         try {
             $gapicClient->listTagValues($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -812,12 +768,7 @@ class TagValuesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $tagValue = new TagValue();
-        $tagValueShortName = 'tagValueShortName397125872';
-        $tagValue->setShortName($tagValueShortName);
-        $request = (new UpdateTagValueRequest())
-            ->setTagValue($tagValue);
+        $request = new UpdateTagValueRequest();
         $response = $gapicClient->updateTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -828,8 +779,6 @@ class TagValuesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagValues/UpdateTagValue', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getTagValue();
-        $this->assertProtobufEquals($tagValue, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateTagValueTest');
         $response->pollUntilComplete([
@@ -880,12 +829,7 @@ class TagValuesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $tagValue = new TagValue();
-        $tagValueShortName = 'tagValueShortName397125872';
-        $tagValue->setShortName($tagValueShortName);
-        $request = (new UpdateTagValueRequest())
-            ->setTagValue($tagValue);
+        $request = new UpdateTagValueRequest();
         $response = $gapicClient->updateTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -949,12 +893,7 @@ class TagValuesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $tagValue = new TagValue();
-        $tagValueShortName = 'tagValueShortName397125872';
-        $tagValue->setShortName($tagValueShortName);
-        $request = (new CreateTagValueRequest())
-            ->setTagValue($tagValue);
+        $request = new CreateTagValueRequest();
         $response = $gapicClient->createTagValueAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -965,8 +904,6 @@ class TagValuesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagValues/CreateTagValue', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getTagValue();
-        $this->assertProtobufEquals($tagValue, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTagValueTest');
         $response->pollUntilComplete([

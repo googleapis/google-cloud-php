@@ -81,8 +81,7 @@ class ListOSPolicyAssignmentReportsRequest extends \Google\Protobuf\Internal\Mes
      *                       `projects/{project}/locations/{location}/instances/-/osPolicyAssignments/{assignment-id}/reports`
      *                       returns all the reports for the given assignment across all instances.
      *                       `projects/{project}/locations/{location}/instances/-/osPolicyAssignments/-/reports`
-     *                       returns all the reports for all assignments across all instances. Please see
-     *                       {@see OsConfigZonalServiceClient::instanceOSPolicyAssignmentName()} for help formatting this field.
+     *                       returns all the reports for all assignments across all instances.
      *
      * @return \Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentReportsRequest
      *

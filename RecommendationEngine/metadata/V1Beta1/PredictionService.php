@@ -22,20 +22,20 @@ class PredictionService
         \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
-Bgoogle/cloud/recommendationengine/v1beta1/prediction_service.proto)google.cloud.recommendationengine.v1beta1google/api/field_behavior.protogoogle/api/resource.proto:google/cloud/recommendationengine/v1beta1/user_event.protogoogle/protobuf/struct.protogoogle/api/client.proto"Æ
-PredictRequestC
-name (	B5‡A˙A/
--recommendationengine.googleapis.com/PlacementM
+œ
+Bgoogle/cloud/recommendationengine/v1beta1/prediction_service.proto)google.cloud.recommendationengine.v1beta1google/api/field_behavior.protogoogle/api/resource.proto:google/cloud/recommendationengine/v1beta1/user_event.protogoogle/protobuf/struct.protogoogle/api/client.proto"∂
+PredictRequestD
+name (	B6‚A˙A/
+-recommendationengine.googleapis.com/PlacementN
 
-user_event (24.google.cloud.recommendationengine.v1beta1.UserEventB‡A
-	page_size (B‡A
+user_event (24.google.cloud.recommendationengine.v1beta1.UserEventB‚A
+	page_size (B‚A
 
-page_token (	B‡A
-filter (	B‡A
-dry_run (B‡AZ
-params (2E.google.cloud.recommendationengine.v1beta1.PredictRequest.ParamsEntryB‡AZ
-labels	 (2E.google.cloud.recommendationengine.v1beta1.PredictRequest.LabelsEntryB‡AE
+page_token (	B‚A
+filter (	B‚A
+dry_run (B‚A[
+params (2E.google.cloud.recommendationengine.v1beta1.PredictRequest.ParamsEntryB‚A[
+labels	 (2E.google.cloud.recommendationengine.v1beta1.PredictRequest.LabelsEntryB‚AE
 ParamsEntry
 key (	%
 value (2.google.protobuf.Value:8-
@@ -60,7 +60,7 @@ page_token (	B‡A
 key (	%
 value (2.google.protobuf.Value:82‚
 PredictionServiceÛ
-Predict9.google.cloud.recommendationengine.v1beta1.PredictRequest:.google.cloud.recommendationengine.v1beta1.PredictResponse"qÇ”‰ìY"T/v1beta1/{name=projects/*/locations/*/catalogs/*/eventStores/*/placements/*}:predict:*⁄Aname,user_eventW A#recommendationengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB£
+Predict9.google.cloud.recommendationengine.v1beta1.PredictRequest:.google.cloud.recommendationengine.v1beta1.PredictResponse"q⁄Aname,user_eventÇ”‰ìY"T/v1beta1/{name=projects/*/locations/*/catalogs/*/eventStores/*/placements/*}:predict:*W A#recommendationengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB£
 -com.google.cloud.recommendationengine.v1beta1PZacloud.google.com/go/recommendationengine/apiv1beta1/recommendationenginepb;recommendationenginepb¢RECAI™)Google.Cloud.RecommendationEngine.V1Beta1 )Google\\Cloud\\RecommendationEngine\\V1beta1Í,Google::Cloud::RecommendationEngine::V1beta1bproto3'
         , true);
 

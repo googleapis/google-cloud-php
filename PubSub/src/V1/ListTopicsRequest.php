@@ -39,8 +39,7 @@ class ListTopicsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $project Required. The name of the project in which to list topics.
-     *                        Format is `projects/{project-id}`. Please see
-     *                        {@see PublisherClient::projectName()} for help formatting this field.
+     *                        Format is `projects/{project-id}`.
      *
      * @return \Google\Cloud\PubSub\V1\ListTopicsRequest
      *

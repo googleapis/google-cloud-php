@@ -50,8 +50,7 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                          $parent    Required. The parent catalog resource name, such as
-     *                                                   `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch`. Please see
-     *                                                   {@see ProductServiceClient::branchName()} for help formatting this field.
+     *                                                   `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch`.
      * @param \Google\Cloud\Retail\V2\Product $product   Required. The [Product][google.cloud.retail.v2.Product] to create.
      * @param string                          $productId Required. The ID to use for the [Product][google.cloud.retail.v2.Product],
      *                                                   which will become the final component of the

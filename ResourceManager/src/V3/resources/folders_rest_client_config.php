@@ -45,9 +45,6 @@ return [
             'ListFolders' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/folders',
-                'queryParams' => [
-                    'parent',
-                ],
             ],
             'MoveFolder' => [
                 'method' => 'post',
@@ -112,9 +109,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\Client\CatalogServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsRequest;
 use Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsResponse;
-use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -39,19 +38,19 @@ use Google\Rpc\Status;
  * Operation.response is of type ImportResponse. Note that it is
  * possible for a subset of the items to be successfully updated.
  *
- * @param string $formattedParent `projects/1234/locations/global/catalogs/default_catalog`
- *                                Please see {@see CatalogServiceClient::catalogName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_catalog_items_sample(string $formattedParent): void
+function import_catalog_items_sample(): void
 {
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
-    $inputConfig = new InputConfig();
-    $request = (new ImportCatalogItemsRequest())
-        ->setParent($formattedParent)
-        ->setInputConfig($inputConfig);
+    $request = new ImportCatalogItemsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,21 +70,5 @@ function import_catalog_items_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CatalogServiceClient::catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-
-    import_catalog_items_sample($formattedParent);
 }
 // [END recommendationengine_v1beta1_generated_CatalogService_ImportCatalogItems_sync]

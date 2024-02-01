@@ -62,9 +62,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $osLoginServiceClient = new OsLoginServiceClient();
  * try {
- *     $formattedParent = $osLoginServiceClient->userName('[USER]');
- *     $sshPublicKey = new SshPublicKey();
- *     $response = $osLoginServiceClient->createSshPublicKey($formattedParent, $sshPublicKey);
+ *     $response = $osLoginServiceClient->createSshPublicKey();
  * } finally {
  *     $osLoginServiceClient->close();
  * }
@@ -361,19 +359,19 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $formattedParent = $osLoginServiceClient->userName('[USER]');
-     *     $sshPublicKey = new SshPublicKey();
-     *     $response = $osLoginServiceClient->createSshPublicKey($formattedParent, $sshPublicKey);
+     *     $response = $osLoginServiceClient->createSshPublicKey();
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param string       $parent       Required. The unique ID for the user in format `users/{user}`.
-     * @param SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The unique ID for the user in format `users/{user}`.
+     *     @type SshPublicKey $sshPublicKey
+     *           Required. The SSH public key and expiration time.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -386,16 +384,19 @@ class OsLoginServiceGapicClient
      *
      * @experimental
      */
-    public function createSshPublicKey(
-        $parent,
-        $sshPublicKey,
-        array $optionalArgs = []
-    ) {
+    public function createSshPublicKey(array $optionalArgs = [])
+    {
         $request = new CreateSshPublicKeyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSshPublicKey($sshPublicKey);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['sshPublicKey'])) {
+            $request->setSshPublicKey($optionalArgs['sshPublicKey']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -417,19 +418,19 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $formattedName = $osLoginServiceClient->posixAccountName('[USER]', '[PROJECT]');
-     *     $osLoginServiceClient->deletePosixAccount($formattedName);
+     *     $osLoginServiceClient->deletePosixAccount();
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A reference to the POSIX account to update. POSIX accounts are
-     *                             identified by the project ID they are associated with. A reference to the
-     *                             POSIX account is in format `users/{user}/projects/{project}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A reference to the POSIX account to update. POSIX accounts are
+     *           identified by the project ID they are associated with. A reference to the
+     *           POSIX account is in format `users/{user}/projects/{project}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -440,12 +441,15 @@ class OsLoginServiceGapicClient
      *
      * @experimental
      */
-    public function deletePosixAccount($name, array $optionalArgs = [])
+    public function deletePosixAccount(array $optionalArgs = [])
     {
         $request = new DeletePosixAccountRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -467,19 +471,19 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $formattedName = $osLoginServiceClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
-     *     $osLoginServiceClient->deleteSshPublicKey($formattedName);
+     *     $osLoginServiceClient->deleteSshPublicKey();
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The fingerprint of the public key to update. Public keys are
-     *                             identified by their SHA-256 fingerprint. The fingerprint of the public key
-     *                             is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The fingerprint of the public key to update. Public keys are
+     *           identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *           is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -490,12 +494,15 @@ class OsLoginServiceGapicClient
      *
      * @experimental
      */
-    public function deleteSshPublicKey($name, array $optionalArgs = [])
+    public function deleteSshPublicKey(array $optionalArgs = [])
     {
         $request = new DeleteSshPublicKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -518,17 +525,17 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $formattedName = $osLoginServiceClient->userName('[USER]');
-     *     $response = $osLoginServiceClient->getLoginProfile($formattedName);
+     *     $response = $osLoginServiceClient->getLoginProfile();
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The unique ID for the user in format `users/{user}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The unique ID for the user in format `users/{user}`.
      *     @type string $projectId
      *           The project ID of the Google Cloud Platform project.
      *     @type string $systemId
@@ -548,12 +555,15 @@ class OsLoginServiceGapicClient
      *
      * @experimental
      */
-    public function getLoginProfile($name, array $optionalArgs = [])
+    public function getLoginProfile(array $optionalArgs = [])
     {
         $request = new GetLoginProfileRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
         }
@@ -587,19 +597,19 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $formattedName = $osLoginServiceClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
-     *     $response = $osLoginServiceClient->getSshPublicKey($formattedName);
+     *     $response = $osLoginServiceClient->getSshPublicKey();
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The fingerprint of the public key to retrieve. Public keys are
-     *                             identified by their SHA-256 fingerprint. The fingerprint of the public key
-     *                             is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The fingerprint of the public key to retrieve. Public keys are
+     *           identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *           is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -612,12 +622,15 @@ class OsLoginServiceGapicClient
      *
      * @experimental
      */
-    public function getSshPublicKey($name, array $optionalArgs = [])
+    public function getSshPublicKey(array $optionalArgs = [])
     {
         $request = new GetSshPublicKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -641,19 +654,19 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $sshPublicKey = new SshPublicKey();
-     *     $response = $osLoginServiceClient->importSshPublicKey($sshPublicKey);
+     *     $response = $osLoginServiceClient->importSshPublicKey();
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $parent
      *           The unique ID for the user in format `users/{user}`.
+     *     @type SshPublicKey $sshPublicKey
+     *           Required. The SSH public key and expiration time.
      *     @type string $projectId
      *           The project ID of the Google Cloud Platform project.
      *     @type int $view
@@ -675,14 +688,17 @@ class OsLoginServiceGapicClient
      *
      * @experimental
      */
-    public function importSshPublicKey($sshPublicKey, array $optionalArgs = [])
+    public function importSshPublicKey(array $optionalArgs = [])
     {
         $request = new ImportSshPublicKeyRequest();
         $requestParamHeaders = [];
-        $request->setSshPublicKey($sshPublicKey);
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['sshPublicKey'])) {
+            $request->setSshPublicKey($optionalArgs['sshPublicKey']);
         }
 
         if (isset($optionalArgs['projectId'])) {
@@ -781,21 +797,21 @@ class OsLoginServiceGapicClient
      * ```
      * $osLoginServiceClient = new OsLoginServiceClient();
      * try {
-     *     $formattedName = $osLoginServiceClient->sshPublicKeyName('[USER]', '[FINGERPRINT]');
-     *     $sshPublicKey = new SshPublicKey();
-     *     $response = $osLoginServiceClient->updateSshPublicKey($formattedName, $sshPublicKey);
+     *     $response = $osLoginServiceClient->updateSshPublicKey();
      * } finally {
      *     $osLoginServiceClient->close();
      * }
      * ```
      *
-     * @param string       $name         Required. The fingerprint of the public key to update. Public keys are
-     *                                   identified by their SHA-256 fingerprint. The fingerprint of the public key
-     *                                   is in format `users/{user}/sshPublicKeys/{fingerprint}`.
-     * @param SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The fingerprint of the public key to update. Public keys are
+     *           identified by their SHA-256 fingerprint. The fingerprint of the public key
+     *           is in format `users/{user}/sshPublicKeys/{fingerprint}`.
+     *     @type SshPublicKey $sshPublicKey
+     *           Required. The SSH public key and expiration time.
      *     @type FieldMask $updateMask
      *           Mask to control which fields get updated. Updates all if not present.
      *     @type RetrySettings|array $retrySettings
@@ -810,16 +826,19 @@ class OsLoginServiceGapicClient
      *
      * @experimental
      */
-    public function updateSshPublicKey(
-        $name,
-        $sshPublicKey,
-        array $optionalArgs = []
-    ) {
+    public function updateSshPublicKey(array $optionalArgs = [])
+    {
         $request = new UpdateSshPublicKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setSshPublicKey($sshPublicKey);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['sshPublicKey'])) {
+            $request->setSshPublicKey($optionalArgs['sshPublicKey']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

@@ -47,8 +47,7 @@ use Google\Cloud\Run\V2\Task;
  * ```
  * $tasksClient = new TasksClient();
  * try {
- *     $formattedName = $tasksClient->taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]', '[TASK]');
- *     $response = $tasksClient->getTask($formattedName);
+ *     $response = $tasksClient->getTask();
  * } finally {
  *     $tasksClient->close();
  * }
@@ -315,19 +314,19 @@ class TasksGapicClient
      * ```
      * $tasksClient = new TasksClient();
      * try {
-     *     $formattedName = $tasksClient->taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]', '[TASK]');
-     *     $response = $tasksClient->getTask($formattedName);
+     *     $response = $tasksClient->getTask();
      * } finally {
      *     $tasksClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full name of the Task.
-     *                             Format:
-     *                             projects/{project}/locations/{location}/jobs/{job}/executions/{execution}/tasks/{task}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full name of the Task.
+     *           Format:
+     *           projects/{project}/locations/{location}/jobs/{job}/executions/{execution}/tasks/{task}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -338,12 +337,15 @@ class TasksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTask($name, array $optionalArgs = [])
+    public function getTask(array $optionalArgs = [])
     {
         $request = new GetTaskRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -365,9 +367,8 @@ class TasksGapicClient
      * ```
      * $tasksClient = new TasksClient();
      * try {
-     *     $formattedParent = $tasksClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tasksClient->listTasks($formattedParent);
+     *     $pagedResponse = $tasksClient->listTasks();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -375,7 +376,7 @@ class TasksGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tasksClient->listTasks($formattedParent);
+     *     $pagedResponse = $tasksClient->listTasks();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -384,13 +385,14 @@ class TasksGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Execution from which the Tasks should be listed.
-     *                             To list all Tasks across Executions of a Job, use "-" instead of Execution
-     *                             name. To list all Tasks across Jobs, use "-" instead of Job name. Format:
-     *                             projects/{project}/locations/{location}/jobs/{job}/executions/{execution}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The Execution from which the Tasks should be listed.
+     *           To list all Tasks across Executions of a Job, use "-" instead of Execution
+     *           name. To list all Tasks across Jobs, use "-" instead of Job name. Format:
+     *           projects/{project}/locations/{location}/jobs/{job}/executions/{execution}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -412,12 +414,15 @@ class TasksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTasks($parent, array $optionalArgs = [])
+    public function listTasks(array $optionalArgs = [])
     {
         $request = new ListTasksRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

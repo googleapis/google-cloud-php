@@ -46,8 +46,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The location and project to list resources on.
      *                       Format: projects/{project}/locations/{location}, where {project} can be
-     *                       project id or number. Please see
-     *                       {@see JobsClient::locationName()} for help formatting this field.
+     *                       project id or number.
      *
      * @return \Google\Cloud\Run\V2\ListJobsRequest
      *

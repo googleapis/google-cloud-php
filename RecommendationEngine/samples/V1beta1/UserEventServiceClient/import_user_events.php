@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\Client\UserEventServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsRequest;
 use Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsResponse;
-use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -40,20 +39,19 @@ use Google\Rpc\Status;
  * possible for a subset of the items to be successfully inserted.
  * Operation.metadata is of type ImportMetadata.
  *
- * @param string $formattedParent Required.
- *                                `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
- *                                Please see {@see UserEventServiceClient::eventStoreName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_user_events_sample(string $formattedParent): void
+function import_user_events_sample(): void
 {
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
     // Prepare the request message.
-    $inputConfig = new InputConfig();
-    $request = (new ImportUserEventsRequest())
-        ->setParent($formattedParent)
-        ->setInputConfig($inputConfig);
+    $request = new ImportUserEventsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -73,26 +71,5 @@ function import_user_events_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = UserEventServiceClient::eventStoreName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]',
-        '[EVENT_STORE]'
-    );
-
-    import_user_events_sample($formattedParent);
 }
 // [END recommendationengine_v1beta1_generated_UserEventService_ImportUserEvents_sync]

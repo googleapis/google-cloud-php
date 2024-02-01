@@ -117,10 +117,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = new Project();
-        $request = (new CreateProjectRequest())
-            ->setProject($project);
+        $request = new CreateProjectRequest();
         $response = $gapicClient->createProject($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -131,8 +128,6 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Projects/CreateProject', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createProjectTest');
         $response->pollUntilComplete([
@@ -183,10 +178,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = new Project();
-        $request = (new CreateProjectRequest())
-            ->setProject($project);
+        $request = new CreateProjectRequest();
         $response = $gapicClient->createProject($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -248,10 +240,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->projectName('[PROJECT]');
-        $request = (new DeleteProjectRequest())
-            ->setName($formattedName);
+        $request = new DeleteProjectRequest();
         $response = $gapicClient->deleteProject($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -262,8 +251,6 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Projects/DeleteProject', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteProjectTest');
         $response->pollUntilComplete([
@@ -314,10 +301,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->projectName('[PROJECT]');
-        $request = (new DeleteProjectRequest())
-            ->setName($formattedName);
+        $request = new DeleteProjectRequest();
         $response = $gapicClient->deleteProject($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -427,10 +411,7 @@ class ProjectsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->projectName('[PROJECT]');
-        $request = (new GetProjectRequest())
-            ->setName($formattedName);
+        $request = new GetProjectRequest();
         $response = $gapicClient->getProject($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -438,8 +419,6 @@ class ProjectsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Projects/GetProject', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -461,10 +440,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->projectName('[PROJECT]');
-        $request = (new GetProjectRequest())
-            ->setName($formattedName);
+        $request = new GetProjectRequest();
         try {
             $gapicClient->getProject($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -496,10 +472,7 @@ class ProjectsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProjects($projects);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListProjectsRequest())
-            ->setParent($parent);
+        $request = new ListProjectsRequest();
         $response = $gapicClient->listProjects($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -510,8 +483,6 @@ class ProjectsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Projects/ListProjects', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -533,10 +504,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListProjectsRequest())
-            ->setParent($parent);
+        $request = new ListProjectsRequest();
         try {
             $gapicClient->listProjects($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -589,12 +557,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->projectName('[PROJECT]');
-        $destinationParent = 'destinationParent-1362053637';
-        $request = (new MoveProjectRequest())
-            ->setName($formattedName)
-            ->setDestinationParent($destinationParent);
+        $request = new MoveProjectRequest();
         $response = $gapicClient->moveProject($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -605,10 +568,6 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Projects/MoveProject', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getDestinationParent();
-        $this->assertProtobufEquals($destinationParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/moveProjectTest');
         $response->pollUntilComplete([
@@ -659,12 +618,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->projectName('[PROJECT]');
-        $destinationParent = 'destinationParent-1362053637';
-        $request = (new MoveProjectRequest())
-            ->setName($formattedName)
-            ->setDestinationParent($destinationParent);
+        $request = new MoveProjectRequest();
         $response = $gapicClient->moveProject($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -930,10 +884,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->projectName('[PROJECT]');
-        $request = (new UndeleteProjectRequest())
-            ->setName($formattedName);
+        $request = new UndeleteProjectRequest();
         $response = $gapicClient->undeleteProject($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -944,8 +895,6 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Projects/UndeleteProject', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeleteProjectTest');
         $response->pollUntilComplete([
@@ -996,10 +945,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->projectName('[PROJECT]');
-        $request = (new UndeleteProjectRequest())
-            ->setName($formattedName);
+        $request = new UndeleteProjectRequest();
         $response = $gapicClient->undeleteProject($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1061,10 +1007,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = new Project();
-        $request = (new UpdateProjectRequest())
-            ->setProject($project);
+        $request = new UpdateProjectRequest();
         $response = $gapicClient->updateProject($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1075,8 +1018,6 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Projects/UpdateProject', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateProjectTest');
         $response->pollUntilComplete([
@@ -1127,10 +1068,7 @@ class ProjectsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = new Project();
-        $request = (new UpdateProjectRequest())
-            ->setProject($project);
+        $request = new UpdateProjectRequest();
         $response = $gapicClient->updateProject($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1192,10 +1130,7 @@ class ProjectsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = new Project();
-        $request = (new CreateProjectRequest())
-            ->setProject($project);
+        $request = new CreateProjectRequest();
         $response = $gapicClient->createProjectAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1206,8 +1141,6 @@ class ProjectsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Projects/CreateProject', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createProjectTest');
         $response->pollUntilComplete([

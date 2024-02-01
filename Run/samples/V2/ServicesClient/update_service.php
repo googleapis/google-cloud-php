@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Run\V2\Client\ServicesClient;
-use Google\Cloud\Run\V2\RevisionTemplate;
 use Google\Cloud\Run\V2\Service;
 use Google\Cloud\Run\V2\UpdateServiceRequest;
 use Google\Rpc\Status;
@@ -46,11 +45,7 @@ function update_service_sample(): void
     $servicesClient = new ServicesClient();
 
     // Prepare the request message.
-    $serviceTemplate = new RevisionTemplate();
-    $service = (new Service())
-        ->setTemplate($serviceTemplate);
-    $request = (new UpdateServiceRequest())
-        ->setService($service);
+    $request = new UpdateServiceRequest();
 
     // Call the API and handle any network failures.
     try {

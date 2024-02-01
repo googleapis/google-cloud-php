@@ -31,22 +31,19 @@ use Google\Cloud\RecaptchaEnterprise\V1\Key;
 /**
  * Creates a new reCAPTCHA Enterprise key.
  *
- * @param string $formattedParent The name of the project in which the key will be created, in the
- *                                format `projects/{project}`. Please see
- *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
- * @param string $keyDisplayName  Human-readable display name of this key. Modifiable by user.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_key_sample(string $formattedParent, string $keyDisplayName): void
+function create_key_sample(): void
 {
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
     // Prepare the request message.
-    $key = (new Key())
-        ->setDisplayName($keyDisplayName);
-    $request = (new CreateKeyRequest())
-        ->setParent($formattedParent)
-        ->setKey($key);
+    $request = new CreateKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,22 +53,5 @@ function create_key_sample(string $formattedParent, string $keyDisplayName): voi
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RecaptchaEnterpriseServiceClient::projectName('[PROJECT]');
-    $keyDisplayName = '[DISPLAY_NAME]';
-
-    create_key_sample($formattedParent, $keyDisplayName);
 }
 // [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_CreateKey_sync]

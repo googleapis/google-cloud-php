@@ -28,7 +28,6 @@ class PauseModelRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the model to pause.
      *                     Format:
      *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
-     *                     Please see {@see ModelServiceClient::modelName()} for help formatting this field.
      *
      * @return \Google\Cloud\Retail\V2\PauseModelRequest
      *

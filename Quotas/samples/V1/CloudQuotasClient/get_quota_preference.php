@@ -31,20 +31,19 @@ use Google\Cloud\CloudQuotas\V1\QuotaPreference;
 /**
  * Gets details of a single QuotaPreference.
  *
- * @param string $formattedName Name of the resource
- *
- *                              Example name:
- *                              `projects/123/locations/global/quota_preferences/my-config-for-us-east1`
- *                              Please see {@see CloudQuotasClient::quotaPreferenceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_quota_preference_sample(string $formattedName): void
+function get_quota_preference_sample(): void
 {
     // Create a client.
     $cloudQuotasClient = new CloudQuotasClient();
 
     // Prepare the request message.
-    $request = (new GetQuotaPreferenceRequest())
-        ->setName($formattedName);
+    $request = new GetQuotaPreferenceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,25 +53,5 @@ function get_quota_preference_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudQuotasClient::quotaPreferenceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[QUOTA_PREFERENCE]'
-    );
-
-    get_quota_preference_sample($formattedName);
 }
 // [END cloudquotas_v1_generated_CloudQuotas_GetQuotaPreference_sync]

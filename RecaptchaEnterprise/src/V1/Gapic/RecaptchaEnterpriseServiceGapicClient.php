@@ -76,9 +76,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
  * try {
- *     $formattedName = $recaptchaEnterpriseServiceClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
  *     $annotation = Annotation::ANNOTATION_UNSPECIFIED;
- *     $response = $recaptchaEnterpriseServiceClient->annotateAssessment($formattedName, $annotation);
+ *     $response = $recaptchaEnterpriseServiceClient->annotateAssessment($annotation);
  * } finally {
  *     $recaptchaEnterpriseServiceClient->close();
  * }
@@ -461,23 +460,23 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedName = $recaptchaEnterpriseServiceClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
      *     $annotation = Annotation::ANNOTATION_UNSPECIFIED;
-     *     $response = $recaptchaEnterpriseServiceClient->annotateAssessment($formattedName, $annotation);
+     *     $response = $recaptchaEnterpriseServiceClient->annotateAssessment($annotation);
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the Assessment, in the format
-     *                             `projects/{project}/assessments/{assessment}`.
-     * @param int    $annotation   Optional. The annotation that will be assigned to the Event. This field can
-     *                             be left empty to provide reasons that apply to an event without concluding
-     *                             whether the event is legitimate or fraudulent.
-     *                             For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
-     * @param array  $optionalArgs {
+     * @param int   $annotation   Optional. The annotation that will be assigned to the Event. This field can
+     *                            be left empty to provide reasons that apply to an event without concluding
+     *                            whether the event is legitimate or fraudulent.
+     *                            For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Assessment, in the format
+     *           `projects/{project}/assessments/{assessment}`.
      *     @type int[] $reasons
      *           Optional. Reasons for the annotation that are assigned to the event.
      *           For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Reason}
@@ -503,16 +502,16 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function annotateAssessment(
-        $name,
-        $annotation,
-        array $optionalArgs = []
-    ) {
+    public function annotateAssessment($annotation, array $optionalArgs = [])
+    {
         $request = new AnnotateAssessmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
         $request->setAnnotation($annotation);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['reasons'])) {
             $request->setReasons($optionalArgs['reasons']);
         }
@@ -550,20 +549,20 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedParent = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
-     *     $assessment = new Assessment();
-     *     $response = $recaptchaEnterpriseServiceClient->createAssessment($formattedParent, $assessment);
+     *     $response = $recaptchaEnterpriseServiceClient->createAssessment();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string     $parent       Required. The name of the project in which the assessment will be created,
-     *                                 in the format `projects/{project}`.
-     * @param Assessment $assessment   Required. The assessment details.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project in which the assessment will be created,
+     *           in the format `projects/{project}`.
+     *     @type Assessment $assessment
+     *           Required. The assessment details.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -574,16 +573,19 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAssessment(
-        $parent,
-        $assessment,
-        array $optionalArgs = []
-    ) {
+    public function createAssessment(array $optionalArgs = [])
+    {
         $request = new CreateAssessmentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAssessment($assessment);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['assessment'])) {
+            $request->setAssessment($optionalArgs['assessment']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -607,20 +609,20 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedParent = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
-     *     $firewallPolicy = new FirewallPolicy();
-     *     $response = $recaptchaEnterpriseServiceClient->createFirewallPolicy($formattedParent, $firewallPolicy);
+     *     $response = $recaptchaEnterpriseServiceClient->createFirewallPolicy();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string         $parent         Required. The name of the project this policy will apply to, in the format
-     *                                       `projects/{project}`.
-     * @param FirewallPolicy $firewallPolicy Required. Information to create the policy.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project this policy will apply to, in the format
+     *           `projects/{project}`.
+     *     @type FirewallPolicy $firewallPolicy
+     *           Required. Information to create the policy.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -631,16 +633,19 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFirewallPolicy(
-        $parent,
-        $firewallPolicy,
-        array $optionalArgs = []
-    ) {
+    public function createFirewallPolicy(array $optionalArgs = [])
+    {
         $request = new CreateFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFirewallPolicy($firewallPolicy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -662,20 +667,20 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedParent = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
-     *     $key = new Key();
-     *     $response = $recaptchaEnterpriseServiceClient->createKey($formattedParent, $key);
+     *     $response = $recaptchaEnterpriseServiceClient->createKey();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project in which the key will be created, in the
-     *                             format `projects/{project}`.
-     * @param Key    $key          Required. Information to create a reCAPTCHA Enterprise key.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project in which the key will be created, in the
+     *           format `projects/{project}`.
+     *     @type Key $key
+     *           Required. Information to create a reCAPTCHA Enterprise key.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -686,13 +691,19 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createKey($parent, $key, array $optionalArgs = [])
+    public function createKey(array $optionalArgs = [])
     {
         $request = new CreateKeyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setKey($key);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['key'])) {
+            $request->setKey($optionalArgs['key']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -714,18 +725,18 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedName = $recaptchaEnterpriseServiceClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]');
-     *     $recaptchaEnterpriseServiceClient->deleteFirewallPolicy($formattedName);
+     *     $recaptchaEnterpriseServiceClient->deleteFirewallPolicy();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the policy to be deleted, in the format
-     *                             `projects/{project}/firewallpolicies/{firewallpolicy}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the policy to be deleted, in the format
+     *           `projects/{project}/firewallpolicies/{firewallpolicy}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -734,12 +745,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFirewallPolicy($name, array $optionalArgs = [])
+    public function deleteFirewallPolicy(array $optionalArgs = [])
     {
         $request = new DeleteFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -761,18 +775,18 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedName = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
-     *     $recaptchaEnterpriseServiceClient->deleteKey($formattedName);
+     *     $recaptchaEnterpriseServiceClient->deleteKey();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the key to be deleted, in the format
-     *                             `projects/{project}/keys/{key}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the key to be deleted, in the format
+     *           `projects/{project}/keys/{key}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -781,12 +795,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteKey($name, array $optionalArgs = [])
+    public function deleteKey(array $optionalArgs = [])
     {
         $request = new DeleteKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -808,18 +825,18 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedName = $recaptchaEnterpriseServiceClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]');
-     *     $response = $recaptchaEnterpriseServiceClient->getFirewallPolicy($formattedName);
+     *     $response = $recaptchaEnterpriseServiceClient->getFirewallPolicy();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the requested policy, in the format
-     *                             `projects/{project}/firewallpolicies/{firewallpolicy}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the requested policy, in the format
+     *           `projects/{project}/firewallpolicies/{firewallpolicy}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -830,12 +847,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFirewallPolicy($name, array $optionalArgs = [])
+    public function getFirewallPolicy(array $optionalArgs = [])
     {
         $request = new GetFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -857,18 +877,18 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedName = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
-     *     $response = $recaptchaEnterpriseServiceClient->getKey($formattedName);
+     *     $response = $recaptchaEnterpriseServiceClient->getKey();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the requested key, in the format
-     *                             `projects/{project}/keys/{key}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the requested key, in the format
+     *           `projects/{project}/keys/{key}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -879,12 +899,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getKey($name, array $optionalArgs = [])
+    public function getKey(array $optionalArgs = [])
     {
         $request = new GetKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -907,18 +930,18 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedName = $recaptchaEnterpriseServiceClient->metricsName('[PROJECT]', '[KEY]');
-     *     $response = $recaptchaEnterpriseServiceClient->getMetrics($formattedName);
+     *     $response = $recaptchaEnterpriseServiceClient->getMetrics();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the requested metrics, in the format
-     *                             `projects/{project}/keys/{key}/metrics`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the requested metrics, in the format
+     *           `projects/{project}/keys/{key}/metrics`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -929,12 +952,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getMetrics($name, array $optionalArgs = [])
+    public function getMetrics(array $optionalArgs = [])
     {
         $request = new GetMetricsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -956,9 +982,8 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedParent = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listFirewallPolicies($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listFirewallPolicies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -966,7 +991,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listFirewallPolicies($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listFirewallPolicies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -975,11 +1000,12 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project to list the policies for, in the format
-     *                             `projects/{project}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project to list the policies for, in the format
+     *           `projects/{project}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -999,12 +1025,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFirewallPolicies($parent, array $optionalArgs = [])
+    public function listFirewallPolicies(array $optionalArgs = [])
     {
         $request = new ListFirewallPoliciesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1034,9 +1063,8 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedParent = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listKeys($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listKeys();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1044,7 +1072,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listKeys($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listKeys();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1053,11 +1081,12 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project that contains the keys that will be
-     *                             listed, in the format `projects/{project}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project that contains the keys that will be
+     *           listed, in the format `projects/{project}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1077,12 +1106,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listKeys($parent, array $optionalArgs = [])
+    public function listKeys(array $optionalArgs = [])
     {
         $request = new ListKeysRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1112,9 +1144,8 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedParent = $recaptchaEnterpriseServiceClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listRelatedAccountGroupMemberships($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listRelatedAccountGroupMemberships();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1122,7 +1153,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listRelatedAccountGroupMemberships($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listRelatedAccountGroupMemberships();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1131,11 +1162,12 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name for the related account group in the format
-     *                             `projects/{project}/relatedaccountgroups/{relatedaccountgroup}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name for the related account group in the format
+     *           `projects/{project}/relatedaccountgroups/{relatedaccountgroup}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1155,14 +1187,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRelatedAccountGroupMemberships(
-        $parent,
-        array $optionalArgs = []
-    ) {
+    public function listRelatedAccountGroupMemberships(array $optionalArgs = [])
+    {
         $request = new ListRelatedAccountGroupMembershipsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1192,9 +1225,8 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedParent = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listRelatedAccountGroups($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listRelatedAccountGroups();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1202,7 +1234,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listRelatedAccountGroups($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listRelatedAccountGroups();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1211,11 +1243,12 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project to list related account groups from, in
-     *                             the format `projects/{project}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project to list related account groups from, in
+     *           the format `projects/{project}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1235,12 +1268,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRelatedAccountGroups($parent, array $optionalArgs = [])
+    public function listRelatedAccountGroups(array $optionalArgs = [])
     {
         $request = new ListRelatedAccountGroupsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1275,18 +1311,18 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedName = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
-     *     $response = $recaptchaEnterpriseServiceClient->migrateKey($formattedName);
+     *     $response = $recaptchaEnterpriseServiceClient->migrateKey();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the key to be migrated, in the format
-     *                             `projects/{project}/keys/{key}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the key to be migrated, in the format
+     *           `projects/{project}/keys/{key}`.
      *     @type bool $skipBillingCheck
      *           Optional. If true, skips the billing check.
      *           A reCAPTCHA Enterprise key or migrated key behaves differently than a
@@ -1306,12 +1342,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function migrateKey($name, array $optionalArgs = [])
+    public function migrateKey(array $optionalArgs = [])
     {
         $request = new MigrateKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['skipBillingCheck'])) {
             $request->setSkipBillingCheck($optionalArgs['skipBillingCheck']);
         }
@@ -1339,18 +1378,18 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedKey = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
-     *     $response = $recaptchaEnterpriseServiceClient->retrieveLegacySecretKey($formattedKey);
+     *     $response = $recaptchaEnterpriseServiceClient->retrieveLegacySecretKey();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param string $key          Required. The public key name linked to the requested secret key in the
-     *                             format `projects/{project}/keys/{key}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $key
+     *           Required. The public key name linked to the requested secret key in the
+     *           format `projects/{project}/keys/{key}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1361,12 +1400,15 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function retrieveLegacySecretKey($key, array $optionalArgs = [])
+    public function retrieveLegacySecretKey(array $optionalArgs = [])
     {
         $request = new RetrieveLegacySecretKeyRequest();
         $requestParamHeaders = [];
-        $request->setKey($key);
-        $requestParamHeaders['key'] = $key;
+        if (isset($optionalArgs['key'])) {
+            $request->setKey($optionalArgs['key']);
+            $requestParamHeaders['key'] = $optionalArgs['key'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1388,9 +1430,8 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedProject = $recaptchaEnterpriseServiceClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedProject);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1398,7 +1439,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedProject);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1407,12 +1448,13 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $project      Required. The name of the project to search related account group
-     *                             memberships from. Specify the project name in the following format:
-     *                             `projects/{project}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Required. The name of the project to search related account group
+     *           memberships from. Specify the project name in the following format:
+     *           `projects/{project}`.
      *     @type string $accountId
      *           Optional. The unique stable account identifier used to search connections.
      *           The identifier should correspond to an `account_id` provided in a previous
@@ -1444,13 +1486,15 @@ class RecaptchaEnterpriseServiceGapicClient
      * @throws ApiException if the remote call fails
      */
     public function searchRelatedAccountGroupMemberships(
-        $project,
         array $optionalArgs = []
     ) {
         $request = new SearchRelatedAccountGroupMembershipsRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['accountId'])) {
             $request->setAccountId($optionalArgs['accountId']);
         }
@@ -1488,17 +1532,17 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $firewallPolicy = new FirewallPolicy();
-     *     $response = $recaptchaEnterpriseServiceClient->updateFirewallPolicy($firewallPolicy);
+     *     $response = $recaptchaEnterpriseServiceClient->updateFirewallPolicy();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param FirewallPolicy $firewallPolicy Required. The policy to update.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FirewallPolicy $firewallPolicy
+     *           Required. The policy to update.
      *     @type FieldMask $updateMask
      *           Optional. The mask to control which fields of the policy get updated. If
      *           the mask is not present, all fields will be updated.
@@ -1512,16 +1556,14 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFirewallPolicy(
-        $firewallPolicy,
-        array $optionalArgs = []
-    ) {
+    public function updateFirewallPolicy(array $optionalArgs = [])
+    {
         $request = new UpdateFirewallPolicyRequest();
         $requestParamHeaders = [];
-        $request->setFirewallPolicy($firewallPolicy);
-        $requestParamHeaders[
-            'firewall_policy.name'
-        ] = $firewallPolicy->getName();
+        if (isset($optionalArgs['firewallPolicy'])) {
+            $request->setFirewallPolicy($optionalArgs['firewallPolicy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1547,17 +1589,17 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $key = new Key();
-     *     $response = $recaptchaEnterpriseServiceClient->updateKey($key);
+     *     $response = $recaptchaEnterpriseServiceClient->updateKey();
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
      * ```
      *
-     * @param Key   $key          Required. The key to update.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Key $key
+     *           Required. The key to update.
      *     @type FieldMask $updateMask
      *           Optional. The mask to control which fields of the key get updated. If the
      *           mask is not present, all fields will be updated.
@@ -1571,12 +1613,14 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateKey($key, array $optionalArgs = [])
+    public function updateKey(array $optionalArgs = [])
     {
         $request = new UpdateKeyRequest();
         $requestParamHeaders = [];
-        $request->setKey($key);
-        $requestParamHeaders['key.name'] = $key->getName();
+        if (isset($optionalArgs['key'])) {
+            $request->setKey($optionalArgs['key']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

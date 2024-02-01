@@ -33,23 +33,19 @@ use Google\Rpc\Status;
 /**
  * Updates the attributes of the TagKey resource.
  *
- * @param string $tagKeyShortName Immutable. The user friendly name for a TagKey. The short name
- *                                should be unique for TagKeys within the same tag namespace.
- *
- *                                The short name must be 1-63 characters, beginning and ending with
- *                                an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),
- *                                dots (.), and alphanumerics between.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_tag_key_sample(string $tagKeyShortName): void
+function update_tag_key_sample(): void
 {
     // Create a client.
     $tagKeysClient = new TagKeysClient();
 
     // Prepare the request message.
-    $tagKey = (new TagKey())
-        ->setShortName($tagKeyShortName);
-    $request = (new UpdateTagKeyRequest())
-        ->setTagKey($tagKey);
+    $request = new UpdateTagKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,21 +65,5 @@ function update_tag_key_sample(string $tagKeyShortName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $tagKeyShortName = '[SHORT_NAME]';
-
-    update_tag_key_sample($tagKeyShortName);
 }
 // [END cloudresourcemanager_v3_generated_TagKeys_UpdateTagKey_sync]

@@ -33,25 +33,19 @@ use Google\Cloud\PrivateCatalog\V1beta1\Version;
  * Search [Version][google.cloud.privatecatalog.v1beta1.Version] resources that consumers have access to, within the
  * scope of the consumer cloud resource hierarchy context.
  *
- * @param string $resource The name of the resource context. See [SearchCatalogsRequest.resource][google.cloud.privatecatalog.v1beta1.SearchCatalogsRequest.resource]
- *                         for details.
- * @param string $query    The query to filter the versions.
- *
- *                         The supported queries are:
- *                         * List versions under a product:
- *                         `parent=catalogs/{catalog}/products/{product}`
- *                         * Get a version by name:
- *                         `name=catalogs/{catalog}/products/{product}/versions/{version}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_versions_sample(string $resource, string $query): void
+function search_versions_sample(): void
 {
     // Create a client.
     $privateCatalogClient = new PrivateCatalogClient();
 
     // Prepare the request message.
-    $request = (new SearchVersionsRequest())
-        ->setResource($resource)
-        ->setQuery($query);
+    $request = new SearchVersionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,22 +59,5 @@ function search_versions_sample(string $resource, string $query): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $resource = '[RESOURCE]';
-    $query = '[QUERY]';
-
-    search_versions_sample($resource, $query);
 }
 // [END cloudprivatecatalog_v1beta1_generated_PrivateCatalog_SearchVersions_sync]

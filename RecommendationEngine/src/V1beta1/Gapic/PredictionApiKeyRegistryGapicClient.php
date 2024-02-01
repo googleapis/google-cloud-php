@@ -55,9 +55,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
  * try {
- *     $formattedParent = $predictionApiKeyRegistryClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
- *     $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
- *     $response = $predictionApiKeyRegistryClient->createPredictionApiKeyRegistration($formattedParent, $predictionApiKeyRegistration);
+ *     $response = $predictionApiKeyRegistryClient->createPredictionApiKeyRegistration();
  * } finally {
  *     $predictionApiKeyRegistryClient->close();
  * }
@@ -316,20 +314,20 @@ class PredictionApiKeyRegistryGapicClient
      * ```
      * $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
      * try {
-     *     $formattedParent = $predictionApiKeyRegistryClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-     *     $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
-     *     $response = $predictionApiKeyRegistryClient->createPredictionApiKeyRegistration($formattedParent, $predictionApiKeyRegistration);
+     *     $response = $predictionApiKeyRegistryClient->createPredictionApiKeyRegistration();
      * } finally {
      *     $predictionApiKeyRegistryClient->close();
      * }
      * ```
      *
-     * @param string                       $parent                       Required. The parent resource path.
-     *                                                                   `projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
-     * @param PredictionApiKeyRegistration $predictionApiKeyRegistration Required. The prediction API key registration.
-     * @param array                        $optionalArgs                 {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource path.
+     *           `projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
+     *     @type PredictionApiKeyRegistration $predictionApiKeyRegistration
+     *           Required. The prediction API key registration.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -342,13 +340,19 @@ class PredictionApiKeyRegistryGapicClient
      *
      * @experimental
      */
-    public function createPredictionApiKeyRegistration($parent, $predictionApiKeyRegistration, array $optionalArgs = [])
+    public function createPredictionApiKeyRegistration(array $optionalArgs = [])
     {
         $request = new CreatePredictionApiKeyRegistrationRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setPredictionApiKeyRegistration($predictionApiKeyRegistration);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['predictionApiKeyRegistration'])) {
+            $request->setPredictionApiKeyRegistration($optionalArgs['predictionApiKeyRegistration']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreatePredictionApiKeyRegistration', PredictionApiKeyRegistration::class, $optionalArgs, $request)->wait();
@@ -361,18 +365,18 @@ class PredictionApiKeyRegistryGapicClient
      * ```
      * $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
      * try {
-     *     $formattedName = $predictionApiKeyRegistryClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
-     *     $predictionApiKeyRegistryClient->deletePredictionApiKeyRegistration($formattedName);
+     *     $predictionApiKeyRegistryClient->deletePredictionApiKeyRegistration();
      * } finally {
      *     $predictionApiKeyRegistryClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The API key to unregister including full resource path.
-     *                             `projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The API key to unregister including full resource path.
+     *           `projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -383,12 +387,15 @@ class PredictionApiKeyRegistryGapicClient
      *
      * @experimental
      */
-    public function deletePredictionApiKeyRegistration($name, array $optionalArgs = [])
+    public function deletePredictionApiKeyRegistration(array $optionalArgs = [])
     {
         $request = new DeletePredictionApiKeyRegistrationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeletePredictionApiKeyRegistration', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -401,9 +408,8 @@ class PredictionApiKeyRegistryGapicClient
      * ```
      * $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
      * try {
-     *     $formattedParent = $predictionApiKeyRegistryClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $predictionApiKeyRegistryClient->listPredictionApiKeyRegistrations($formattedParent);
+     *     $pagedResponse = $predictionApiKeyRegistryClient->listPredictionApiKeyRegistrations();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -411,7 +417,7 @@ class PredictionApiKeyRegistryGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $predictionApiKeyRegistryClient->listPredictionApiKeyRegistrations($formattedParent);
+     *     $pagedResponse = $predictionApiKeyRegistryClient->listPredictionApiKeyRegistrations();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -420,11 +426,12 @@ class PredictionApiKeyRegistryGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent placement resource name such as
-     *                             `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent placement resource name such as
+     *           `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -446,12 +453,15 @@ class PredictionApiKeyRegistryGapicClient
      *
      * @experimental
      */
-    public function listPredictionApiKeyRegistrations($parent, array $optionalArgs = [])
+    public function listPredictionApiKeyRegistrations(array $optionalArgs = [])
     {
         $request = new ListPredictionApiKeyRegistrationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

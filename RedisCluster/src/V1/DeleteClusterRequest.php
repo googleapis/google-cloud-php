@@ -33,8 +33,7 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Redis cluster resource name using the form:
      *                     `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`
-     *                     where `location_id` refers to a GCP region. Please see
-     *                     {@see CloudRedisClusterClient::clusterName()} for help formatting this field.
+     *                     where `location_id` refers to a GCP region.
      *
      * @return \Google\Cloud\Redis\Cluster\V1\DeleteClusterRequest
      *

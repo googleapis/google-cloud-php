@@ -59,20 +59,19 @@ use Google\Rpc\Status;
  * The caller must have `resourcemanager.folders.create` permission on the
  * identified parent.
  *
- * @param string $folderParent The folder's parent's resource name.
- *                             Updates to the folder's parent must be performed using
- *                             [MoveFolder][google.cloud.resourcemanager.v3.Folders.MoveFolder].
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_folder_sample(string $folderParent): void
+function create_folder_sample(): void
 {
     // Create a client.
     $foldersClient = new FoldersClient();
 
     // Prepare the request message.
-    $folder = (new Folder())
-        ->setParent($folderParent);
-    $request = (new CreateFolderRequest())
-        ->setFolder($folder);
+    $request = new CreateFolderRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -92,21 +91,5 @@ function create_folder_sample(string $folderParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $folderParent = '[PARENT]';
-
-    create_folder_sample($folderParent);
 }
 // [END cloudresourcemanager_v3_generated_Folders_CreateFolder_sync]

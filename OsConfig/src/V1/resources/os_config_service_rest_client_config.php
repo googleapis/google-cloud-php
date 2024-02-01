@@ -26,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'patch_deployment_id',
-                ],
             ],
             'DeletePatchDeployment' => [
                 'method' => 'delete',

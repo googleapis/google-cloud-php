@@ -27,26 +27,24 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\PubSub\V1\PublishRequest;
 use Google\Cloud\PubSub\V1\PublishResponse;
-use Google\Cloud\PubSub\V1\PubsubMessage;
 
 /**
  * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
  * does not exist.
  *
- * @param string $formattedTopic The messages in the request will be published on this topic.
- *                               Format is `projects/{project}/topics/{topic}`. Please see
- *                               {@see PublisherClient::topicName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function publish_sample(string $formattedTopic): void
+function publish_sample(): void
 {
     // Create a client.
     $publisherClient = new PublisherClient();
 
     // Prepare the request message.
-    $messages = [new PubsubMessage()];
-    $request = (new PublishRequest())
-        ->setTopic($formattedTopic)
-        ->setMessages($messages);
+    $request = new PublishRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +54,5 @@ function publish_sample(string $formattedTopic): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedTopic = PublisherClient::topicName('[PROJECT]', '[TOPIC]');
-
-    publish_sample($formattedTopic);
 }
 // [END pubsub_v1_generated_Publisher_Publish_sync]

@@ -39,8 +39,7 @@ class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $topic Required. The name of the topic that subscriptions are attached to.
-     *                      Format is `projects/{project}/topics/{topic}`. Please see
-     *                      {@see PublisherClient::topicName()} for help formatting this field.
+     *                      Format is `projects/{project}/topics/{topic}`.
      *
      * @return \Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest
      *

@@ -31,19 +31,19 @@ use Google\Cloud\ResourceManager\V3\Organization;
 /**
  * Fetches an organization resource identified by the specified resource name.
  *
- * @param string $formattedName The resource name of the Organization to fetch. This is the
- *                              organization's relative path in the API, formatted as
- *                              "organizations/[organizationId]". For example, "organizations/1234". Please see
- *                              {@see OrganizationsClient::organizationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_organization_sample(string $formattedName): void
+function get_organization_sample(): void
 {
     // Create a client.
     $organizationsClient = new OrganizationsClient();
 
     // Prepare the request message.
-    $request = (new GetOrganizationRequest())
-        ->setName($formattedName);
+    $request = new GetOrganizationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function get_organization_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = OrganizationsClient::organizationName('[ORGANIZATION]');
-
-    get_organization_sample($formattedName);
 }
 // [END cloudresourcemanager_v3_generated_Organizations_GetOrganization_sync]

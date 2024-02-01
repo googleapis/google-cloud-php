@@ -27,36 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Run\V2\Client\JobsClient;
 use Google\Cloud\Run\V2\CreateJobRequest;
-use Google\Cloud\Run\V2\ExecutionTemplate;
 use Google\Cloud\Run\V2\Job;
-use Google\Cloud\Run\V2\TaskTemplate;
 use Google\Rpc\Status;
 
 /**
  * Creates a Job.
  *
- * @param string $formattedParent The location and project in which this Job should be created.
- *                                Format: projects/{project}/locations/{location}, where {project} can be
- *                                project id or number. Please see
- *                                {@see JobsClient::locationName()} for help formatting this field.
- * @param string $jobId           The unique identifier for the Job. The name of the job becomes
- *                                {parent}/jobs/{job_id}.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_job_sample(string $formattedParent, string $jobId): void
+function create_job_sample(): void
 {
     // Create a client.
     $jobsClient = new JobsClient();
 
     // Prepare the request message.
-    $jobTemplateTemplate = new TaskTemplate();
-    $jobTemplate = (new ExecutionTemplate())
-        ->setTemplate($jobTemplateTemplate);
-    $job = (new Job())
-        ->setTemplate($jobTemplate);
-    $request = (new CreateJobRequest())
-        ->setParent($formattedParent)
-        ->setJob($job)
-        ->setJobId($jobId);
+    $request = new CreateJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -76,22 +65,5 @@ function create_job_sample(string $formattedParent, string $jobId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = JobsClient::locationName('[PROJECT]', '[LOCATION]');
-    $jobId = '[JOB_ID]';
-
-    create_job_sample($formattedParent, $jobId);
 }
 // [END run_v2_generated_Jobs_CreateJob_sync]

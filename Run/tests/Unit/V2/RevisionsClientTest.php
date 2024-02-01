@@ -119,9 +119,7 @@ class RevisionsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
-        $response = $gapicClient->deleteRevision($formattedName);
+        $response = $gapicClient->deleteRevision();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -131,8 +129,6 @@ class RevisionsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Revisions/DeleteRevision', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteRevisionTest');
         $response->pollUntilComplete([
@@ -183,9 +179,7 @@ class RevisionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
-        $response = $gapicClient->deleteRevision($formattedName);
+        $response = $gapicClient->deleteRevision();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -244,17 +238,13 @@ class RevisionsClientTest extends GeneratedTest
         $expectedResponse->setSessionAffinity($sessionAffinity);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
-        $response = $gapicClient->getRevision($formattedName);
+        $response = $gapicClient->getRevision();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Revisions/GetRevision', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -276,10 +266,8 @@ class RevisionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
         try {
-            $gapicClient->getRevision($formattedName);
+            $gapicClient->getRevision();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -309,9 +297,7 @@ class RevisionsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRevisions($revisions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $response = $gapicClient->listRevisions($formattedParent);
+        $response = $gapicClient->listRevisions();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -321,8 +307,6 @@ class RevisionsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Revisions/ListRevisions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -344,10 +328,8 @@ class RevisionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
         try {
-            $gapicClient->listRevisions($formattedParent);
+            $gapicClient->listRevisions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

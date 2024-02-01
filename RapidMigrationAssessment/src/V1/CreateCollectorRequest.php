@@ -41,8 +41,7 @@ class CreateCollectorRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                              $parent      Required. Name of the parent (project+location). Please see
-     *                                                                         {@see RapidMigrationAssessmentClient::locationName()} for help formatting this field.
+     * @param string                                              $parent      Required. Name of the parent (project+location).
      * @param \Google\Cloud\RapidMigrationAssessment\V1\Collector $collector   Required. The resource being created.
      * @param string                                              $collectorId Required. Id of the requesting object.
      *

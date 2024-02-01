@@ -30,40 +30,24 @@ use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
 /**
  * Create an SSH public key
  *
- * @param string $formattedParent The unique ID for the user in format `users/{user}`. Please see
- *                                {@see OsLoginServiceClient::userName()} for help formatting this field.
- */
-function create_ssh_public_key_sample(string $formattedParent): void
-{
-    // Create a client.
-    $osLoginServiceClient = new OsLoginServiceClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $sshPublicKey = new SshPublicKey();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var SshPublicKey $response */
-        $response = $osLoginServiceClient->createSshPublicKey($formattedParent, $sshPublicKey);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function create_ssh_public_key_sample(): void
 {
-    $formattedParent = OsLoginServiceClient::userName('[USER]');
+    // Create a client.
+    $osLoginServiceClient = new OsLoginServiceClient();
 
-    create_ssh_public_key_sample($formattedParent);
+    // Call the API and handle any network failures.
+    try {
+        /** @var SshPublicKey $response */
+        $response = $osLoginServiceClient->createSshPublicKey();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END oslogin_v1beta_generated_OsLoginService_CreateSshPublicKey_sync]

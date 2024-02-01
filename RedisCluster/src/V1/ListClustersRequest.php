@@ -45,8 +45,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the cluster location using the form:
      *                       `projects/{project_id}/locations/{location_id}`
-     *                       where `location_id` refers to a GCP region. Please see
-     *                       {@see CloudRedisClusterClient::locationName()} for help formatting this field.
+     *                       where `location_id` refers to a GCP region.
      *
      * @return \Google\Cloud\Redis\Cluster\V1\ListClustersRequest
      *

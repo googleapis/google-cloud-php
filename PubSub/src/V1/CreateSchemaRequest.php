@@ -43,8 +43,7 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                         $parent   Required. The name of the project in which to create the schema.
-     *                                                 Format is `projects/{project-id}`. Please see
-     *                                                 {@see SchemaServiceClient::projectName()} for help formatting this field.
+     *                                                 Format is `projects/{project-id}`.
      * @param \Google\Cloud\PubSub\V1\Schema $schema   Required. The schema object to create.
      *
      *                                                 This schema's `name` parameter is ignored. The schema object returned

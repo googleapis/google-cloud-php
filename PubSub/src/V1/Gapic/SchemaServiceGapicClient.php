@@ -68,9 +68,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $schemaServiceClient = new SchemaServiceClient();
  * try {
- *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
- *     $schema = new Schema();
- *     $response = $schemaServiceClient->commitSchema($formattedName, $schema);
+ *     $response = $schemaServiceClient->commitSchema();
  * } finally {
  *     $schemaServiceClient->close();
  * }
@@ -308,20 +306,20 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
-     *     $schema = new Schema();
-     *     $response = $schemaServiceClient->commitSchema($formattedName, $schema);
+     *     $response = $schemaServiceClient->commitSchema();
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the schema we are revising.
-     *                             Format is `projects/{project}/schemas/{schema}`.
-     * @param Schema $schema       Required. The schema revision to commit.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the schema we are revising.
+     *           Format is `projects/{project}/schemas/{schema}`.
+     *     @type Schema $schema
+     *           Required. The schema revision to commit.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -332,13 +330,19 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function commitSchema($name, $schema, array $optionalArgs = [])
+    public function commitSchema(array $optionalArgs = [])
     {
         $request = new CommitSchemaRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setSchema($schema);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['schema'])) {
+            $request->setSchema($optionalArgs['schema']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CommitSchema', Schema::class, $optionalArgs, $request)->wait();
@@ -351,24 +355,24 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $formattedParent = $schemaServiceClient->projectName('[PROJECT]');
-     *     $schema = new Schema();
-     *     $response = $schemaServiceClient->createSchema($formattedParent, $schema);
+     *     $response = $schemaServiceClient->createSchema();
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project in which to create the schema.
-     *                             Format is `projects/{project-id}`.
-     * @param Schema $schema       Required. The schema object to create.
-     *
-     *                             This schema's `name` parameter is ignored. The schema object returned
-     *                             by CreateSchema will have a `name` made using the given `parent` and
-     *                             `schema_id`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project in which to create the schema.
+     *           Format is `projects/{project-id}`.
+     *     @type Schema $schema
+     *           Required. The schema object to create.
+     *
+     *           This schema's `name` parameter is ignored. The schema object returned
+     *           by CreateSchema will have a `name` made using the given `parent` and
+     *           `schema_id`.
      *     @type string $schemaId
      *           The ID to use for the schema, which will become the final component of
      *           the schema's resource name.
@@ -385,13 +389,19 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSchema($parent, $schema, array $optionalArgs = [])
+    public function createSchema(array $optionalArgs = [])
     {
         $request = new CreateSchemaRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSchema($schema);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['schema'])) {
+            $request->setSchema($optionalArgs['schema']);
+        }
+
         if (isset($optionalArgs['schemaId'])) {
             $request->setSchemaId($optionalArgs['schemaId']);
         }
@@ -408,18 +418,18 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
-     *     $schemaServiceClient->deleteSchema($formattedName);
+     *     $schemaServiceClient->deleteSchema();
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the schema to delete.
-     *                             Format is `projects/{project}/schemas/{schema}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the schema to delete.
+     *           Format is `projects/{project}/schemas/{schema}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -428,12 +438,15 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSchema($name, array $optionalArgs = [])
+    public function deleteSchema(array $optionalArgs = [])
     {
         $request = new DeleteSchemaRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteSchema', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -446,24 +459,24 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
      *     $revisionId = 'revision_id';
-     *     $response = $schemaServiceClient->deleteSchemaRevision($formattedName, $revisionId);
+     *     $response = $schemaServiceClient->deleteSchemaRevision($revisionId);
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the schema revision to be deleted, with a revision ID
-     *                             explicitly included.
-     *
-     *                             Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
      * @param string $revisionId   Optional. This field is deprecated and should not be used for specifying
      *                             the revision ID. The revision ID should be specified via the `name`
      *                             parameter.
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the schema revision to be deleted, with a revision ID
+     *           explicitly included.
+     *
+     *           Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -474,13 +487,16 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSchemaRevision($name, $revisionId, array $optionalArgs = [])
+    public function deleteSchemaRevision($revisionId, array $optionalArgs = [])
     {
         $request = new DeleteSchemaRevisionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
         $request->setRevisionId($revisionId);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteSchemaRevision', Schema::class, $optionalArgs, $request)->wait();
@@ -493,18 +509,18 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
-     *     $response = $schemaServiceClient->getSchema($formattedName);
+     *     $response = $schemaServiceClient->getSchema();
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the schema to get.
-     *                             Format is `projects/{project}/schemas/{schema}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the schema to get.
+     *           Format is `projects/{project}/schemas/{schema}`.
      *     @type int $view
      *           The set of fields to return in the response. If not set, returns a Schema
      *           with all fields filled out. Set to `BASIC` to omit the `definition`.
@@ -519,12 +535,15 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSchema($name, array $optionalArgs = [])
+    public function getSchema(array $optionalArgs = [])
     {
         $request = new GetSchemaRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -541,9 +560,8 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $schemaServiceClient->listSchemaRevisions($formattedName);
+     *     $pagedResponse = $schemaServiceClient->listSchemaRevisions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -551,7 +569,7 @@ class SchemaServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $schemaServiceClient->listSchemaRevisions($formattedName);
+     *     $pagedResponse = $schemaServiceClient->listSchemaRevisions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -560,10 +578,11 @@ class SchemaServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the schema to list revisions for.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the schema to list revisions for.
      *     @type int $view
      *           The set of Schema fields to return in the response. If not set, returns
      *           Schemas with `name` and `type`, but not `definition`. Set to `FULL` to
@@ -588,12 +607,15 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSchemaRevisions($name, array $optionalArgs = [])
+    public function listSchemaRevisions(array $optionalArgs = [])
     {
         $request = new ListSchemaRevisionsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -618,9 +640,8 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $formattedParent = $schemaServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $schemaServiceClient->listSchemas($formattedParent);
+     *     $pagedResponse = $schemaServiceClient->listSchemas();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -628,7 +649,7 @@ class SchemaServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $schemaServiceClient->listSchemas($formattedParent);
+     *     $pagedResponse = $schemaServiceClient->listSchemas();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -637,11 +658,12 @@ class SchemaServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project in which to list schemas.
-     *                             Format is `projects/{project-id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project in which to list schemas.
+     *           Format is `projects/{project-id}`.
      *     @type int $view
      *           The set of Schema fields to return in the response. If not set, returns
      *           Schemas with `name` and `type`, but not `definition`. Set to `FULL` to
@@ -666,12 +688,15 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSchemas($parent, array $optionalArgs = [])
+    public function listSchemas(array $optionalArgs = [])
     {
         $request = new ListSchemasRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -696,22 +721,22 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $formattedName = $schemaServiceClient->schemaName('[PROJECT]', '[SCHEMA]');
-     *     $revisionId = 'revision_id';
-     *     $response = $schemaServiceClient->rollbackSchema($formattedName, $revisionId);
+     *     $response = $schemaServiceClient->rollbackSchema();
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The schema being rolled back with revision id.
-     * @param string $revisionId   Required. The revision ID to roll back to.
-     *                             It must be a revision of the same schema.
-     *
-     *                             Example: c7cfa2a8
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The schema being rolled back with revision id.
+     *     @type string $revisionId
+     *           Required. The revision ID to roll back to.
+     *           It must be a revision of the same schema.
+     *
+     *           Example: c7cfa2a8
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -722,13 +747,19 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rollbackSchema($name, $revisionId, array $optionalArgs = [])
+    public function rollbackSchema(array $optionalArgs = [])
     {
         $request = new RollbackSchemaRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setRevisionId($revisionId);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['revisionId'])) {
+            $request->setRevisionId($optionalArgs['revisionId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RollbackSchema', Schema::class, $optionalArgs, $request)->wait();
@@ -741,18 +772,18 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $formattedParent = $schemaServiceClient->projectName('[PROJECT]');
-     *     $response = $schemaServiceClient->validateMessage($formattedParent);
+     *     $response = $schemaServiceClient->validateMessage();
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project in which to validate schemas.
-     *                             Format is `projects/{project-id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project in which to validate schemas.
+     *           Format is `projects/{project-id}`.
      *     @type string $name
      *           Name of the schema against which to validate.
      *
@@ -774,12 +805,15 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function validateMessage($parent, array $optionalArgs = [])
+    public function validateMessage(array $optionalArgs = [])
     {
         $request = new ValidateMessageRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
         }
@@ -808,20 +842,20 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $formattedParent = $schemaServiceClient->projectName('[PROJECT]');
-     *     $schema = new Schema();
-     *     $response = $schemaServiceClient->validateSchema($formattedParent, $schema);
+     *     $response = $schemaServiceClient->validateSchema();
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project in which to validate schemas.
-     *                             Format is `projects/{project-id}`.
-     * @param Schema $schema       Required. The schema object to validate.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the project in which to validate schemas.
+     *           Format is `projects/{project-id}`.
+     *     @type Schema $schema
+     *           Required. The schema object to validate.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -832,13 +866,19 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function validateSchema($parent, $schema, array $optionalArgs = [])
+    public function validateSchema(array $optionalArgs = [])
     {
         $request = new ValidateSchemaRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSchema($schema);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['schema'])) {
+            $request->setSchema($optionalArgs['schema']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ValidateSchema', ValidateSchemaResponse::class, $optionalArgs, $request)->wait();
@@ -852,18 +892,18 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $schemaServiceClient->getIamPolicy($resource);
+     *     $response = $schemaServiceClient->getIamPolicy();
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -877,12 +917,15 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -903,23 +946,23 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $schemaServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $schemaServiceClient->setIamPolicy();
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -936,13 +979,19 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -965,23 +1014,23 @@ class SchemaServiceGapicClient
      * ```
      * $schemaServiceClient = new SchemaServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $schemaServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $schemaServiceClient->testIamPermissions();
      * } finally {
      *     $schemaServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -992,13 +1041,19 @@ class SchemaServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

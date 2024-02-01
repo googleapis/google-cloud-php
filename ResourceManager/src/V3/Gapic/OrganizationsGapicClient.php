@@ -315,19 +315,19 @@ class OrganizationsGapicClient
      * ```
      * $organizationsClient = new OrganizationsClient();
      * try {
-     *     $formattedName = $organizationsClient->organizationName('[ORGANIZATION]');
-     *     $response = $organizationsClient->getOrganization($formattedName);
+     *     $response = $organizationsClient->getOrganization();
      * } finally {
      *     $organizationsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the Organization to fetch. This is the
-     *                             organization's relative path in the API, formatted as
-     *                             "organizations/[organizationId]". For example, "organizations/1234".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Organization to fetch. This is the
+     *           organization's relative path in the API, formatted as
+     *           "organizations/[organizationId]". For example, "organizations/1234".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -338,12 +338,15 @@ class OrganizationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getOrganization($name, array $optionalArgs = [])
+    public function getOrganization(array $optionalArgs = [])
     {
         $request = new GetOrganizationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetOrganization', Organization::class, $optionalArgs, $request)->wait();

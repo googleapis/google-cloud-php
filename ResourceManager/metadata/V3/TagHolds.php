@@ -23,40 +23,40 @@ class TagHolds
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-€
-/google/cloud/resourcemanager/v3/tag_holds.protogoogle.cloud.resourcemanager.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"Ò
-TagHold
-name (	B‡A
-holder (	B‡A
-origin (	B‡A
-	help_link (	B‡A4
-create_time (2.google.protobuf.TimestampB‡A:[ÍAX
-+cloudresourcemanager.googleapis.com/TagHold)tagValues/{tag_value}/tagHolds/{tag_hold}"∏
-CreateTagHoldRequestC
-parent (	B3‡A˙A-+cloudresourcemanager.googleapis.com/TagHold?
-tag_hold (2(.google.cloud.resourcemanager.v3.TagHoldB‡A
-validate_only (B‡A"
-CreateTagHoldMetadata"u
-DeleteTagHoldRequestA
-name (	B3‡A˙A-
-+cloudresourcemanager.googleapis.com/TagHold
-validate_only (B‡A"
-DeleteTagHoldMetadata"†
-ListTagHoldsRequestC
-parent (	B3‡A˙A-+cloudresourcemanager.googleapis.com/TagHold
-	page_size (B‡A
+È
+/google/cloud/resourcemanager/v3/tag_holds.protogoogle.cloud.resourcemanager.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"ˆ
+TagHold
+name (	B‚A
+holder (	B‚A
+origin (	B‚A
+	help_link (	B‚A5
+create_time (2.google.protobuf.TimestampB‚A:[ÍAX
++cloudresourcemanager.googleapis.com/TagHold)tagValues/{tag_value}/tagHolds/{tag_hold}"ª
+CreateTagHoldRequestD
+parent (	B4‚A˙A-+cloudresourcemanager.googleapis.com/TagHold@
+tag_hold (2(.google.cloud.resourcemanager.v3.TagHoldB‚A
+validate_only (B‚A"
+CreateTagHoldMetadata"w
+DeleteTagHoldRequestB
+name (	B4‚A˙A-
++cloudresourcemanager.googleapis.com/TagHold
+validate_only (B‚A"
+DeleteTagHoldMetadata"§
+ListTagHoldsRequestD
+parent (	B4‚A˙A-+cloudresourcemanager.googleapis.com/TagHold
+	page_size (B‚A
 
-page_token (	B‡A
-filter (	B‡A"l
+page_token (	B‚A
+filter (	B‚A"l
 ListTagHoldsResponse;
 	tag_holds (2(.google.cloud.resourcemanager.v3.TagHold
 next_page_token (	2Ï
 TagHoldsœ
-CreateTagHold5.google.cloud.resourcemanager.v3.CreateTagHoldRequest.google.longrunning.Operation"hÇ”‰ì-"!/v3/{parent=tagValues/*}/tagHolds:tag_hold⁄Aparent,tag_hold A 
-TagHoldCreateTagHoldMetadata»
-DeleteTagHold5.google.cloud.resourcemanager.v3.DeleteTagHoldRequest.google.longrunning.Operation"aÇ”‰ì#*!/v3/{name=tagValues/*/tagHolds/*}⁄Aname A.
-google.protobuf.EmptyDeleteTagHoldMetadataØ
-ListTagHolds4.google.cloud.resourcemanager.v3.ListTagHoldsRequest5.google.cloud.resourcemanager.v3.ListTagHoldsResponse"2Ç”‰ì#!/v3/{parent=tagValues/*}/tagHolds⁄Aparentê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÓ
+CreateTagHold5.google.cloud.resourcemanager.v3.CreateTagHoldRequest.google.longrunning.Operation"h A 
+TagHoldCreateTagHoldMetadata⁄Aparent,tag_holdÇ”‰ì-"!/v3/{parent=tagValues/*}/tagHolds:tag_hold»
+DeleteTagHold5.google.cloud.resourcemanager.v3.DeleteTagHoldRequest.google.longrunning.Operation"a A.
+google.protobuf.EmptyDeleteTagHoldMetadata⁄AnameÇ”‰ì#*!/v3/{name=tagValues/*/tagHolds/*}Ø
+ListTagHolds4.google.cloud.resourcemanager.v3.ListTagHoldsRequest5.google.cloud.resourcemanager.v3.ListTagHoldsResponse"2⁄AparentÇ”‰ì#!/v3/{parent=tagValues/*}/tagHoldsê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÓ
 #com.google.cloud.resourcemanager.v3BTagHoldsProtoPZMcloud.google.com/go/resourcemanager/apiv3/resourcemanagerpb;resourcemanagerpb™Google.Cloud.ResourceManager.V3 Google\\Cloud\\ResourceManager\\V3Í"Google::Cloud::ResourceManager::V3bproto3'
         , true);
 

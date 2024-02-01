@@ -23,48 +23,48 @@ class Cloudscheduler
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-€
-.google/cloud/scheduler/v1/cloudscheduler.protogoogle.cloud.scheduler.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/scheduler/v1/job.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"s
-ListJobsRequest9
-parent (	B)àAúA#!cloudscheduler.googleapis.com/Job
+Š
+.google/cloud/scheduler/v1/cloudscheduler.protogoogle.cloud.scheduler.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/scheduler/v1/job.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"t
+ListJobsRequest:
+parent (	B*âAúA#!cloudscheduler.googleapis.com/Job
 	page_size (
 
 page_token (	"Y
 ListJobsResponse,
 jobs (2.google.cloud.scheduler.v1.Job
-next_page_token (	"H
-GetJobRequest7
-name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job"
-CreateJobRequest9
-parent (	B)àAúA#!cloudscheduler.googleapis.com/Job0
-job (2.google.cloud.scheduler.v1.JobBàA"u
-UpdateJobRequest0
-job (2.google.cloud.scheduler.v1.JobBàA/
-update_mask (2.google.protobuf.FieldMask"K
-DeleteJobRequest7
-name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job"J
-PauseJobRequest7
-name (	B)àAúA#
+next_page_token (	"I
+GetJobRequest8
+name (	B*âAúA#
+!cloudscheduler.googleapis.com/Job"
+CreateJobRequest:
+parent (	B*âAúA#!cloudscheduler.googleapis.com/Job1
+job (2.google.cloud.scheduler.v1.JobBâA"v
+UpdateJobRequest1
+job (2.google.cloud.scheduler.v1.JobBâA/
+update_mask (2.google.protobuf.FieldMask"L
+DeleteJobRequest8
+name (	B*âAúA#
 !cloudscheduler.googleapis.com/Job"K
-ResumeJobRequest7
-name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job"H
-RunJobRequest7
-name (	B)àAúA#
+PauseJobRequest8
+name (	B*âAúA#
+!cloudscheduler.googleapis.com/Job"L
+ResumeJobRequest8
+name (	B*âAúA#
+!cloudscheduler.googleapis.com/Job"I
+RunJobRequest8
+name (	B*âAúA#
 !cloudscheduler.googleapis.com/Job2³
 
 CloudSchedulerž
-ListJobs*.google.cloud.scheduler.v1.ListJobsRequest+.google.cloud.scheduler.v1.ListJobsResponse"9‚Óä“*(/v1/{parent=projects/*/locations/*}/jobsÚAparent‹
-GetJob(.google.cloud.scheduler.v1.GetJobRequest.google.cloud.scheduler.v1.Job"7‚Óä“*(/v1/{name=projects/*/locations/*/jobs/*}ÚAnameœ
-	CreateJob+.google.cloud.scheduler.v1.CreateJobRequest.google.cloud.scheduler.v1.Job"B‚Óä“/"(/v1/{parent=projects/*/locations/*}/jobs:jobÚA
-parent,job¥
-	UpdateJob+.google.cloud.scheduler.v1.UpdateJobRequest.google.cloud.scheduler.v1.Job"K‚Óä“32,/v1/{job.name=projects/*/locations/*/jobs/*}:jobÚAjob,update_mask‰
-	DeleteJob+.google.cloud.scheduler.v1.DeleteJobRequest.google.protobuf.Empty"7‚Óä“**(/v1/{name=projects/*/locations/*/jobs/*}ÚAname˜
-PauseJob*.google.cloud.scheduler.v1.PauseJobRequest.google.cloud.scheduler.v1.Job"@‚Óä“3"./v1/{name=projects/*/locations/*/jobs/*}:pause:*ÚAname›
-	ResumeJob+.google.cloud.scheduler.v1.ResumeJobRequest.google.cloud.scheduler.v1.Job"A‚Óä“4"//v1/{name=projects/*/locations/*/jobs/*}:resume:*ÚAname’
-RunJob(.google.cloud.scheduler.v1.RunJobRequest.google.cloud.scheduler.v1.Job">‚Óä“1",/v1/{name=projects/*/locations/*/jobs/*}:run:*ÚAnameQÊAcloudscheduler.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBz
+ListJobs*.google.cloud.scheduler.v1.ListJobsRequest+.google.cloud.scheduler.v1.ListJobsResponse"9ÚAparent‚Óä“*(/v1/{parent=projects/*/locations/*}/jobs‹
+GetJob(.google.cloud.scheduler.v1.GetJobRequest.google.cloud.scheduler.v1.Job"7ÚAname‚Óä“*(/v1/{name=projects/*/locations/*/jobs/*}œ
+	CreateJob+.google.cloud.scheduler.v1.CreateJobRequest.google.cloud.scheduler.v1.Job"BÚA
+parent,job‚Óä“/"(/v1/{parent=projects/*/locations/*}/jobs:job¥
+	UpdateJob+.google.cloud.scheduler.v1.UpdateJobRequest.google.cloud.scheduler.v1.Job"KÚAjob,update_mask‚Óä“32,/v1/{job.name=projects/*/locations/*/jobs/*}:job‰
+	DeleteJob+.google.cloud.scheduler.v1.DeleteJobRequest.google.protobuf.Empty"7ÚAname‚Óä“**(/v1/{name=projects/*/locations/*/jobs/*}˜
+PauseJob*.google.cloud.scheduler.v1.PauseJobRequest.google.cloud.scheduler.v1.Job"@ÚAname‚Óä“3"./v1/{name=projects/*/locations/*/jobs/*}:pause:*›
+	ResumeJob+.google.cloud.scheduler.v1.ResumeJobRequest.google.cloud.scheduler.v1.Job"AÚAname‚Óä“4"//v1/{name=projects/*/locations/*/jobs/*}:resume:*’
+RunJob(.google.cloud.scheduler.v1.RunJobRequest.google.cloud.scheduler.v1.Job">ÚAname‚Óä“1",/v1/{name=projects/*/locations/*/jobs/*}:run:*QÊAcloudscheduler.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBz
 com.google.cloud.scheduler.v1BSchedulerProtoPZ;cloud.google.com/go/scheduler/apiv1/schedulerpb;schedulerpb¢	SCHEDULERbproto3'
         , true);
 

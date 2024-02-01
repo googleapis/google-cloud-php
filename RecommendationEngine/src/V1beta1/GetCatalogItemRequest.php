@@ -25,8 +25,7 @@ class GetCatalogItemRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Full resource name of catalog item, such as
-     *                     `projects/&#42;/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`. Please see
-     *                     {@see CatalogServiceClient::catalogItemPathName()} for help formatting this field.
+     *                     `projects/&#42;/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
      *
      * @return \Google\Cloud\RecommendationEngine\V1beta1\GetCatalogItemRequest
      *

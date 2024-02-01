@@ -26,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'serving_config_id',
-                ],
             ],
             'DeleteServingConfig' => [
                 'method' => 'delete',

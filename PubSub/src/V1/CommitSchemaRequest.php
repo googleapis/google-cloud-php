@@ -31,8 +31,7 @@ class CommitSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                         $name   Required. The name of the schema we are revising.
-     *                                               Format is `projects/{project}/schemas/{schema}`. Please see
-     *                                               {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     *                                               Format is `projects/{project}/schemas/{schema}`.
      * @param \Google\Cloud\PubSub\V1\Schema $schema Required. The schema revision to commit.
      *
      * @return \Google\Cloud\PubSub\V1\CommitSchemaRequest

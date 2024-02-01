@@ -64,8 +64,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $projectsClient = new ProjectsClient();
  * try {
- *     $project = new Project();
- *     $operationResponse = $projectsClient->createProject($project);
+ *     $operationResponse = $projectsClient->createProject();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -76,7 +75,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $projectsClient->createProject($project);
+ *     $operationResponse = $projectsClient->createProject();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'createProject');
@@ -334,8 +333,7 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $project = new Project();
-     *     $operationResponse = $projectsClient->createProject($project);
+     *     $operationResponse = $projectsClient->createProject();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -346,7 +344,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->createProject($project);
+     *     $operationResponse = $projectsClient->createProject();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'createProject');
@@ -366,18 +364,19 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param Project $project      Required. The Project to create.
-     *
-     *                              Project ID is required. If the requested ID is unavailable, the request
-     *                              fails.
-     *
-     *                              If the `parent` field is set, the `resourcemanager.projects.create`
-     *                              permission is checked on the parent resource. If no parent is set and
-     *                              the authorization credentials belong to an Organization, the parent
-     *                              will be set to that Organization.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Project $project
+     *           Required. The Project to create.
+     *
+     *           Project ID is required. If the requested ID is unavailable, the request
+     *           fails.
+     *
+     *           If the `parent` field is set, the `resourcemanager.projects.create`
+     *           permission is checked on the parent resource. If no parent is set and
+     *           the authorization credentials belong to an Organization, the parent
+     *           will be set to that Organization.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -388,10 +387,13 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createProject($project, array $optionalArgs = [])
+    public function createProject(array $optionalArgs = [])
     {
         $request = new CreateProjectRequest();
-        $request->setProject($project);
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+        }
+
         return $this->startOperationsCall('CreateProject', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
@@ -434,8 +436,7 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $formattedName = $projectsClient->projectName('[PROJECT]');
-     *     $operationResponse = $projectsClient->deleteProject($formattedName);
+     *     $operationResponse = $projectsClient->deleteProject();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -446,7 +447,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->deleteProject($formattedName);
+     *     $operationResponse = $projectsClient->deleteProject();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'deleteProject');
@@ -466,10 +467,11 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Project (for example, `projects/415104041262`).
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Project (for example, `projects/415104041262`).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -480,12 +482,15 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteProject($name, array $optionalArgs = [])
+    public function deleteProject(array $optionalArgs = [])
     {
         $request = new DeleteProjectRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteProject', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -551,17 +556,17 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $formattedName = $projectsClient->projectName('[PROJECT]');
-     *     $response = $projectsClient->getProject($formattedName);
+     *     $response = $projectsClient->getProject();
      * } finally {
      *     $projectsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the project (for example, `projects/415104041262`).
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the project (for example, `projects/415104041262`).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -572,12 +577,15 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getProject($name, array $optionalArgs = [])
+    public function getProject(array $optionalArgs = [])
     {
         $request = new GetProjectRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetProject', Project::class, $optionalArgs, $request)->wait();
@@ -595,9 +603,8 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $projectsClient->listProjects($parent);
+     *     $pagedResponse = $projectsClient->listProjects();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -605,7 +612,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $projectsClient->listProjects($parent);
+     *     $pagedResponse = $projectsClient->listProjects();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -614,15 +621,16 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the parent resource whose projects are being listed.
-     *                             Only children of this parent resource are listed; descendants are not
-     *                             listed.
-     *
-     *                             If the parent is a folder, use the value `folders/{folder_id}`. If the
-     *                             parent is an organization, use the value `organizations/{org_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the parent resource whose projects are being listed.
+     *           Only children of this parent resource are listed; descendants are not
+     *           listed.
+     *
+     *           If the parent is a folder, use the value `folders/{folder_id}`. If the
+     *           parent is an organization, use the value `organizations/{org_id}`.
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -645,10 +653,13 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProjects($parent, array $optionalArgs = [])
+    public function listProjects(array $optionalArgs = [])
     {
         $request = new ListProjectsRequest();
-        $request->setParent($parent);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -686,9 +697,7 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $formattedName = $projectsClient->projectName('[PROJECT]');
-     *     $destinationParent = 'destination_parent';
-     *     $operationResponse = $projectsClient->moveProject($formattedName, $destinationParent);
+     *     $operationResponse = $projectsClient->moveProject();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -699,7 +708,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->moveProject($formattedName, $destinationParent);
+     *     $operationResponse = $projectsClient->moveProject();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'moveProject');
@@ -719,11 +728,13 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param string $name              Required. The name of the project to move.
-     * @param string $destinationParent Required. The new parent to move the Project under.
-     * @param array  $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the project to move.
+     *     @type string $destinationParent
+     *           Required. The new parent to move the Project under.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -734,13 +745,19 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function moveProject($name, $destinationParent, array $optionalArgs = [])
+    public function moveProject(array $optionalArgs = [])
     {
         $request = new MoveProjectRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setDestinationParent($destinationParent);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['destinationParent'])) {
+            $request->setDestinationParent($optionalArgs['destinationParent']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('MoveProject', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1012,8 +1029,7 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $formattedName = $projectsClient->projectName('[PROJECT]');
-     *     $operationResponse = $projectsClient->undeleteProject($formattedName);
+     *     $operationResponse = $projectsClient->undeleteProject();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1024,7 +1040,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->undeleteProject($formattedName);
+     *     $operationResponse = $projectsClient->undeleteProject();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'undeleteProject');
@@ -1044,12 +1060,13 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the project (for example, `projects/415104041262`).
-     *
-     *                             Required.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the project (for example, `projects/415104041262`).
+     *
+     *           Required.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1060,12 +1077,15 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeleteProject($name, array $optionalArgs = [])
+    public function undeleteProject(array $optionalArgs = [])
     {
         $request = new UndeleteProjectRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UndeleteProject', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1083,8 +1103,7 @@ class ProjectsGapicClient
      * ```
      * $projectsClient = new ProjectsClient();
      * try {
-     *     $project = new Project();
-     *     $operationResponse = $projectsClient->updateProject($project);
+     *     $operationResponse = $projectsClient->updateProject();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1095,7 +1114,7 @@ class ProjectsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $projectsClient->updateProject($project);
+     *     $operationResponse = $projectsClient->updateProject();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $projectsClient->resumeOperation($operationName, 'updateProject');
@@ -1115,10 +1134,11 @@ class ProjectsGapicClient
      * }
      * ```
      *
-     * @param Project $project      Required. The new definition of the project.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Project $project
+     *           Required. The new definition of the project.
      *     @type FieldMask $updateMask
      *           Optional. An update mask to selectively update fields.
      *     @type RetrySettings|array $retrySettings
@@ -1131,12 +1151,14 @@ class ProjectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateProject($project, array $optionalArgs = [])
+    public function updateProject(array $optionalArgs = [])
     {
         $request = new UpdateProjectRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project.name'] = $project->getName();
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

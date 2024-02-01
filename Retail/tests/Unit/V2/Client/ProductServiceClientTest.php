@@ -40,7 +40,6 @@ use Google\Cloud\Retail\V2\ImportProductsResponse;
 use Google\Cloud\Retail\V2\ListProductsRequest;
 use Google\Cloud\Retail\V2\ListProductsResponse;
 use Google\Cloud\Retail\V2\Product;
-use Google\Cloud\Retail\V2\ProductInputConfig;
 use Google\Cloud\Retail\V2\RemoveFulfillmentPlacesRequest;
 use Google\Cloud\Retail\V2\RemoveFulfillmentPlacesResponse;
 use Google\Cloud\Retail\V2\RemoveLocalInventoriesRequest;
@@ -112,14 +111,7 @@ class ProductServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $type = 'type3575610';
-        $placeIds = [];
-        $request = (new AddFulfillmentPlacesRequest())
-            ->setProduct($formattedProduct)
-            ->setType($type)
-            ->setPlaceIds($placeIds);
+        $request = new AddFulfillmentPlacesRequest();
         $response = $gapicClient->addFulfillmentPlaces($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -130,12 +122,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/AddFulfillmentPlaces', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProduct();
-        $this->assertProtobufEquals($formattedProduct, $actualValue);
-        $actualValue = $actualApiRequestObject->getType();
-        $this->assertProtobufEquals($type, $actualValue);
-        $actualValue = $actualApiRequestObject->getPlaceIds();
-        $this->assertProtobufEquals($placeIds, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/addFulfillmentPlacesTest');
         $response->pollUntilComplete([
@@ -186,14 +172,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $type = 'type3575610';
-        $placeIds = [];
-        $request = (new AddFulfillmentPlacesRequest())
-            ->setProduct($formattedProduct)
-            ->setType($type)
-            ->setPlaceIds($placeIds);
+        $request = new AddFulfillmentPlacesRequest();
         $response = $gapicClient->addFulfillmentPlaces($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -245,12 +224,7 @@ class ProductServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $localInventories = [];
-        $request = (new AddLocalInventoriesRequest())
-            ->setProduct($formattedProduct)
-            ->setLocalInventories($localInventories);
+        $request = new AddLocalInventoriesRequest();
         $response = $gapicClient->addLocalInventories($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -261,10 +235,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/AddLocalInventories', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProduct();
-        $this->assertProtobufEquals($formattedProduct, $actualValue);
-        $actualValue = $actualApiRequestObject->getLocalInventories();
-        $this->assertProtobufEquals($localInventories, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/addLocalInventoriesTest');
         $response->pollUntilComplete([
@@ -315,12 +285,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $localInventories = [];
-        $request = (new AddLocalInventoriesRequest())
-            ->setProduct($formattedProduct)
-            ->setLocalInventories($localInventories);
+        $request = new AddLocalInventoriesRequest();
         $response = $gapicClient->addLocalInventories($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -370,16 +335,7 @@ class ProductServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setUri($uri);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
-        $product = new Product();
-        $productTitle = 'productTitle1004085929';
-        $product->setTitle($productTitle);
-        $productId = 'productId1753008747';
-        $request = (new CreateProductRequest())
-            ->setParent($formattedParent)
-            ->setProduct($product)
-            ->setProductId($productId);
+        $request = new CreateProductRequest();
         $response = $gapicClient->createProduct($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -387,12 +343,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/CreateProduct', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getProduct();
-        $this->assertProtobufEquals($product, $actualValue);
-        $actualValue = $actualRequestObject->getProductId();
-        $this->assertProtobufEquals($productId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -414,16 +364,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
-        $product = new Product();
-        $productTitle = 'productTitle1004085929';
-        $product->setTitle($productTitle);
-        $productId = 'productId1753008747';
-        $request = (new CreateProductRequest())
-            ->setParent($formattedParent)
-            ->setProduct($product)
-            ->setProductId($productId);
+        $request = new CreateProductRequest();
         try {
             $gapicClient->createProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -448,18 +389,13 @@ class ProductServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $request = (new DeleteProductRequest())
-            ->setName($formattedName);
+        $request = new DeleteProductRequest();
         $gapicClient->deleteProduct($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/DeleteProduct', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -481,10 +417,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $request = (new DeleteProductRequest())
-            ->setName($formattedName);
+        $request = new DeleteProductRequest();
         try {
             $gapicClient->deleteProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -525,10 +458,7 @@ class ProductServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setUri($uri);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $request = (new GetProductRequest())
-            ->setName($formattedName);
+        $request = new GetProductRequest();
         $response = $gapicClient->getProduct($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -536,8 +466,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/GetProduct', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -559,10 +487,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $request = (new GetProductRequest())
-            ->setName($formattedName);
+        $request = new GetProductRequest();
         try {
             $gapicClient->getProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -605,12 +530,7 @@ class ProductServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
-        $inputConfig = new ProductInputConfig();
-        $request = (new ImportProductsRequest())
-            ->setParent($formattedParent)
-            ->setInputConfig($inputConfig);
+        $request = new ImportProductsRequest();
         $response = $gapicClient->importProducts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -621,10 +541,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/ImportProducts', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputConfig();
-        $this->assertProtobufEquals($inputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importProductsTest');
         $response->pollUntilComplete([
@@ -675,12 +591,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
-        $inputConfig = new ProductInputConfig();
-        $request = (new ImportProductsRequest())
-            ->setParent($formattedParent)
-            ->setInputConfig($inputConfig);
+        $request = new ImportProductsRequest();
         $response = $gapicClient->importProducts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -721,10 +632,7 @@ class ProductServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProducts($products);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
-        $request = (new ListProductsRequest())
-            ->setParent($formattedParent);
+        $request = new ListProductsRequest();
         $response = $gapicClient->listProducts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -735,8 +643,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/ListProducts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -758,10 +664,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
-        $request = (new ListProductsRequest())
-            ->setParent($formattedParent);
+        $request = new ListProductsRequest();
         try {
             $gapicClient->listProducts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -804,14 +707,7 @@ class ProductServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $type = 'type3575610';
-        $placeIds = [];
-        $request = (new RemoveFulfillmentPlacesRequest())
-            ->setProduct($formattedProduct)
-            ->setType($type)
-            ->setPlaceIds($placeIds);
+        $request = new RemoveFulfillmentPlacesRequest();
         $response = $gapicClient->removeFulfillmentPlaces($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -822,12 +718,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/RemoveFulfillmentPlaces', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProduct();
-        $this->assertProtobufEquals($formattedProduct, $actualValue);
-        $actualValue = $actualApiRequestObject->getType();
-        $this->assertProtobufEquals($type, $actualValue);
-        $actualValue = $actualApiRequestObject->getPlaceIds();
-        $this->assertProtobufEquals($placeIds, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/removeFulfillmentPlacesTest');
         $response->pollUntilComplete([
@@ -878,14 +768,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $type = 'type3575610';
-        $placeIds = [];
-        $request = (new RemoveFulfillmentPlacesRequest())
-            ->setProduct($formattedProduct)
-            ->setType($type)
-            ->setPlaceIds($placeIds);
+        $request = new RemoveFulfillmentPlacesRequest();
         $response = $gapicClient->removeFulfillmentPlaces($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -937,12 +820,7 @@ class ProductServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $placeIds = [];
-        $request = (new RemoveLocalInventoriesRequest())
-            ->setProduct($formattedProduct)
-            ->setPlaceIds($placeIds);
+        $request = new RemoveLocalInventoriesRequest();
         $response = $gapicClient->removeLocalInventories($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -953,10 +831,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/RemoveLocalInventories', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProduct();
-        $this->assertProtobufEquals($formattedProduct, $actualValue);
-        $actualValue = $actualApiRequestObject->getPlaceIds();
-        $this->assertProtobufEquals($placeIds, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/removeLocalInventoriesTest');
         $response->pollUntilComplete([
@@ -1007,12 +881,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $placeIds = [];
-        $request = (new RemoveLocalInventoriesRequest())
-            ->setProduct($formattedProduct)
-            ->setPlaceIds($placeIds);
+        $request = new RemoveLocalInventoriesRequest();
         $response = $gapicClient->removeLocalInventories($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1064,12 +933,7 @@ class ProductServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $inventory = new Product();
-        $inventoryTitle = 'inventoryTitle-43609508';
-        $inventory->setTitle($inventoryTitle);
-        $request = (new SetInventoryRequest())
-            ->setInventory($inventory);
+        $request = new SetInventoryRequest();
         $response = $gapicClient->setInventory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1080,8 +944,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/SetInventory', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getInventory();
-        $this->assertProtobufEquals($inventory, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/setInventoryTest');
         $response->pollUntilComplete([
@@ -1132,12 +994,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $inventory = new Product();
-        $inventoryTitle = 'inventoryTitle-43609508';
-        $inventory->setTitle($inventoryTitle);
-        $request = (new SetInventoryRequest())
-            ->setInventory($inventory);
+        $request = new SetInventoryRequest();
         $response = $gapicClient->setInventory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1187,12 +1044,7 @@ class ProductServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setUri($uri);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $product = new Product();
-        $productTitle = 'productTitle1004085929';
-        $product->setTitle($productTitle);
-        $request = (new UpdateProductRequest())
-            ->setProduct($product);
+        $request = new UpdateProductRequest();
         $response = $gapicClient->updateProduct($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1200,8 +1052,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/UpdateProduct', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProduct();
-        $this->assertProtobufEquals($product, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1223,12 +1073,7 @@ class ProductServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $product = new Product();
-        $productTitle = 'productTitle1004085929';
-        $product->setTitle($productTitle);
-        $request = (new UpdateProductRequest())
-            ->setProduct($product);
+        $request = new UpdateProductRequest();
         try {
             $gapicClient->updateProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1271,14 +1116,7 @@ class ProductServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $type = 'type3575610';
-        $placeIds = [];
-        $request = (new AddFulfillmentPlacesRequest())
-            ->setProduct($formattedProduct)
-            ->setType($type)
-            ->setPlaceIds($placeIds);
+        $request = new AddFulfillmentPlacesRequest();
         $response = $gapicClient->addFulfillmentPlacesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1289,12 +1127,6 @@ class ProductServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ProductService/AddFulfillmentPlaces', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProduct();
-        $this->assertProtobufEquals($formattedProduct, $actualValue);
-        $actualValue = $actualApiRequestObject->getType();
-        $this->assertProtobufEquals($type, $actualValue);
-        $actualValue = $actualApiRequestObject->getPlaceIds();
-        $this->assertProtobufEquals($placeIds, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/addFulfillmentPlacesTest');
         $response->pollUntilComplete([

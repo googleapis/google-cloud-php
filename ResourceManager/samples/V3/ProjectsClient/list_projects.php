@@ -37,21 +37,19 @@ use Google\Cloud\ResourceManager\V3\Project;
  * `display_name`. The caller must have `resourcemanager.projects.list`
  * permission on the identified parent.
  *
- * @param string $parent The name of the parent resource whose projects are being listed.
- *                       Only children of this parent resource are listed; descendants are not
- *                       listed.
- *
- *                       If the parent is a folder, use the value `folders/{folder_id}`. If the
- *                       parent is an organization, use the value `organizations/{org_id}`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_projects_sample(string $parent): void
+function list_projects_sample(): void
 {
     // Create a client.
     $projectsClient = new ProjectsClient();
 
     // Prepare the request message.
-    $request = (new ListProjectsRequest())
-        ->setParent($parent);
+    $request = new ListProjectsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +63,5 @@ function list_projects_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_projects_sample($parent);
 }
 // [END cloudresourcemanager_v3_generated_Projects_ListProjects_sync]

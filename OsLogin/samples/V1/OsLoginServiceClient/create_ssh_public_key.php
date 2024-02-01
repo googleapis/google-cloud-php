@@ -31,19 +31,19 @@ use Google\Cloud\OsLogin\V1\CreateSshPublicKeyRequest;
 /**
  * Create an SSH public key
  *
- * @param string $formattedParent The unique ID for the user in format `users/{user}`. Please see
- *                                {@see OsLoginServiceClient::userName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_ssh_public_key_sample(string $formattedParent): void
+function create_ssh_public_key_sample(): void
 {
     // Create a client.
     $osLoginServiceClient = new OsLoginServiceClient();
 
     // Prepare the request message.
-    $sshPublicKey = new SshPublicKey();
-    $request = (new CreateSshPublicKeyRequest())
-        ->setParent($formattedParent)
-        ->setSshPublicKey($sshPublicKey);
+    $request = new CreateSshPublicKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function create_ssh_public_key_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = OsLoginServiceClient::userName('[USER]');
-
-    create_ssh_public_key_sample($formattedParent);
 }
 // [END oslogin_v1_generated_OsLoginService_CreateSshPublicKey_sync]

@@ -60,10 +60,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $servicesClient = new ServicesClient();
  * try {
- *     $formattedParent = $servicesClient->locationName('[PROJECT]', '[LOCATION]');
- *     $service = new Service();
- *     $serviceId = 'service_id';
- *     $operationResponse = $servicesClient->createService($formattedParent, $service, $serviceId);
+ *     $operationResponse = $servicesClient->createService();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -74,7 +71,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $servicesClient->createService($formattedParent, $service, $serviceId);
+ *     $operationResponse = $servicesClient->createService();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $servicesClient->resumeOperation($operationName, 'createService');
@@ -561,10 +558,7 @@ class ServicesGapicClient
      * ```
      * $servicesClient = new ServicesClient();
      * try {
-     *     $formattedParent = $servicesClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $service = new Service();
-     *     $serviceId = 'service_id';
-     *     $operationResponse = $servicesClient->createService($formattedParent, $service, $serviceId);
+     *     $operationResponse = $servicesClient->createService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -575,7 +569,7 @@ class ServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $servicesClient->createService($formattedParent, $service, $serviceId);
+     *     $operationResponse = $servicesClient->createService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $servicesClient->resumeOperation($operationName, 'createService');
@@ -595,16 +589,19 @@ class ServicesGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The location and project in which this service should be created.
-     *                              Format: projects/{project}/locations/{location}, where {project} can be
-     *                              project id or number. Only lowercase characters, digits, and hyphens.
-     * @param Service $service      Required. The Service instance to create.
-     * @param string  $serviceId    Required. The unique identifier for the Service. It must begin with letter,
-     *                              and cannot end with hyphen; must contain fewer than 50 characters.
-     *                              The name of the service becomes {parent}/services/{service_id}.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location and project in which this service should be created.
+     *           Format: projects/{project}/locations/{location}, where {project} can be
+     *           project id or number. Only lowercase characters, digits, and hyphens.
+     *     @type Service $service
+     *           Required. The Service instance to create.
+     *     @type string $serviceId
+     *           Required. The unique identifier for the Service. It must begin with letter,
+     *           and cannot end with hyphen; must contain fewer than 50 characters.
+     *           The name of the service becomes {parent}/services/{service_id}.
      *     @type bool $validateOnly
      *           Indicates that the request should be validated and default values
      *           populated, without persisting the request or creating any resources.
@@ -618,18 +615,23 @@ class ServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createService(
-        $parent,
-        $service,
-        $serviceId,
-        array $optionalArgs = []
-    ) {
+    public function createService(array $optionalArgs = [])
+    {
         $request = new CreateServiceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setService($service);
-        $request->setServiceId($serviceId);
-        $requestParamHeaders['location'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['service'])) {
+            $request->setService($optionalArgs['service']);
+        }
+
+        if (isset($optionalArgs['serviceId'])) {
+            $request->setServiceId($optionalArgs['serviceId']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -657,8 +659,7 @@ class ServicesGapicClient
      * ```
      * $servicesClient = new ServicesClient();
      * try {
-     *     $formattedName = $servicesClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-     *     $operationResponse = $servicesClient->deleteService($formattedName);
+     *     $operationResponse = $servicesClient->deleteService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -669,7 +670,7 @@ class ServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $servicesClient->deleteService($formattedName);
+     *     $operationResponse = $servicesClient->deleteService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $servicesClient->resumeOperation($operationName, 'deleteService');
@@ -689,12 +690,13 @@ class ServicesGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The full name of the Service.
-     *                             Format: projects/{project}/locations/{location}/services/{service}, where
-     *                             {project} can be project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full name of the Service.
+     *           Format: projects/{project}/locations/{location}/services/{service}, where
+     *           {project} can be project id or number.
      *     @type bool $validateOnly
      *           Indicates that the request should be validated without actually
      *           deleting any resources.
@@ -711,12 +713,15 @@ class ServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteService($name, array $optionalArgs = [])
+    public function deleteService(array $optionalArgs = [])
     {
         $request = new DeleteServiceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['location'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -803,19 +808,19 @@ class ServicesGapicClient
      * ```
      * $servicesClient = new ServicesClient();
      * try {
-     *     $formattedName = $servicesClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-     *     $response = $servicesClient->getService($formattedName);
+     *     $response = $servicesClient->getService();
      * } finally {
      *     $servicesClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full name of the Service.
-     *                             Format: projects/{project}/locations/{location}/services/{service}, where
-     *                             {project} can be project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full name of the Service.
+     *           Format: projects/{project}/locations/{location}/services/{service}, where
+     *           {project} can be project id or number.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -826,12 +831,15 @@ class ServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getService($name, array $optionalArgs = [])
+    public function getService(array $optionalArgs = [])
     {
         $request = new GetServiceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['location'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -853,9 +861,8 @@ class ServicesGapicClient
      * ```
      * $servicesClient = new ServicesClient();
      * try {
-     *     $formattedParent = $servicesClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $servicesClient->listServices($formattedParent);
+     *     $pagedResponse = $servicesClient->listServices();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -863,7 +870,7 @@ class ServicesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $servicesClient->listServices($formattedParent);
+     *     $pagedResponse = $servicesClient->listServices();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -872,13 +879,14 @@ class ServicesGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The location and project to list resources on.
-     *                             Location must be a valid Google Cloud region, and cannot be the "-"
-     *                             wildcard. Format: projects/{project}/locations/{location}, where {project}
-     *                             can be project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location and project to list resources on.
+     *           Location must be a valid Google Cloud region, and cannot be the "-"
+     *           wildcard. Format: projects/{project}/locations/{location}, where {project}
+     *           can be project id or number.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -900,12 +908,15 @@ class ServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listServices($parent, array $optionalArgs = [])
+    public function listServices(array $optionalArgs = [])
     {
         $request = new ListServicesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['location'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1065,8 +1076,7 @@ class ServicesGapicClient
      * ```
      * $servicesClient = new ServicesClient();
      * try {
-     *     $service = new Service();
-     *     $operationResponse = $servicesClient->updateService($service);
+     *     $operationResponse = $servicesClient->updateService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1077,7 +1087,7 @@ class ServicesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $servicesClient->updateService($service);
+     *     $operationResponse = $servicesClient->updateService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $servicesClient->resumeOperation($operationName, 'updateService');
@@ -1097,10 +1107,11 @@ class ServicesGapicClient
      * }
      * ```
      *
-     * @param Service $service      Required. The Service to be updated.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Service $service
+     *           Required. The Service to be updated.
      *     @type bool $validateOnly
      *           Indicates that the request should be validated and default values
      *           populated, without persisting the request or updating any resources.
@@ -1118,12 +1129,17 @@ class ServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateService($service, array $optionalArgs = [])
+    public function updateService(array $optionalArgs = [])
     {
         $request = new UpdateServiceRequest();
         $requestParamHeaders = [];
-        $request->setService($service);
-        $requestParamHeaders['location'] = $service->getName();
+        if (isset($optionalArgs['service'])) {
+            $request->setService($optionalArgs['service']);
+            $requestParamHeaders['location'] = $optionalArgs[
+                'service'
+            ]->getName();
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }

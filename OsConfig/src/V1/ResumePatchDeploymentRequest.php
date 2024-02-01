@@ -25,8 +25,7 @@ class ResumePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the patch deployment in the form
-     *                     `projects/&#42;/patchDeployments/*`. Please see
-     *                     {@see OsConfigServiceClient::patchDeploymentName()} for help formatting this field.
+     *                     `projects/&#42;/patchDeployments/*`.
      *
      * @return \Google\Cloud\OsConfig\V1\ResumePatchDeploymentRequest
      *

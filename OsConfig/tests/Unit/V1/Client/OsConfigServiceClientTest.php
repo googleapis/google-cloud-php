@@ -39,16 +39,13 @@ use Google\Cloud\OsConfig\V1\ListPatchJobInstanceDetailsRequest;
 use Google\Cloud\OsConfig\V1\ListPatchJobInstanceDetailsResponse;
 use Google\Cloud\OsConfig\V1\ListPatchJobsRequest;
 use Google\Cloud\OsConfig\V1\ListPatchJobsResponse;
-use Google\Cloud\OsConfig\V1\OneTimeSchedule;
 use Google\Cloud\OsConfig\V1\PatchDeployment;
-use Google\Cloud\OsConfig\V1\PatchInstanceFilter;
 use Google\Cloud\OsConfig\V1\PatchJob;
 use Google\Cloud\OsConfig\V1\PatchJobInstanceDetails;
 use Google\Cloud\OsConfig\V1\PausePatchDeploymentRequest;
 use Google\Cloud\OsConfig\V1\ResumePatchDeploymentRequest;
 use Google\Cloud\OsConfig\V1\UpdatePatchDeploymentRequest;
 use Google\Protobuf\GPBEmpty;
-use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -105,10 +102,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPercentComplete($percentComplete);
         $expectedResponse->setPatchDeployment($patchDeployment);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new CancelPatchJobRequest())
-            ->setName($formattedName);
+        $request = new CancelPatchJobRequest();
         $response = $gapicClient->cancelPatchJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -116,8 +110,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/CancelPatchJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -139,10 +131,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new CancelPatchJobRequest())
-            ->setName($formattedName);
+        $request = new CancelPatchJobRequest();
         try {
             $gapicClient->cancelPatchJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -171,20 +160,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $patchDeploymentId = 'patchDeploymentId-1817061090';
-        $patchDeployment = new PatchDeployment();
-        $patchDeploymentInstanceFilter = new PatchInstanceFilter();
-        $patchDeployment->setInstanceFilter($patchDeploymentInstanceFilter);
-        $patchDeploymentOneTimeSchedule = new OneTimeSchedule();
-        $oneTimeScheduleExecuteTime = new Timestamp();
-        $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
-        $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-        $request = (new CreatePatchDeploymentRequest())
-            ->setParent($formattedParent)
-            ->setPatchDeploymentId($patchDeploymentId)
-            ->setPatchDeployment($patchDeployment);
+        $request = new CreatePatchDeploymentRequest();
         $response = $gapicClient->createPatchDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -192,12 +168,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/CreatePatchDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPatchDeploymentId();
-        $this->assertProtobufEquals($patchDeploymentId, $actualValue);
-        $actualValue = $actualRequestObject->getPatchDeployment();
-        $this->assertProtobufEquals($patchDeployment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -219,20 +189,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $patchDeploymentId = 'patchDeploymentId-1817061090';
-        $patchDeployment = new PatchDeployment();
-        $patchDeploymentInstanceFilter = new PatchInstanceFilter();
-        $patchDeployment->setInstanceFilter($patchDeploymentInstanceFilter);
-        $patchDeploymentOneTimeSchedule = new OneTimeSchedule();
-        $oneTimeScheduleExecuteTime = new Timestamp();
-        $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
-        $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-        $request = (new CreatePatchDeploymentRequest())
-            ->setParent($formattedParent)
-            ->setPatchDeploymentId($patchDeploymentId)
-            ->setPatchDeployment($patchDeployment);
+        $request = new CreatePatchDeploymentRequest();
         try {
             $gapicClient->createPatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -257,18 +214,13 @@ class OsConfigServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new DeletePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = new DeletePatchDeploymentRequest();
         $gapicClient->deletePatchDeployment($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/DeletePatchDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -290,10 +242,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new DeletePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = new DeletePatchDeploymentRequest();
         try {
             $gapicClient->deletePatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -332,12 +281,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPercentComplete($percentComplete);
         $expectedResponse->setPatchDeployment($patchDeployment);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $instanceFilter = new PatchInstanceFilter();
-        $request = (new ExecutePatchJobRequest())
-            ->setParent($formattedParent)
-            ->setInstanceFilter($instanceFilter);
+        $request = new ExecutePatchJobRequest();
         $response = $gapicClient->executePatchJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -345,10 +289,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/ExecutePatchJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getInstanceFilter();
-        $this->assertProtobufEquals($instanceFilter, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -370,12 +310,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $instanceFilter = new PatchInstanceFilter();
-        $request = (new ExecutePatchJobRequest())
-            ->setParent($formattedParent)
-            ->setInstanceFilter($instanceFilter);
+        $request = new ExecutePatchJobRequest();
         try {
             $gapicClient->executePatchJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -404,10 +339,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new GetPatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = new GetPatchDeploymentRequest();
         $response = $gapicClient->getPatchDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -415,8 +347,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/GetPatchDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -438,10 +368,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new GetPatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = new GetPatchDeploymentRequest();
         try {
             $gapicClient->getPatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -480,10 +407,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPercentComplete($percentComplete);
         $expectedResponse->setPatchDeployment($patchDeployment);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new GetPatchJobRequest())
-            ->setName($formattedName);
+        $request = new GetPatchJobRequest();
         $response = $gapicClient->getPatchJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -491,8 +415,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/GetPatchJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -514,10 +436,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new GetPatchJobRequest())
-            ->setName($formattedName);
+        $request = new GetPatchJobRequest();
         try {
             $gapicClient->getPatchJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -549,10 +468,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPatchDeployments($patchDeployments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPatchDeploymentsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPatchDeploymentsRequest();
         $response = $gapicClient->listPatchDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -563,8 +479,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/ListPatchDeployments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -586,10 +500,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPatchDeploymentsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPatchDeploymentsRequest();
         try {
             $gapicClient->listPatchDeployments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -621,10 +532,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPatchJobInstanceDetails($patchJobInstanceDetails);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new ListPatchJobInstanceDetailsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPatchJobInstanceDetailsRequest();
         $response = $gapicClient->listPatchJobInstanceDetails($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -635,8 +543,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/ListPatchJobInstanceDetails', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -658,10 +564,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new ListPatchJobInstanceDetailsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPatchJobInstanceDetailsRequest();
         try {
             $gapicClient->listPatchJobInstanceDetails($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -693,10 +596,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPatchJobs($patchJobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPatchJobsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPatchJobsRequest();
         $response = $gapicClient->listPatchJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -707,8 +607,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/ListPatchJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -730,10 +628,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPatchJobsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPatchJobsRequest();
         try {
             $gapicClient->listPatchJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -762,10 +657,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new PausePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = new PausePatchDeploymentRequest();
         $response = $gapicClient->pausePatchDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -773,8 +665,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/PausePatchDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -796,10 +686,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new PausePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = new PausePatchDeploymentRequest();
         try {
             $gapicClient->pausePatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -828,10 +715,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new ResumePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = new ResumePatchDeploymentRequest();
         $response = $gapicClient->resumePatchDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -839,8 +723,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/ResumePatchDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -862,10 +744,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $request = (new ResumePatchDeploymentRequest())
-            ->setName($formattedName);
+        $request = new ResumePatchDeploymentRequest();
         try {
             $gapicClient->resumePatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -894,16 +773,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $patchDeployment = new PatchDeployment();
-        $patchDeploymentInstanceFilter = new PatchInstanceFilter();
-        $patchDeployment->setInstanceFilter($patchDeploymentInstanceFilter);
-        $patchDeploymentOneTimeSchedule = new OneTimeSchedule();
-        $oneTimeScheduleExecuteTime = new Timestamp();
-        $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
-        $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-        $request = (new UpdatePatchDeploymentRequest())
-            ->setPatchDeployment($patchDeployment);
+        $request = new UpdatePatchDeploymentRequest();
         $response = $gapicClient->updatePatchDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -911,8 +781,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/UpdatePatchDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPatchDeployment();
-        $this->assertProtobufEquals($patchDeployment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -934,16 +802,7 @@ class OsConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $patchDeployment = new PatchDeployment();
-        $patchDeploymentInstanceFilter = new PatchInstanceFilter();
-        $patchDeployment->setInstanceFilter($patchDeploymentInstanceFilter);
-        $patchDeploymentOneTimeSchedule = new OneTimeSchedule();
-        $oneTimeScheduleExecuteTime = new Timestamp();
-        $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
-        $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-        $request = (new UpdatePatchDeploymentRequest())
-            ->setPatchDeployment($patchDeployment);
+        $request = new UpdatePatchDeploymentRequest();
         try {
             $gapicClient->updatePatchDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -982,10 +841,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPercentComplete($percentComplete);
         $expectedResponse->setPatchDeployment($patchDeployment);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $request = (new CancelPatchJobRequest())
-            ->setName($formattedName);
+        $request = new CancelPatchJobRequest();
         $response = $gapicClient->cancelPatchJobAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -993,8 +849,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/CancelPatchJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

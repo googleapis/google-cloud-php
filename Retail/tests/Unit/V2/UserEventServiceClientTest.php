@@ -32,8 +32,6 @@ use Google\Cloud\Retail\V2\ImportUserEventsResponse;
 use Google\Cloud\Retail\V2\PurgeUserEventsResponse;
 use Google\Cloud\Retail\V2\RejoinUserEventsResponse;
 use Google\Cloud\Retail\V2\UserEvent;
-use Google\Cloud\Retail\V2\UserEventInlineSource;
-use Google\Cloud\Retail\V2\UserEventInputConfig;
 use Google\Cloud\Retail\V2\UserEventServiceClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -84,20 +82,13 @@ class UserEventServiceClientTest extends GeneratedTest
         $expectedResponse->setContentType($contentType);
         $expectedResponse->setData($data);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $userEvent = 'userEvent1921940774';
-        $response = $gapicClient->collectUserEvent($parent, $userEvent);
+        $response = $gapicClient->collectUserEvent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.UserEventService/CollectUserEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getUserEvent();
-        $this->assertProtobufEquals($userEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -119,11 +110,8 @@ class UserEventServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $userEvent = 'userEvent1921940774';
         try {
-            $gapicClient->collectUserEvent($parent, $userEvent);
+            $gapicClient->collectUserEvent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -164,14 +152,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $inputConfig = new UserEventInputConfig();
-        $inputConfigUserEventInlineSource = new UserEventInlineSource();
-        $userEventInlineSourceUserEvents = [];
-        $inputConfigUserEventInlineSource->setUserEvents($userEventInlineSourceUserEvents);
-        $inputConfig->setUserEventInlineSource($inputConfigUserEventInlineSource);
-        $response = $gapicClient->importUserEvents($formattedParent, $inputConfig);
+        $response = $gapicClient->importUserEvents();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -181,10 +162,6 @@ class UserEventServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.UserEventService/ImportUserEvents', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputConfig();
-        $this->assertProtobufEquals($inputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importUserEventsTest');
         $response->pollUntilComplete([
@@ -235,14 +212,7 @@ class UserEventServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $inputConfig = new UserEventInputConfig();
-        $inputConfigUserEventInlineSource = new UserEventInlineSource();
-        $userEventInlineSourceUserEvents = [];
-        $inputConfigUserEventInlineSource->setUserEvents($userEventInlineSourceUserEvents);
-        $inputConfig->setUserEventInlineSource($inputConfigUserEventInlineSource);
-        $response = $gapicClient->importUserEvents($formattedParent, $inputConfig);
+        $response = $gapicClient->importUserEvents();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -295,10 +265,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->purgeUserEvents($formattedParent, $filter);
+        $response = $gapicClient->purgeUserEvents();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -308,10 +275,6 @@ class UserEventServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.UserEventService/PurgeUserEvents', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/purgeUserEventsTest');
         $response->pollUntilComplete([
@@ -362,10 +325,7 @@ class UserEventServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->purgeUserEvents($formattedParent, $filter);
+        $response = $gapicClient->purgeUserEvents();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -418,9 +378,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $response = $gapicClient->rejoinUserEvents($parent);
+        $response = $gapicClient->rejoinUserEvents();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -430,8 +388,6 @@ class UserEventServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.UserEventService/RejoinUserEvents', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/rejoinUserEventsTest');
         $response->pollUntilComplete([
@@ -482,9 +438,7 @@ class UserEventServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $response = $gapicClient->rejoinUserEvents($parent);
+        $response = $gapicClient->rejoinUserEvents();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -543,24 +497,13 @@ class UserEventServiceClientTest extends GeneratedTest
         $expectedResponse->setPageViewId($pageViewId);
         $expectedResponse->setEntity($entity);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventVisitorId = 'userEventVisitorId-2104193702';
-        $userEvent->setVisitorId($userEventVisitorId);
-        $response = $gapicClient->writeUserEvent($parent, $userEvent);
+        $response = $gapicClient->writeUserEvent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.UserEventService/WriteUserEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getUserEvent();
-        $this->assertProtobufEquals($userEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -582,15 +525,8 @@ class UserEventServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventVisitorId = 'userEventVisitorId-2104193702';
-        $userEvent->setVisitorId($userEventVisitorId);
         try {
-            $gapicClient->writeUserEvent($parent, $userEvent);
+            $gapicClient->writeUserEvent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

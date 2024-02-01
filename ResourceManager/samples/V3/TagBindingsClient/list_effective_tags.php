@@ -33,18 +33,19 @@ use Google\Cloud\ResourceManager\V3\ListEffectiveTagsRequest;
  * Return a list of effective tags for the given Google Cloud resource, as
  * specified in `parent`.
  *
- * @param string $parent The full resource name of a resource for which you want to list
- *                       the effective tags. E.g.
- *                       "//cloudresourcemanager.googleapis.com/projects/123"
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_effective_tags_sample(string $parent): void
+function list_effective_tags_sample(): void
 {
     // Create a client.
     $tagBindingsClient = new TagBindingsClient();
 
     // Prepare the request message.
-    $request = (new ListEffectiveTagsRequest())
-        ->setParent($parent);
+    $request = new ListEffectiveTagsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +59,5 @@ function list_effective_tags_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_effective_tags_sample($parent);
 }
 // [END cloudresourcemanager_v3_generated_TagBindings_ListEffectiveTags_sync]

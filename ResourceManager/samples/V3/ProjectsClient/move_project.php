@@ -48,19 +48,19 @@ use Google\Rpc\Status;
  *
  *
  *
- * @param string $formattedName     The name of the project to move. Please see
- *                                  {@see ProjectsClient::projectName()} for help formatting this field.
- * @param string $destinationParent The new parent to move the Project under.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function move_project_sample(string $formattedName, string $destinationParent): void
+function move_project_sample(): void
 {
     // Create a client.
     $projectsClient = new ProjectsClient();
 
     // Prepare the request message.
-    $request = (new MoveProjectRequest())
-        ->setName($formattedName)
-        ->setDestinationParent($destinationParent);
+    $request = new MoveProjectRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -80,22 +80,5 @@ function move_project_sample(string $formattedName, string $destinationParent): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ProjectsClient::projectName('[PROJECT]');
-    $destinationParent = '[DESTINATION_PARENT]';
-
-    move_project_sample($formattedName, $destinationParent);
 }
 // [END cloudresourcemanager_v3_generated_Projects_MoveProject_sync]

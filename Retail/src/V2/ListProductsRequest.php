@@ -110,8 +110,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *
      *                       If the caller does not have permission to list
      *                       [Product][google.cloud.retail.v2.Product]s under this branch, regardless of
-     *                       whether or not this branch exists, a PERMISSION_DENIED error is returned. Please see
-     *                       {@see ProductServiceClient::branchName()} for help formatting this field.
+     *                       whether or not this branch exists, a PERMISSION_DENIED error is returned.
      *
      * @return \Google\Cloud\Retail\V2\ListProductsRequest
      *

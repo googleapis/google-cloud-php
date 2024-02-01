@@ -37,8 +37,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                         $parent Required. The location name. For example:
-     *                                               `projects/PROJECT_ID/locations/LOCATION_ID`. Please see
-     *                                               {@see CloudSchedulerClient::locationName()} for help formatting this field.
+     *                                               `projects/PROJECT_ID/locations/LOCATION_ID`.
      * @param \Google\Cloud\Scheduler\V1\Job $job    Required. The job to add. The user can optionally specify a name for the
      *                                               job in [name][google.cloud.scheduler.v1.Job.name].
      *                                               [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an

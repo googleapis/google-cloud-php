@@ -38,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'cluster_id',
-                ],
             ],
             'DeleteCluster' => [
                 'method' => 'delete',
@@ -86,9 +83,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

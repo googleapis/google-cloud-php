@@ -87,8 +87,7 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      *                       LOCATION here refers to GCP Locations:
      *                       https://cloud.google.com/about/locations/
      *                       INSIGHT_TYPE_ID refers to supported insight types:
-     *                       https://cloud.google.com/recommender/docs/insights/insight-types. Please see
-     *                       {@see RecommenderClient::insightTypeName()} for help formatting this field.
+     *                       https://cloud.google.com/recommender/docs/insights/insight-types.
      *
      * @return \Google\Cloud\Recommender\V1\ListInsightsRequest
      *

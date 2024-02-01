@@ -34,7 +34,6 @@ class MoveFolderRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name              Required. The resource name of the Folder to move.
      *                                  Must be of the form folders/{folder_id}
-     *                                  Please see {@see FoldersClient::folderName()} for help formatting this field.
      * @param string $destinationParent Required. The resource name of the folder or organization which should be
      *                                  the folder's new parent. Must be of the form `folders/{folder_id}` or
      *                                  `organizations/{org_id}`.

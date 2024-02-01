@@ -30,71 +30,71 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-£#
-!google/cloud/run/v2/service.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto+google/cloud/run/v2/revision_template.proto(google/cloud/run/v2/traffic_target.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"Æ
-CreateServiceRequest2
-parent (	B"‡A˙Arun.googleapis.com/Service2
-service (2.google.cloud.run.v2.ServiceB‡A
+Ω#
+!google/cloud/run/v2/service.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto+google/cloud/run/v2/revision_template.proto(google/cloud/run/v2/traffic_target.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"±
+CreateServiceRequest3
+parent (	B#‚A˙Arun.googleapis.com/Service3
+service (2.google.cloud.run.v2.ServiceB‚A
 
-service_id (	B‡A
-validate_only ("x
-UpdateServiceRequest2
-service (2.google.cloud.run.v2.ServiceB‡A
+service_id (	B‚A
+validate_only ("y
+UpdateServiceRequest3
+service (2.google.cloud.run.v2.ServiceB‚A
 validate_only (
-allow_missing ("Ü
-ListServicesRequest2
-parent (	B"‡A˙Arun.googleapis.com/Service
+allow_missing ("á
+ListServicesRequest3
+parent (	B#‚A˙Arun.googleapis.com/Service
 	page_size (
 
 page_token (	
 show_deleted ("_
 ListServicesResponse.
 services (2.google.cloud.run.v2.Service
-next_page_token (	"E
-GetServiceRequest0
-name (	B"‡A˙A
-run.googleapis.com/Service"m
-DeleteServiceRequest0
-name (	B"‡A˙A
+next_page_token (	"F
+GetServiceRequest1
+name (	B#‚A˙A
+run.googleapis.com/Service"n
+DeleteServiceRequest1
+name (	B#‚A˙A
 run.googleapis.com/Service
 validate_only (
-etag (	"Œ
+etag (	"·
 Service
 name (	
-description (	
-uid (	B‡A
+description (	
+uid (	B‚A
 
-generation (B‡A8
+generation (B‚A8
 labels (2(.google.cloud.run.v2.Service.LabelsEntryB
-annotations (2-.google.cloud.run.v2.Service.AnnotationsEntry4
-create_time (2.google.protobuf.TimestampB‡A4
-update_time (2.google.protobuf.TimestampB‡A4
-delete_time	 (2.google.protobuf.TimestampB‡A4
+annotations (2-.google.cloud.run.v2.Service.AnnotationsEntry5
+create_time (2.google.protobuf.TimestampB‚A5
+update_time (2.google.protobuf.TimestampB‚A5
+delete_time	 (2.google.protobuf.TimestampB‚A5
 expire_time
- (2.google.protobuf.TimestampB‡A
-creator (	B‡A
-last_modifier (	B‡A
+ (2.google.protobuf.TimestampB‚A
+creator (	B‚A
+last_modifier (	B‚A
 client (	
 client_version (	4
 ingress (2#.google.cloud.run.v2.IngressTraffic-
 launch_stage (2.google.api.LaunchStageF
-binary_authorization (2(.google.cloud.run.v2.BinaryAuthorization<
-template (2%.google.cloud.run.v2.RevisionTemplateB‡A3
-traffic (2".google.cloud.run.v2.TrafficTarget 
-observed_generation (B‡A?
-terminal_condition (2.google.cloud.run.v2.ConditionB‡A7
+binary_authorization (2(.google.cloud.run.v2.BinaryAuthorization=
+template (2%.google.cloud.run.v2.RevisionTemplateB‚A3
+traffic (2".google.cloud.run.v2.TrafficTarget!
+observed_generation (B‚A@
+terminal_condition (2.google.cloud.run.v2.ConditionB‚A8
 
-conditions  (2.google.cloud.run.v2.ConditionB‡AB
-latest_ready_revision! (	B#‡A˙A
-run.googleapis.com/RevisionD
-latest_created_revision" (	B#‡A˙A
-run.googleapis.com/RevisionG
-traffic_statuses# (2(.google.cloud.run.v2.TrafficTargetStatusB‡A
-uri$ (	B‡A
-custom_audiences% (	
-satisfies_pzs& (B‡A
-reconcilingb (B‡A
-etagc (	B‡A-
+conditions  (2.google.cloud.run.v2.ConditionB‚AC
+latest_ready_revision! (	B$‚A˙A
+run.googleapis.com/RevisionE
+latest_created_revision" (	B$‚A˙A
+run.googleapis.com/RevisionH
+traffic_statuses# (2(.google.cloud.run.v2.TrafficTargetStatusB‚A
+uri$ (	B‚A
+custom_audiences% (	
+satisfies_pzs& (B‚A
+reconcilingb (B‚A
+etagc (	B‚A-
 LabelsEntry
 key (	
 value (	:82
@@ -103,20 +103,20 @@ conditions  (2.google.cloud.run.v2.ConditionB‡AB
 value (	:8:^ÍA[
 run.googleapis.com/Service:projects/{project}/locations/{location}/services/{service}R2∑
 Services˝
-CreateService).google.cloud.run.v2.CreateServiceRequest.google.longrunning.Operation"°Ç”‰ì7",/v2/{parent=projects/*/locations/*}/services:serviceä”‰ì-+
-parent!projects/*/locations/{location=*}⁄Aparent,service,service_id A
-ServiceService√
+CreateService).google.cloud.run.v2.CreateServiceRequest.google.longrunning.Operation"° A
+ServiceService⁄Aparent,service,service_idÇ”‰ì7",/v2/{parent=projects/*/locations/*}/services:serviceä”‰ì-+
+parent!projects/*/locations/{location=*}√
 
-GetService&.google.cloud.run.v2.GetServiceRequest.google.cloud.run.v2.Service"oÇ”‰ì.,/v2/{name=projects/*/locations/*/services/*}ä”‰ì.,
-name$projects/*/locations/{location=*}/**⁄Aname’
-ListServices(.google.cloud.run.v2.ListServicesRequest).google.cloud.run.v2.ListServicesResponse"pÇ”‰ì.,/v2/{parent=projects/*/locations/*}/servicesä”‰ì-+
-parent!projects/*/locations/{location=*}⁄Aparent¸
-UpdateService).google.cloud.run.v2.UpdateServiceRequest.google.longrunning.Operation"†Ç”‰ì?24/v2/{service.name=projects/*/locations/*/services/*}:serviceä”‰ì64
-service.name$projects/*/locations/{location=*}/**⁄Aservice A
-ServiceService‡
-DeleteService).google.cloud.run.v2.DeleteServiceRequest.google.longrunning.Operation"ÑÇ”‰ì.*,/v2/{name=projects/*/locations/*/services/*}ä”‰ì.,
-name$projects/*/locations/{location=*}/**⁄Aname A
-ServiceServiceê
+GetService&.google.cloud.run.v2.GetServiceRequest.google.cloud.run.v2.Service"o⁄AnameÇ”‰ì.,/v2/{name=projects/*/locations/*/services/*}ä”‰ì.,
+name$projects/*/locations/{location=*}/**’
+ListServices(.google.cloud.run.v2.ListServicesRequest).google.cloud.run.v2.ListServicesResponse"p⁄AparentÇ”‰ì.,/v2/{parent=projects/*/locations/*}/servicesä”‰ì-+
+parent!projects/*/locations/{location=*}¸
+UpdateService).google.cloud.run.v2.UpdateServiceRequest.google.longrunning.Operation"† A
+ServiceService⁄AserviceÇ”‰ì?24/v2/{service.name=projects/*/locations/*/services/*}:serviceä”‰ì64
+service.name$projects/*/locations/{location=*}/**‡
+DeleteService).google.cloud.run.v2.DeleteServiceRequest.google.longrunning.Operation"Ñ A
+ServiceService⁄AnameÇ”‰ì.*,/v2/{name=projects/*/locations/*/services/*}ä”‰ì.,
+name$projects/*/locations/{location=*}/**ê
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"EÇ”‰ì?=/v2/{resource=projects/*/locations/*/services/*}:getIamPolicyì
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"HÇ”‰ìB"=/v2/{resource=projects/*/locations/*/services/*}:setIamPolicy:*π
 TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"NÇ”‰ìH"C/v2/{resource=projects/*/locations/*/services/*}:testIamPermissions:*F Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBT

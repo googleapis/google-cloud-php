@@ -33,7 +33,6 @@ use Google\Cloud\PolicySimulator\V1\GetReplayRequest;
 use Google\Cloud\PolicySimulator\V1\ListReplayResultsRequest;
 use Google\Cloud\PolicySimulator\V1\ListReplayResultsResponse;
 use Google\Cloud\PolicySimulator\V1\Replay;
-use Google\Cloud\PolicySimulator\V1\ReplayConfig;
 use Google\Cloud\PolicySimulator\V1\ReplayResult;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -102,12 +101,7 @@ class SimulatorClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $replay = new Replay();
-        $replayConfig = new ReplayConfig();
-        $replay->setConfig($replayConfig);
-        $request = (new CreateReplayRequest())->setParent($parent)->setReplay($replay);
+        $request = new CreateReplayRequest();
         $response = $gapicClient->createReplay($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -118,10 +112,6 @@ class SimulatorClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.policysimulator.v1.Simulator/CreateReplay', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getReplay();
-        $this->assertProtobufEquals($replay, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createReplayTest');
         $response->pollUntilComplete([
@@ -175,12 +165,7 @@ class SimulatorClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $replay = new Replay();
-        $replayConfig = new ReplayConfig();
-        $replay->setConfig($replayConfig);
-        $request = (new CreateReplayRequest())->setParent($parent)->setReplay($replay);
+        $request = new CreateReplayRequest();
         $response = $gapicClient->createReplay($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -216,9 +201,7 @@ class SimulatorClientTest extends GeneratedTest
         $expectedResponse = new Replay();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->replayName('[PROJECT]', '[LOCATION]', '[REPLAY]');
-        $request = (new GetReplayRequest())->setName($formattedName);
+        $request = new GetReplayRequest();
         $response = $gapicClient->getReplay($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -226,8 +209,6 @@ class SimulatorClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.policysimulator.v1.Simulator/GetReplay', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -252,9 +233,7 @@ class SimulatorClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->replayName('[PROJECT]', '[LOCATION]', '[REPLAY]');
-        $request = (new GetReplayRequest())->setName($formattedName);
+        $request = new GetReplayRequest();
         try {
             $gapicClient->getReplay($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -284,9 +263,7 @@ class SimulatorClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReplayResults($replayResults);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->replayName('[PROJECT]', '[LOCATION]', '[REPLAY]');
-        $request = (new ListReplayResultsRequest())->setParent($formattedParent);
+        $request = new ListReplayResultsRequest();
         $response = $gapicClient->listReplayResults($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -297,8 +274,6 @@ class SimulatorClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.policysimulator.v1.Simulator/ListReplayResults', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -323,9 +298,7 @@ class SimulatorClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->replayName('[PROJECT]', '[LOCATION]', '[REPLAY]');
-        $request = (new ListReplayResultsRequest())->setParent($formattedParent);
+        $request = new ListReplayResultsRequest();
         try {
             $gapicClient->listReplayResults($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -370,12 +343,7 @@ class SimulatorClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $replay = new Replay();
-        $replayConfig = new ReplayConfig();
-        $replay->setConfig($replayConfig);
-        $request = (new CreateReplayRequest())->setParent($parent)->setReplay($replay);
+        $request = new CreateReplayRequest();
         $response = $gapicClient->createReplayAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -386,10 +354,6 @@ class SimulatorClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.policysimulator.v1.Simulator/CreateReplay', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getReplay();
-        $this->assertProtobufEquals($replay, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createReplayTest');
         $response->pollUntilComplete([

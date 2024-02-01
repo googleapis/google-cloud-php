@@ -25,8 +25,7 @@ class DeleteFolderRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the folder to be deleted.
-     *                     Must be of the form `folders/{folder_id}`. Please see
-     *                     {@see FoldersClient::folderName()} for help formatting this field.
+     *                     Must be of the form `folders/{folder_id}`.
      *
      * @return \Google\Cloud\ResourceManager\V3\DeleteFolderRequest
      *

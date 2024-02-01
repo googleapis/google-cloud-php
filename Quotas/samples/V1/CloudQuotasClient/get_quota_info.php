@@ -31,20 +31,19 @@ use Google\Cloud\CloudQuotas\V1\QuotaInfo;
 /**
  * Retrieve the QuotaInfo of a quota for a project, folder or organization.
  *
- * @param string $formattedName The resource name of the quota info.
- *
- *                              An example name:
- *                              `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
- *                              Please see {@see CloudQuotasClient::quotaInfoName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_quota_info_sample(string $formattedName): void
+function get_quota_info_sample(): void
 {
     // Create a client.
     $cloudQuotasClient = new CloudQuotasClient();
 
     // Prepare the request message.
-    $request = (new GetQuotaInfoRequest())
-        ->setName($formattedName);
+    $request = new GetQuotaInfoRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,26 +53,5 @@ function get_quota_info_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudQuotasClient::quotaInfoName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[SERVICE]',
-        '[QUOTA_INFO]'
-    );
-
-    get_quota_info_sample($formattedName);
 }
 // [END cloudquotas_v1_generated_CloudQuotas_GetQuotaInfo_sync]

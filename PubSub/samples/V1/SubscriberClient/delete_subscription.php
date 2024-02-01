@@ -34,18 +34,19 @@ use Google\Cloud\PubSub\V1\DeleteSubscriptionRequest;
  * the same name, but the new one has no association with the old
  * subscription or its topic unless the same topic is specified.
  *
- * @param string $formattedSubscription The subscription to delete.
- *                                      Format is `projects/{project}/subscriptions/{sub}`. Please see
- *                                      {@see SubscriberClient::subscriptionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_subscription_sample(string $formattedSubscription): void
+function delete_subscription_sample(): void
 {
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
     // Prepare the request message.
-    $request = (new DeleteSubscriptionRequest())
-        ->setSubscription($formattedSubscription);
+    $request = new DeleteSubscriptionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +55,5 @@ function delete_subscription_sample(string $formattedSubscription): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSubscription = SubscriberClient::subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
-    delete_subscription_sample($formattedSubscription);
 }
 // [END pubsub_v1_generated_Subscriber_DeleteSubscription_sync]

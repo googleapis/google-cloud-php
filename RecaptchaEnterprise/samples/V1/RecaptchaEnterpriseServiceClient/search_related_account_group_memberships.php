@@ -32,19 +32,19 @@ use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequ
 /**
  * Search group memberships related to a given account.
  *
- * @param string $formattedProject The name of the project to search related account group
- *                                 memberships from. Specify the project name in the following format:
- *                                 `projects/{project}`. Please see
- *                                 {@see RecaptchaEnterpriseServiceClient::relatedAccountGroupName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_related_account_group_memberships_sample(string $formattedProject): void
+function search_related_account_group_memberships_sample(): void
 {
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
     // Prepare the request message.
-    $request = (new SearchRelatedAccountGroupMembershipsRequest())
-        ->setProject($formattedProject);
+    $request = new SearchRelatedAccountGroupMembershipsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,24 +58,5 @@ function search_related_account_group_memberships_sample(string $formattedProjec
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedProject = RecaptchaEnterpriseServiceClient::relatedAccountGroupName(
-        '[PROJECT]',
-        '[RELATEDACCOUNTGROUP]'
-    );
-
-    search_related_account_group_memberships_sample($formattedProject);
 }
 // [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_SearchRelatedAccountGroupMemberships_sync]

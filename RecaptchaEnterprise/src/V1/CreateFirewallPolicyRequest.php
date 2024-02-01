@@ -31,8 +31,7 @@ class CreateFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                              $parent         Required. The name of the project this policy will apply to, in the format
-     *                                                                            `projects/{project}`. Please see
-     *                                                                            {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     *                                                                            `projects/{project}`.
      * @param \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy $firewallPolicy Required. Information to create the policy.
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\CreateFirewallPolicyRequest

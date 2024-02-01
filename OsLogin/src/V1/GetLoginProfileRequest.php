@@ -35,8 +35,7 @@ class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
     private $system_id = '';
 
     /**
-     * @param string $name Required. The unique ID for the user in format `users/{user}`. Please see
-     *                     {@see OsLoginServiceClient::userName()} for help formatting this field.
+     * @param string $name Required. The unique ID for the user in format `users/{user}`.
      *
      * @return \Google\Cloud\OsLogin\V1\GetLoginProfileRequest
      *

@@ -102,12 +102,7 @@ class TagHoldsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->tagValueName('[TAG_VALUE]');
-        $tagHold = new TagHold();
-        $tagHoldHolder = 'tagHoldHolder-501201275';
-        $tagHold->setHolder($tagHoldHolder);
-        $response = $gapicClient->createTagHold($formattedParent, $tagHold);
+        $response = $gapicClient->createTagHold();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -117,10 +112,6 @@ class TagHoldsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagHolds/CreateTagHold', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getTagHold();
-        $this->assertProtobufEquals($tagHold, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTagHoldTest');
         $response->pollUntilComplete([
@@ -171,12 +162,7 @@ class TagHoldsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tagValueName('[TAG_VALUE]');
-        $tagHold = new TagHold();
-        $tagHoldHolder = 'tagHoldHolder-501201275';
-        $tagHold->setHolder($tagHoldHolder);
-        $response = $gapicClient->createTagHold($formattedParent, $tagHold);
+        $response = $gapicClient->createTagHold();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -227,9 +213,7 @@ class TagHoldsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->tagHoldName('[TAG_VALUE]', '[TAG_HOLD]');
-        $response = $gapicClient->deleteTagHold($formattedName);
+        $response = $gapicClient->deleteTagHold();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -239,8 +223,6 @@ class TagHoldsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagHolds/DeleteTagHold', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTagHoldTest');
         $response->pollUntilComplete([
@@ -291,9 +273,7 @@ class TagHoldsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagHoldName('[TAG_VALUE]', '[TAG_HOLD]');
-        $response = $gapicClient->deleteTagHold($formattedName);
+        $response = $gapicClient->deleteTagHold();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -333,9 +313,7 @@ class TagHoldsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTagHolds($tagHolds);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tagValueName('[TAG_VALUE]');
-        $response = $gapicClient->listTagHolds($formattedParent);
+        $response = $gapicClient->listTagHolds();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -345,8 +323,6 @@ class TagHoldsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagHolds/ListTagHolds', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -368,10 +344,8 @@ class TagHoldsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tagValueName('[TAG_VALUE]');
         try {
-            $gapicClient->listTagHolds($formattedParent);
+            $gapicClient->listTagHolds();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -25,8 +25,7 @@ class DeleteSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the schema to delete.
-     *                     Format is `projects/{project}/schemas/{schema}`. Please see
-     *                     {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     *                     Format is `projects/{project}/schemas/{schema}`.
      *
      * @return \Google\Cloud\PubSub\V1\DeleteSchemaRequest
      *

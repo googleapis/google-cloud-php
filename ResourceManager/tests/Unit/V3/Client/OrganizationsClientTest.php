@@ -152,10 +152,7 @@ class OrganizationsClientTest extends GeneratedTest
         $expectedResponse->setDirectoryCustomerId($directoryCustomerId);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new GetOrganizationRequest())
-            ->setName($formattedName);
+        $request = new GetOrganizationRequest();
         $response = $gapicClient->getOrganization($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -163,8 +160,6 @@ class OrganizationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Organizations/GetOrganization', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -186,10 +181,7 @@ class OrganizationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new GetOrganizationRequest())
-            ->setName($formattedName);
+        $request = new GetOrganizationRequest();
         try {
             $gapicClient->getOrganization($request);
             // If the $gapicClient method call did not throw, fail the test

@@ -24,19 +24,19 @@ class CatalogService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-î$
-,google/cloud/retail/v2/catalog_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/retail/v2/catalog.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"w
-ListCatalogsRequest9
-parent (	B)àAúA#
+ú$
+,google/cloud/retail/v2/catalog_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/retail/v2/catalog.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"x
+ListCatalogsRequest:
+parent (	B*âAúA#
 !locations.googleapis.com/Location
 	page_size (
 
 page_token (	"b
 ListCatalogsResponse1
 catalogs (2.google.cloud.retail.v2.Catalog
-next_page_token (	"~
-UpdateCatalogRequest5
-catalog (2.google.cloud.retail.v2.CatalogBàA/
+next_page_token (	"
+UpdateCatalogRequest6
+catalog (2.google.cloud.retail.v2.CatalogBâA/
 update_mask (2.google.protobuf.FieldMask"¡
 SetDefaultBranchRequest3
 catalog (	B"úA
@@ -52,41 +52,41 @@ page_token (	"b
 branch (	B!úA
 retail.googleapis.com/Branch,
 set_time (2.google.protobuf.Timestamp
-note (	"Z
-GetCompletionConfigRequest<
-name (	B.àAúA(
-&retail.googleapis.com/CompletionConfig"š
-UpdateCompletionConfigRequestH
-completion_config (2(.google.cloud.retail.v2.CompletionConfigBàA/
-update_mask (2.google.protobuf.FieldMask"Z
-GetAttributesConfigRequest<
-name (	B.àAúA(
-&retail.googleapis.com/AttributesConfig"š
-UpdateAttributesConfigRequestH
-attributes_config (2(.google.cloud.retail.v2.AttributesConfigBàA/
-update_mask (2.google.protobuf.FieldMask"±
-AddCatalogAttributeRequestI
-attributes_config (	B.àAúA(
-&retail.googleapis.com/AttributesConfigH
-catalog_attribute (2(.google.cloud.retail.v2.CatalogAttributeBàA"|
-RemoveCatalogAttributeRequestI
-attributes_config (	B.àAúA(
-&retail.googleapis.com/AttributesConfig
-key (	BàA"æ
-ReplaceCatalogAttributeRequestI
-attributes_config (	B.àAúA(
-&retail.googleapis.com/AttributesConfigH
-catalog_attribute (2(.google.cloud.retail.v2.CatalogAttributeBàA/
+note (	"[
+GetCompletionConfigRequest=
+name (	B/âAúA(
+&retail.googleapis.com/CompletionConfig"›
+UpdateCompletionConfigRequestI
+completion_config (2(.google.cloud.retail.v2.CompletionConfigBâA/
+update_mask (2.google.protobuf.FieldMask"[
+GetAttributesConfigRequest=
+name (	B/âAúA(
+&retail.googleapis.com/AttributesConfig"›
+UpdateAttributesConfigRequestI
+attributes_config (2(.google.cloud.retail.v2.AttributesConfigBâA/
+update_mask (2.google.protobuf.FieldMask"³
+AddCatalogAttributeRequestJ
+attributes_config (	B/âAúA(
+&retail.googleapis.com/AttributesConfigI
+catalog_attribute (2(.google.cloud.retail.v2.CatalogAttributeBâA"~
+RemoveCatalogAttributeRequestJ
+attributes_config (	B/âAúA(
+&retail.googleapis.com/AttributesConfig
+key (	BâA"è
+ReplaceCatalogAttributeRequestJ
+attributes_config (	B/âAúA(
+&retail.googleapis.com/AttributesConfigI
+catalog_attribute (2(.google.cloud.retail.v2.CatalogAttributeBâA/
 update_mask (2.google.protobuf.FieldMask2—
 CatalogService¨
-ListCatalogs+.google.cloud.retail.v2.ListCatalogsRequest,.google.cloud.retail.v2.ListCatalogsResponse"=‚Óä“.,/v2/{parent=projects/*/locations/*}/catalogsÚAparent»
-UpdateCatalog,.google.cloud.retail.v2.UpdateCatalogRequest.google.cloud.retail.v2.Catalog"[‚Óä“?24/v2/{catalog.name=projects/*/locations/*/catalogs/*}:catalogÚAcatalog,update_mask²
-SetDefaultBranch/.google.cloud.retail.v2.SetDefaultBranchRequest.google.protobuf.Empty"U‚Óä“E"@/v2/{catalog=projects/*/locations/*/catalogs/*}:setDefaultBranch:*ÚAcatalogÉ
-GetDefaultBranch/.google.cloud.retail.v2.GetDefaultBranchRequest0.google.cloud.retail.v2.GetDefaultBranchResponse"R‚Óä“B@/v2/{catalog=projects/*/locations/*/catalogs/*}:getDefaultBranchÚAcatalogÁ
-GetCompletionConfig2.google.cloud.retail.v2.GetCompletionConfigRequest(.google.cloud.retail.v2.CompletionConfig"L‚Óä“?=/v2/{name=projects/*/locations/*/catalogs/*/completionConfig}ÚAname†
-UpdateCompletionConfig5.google.cloud.retail.v2.UpdateCompletionConfigRequest(.google.cloud.retail.v2.CompletionConfig"Š‚Óä“d2O/v2/{completion_config.name=projects/*/locations/*/catalogs/*/completionConfig}:completion_configÚAcompletion_config,update_maskÁ
-GetAttributesConfig2.google.cloud.retail.v2.GetAttributesConfigRequest(.google.cloud.retail.v2.AttributesConfig"L‚Óä“?=/v2/{name=projects/*/locations/*/catalogs/*/attributesConfig}ÚAname†
-UpdateAttributesConfig5.google.cloud.retail.v2.UpdateAttributesConfigRequest(.google.cloud.retail.v2.AttributesConfig"Š‚Óä“d2O/v2/{attributes_config.name=projects/*/locations/*/catalogs/*/attributesConfig}:attributes_configÚAattributes_config,update_maskÞ
+ListCatalogs+.google.cloud.retail.v2.ListCatalogsRequest,.google.cloud.retail.v2.ListCatalogsResponse"=ÚAparent‚Óä“.,/v2/{parent=projects/*/locations/*}/catalogs»
+UpdateCatalog,.google.cloud.retail.v2.UpdateCatalogRequest.google.cloud.retail.v2.Catalog"[ÚAcatalog,update_mask‚Óä“?24/v2/{catalog.name=projects/*/locations/*/catalogs/*}:catalog²
+SetDefaultBranch/.google.cloud.retail.v2.SetDefaultBranchRequest.google.protobuf.Empty"UÚAcatalog‚Óä“E"@/v2/{catalog=projects/*/locations/*/catalogs/*}:setDefaultBranch:*É
+GetDefaultBranch/.google.cloud.retail.v2.GetDefaultBranchRequest0.google.cloud.retail.v2.GetDefaultBranchResponse"RÚAcatalog‚Óä“B@/v2/{catalog=projects/*/locations/*/catalogs/*}:getDefaultBranchÁ
+GetCompletionConfig2.google.cloud.retail.v2.GetCompletionConfigRequest(.google.cloud.retail.v2.CompletionConfig"LÚAname‚Óä“?=/v2/{name=projects/*/locations/*/catalogs/*/completionConfig}†
+UpdateCompletionConfig5.google.cloud.retail.v2.UpdateCompletionConfigRequest(.google.cloud.retail.v2.CompletionConfig"ŠÚAcompletion_config,update_mask‚Óä“d2O/v2/{completion_config.name=projects/*/locations/*/catalogs/*/completionConfig}:completion_configÁ
+GetAttributesConfig2.google.cloud.retail.v2.GetAttributesConfigRequest(.google.cloud.retail.v2.AttributesConfig"LÚAname‚Óä“?=/v2/{name=projects/*/locations/*/catalogs/*/attributesConfig}†
+UpdateAttributesConfig5.google.cloud.retail.v2.UpdateAttributesConfigRequest(.google.cloud.retail.v2.AttributesConfig"ŠÚAattributes_config,update_mask‚Óä“d2O/v2/{attributes_config.name=projects/*/locations/*/catalogs/*/attributesConfig}:attributes_configÞ
 AddCatalogAttribute2.google.cloud.retail.v2.AddCatalogAttributeRequest(.google.cloud.retail.v2.AttributesConfig"i‚Óä“c"^/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:addCatalogAttribute:*ç
 RemoveCatalogAttribute5.google.cloud.retail.v2.RemoveCatalogAttributeRequest(.google.cloud.retail.v2.AttributesConfig"l‚Óä“f"a/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:removeCatalogAttribute:*ê
 ReplaceCatalogAttribute6.google.cloud.retail.v2.ReplaceCatalogAttributeRequest(.google.cloud.retail.v2.AttributesConfig"m‚Óä“g"b/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:replaceCatalogAttribute:*IÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¾

@@ -38,7 +38,6 @@ use Google\Cloud\Run\V2\DeleteServiceRequest;
 use Google\Cloud\Run\V2\GetServiceRequest;
 use Google\Cloud\Run\V2\ListServicesRequest;
 use Google\Cloud\Run\V2\ListServicesResponse;
-use Google\Cloud\Run\V2\RevisionTemplate;
 use Google\Cloud\Run\V2\Service;
 use Google\Cloud\Run\V2\UpdateServiceRequest;
 use Google\LongRunning\GetOperationRequest;
@@ -134,16 +133,7 @@ class ServicesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $service = new Service();
-        $serviceTemplate = new RevisionTemplate();
-        $service->setTemplate($serviceTemplate);
-        $serviceId = 'serviceId-1724763419';
-        $request = (new CreateServiceRequest())
-            ->setParent($formattedParent)
-            ->setService($service)
-            ->setServiceId($serviceId);
+        $request = new CreateServiceRequest();
         $response = $gapicClient->createService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -154,12 +144,6 @@ class ServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Services/CreateService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getService();
-        $this->assertProtobufEquals($service, $actualValue);
-        $actualValue = $actualApiRequestObject->getServiceId();
-        $this->assertProtobufEquals($serviceId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createServiceTest');
         $response->pollUntilComplete([
@@ -210,16 +194,7 @@ class ServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $service = new Service();
-        $serviceTemplate = new RevisionTemplate();
-        $service->setTemplate($serviceTemplate);
-        $serviceId = 'serviceId-1724763419';
-        $request = (new CreateServiceRequest())
-            ->setParent($formattedParent)
-            ->setService($service)
-            ->setServiceId($serviceId);
+        $request = new CreateServiceRequest();
         $response = $gapicClient->createService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -301,10 +276,7 @@ class ServicesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $request = (new DeleteServiceRequest())
-            ->setName($formattedName);
+        $request = new DeleteServiceRequest();
         $response = $gapicClient->deleteService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -315,8 +287,6 @@ class ServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Services/DeleteService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteServiceTest');
         $response->pollUntilComplete([
@@ -367,10 +337,7 @@ class ServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $request = (new DeleteServiceRequest())
-            ->setName($formattedName);
+        $request = new DeleteServiceRequest();
         $response = $gapicClient->deleteService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -500,10 +467,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $request = (new GetServiceRequest())
-            ->setName($formattedName);
+        $request = new GetServiceRequest();
         $response = $gapicClient->getService($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -511,8 +475,6 @@ class ServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Services/GetService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -534,10 +496,7 @@ class ServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $request = (new GetServiceRequest())
-            ->setName($formattedName);
+        $request = new GetServiceRequest();
         try {
             $gapicClient->getService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -569,10 +528,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServices($services);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListServicesRequest())
-            ->setParent($formattedParent);
+        $request = new ListServicesRequest();
         $response = $gapicClient->listServices($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -583,8 +539,6 @@ class ServicesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Services/ListServices', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -606,10 +560,7 @@ class ServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListServicesRequest())
-            ->setParent($formattedParent);
+        $request = new ListServicesRequest();
         try {
             $gapicClient->listServices($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -822,12 +773,7 @@ class ServicesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $service = new Service();
-        $serviceTemplate = new RevisionTemplate();
-        $service->setTemplate($serviceTemplate);
-        $request = (new UpdateServiceRequest())
-            ->setService($service);
+        $request = new UpdateServiceRequest();
         $response = $gapicClient->updateService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -838,8 +784,6 @@ class ServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Services/UpdateService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getService();
-        $this->assertProtobufEquals($service, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateServiceTest');
         $response->pollUntilComplete([
@@ -890,12 +834,7 @@ class ServicesClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $service = new Service();
-        $serviceTemplate = new RevisionTemplate();
-        $service->setTemplate($serviceTemplate);
-        $request = (new UpdateServiceRequest())
-            ->setService($service);
+        $request = new UpdateServiceRequest();
         $response = $gapicClient->updateService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -977,16 +916,7 @@ class ServicesClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $service = new Service();
-        $serviceTemplate = new RevisionTemplate();
-        $service->setTemplate($serviceTemplate);
-        $serviceId = 'serviceId-1724763419';
-        $request = (new CreateServiceRequest())
-            ->setParent($formattedParent)
-            ->setService($service)
-            ->setServiceId($serviceId);
+        $request = new CreateServiceRequest();
         $response = $gapicClient->createServiceAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -997,12 +927,6 @@ class ServicesClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Services/CreateService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getService();
-        $this->assertProtobufEquals($service, $actualValue);
-        $actualValue = $actualApiRequestObject->getServiceId();
-        $this->assertProtobufEquals($serviceId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createServiceTest');
         $response->pollUntilComplete([

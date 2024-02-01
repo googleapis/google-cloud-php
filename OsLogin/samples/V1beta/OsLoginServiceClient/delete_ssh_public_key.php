@@ -29,38 +29,23 @@ use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;
 /**
  * Deletes an SSH public key.
  *
- * @param string $formattedName The fingerprint of the public key to update. Public keys are
- *                              identified by their SHA-256 fingerprint. The fingerprint of the public key
- *                              is in format `users/{user}/sshPublicKeys/{fingerprint}`. Please see
- *                              {@see OsLoginServiceClient::sshPublicKeyName()} for help formatting this field.
- */
-function delete_ssh_public_key_sample(string $formattedName): void
-{
-    // Create a client.
-    $osLoginServiceClient = new OsLoginServiceClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $osLoginServiceClient->deleteSshPublicKey($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_ssh_public_key_sample(): void
 {
-    $formattedName = OsLoginServiceClient::sshPublicKeyName('[USER]', '[FINGERPRINT]');
+    // Create a client.
+    $osLoginServiceClient = new OsLoginServiceClient();
 
-    delete_ssh_public_key_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $osLoginServiceClient->deleteSshPublicKey();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END oslogin_v1beta_generated_OsLoginService_DeleteSshPublicKey_sync]

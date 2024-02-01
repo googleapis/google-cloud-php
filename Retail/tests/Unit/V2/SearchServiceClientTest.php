@@ -86,10 +86,7 @@ class SearchServiceClientTest extends GeneratedTest
         $expectedResponse->setRedirectUri($redirectUri);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $placement = 'placement1792938725';
-        $visitorId = 'visitorId-1832599924';
-        $response = $gapicClient->search($placement, $visitorId);
+        $response = $gapicClient->search();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -99,10 +96,6 @@ class SearchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.SearchService/Search', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPlacement();
-        $this->assertProtobufEquals($placement, $actualValue);
-        $actualValue = $actualRequestObject->getVisitorId();
-        $this->assertProtobufEquals($visitorId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -124,11 +117,8 @@ class SearchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $placement = 'placement1792938725';
-        $visitorId = 'visitorId-1832599924';
         try {
-            $gapicClient->search($placement, $visitorId);
+            $gapicClient->search();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

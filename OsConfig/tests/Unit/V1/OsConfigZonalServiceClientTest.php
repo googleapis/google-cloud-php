@@ -27,7 +27,6 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\OsConfig\V1\FixedOrPercent;
 use Google\Cloud\OsConfig\V1\Inventory;
 use Google\Cloud\OsConfig\V1\ListInventoriesResponse;
 use Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentReportsResponse;
@@ -36,14 +35,11 @@ use Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentsResponse;
 use Google\Cloud\OsConfig\V1\ListVulnerabilityReportsResponse;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignment;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport;
-use Google\Cloud\OsConfig\V1\OSPolicyAssignment\InstanceFilter;
-use Google\Cloud\OsConfig\V1\OSPolicyAssignment\Rollout;
 use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
 use Google\Cloud\OsConfig\V1\VulnerabilityReport;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\Duration;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -121,21 +117,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $osPolicyAssignment = new OSPolicyAssignment();
-        $osPolicyAssignmentOsPolicies = [];
-        $osPolicyAssignment->setOsPolicies($osPolicyAssignmentOsPolicies);
-        $osPolicyAssignmentInstanceFilter = new InstanceFilter();
-        $osPolicyAssignment->setInstanceFilter($osPolicyAssignmentInstanceFilter);
-        $osPolicyAssignmentRollout = new Rollout();
-        $rolloutDisruptionBudget = new FixedOrPercent();
-        $osPolicyAssignmentRollout->setDisruptionBudget($rolloutDisruptionBudget);
-        $rolloutMinWaitDuration = new Duration();
-        $osPolicyAssignmentRollout->setMinWaitDuration($rolloutMinWaitDuration);
-        $osPolicyAssignment->setRollout($osPolicyAssignmentRollout);
-        $osPolicyAssignmentId = 'osPolicyAssignmentId-1092208901';
-        $response = $gapicClient->createOSPolicyAssignment($formattedParent, $osPolicyAssignment, $osPolicyAssignmentId);
+        $response = $gapicClient->createOSPolicyAssignment();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -145,12 +127,6 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/CreateOSPolicyAssignment', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getOsPolicyAssignment();
-        $this->assertProtobufEquals($osPolicyAssignment, $actualValue);
-        $actualValue = $actualApiRequestObject->getOsPolicyAssignmentId();
-        $this->assertProtobufEquals($osPolicyAssignmentId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createOSPolicyAssignmentTest');
         $response->pollUntilComplete([
@@ -201,21 +177,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $osPolicyAssignment = new OSPolicyAssignment();
-        $osPolicyAssignmentOsPolicies = [];
-        $osPolicyAssignment->setOsPolicies($osPolicyAssignmentOsPolicies);
-        $osPolicyAssignmentInstanceFilter = new InstanceFilter();
-        $osPolicyAssignment->setInstanceFilter($osPolicyAssignmentInstanceFilter);
-        $osPolicyAssignmentRollout = new Rollout();
-        $rolloutDisruptionBudget = new FixedOrPercent();
-        $osPolicyAssignmentRollout->setDisruptionBudget($rolloutDisruptionBudget);
-        $rolloutMinWaitDuration = new Duration();
-        $osPolicyAssignmentRollout->setMinWaitDuration($rolloutMinWaitDuration);
-        $osPolicyAssignment->setRollout($osPolicyAssignmentRollout);
-        $osPolicyAssignmentId = 'osPolicyAssignmentId-1092208901';
-        $response = $gapicClient->createOSPolicyAssignment($formattedParent, $osPolicyAssignment, $osPolicyAssignmentId);
+        $response = $gapicClient->createOSPolicyAssignment();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -266,9 +228,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
-        $response = $gapicClient->deleteOSPolicyAssignment($formattedName);
+        $response = $gapicClient->deleteOSPolicyAssignment();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -278,8 +238,6 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/DeleteOSPolicyAssignment', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteOSPolicyAssignmentTest');
         $response->pollUntilComplete([
@@ -330,9 +288,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
-        $response = $gapicClient->deleteOSPolicyAssignment($formattedName);
+        $response = $gapicClient->deleteOSPolicyAssignment();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -367,17 +323,13 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse = new Inventory();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->inventoryName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->getInventory($formattedName);
+        $response = $gapicClient->getInventory();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/GetInventory', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -399,10 +351,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->inventoryName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         try {
-            $gapicClient->getInventory($formattedName);
+            $gapicClient->getInventory();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -441,17 +391,13 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
-        $response = $gapicClient->getOSPolicyAssignment($formattedName);
+        $response = $gapicClient->getOSPolicyAssignment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/GetOSPolicyAssignment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -473,10 +419,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
         try {
-            $gapicClient->getOSPolicyAssignment($formattedName);
+            $gapicClient->getOSPolicyAssignment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -507,17 +451,13 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setOsPolicyAssignment($osPolicyAssignment);
         $expectedResponse->setLastRunId($lastRunId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->oSPolicyAssignmentReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
-        $response = $gapicClient->getOSPolicyAssignmentReport($formattedName);
+        $response = $gapicClient->getOSPolicyAssignmentReport();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/GetOSPolicyAssignmentReport', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -539,10 +479,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->oSPolicyAssignmentReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
         try {
-            $gapicClient->getOSPolicyAssignmentReport($formattedName);
+            $gapicClient->getOSPolicyAssignmentReport();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -567,17 +505,13 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse = new VulnerabilityReport();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->vulnerabilityReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->getVulnerabilityReport($formattedName);
+        $response = $gapicClient->getVulnerabilityReport();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/GetVulnerabilityReport', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -599,10 +533,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->vulnerabilityReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         try {
-            $gapicClient->getVulnerabilityReport($formattedName);
+            $gapicClient->getVulnerabilityReport();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -632,9 +564,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInventories($inventories);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
-        $response = $gapicClient->listInventories($formattedParent);
+        $response = $gapicClient->listInventories();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -644,8 +574,6 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/ListInventories', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -667,10 +595,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
         try {
-            $gapicClient->listInventories($formattedParent);
+            $gapicClient->listInventories();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -700,9 +626,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOsPolicyAssignmentReports($osPolicyAssignmentReports);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->instanceOSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
-        $response = $gapicClient->listOSPolicyAssignmentReports($formattedParent);
+        $response = $gapicClient->listOSPolicyAssignmentReports();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -712,8 +636,6 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/ListOSPolicyAssignmentReports', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -735,10 +657,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->instanceOSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
         try {
-            $gapicClient->listOSPolicyAssignmentReports($formattedParent);
+            $gapicClient->listOSPolicyAssignmentReports();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -768,9 +688,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOsPolicyAssignments($osPolicyAssignments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
-        $response = $gapicClient->listOSPolicyAssignmentRevisions($formattedName);
+        $response = $gapicClient->listOSPolicyAssignmentRevisions();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -780,8 +698,6 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/ListOSPolicyAssignmentRevisions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -803,10 +719,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
         try {
-            $gapicClient->listOSPolicyAssignmentRevisions($formattedName);
+            $gapicClient->listOSPolicyAssignmentRevisions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -836,9 +750,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOsPolicyAssignments($osPolicyAssignments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listOSPolicyAssignments($formattedParent);
+        $response = $gapicClient->listOSPolicyAssignments();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -848,8 +760,6 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/ListOSPolicyAssignments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -871,10 +781,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listOSPolicyAssignments($formattedParent);
+            $gapicClient->listOSPolicyAssignments();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -904,9 +812,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVulnerabilityReports($vulnerabilityReports);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
-        $response = $gapicClient->listVulnerabilityReports($formattedParent);
+        $response = $gapicClient->listVulnerabilityReports();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -916,8 +822,6 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/ListVulnerabilityReports', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -939,10 +843,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
         try {
-            $gapicClient->listVulnerabilityReports($formattedParent);
+            $gapicClient->listVulnerabilityReports();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -999,19 +901,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $osPolicyAssignment = new OSPolicyAssignment();
-        $osPolicyAssignmentOsPolicies = [];
-        $osPolicyAssignment->setOsPolicies($osPolicyAssignmentOsPolicies);
-        $osPolicyAssignmentInstanceFilter = new InstanceFilter();
-        $osPolicyAssignment->setInstanceFilter($osPolicyAssignmentInstanceFilter);
-        $osPolicyAssignmentRollout = new Rollout();
-        $rolloutDisruptionBudget = new FixedOrPercent();
-        $osPolicyAssignmentRollout->setDisruptionBudget($rolloutDisruptionBudget);
-        $rolloutMinWaitDuration = new Duration();
-        $osPolicyAssignmentRollout->setMinWaitDuration($rolloutMinWaitDuration);
-        $osPolicyAssignment->setRollout($osPolicyAssignmentRollout);
-        $response = $gapicClient->updateOSPolicyAssignment($osPolicyAssignment);
+        $response = $gapicClient->updateOSPolicyAssignment();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1021,8 +911,6 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.osconfig.v1.OsConfigZonalService/UpdateOSPolicyAssignment', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getOsPolicyAssignment();
-        $this->assertProtobufEquals($osPolicyAssignment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateOSPolicyAssignmentTest');
         $response->pollUntilComplete([
@@ -1073,19 +961,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $osPolicyAssignment = new OSPolicyAssignment();
-        $osPolicyAssignmentOsPolicies = [];
-        $osPolicyAssignment->setOsPolicies($osPolicyAssignmentOsPolicies);
-        $osPolicyAssignmentInstanceFilter = new InstanceFilter();
-        $osPolicyAssignment->setInstanceFilter($osPolicyAssignmentInstanceFilter);
-        $osPolicyAssignmentRollout = new Rollout();
-        $rolloutDisruptionBudget = new FixedOrPercent();
-        $osPolicyAssignmentRollout->setDisruptionBudget($rolloutDisruptionBudget);
-        $rolloutMinWaitDuration = new Duration();
-        $osPolicyAssignmentRollout->setMinWaitDuration($rolloutMinWaitDuration);
-        $osPolicyAssignment->setRollout($osPolicyAssignmentRollout);
-        $response = $gapicClient->updateOSPolicyAssignment($osPolicyAssignment);
+        $response = $gapicClient->updateOSPolicyAssignment();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

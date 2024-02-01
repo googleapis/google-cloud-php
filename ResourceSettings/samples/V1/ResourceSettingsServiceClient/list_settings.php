@@ -32,22 +32,19 @@ use Google\Cloud\ResourceSettings\V1\Setting;
 /**
  * Lists all the settings that are available on the Cloud resource `parent`.
  *
- * @param string $parent The Cloud resource that parents the setting. Must be in one of the
- *                       following forms:
- *
- *                       * `projects/{project_number}`
- *                       * `projects/{project_id}`
- *                       * `folders/{folder_id}`
- *                       * `organizations/{organization_id}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_settings_sample(string $parent): void
+function list_settings_sample(): void
 {
     // Create a client.
     $resourceSettingsServiceClient = new ResourceSettingsServiceClient();
 
     // Prepare the request message.
-    $request = (new ListSettingsRequest())
-        ->setParent($parent);
+    $request = new ListSettingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +58,5 @@ function list_settings_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_settings_sample($parent);
 }
 // [END resourcesettings_v1_generated_ResourceSettingsService_ListSettings_sync]

@@ -108,10 +108,7 @@ class TagBindingsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $tagBinding = new TagBinding();
-        $request = (new CreateTagBindingRequest())
-            ->setTagBinding($tagBinding);
+        $request = new CreateTagBindingRequest();
         $response = $gapicClient->createTagBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -122,8 +119,6 @@ class TagBindingsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagBindings/CreateTagBinding', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getTagBinding();
-        $this->assertProtobufEquals($tagBinding, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTagBindingTest');
         $response->pollUntilComplete([
@@ -174,10 +169,7 @@ class TagBindingsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $tagBinding = new TagBinding();
-        $request = (new CreateTagBindingRequest())
-            ->setTagBinding($tagBinding);
+        $request = new CreateTagBindingRequest();
         $response = $gapicClient->createTagBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -229,10 +221,7 @@ class TagBindingsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->tagBindingName('[TAG_BINDING]');
-        $request = (new DeleteTagBindingRequest())
-            ->setName($formattedName);
+        $request = new DeleteTagBindingRequest();
         $response = $gapicClient->deleteTagBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -243,8 +232,6 @@ class TagBindingsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagBindings/DeleteTagBinding', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTagBindingTest');
         $response->pollUntilComplete([
@@ -295,10 +282,7 @@ class TagBindingsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagBindingName('[TAG_BINDING]');
-        $request = (new DeleteTagBindingRequest())
-            ->setName($formattedName);
+        $request = new DeleteTagBindingRequest();
         $response = $gapicClient->deleteTagBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -339,10 +323,7 @@ class TagBindingsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEffectiveTags($effectiveTags);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListEffectiveTagsRequest())
-            ->setParent($parent);
+        $request = new ListEffectiveTagsRequest();
         $response = $gapicClient->listEffectiveTags($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -353,8 +334,6 @@ class TagBindingsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagBindings/ListEffectiveTags', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -376,10 +355,7 @@ class TagBindingsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListEffectiveTagsRequest())
-            ->setParent($parent);
+        $request = new ListEffectiveTagsRequest();
         try {
             $gapicClient->listEffectiveTags($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -411,10 +387,7 @@ class TagBindingsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTagBindings($tagBindings);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListTagBindingsRequest())
-            ->setParent($parent);
+        $request = new ListTagBindingsRequest();
         $response = $gapicClient->listTagBindings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -425,8 +398,6 @@ class TagBindingsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagBindings/ListTagBindings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -448,10 +419,7 @@ class TagBindingsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListTagBindingsRequest())
-            ->setParent($parent);
+        $request = new ListTagBindingsRequest();
         try {
             $gapicClient->listTagBindings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -502,10 +470,7 @@ class TagBindingsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $tagBinding = new TagBinding();
-        $request = (new CreateTagBindingRequest())
-            ->setTagBinding($tagBinding);
+        $request = new CreateTagBindingRequest();
         $response = $gapicClient->createTagBindingAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -516,8 +481,6 @@ class TagBindingsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagBindings/CreateTagBinding', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getTagBinding();
-        $this->assertProtobufEquals($tagBinding, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTagBindingTest');
         $response->pollUntilComplete([

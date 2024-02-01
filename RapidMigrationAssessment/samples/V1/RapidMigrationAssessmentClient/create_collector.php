@@ -34,21 +34,19 @@ use Google\Rpc\Status;
  * Create a Collector to manage the on-prem appliance which collects
  * information about Customer assets.
  *
- * @param string $formattedParent Name of the parent (project+location). Please see
- *                                {@see RapidMigrationAssessmentClient::locationName()} for help formatting this field.
- * @param string $collectorId     Id of the requesting object.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_collector_sample(string $formattedParent, string $collectorId): void
+function create_collector_sample(): void
 {
     // Create a client.
     $rapidMigrationAssessmentClient = new RapidMigrationAssessmentClient();
 
     // Prepare the request message.
-    $collector = new Collector();
-    $request = (new CreateCollectorRequest())
-        ->setParent($formattedParent)
-        ->setCollectorId($collectorId)
-        ->setCollector($collector);
+    $request = new CreateCollectorRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,22 +66,5 @@ function create_collector_sample(string $formattedParent, string $collectorId): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RapidMigrationAssessmentClient::locationName('[PROJECT]', '[LOCATION]');
-    $collectorId = '[COLLECTOR_ID]';
-
-    create_collector_sample($formattedParent, $collectorId);
 }
 // [END rapidmigrationassessment_v1_generated_RapidMigrationAssessment_CreateCollector_sync]

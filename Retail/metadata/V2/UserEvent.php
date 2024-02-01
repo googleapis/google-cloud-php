@@ -21,13 +21,13 @@ class UserEvent
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ñ
-\'google/cloud/retail/v2/user_event.protogoogle.cloud.retail.v2#google/cloud/retail/v2/common.proto$google/cloud/retail/v2/product.protogoogle/protobuf/timestamp.protogoogle/protobuf/wrappers.proto"ó
-	UserEvent
+â
+\'google/cloud/retail/v2/user_event.protogoogle.cloud.retail.v2#google/cloud/retail/v2/common.proto$google/cloud/retail/v2/product.protogoogle/protobuf/timestamp.protogoogle/protobuf/wrappers.proto"ô
+	UserEvent
 
-event_type (	B‡A
+event_type (	B‚A
 
-visitor_id (	B‡A
+visitor_id (	B‚A
 
 session_id (	.
 
@@ -53,21 +53,21 @@ attributes (21.google.cloud.retail.v2.UserEvent.AttributesEntry
 entity (	Z
 AttributesEntry
 key (	6
-value (2\'.google.cloud.retail.v2.CustomAttribute:8"u
-ProductDetail5
-product (2.google.cloud.retail.v2.ProductB‡A-
+value (2\'.google.cloud.retail.v2.CustomAttribute:8"v
+ProductDetail6
+product (2.google.cloud.retail.v2.ProductB‚A-
 quantity (2.google.protobuf.Int32Value"p
 CompletionDetail$
 completion_attribution_token (	
 selected_suggestion (	
-selected_position ("n
+selected_position ("p
 PurchaseTransaction
 
-id (	
-revenue (B‡A
+id (	
+revenue (B‚A
 tax (
-cost (
-currency_code (	B‡ABπ
+cost (
+currency_code (	B‚ABπ
 com.google.cloud.retail.v2BUserEventProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
         , true);
 

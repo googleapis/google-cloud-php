@@ -37,8 +37,7 @@ class ListOSPolicyAssignmentRevisionsRequest extends \Google\Protobuf\Internal\M
     private $page_token = '';
 
     /**
-     * @param string $name Required. The name of the OS policy assignment to list revisions for. Please see
-     *                     {@see OsConfigZonalServiceClient::oSPolicyAssignmentName()} for help formatting this field.
+     * @param string $name Required. The name of the OS policy assignment to list revisions for.
      *
      * @return \Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentRevisionsRequest
      *

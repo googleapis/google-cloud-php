@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'control_id',
-                ],
             ],
             'DeleteControl' => [
                 'method' => 'delete',

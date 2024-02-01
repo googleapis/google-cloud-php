@@ -31,22 +31,19 @@ use Google\Cloud\PubSub\V1\PullResponse;
 /**
  * Pulls messages from the server.
  *
- * @param string $formattedSubscription The subscription from which messages should be pulled.
- *                                      Format is `projects/{project}/subscriptions/{sub}`. Please see
- *                                      {@see SubscriberClient::subscriptionName()} for help formatting this field.
- * @param int    $maxMessages           The maximum number of messages to return for this request. Must
- *                                      be a positive integer. The Pub/Sub system may return fewer than the number
- *                                      specified.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function pull_sample(string $formattedSubscription, int $maxMessages): void
+function pull_sample(): void
 {
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
     // Prepare the request message.
-    $request = (new PullRequest())
-        ->setSubscription($formattedSubscription)
-        ->setMaxMessages($maxMessages);
+    $request = new PullRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,22 +53,5 @@ function pull_sample(string $formattedSubscription, int $maxMessages): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSubscription = SubscriberClient::subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-    $maxMessages = 0;
-
-    pull_sample($formattedSubscription, $maxMessages);
 }
 // [END pubsub_v1_generated_Subscriber_Pull_sync]

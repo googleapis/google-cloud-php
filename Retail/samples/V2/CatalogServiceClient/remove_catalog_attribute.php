@@ -36,21 +36,19 @@ use Google\Cloud\Retail\V2\RemoveCatalogAttributeRequest;
  * If the [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to
  * remove does not exist, a NOT_FOUND error is returned.
  *
- * @param string $formattedAttributesConfig Full AttributesConfig resource name. Format:
- *                                          `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/attributesConfig`
- *                                          Please see {@see CatalogServiceClient::attributesConfigName()} for help formatting this field.
- * @param string $key                       The attribute name key of the
- *                                          [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to remove.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function remove_catalog_attribute_sample(string $formattedAttributesConfig, string $key): void
+function remove_catalog_attribute_sample(): void
 {
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
-    $request = (new RemoveCatalogAttributeRequest())
-        ->setAttributesConfig($formattedAttributesConfig)
-        ->setKey($key);
+    $request = new RemoveCatalogAttributeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,26 +58,5 @@ function remove_catalog_attribute_sample(string $formattedAttributesConfig, stri
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedAttributesConfig = CatalogServiceClient::attributesConfigName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]'
-    );
-    $key = '[KEY]';
-
-    remove_catalog_attribute_sample($formattedAttributesConfig, $key);
 }
 // [END retail_v2_generated_CatalogService_RemoveCatalogAttribute_sync]

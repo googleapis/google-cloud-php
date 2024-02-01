@@ -31,20 +31,19 @@ use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration;
 /**
  * Register an API key for use with predict method.
  *
- * @param string $formattedParent The parent resource path.
- *                                `projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store`. Please see
- *                                {@see PredictionApiKeyRegistryClient::eventStoreName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_prediction_api_key_registration_sample(string $formattedParent): void
+function create_prediction_api_key_registration_sample(): void
 {
     // Create a client.
     $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
 
     // Prepare the request message.
-    $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
-    $request = (new CreatePredictionApiKeyRegistrationRequest())
-        ->setParent($formattedParent)
-        ->setPredictionApiKeyRegistration($predictionApiKeyRegistration);
+    $request = new CreatePredictionApiKeyRegistrationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,26 +53,5 @@ function create_prediction_api_key_registration_sample(string $formattedParent):
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = PredictionApiKeyRegistryClient::eventStoreName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]',
-        '[EVENT_STORE]'
-    );
-
-    create_prediction_api_key_registration_sample($formattedParent);
 }
 // [END recommendationengine_v1beta1_generated_PredictionApiKeyRegistry_CreatePredictionApiKeyRegistration_sync]

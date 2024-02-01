@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Retail\V2\AddCatalogAttributeRequest;
 use Google\Cloud\Retail\V2\AttributesConfig;
 use Google\Cloud\Retail\V2\Catalog;
-use Google\Cloud\Retail\V2\CatalogAttribute;
 use Google\Cloud\Retail\V2\Client\CatalogServiceClient;
 use Google\Cloud\Retail\V2\CompletionConfig;
 use Google\Cloud\Retail\V2\GetAttributesConfigRequest;
@@ -38,7 +37,6 @@ use Google\Cloud\Retail\V2\GetDefaultBranchRequest;
 use Google\Cloud\Retail\V2\GetDefaultBranchResponse;
 use Google\Cloud\Retail\V2\ListCatalogsRequest;
 use Google\Cloud\Retail\V2\ListCatalogsResponse;
-use Google\Cloud\Retail\V2\ProductLevelConfig;
 use Google\Cloud\Retail\V2\RemoveCatalogAttributeRequest;
 use Google\Cloud\Retail\V2\ReplaceCatalogAttributeRequest;
 use Google\Cloud\Retail\V2\SetDefaultBranchRequest;
@@ -90,14 +88,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse = new AttributesConfig();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedAttributesConfig = $gapicClient->attributesConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $catalogAttribute = new CatalogAttribute();
-        $catalogAttributeKey = 'catalogAttributeKey-1525777188';
-        $catalogAttribute->setKey($catalogAttributeKey);
-        $request = (new AddCatalogAttributeRequest())
-            ->setAttributesConfig($formattedAttributesConfig)
-            ->setCatalogAttribute($catalogAttribute);
+        $request = new AddCatalogAttributeRequest();
         $response = $gapicClient->addCatalogAttribute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -105,10 +96,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CatalogService/AddCatalogAttribute', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAttributesConfig();
-        $this->assertProtobufEquals($formattedAttributesConfig, $actualValue);
-        $actualValue = $actualRequestObject->getCatalogAttribute();
-        $this->assertProtobufEquals($catalogAttribute, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -130,14 +117,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedAttributesConfig = $gapicClient->attributesConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $catalogAttribute = new CatalogAttribute();
-        $catalogAttributeKey = 'catalogAttributeKey-1525777188';
-        $catalogAttribute->setKey($catalogAttributeKey);
-        $request = (new AddCatalogAttributeRequest())
-            ->setAttributesConfig($formattedAttributesConfig)
-            ->setCatalogAttribute($catalogAttribute);
+        $request = new AddCatalogAttributeRequest();
         try {
             $gapicClient->addCatalogAttribute($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -164,10 +144,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse = new AttributesConfig();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->attributesConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $request = (new GetAttributesConfigRequest())
-            ->setName($formattedName);
+        $request = new GetAttributesConfigRequest();
         $response = $gapicClient->getAttributesConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -175,8 +152,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CatalogService/GetAttributesConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -198,10 +173,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->attributesConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $request = (new GetAttributesConfigRequest())
-            ->setName($formattedName);
+        $request = new GetAttributesConfigRequest();
         try {
             $gapicClient->getAttributesConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -242,10 +214,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setLastDenylistImportOperation($lastDenylistImportOperation);
         $expectedResponse->setLastAllowlistImportOperation($lastAllowlistImportOperation);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->completionConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $request = (new GetCompletionConfigRequest())
-            ->setName($formattedName);
+        $request = new GetCompletionConfigRequest();
         $response = $gapicClient->getCompletionConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -253,8 +222,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CatalogService/GetCompletionConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -276,10 +243,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->completionConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $request = (new GetCompletionConfigRequest())
-            ->setName($formattedName);
+        $request = new GetCompletionConfigRequest();
         try {
             $gapicClient->getCompletionConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -369,10 +333,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCatalogs($catalogs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCatalogsRequest())
-            ->setParent($formattedParent);
+        $request = new ListCatalogsRequest();
         $response = $gapicClient->listCatalogs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -383,8 +344,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CatalogService/ListCatalogs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -406,10 +365,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCatalogsRequest())
-            ->setParent($formattedParent);
+        $request = new ListCatalogsRequest();
         try {
             $gapicClient->listCatalogs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -436,12 +392,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse = new AttributesConfig();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedAttributesConfig = $gapicClient->attributesConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $key = 'key106079';
-        $request = (new RemoveCatalogAttributeRequest())
-            ->setAttributesConfig($formattedAttributesConfig)
-            ->setKey($key);
+        $request = new RemoveCatalogAttributeRequest();
         $response = $gapicClient->removeCatalogAttribute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -449,10 +400,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CatalogService/RemoveCatalogAttribute', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAttributesConfig();
-        $this->assertProtobufEquals($formattedAttributesConfig, $actualValue);
-        $actualValue = $actualRequestObject->getKey();
-        $this->assertProtobufEquals($key, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -474,12 +421,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedAttributesConfig = $gapicClient->attributesConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $key = 'key106079';
-        $request = (new RemoveCatalogAttributeRequest())
-            ->setAttributesConfig($formattedAttributesConfig)
-            ->setKey($key);
+        $request = new RemoveCatalogAttributeRequest();
         try {
             $gapicClient->removeCatalogAttribute($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -506,14 +448,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse = new AttributesConfig();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedAttributesConfig = $gapicClient->attributesConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $catalogAttribute = new CatalogAttribute();
-        $catalogAttributeKey = 'catalogAttributeKey-1525777188';
-        $catalogAttribute->setKey($catalogAttributeKey);
-        $request = (new ReplaceCatalogAttributeRequest())
-            ->setAttributesConfig($formattedAttributesConfig)
-            ->setCatalogAttribute($catalogAttribute);
+        $request = new ReplaceCatalogAttributeRequest();
         $response = $gapicClient->replaceCatalogAttribute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -521,10 +456,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CatalogService/ReplaceCatalogAttribute', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAttributesConfig();
-        $this->assertProtobufEquals($formattedAttributesConfig, $actualValue);
-        $actualValue = $actualRequestObject->getCatalogAttribute();
-        $this->assertProtobufEquals($catalogAttribute, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -546,14 +477,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedAttributesConfig = $gapicClient->attributesConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $catalogAttribute = new CatalogAttribute();
-        $catalogAttributeKey = 'catalogAttributeKey-1525777188';
-        $catalogAttribute->setKey($catalogAttributeKey);
-        $request = (new ReplaceCatalogAttributeRequest())
-            ->setAttributesConfig($formattedAttributesConfig)
-            ->setCatalogAttribute($catalogAttribute);
+        $request = new ReplaceCatalogAttributeRequest();
         try {
             $gapicClient->replaceCatalogAttribute($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -633,12 +557,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse = new AttributesConfig();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $attributesConfig = new AttributesConfig();
-        $attributesConfigName = 'attributesConfigName-1073347164';
-        $attributesConfig->setName($attributesConfigName);
-        $request = (new UpdateAttributesConfigRequest())
-            ->setAttributesConfig($attributesConfig);
+        $request = new UpdateAttributesConfigRequest();
         $response = $gapicClient->updateAttributesConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -646,8 +565,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CatalogService/UpdateAttributesConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAttributesConfig();
-        $this->assertProtobufEquals($attributesConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -669,12 +586,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $attributesConfig = new AttributesConfig();
-        $attributesConfigName = 'attributesConfigName-1073347164';
-        $attributesConfig->setName($attributesConfigName);
-        $request = (new UpdateAttributesConfigRequest())
-            ->setAttributesConfig($attributesConfig);
+        $request = new UpdateAttributesConfigRequest();
         try {
             $gapicClient->updateAttributesConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -703,16 +615,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $catalog = new Catalog();
-        $catalogName = 'catalogName-1007379900';
-        $catalog->setName($catalogName);
-        $catalogDisplayName = 'catalogDisplayName1836270740';
-        $catalog->setDisplayName($catalogDisplayName);
-        $catalogProductLevelConfig = new ProductLevelConfig();
-        $catalog->setProductLevelConfig($catalogProductLevelConfig);
-        $request = (new UpdateCatalogRequest())
-            ->setCatalog($catalog);
+        $request = new UpdateCatalogRequest();
         $response = $gapicClient->updateCatalog($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -720,8 +623,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CatalogService/UpdateCatalog', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCatalog();
-        $this->assertProtobufEquals($catalog, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -743,16 +644,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $catalog = new Catalog();
-        $catalogName = 'catalogName-1007379900';
-        $catalog->setName($catalogName);
-        $catalogDisplayName = 'catalogDisplayName1836270740';
-        $catalog->setDisplayName($catalogDisplayName);
-        $catalogProductLevelConfig = new ProductLevelConfig();
-        $catalog->setProductLevelConfig($catalogProductLevelConfig);
-        $request = (new UpdateCatalogRequest())
-            ->setCatalog($catalog);
+        $request = new UpdateCatalogRequest();
         try {
             $gapicClient->updateCatalog($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -793,12 +685,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setLastDenylistImportOperation($lastDenylistImportOperation);
         $expectedResponse->setLastAllowlistImportOperation($lastAllowlistImportOperation);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $completionConfig = new CompletionConfig();
-        $completionConfigName = 'completionConfigName2129042921';
-        $completionConfig->setName($completionConfigName);
-        $request = (new UpdateCompletionConfigRequest())
-            ->setCompletionConfig($completionConfig);
+        $request = new UpdateCompletionConfigRequest();
         $response = $gapicClient->updateCompletionConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -806,8 +693,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CatalogService/UpdateCompletionConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCompletionConfig();
-        $this->assertProtobufEquals($completionConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -829,12 +714,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $completionConfig = new CompletionConfig();
-        $completionConfigName = 'completionConfigName2129042921';
-        $completionConfig->setName($completionConfigName);
-        $request = (new UpdateCompletionConfigRequest())
-            ->setCompletionConfig($completionConfig);
+        $request = new UpdateCompletionConfigRequest();
         try {
             $gapicClient->updateCompletionConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -861,14 +741,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse = new AttributesConfig();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedAttributesConfig = $gapicClient->attributesConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $catalogAttribute = new CatalogAttribute();
-        $catalogAttributeKey = 'catalogAttributeKey-1525777188';
-        $catalogAttribute->setKey($catalogAttributeKey);
-        $request = (new AddCatalogAttributeRequest())
-            ->setAttributesConfig($formattedAttributesConfig)
-            ->setCatalogAttribute($catalogAttribute);
+        $request = new AddCatalogAttributeRequest();
         $response = $gapicClient->addCatalogAttributeAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -876,10 +749,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CatalogService/AddCatalogAttribute', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAttributesConfig();
-        $this->assertProtobufEquals($formattedAttributesConfig, $actualValue);
-        $actualValue = $actualRequestObject->getCatalogAttribute();
-        $this->assertProtobufEquals($catalogAttribute, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

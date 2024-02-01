@@ -26,8 +26,7 @@ class GetJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The job name. For example:
-     *                     `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. Please see
-     *                     {@see CloudSchedulerClient::jobName()} for help formatting this field.
+     *                     `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      *
      * @return \Google\Cloud\Scheduler\V1\GetJobRequest
      *

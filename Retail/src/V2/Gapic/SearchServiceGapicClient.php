@@ -55,10 +55,8 @@ use Google\Cloud\Retail\V2\UserInfo;
  * ```
  * $searchServiceClient = new SearchServiceClient();
  * try {
- *     $placement = 'placement';
- *     $visitorId = 'visitor_id';
  *     // Iterate over pages of elements
- *     $pagedResponse = $searchServiceClient->search($placement, $visitorId);
+ *     $pagedResponse = $searchServiceClient->search();
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -66,7 +64,7 @@ use Google\Cloud\Retail\V2\UserInfo;
  *     }
  *     // Alternatively:
  *     // Iterate through all elements
- *     $pagedResponse = $searchServiceClient->search($placement, $visitorId);
+ *     $pagedResponse = $searchServiceClient->search();
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -297,10 +295,8 @@ class SearchServiceGapicClient
      * ```
      * $searchServiceClient = new SearchServiceClient();
      * try {
-     *     $placement = 'placement';
-     *     $visitorId = 'visitor_id';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $searchServiceClient->search($placement, $visitorId);
+     *     $pagedResponse = $searchServiceClient->search();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -308,7 +304,7 @@ class SearchServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $searchServiceClient->search($placement, $visitorId);
+     *     $pagedResponse = $searchServiceClient->search();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -317,25 +313,16 @@ class SearchServiceGapicClient
      * }
      * ```
      *
-     * @param string $placement    Required. The resource name of the Retail Search serving config, such as
-     *                             `projects/&#42;/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
-     *                             or the name of the legacy placement resource, such as
-     *                             `projects/&#42;/locations/global/catalogs/default_catalog/placements/default_search`.
-     *                             This field is used to identify the serving config name and the set
-     *                             of models that will be used to make the search.
-     * @param string $visitorId    Required. A unique identifier for tracking visitors. For example, this
-     *                             could be implemented with an HTTP cookie, which should be able to uniquely
-     *                             identify a visitor on a single device. This unique identifier should not
-     *                             change if the visitor logs in or out of the website.
-     *
-     *                             This should be the same identifier as
-     *                             [UserEvent.visitor_id][google.cloud.retail.v2.UserEvent.visitor_id].
-     *
-     *                             The field must be a UTF-8 encoded string with a length limit of 128
-     *                             characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $placement
+     *           Required. The resource name of the Retail Search serving config, such as
+     *           `projects/&#42;/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
+     *           or the name of the legacy placement resource, such as
+     *           `projects/&#42;/locations/global/catalogs/default_catalog/placements/default_search`.
+     *           This field is used to identify the serving config name and the set
+     *           of models that will be used to make the search.
      *     @type string $branch
      *           The branch resource name, such as
      *           `projects/&#42;/locations/global/catalogs/default_catalog/branches/0`.
@@ -349,6 +336,17 @@ class SearchServiceGapicClient
      *           request and returned results are based on
      *           [filter][google.cloud.retail.v2.SearchRequest.filter] and
      *           [page_categories][google.cloud.retail.v2.SearchRequest.page_categories].
+     *     @type string $visitorId
+     *           Required. A unique identifier for tracking visitors. For example, this
+     *           could be implemented with an HTTP cookie, which should be able to uniquely
+     *           identify a visitor on a single device. This unique identifier should not
+     *           change if the visitor logs in or out of the website.
+     *
+     *           This should be the same identifier as
+     *           [UserEvent.visitor_id][google.cloud.retail.v2.UserEvent.visitor_id].
+     *
+     *           The field must be a UTF-8 encoded string with a length limit of 128
+     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type UserInfo $userInfo
      *           User information.
      *     @type int $pageSize
@@ -559,19 +557,25 @@ class SearchServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function search($placement, $visitorId, array $optionalArgs = [])
+    public function search(array $optionalArgs = [])
     {
         $request = new SearchRequest();
         $requestParamHeaders = [];
-        $request->setPlacement($placement);
-        $request->setVisitorId($visitorId);
-        $requestParamHeaders['placement'] = $placement;
+        if (isset($optionalArgs['placement'])) {
+            $request->setPlacement($optionalArgs['placement']);
+            $requestParamHeaders['placement'] = $optionalArgs['placement'];
+        }
+
         if (isset($optionalArgs['branch'])) {
             $request->setBranch($optionalArgs['branch']);
         }
 
         if (isset($optionalArgs['query'])) {
             $request->setQuery($optionalArgs['query']);
+        }
+
+        if (isset($optionalArgs['visitorId'])) {
+            $request->setVisitorId($optionalArgs['visitorId']);
         }
 
         if (isset($optionalArgs['userInfo'])) {

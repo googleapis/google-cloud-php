@@ -31,18 +31,19 @@ use Google\Cloud\Retail\V2\ResumeModelRequest;
 /**
  * Resumes the training of an existing model.
  *
- * @param string $name The name of the model to resume.
- *                     Format:
- *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function resume_model_sample(string $name): void
+function resume_model_sample(): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $request = (new ResumeModelRequest())
-        ->setName($name);
+    $request = new ResumeModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function resume_model_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    resume_model_sample($name);
 }
 // [END retail_v2_generated_ModelService_ResumeModel_sync]

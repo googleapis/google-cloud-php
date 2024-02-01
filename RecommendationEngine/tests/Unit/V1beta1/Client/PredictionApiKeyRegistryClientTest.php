@@ -77,12 +77,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $expectedResponse = new PredictionApiKeyRegistration();
         $expectedResponse->setApiKey($apiKey);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
-        $request = (new CreatePredictionApiKeyRegistrationRequest())
-            ->setParent($formattedParent)
-            ->setPredictionApiKeyRegistration($predictionApiKeyRegistration);
+        $request = new CreatePredictionApiKeyRegistrationRequest();
         $response = $gapicClient->createPredictionApiKeyRegistration($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -90,10 +85,6 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/CreatePredictionApiKeyRegistration', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPredictionApiKeyRegistration();
-        $this->assertProtobufEquals($predictionApiKeyRegistration, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -115,12 +106,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
-        $request = (new CreatePredictionApiKeyRegistrationRequest())
-            ->setParent($formattedParent)
-            ->setPredictionApiKeyRegistration($predictionApiKeyRegistration);
+        $request = new CreatePredictionApiKeyRegistrationRequest();
         try {
             $gapicClient->createPredictionApiKeyRegistration($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -145,18 +131,13 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
-        $request = (new DeletePredictionApiKeyRegistrationRequest())
-            ->setName($formattedName);
+        $request = new DeletePredictionApiKeyRegistrationRequest();
         $gapicClient->deletePredictionApiKeyRegistration($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/DeletePredictionApiKeyRegistration', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -178,10 +159,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
-        $request = (new DeletePredictionApiKeyRegistrationRequest())
-            ->setName($formattedName);
+        $request = new DeletePredictionApiKeyRegistrationRequest();
         try {
             $gapicClient->deletePredictionApiKeyRegistration($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -213,10 +191,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPredictionApiKeyRegistrations($predictionApiKeyRegistrations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $request = (new ListPredictionApiKeyRegistrationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPredictionApiKeyRegistrationsRequest();
         $response = $gapicClient->listPredictionApiKeyRegistrations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -227,8 +202,6 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/ListPredictionApiKeyRegistrations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -250,10 +223,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $request = (new ListPredictionApiKeyRegistrationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPredictionApiKeyRegistrationsRequest();
         try {
             $gapicClient->listPredictionApiKeyRegistrations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -280,12 +250,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $expectedResponse = new PredictionApiKeyRegistration();
         $expectedResponse->setApiKey($apiKey);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
-        $request = (new CreatePredictionApiKeyRegistrationRequest())
-            ->setParent($formattedParent)
-            ->setPredictionApiKeyRegistration($predictionApiKeyRegistration);
+        $request = new CreatePredictionApiKeyRegistrationRequest();
         $response = $gapicClient->createPredictionApiKeyRegistrationAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -293,10 +258,6 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/CreatePredictionApiKeyRegistration', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPredictionApiKeyRegistration();
-        $this->assertProtobufEquals($predictionApiKeyRegistration, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

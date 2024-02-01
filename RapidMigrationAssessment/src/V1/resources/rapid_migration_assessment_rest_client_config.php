@@ -50,9 +50,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'collector_id',
-                ],
             ],
             'DeleteCollector' => [
                 'method' => 'delete',
@@ -145,9 +142,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

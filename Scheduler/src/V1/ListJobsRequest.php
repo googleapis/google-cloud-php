@@ -51,8 +51,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The location name. For example:
-     *                       `projects/PROJECT_ID/locations/LOCATION_ID`. Please see
-     *                       {@see CloudSchedulerClient::locationName()} for help formatting this field.
+     *                       `projects/PROJECT_ID/locations/LOCATION_ID`.
      *
      * @return \Google\Cloud\Scheduler\V1\ListJobsRequest
      *

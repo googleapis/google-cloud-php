@@ -46,9 +46,8 @@ use Google\Cloud\Profiler\V2\ListProfilesResponse;
  * ```
  * $exportServiceClient = new ExportServiceClient();
  * try {
- *     $formattedParent = $exportServiceClient->projectName('[PROJECT]');
  *     // Iterate over pages of elements
- *     $pagedResponse = $exportServiceClient->listProfiles($formattedParent);
+ *     $pagedResponse = $exportServiceClient->listProfiles();
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -56,7 +55,7 @@ use Google\Cloud\Profiler\V2\ListProfilesResponse;
  *     }
  *     // Alternatively:
  *     // Iterate through all elements
- *     $pagedResponse = $exportServiceClient->listProfiles($formattedParent);
+ *     $pagedResponse = $exportServiceClient->listProfiles();
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -269,9 +268,8 @@ class ExportServiceGapicClient
      * ```
      * $exportServiceClient = new ExportServiceClient();
      * try {
-     *     $formattedParent = $exportServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $exportServiceClient->listProfiles($formattedParent);
+     *     $pagedResponse = $exportServiceClient->listProfiles();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -279,7 +277,7 @@ class ExportServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $exportServiceClient->listProfiles($formattedParent);
+     *     $pagedResponse = $exportServiceClient->listProfiles();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -288,11 +286,12 @@ class ExportServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of profiles.
-     *                             Format: projects/{user_project_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of profiles.
+     *           Format: projects/{user_project_id}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -312,12 +311,15 @@ class ExportServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listProfiles($parent, array $optionalArgs = [])
+    public function listProfiles(array $optionalArgs = [])
     {
         $request = new ListProfilesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

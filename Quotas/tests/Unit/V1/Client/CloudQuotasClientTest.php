@@ -34,7 +34,6 @@ use Google\Cloud\CloudQuotas\V1\ListQuotaInfosRequest;
 use Google\Cloud\CloudQuotas\V1\ListQuotaInfosResponse;
 use Google\Cloud\CloudQuotas\V1\ListQuotaPreferencesRequest;
 use Google\Cloud\CloudQuotas\V1\ListQuotaPreferencesResponse;
-use Google\Cloud\CloudQuotas\V1\QuotaConfig;
 use Google\Cloud\CloudQuotas\V1\QuotaInfo;
 use Google\Cloud\CloudQuotas\V1\QuotaPreference;
 use Google\Cloud\CloudQuotas\V1\UpdateQuotaPreferenceRequest;
@@ -96,22 +95,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setJustification($justification);
         $expectedResponse->setContactEmail($contactEmail);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $quotaPreference = new QuotaPreference();
-        $quotaPreferenceQuotaConfig = new QuotaConfig();
-        $quotaConfigPreferredValue = 557434902;
-        $quotaPreferenceQuotaConfig->setPreferredValue($quotaConfigPreferredValue);
-        $quotaPreference->setQuotaConfig($quotaPreferenceQuotaConfig);
-        $quotaPreferenceService = 'quotaPreferenceService-1057995326';
-        $quotaPreference->setService($quotaPreferenceService);
-        $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
-        $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
-        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
-        $request = (new CreateQuotaPreferenceRequest())
-            ->setParent($formattedParent)
-            ->setQuotaPreference($quotaPreference);
+        $request = new CreateQuotaPreferenceRequest();
         $response = $gapicClient->createQuotaPreference($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -119,10 +103,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.cloudquotas.v1.CloudQuotas/CreateQuotaPreference', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getQuotaPreference();
-        $this->assertProtobufEquals($quotaPreference, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -147,22 +127,7 @@ class CloudQuotasClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $quotaPreference = new QuotaPreference();
-        $quotaPreferenceQuotaConfig = new QuotaConfig();
-        $quotaConfigPreferredValue = 557434902;
-        $quotaPreferenceQuotaConfig->setPreferredValue($quotaConfigPreferredValue);
-        $quotaPreference->setQuotaConfig($quotaPreferenceQuotaConfig);
-        $quotaPreferenceService = 'quotaPreferenceService-1057995326';
-        $quotaPreference->setService($quotaPreferenceService);
-        $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
-        $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
-        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
-        $request = (new CreateQuotaPreferenceRequest())
-            ->setParent($formattedParent)
-            ->setQuotaPreference($quotaPreference);
+        $request = new CreateQuotaPreferenceRequest();
         try {
             $gapicClient->createQuotaPreference($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -211,9 +176,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setIsConcurrent($isConcurrent);
         $expectedResponse->setServiceRequestQuotaUri($serviceRequestQuotaUri);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->quotaInfoName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[QUOTA_INFO]');
-        $request = (new GetQuotaInfoRequest())->setName($formattedName);
+        $request = new GetQuotaInfoRequest();
         $response = $gapicClient->getQuotaInfo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -221,8 +184,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.cloudquotas.v1.CloudQuotas/GetQuotaInfo', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -247,9 +208,7 @@ class CloudQuotasClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->quotaInfoName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[QUOTA_INFO]');
-        $request = (new GetQuotaInfoRequest())->setName($formattedName);
+        $request = new GetQuotaInfoRequest();
         try {
             $gapicClient->getQuotaInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -288,9 +247,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setJustification($justification);
         $expectedResponse->setContactEmail($contactEmail);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->quotaPreferenceName('[PROJECT]', '[LOCATION]', '[QUOTA_PREFERENCE]');
-        $request = (new GetQuotaPreferenceRequest())->setName($formattedName);
+        $request = new GetQuotaPreferenceRequest();
         $response = $gapicClient->getQuotaPreference($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -298,8 +255,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.cloudquotas.v1.CloudQuotas/GetQuotaPreference', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -324,9 +279,7 @@ class CloudQuotasClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->quotaPreferenceName('[PROJECT]', '[LOCATION]', '[QUOTA_PREFERENCE]');
-        $request = (new GetQuotaPreferenceRequest())->setName($formattedName);
+        $request = new GetQuotaPreferenceRequest();
         try {
             $gapicClient->getQuotaPreference($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -356,9 +309,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setQuotaInfos($quotaInfos);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $request = (new ListQuotaInfosRequest())->setParent($formattedParent);
+        $request = new ListQuotaInfosRequest();
         $response = $gapicClient->listQuotaInfos($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -369,8 +320,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.cloudquotas.v1.CloudQuotas/ListQuotaInfos', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -395,9 +344,7 @@ class CloudQuotasClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $request = (new ListQuotaInfosRequest())->setParent($formattedParent);
+        $request = new ListQuotaInfosRequest();
         try {
             $gapicClient->listQuotaInfos($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -427,9 +374,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setQuotaPreferences($quotaPreferences);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListQuotaPreferencesRequest())->setParent($formattedParent);
+        $request = new ListQuotaPreferencesRequest();
         $response = $gapicClient->listQuotaPreferences($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -440,8 +385,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.cloudquotas.v1.CloudQuotas/ListQuotaPreferences', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -466,9 +409,7 @@ class CloudQuotasClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListQuotaPreferencesRequest())->setParent($formattedParent);
+        $request = new ListQuotaPreferencesRequest();
         try {
             $gapicClient->listQuotaPreferences($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -507,19 +448,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setJustification($justification);
         $expectedResponse->setContactEmail($contactEmail);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $quotaPreference = new QuotaPreference();
-        $quotaPreferenceQuotaConfig = new QuotaConfig();
-        $quotaConfigPreferredValue = 557434902;
-        $quotaPreferenceQuotaConfig->setPreferredValue($quotaConfigPreferredValue);
-        $quotaPreference->setQuotaConfig($quotaPreferenceQuotaConfig);
-        $quotaPreferenceService = 'quotaPreferenceService-1057995326';
-        $quotaPreference->setService($quotaPreferenceService);
-        $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
-        $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
-        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
-        $request = (new UpdateQuotaPreferenceRequest())->setQuotaPreference($quotaPreference);
+        $request = new UpdateQuotaPreferenceRequest();
         $response = $gapicClient->updateQuotaPreference($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -527,8 +456,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.cloudquotas.v1.CloudQuotas/UpdateQuotaPreference', $actualFuncCall);
-        $actualValue = $actualRequestObject->getQuotaPreference();
-        $this->assertProtobufEquals($quotaPreference, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -553,19 +480,7 @@ class CloudQuotasClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $quotaPreference = new QuotaPreference();
-        $quotaPreferenceQuotaConfig = new QuotaConfig();
-        $quotaConfigPreferredValue = 557434902;
-        $quotaPreferenceQuotaConfig->setPreferredValue($quotaConfigPreferredValue);
-        $quotaPreference->setQuotaConfig($quotaPreferenceQuotaConfig);
-        $quotaPreferenceService = 'quotaPreferenceService-1057995326';
-        $quotaPreference->setService($quotaPreferenceService);
-        $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
-        $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
-        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
-        $request = (new UpdateQuotaPreferenceRequest())->setQuotaPreference($quotaPreference);
+        $request = new UpdateQuotaPreferenceRequest();
         try {
             $gapicClient->updateQuotaPreference($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -604,22 +519,7 @@ class CloudQuotasClientTest extends GeneratedTest
         $expectedResponse->setJustification($justification);
         $expectedResponse->setContactEmail($contactEmail);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $quotaPreference = new QuotaPreference();
-        $quotaPreferenceQuotaConfig = new QuotaConfig();
-        $quotaConfigPreferredValue = 557434902;
-        $quotaPreferenceQuotaConfig->setPreferredValue($quotaConfigPreferredValue);
-        $quotaPreference->setQuotaConfig($quotaPreferenceQuotaConfig);
-        $quotaPreferenceService = 'quotaPreferenceService-1057995326';
-        $quotaPreference->setService($quotaPreferenceService);
-        $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
-        $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
-        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
-        $request = (new CreateQuotaPreferenceRequest())
-            ->setParent($formattedParent)
-            ->setQuotaPreference($quotaPreference);
+        $request = new CreateQuotaPreferenceRequest();
         $response = $gapicClient->createQuotaPreferenceAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -627,10 +527,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.cloudquotas.v1.CloudQuotas/CreateQuotaPreference', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getQuotaPreference();
-        $this->assertProtobufEquals($quotaPreference, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

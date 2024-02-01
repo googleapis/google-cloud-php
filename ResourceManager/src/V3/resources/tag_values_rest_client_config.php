@@ -34,9 +34,6 @@ return [
             'GetNamespacedTagValue' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/tagValues/namespaced',
-                'queryParams' => [
-                    'name',
-                ],
             ],
             'GetTagValue' => [
                 'method' => 'get',
@@ -52,9 +49,6 @@ return [
             'ListTagValues' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/tagValues',
-                'queryParams' => [
-                    'parent',
-                ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',

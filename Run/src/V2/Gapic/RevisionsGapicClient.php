@@ -51,8 +51,7 @@ use Google\LongRunning\Operation;
  * ```
  * $revisionsClient = new RevisionsClient();
  * try {
- *     $formattedName = $revisionsClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
- *     $operationResponse = $revisionsClient->deleteRevision($formattedName);
+ *     $operationResponse = $revisionsClient->deleteRevision();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -63,7 +62,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $revisionsClient->deleteRevision($formattedName);
+ *     $operationResponse = $revisionsClient->deleteRevision();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $revisionsClient->resumeOperation($operationName, 'deleteRevision');
@@ -378,8 +377,7 @@ class RevisionsGapicClient
      * ```
      * $revisionsClient = new RevisionsClient();
      * try {
-     *     $formattedName = $revisionsClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
-     *     $operationResponse = $revisionsClient->deleteRevision($formattedName);
+     *     $operationResponse = $revisionsClient->deleteRevision();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -390,7 +388,7 @@ class RevisionsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $revisionsClient->deleteRevision($formattedName);
+     *     $operationResponse = $revisionsClient->deleteRevision();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $revisionsClient->resumeOperation($operationName, 'deleteRevision');
@@ -410,12 +408,13 @@ class RevisionsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Revision to delete.
-     *                             Format:
-     *                             projects/{project}/locations/{location}/services/{service}/revisions/{revision}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Revision to delete.
+     *           Format:
+     *           projects/{project}/locations/{location}/services/{service}/revisions/{revision}
      *     @type bool $validateOnly
      *           Indicates that the request should be validated without actually
      *           deleting any resources.
@@ -432,12 +431,15 @@ class RevisionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteRevision($name, array $optionalArgs = [])
+    public function deleteRevision(array $optionalArgs = [])
     {
         $request = new DeleteRevisionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['location'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -467,19 +469,19 @@ class RevisionsGapicClient
      * ```
      * $revisionsClient = new RevisionsClient();
      * try {
-     *     $formattedName = $revisionsClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
-     *     $response = $revisionsClient->getRevision($formattedName);
+     *     $response = $revisionsClient->getRevision();
      * } finally {
      *     $revisionsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full name of the Revision.
-     *                             Format:
-     *                             projects/{project}/locations/{location}/services/{service}/revisions/{revision}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full name of the Revision.
+     *           Format:
+     *           projects/{project}/locations/{location}/services/{service}/revisions/{revision}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -490,12 +492,15 @@ class RevisionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRevision($name, array $optionalArgs = [])
+    public function getRevision(array $optionalArgs = [])
     {
         $request = new GetRevisionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['location'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -517,9 +522,8 @@ class RevisionsGapicClient
      * ```
      * $revisionsClient = new RevisionsClient();
      * try {
-     *     $formattedParent = $revisionsClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $revisionsClient->listRevisions($formattedParent);
+     *     $pagedResponse = $revisionsClient->listRevisions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -527,7 +531,7 @@ class RevisionsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $revisionsClient->listRevisions($formattedParent);
+     *     $pagedResponse = $revisionsClient->listRevisions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -536,13 +540,14 @@ class RevisionsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Service from which the Revisions should be listed.
-     *                             To list all Revisions across Services, use "-" instead of Service name.
-     *                             Format:
-     *                             projects/{project}/locations/{location}/services/{service}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The Service from which the Revisions should be listed.
+     *           To list all Revisions across Services, use "-" instead of Service name.
+     *           Format:
+     *           projects/{project}/locations/{location}/services/{service}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -564,12 +569,15 @@ class RevisionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRevisions($parent, array $optionalArgs = [])
+    public function listRevisions(array $optionalArgs = [])
     {
         $request = new ListRevisionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['location'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

@@ -22,16 +22,10 @@ return [
             'ListEffectiveTags' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/effectiveTags',
-                'queryParams' => [
-                    'parent',
-                ],
             ],
             'ListTagBindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/tagBindings',
-                'queryParams' => [
-                    'parent',
-                ],
             ],
         ],
         'google.longrunning.Operations' => [

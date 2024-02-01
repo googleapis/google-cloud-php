@@ -73,8 +73,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $publisherClient = new PublisherClient();
  * try {
- *     $name = 'name';
- *     $response = $publisherClient->createTopic($name);
+ *     $response = $publisherClient->createTopic();
  * } finally {
  *     $publisherClient->close();
  * }
@@ -427,22 +426,22 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $name = 'name';
-     *     $response = $publisherClient->createTopic($name);
+     *     $response = $publisherClient->createTopic();
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the topic. It must have the format
-     *                             `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
-     *                             and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
-     *                             underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
-     *                             signs (`%`). It must be between 3 and 255 characters in length, and it
-     *                             must not start with `"goog"`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the topic. It must have the format
+     *           `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
+     *           and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+     *           underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
+     *           signs (`%`). It must be between 3 and 255 characters in length, and it
+     *           must not start with `"goog"`.
      *     @type array $labels
      *           Optional. See [Creating and managing labels]
      *           (https://cloud.google.com/pubsub/docs/labels).
@@ -486,12 +485,15 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTopic($name, array $optionalArgs = [])
+    public function createTopic(array $optionalArgs = [])
     {
         $request = new Topic();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
         }
@@ -540,18 +542,18 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
-     *     $publisherClient->deleteTopic($formattedTopic);
+     *     $publisherClient->deleteTopic();
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string $topic        Required. Name of the topic to delete.
-     *                             Format is `projects/{project}/topics/{topic}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $topic
+     *           Required. Name of the topic to delete.
+     *           Format is `projects/{project}/topics/{topic}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -560,12 +562,15 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTopic($topic, array $optionalArgs = [])
+    public function deleteTopic(array $optionalArgs = [])
     {
         $request = new DeleteTopicRequest();
         $requestParamHeaders = [];
-        $request->setTopic($topic);
-        $requestParamHeaders['topic'] = $topic;
+        if (isset($optionalArgs['topic'])) {
+            $request->setTopic($optionalArgs['topic']);
+            $requestParamHeaders['topic'] = $optionalArgs['topic'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteTopic', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -581,18 +586,18 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedSubscription = $publisherClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $response = $publisherClient->detachSubscription($formattedSubscription);
+     *     $response = $publisherClient->detachSubscription();
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string $subscription Required. The subscription to detach.
-     *                             Format is `projects/{project}/subscriptions/{subscription}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $subscription
+     *           Required. The subscription to detach.
+     *           Format is `projects/{project}/subscriptions/{subscription}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -603,12 +608,15 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function detachSubscription($subscription, array $optionalArgs = [])
+    public function detachSubscription(array $optionalArgs = [])
     {
         $request = new DetachSubscriptionRequest();
         $requestParamHeaders = [];
-        $request->setSubscription($subscription);
-        $requestParamHeaders['subscription'] = $subscription;
+        if (isset($optionalArgs['subscription'])) {
+            $request->setSubscription($optionalArgs['subscription']);
+            $requestParamHeaders['subscription'] = $optionalArgs['subscription'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DetachSubscription', DetachSubscriptionResponse::class, $optionalArgs, $request)->wait();
@@ -621,18 +629,18 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
-     *     $response = $publisherClient->getTopic($formattedTopic);
+     *     $response = $publisherClient->getTopic();
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string $topic        Required. The name of the topic to get.
-     *                             Format is `projects/{project}/topics/{topic}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $topic
+     *           Required. The name of the topic to get.
+     *           Format is `projects/{project}/topics/{topic}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -643,12 +651,15 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTopic($topic, array $optionalArgs = [])
+    public function getTopic(array $optionalArgs = [])
     {
         $request = new GetTopicRequest();
         $requestParamHeaders = [];
-        $request->setTopic($topic);
-        $requestParamHeaders['topic'] = $topic;
+        if (isset($optionalArgs['topic'])) {
+            $request->setTopic($optionalArgs['topic']);
+            $requestParamHeaders['topic'] = $optionalArgs['topic'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetTopic', Topic::class, $optionalArgs, $request)->wait();
@@ -665,9 +676,8 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $publisherClient->listTopicSnapshots($formattedTopic);
+     *     $pagedResponse = $publisherClient->listTopicSnapshots();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -675,7 +685,7 @@ class PublisherGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $publisherClient->listTopicSnapshots($formattedTopic);
+     *     $pagedResponse = $publisherClient->listTopicSnapshots();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -684,11 +694,12 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param string $topic        Required. The name of the topic that snapshots are attached to.
-     *                             Format is `projects/{project}/topics/{topic}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $topic
+     *           Required. The name of the topic that snapshots are attached to.
+     *           Format is `projects/{project}/topics/{topic}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -708,12 +719,15 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTopicSnapshots($topic, array $optionalArgs = [])
+    public function listTopicSnapshots(array $optionalArgs = [])
     {
         $request = new ListTopicSnapshotsRequest();
         $requestParamHeaders = [];
-        $request->setTopic($topic);
-        $requestParamHeaders['topic'] = $topic;
+        if (isset($optionalArgs['topic'])) {
+            $request->setTopic($optionalArgs['topic']);
+            $requestParamHeaders['topic'] = $optionalArgs['topic'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -734,9 +748,8 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
+     *     $pagedResponse = $publisherClient->listTopicSubscriptions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -744,7 +757,7 @@ class PublisherGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
+     *     $pagedResponse = $publisherClient->listTopicSubscriptions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -753,11 +766,12 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param string $topic        Required. The name of the topic that subscriptions are attached to.
-     *                             Format is `projects/{project}/topics/{topic}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $topic
+     *           Required. The name of the topic that subscriptions are attached to.
+     *           Format is `projects/{project}/topics/{topic}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -777,12 +791,15 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTopicSubscriptions($topic, array $optionalArgs = [])
+    public function listTopicSubscriptions(array $optionalArgs = [])
     {
         $request = new ListTopicSubscriptionsRequest();
         $requestParamHeaders = [];
-        $request->setTopic($topic);
-        $requestParamHeaders['topic'] = $topic;
+        if (isset($optionalArgs['topic'])) {
+            $request->setTopic($optionalArgs['topic']);
+            $requestParamHeaders['topic'] = $optionalArgs['topic'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -803,9 +820,8 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedProject = $publisherClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $publisherClient->listTopics($formattedProject);
+     *     $pagedResponse = $publisherClient->listTopics();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -813,7 +829,7 @@ class PublisherGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $publisherClient->listTopics($formattedProject);
+     *     $pagedResponse = $publisherClient->listTopics();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -822,11 +838,12 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param string $project      Required. The name of the project in which to list topics.
-     *                             Format is `projects/{project-id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Required. The name of the project in which to list topics.
+     *           Format is `projects/{project-id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -846,12 +863,15 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTopics($project, array $optionalArgs = [])
+    public function listTopics(array $optionalArgs = [])
     {
         $request = new ListTopicsRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -873,20 +893,20 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $formattedTopic = $publisherClient->topicName('[PROJECT]', '[TOPIC]');
-     *     $messages = [];
-     *     $response = $publisherClient->publish($formattedTopic, $messages);
+     *     $response = $publisherClient->publish();
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string          $topic        Required. The messages in the request will be published on this topic.
-     *                                      Format is `projects/{project}/topics/{topic}`.
-     * @param PubsubMessage[] $messages     Required. The messages to publish.
-     * @param array           $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $topic
+     *           Required. The messages in the request will be published on this topic.
+     *           Format is `projects/{project}/topics/{topic}`.
+     *     @type PubsubMessage[] $messages
+     *           Required. The messages to publish.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -897,13 +917,19 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function publish($topic, $messages, array $optionalArgs = [])
+    public function publish(array $optionalArgs = [])
     {
         $request = new PublishRequest();
         $requestParamHeaders = [];
-        $request->setTopic($topic);
-        $request->setMessages($messages);
-        $requestParamHeaders['topic'] = $topic;
+        if (isset($optionalArgs['topic'])) {
+            $request->setTopic($optionalArgs['topic']);
+            $requestParamHeaders['topic'] = $optionalArgs['topic'];
+        }
+
+        if (isset($optionalArgs['messages'])) {
+            $request->setMessages($optionalArgs['messages']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Publish', PublishResponse::class, $optionalArgs, $request)->wait();
@@ -917,23 +943,23 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $topic = new Topic();
-     *     $updateMask = new FieldMask();
-     *     $response = $publisherClient->updateTopic($topic, $updateMask);
+     *     $response = $publisherClient->updateTopic();
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param Topic     $topic        Required. The updated topic object.
-     * @param FieldMask $updateMask   Required. Indicates which fields in the provided topic to update. Must be
-     *                                specified and non-empty. Note that if `update_mask` contains
-     *                                "message_storage_policy" but the `message_storage_policy` is not set in
-     *                                the `topic` provided above, then the updated value is determined by the
-     *                                policy configured at the project or organization level.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Topic $topic
+     *           Required. The updated topic object.
+     *     @type FieldMask $updateMask
+     *           Required. Indicates which fields in the provided topic to update. Must be
+     *           specified and non-empty. Note that if `update_mask` contains
+     *           "message_storage_policy" but the `message_storage_policy` is not set in
+     *           the `topic` provided above, then the updated value is determined by the
+     *           policy configured at the project or organization level.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -944,13 +970,18 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTopic($topic, $updateMask, array $optionalArgs = [])
+    public function updateTopic(array $optionalArgs = [])
     {
         $request = new UpdateTopicRequest();
         $requestParamHeaders = [];
-        $request->setTopic($topic);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['topic.name'] = $topic->getName();
+        if (isset($optionalArgs['topic'])) {
+            $request->setTopic($optionalArgs['topic']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateTopic', Topic::class, $optionalArgs, $request)->wait();
@@ -964,18 +995,18 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $publisherClient->getIamPolicy($resource);
+     *     $response = $publisherClient->getIamPolicy();
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -989,12 +1020,15 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1015,23 +1049,23 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $publisherClient->setIamPolicy($resource, $policy);
+     *     $response = $publisherClient->setIamPolicy();
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1048,13 +1082,19 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1077,23 +1117,23 @@ class PublisherGapicClient
      * ```
      * $publisherClient = new PublisherClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $publisherClient->testIamPermissions($resource, $permissions);
+     *     $response = $publisherClient->testIamPermissions();
      * } finally {
      *     $publisherClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1104,13 +1144,19 @@ class PublisherGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

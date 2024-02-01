@@ -40,19 +40,19 @@ use Google\Cloud\Recommender\V1\Recommendation;
  * Requires the recommender.*.update IAM permission for the specified
  * recommender.
  *
- * @param string $formattedName Name of the recommendation. Please see
- *                              {@see RecommenderClient::recommendationName()} for help formatting this field.
- * @param string $etag          Fingerprint of the Recommendation. Provides optimistic locking.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function mark_recommendation_claimed_sample(string $formattedName, string $etag): void
+function mark_recommendation_claimed_sample(): void
 {
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
     // Prepare the request message.
-    $request = (new MarkRecommendationClaimedRequest())
-        ->setName($formattedName)
-        ->setEtag($etag);
+    $request = new MarkRecommendationClaimedRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,27 +62,5 @@ function mark_recommendation_claimed_sample(string $formattedName, string $etag)
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RecommenderClient::recommendationName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[RECOMMENDER]',
-        '[RECOMMENDATION]'
-    );
-    $etag = '[ETAG]';
-
-    mark_recommendation_claimed_sample($formattedName, $etag);
 }
 // [END recommender_v1_generated_Recommender_MarkRecommendationClaimed_sync]

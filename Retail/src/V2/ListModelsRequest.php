@@ -42,7 +42,6 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The parent for which to list models.
      *                       Format:
      *                       `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
-     *                       Please see {@see ModelServiceClient::catalogName()} for help formatting this field.
      *
      * @return \Google\Cloud\Retail\V2\ListModelsRequest
      *

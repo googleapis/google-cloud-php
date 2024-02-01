@@ -49,7 +49,6 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                                        $parent       Required.
      *                                                                                    `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
-     *                                                                                    Please see {@see UserEventServiceClient::eventStoreName()} for help formatting this field.
      * @param string                                                        $requestId    Optional. Unique identifier provided by client, within the ancestor
      *                                                                                    dataset scope. Ensures idempotency for expensive long running operations.
      *                                                                                    Server-generated if unspecified. Up to 128 characters long. This is

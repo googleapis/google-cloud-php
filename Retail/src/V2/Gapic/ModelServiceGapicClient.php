@@ -69,9 +69,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $modelServiceClient = new ModelServiceClient();
  * try {
- *     $formattedParent = $modelServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
- *     $model = new Model();
- *     $operationResponse = $modelServiceClient->createModel($formattedParent, $model);
+ *     $operationResponse = $modelServiceClient->createModel();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -82,7 +80,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $modelServiceClient->createModel($formattedParent, $model);
+ *     $operationResponse = $modelServiceClient->createModel();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'createModel');
@@ -393,9 +391,7 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $formattedParent = $modelServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-     *     $model = new Model();
-     *     $operationResponse = $modelServiceClient->createModel($formattedParent, $model);
+     *     $operationResponse = $modelServiceClient->createModel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -406,7 +402,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $modelServiceClient->createModel($formattedParent, $model);
+     *     $operationResponse = $modelServiceClient->createModel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'createModel');
@@ -426,13 +422,15 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource under which to create the model. Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
-     * @param Model  $model        Required. The payload of the [Model][google.cloud.retail.v2.Model]  to
-     *                             create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource under which to create the model. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
+     *     @type Model $model
+     *           Required. The payload of the [Model][google.cloud.retail.v2.Model]  to
+     *           create.
      *     @type bool $dryRun
      *           Optional. Whether to run a dry run to validate the request (without
      *           actually creating the model).
@@ -446,13 +444,19 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createModel($parent, $model, array $optionalArgs = [])
+    public function createModel(array $optionalArgs = [])
     {
         $request = new CreateModelRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setModel($model);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['model'])) {
+            $request->setModel($optionalArgs['model']);
+        }
+
         if (isset($optionalArgs['dryRun'])) {
             $request->setDryRun($optionalArgs['dryRun']);
         }
@@ -478,19 +482,19 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
-     *     $modelServiceClient->deleteModel($formattedName);
+     *     $modelServiceClient->deleteModel();
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [Model][google.cloud.retail.v2.Model] to
-     *                             delete. Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the [Model][google.cloud.retail.v2.Model] to
+     *           delete. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -499,12 +503,15 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteModel($name, array $optionalArgs = [])
+    public function deleteModel(array $optionalArgs = [])
     {
         $request = new DeleteModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -526,19 +533,19 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
-     *     $response = $modelServiceClient->getModel($formattedName);
+     *     $response = $modelServiceClient->getModel();
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [Model][google.cloud.retail.v2.Model] to
-     *                             get. Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog}/models/{model_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the [Model][google.cloud.retail.v2.Model] to
+     *           get. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog}/models/{model_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -549,12 +556,15 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getModel($name, array $optionalArgs = [])
+    public function getModel(array $optionalArgs = [])
     {
         $request = new GetModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -576,9 +586,8 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $formattedParent = $modelServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $modelServiceClient->listModels($formattedParent);
+     *     $pagedResponse = $modelServiceClient->listModels();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -586,7 +595,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $modelServiceClient->listModels($formattedParent);
+     *     $pagedResponse = $modelServiceClient->listModels();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -595,12 +604,13 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent for which to list models.
-     *                             Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent for which to list models.
+     *           Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -620,12 +630,15 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listModels($parent, array $optionalArgs = [])
+    public function listModels(array $optionalArgs = [])
     {
         $request = new ListModelsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -655,19 +668,19 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
-     *     $response = $modelServiceClient->pauseModel($formattedName);
+     *     $response = $modelServiceClient->pauseModel();
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the model to pause.
-     *                             Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the model to pause.
+     *           Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -678,12 +691,15 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function pauseModel($name, array $optionalArgs = [])
+    public function pauseModel(array $optionalArgs = [])
     {
         $request = new PauseModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -705,19 +721,19 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $modelServiceClient->resumeModel($name);
+     *     $response = $modelServiceClient->resumeModel();
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the model to resume.
-     *                             Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the model to resume.
+     *           Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -728,12 +744,15 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resumeModel($name, array $optionalArgs = [])
+    public function resumeModel(array $optionalArgs = [])
     {
         $request = new ResumeModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -755,8 +774,7 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
-     *     $operationResponse = $modelServiceClient->tuneModel($formattedName);
+     *     $operationResponse = $modelServiceClient->tuneModel();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -767,7 +785,7 @@ class ModelServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $modelServiceClient->tuneModel($formattedName);
+     *     $operationResponse = $modelServiceClient->tuneModel();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'tuneModel');
@@ -787,12 +805,13 @@ class ModelServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the model to tune.
-     *                             Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the model to tune.
+     *           Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -803,12 +822,15 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function tuneModel($name, array $optionalArgs = [])
+    public function tuneModel(array $optionalArgs = [])
     {
         $request = new TuneModelRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -833,17 +855,17 @@ class ModelServiceGapicClient
      * ```
      * $modelServiceClient = new ModelServiceClient();
      * try {
-     *     $model = new Model();
-     *     $response = $modelServiceClient->updateModel($model);
+     *     $response = $modelServiceClient->updateModel();
      * } finally {
      *     $modelServiceClient->close();
      * }
      * ```
      *
-     * @param Model $model        Required. The body of the updated [Model][google.cloud.retail.v2.Model].
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Model $model
+     *           Required. The body of the updated [Model][google.cloud.retail.v2.Model].
      *     @type FieldMask $updateMask
      *           Optional. Indicates which fields in the provided 'model' to
      *           update. If not set, by default updates all fields.
@@ -857,12 +879,14 @@ class ModelServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateModel($model, array $optionalArgs = [])
+    public function updateModel(array $optionalArgs = [])
     {
         $request = new UpdateModelRequest();
         $requestParamHeaders = [];
-        $request->setModel($model);
-        $requestParamHeaders['model.name'] = $model->getName();
+        if (isset($optionalArgs['model'])) {
+            $request->setModel($optionalArgs['model']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

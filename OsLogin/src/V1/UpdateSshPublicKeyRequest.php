@@ -39,8 +39,7 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                    $name         Required. The fingerprint of the public key to update. Public keys are
      *                                                                identified by their SHA-256 fingerprint. The fingerprint of the public key
-     *                                                                is in format `users/{user}/sshPublicKeys/{fingerprint}`. Please see
-     *                                                                {@see OsLoginServiceClient::sshPublicKeyName()} for help formatting this field.
+     *                                                                is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
      *
      * @return \Google\Cloud\OsLogin\V1\UpdateSshPublicKeyRequest
@@ -57,8 +56,7 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                    $name         Required. The fingerprint of the public key to update. Public keys are
      *                                                                identified by their SHA-256 fingerprint. The fingerprint of the public key
-     *                                                                is in format `users/{user}/sshPublicKeys/{fingerprint}`. Please see
-     *                                                                {@see OsLoginServiceClient::sshPublicKeyName()} for help formatting this field.
+     *                                                                is in format `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
      * @param \Google\Protobuf\FieldMask                $updateMask   Mask to control which fields get updated. Updates all if not present.
      *

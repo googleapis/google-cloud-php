@@ -26,31 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Retail\V2\Catalog;
 use Google\Cloud\Retail\V2\Client\CatalogServiceClient;
-use Google\Cloud\Retail\V2\ProductLevelConfig;
 use Google\Cloud\Retail\V2\UpdateCatalogRequest;
 
 /**
  * Updates the [Catalog][google.cloud.retail.v2.Catalog]s.
  *
- * @param string $catalogName        Immutable. The fully qualified resource name of the catalog.
- * @param string $catalogDisplayName Immutable. The catalog display name.
- *
- *                                   This field must be a UTF-8 encoded string with a length limit of 128
- *                                   characters. Otherwise, an INVALID_ARGUMENT error is returned.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_catalog_sample(string $catalogName, string $catalogDisplayName): void
+function update_catalog_sample(): void
 {
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
-    $catalogProductLevelConfig = new ProductLevelConfig();
-    $catalog = (new Catalog())
-        ->setName($catalogName)
-        ->setDisplayName($catalogDisplayName)
-        ->setProductLevelConfig($catalogProductLevelConfig);
-    $request = (new UpdateCatalogRequest())
-        ->setCatalog($catalog);
+    $request = new UpdateCatalogRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,22 +53,5 @@ function update_catalog_sample(string $catalogName, string $catalogDisplayName):
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $catalogName = '[NAME]';
-    $catalogDisplayName = '[DISPLAY_NAME]';
-
-    update_catalog_sample($catalogName, $catalogDisplayName);
 }
 // [END retail_v2_generated_CatalogService_UpdateCatalog_sync]

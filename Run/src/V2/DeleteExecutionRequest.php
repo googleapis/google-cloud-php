@@ -43,8 +43,7 @@ class DeleteExecutionRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the Execution to delete.
      *                     Format:
      *                     `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
-     *                     where `{project}` can be project id or number. Please see
-     *                     {@see ExecutionsClient::executionName()} for help formatting this field.
+     *                     where `{project}` can be project id or number.
      *
      * @return \Google\Cloud\Run\V2\DeleteExecutionRequest
      *

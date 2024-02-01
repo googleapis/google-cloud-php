@@ -27,11 +27,9 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Retail\V2\BigQuerySource;
 use Google\Cloud\Retail\V2\Client\CompletionServiceClient;
 use Google\Cloud\Retail\V2\CompleteQueryRequest;
 use Google\Cloud\Retail\V2\CompleteQueryResponse;
-use Google\Cloud\Retail\V2\CompletionDataInputConfig;
 use Google\Cloud\Retail\V2\ImportCompletionDataRequest;
 use Google\Cloud\Retail\V2\ImportCompletionDataResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -81,12 +79,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $expectedResponse = new CompleteQueryResponse();
         $expectedResponse->setAttributionToken($attributionToken);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedCatalog = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $query = 'query107944136';
-        $request = (new CompleteQueryRequest())
-            ->setCatalog($formattedCatalog)
-            ->setQuery($query);
+        $request = new CompleteQueryRequest();
         $response = $gapicClient->completeQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -94,10 +87,6 @@ class CompletionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CompletionService/CompleteQuery', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCatalog();
-        $this->assertProtobufEquals($formattedCatalog, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -119,12 +108,7 @@ class CompletionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedCatalog = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $query = 'query107944136';
-        $request = (new CompleteQueryRequest())
-            ->setCatalog($formattedCatalog)
-            ->setQuery($query);
+        $request = new CompleteQueryRequest();
         try {
             $gapicClient->completeQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -167,18 +151,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $inputConfig = new CompletionDataInputConfig();
-        $inputConfigBigQuerySource = new BigQuerySource();
-        $bigQuerySourceDatasetId = 'bigQuerySourceDatasetId-567522032';
-        $inputConfigBigQuerySource->setDatasetId($bigQuerySourceDatasetId);
-        $bigQuerySourceTableId = 'bigQuerySourceTableId1074792998';
-        $inputConfigBigQuerySource->setTableId($bigQuerySourceTableId);
-        $inputConfig->setBigQuerySource($inputConfigBigQuerySource);
-        $request = (new ImportCompletionDataRequest())
-            ->setParent($formattedParent)
-            ->setInputConfig($inputConfig);
+        $request = new ImportCompletionDataRequest();
         $response = $gapicClient->importCompletionData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -189,10 +162,6 @@ class CompletionServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CompletionService/ImportCompletionData', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputConfig();
-        $this->assertProtobufEquals($inputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importCompletionDataTest');
         $response->pollUntilComplete([
@@ -243,18 +212,7 @@ class CompletionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $inputConfig = new CompletionDataInputConfig();
-        $inputConfigBigQuerySource = new BigQuerySource();
-        $bigQuerySourceDatasetId = 'bigQuerySourceDatasetId-567522032';
-        $inputConfigBigQuerySource->setDatasetId($bigQuerySourceDatasetId);
-        $bigQuerySourceTableId = 'bigQuerySourceTableId1074792998';
-        $inputConfigBigQuerySource->setTableId($bigQuerySourceTableId);
-        $inputConfig->setBigQuerySource($inputConfigBigQuerySource);
-        $request = (new ImportCompletionDataRequest())
-            ->setParent($formattedParent)
-            ->setInputConfig($inputConfig);
+        $request = new ImportCompletionDataRequest();
         $response = $gapicClient->importCompletionData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -290,12 +248,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $expectedResponse = new CompleteQueryResponse();
         $expectedResponse->setAttributionToken($attributionToken);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedCatalog = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $query = 'query107944136';
-        $request = (new CompleteQueryRequest())
-            ->setCatalog($formattedCatalog)
-            ->setQuery($query);
+        $request = new CompleteQueryRequest();
         $response = $gapicClient->completeQueryAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -303,10 +256,6 @@ class CompletionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.CompletionService/CompleteQuery', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCatalog();
-        $this->assertProtobufEquals($formattedCatalog, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

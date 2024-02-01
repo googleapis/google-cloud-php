@@ -33,8 +33,7 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string   $subscription Required. The subscription whose message is being acknowledged.
-     *                               Format is `projects/{project}/subscriptions/{sub}`. Please see
-     *                               {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     *                               Format is `projects/{project}/subscriptions/{sub}`.
      * @param string[] $ackIds       Required. The acknowledgment ID for the messages being acknowledged that
      *                               was returned by the Pub/Sub system in the `Pull` response. Must not be
      *                               empty.

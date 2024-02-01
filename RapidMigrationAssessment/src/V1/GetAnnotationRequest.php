@@ -23,8 +23,7 @@ class GetAnnotationRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Name of the resource. Please see
-     *                     {@see RapidMigrationAssessmentClient::annotationName()} for help formatting this field.
+     * @param string $name Required. Name of the resource.
      *
      * @return \Google\Cloud\RapidMigrationAssessment\V1\GetAnnotationRequest
      *

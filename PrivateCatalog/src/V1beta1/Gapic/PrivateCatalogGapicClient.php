@@ -70,9 +70,8 @@ use Google\Cloud\PrivateCatalog\V1beta1\SearchVersionsResponse;
  * ```
  * $privateCatalogClient = new PrivateCatalogClient();
  * try {
- *     $resource = 'resource';
  *     // Iterate over pages of elements
- *     $pagedResponse = $privateCatalogClient->searchCatalogs($resource);
+ *     $pagedResponse = $privateCatalogClient->searchCatalogs();
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -80,7 +79,7 @@ use Google\Cloud\PrivateCatalog\V1beta1\SearchVersionsResponse;
  *     }
  *     // Alternatively:
  *     // Iterate through all elements
- *     $pagedResponse = $privateCatalogClient->searchCatalogs($resource);
+ *     $pagedResponse = $privateCatalogClient->searchCatalogs();
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -210,9 +209,8 @@ class PrivateCatalogGapicClient
      * ```
      * $privateCatalogClient = new PrivateCatalogClient();
      * try {
-     *     $resource = 'resource';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $privateCatalogClient->searchCatalogs($resource);
+     *     $pagedResponse = $privateCatalogClient->searchCatalogs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -220,7 +218,7 @@ class PrivateCatalogGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $privateCatalogClient->searchCatalogs($resource);
+     *     $pagedResponse = $privateCatalogClient->searchCatalogs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -229,14 +227,15 @@ class PrivateCatalogGapicClient
      * }
      * ```
      *
-     * @param string $resource     Required. The name of the resource context. It can be in following formats:
-     *
-     *                             * `projects/{project}`
-     *                             * `folders/{folder}`
-     *                             * `organizations/{organization}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           Required. The name of the resource context. It can be in following formats:
+     *
+     *           * `projects/{project}`
+     *           * `folders/{folder}`
+     *           * `organizations/{organization}`
      *     @type string $query
      *           The query to filter the catalogs. The supported queries are:
      *
@@ -262,12 +261,15 @@ class PrivateCatalogGapicClient
      *
      * @experimental
      */
-    public function searchCatalogs($resource, array $optionalArgs = [])
+    public function searchCatalogs(array $optionalArgs = [])
     {
         $request = new SearchCatalogsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['query'])) {
             $request->setQuery($optionalArgs['query']);
         }
@@ -293,9 +295,8 @@ class PrivateCatalogGapicClient
      * ```
      * $privateCatalogClient = new PrivateCatalogClient();
      * try {
-     *     $resource = 'resource';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $privateCatalogClient->searchProducts($resource);
+     *     $pagedResponse = $privateCatalogClient->searchProducts();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -303,7 +304,7 @@ class PrivateCatalogGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $privateCatalogClient->searchProducts($resource);
+     *     $pagedResponse = $privateCatalogClient->searchProducts();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -312,11 +313,12 @@ class PrivateCatalogGapicClient
      * }
      * ```
      *
-     * @param string $resource     Required. The name of the resource context. See [SearchCatalogsRequest.resource][google.cloud.privatecatalog.v1beta1.SearchCatalogsRequest.resource]
-     *                             for details.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           Required. The name of the resource context. See [SearchCatalogsRequest.resource][google.cloud.privatecatalog.v1beta1.SearchCatalogsRequest.resource]
+     *           for details.
      *     @type string $query
      *           The query to filter the products.
      *
@@ -346,12 +348,15 @@ class PrivateCatalogGapicClient
      *
      * @experimental
      */
-    public function searchProducts($resource, array $optionalArgs = [])
+    public function searchProducts(array $optionalArgs = [])
     {
         $request = new SearchProductsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['query'])) {
             $request->setQuery($optionalArgs['query']);
         }
@@ -377,10 +382,8 @@ class PrivateCatalogGapicClient
      * ```
      * $privateCatalogClient = new PrivateCatalogClient();
      * try {
-     *     $resource = 'resource';
-     *     $query = 'query';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $privateCatalogClient->searchVersions($resource, $query);
+     *     $pagedResponse = $privateCatalogClient->searchVersions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -388,7 +391,7 @@ class PrivateCatalogGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $privateCatalogClient->searchVersions($resource, $query);
+     *     $pagedResponse = $privateCatalogClient->searchVersions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -397,18 +400,20 @@ class PrivateCatalogGapicClient
      * }
      * ```
      *
-     * @param string $resource     Required. The name of the resource context. See [SearchCatalogsRequest.resource][google.cloud.privatecatalog.v1beta1.SearchCatalogsRequest.resource]
-     *                             for details.
-     * @param string $query        Required. The query to filter the versions.
-     *
-     *                             The supported queries are:
-     *                             * List versions under a product:
-     *                             `parent=catalogs/{catalog}/products/{product}`
-     *                             * Get a version by name:
-     *                             `name=catalogs/{catalog}/products/{product}/versions/{version}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           Required. The name of the resource context. See [SearchCatalogsRequest.resource][google.cloud.privatecatalog.v1beta1.SearchCatalogsRequest.resource]
+     *           for details.
+     *     @type string $query
+     *           Required. The query to filter the versions.
+     *
+     *           The supported queries are:
+     *           * List versions under a product:
+     *           `parent=catalogs/{catalog}/products/{product}`
+     *           * Get a version by name:
+     *           `name=catalogs/{catalog}/products/{product}/versions/{version}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -430,13 +435,19 @@ class PrivateCatalogGapicClient
      *
      * @experimental
      */
-    public function searchVersions($resource, $query, array $optionalArgs = [])
+    public function searchVersions(array $optionalArgs = [])
     {
         $request = new SearchVersionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setQuery($query);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['query'])) {
+            $request->setQuery($optionalArgs['query']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

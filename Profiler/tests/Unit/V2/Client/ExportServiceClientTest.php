@@ -81,10 +81,7 @@ class ExportServiceClientTest extends GeneratedTest
         $expectedResponse->setSkippedProfiles($skippedProfiles);
         $expectedResponse->setProfiles($profiles);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListProfilesRequest())
-            ->setParent($formattedParent);
+        $request = new ListProfilesRequest();
         $response = $gapicClient->listProfiles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -95,8 +92,6 @@ class ExportServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudprofiler.v2.ExportService/ListProfiles', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -118,10 +113,7 @@ class ExportServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListProfilesRequest())
-            ->setParent($formattedParent);
+        $request = new ListProfilesRequest();
         try {
             $gapicClient->listProfiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -155,10 +147,7 @@ class ExportServiceClientTest extends GeneratedTest
         $expectedResponse->setSkippedProfiles($skippedProfiles);
         $expectedResponse->setProfiles($profiles);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListProfilesRequest())
-            ->setParent($formattedParent);
+        $request = new ListProfilesRequest();
         $response = $gapicClient->listProfilesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -169,8 +158,6 @@ class ExportServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.cloudprofiler.v2.ExportService/ListProfiles', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

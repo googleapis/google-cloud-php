@@ -25,11 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START osconfig_v1_generated_OsConfigService_UpdatePatchDeployment_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\OsConfig\V1\Client\OsConfigServiceClient;
-use Google\Cloud\OsConfig\V1\OneTimeSchedule;
 use Google\Cloud\OsConfig\V1\PatchDeployment;
-use Google\Cloud\OsConfig\V1\PatchInstanceFilter;
 use Google\Cloud\OsConfig\V1\UpdatePatchDeploymentRequest;
-use Google\Protobuf\Timestamp;
 
 /**
  * Update an OS Config patch deployment.
@@ -46,15 +43,7 @@ function update_patch_deployment_sample(): void
     $osConfigServiceClient = new OsConfigServiceClient();
 
     // Prepare the request message.
-    $patchDeploymentInstanceFilter = new PatchInstanceFilter();
-    $patchDeploymentOneTimeScheduleExecuteTime = new Timestamp();
-    $patchDeploymentOneTimeSchedule = (new OneTimeSchedule())
-        ->setExecuteTime($patchDeploymentOneTimeScheduleExecuteTime);
-    $patchDeployment = (new PatchDeployment())
-        ->setInstanceFilter($patchDeploymentInstanceFilter)
-        ->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-    $request = (new UpdatePatchDeploymentRequest())
-        ->setPatchDeployment($patchDeployment);
+    $request = new UpdatePatchDeploymentRequest();
 
     // Call the API and handle any network failures.
     try {

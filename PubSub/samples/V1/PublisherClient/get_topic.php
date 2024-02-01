@@ -31,18 +31,19 @@ use Google\Cloud\PubSub\V1\Topic;
 /**
  * Gets the configuration of a topic.
  *
- * @param string $formattedTopic The name of the topic to get.
- *                               Format is `projects/{project}/topics/{topic}`. Please see
- *                               {@see PublisherClient::topicName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_topic_sample(string $formattedTopic): void
+function get_topic_sample(): void
 {
     // Create a client.
     $publisherClient = new PublisherClient();
 
     // Prepare the request message.
-    $request = (new GetTopicRequest())
-        ->setTopic($formattedTopic);
+    $request = new GetTopicRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function get_topic_sample(string $formattedTopic): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedTopic = PublisherClient::topicName('[PROJECT]', '[TOPIC]');
-
-    get_topic_sample($formattedTopic);
 }
 // [END pubsub_v1_generated_Publisher_GetTopic_sync]

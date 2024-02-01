@@ -25,51 +25,25 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recommendationengine_v1beta1_generated_CatalogService_CreateCatalogItem_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem;
-use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy;
 use Google\Cloud\RecommendationEngine\V1beta1\Client\CatalogServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\CreateCatalogItemRequest;
 
 /**
  * Creates a catalog item.
  *
- * @param string $formattedParent                                 The parent catalog resource name, such as
- *                                                                `projects/&#42;/locations/global/catalogs/default_catalog`. Please see
- *                                                                {@see CatalogServiceClient::catalogName()} for help formatting this field.
- * @param string $catalogItemId                                   Catalog item identifier. UTF-8 encoded string with a length limit
- *                                                                of 128 bytes.
- *
- *                                                                This id must be unique among all catalog items within the same catalog. It
- *                                                                should also be used when logging user events in order for the user events
- *                                                                to be joined with the Catalog.
- * @param string $catalogItemCategoryHierarchiesCategoriesElement Catalog item categories. Each category should be a UTF-8
- *                                                                encoded string with a length limit of 2 KiB.
- *
- *                                                                Note that the order in the list denotes the specificity (from least to
- *                                                                most specific).
- * @param string $catalogItemTitle                                Catalog item title. UTF-8 encoded string with a length limit of 1
- *                                                                KiB.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_catalog_item_sample(
-    string $formattedParent,
-    string $catalogItemId,
-    string $catalogItemCategoryHierarchiesCategoriesElement,
-    string $catalogItemTitle
-): void {
+function create_catalog_item_sample(): void
+{
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
-    $catalogItemCategoryHierarchiesCategories = [$catalogItemCategoryHierarchiesCategoriesElement,];
-    $categoryHierarchy = (new CategoryHierarchy())
-        ->setCategories($catalogItemCategoryHierarchiesCategories);
-    $catalogItemCategoryHierarchies = [$categoryHierarchy,];
-    $catalogItem = (new CatalogItem())
-        ->setId($catalogItemId)
-        ->setCategoryHierarchies($catalogItemCategoryHierarchies)
-        ->setTitle($catalogItemTitle);
-    $request = (new CreateCatalogItemRequest())
-        ->setParent($formattedParent)
-        ->setCatalogItem($catalogItem);
+    $request = new CreateCatalogItemRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -79,29 +53,5 @@ function create_catalog_item_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CatalogServiceClient::catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-    $catalogItemId = '[ID]';
-    $catalogItemCategoryHierarchiesCategoriesElement = '[CATEGORIES]';
-    $catalogItemTitle = '[TITLE]';
-
-    create_catalog_item_sample(
-        $formattedParent,
-        $catalogItemId,
-        $catalogItemCategoryHierarchiesCategoriesElement,
-        $catalogItemTitle
-    );
 }
 // [END recommendationengine_v1beta1_generated_CatalogService_CreateCatalogItem_sync]

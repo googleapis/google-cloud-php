@@ -34,18 +34,19 @@ use Google\Cloud\PubSub\V1\DetachSubscriptionResponse;
  * will return FAILED_PRECONDITION. If the subscription is a push
  * subscription, pushes to the endpoint will stop.
  *
- * @param string $formattedSubscription The subscription to detach.
- *                                      Format is `projects/{project}/subscriptions/{subscription}`. Please see
- *                                      {@see PublisherClient::subscriptionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function detach_subscription_sample(string $formattedSubscription): void
+function detach_subscription_sample(): void
 {
     // Create a client.
     $publisherClient = new PublisherClient();
 
     // Prepare the request message.
-    $request = (new DetachSubscriptionRequest())
-        ->setSubscription($formattedSubscription);
+    $request = new DetachSubscriptionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +56,5 @@ function detach_subscription_sample(string $formattedSubscription): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSubscription = PublisherClient::subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
-    detach_subscription_sample($formattedSubscription);
 }
 // [END pubsub_v1_generated_Publisher_DetachSubscription_sync]

@@ -54,9 +54,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $servingConfigServiceClient = new ServingConfigServiceClient();
  * try {
- *     $formattedServingConfig = $servingConfigServiceClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
- *     $controlId = 'control_id';
- *     $response = $servingConfigServiceClient->addControl($formattedServingConfig, $controlId);
+ *     $response = $servingConfigServiceClient->addControl();
  * } finally {
  *     $servingConfigServiceClient->close();
  * }
@@ -328,21 +326,21 @@ class ServingConfigServiceGapicClient
      * ```
      * $servingConfigServiceClient = new ServingConfigServiceClient();
      * try {
-     *     $formattedServingConfig = $servingConfigServiceClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-     *     $controlId = 'control_id';
-     *     $response = $servingConfigServiceClient->addControl($formattedServingConfig, $controlId);
+     *     $response = $servingConfigServiceClient->addControl();
      * } finally {
      *     $servingConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string $servingConfig Required. The source ServingConfig resource name . Format:
-     *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
-     * @param string $controlId     Required. The id of the control to apply. Assumed to be in the same catalog
-     *                              as the serving config - if id is not found a NOT_FOUND error is returned.
-     * @param array  $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $servingConfig
+     *           Required. The source ServingConfig resource name . Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
+     *     @type string $controlId
+     *           Required. The id of the control to apply. Assumed to be in the same catalog
+     *           as the serving config - if id is not found a NOT_FOUND error is returned.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -353,16 +351,20 @@ class ServingConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addControl(
-        $servingConfig,
-        $controlId,
-        array $optionalArgs = []
-    ) {
+    public function addControl(array $optionalArgs = [])
+    {
         $request = new AddControlRequest();
         $requestParamHeaders = [];
-        $request->setServingConfig($servingConfig);
-        $request->setControlId($controlId);
-        $requestParamHeaders['serving_config'] = $servingConfig;
+        if (isset($optionalArgs['servingConfig'])) {
+            $request->setServingConfig($optionalArgs['servingConfig']);
+            $requestParamHeaders['serving_config'] =
+                $optionalArgs['servingConfig'];
+        }
+
+        if (isset($optionalArgs['controlId'])) {
+            $request->setControlId($optionalArgs['controlId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -388,26 +390,26 @@ class ServingConfigServiceGapicClient
      * ```
      * $servingConfigServiceClient = new ServingConfigServiceClient();
      * try {
-     *     $formattedParent = $servingConfigServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-     *     $servingConfig = new ServingConfig();
-     *     $servingConfigId = 'serving_config_id';
-     *     $response = $servingConfigServiceClient->createServingConfig($formattedParent, $servingConfig, $servingConfigId);
+     *     $response = $servingConfigServiceClient->createServingConfig();
      * } finally {
      *     $servingConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string        $parent          Required. Full resource name of parent. Format:
-     *                                       `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
-     * @param ServingConfig $servingConfig   Required. The ServingConfig to create.
-     * @param string        $servingConfigId Required. The ID to use for the ServingConfig, which will become the final
-     *                                       component of the ServingConfig's resource name.
-     *
-     *                                       This value should be 4-63 characters, and valid characters
-     *                                       are /[a-z][0-9]-_/.
-     * @param array         $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Full resource name of parent. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
+     *     @type ServingConfig $servingConfig
+     *           Required. The ServingConfig to create.
+     *     @type string $servingConfigId
+     *           Required. The ID to use for the ServingConfig, which will become the final
+     *           component of the ServingConfig's resource name.
+     *
+     *           This value should be 4-63 characters, and valid characters
+     *           are /[a-z][0-9]-_/.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -418,18 +420,23 @@ class ServingConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createServingConfig(
-        $parent,
-        $servingConfig,
-        $servingConfigId,
-        array $optionalArgs = []
-    ) {
+    public function createServingConfig(array $optionalArgs = [])
+    {
         $request = new CreateServingConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setServingConfig($servingConfig);
-        $request->setServingConfigId($servingConfigId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['servingConfig'])) {
+            $request->setServingConfig($optionalArgs['servingConfig']);
+        }
+
+        if (isset($optionalArgs['servingConfigId'])) {
+            $request->setServingConfigId($optionalArgs['servingConfigId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -453,18 +460,18 @@ class ServingConfigServiceGapicClient
      * ```
      * $servingConfigServiceClient = new ServingConfigServiceClient();
      * try {
-     *     $formattedName = $servingConfigServiceClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-     *     $servingConfigServiceClient->deleteServingConfig($formattedName);
+     *     $servingConfigServiceClient->deleteServingConfig();
      * } finally {
      *     $servingConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the ServingConfig to delete. Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the ServingConfig to delete. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -473,12 +480,15 @@ class ServingConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteServingConfig($name, array $optionalArgs = [])
+    public function deleteServingConfig(array $optionalArgs = [])
     {
         $request = new DeleteServingConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -502,18 +512,18 @@ class ServingConfigServiceGapicClient
      * ```
      * $servingConfigServiceClient = new ServingConfigServiceClient();
      * try {
-     *     $formattedName = $servingConfigServiceClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-     *     $response = $servingConfigServiceClient->getServingConfig($formattedName);
+     *     $response = $servingConfigServiceClient->getServingConfig();
      * } finally {
      *     $servingConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the ServingConfig to get. Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the ServingConfig to get. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -524,12 +534,15 @@ class ServingConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getServingConfig($name, array $optionalArgs = [])
+    public function getServingConfig(array $optionalArgs = [])
     {
         $request = new GetServingConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -551,9 +564,8 @@ class ServingConfigServiceGapicClient
      * ```
      * $servingConfigServiceClient = new ServingConfigServiceClient();
      * try {
-     *     $formattedParent = $servingConfigServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $servingConfigServiceClient->listServingConfigs($formattedParent);
+     *     $pagedResponse = $servingConfigServiceClient->listServingConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -561,7 +573,7 @@ class ServingConfigServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $servingConfigServiceClient->listServingConfigs($formattedParent);
+     *     $pagedResponse = $servingConfigServiceClient->listServingConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -570,11 +582,12 @@ class ServingConfigServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The catalog resource name. Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The catalog resource name. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -594,12 +607,15 @@ class ServingConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listServingConfigs($parent, array $optionalArgs = [])
+    public function listServingConfigs(array $optionalArgs = [])
     {
         $request = new ListServingConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -632,21 +648,21 @@ class ServingConfigServiceGapicClient
      * ```
      * $servingConfigServiceClient = new ServingConfigServiceClient();
      * try {
-     *     $formattedServingConfig = $servingConfigServiceClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-     *     $controlId = 'control_id';
-     *     $response = $servingConfigServiceClient->removeControl($formattedServingConfig, $controlId);
+     *     $response = $servingConfigServiceClient->removeControl();
      * } finally {
      *     $servingConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string $servingConfig Required. The source ServingConfig resource name . Format:
-     *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
-     * @param string $controlId     Required. The id of the control to apply. Assumed to be in the same catalog
-     *                              as the serving config.
-     * @param array  $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $servingConfig
+     *           Required. The source ServingConfig resource name . Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
+     *     @type string $controlId
+     *           Required. The id of the control to apply. Assumed to be in the same catalog
+     *           as the serving config.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -657,16 +673,20 @@ class ServingConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeControl(
-        $servingConfig,
-        $controlId,
-        array $optionalArgs = []
-    ) {
+    public function removeControl(array $optionalArgs = [])
+    {
         $request = new RemoveControlRequest();
         $requestParamHeaders = [];
-        $request->setServingConfig($servingConfig);
-        $request->setControlId($controlId);
-        $requestParamHeaders['serving_config'] = $servingConfig;
+        if (isset($optionalArgs['servingConfig'])) {
+            $request->setServingConfig($optionalArgs['servingConfig']);
+            $requestParamHeaders['serving_config'] =
+                $optionalArgs['servingConfig'];
+        }
+
+        if (isset($optionalArgs['controlId'])) {
+            $request->setControlId($optionalArgs['controlId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -688,17 +708,17 @@ class ServingConfigServiceGapicClient
      * ```
      * $servingConfigServiceClient = new ServingConfigServiceClient();
      * try {
-     *     $servingConfig = new ServingConfig();
-     *     $response = $servingConfigServiceClient->updateServingConfig($servingConfig);
+     *     $response = $servingConfigServiceClient->updateServingConfig();
      * } finally {
      *     $servingConfigServiceClient->close();
      * }
      * ```
      *
-     * @param ServingConfig $servingConfig Required. The ServingConfig to update.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ServingConfig $servingConfig
+     *           Required. The ServingConfig to update.
      *     @type FieldMask $updateMask
      *           Indicates which fields in the provided
      *           [ServingConfig][google.cloud.retail.v2.ServingConfig] to update. The
@@ -717,14 +737,14 @@ class ServingConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateServingConfig(
-        $servingConfig,
-        array $optionalArgs = []
-    ) {
+    public function updateServingConfig(array $optionalArgs = [])
+    {
         $request = new UpdateServingConfigRequest();
         $requestParamHeaders = [];
-        $request->setServingConfig($servingConfig);
-        $requestParamHeaders['serving_config.name'] = $servingConfig->getName();
+        if (isset($optionalArgs['servingConfig'])) {
+            $request->setServingConfig($optionalArgs['servingConfig']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

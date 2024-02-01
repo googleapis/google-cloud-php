@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Retail\V2\Client\ControlServiceClient;
 use Google\Cloud\Retail\V2\Control;
 use Google\Cloud\Retail\V2\CreateControlRequest;
-use Google\Cloud\Retail\V2\SolutionType;
 
 /**
  * Creates a Control.
@@ -35,43 +34,19 @@ use Google\Cloud\Retail\V2\SolutionType;
  * If the [Control][google.cloud.retail.v2.Control] to create already exists,
  * an ALREADY_EXISTS error is returned.
  *
- * @param string $formattedParent             Full resource name of parent catalog. Format:
- *                                            `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
- *                                            Please see {@see ControlServiceClient::catalogName()} for help formatting this field.
- * @param string $controlDisplayName          The human readable control display name. Used in Retail UI.
- *
- *                                            This field must be a UTF-8 encoded string with a length limit of 128
- *                                            characters. Otherwise, an INVALID_ARGUMENT error is thrown.
- * @param int    $controlSolutionTypesElement Immutable. The solution types that the control is used for.
- *                                            Currently we support setting only one type of solution at creation time.
- *
- *                                            Only `SOLUTION_TYPE_SEARCH` value is supported at the moment.
- *                                            If no solution type is provided at creation time, will default to
- *                                            [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
- * @param string $controlId                   The ID to use for the Control, which will become the final
- *                                            component of the Control's resource name.
- *
- *                                            This value should be 4-63 characters, and valid characters
- *                                            are /[a-z][0-9]-_/.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_control_sample(
-    string $formattedParent,
-    string $controlDisplayName,
-    int $controlSolutionTypesElement,
-    string $controlId
-): void {
+function create_control_sample(): void
+{
     // Create a client.
     $controlServiceClient = new ControlServiceClient();
 
     // Prepare the request message.
-    $controlSolutionTypes = [$controlSolutionTypesElement,];
-    $control = (new Control())
-        ->setDisplayName($controlDisplayName)
-        ->setSolutionTypes($controlSolutionTypes);
-    $request = (new CreateControlRequest())
-        ->setParent($formattedParent)
-        ->setControl($control)
-        ->setControlId($controlId);
+    $request = new CreateControlRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -81,29 +56,5 @@ function create_control_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ControlServiceClient::catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-    $controlDisplayName = '[DISPLAY_NAME]';
-    $controlSolutionTypesElement = SolutionType::SOLUTION_TYPE_UNSPECIFIED;
-    $controlId = '[CONTROL_ID]';
-
-    create_control_sample(
-        $formattedParent,
-        $controlDisplayName,
-        $controlSolutionTypesElement,
-        $controlId
-    );
 }
 // [END retail_v2_generated_ControlService_CreateControl_sync]

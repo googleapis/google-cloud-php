@@ -48,7 +48,6 @@ use Google\Cloud\RapidMigrationAssessment\V1\UpdateCollectorRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -113,10 +112,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $annotation = new Annotation();
-        $request = (new CreateAnnotationRequest())->setParent($formattedParent)->setAnnotation($annotation);
+        $request = new CreateAnnotationRequest();
         $response = $gapicClient->createAnnotation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -130,10 +126,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/CreateAnnotation',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAnnotation();
-        $this->assertProtobufEquals($annotation, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAnnotationTest');
         $response->pollUntilComplete([
@@ -187,10 +179,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $annotation = new Annotation();
-        $request = (new CreateAnnotationRequest())->setParent($formattedParent)->setAnnotation($annotation);
+        $request = new CreateAnnotationRequest();
         $response = $gapicClient->createAnnotation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -260,14 +249,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $collectorId = 'collectorId1641692685';
-        $collector = new Collector();
-        $request = (new CreateCollectorRequest())
-            ->setParent($formattedParent)
-            ->setCollectorId($collectorId)
-            ->setCollector($collector);
+        $request = new CreateCollectorRequest();
         $response = $gapicClient->createCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -281,12 +263,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/CreateCollector',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getCollectorId();
-        $this->assertProtobufEquals($collectorId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCollector();
-        $this->assertProtobufEquals($collector, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createCollectorTest');
         $response->pollUntilComplete([
@@ -340,14 +316,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $collectorId = 'collectorId1641692685';
-        $collector = new Collector();
-        $request = (new CreateCollectorRequest())
-            ->setParent($formattedParent)
-            ->setCollectorId($collectorId)
-            ->setCollector($collector);
+        $request = new CreateCollectorRequest();
         $response = $gapicClient->createCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -417,9 +386,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new DeleteCollectorRequest())->setName($formattedName);
+        $request = new DeleteCollectorRequest();
         $response = $gapicClient->deleteCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -433,8 +400,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/DeleteCollector',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteCollectorTest');
         $response->pollUntilComplete([
@@ -488,9 +453,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new DeleteCollectorRequest())->setName($formattedName);
+        $request = new DeleteCollectorRequest();
         $response = $gapicClient->deleteCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -526,9 +489,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $expectedResponse = new Annotation();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->annotationName('[PROJECT]', '[LOCATION]', '[ANNOTATION]');
-        $request = (new GetAnnotationRequest())->setName($formattedName);
+        $request = new GetAnnotationRequest();
         $response = $gapicClient->getAnnotation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -539,8 +500,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/GetAnnotation',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -565,9 +524,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->annotationName('[PROJECT]', '[LOCATION]', '[ANNOTATION]');
-        $request = (new GetAnnotationRequest())->setName($formattedName);
+        $request = new GetAnnotationRequest();
         try {
             $gapicClient->getAnnotation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -610,9 +567,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $expectedResponse->setCollectionDays($collectionDays);
         $expectedResponse->setEulaUri($eulaUri);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new GetCollectorRequest())->setName($formattedName);
+        $request = new GetCollectorRequest();
         $response = $gapicClient->getCollector($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -623,8 +578,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/GetCollector',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -649,9 +602,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new GetCollectorRequest())->setName($formattedName);
+        $request = new GetCollectorRequest();
         try {
             $gapicClient->getCollector($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -681,9 +632,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCollectors($collectors);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCollectorsRequest())->setParent($formattedParent);
+        $request = new ListCollectorsRequest();
         $response = $gapicClient->listCollectors($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -697,8 +646,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/ListCollectors',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -723,9 +670,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCollectorsRequest())->setParent($formattedParent);
+        $request = new ListCollectorsRequest();
         try {
             $gapicClient->listCollectors($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -786,9 +731,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new PauseCollectorRequest())->setName($formattedName);
+        $request = new PauseCollectorRequest();
         $response = $gapicClient->pauseCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -802,8 +745,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/PauseCollector',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/pauseCollectorTest');
         $response->pollUntilComplete([
@@ -857,9 +798,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new PauseCollectorRequest())->setName($formattedName);
+        $request = new PauseCollectorRequest();
         $response = $gapicClient->pauseCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -929,9 +868,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new RegisterCollectorRequest())->setName($formattedName);
+        $request = new RegisterCollectorRequest();
         $response = $gapicClient->registerCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -945,8 +882,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/RegisterCollector',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/registerCollectorTest');
         $response->pollUntilComplete([
@@ -1000,9 +935,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new RegisterCollectorRequest())->setName($formattedName);
+        $request = new RegisterCollectorRequest();
         $response = $gapicClient->registerCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1072,9 +1005,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new ResumeCollectorRequest())->setName($formattedName);
+        $request = new ResumeCollectorRequest();
         $response = $gapicClient->resumeCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1088,8 +1019,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/ResumeCollector',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/resumeCollectorTest');
         $response->pollUntilComplete([
@@ -1143,9 +1072,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->collectorName('[PROJECT]', '[LOCATION]', '[COLLECTOR]');
-        $request = (new ResumeCollectorRequest())->setName($formattedName);
+        $request = new ResumeCollectorRequest();
         $response = $gapicClient->resumeCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1215,10 +1142,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $collector = new Collector();
-        $request = (new UpdateCollectorRequest())->setUpdateMask($updateMask)->setCollector($collector);
+        $request = new UpdateCollectorRequest();
         $response = $gapicClient->updateCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1232,10 +1156,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/UpdateCollector',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getCollector();
-        $this->assertProtobufEquals($collector, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateCollectorTest');
         $response->pollUntilComplete([
@@ -1289,10 +1209,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $collector = new Collector();
-        $request = (new UpdateCollectorRequest())->setUpdateMask($updateMask)->setCollector($collector);
+        $request = new UpdateCollectorRequest();
         $response = $gapicClient->updateCollector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1474,10 +1391,7 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $annotation = new Annotation();
-        $request = (new CreateAnnotationRequest())->setParent($formattedParent)->setAnnotation($annotation);
+        $request = new CreateAnnotationRequest();
         $response = $gapicClient->createAnnotationAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1491,10 +1405,6 @@ class RapidMigrationAssessmentClientTest extends GeneratedTest
             '/google.cloud.rapidmigrationassessment.v1.RapidMigrationAssessment/CreateAnnotation',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAnnotation();
-        $this->assertProtobufEquals($annotation, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAnnotationTest');
         $response->pollUntilComplete([

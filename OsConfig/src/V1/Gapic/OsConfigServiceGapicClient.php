@@ -69,8 +69,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $osConfigServiceClient = new OsConfigServiceClient();
  * try {
- *     $formattedName = $osConfigServiceClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
- *     $response = $osConfigServiceClient->cancelPatchJob($formattedName);
+ *     $response = $osConfigServiceClient->cancelPatchJob();
  * } finally {
  *     $osConfigServiceClient->close();
  * }
@@ -338,17 +337,17 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedName = $osConfigServiceClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-     *     $response = $osConfigServiceClient->cancelPatchJob($formattedName);
+     *     $response = $osConfigServiceClient->cancelPatchJob();
      * } finally {
      *     $osConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the patch in the form `projects/&#42;/patchJobs/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the patch in the form `projects/&#42;/patchJobs/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -359,12 +358,15 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelPatchJob($name, array $optionalArgs = [])
+    public function cancelPatchJob(array $optionalArgs = [])
     {
         $request = new CancelPatchJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CancelPatchJob', PatchJob::class, $optionalArgs, $request)->wait();
@@ -377,28 +379,28 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedParent = $osConfigServiceClient->projectName('[PROJECT]');
-     *     $patchDeploymentId = 'patch_deployment_id';
-     *     $patchDeployment = new PatchDeployment();
-     *     $response = $osConfigServiceClient->createPatchDeployment($formattedParent, $patchDeploymentId, $patchDeployment);
+     *     $response = $osConfigServiceClient->createPatchDeployment();
      * } finally {
      *     $osConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string          $parent            Required. The project to apply this patch deployment to in the form
-     *                                           `projects/*`.
-     * @param string          $patchDeploymentId Required. A name for the patch deployment in the project. When creating a
-     *                                           name the following rules apply:
-     *                                           * Must contain only lowercase letters, numbers, and hyphens.
-     *                                           * Must start with a letter.
-     *                                           * Must be between 1-63 characters.
-     *                                           * Must end with a number or a letter.
-     *                                           * Must be unique within the project.
-     * @param PatchDeployment $patchDeployment   Required. The patch deployment to create.
-     * @param array           $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project to apply this patch deployment to in the form
+     *           `projects/*`.
+     *     @type string $patchDeploymentId
+     *           Required. A name for the patch deployment in the project. When creating a
+     *           name the following rules apply:
+     *           * Must contain only lowercase letters, numbers, and hyphens.
+     *           * Must start with a letter.
+     *           * Must be between 1-63 characters.
+     *           * Must end with a number or a letter.
+     *           * Must be unique within the project.
+     *     @type PatchDeployment $patchDeployment
+     *           Required. The patch deployment to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -409,14 +411,23 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createPatchDeployment($parent, $patchDeploymentId, $patchDeployment, array $optionalArgs = [])
+    public function createPatchDeployment(array $optionalArgs = [])
     {
         $request = new CreatePatchDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setPatchDeploymentId($patchDeploymentId);
-        $request->setPatchDeployment($patchDeployment);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['patchDeploymentId'])) {
+            $request->setPatchDeploymentId($optionalArgs['patchDeploymentId']);
+        }
+
+        if (isset($optionalArgs['patchDeployment'])) {
+            $request->setPatchDeployment($optionalArgs['patchDeployment']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreatePatchDeployment', PatchDeployment::class, $optionalArgs, $request)->wait();
@@ -429,18 +440,18 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedName = $osConfigServiceClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-     *     $osConfigServiceClient->deletePatchDeployment($formattedName);
+     *     $osConfigServiceClient->deletePatchDeployment();
      * } finally {
      *     $osConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the patch deployment in the form
-     *                             `projects/&#42;/patchDeployments/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the patch deployment in the form
+     *           `projects/&#42;/patchDeployments/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -449,12 +460,15 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePatchDeployment($name, array $optionalArgs = [])
+    public function deletePatchDeployment(array $optionalArgs = [])
     {
         $request = new DeletePatchDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeletePatchDeployment', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -467,23 +481,23 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedParent = $osConfigServiceClient->projectName('[PROJECT]');
-     *     $instanceFilter = new PatchInstanceFilter();
-     *     $response = $osConfigServiceClient->executePatchJob($formattedParent, $instanceFilter);
+     *     $response = $osConfigServiceClient->executePatchJob();
      * } finally {
      *     $osConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string              $parent         Required. The project in which to run this patch in the form `projects/*`
-     * @param PatchInstanceFilter $instanceFilter Required. Instances to patch, either explicitly or filtered by some
-     *                                            criteria such as zone or labels.
-     * @param array               $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project in which to run this patch in the form `projects/*`
      *     @type string $description
      *           Description of the patch job. Length of the description is limited
      *           to 1024 characters.
+     *     @type PatchInstanceFilter $instanceFilter
+     *           Required. Instances to patch, either explicitly or filtered by some
+     *           criteria such as zone or labels.
      *     @type PatchConfig $patchConfig
      *           Patch configuration being applied. If omitted, instances are
      *           patched using the default configurations.
@@ -507,15 +521,21 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function executePatchJob($parent, $instanceFilter, array $optionalArgs = [])
+    public function executePatchJob(array $optionalArgs = [])
     {
         $request = new ExecutePatchJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setInstanceFilter($instanceFilter);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['description'])) {
             $request->setDescription($optionalArgs['description']);
+        }
+
+        if (isset($optionalArgs['instanceFilter'])) {
+            $request->setInstanceFilter($optionalArgs['instanceFilter']);
         }
 
         if (isset($optionalArgs['patchConfig'])) {
@@ -550,18 +570,18 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedName = $osConfigServiceClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-     *     $response = $osConfigServiceClient->getPatchDeployment($formattedName);
+     *     $response = $osConfigServiceClient->getPatchDeployment();
      * } finally {
      *     $osConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the patch deployment in the form
-     *                             `projects/&#42;/patchDeployments/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the patch deployment in the form
+     *           `projects/&#42;/patchDeployments/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -572,12 +592,15 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPatchDeployment($name, array $optionalArgs = [])
+    public function getPatchDeployment(array $optionalArgs = [])
     {
         $request = new GetPatchDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetPatchDeployment', PatchDeployment::class, $optionalArgs, $request)->wait();
@@ -591,17 +614,17 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedName = $osConfigServiceClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
-     *     $response = $osConfigServiceClient->getPatchJob($formattedName);
+     *     $response = $osConfigServiceClient->getPatchJob();
      * } finally {
      *     $osConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the patch in the form `projects/&#42;/patchJobs/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the patch in the form `projects/&#42;/patchJobs/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -612,12 +635,15 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPatchJob($name, array $optionalArgs = [])
+    public function getPatchJob(array $optionalArgs = [])
     {
         $request = new GetPatchJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetPatchJob', PatchJob::class, $optionalArgs, $request)->wait();
@@ -630,9 +656,8 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedParent = $osConfigServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $osConfigServiceClient->listPatchDeployments($formattedParent);
+     *     $pagedResponse = $osConfigServiceClient->listPatchDeployments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -640,7 +665,7 @@ class OsConfigServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $osConfigServiceClient->listPatchDeployments($formattedParent);
+     *     $pagedResponse = $osConfigServiceClient->listPatchDeployments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -649,10 +674,11 @@ class OsConfigServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent in the form `projects/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent in the form `projects/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -672,12 +698,15 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPatchDeployments($parent, array $optionalArgs = [])
+    public function listPatchDeployments(array $optionalArgs = [])
     {
         $request = new ListPatchDeploymentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -698,9 +727,8 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedParent = $osConfigServiceClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $osConfigServiceClient->listPatchJobInstanceDetails($formattedParent);
+     *     $pagedResponse = $osConfigServiceClient->listPatchJobInstanceDetails();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -708,7 +736,7 @@ class OsConfigServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $osConfigServiceClient->listPatchJobInstanceDetails($formattedParent);
+     *     $pagedResponse = $osConfigServiceClient->listPatchJobInstanceDetails();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -717,11 +745,12 @@ class OsConfigServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent for the instances are in the form of
-     *                             `projects/&#42;/patchJobs/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent for the instances are in the form of
+     *           `projects/&#42;/patchJobs/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -745,12 +774,15 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPatchJobInstanceDetails($parent, array $optionalArgs = [])
+    public function listPatchJobInstanceDetails(array $optionalArgs = [])
     {
         $request = new ListPatchJobInstanceDetailsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -775,9 +807,8 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedParent = $osConfigServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $osConfigServiceClient->listPatchJobs($formattedParent);
+     *     $pagedResponse = $osConfigServiceClient->listPatchJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -785,7 +816,7 @@ class OsConfigServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $osConfigServiceClient->listPatchJobs($formattedParent);
+     *     $pagedResponse = $osConfigServiceClient->listPatchJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -794,10 +825,11 @@ class OsConfigServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. In the form of `projects/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. In the form of `projects/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -821,12 +853,15 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPatchJobs($parent, array $optionalArgs = [])
+    public function listPatchJobs(array $optionalArgs = [])
     {
         $request = new ListPatchJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -852,18 +887,18 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedName = $osConfigServiceClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-     *     $response = $osConfigServiceClient->pausePatchDeployment($formattedName);
+     *     $response = $osConfigServiceClient->pausePatchDeployment();
      * } finally {
      *     $osConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the patch deployment in the form
-     *                             `projects/&#42;/patchDeployments/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the patch deployment in the form
+     *           `projects/&#42;/patchDeployments/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -874,12 +909,15 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function pausePatchDeployment($name, array $optionalArgs = [])
+    public function pausePatchDeployment(array $optionalArgs = [])
     {
         $request = new PausePatchDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('PausePatchDeployment', PatchDeployment::class, $optionalArgs, $request)->wait();
@@ -893,18 +931,18 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $formattedName = $osConfigServiceClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-     *     $response = $osConfigServiceClient->resumePatchDeployment($formattedName);
+     *     $response = $osConfigServiceClient->resumePatchDeployment();
      * } finally {
      *     $osConfigServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the patch deployment in the form
-     *                             `projects/&#42;/patchDeployments/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the patch deployment in the form
+     *           `projects/&#42;/patchDeployments/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -915,12 +953,15 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resumePatchDeployment($name, array $optionalArgs = [])
+    public function resumePatchDeployment(array $optionalArgs = [])
     {
         $request = new ResumePatchDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ResumePatchDeployment', PatchDeployment::class, $optionalArgs, $request)->wait();
@@ -933,17 +974,17 @@ class OsConfigServiceGapicClient
      * ```
      * $osConfigServiceClient = new OsConfigServiceClient();
      * try {
-     *     $patchDeployment = new PatchDeployment();
-     *     $response = $osConfigServiceClient->updatePatchDeployment($patchDeployment);
+     *     $response = $osConfigServiceClient->updatePatchDeployment();
      * } finally {
      *     $osConfigServiceClient->close();
      * }
      * ```
      *
-     * @param PatchDeployment $patchDeployment Required. The patch deployment to Update.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type PatchDeployment $patchDeployment
+     *           Required. The patch deployment to Update.
      *     @type FieldMask $updateMask
      *           Optional. Field mask that controls which fields of the patch deployment
      *           should be updated.
@@ -957,12 +998,14 @@ class OsConfigServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updatePatchDeployment($patchDeployment, array $optionalArgs = [])
+    public function updatePatchDeployment(array $optionalArgs = [])
     {
         $request = new UpdatePatchDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setPatchDeployment($patchDeployment);
-        $requestParamHeaders['patch_deployment.name'] = $patchDeployment->getName();
+        if (isset($optionalArgs['patchDeployment'])) {
+            $request->setPatchDeployment($optionalArgs['patchDeployment']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

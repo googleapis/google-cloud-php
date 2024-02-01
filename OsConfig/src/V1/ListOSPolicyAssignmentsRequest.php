@@ -37,8 +37,7 @@ class ListOSPolicyAssignmentsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The parent resource name. Please see
-     *                       {@see OsConfigZonalServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent resource name.
      *
      * @return \Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentsRequest
      *

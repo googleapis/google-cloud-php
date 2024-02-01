@@ -63,8 +63,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name       Required. The resource name of the Assessment, in the format
-     *                           `projects/{project}/assessments/{assessment}`. Please see
-     *                           {@see RecaptchaEnterpriseServiceClient::assessmentName()} for help formatting this field.
+     *                           `projects/{project}/assessments/{assessment}`.
      * @param int    $annotation Optional. The annotation that will be assigned to the Event. This field can
      *                           be left empty to provide reasons that apply to an event without concluding
      *                           whether the event is legitimate or fraudulent.

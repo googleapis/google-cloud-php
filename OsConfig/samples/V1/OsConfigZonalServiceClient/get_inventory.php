@@ -32,24 +32,19 @@ use Google\Cloud\OsConfig\V1\Inventory;
  * Get inventory data for the specified VM instance. If the VM has no
  * associated inventory, the message `NOT_FOUND` is returned.
  *
- * @param string $formattedName API resource name for inventory resource.
- *
- *                              Format:
- *                              `projects/{project}/locations/{location}/instances/{instance}/inventory`
- *
- *                              For `{project}`, either `project-number` or `project-id` can be provided.
- *                              For `{instance}`, either Compute Engine  `instance-id` or `instance-name`
- *                              can be provided. Please see
- *                              {@see OsConfigZonalServiceClient::inventoryName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_inventory_sample(string $formattedName): void
+function get_inventory_sample(): void
 {
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
     // Prepare the request message.
-    $request = (new GetInventoryRequest())
-        ->setName($formattedName);
+    $request = new GetInventoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +54,5 @@ function get_inventory_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = OsConfigZonalServiceClient::inventoryName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-
-    get_inventory_sample($formattedName);
 }
 // [END osconfig_v1_generated_OsConfigZonalService_GetInventory_sync]

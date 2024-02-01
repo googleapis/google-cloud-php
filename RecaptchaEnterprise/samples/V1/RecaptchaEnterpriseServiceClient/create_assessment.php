@@ -31,20 +31,19 @@ use Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest;
 /**
  * Creates an Assessment of the likelihood an event is legitimate.
  *
- * @param string $formattedParent The name of the project in which the assessment will be created,
- *                                in the format `projects/{project}`. Please see
- *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_assessment_sample(string $formattedParent): void
+function create_assessment_sample(): void
 {
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
     // Prepare the request message.
-    $assessment = new Assessment();
-    $request = (new CreateAssessmentRequest())
-        ->setParent($formattedParent)
-        ->setAssessment($assessment);
+    $request = new CreateAssessmentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function create_assessment_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RecaptchaEnterpriseServiceClient::projectName('[PROJECT]');
-
-    create_assessment_sample($formattedParent);
 }
 // [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_CreateAssessment_sync]

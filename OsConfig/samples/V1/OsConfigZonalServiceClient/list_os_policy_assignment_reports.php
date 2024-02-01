@@ -33,37 +33,19 @@ use Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport;
  * List OS policy asssignment reports for all Compute Engine VM instances in
  * the specified zone.
  *
- * @param string $formattedParent The parent resource name.
- *
- *                                Format:
- *                                `projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/reports`
- *
- *                                For `{project}`, either `project-number` or `project-id` can be provided.
- *                                For `{instance}`, either `instance-name`, `instance-id`, or `-` can be
- *                                provided. If '-' is provided, the response will include
- *                                OSPolicyAssignmentReports for all instances in the project/location.
- *                                For `{assignment}`, either `assignment-id` or `-` can be provided. If '-'
- *                                is provided, the response will include OSPolicyAssignmentReports for all
- *                                OSPolicyAssignments in the project/location.
- *                                Either {instance} or {assignment} must be `-`.
- *
- *                                For example:
- *                                `projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/-/reports`
- *                                returns all reports for the instance
- *                                `projects/{project}/locations/{location}/instances/-/osPolicyAssignments/{assignment-id}/reports`
- *                                returns all the reports for the given assignment across all instances.
- *                                `projects/{project}/locations/{location}/instances/-/osPolicyAssignments/-/reports`
- *                                returns all the reports for all assignments across all instances. Please see
- *                                {@see OsConfigZonalServiceClient::instanceOSPolicyAssignmentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_os_policy_assignment_reports_sample(string $formattedParent): void
+function list_os_policy_assignment_reports_sample(): void
 {
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
     // Prepare the request message.
-    $request = (new ListOSPolicyAssignmentReportsRequest())
-        ->setParent($formattedParent);
+    $request = new ListOSPolicyAssignmentReportsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -77,26 +59,5 @@ function list_os_policy_assignment_reports_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = OsConfigZonalServiceClient::instanceOSPolicyAssignmentName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[INSTANCE]',
-        '[ASSIGNMENT]'
-    );
-
-    list_os_policy_assignment_reports_sample($formattedParent);
 }
 // [END osconfig_v1_generated_OsConfigZonalService_ListOSPolicyAssignmentReports_sync]

@@ -25,8 +25,7 @@ class DeleteTopicRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $topic Required. Name of the topic to delete.
-     *                      Format is `projects/{project}/topics/{topic}`. Please see
-     *                      {@see PublisherClient::topicName()} for help formatting this field.
+     *                      Format is `projects/{project}/topics/{topic}`.
      *
      * @return \Google\Cloud\PubSub\V1\DeleteTopicRequest
      *

@@ -66,8 +66,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $foldersClient = new FoldersClient();
  * try {
- *     $folder = new Folder();
- *     $operationResponse = $foldersClient->createFolder($folder);
+ *     $operationResponse = $foldersClient->createFolder();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -78,7 +77,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $foldersClient->createFolder($folder);
+ *     $operationResponse = $foldersClient->createFolder();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $foldersClient->resumeOperation($operationName, 'createFolder');
@@ -358,8 +357,7 @@ class FoldersGapicClient
      * ```
      * $foldersClient = new FoldersClient();
      * try {
-     *     $folder = new Folder();
-     *     $operationResponse = $foldersClient->createFolder($folder);
+     *     $operationResponse = $foldersClient->createFolder();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -370,7 +368,7 @@ class FoldersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $foldersClient->createFolder($folder);
+     *     $operationResponse = $foldersClient->createFolder();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $foldersClient->resumeOperation($operationName, 'createFolder');
@@ -390,11 +388,12 @@ class FoldersGapicClient
      * }
      * ```
      *
-     * @param Folder $folder       Required. The folder being created, only the display name and parent will
-     *                             be consulted. All other fields will be ignored.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Folder $folder
+     *           Required. The folder being created, only the display name and parent will
+     *           be consulted. All other fields will be ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -405,10 +404,13 @@ class FoldersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFolder($folder, array $optionalArgs = [])
+    public function createFolder(array $optionalArgs = [])
     {
         $request = new CreateFolderRequest();
-        $request->setFolder($folder);
+        if (isset($optionalArgs['folder'])) {
+            $request->setFolder($optionalArgs['folder']);
+        }
+
         return $this->startOperationsCall('CreateFolder', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
@@ -429,8 +431,7 @@ class FoldersGapicClient
      * ```
      * $foldersClient = new FoldersClient();
      * try {
-     *     $formattedName = $foldersClient->folderName('[FOLDER]');
-     *     $operationResponse = $foldersClient->deleteFolder($formattedName);
+     *     $operationResponse = $foldersClient->deleteFolder();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -441,7 +442,7 @@ class FoldersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $foldersClient->deleteFolder($formattedName);
+     *     $operationResponse = $foldersClient->deleteFolder();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $foldersClient->resumeOperation($operationName, 'deleteFolder');
@@ -461,11 +462,12 @@ class FoldersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the folder to be deleted.
-     *                             Must be of the form `folders/{folder_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the folder to be deleted.
+     *           Must be of the form `folders/{folder_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -476,12 +478,15 @@ class FoldersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFolder($name, array $optionalArgs = [])
+    public function deleteFolder(array $optionalArgs = [])
     {
         $request = new DeleteFolderRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteFolder', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -498,18 +503,18 @@ class FoldersGapicClient
      * ```
      * $foldersClient = new FoldersClient();
      * try {
-     *     $formattedName = $foldersClient->folderName('[FOLDER]');
-     *     $response = $foldersClient->getFolder($formattedName);
+     *     $response = $foldersClient->getFolder();
      * } finally {
      *     $foldersClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the folder to retrieve.
-     *                             Must be of the form `folders/{folder_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the folder to retrieve.
+     *           Must be of the form `folders/{folder_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -520,12 +525,15 @@ class FoldersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFolder($name, array $optionalArgs = [])
+    public function getFolder(array $optionalArgs = [])
     {
         $request = new GetFolderRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetFolder', Folder::class, $optionalArgs, $request)->wait();
@@ -595,9 +603,8 @@ class FoldersGapicClient
      * ```
      * $foldersClient = new FoldersClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $foldersClient->listFolders($parent);
+     *     $pagedResponse = $foldersClient->listFolders();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -605,7 +612,7 @@ class FoldersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $foldersClient->listFolders($parent);
+     *     $pagedResponse = $foldersClient->listFolders();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -614,18 +621,19 @@ class FoldersGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the parent resource whose folders are being listed.
-     *                             Only children of this parent resource are listed; descendants are not
-     *                             listed.
-     *
-     *                             If the parent is a folder, use the value `folders/{folder_id}`. If the
-     *                             parent is an organization, use the value `organizations/{org_id}`.
-     *
-     *                             Access to this method is controlled by checking the
-     *                             `resourcemanager.folders.list` permission on the `parent`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the parent resource whose folders are being listed.
+     *           Only children of this parent resource are listed; descendants are not
+     *           listed.
+     *
+     *           If the parent is a folder, use the value `folders/{folder_id}`. If the
+     *           parent is an organization, use the value `organizations/{org_id}`.
+     *
+     *           Access to this method is controlled by checking the
+     *           `resourcemanager.folders.list` permission on the `parent`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -649,10 +657,13 @@ class FoldersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFolders($parent, array $optionalArgs = [])
+    public function listFolders(array $optionalArgs = [])
     {
         $request = new ListFoldersRequest();
-        $request->setParent($parent);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -691,9 +702,7 @@ class FoldersGapicClient
      * ```
      * $foldersClient = new FoldersClient();
      * try {
-     *     $formattedName = $foldersClient->folderName('[FOLDER]');
-     *     $destinationParent = 'destination_parent';
-     *     $operationResponse = $foldersClient->moveFolder($formattedName, $destinationParent);
+     *     $operationResponse = $foldersClient->moveFolder();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -704,7 +713,7 @@ class FoldersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $foldersClient->moveFolder($formattedName, $destinationParent);
+     *     $operationResponse = $foldersClient->moveFolder();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $foldersClient->resumeOperation($operationName, 'moveFolder');
@@ -724,14 +733,16 @@ class FoldersGapicClient
      * }
      * ```
      *
-     * @param string $name              Required. The resource name of the Folder to move.
-     *                                  Must be of the form folders/{folder_id}
-     * @param string $destinationParent Required. The resource name of the folder or organization which should be
-     *                                  the folder's new parent. Must be of the form `folders/{folder_id}` or
-     *                                  `organizations/{org_id}`.
-     * @param array  $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Folder to move.
+     *           Must be of the form folders/{folder_id}
+     *     @type string $destinationParent
+     *           Required. The resource name of the folder or organization which should be
+     *           the folder's new parent. Must be of the form `folders/{folder_id}` or
+     *           `organizations/{org_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -742,13 +753,19 @@ class FoldersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function moveFolder($name, $destinationParent, array $optionalArgs = [])
+    public function moveFolder(array $optionalArgs = [])
     {
         $request = new MoveFolderRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setDestinationParent($destinationParent);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['destinationParent'])) {
+            $request->setDestinationParent($optionalArgs['destinationParent']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('MoveFolder', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -983,8 +1000,7 @@ class FoldersGapicClient
      * ```
      * $foldersClient = new FoldersClient();
      * try {
-     *     $formattedName = $foldersClient->folderName('[FOLDER]');
-     *     $operationResponse = $foldersClient->undeleteFolder($formattedName);
+     *     $operationResponse = $foldersClient->undeleteFolder();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -995,7 +1011,7 @@ class FoldersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $foldersClient->undeleteFolder($formattedName);
+     *     $operationResponse = $foldersClient->undeleteFolder();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $foldersClient->resumeOperation($operationName, 'undeleteFolder');
@@ -1015,11 +1031,12 @@ class FoldersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the folder to undelete.
-     *                             Must be of the form `folders/{folder_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the folder to undelete.
+     *           Must be of the form `folders/{folder_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1030,12 +1047,15 @@ class FoldersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeleteFolder($name, array $optionalArgs = [])
+    public function undeleteFolder(array $optionalArgs = [])
     {
         $request = new UndeleteFolderRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UndeleteFolder', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1064,9 +1084,7 @@ class FoldersGapicClient
      * ```
      * $foldersClient = new FoldersClient();
      * try {
-     *     $folder = new Folder();
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $foldersClient->updateFolder($folder, $updateMask);
+     *     $operationResponse = $foldersClient->updateFolder();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1077,7 +1095,7 @@ class FoldersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $foldersClient->updateFolder($folder, $updateMask);
+     *     $operationResponse = $foldersClient->updateFolder();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $foldersClient->resumeOperation($operationName, 'updateFolder');
@@ -1097,13 +1115,15 @@ class FoldersGapicClient
      * }
      * ```
      *
-     * @param Folder    $folder       Required. The new definition of the Folder. It must include the `name`
-     *                                field, which cannot be changed.
-     * @param FieldMask $updateMask   Required. Fields to be updated.
-     *                                Only the `display_name` can be updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Folder $folder
+     *           Required. The new definition of the Folder. It must include the `name`
+     *           field, which cannot be changed.
+     *     @type FieldMask $updateMask
+     *           Required. Fields to be updated.
+     *           Only the `display_name` can be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1114,13 +1134,18 @@ class FoldersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFolder($folder, $updateMask, array $optionalArgs = [])
+    public function updateFolder(array $optionalArgs = [])
     {
         $request = new UpdateFolderRequest();
         $requestParamHeaders = [];
-        $request->setFolder($folder);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['folder.name'] = $folder->getName();
+        if (isset($optionalArgs['folder'])) {
+            $request->setFolder($optionalArgs['folder']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpdateFolder', $optionalArgs, $request, $this->getOperationsClient())->wait();

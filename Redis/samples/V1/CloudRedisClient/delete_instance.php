@@ -33,19 +33,19 @@ use Google\Rpc\Status;
  * Deletes a specific Redis instance.  Instance stops serving and data is
  * deleted.
  *
- * @param string $formattedName Redis instance resource name using the form:
- *                              `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
- *                              where `location_id` refers to a GCP region. Please see
- *                              {@see CloudRedisClient::instanceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_instance_sample(string $formattedName): void
+function delete_instance_sample(): void
 {
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
 
     // Prepare the request message.
-    $request = (new DeleteInstanceRequest())
-        ->setName($formattedName);
+    $request = new DeleteInstanceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,21 +63,5 @@ function delete_instance_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudRedisClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-
-    delete_instance_sample($formattedName);
 }
 // [END redis_v1_generated_CloudRedis_DeleteInstance_sync]

@@ -48,7 +48,6 @@ class CreateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                                        Example:
      *                                                                        `projects/123/locations/global`
-     *                                                                        Please see {@see CloudQuotasClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\CloudQuotas\V1\QuotaPreference $quotaPreference   Required. The resource being created
      * @param string                                       $quotaPreferenceId Optional. Id of the requesting object, must be unique under its parent.
      *                                                                        If client does not set this field, the service will generate one.
@@ -70,7 +69,6 @@ class CreateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                                      Example:
      *                                                                      `projects/123/locations/global`
-     *                                                                      Please see {@see CloudQuotasClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\CloudQuotas\V1\QuotaPreference $quotaPreference Required. The resource being created
      *
      * @return \Google\Cloud\CloudQuotas\V1\CreateQuotaPreferenceRequest

@@ -38,18 +38,19 @@ use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
  * created with the same name, but the new one has no association with the old
  * snapshot or its subscription, unless the same subscription is specified.
  *
- * @param string $formattedSnapshot The name of the snapshot to delete.
- *                                  Format is `projects/{project}/snapshots/{snap}`. Please see
- *                                  {@see SubscriberClient::snapshotName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_snapshot_sample(string $formattedSnapshot): void
+function delete_snapshot_sample(): void
 {
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
     // Prepare the request message.
-    $request = (new DeleteSnapshotRequest())
-        ->setSnapshot($formattedSnapshot);
+    $request = new DeleteSnapshotRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +59,5 @@ function delete_snapshot_sample(string $formattedSnapshot): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSnapshot = SubscriberClient::snapshotName('[PROJECT]', '[SNAPSHOT]');
-
-    delete_snapshot_sample($formattedSnapshot);
 }
 // [END pubsub_v1_generated_Subscriber_DeleteSnapshot_sync]

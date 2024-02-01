@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Google\Cloud\PubSub\V1\ModifyPushConfigRequest;
-use Google\Cloud\PubSub\V1\PushConfig;
 
 /**
  * Modifies the `PushConfig` for a specified subscription.
@@ -36,20 +35,19 @@ use Google\Cloud\PubSub\V1\PushConfig;
  * attributes of a push subscription. Messages will accumulate for delivery
  * continuously through the call regardless of changes to the `PushConfig`.
  *
- * @param string $formattedSubscription The name of the subscription.
- *                                      Format is `projects/{project}/subscriptions/{sub}`. Please see
- *                                      {@see SubscriberClient::subscriptionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function modify_push_config_sample(string $formattedSubscription): void
+function modify_push_config_sample(): void
 {
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
     // Prepare the request message.
-    $pushConfig = new PushConfig();
-    $request = (new ModifyPushConfigRequest())
-        ->setSubscription($formattedSubscription)
-        ->setPushConfig($pushConfig);
+    $request = new ModifyPushConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +56,5 @@ function modify_push_config_sample(string $formattedSubscription): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSubscription = SubscriberClient::subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
-    modify_push_config_sample($formattedSubscription);
 }
 // [END pubsub_v1_generated_Subscriber_ModifyPushConfig_sync]

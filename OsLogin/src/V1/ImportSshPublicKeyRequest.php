@@ -43,8 +43,7 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     private $regions;
 
     /**
-     * @param string                                    $parent       Required. The unique ID for the user in format `users/{user}`. Please see
-     *                                                                {@see OsLoginServiceClient::userName()} for help formatting this field.
+     * @param string                                    $parent       Required. The unique ID for the user in format `users/{user}`.
      * @param \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey Optional. The SSH public key and expiration time.
      *
      * @return \Google\Cloud\OsLogin\V1\ImportSshPublicKeyRequest
@@ -59,8 +58,7 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * @param string                                    $parent       Required. The unique ID for the user in format `users/{user}`. Please see
-     *                                                                {@see OsLoginServiceClient::userName()} for help formatting this field.
+     * @param string                                    $parent       Required. The unique ID for the user in format `users/{user}`.
      * @param \Google\Cloud\OsLogin\Common\SshPublicKey $sshPublicKey Optional. The SSH public key and expiration time.
      * @param string                                    $projectId    The project ID of the Google Cloud Platform project.
      *

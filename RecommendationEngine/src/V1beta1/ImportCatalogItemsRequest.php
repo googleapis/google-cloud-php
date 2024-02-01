@@ -45,7 +45,6 @@ class ImportCatalogItemsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                                        $parent       Required. `projects/1234/locations/global/catalogs/default_catalog`
-     *                                                                                    Please see {@see CatalogServiceClient::catalogName()} for help formatting this field.
      * @param string                                                        $requestId    Optional. Unique identifier provided by client, within the ancestor
      *                                                                                    dataset scope. Ensures idempotency and used for request deduplication.
      *                                                                                    Server-generated if unspecified. Up to 128 characters long. This is

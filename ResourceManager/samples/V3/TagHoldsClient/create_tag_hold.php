@@ -34,24 +34,19 @@ use Google\Rpc\Status;
  * Creates a TagHold. Returns ALREADY_EXISTS if a TagHold with the same
  * resource and origin exists under the same TagValue.
  *
- * @param string $formattedParent The resource name of the TagHold's parent TagValue. Must be of
- *                                the form: `tagValues/{tag-value-id}`. Please see
- *                                {@see TagHoldsClient::tagValueName()} for help formatting this field.
- * @param string $tagHoldHolder   The name of the resource where the TagValue is being used. Must
- *                                be less than 200 characters. E.g.
- *                                `//compute.googleapis.com/compute/projects/myproject/regions/us-east-1/instanceGroupManagers/instance-group`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_tag_hold_sample(string $formattedParent, string $tagHoldHolder): void
+function create_tag_hold_sample(): void
 {
     // Create a client.
     $tagHoldsClient = new TagHoldsClient();
 
     // Prepare the request message.
-    $tagHold = (new TagHold())
-        ->setHolder($tagHoldHolder);
-    $request = (new CreateTagHoldRequest())
-        ->setParent($formattedParent)
-        ->setTagHold($tagHold);
+    $request = new CreateTagHoldRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,22 +66,5 @@ function create_tag_hold_sample(string $formattedParent, string $tagHoldHolder):
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = TagHoldsClient::tagValueName('[TAG_VALUE]');
-    $tagHoldHolder = '[HOLDER]';
-
-    create_tag_hold_sample($formattedParent, $tagHoldHolder);
 }
 // [END cloudresourcemanager_v3_generated_TagHolds_CreateTagHold_sync]

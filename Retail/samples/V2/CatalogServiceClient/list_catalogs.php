@@ -33,22 +33,19 @@ use Google\Cloud\Retail\V2\ListCatalogsRequest;
  * Lists all the [Catalog][google.cloud.retail.v2.Catalog]s associated with
  * the project.
  *
- * @param string $formattedParent The account resource name with an associated location.
- *
- *                                If the caller does not have permission to list
- *                                [Catalog][google.cloud.retail.v2.Catalog]s under this location, regardless
- *                                of whether or not this location exists, a PERMISSION_DENIED error is
- *                                returned. Please see
- *                                {@see CatalogServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_catalogs_sample(string $formattedParent): void
+function list_catalogs_sample(): void
 {
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
-    $request = (new ListCatalogsRequest())
-        ->setParent($formattedParent);
+    $request = new ListCatalogsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,21 +59,5 @@ function list_catalogs_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CatalogServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_catalogs_sample($formattedParent);
 }
 // [END retail_v2_generated_CatalogService_ListCatalogs_sync]

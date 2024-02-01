@@ -48,8 +48,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent    Required. The parent eventStore name, such as
-     *                          `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`. Please see
-     *                          {@see UserEventServiceClient::eventStoreName()} for help formatting this field.
+     *                          `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      * @param string $userEvent Required. URL encoded UserEvent proto.
      * @param string $uri       Optional. The url including cgi-parameters but excluding the hash fragment.
      *                          The URL must be truncated to 1.5K bytes to conservatively be under the 2K

@@ -32,17 +32,19 @@ use Google\Cloud\Recommender\V1\Insight;
  * Gets the requested insight. Requires the recommender.*.get IAM permission
  * for the specified insight type.
  *
- * @param string $formattedName Name of the insight. Please see
- *                              {@see RecommenderClient::insightName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_insight_sample(string $formattedName): void
+function get_insight_sample(): void
 {
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
     // Prepare the request message.
-    $request = (new GetInsightRequest())
-        ->setName($formattedName);
+    $request = new GetInsightRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,26 +54,5 @@ function get_insight_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RecommenderClient::insightName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[INSIGHT_TYPE]',
-        '[INSIGHT]'
-    );
-
-    get_insight_sample($formattedName);
 }
 // [END recommender_v1_generated_Recommender_GetInsight_sync]

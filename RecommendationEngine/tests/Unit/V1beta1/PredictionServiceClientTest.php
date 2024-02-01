@@ -29,8 +29,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictResponse\PredictionResult;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictionServiceClient;
-use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
-use Google\Cloud\RecommendationEngine\V1beta1\UserInfo;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -84,16 +82,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventUserInfo = new UserInfo();
-        $userInfoVisitorId = 'userInfoVisitorId-1297088752';
-        $userEventUserInfo->setVisitorId($userInfoVisitorId);
-        $userEvent->setUserInfo($userEventUserInfo);
-        $response = $gapicClient->predict($formattedName, $userEvent);
+        $response = $gapicClient->predict();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -103,10 +92,6 @@ class PredictionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionService/Predict', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getUserEvent();
-        $this->assertProtobufEquals($userEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -128,17 +113,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventUserInfo = new UserInfo();
-        $userInfoVisitorId = 'userInfoVisitorId-1297088752';
-        $userEventUserInfo->setVisitorId($userInfoVisitorId);
-        $userEvent->setUserInfo($userEventUserInfo);
         try {
-            $gapicClient->predict($formattedName, $userEvent);
+            $gapicClient->predict();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

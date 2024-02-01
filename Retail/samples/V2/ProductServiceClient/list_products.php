@@ -32,24 +32,19 @@ use Google\Cloud\Retail\V2\Product;
 /**
  * Gets a list of [Product][google.cloud.retail.v2.Product]s.
  *
- * @param string $formattedParent The parent branch resource name, such as
- *                                `projects/&#42;/locations/global/catalogs/default_catalog/branches/0`. Use
- *                                `default_branch` as the branch ID, to list products under the default
- *                                branch.
- *
- *                                If the caller does not have permission to list
- *                                [Product][google.cloud.retail.v2.Product]s under this branch, regardless of
- *                                whether or not this branch exists, a PERMISSION_DENIED error is returned. Please see
- *                                {@see ProductServiceClient::branchName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_products_sample(string $formattedParent): void
+function list_products_sample(): void
 {
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
     // Prepare the request message.
-    $request = (new ListProductsRequest())
-        ->setParent($formattedParent);
+    $request = new ListProductsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,26 +58,5 @@ function list_products_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ProductServiceClient::branchName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]',
-        '[BRANCH]'
-    );
-
-    list_products_sample($formattedParent);
 }
 // [END retail_v2_generated_ProductService_ListProducts_sync]

@@ -31,22 +31,19 @@ use Google\Cloud\PubSub\V1\Schema;
 /**
  * Creates a new schema revision that is a copy of the provided revision_id.
  *
- * @param string $formattedName The schema being rolled back with revision id. Please see
- *                              {@see SchemaServiceClient::schemaName()} for help formatting this field.
- * @param string $revisionId    The revision ID to roll back to.
- *                              It must be a revision of the same schema.
- *
- *                              Example: c7cfa2a8
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rollback_schema_sample(string $formattedName, string $revisionId): void
+function rollback_schema_sample(): void
 {
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
     // Prepare the request message.
-    $request = (new RollbackSchemaRequest())
-        ->setName($formattedName)
-        ->setRevisionId($revisionId);
+    $request = new RollbackSchemaRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,22 +53,5 @@ function rollback_schema_sample(string $formattedName, string $revisionId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SchemaServiceClient::schemaName('[PROJECT]', '[SCHEMA]');
-    $revisionId = '[REVISION_ID]';
-
-    rollback_schema_sample($formattedName, $revisionId);
 }
 // [END pubsub_v1_generated_SchemaService_RollbackSchema_sync]

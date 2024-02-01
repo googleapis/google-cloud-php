@@ -49,9 +49,7 @@ function create_project_sample(): void
     $projectsClient = new ProjectsClient();
 
     // Prepare the request message.
-    $project = new Project();
-    $request = (new CreateProjectRequest())
-        ->setProject($project);
+    $request = new CreateProjectRequest();
 
     // Call the API and handle any network failures.
     try {

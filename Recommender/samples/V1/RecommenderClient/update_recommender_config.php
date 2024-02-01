@@ -44,9 +44,7 @@ function update_recommender_config_sample(): void
     $recommenderClient = new RecommenderClient();
 
     // Prepare the request message.
-    $recommenderConfig = new RecommenderConfig();
-    $request = (new UpdateRecommenderConfigRequest())
-        ->setRecommenderConfig($recommenderConfig);
+    $request = new UpdateRecommenderConfigRequest();
 
     // Call the API and handle any network failures.
     try {

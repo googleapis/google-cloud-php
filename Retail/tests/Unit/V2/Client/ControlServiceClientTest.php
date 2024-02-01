@@ -81,18 +81,7 @@ class ControlServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $control = new Control();
-        $controlDisplayName = 'controlDisplayName-1438249776';
-        $control->setDisplayName($controlDisplayName);
-        $controlSolutionTypes = [];
-        $control->setSolutionTypes($controlSolutionTypes);
-        $controlId = 'controlId637416253';
-        $request = (new CreateControlRequest())
-            ->setParent($formattedParent)
-            ->setControl($control)
-            ->setControlId($controlId);
+        $request = new CreateControlRequest();
         $response = $gapicClient->createControl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -100,12 +89,6 @@ class ControlServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ControlService/CreateControl', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getControl();
-        $this->assertProtobufEquals($control, $actualValue);
-        $actualValue = $actualRequestObject->getControlId();
-        $this->assertProtobufEquals($controlId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -127,18 +110,7 @@ class ControlServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $control = new Control();
-        $controlDisplayName = 'controlDisplayName-1438249776';
-        $control->setDisplayName($controlDisplayName);
-        $controlSolutionTypes = [];
-        $control->setSolutionTypes($controlSolutionTypes);
-        $controlId = 'controlId637416253';
-        $request = (new CreateControlRequest())
-            ->setParent($formattedParent)
-            ->setControl($control)
-            ->setControlId($controlId);
+        $request = new CreateControlRequest();
         try {
             $gapicClient->createControl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -163,18 +135,13 @@ class ControlServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->controlName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CONTROL]');
-        $request = (new DeleteControlRequest())
-            ->setName($formattedName);
+        $request = new DeleteControlRequest();
         $gapicClient->deleteControl($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ControlService/DeleteControl', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -196,10 +163,7 @@ class ControlServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->controlName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CONTROL]');
-        $request = (new DeleteControlRequest())
-            ->setName($formattedName);
+        $request = new DeleteControlRequest();
         try {
             $gapicClient->deleteControl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -228,10 +192,7 @@ class ControlServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->controlName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CONTROL]');
-        $request = (new GetControlRequest())
-            ->setName($formattedName);
+        $request = new GetControlRequest();
         $response = $gapicClient->getControl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -239,8 +200,6 @@ class ControlServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ControlService/GetControl', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -262,10 +221,7 @@ class ControlServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->controlName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CONTROL]');
-        $request = (new GetControlRequest())
-            ->setName($formattedName);
+        $request = new GetControlRequest();
         try {
             $gapicClient->getControl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -297,10 +253,7 @@ class ControlServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setControls($controls);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $request = (new ListControlsRequest())
-            ->setParent($formattedParent);
+        $request = new ListControlsRequest();
         $response = $gapicClient->listControls($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -311,8 +264,6 @@ class ControlServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ControlService/ListControls', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -334,10 +285,7 @@ class ControlServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $request = (new ListControlsRequest())
-            ->setParent($formattedParent);
+        $request = new ListControlsRequest();
         try {
             $gapicClient->listControls($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -366,14 +314,7 @@ class ControlServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $control = new Control();
-        $controlDisplayName = 'controlDisplayName-1438249776';
-        $control->setDisplayName($controlDisplayName);
-        $controlSolutionTypes = [];
-        $control->setSolutionTypes($controlSolutionTypes);
-        $request = (new UpdateControlRequest())
-            ->setControl($control);
+        $request = new UpdateControlRequest();
         $response = $gapicClient->updateControl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -381,8 +322,6 @@ class ControlServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ControlService/UpdateControl', $actualFuncCall);
-        $actualValue = $actualRequestObject->getControl();
-        $this->assertProtobufEquals($control, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -404,14 +343,7 @@ class ControlServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $control = new Control();
-        $controlDisplayName = 'controlDisplayName-1438249776';
-        $control->setDisplayName($controlDisplayName);
-        $controlSolutionTypes = [];
-        $control->setSolutionTypes($controlSolutionTypes);
-        $request = (new UpdateControlRequest())
-            ->setControl($control);
+        $request = new UpdateControlRequest();
         try {
             $gapicClient->updateControl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -440,18 +372,7 @@ class ControlServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $control = new Control();
-        $controlDisplayName = 'controlDisplayName-1438249776';
-        $control->setDisplayName($controlDisplayName);
-        $controlSolutionTypes = [];
-        $control->setSolutionTypes($controlSolutionTypes);
-        $controlId = 'controlId637416253';
-        $request = (new CreateControlRequest())
-            ->setParent($formattedParent)
-            ->setControl($control)
-            ->setControlId($controlId);
+        $request = new CreateControlRequest();
         $response = $gapicClient->createControlAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -459,12 +380,6 @@ class ControlServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ControlService/CreateControl', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getControl();
-        $this->assertProtobufEquals($control, $actualValue);
-        $actualValue = $actualRequestObject->getControlId();
-        $this->assertProtobufEquals($controlId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

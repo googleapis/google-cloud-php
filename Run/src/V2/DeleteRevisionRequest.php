@@ -44,7 +44,6 @@ class DeleteRevisionRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the Revision to delete.
      *                     Format:
      *                     projects/{project}/locations/{location}/services/{service}/revisions/{revision}
-     *                     Please see {@see RevisionsClient::revisionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Run\V2\DeleteRevisionRequest
      *

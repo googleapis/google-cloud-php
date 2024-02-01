@@ -36,18 +36,19 @@ use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
  * your user must have the reCAPTCHA Enterprise Admin IAM role in the
  * destination project.
  *
- * @param string $formattedName The name of the key to be migrated, in the format
- *                              `projects/{project}/keys/{key}`. Please see
- *                              {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function migrate_key_sample(string $formattedName): void
+function migrate_key_sample(): void
 {
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
     // Prepare the request message.
-    $request = (new MigrateKeyRequest())
-        ->setName($formattedName);
+    $request = new MigrateKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function migrate_key_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = RecaptchaEnterpriseServiceClient::keyName('[PROJECT]', '[KEY]');
-
-    migrate_key_sample($formattedName);
 }
 // [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_MigrateKey_sync]

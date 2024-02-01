@@ -33,21 +33,17 @@ use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
  * Annotates a previously created Assessment to provide additional information
  * on whether the event turned out to be authentic or fraudulent.
  *
- * @param string $formattedName The resource name of the Assessment, in the format
- *                              `projects/{project}/assessments/{assessment}`. Please see
- *                              {@see RecaptchaEnterpriseServiceClient::assessmentName()} for help formatting this field.
- * @param int    $annotation    Optional. The annotation that will be assigned to the Event. This field can
- *                              be left empty to provide reasons that apply to an event without concluding
- *                              whether the event is legitimate or fraudulent.
+ * @param int $annotation Optional. The annotation that will be assigned to the Event. This field can
+ *                        be left empty to provide reasons that apply to an event without concluding
+ *                        whether the event is legitimate or fraudulent.
  */
-function annotate_assessment_sample(string $formattedName, int $annotation): void
+function annotate_assessment_sample(int $annotation): void
 {
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
     // Prepare the request message.
     $request = (new AnnotateAssessmentRequest())
-        ->setName($formattedName)
         ->setAnnotation($annotation);
 
     // Call the API and handle any network failures.
@@ -71,9 +67,8 @@ function annotate_assessment_sample(string $formattedName, int $annotation): voi
  */
 function callSample(): void
 {
-    $formattedName = RecaptchaEnterpriseServiceClient::assessmentName('[PROJECT]', '[ASSESSMENT]');
     $annotation = Annotation::ANNOTATION_UNSPECIFIED;
 
-    annotate_assessment_sample($formattedName, $annotation);
+    annotate_assessment_sample($annotation);
 }
 // [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_AnnotateAssessment_sync]

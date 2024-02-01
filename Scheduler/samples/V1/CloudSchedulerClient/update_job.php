@@ -53,10 +53,8 @@ function update_job_sample(): void
     $cloudSchedulerClient = new CloudSchedulerClient();
 
     // Prepare the request message.
-    $job = new Job();
     $updateMask = new FieldMask();
     $request = (new UpdateJobRequest())
-        ->setJob($job)
         ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.

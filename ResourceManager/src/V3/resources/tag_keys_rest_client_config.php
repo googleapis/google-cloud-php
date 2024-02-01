@@ -34,9 +34,6 @@ return [
             'GetNamespacedTagKey' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/tagKeys/namespaced',
-                'queryParams' => [
-                    'name',
-                ],
             ],
             'GetTagKey' => [
                 'method' => 'get',
@@ -52,9 +49,6 @@ return [
             'ListTagKeys' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/tagKeys',
-                'queryParams' => [
-                    'parent',
-                ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',

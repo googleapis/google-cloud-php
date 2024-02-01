@@ -32,18 +32,19 @@ use Google\Cloud\ResourceManager\V3\TagKey;
 /**
  * Lists all TagKeys for a parent resource.
  *
- * @param string $parent The resource name of the TagKey's parent.
- *                       Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
- *                       `projects/{project_number}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_tag_keys_sample(string $parent): void
+function list_tag_keys_sample(): void
 {
     // Create a client.
     $tagKeysClient = new TagKeysClient();
 
     // Prepare the request message.
-    $request = (new ListTagKeysRequest())
-        ->setParent($parent);
+    $request = new ListTagKeysRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_tag_keys_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_tag_keys_sample($parent);
 }
 // [END cloudresourcemanager_v3_generated_TagKeys_ListTagKeys_sync]

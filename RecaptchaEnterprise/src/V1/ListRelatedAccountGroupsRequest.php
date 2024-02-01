@@ -43,8 +43,7 @@ class ListRelatedAccountGroupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the project to list related account groups from, in
-     *                       the format `projects/{project}`. Please see
-     *                       {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     *                       the format `projects/{project}`.
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest
      *

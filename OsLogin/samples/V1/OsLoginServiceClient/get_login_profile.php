@@ -32,17 +32,19 @@ use Google\Cloud\OsLogin\V1\LoginProfile;
  * Retrieves the profile information used for logging in to a virtual machine
  * on Google Compute Engine.
  *
- * @param string $formattedName The unique ID for the user in format `users/{user}`. Please see
- *                              {@see OsLoginServiceClient::userName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_login_profile_sample(string $formattedName): void
+function get_login_profile_sample(): void
 {
     // Create a client.
     $osLoginServiceClient = new OsLoginServiceClient();
 
     // Prepare the request message.
-    $request = (new GetLoginProfileRequest())
-        ->setName($formattedName);
+    $request = new GetLoginProfileRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +54,5 @@ function get_login_profile_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = OsLoginServiceClient::userName('[USER]');
-
-    get_login_profile_sample($formattedName);
 }
 // [END oslogin_v1_generated_OsLoginService_GetLoginProfile_sync]

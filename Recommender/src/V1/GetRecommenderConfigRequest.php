@@ -39,7 +39,6 @@ class GetRecommenderConfigRequest extends \Google\Protobuf\Internal\Message
      *                     * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      *
      *                     * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
-     *                     Please see {@see RecommenderClient::recommenderConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\Recommender\V1\GetRecommenderConfigRequest
      *

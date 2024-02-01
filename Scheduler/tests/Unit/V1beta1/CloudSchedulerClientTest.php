@@ -84,20 +84,13 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setLegacyAppEngineCron($legacyAppEngineCron);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $job = new Job();
-        $response = $gapicClient->createJob($formattedParent, $job);
+        $response = $gapicClient->createJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1beta1.CloudScheduler/CreateJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getJob();
-        $this->assertProtobufEquals($job, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -119,11 +112,8 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $job = new Job();
         try {
-            $gapicClient->createJob($formattedParent, $job);
+            $gapicClient->createJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -146,16 +136,12 @@ class CloudSchedulerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $gapicClient->deleteJob($formattedName);
+        $gapicClient->deleteJob();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1beta1.CloudScheduler/DeleteJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -177,10 +163,8 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $gapicClient->deleteJob($formattedName);
+            $gapicClient->deleteJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -213,17 +197,13 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setLegacyAppEngineCron($legacyAppEngineCron);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $response = $gapicClient->getJob($formattedName);
+        $response = $gapicClient->getJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1beta1.CloudScheduler/GetJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -245,10 +225,8 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $gapicClient->getJob($formattedName);
+            $gapicClient->getJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -278,9 +256,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listJobs($formattedParent);
+        $response = $gapicClient->listJobs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -290,8 +266,6 @@ class CloudSchedulerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1beta1.CloudScheduler/ListJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -313,10 +287,8 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listJobs($formattedParent);
+            $gapicClient->listJobs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -349,17 +321,13 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setLegacyAppEngineCron($legacyAppEngineCron);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $response = $gapicClient->pauseJob($formattedName);
+        $response = $gapicClient->pauseJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1beta1.CloudScheduler/PauseJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -381,10 +349,8 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $gapicClient->pauseJob($formattedName);
+            $gapicClient->pauseJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -417,17 +383,13 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setLegacyAppEngineCron($legacyAppEngineCron);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $response = $gapicClient->resumeJob($formattedName);
+        $response = $gapicClient->resumeJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1beta1.CloudScheduler/ResumeJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -449,10 +411,8 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $gapicClient->resumeJob($formattedName);
+            $gapicClient->resumeJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -485,17 +445,13 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setLegacyAppEngineCron($legacyAppEngineCron2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $response = $gapicClient->runJob($formattedName);
+        $response = $gapicClient->runJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1beta1.CloudScheduler/RunJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -517,10 +473,8 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $gapicClient->runJob($formattedName);
+            $gapicClient->runJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -553,17 +507,13 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $expectedResponse->setLegacyAppEngineCron($legacyAppEngineCron);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $job = new Job();
-        $response = $gapicClient->updateJob($job);
+        $response = $gapicClient->updateJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1beta1.CloudScheduler/UpdateJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getJob();
-        $this->assertProtobufEquals($job, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -585,10 +535,8 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $job = new Job();
         try {
-            $gapicClient->updateJob($job);
+            $gapicClient->updateJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

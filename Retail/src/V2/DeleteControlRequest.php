@@ -26,7 +26,6 @@ class DeleteControlRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the Control to delete. Format:
      *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/controls/{control_id}`
-     *                     Please see {@see ControlServiceClient::controlName()} for help formatting this field.
      *
      * @return \Google\Cloud\Retail\V2\DeleteControlRequest
      *

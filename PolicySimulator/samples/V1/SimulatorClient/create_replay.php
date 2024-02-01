@@ -28,31 +28,25 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\PolicySimulator\V1\Client\SimulatorClient;
 use Google\Cloud\PolicySimulator\V1\CreateReplayRequest;
 use Google\Cloud\PolicySimulator\V1\Replay;
-use Google\Cloud\PolicySimulator\V1\ReplayConfig;
 use Google\Rpc\Status;
 
 /**
  * Creates and starts a [Replay][google.cloud.policysimulator.v1.Replay] using
  * the given [ReplayConfig][google.cloud.policysimulator.v1.ReplayConfig].
  *
- * @param string $parent The parent resource where this
- *                       [Replay][google.cloud.policysimulator.v1.Replay] will be created. This
- *                       resource must be a project, folder, or organization with a location.
- *
- *                       Example: `projects/my-example-project/locations/global`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_replay_sample(string $parent): void
+function create_replay_sample(): void
 {
     // Create a client.
     $simulatorClient = new SimulatorClient();
 
     // Prepare the request message.
-    $replayConfig = new ReplayConfig();
-    $replay = (new Replay())
-        ->setConfig($replayConfig);
-    $request = (new CreateReplayRequest())
-        ->setParent($parent)
-        ->setReplay($replay);
+    $request = new CreateReplayRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,21 +66,5 @@ function create_replay_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    create_replay_sample($parent);
 }
 // [END policysimulator_v1_generated_Simulator_CreateReplay_sync]

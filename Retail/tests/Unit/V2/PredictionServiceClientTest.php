@@ -28,7 +28,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Retail\V2\PredictResponse;
 use Google\Cloud\Retail\V2\PredictionServiceClient;
-use Google\Cloud\Retail\V2\UserEvent;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -75,24 +74,13 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setAttributionToken($attributionToken);
         $expectedResponse->setValidateOnly($validateOnly2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $placement = 'placement1792938725';
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventVisitorId = 'userEventVisitorId-2104193702';
-        $userEvent->setVisitorId($userEventVisitorId);
-        $response = $gapicClient->predict($placement, $userEvent);
+        $response = $gapicClient->predict();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.PredictionService/Predict', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPlacement();
-        $this->assertProtobufEquals($placement, $actualValue);
-        $actualValue = $actualRequestObject->getUserEvent();
-        $this->assertProtobufEquals($userEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -114,15 +102,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $placement = 'placement1792938725';
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventVisitorId = 'userEventVisitorId-2104193702';
-        $userEvent->setVisitorId($userEventVisitorId);
         try {
-            $gapicClient->predict($placement, $userEvent);
+            $gapicClient->predict();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -28,9 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Retail\V2\Client\UserEventServiceClient;
 use Google\Cloud\Retail\V2\ImportUserEventsRequest;
 use Google\Cloud\Retail\V2\ImportUserEventsResponse;
-use Google\Cloud\Retail\V2\UserEvent;
-use Google\Cloud\Retail\V2\UserEventInlineSource;
-use Google\Cloud\Retail\V2\UserEventInputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -42,58 +39,19 @@ use Google\Rpc\Status;
  * possible for a subset of the items to be successfully inserted.
  * `Operation.metadata` is of type `ImportMetadata`.
  *
- * @param string $formattedParent                                     `projects/1234/locations/global/catalogs/default_catalog`
- *                                                                    Please see {@see UserEventServiceClient::catalogName()} for help formatting this field.
- * @param string $inputConfigUserEventInlineSourceUserEventsEventType User event type. Allowed values are:
- *
- *                                                                    * `add-to-cart`: Products being added to cart.
- *                                                                    * `category-page-view`: Special pages such as sale or promotion pages
- *                                                                    viewed.
- *                                                                    * `detail-page-view`: Products detail page viewed.
- *                                                                    * `home-page-view`: Homepage viewed.
- *                                                                    * `promotion-offered`: Promotion is offered to a user.
- *                                                                    * `promotion-not-offered`: Promotion is not offered to a user.
- *                                                                    * `purchase-complete`: User finishing a purchase.
- *                                                                    * `search`: Product search.
- *                                                                    * `shopping-cart-page-view`: User viewing a shopping cart.
- * @param string $inputConfigUserEventInlineSourceUserEventsVisitorId A unique identifier for tracking visitors.
- *
- *                                                                    For example, this could be implemented with an HTTP cookie, which should be
- *                                                                    able to uniquely identify a visitor on a single device. This unique
- *                                                                    identifier should not change if the visitor log in/out of the website.
- *
- *                                                                    Don't set the field to the same fixed ID for different users. This mixes
- *                                                                    the event history of those users together, which results in degraded model
- *                                                                    quality.
- *
- *                                                                    The field must be a UTF-8 encoded string with a length limit of 128
- *                                                                    characters. Otherwise, an INVALID_ARGUMENT error is returned.
- *
- *                                                                    The field should not contain PII or user-data. We recommend to use Google
- *                                                                    Analytics [Client
- *                                                                    ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
- *                                                                    for this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_user_events_sample(
-    string $formattedParent,
-    string $inputConfigUserEventInlineSourceUserEventsEventType,
-    string $inputConfigUserEventInlineSourceUserEventsVisitorId
-): void {
+function import_user_events_sample(): void
+{
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
     // Prepare the request message.
-    $userEvent = (new UserEvent())
-        ->setEventType($inputConfigUserEventInlineSourceUserEventsEventType)
-        ->setVisitorId($inputConfigUserEventInlineSourceUserEventsVisitorId);
-    $inputConfigUserEventInlineSourceUserEvents = [$userEvent,];
-    $inputConfigUserEventInlineSource = (new UserEventInlineSource())
-        ->setUserEvents($inputConfigUserEventInlineSourceUserEvents);
-    $inputConfig = (new UserEventInputConfig())
-        ->setUserEventInlineSource($inputConfigUserEventInlineSource);
-    $request = (new ImportUserEventsRequest())
-        ->setParent($formattedParent)
-        ->setInputConfig($inputConfig);
+    $request = new ImportUserEventsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -113,27 +71,5 @@ function import_user_events_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = UserEventServiceClient::catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-    $inputConfigUserEventInlineSourceUserEventsEventType = '[EVENT_TYPE]';
-    $inputConfigUserEventInlineSourceUserEventsVisitorId = '[VISITOR_ID]';
-
-    import_user_events_sample(
-        $formattedParent,
-        $inputConfigUserEventInlineSourceUserEventsEventType,
-        $inputConfigUserEventInlineSourceUserEventsVisitorId
-    );
 }
 // [END retail_v2_generated_UserEventService_ImportUserEvents_sync]

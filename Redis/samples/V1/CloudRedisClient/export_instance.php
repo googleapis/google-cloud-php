@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Redis\V1\Client\CloudRedisClient;
 use Google\Cloud\Redis\V1\ExportInstanceRequest;
 use Google\Cloud\Redis\V1\Instance;
-use Google\Cloud\Redis\V1\OutputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -39,20 +38,19 @@ use Google\Rpc\Status;
  * The returned operation is automatically deleted after a few hours, so
  * there is no need to call DeleteOperation.
  *
- * @param string $name Redis instance resource name using the form:
- *                     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
- *                     where `location_id` refers to a GCP region.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function export_instance_sample(string $name): void
+function export_instance_sample(): void
 {
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
 
     // Prepare the request message.
-    $outputConfig = new OutputConfig();
-    $request = (new ExportInstanceRequest())
-        ->setName($name)
-        ->setOutputConfig($outputConfig);
+    $request = new ExportInstanceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,21 +70,5 @@ function export_instance_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    export_instance_sample($name);
 }
 // [END redis_v1_generated_CloudRedis_ExportInstance_sync]

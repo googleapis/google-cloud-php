@@ -105,16 +105,7 @@ class ModelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $model = new Model();
-        $modelName = 'modelName-2010829484';
-        $model->setName($modelName);
-        $modelDisplayName = 'modelDisplayName1578770308';
-        $model->setDisplayName($modelDisplayName);
-        $modelType = 'modelType-2010627581';
-        $model->setType($modelType);
-        $response = $gapicClient->createModel($formattedParent, $model);
+        $response = $gapicClient->createModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -124,10 +115,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ModelService/CreateModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getModel();
-        $this->assertProtobufEquals($model, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createModelTest');
         $response->pollUntilComplete([
@@ -178,16 +165,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $model = new Model();
-        $modelName = 'modelName-2010829484';
-        $model->setName($modelName);
-        $modelDisplayName = 'modelDisplayName1578770308';
-        $model->setDisplayName($modelDisplayName);
-        $modelType = 'modelType-2010627581';
-        $model->setType($modelType);
-        $response = $gapicClient->createModel($formattedParent, $model);
+        $response = $gapicClient->createModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -220,16 +198,12 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
-        $gapicClient->deleteModel($formattedName);
+        $gapicClient->deleteModel();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ModelService/DeleteModel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -251,10 +225,8 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
         try {
-            $gapicClient->deleteModel($formattedName);
+            $gapicClient->deleteModel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -287,17 +259,13 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setOptimizationObjective($optimizationObjective);
         $expectedResponse->setTuningOperation($tuningOperation);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
-        $response = $gapicClient->getModel($formattedName);
+        $response = $gapicClient->getModel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ModelService/GetModel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -319,10 +287,8 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
         try {
-            $gapicClient->getModel($formattedName);
+            $gapicClient->getModel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -352,9 +318,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModels($models);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $response = $gapicClient->listModels($formattedParent);
+        $response = $gapicClient->listModels();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -364,8 +328,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ModelService/ListModels', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -387,10 +349,8 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         try {
-            $gapicClient->listModels($formattedParent);
+            $gapicClient->listModels();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -423,17 +383,13 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setOptimizationObjective($optimizationObjective);
         $expectedResponse->setTuningOperation($tuningOperation);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
-        $response = $gapicClient->pauseModel($formattedName);
+        $response = $gapicClient->pauseModel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ModelService/PauseModel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -455,10 +411,8 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
         try {
-            $gapicClient->pauseModel($formattedName);
+            $gapicClient->pauseModel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -491,17 +445,13 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setOptimizationObjective($optimizationObjective);
         $expectedResponse->setTuningOperation($tuningOperation);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->resumeModel($name);
+        $response = $gapicClient->resumeModel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ModelService/ResumeModel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -523,10 +473,8 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->resumeModel($name);
+            $gapicClient->resumeModel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -567,9 +515,7 @@ class ModelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
-        $response = $gapicClient->tuneModel($formattedName);
+        $response = $gapicClient->tuneModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -579,8 +525,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ModelService/TuneModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/tuneModelTest');
         $response->pollUntilComplete([
@@ -631,9 +575,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
-        $response = $gapicClient->tuneModel($formattedName);
+        $response = $gapicClient->tuneModel();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -676,23 +618,13 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setOptimizationObjective($optimizationObjective);
         $expectedResponse->setTuningOperation($tuningOperation);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $model = new Model();
-        $modelName = 'modelName-2010829484';
-        $model->setName($modelName);
-        $modelDisplayName = 'modelDisplayName1578770308';
-        $model->setDisplayName($modelDisplayName);
-        $modelType = 'modelType-2010627581';
-        $model->setType($modelType);
-        $response = $gapicClient->updateModel($model);
+        $response = $gapicClient->updateModel();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ModelService/UpdateModel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getModel();
-        $this->assertProtobufEquals($model, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -714,16 +646,8 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $model = new Model();
-        $modelName = 'modelName-2010829484';
-        $model->setName($modelName);
-        $modelDisplayName = 'modelDisplayName1578770308';
-        $model->setDisplayName($modelDisplayName);
-        $modelType = 'modelType-2010627581';
-        $model->setType($modelType);
         try {
-            $gapicClient->updateModel($model);
+            $gapicClient->updateModel();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -27,31 +27,24 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\PubSub\V1\Topic;
 use Google\Cloud\PubSub\V1\UpdateTopicRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates an existing topic by updating the fields specified in the update
  * mask. Note that certain properties of a topic are not modifiable.
  *
- * @param string $topicName The name of the topic. It must have the format
- *                          `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
- *                          and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
- *                          underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
- *                          signs (`%`). It must be between 3 and 255 characters in length, and it
- *                          must not start with `"goog"`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_topic_sample(string $topicName): void
+function update_topic_sample(): void
 {
     // Create a client.
     $publisherClient = new PublisherClient();
 
     // Prepare the request message.
-    $topic = (new Topic())
-        ->setName($topicName);
-    $updateMask = new FieldMask();
-    $request = (new UpdateTopicRequest())
-        ->setTopic($topic)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateTopicRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +54,5 @@ function update_topic_sample(string $topicName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $topicName = '[NAME]';
-
-    update_topic_sample($topicName);
 }
 // [END pubsub_v1_generated_Publisher_UpdateTopic_sync]

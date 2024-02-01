@@ -26,16 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\OsConfig\V1\Client\OsConfigZonalServiceClient;
-use Google\Cloud\OsConfig\V1\FixedOrPercent;
-use Google\Cloud\OsConfig\V1\OSPolicy;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignment;
-use Google\Cloud\OsConfig\V1\OSPolicyAssignment\InstanceFilter;
-use Google\Cloud\OsConfig\V1\OSPolicyAssignment\Rollout;
-use Google\Cloud\OsConfig\V1\OSPolicy\Mode;
-use Google\Cloud\OsConfig\V1\OSPolicy\Resource;
-use Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup;
 use Google\Cloud\OsConfig\V1\UpdateOSPolicyAssignmentRequest;
-use Google\Protobuf\Duration;
 use Google\Rpc\Status;
 
 /**
@@ -49,54 +41,19 @@ use Google\Rpc\Status;
  * For more information, see [Method:
  * projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
  *
- * @param string $osPolicyAssignmentOsPoliciesId                        The id of the OS policy with the following restrictions:
- *
- *                                                                      * Must contain only lowercase letters, numbers, and hyphens.
- *                                                                      * Must start with a letter.
- *                                                                      * Must be between 1-63 characters.
- *                                                                      * Must end with a number or a letter.
- *                                                                      * Must be unique within the assignment.
- * @param int    $osPolicyAssignmentOsPoliciesMode                      Policy mode
- * @param string $osPolicyAssignmentOsPoliciesResourceGroupsResourcesId The id of the resource with the following restrictions:
- *
- *                                                                      * Must contain only lowercase letters, numbers, and hyphens.
- *                                                                      * Must start with a letter.
- *                                                                      * Must be between 1-63 characters.
- *                                                                      * Must end with a number or a letter.
- *                                                                      * Must be unique within the OS policy.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_os_policy_assignment_sample(
-    string $osPolicyAssignmentOsPoliciesId,
-    int $osPolicyAssignmentOsPoliciesMode,
-    string $osPolicyAssignmentOsPoliciesResourceGroupsResourcesId
-): void {
+function update_os_policy_assignment_sample(): void
+{
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
     // Prepare the request message.
-    $resource = (new Resource())
-        ->setId($osPolicyAssignmentOsPoliciesResourceGroupsResourcesId);
-    $osPolicyAssignmentOsPoliciesResourceGroupsResources = [$resource,];
-    $resourceGroup = (new ResourceGroup())
-        ->setResources($osPolicyAssignmentOsPoliciesResourceGroupsResources);
-    $osPolicyAssignmentOsPoliciesResourceGroups = [$resourceGroup,];
-    $oSPolicy = (new OSPolicy())
-        ->setId($osPolicyAssignmentOsPoliciesId)
-        ->setMode($osPolicyAssignmentOsPoliciesMode)
-        ->setResourceGroups($osPolicyAssignmentOsPoliciesResourceGroups);
-    $osPolicyAssignmentOsPolicies = [$oSPolicy,];
-    $osPolicyAssignmentInstanceFilter = new InstanceFilter();
-    $osPolicyAssignmentRolloutDisruptionBudget = new FixedOrPercent();
-    $osPolicyAssignmentRolloutMinWaitDuration = new Duration();
-    $osPolicyAssignmentRollout = (new Rollout())
-        ->setDisruptionBudget($osPolicyAssignmentRolloutDisruptionBudget)
-        ->setMinWaitDuration($osPolicyAssignmentRolloutMinWaitDuration);
-    $osPolicyAssignment = (new OSPolicyAssignment())
-        ->setOsPolicies($osPolicyAssignmentOsPolicies)
-        ->setInstanceFilter($osPolicyAssignmentInstanceFilter)
-        ->setRollout($osPolicyAssignmentRollout);
-    $request = (new UpdateOSPolicyAssignmentRequest())
-        ->setOsPolicyAssignment($osPolicyAssignment);
+    $request = new UpdateOSPolicyAssignmentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -116,27 +73,5 @@ function update_os_policy_assignment_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $osPolicyAssignmentOsPoliciesId = '[ID]';
-    $osPolicyAssignmentOsPoliciesMode = Mode::MODE_UNSPECIFIED;
-    $osPolicyAssignmentOsPoliciesResourceGroupsResourcesId = '[ID]';
-
-    update_os_policy_assignment_sample(
-        $osPolicyAssignmentOsPoliciesId,
-        $osPolicyAssignmentOsPoliciesMode,
-        $osPolicyAssignmentOsPoliciesResourceGroupsResourcesId
-    );
 }
 // [END osconfig_v1_generated_OsConfigZonalService_UpdateOSPolicyAssignment_sync]

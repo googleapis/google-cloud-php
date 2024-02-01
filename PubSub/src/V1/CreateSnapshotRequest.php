@@ -54,8 +54,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *                             the same project as the subscription. Note that for REST API requests, you
      *                             must specify a name.  See the [resource name
      *                             rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
-     *                             Format is `projects/{project}/snapshots/{snap}`. Please see
-     *                             {@see SubscriberClient::snapshotName()} for help formatting this field.
+     *                             Format is `projects/{project}/snapshots/{snap}`.
      * @param string $subscription Required. The subscription whose backlog the snapshot retains.
      *                             Specifically, the created snapshot is guaranteed to retain:
      *                             (a) The existing backlog on the subscription. More precisely, this is
@@ -64,8 +63,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *                             `CreateSnapshot` request; as well as:
      *                             (b) Any messages published to the subscription's topic following the
      *                             successful completion of the CreateSnapshot request.
-     *                             Format is `projects/{project}/subscriptions/{sub}`. Please see
-     *                             {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     *                             Format is `projects/{project}/subscriptions/{sub}`.
      *
      * @return \Google\Cloud\PubSub\V1\CreateSnapshotRequest
      *

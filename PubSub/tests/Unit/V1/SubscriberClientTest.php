@@ -32,14 +32,12 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\PubSub\V1\ListSnapshotsResponse;
 use Google\Cloud\PubSub\V1\ListSubscriptionsResponse;
 use Google\Cloud\PubSub\V1\PullResponse;
-use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\SeekResponse;
 use Google\Cloud\PubSub\V1\Snapshot;
 use Google\Cloud\PubSub\V1\StreamingPullRequest;
 use Google\Cloud\PubSub\V1\StreamingPullResponse;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -83,19 +81,12 @@ class SubscriberClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $ackIds = [];
-        $gapicClient->acknowledge($formattedSubscription, $ackIds);
+        $gapicClient->acknowledge();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/Acknowledge', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
-        $actualValue = $actualRequestObject->getAckIds();
-        $this->assertProtobufEquals($ackIds, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -117,11 +108,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $ackIds = [];
         try {
-            $gapicClient->acknowledge($formattedSubscription, $ackIds);
+            $gapicClient->acknowledge();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -148,20 +136,13 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $response = $gapicClient->createSnapshot($formattedName, $formattedSubscription);
+        $response = $gapicClient->createSnapshot();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/CreateSnapshot', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -183,11 +164,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $gapicClient->createSnapshot($formattedName, $formattedSubscription);
+            $gapicClient->createSnapshot();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -226,20 +204,13 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setDetached($detached2);
         $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $response = $gapicClient->createSubscription($name, $formattedTopic);
+        $response = $gapicClient->createSubscription();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/CreateSubscription', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -261,11 +232,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $gapicClient->createSubscription($name, $formattedTopic);
+            $gapicClient->createSubscription();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -288,16 +256,12 @@ class SubscriberClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
-        $gapicClient->deleteSnapshot($formattedSnapshot);
+        $gapicClient->deleteSnapshot();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/DeleteSnapshot', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSnapshot();
-        $this->assertProtobufEquals($formattedSnapshot, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -319,10 +283,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
         try {
-            $gapicClient->deleteSnapshot($formattedSnapshot);
+            $gapicClient->deleteSnapshot();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -345,16 +307,12 @@ class SubscriberClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $gapicClient->deleteSubscription($formattedSubscription);
+        $gapicClient->deleteSubscription();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/DeleteSubscription', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -376,10 +334,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $gapicClient->deleteSubscription($formattedSubscription);
+            $gapicClient->deleteSubscription();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -406,17 +362,13 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
-        $response = $gapicClient->getSnapshot($formattedSnapshot);
+        $response = $gapicClient->getSnapshot();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/GetSnapshot', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSnapshot();
-        $this->assertProtobufEquals($formattedSnapshot, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -438,10 +390,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
         try {
-            $gapicClient->getSnapshot($formattedSnapshot);
+            $gapicClient->getSnapshot();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -480,17 +430,13 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setDetached($detached);
         $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $response = $gapicClient->getSubscription($formattedSubscription);
+        $response = $gapicClient->getSubscription();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/GetSubscription', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -512,10 +458,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $gapicClient->getSubscription($formattedSubscription);
+            $gapicClient->getSubscription();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -545,9 +489,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnapshots($snapshots);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProject = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listSnapshots($formattedProject);
+        $response = $gapicClient->listSnapshots();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -557,8 +499,6 @@ class SubscriberClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/ListSnapshots', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($formattedProject, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -580,10 +520,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProject = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listSnapshots($formattedProject);
+            $gapicClient->listSnapshots();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -613,9 +551,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubscriptions($subscriptions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProject = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listSubscriptions($formattedProject);
+        $response = $gapicClient->listSubscriptions();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -625,8 +561,6 @@ class SubscriberClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/ListSubscriptions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($formattedProject, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -648,10 +582,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProject = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listSubscriptions($formattedProject);
+            $gapicClient->listSubscriptions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -674,22 +606,12 @@ class SubscriberClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $ackIds = [];
-        $ackDeadlineSeconds = 2135351438;
-        $gapicClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
+        $gapicClient->modifyAckDeadline();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/ModifyAckDeadline', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
-        $actualValue = $actualRequestObject->getAckIds();
-        $this->assertProtobufEquals($ackIds, $actualValue);
-        $actualValue = $actualRequestObject->getAckDeadlineSeconds();
-        $this->assertProtobufEquals($ackDeadlineSeconds, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -711,12 +633,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $ackIds = [];
-        $ackDeadlineSeconds = 2135351438;
         try {
-            $gapicClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
+            $gapicClient->modifyAckDeadline();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -739,19 +657,12 @@ class SubscriberClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $pushConfig = new PushConfig();
-        $gapicClient->modifyPushConfig($formattedSubscription, $pushConfig);
+        $gapicClient->modifyPushConfig();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/ModifyPushConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
-        $actualValue = $actualRequestObject->getPushConfig();
-        $this->assertProtobufEquals($pushConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -773,11 +684,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $pushConfig = new PushConfig();
         try {
-            $gapicClient->modifyPushConfig($formattedSubscription, $pushConfig);
+            $gapicClient->modifyPushConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -800,20 +708,13 @@ class SubscriberClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new PullResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $maxMessages = 496131527;
-        $response = $gapicClient->pull($formattedSubscription, $maxMessages);
+        $response = $gapicClient->pull();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/Pull', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
-        $actualValue = $actualRequestObject->getMaxMessages();
-        $this->assertProtobufEquals($maxMessages, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -835,11 +736,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $maxMessages = 496131527;
         try {
-            $gapicClient->pull($formattedSubscription, $maxMessages);
+            $gapicClient->pull();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -862,17 +760,13 @@ class SubscriberClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SeekResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $response = $gapicClient->seek($formattedSubscription);
+        $response = $gapicClient->seek();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/Seek', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -894,10 +788,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $gapicClient->seek($formattedSubscription);
+            $gapicClient->seek();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -925,21 +817,9 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse3 = new StreamingPullResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $streamAckDeadlineSeconds = 1875467245;
         $request = new StreamingPullRequest();
-        $request->setSubscription($formattedSubscription);
-        $request->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);
-        $formattedSubscription2 = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $streamAckDeadlineSeconds2 = 1562238880;
         $request2 = new StreamingPullRequest();
-        $request2->setSubscription($formattedSubscription2);
-        $request2->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds2);
-        $formattedSubscription3 = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $streamAckDeadlineSeconds3 = 1562238879;
         $request3 = new StreamingPullRequest();
-        $request3->setSubscription($formattedSubscription3);
-        $request3->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds3);
         $bidi = $gapicClient->streamingPull();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
@@ -1024,20 +904,13 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $snapshot = new Snapshot();
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateSnapshot($snapshot, $updateMask);
+        $response = $gapicClient->updateSnapshot();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/UpdateSnapshot', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSnapshot();
-        $this->assertProtobufEquals($snapshot, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1059,11 +932,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $snapshot = new Snapshot();
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateSnapshot($snapshot, $updateMask);
+            $gapicClient->updateSnapshot();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1102,24 +972,13 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setDetached($detached);
         $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $subscription = new Subscription();
-        $subscriptionName = 'subscriptionName-515935928';
-        $subscription->setName($subscriptionName);
-        $subscriptionTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $subscription->setTopic($subscriptionTopic);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateSubscription($subscription, $updateMask);
+        $response = $gapicClient->updateSubscription();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Subscriber/UpdateSubscription', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($subscription, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1141,15 +1000,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $subscription = new Subscription();
-        $subscriptionName = 'subscriptionName-515935928';
-        $subscription->setName($subscriptionName);
-        $subscriptionTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $subscription->setTopic($subscriptionTopic);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateSubscription($subscription, $updateMask);
+            $gapicClient->updateSubscription();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1176,17 +1028,13 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1208,10 +1056,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1238,20 +1084,13 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1273,11 +1112,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1300,20 +1136,13 @@ class SubscriberClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1335,11 +1164,8 @@ class SubscriberClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

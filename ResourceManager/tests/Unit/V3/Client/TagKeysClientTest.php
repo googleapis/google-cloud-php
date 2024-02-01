@@ -116,12 +116,7 @@ class TagKeysClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $tagKey = new TagKey();
-        $tagKeyShortName = 'tagKeyShortName-1212707262';
-        $tagKey->setShortName($tagKeyShortName);
-        $request = (new CreateTagKeyRequest())
-            ->setTagKey($tagKey);
+        $request = new CreateTagKeyRequest();
         $response = $gapicClient->createTagKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -132,8 +127,6 @@ class TagKeysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagKeys/CreateTagKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getTagKey();
-        $this->assertProtobufEquals($tagKey, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTagKeyTest');
         $response->pollUntilComplete([
@@ -184,12 +177,7 @@ class TagKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $tagKey = new TagKey();
-        $tagKeyShortName = 'tagKeyShortName-1212707262';
-        $tagKey->setShortName($tagKeyShortName);
-        $request = (new CreateTagKeyRequest())
-            ->setTagKey($tagKey);
+        $request = new CreateTagKeyRequest();
         $response = $gapicClient->createTagKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -253,10 +241,7 @@ class TagKeysClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->tagKeyName('[TAG_KEY]');
-        $request = (new DeleteTagKeyRequest())
-            ->setName($formattedName);
+        $request = new DeleteTagKeyRequest();
         $response = $gapicClient->deleteTagKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -267,8 +252,6 @@ class TagKeysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagKeys/DeleteTagKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTagKeyTest');
         $response->pollUntilComplete([
@@ -319,10 +302,7 @@ class TagKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagKeyName('[TAG_KEY]');
-        $request = (new DeleteTagKeyRequest())
-            ->setName($formattedName);
+        $request = new DeleteTagKeyRequest();
         $response = $gapicClient->deleteTagKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -434,10 +414,7 @@ class TagKeysClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tagKeyName('[TAG_KEY]');
-        $request = (new GetNamespacedTagKeyRequest())
-            ->setName($formattedName);
+        $request = new GetNamespacedTagKeyRequest();
         $response = $gapicClient->getNamespacedTagKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -445,8 +422,6 @@ class TagKeysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagKeys/GetNamespacedTagKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -468,10 +443,7 @@ class TagKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagKeyName('[TAG_KEY]');
-        $request = (new GetNamespacedTagKeyRequest())
-            ->setName($formattedName);
+        $request = new GetNamespacedTagKeyRequest();
         try {
             $gapicClient->getNamespacedTagKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -508,10 +480,7 @@ class TagKeysClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->tagKeyName('[TAG_KEY]');
-        $request = (new GetTagKeyRequest())
-            ->setName($formattedName);
+        $request = new GetTagKeyRequest();
         $response = $gapicClient->getTagKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -519,8 +488,6 @@ class TagKeysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagKeys/GetTagKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -542,10 +509,7 @@ class TagKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->tagKeyName('[TAG_KEY]');
-        $request = (new GetTagKeyRequest())
-            ->setName($formattedName);
+        $request = new GetTagKeyRequest();
         try {
             $gapicClient->getTagKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -577,10 +541,7 @@ class TagKeysClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTagKeys($tagKeys);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListTagKeysRequest())
-            ->setParent($parent);
+        $request = new ListTagKeysRequest();
         $response = $gapicClient->listTagKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -591,8 +552,6 @@ class TagKeysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagKeys/ListTagKeys', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -614,10 +573,7 @@ class TagKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListTagKeysRequest())
-            ->setParent($parent);
+        $request = new ListTagKeysRequest();
         try {
             $gapicClient->listTagKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -812,12 +768,7 @@ class TagKeysClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $tagKey = new TagKey();
-        $tagKeyShortName = 'tagKeyShortName-1212707262';
-        $tagKey->setShortName($tagKeyShortName);
-        $request = (new UpdateTagKeyRequest())
-            ->setTagKey($tagKey);
+        $request = new UpdateTagKeyRequest();
         $response = $gapicClient->updateTagKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -828,8 +779,6 @@ class TagKeysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagKeys/UpdateTagKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getTagKey();
-        $this->assertProtobufEquals($tagKey, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateTagKeyTest');
         $response->pollUntilComplete([
@@ -880,12 +829,7 @@ class TagKeysClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $tagKey = new TagKey();
-        $tagKeyShortName = 'tagKeyShortName-1212707262';
-        $tagKey->setShortName($tagKeyShortName);
-        $request = (new UpdateTagKeyRequest())
-            ->setTagKey($tagKey);
+        $request = new UpdateTagKeyRequest();
         $response = $gapicClient->updateTagKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -949,12 +893,7 @@ class TagKeysClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $tagKey = new TagKey();
-        $tagKeyShortName = 'tagKeyShortName-1212707262';
-        $tagKey->setShortName($tagKeyShortName);
-        $request = (new CreateTagKeyRequest())
-            ->setTagKey($tagKey);
+        $request = new CreateTagKeyRequest();
         $response = $gapicClient->createTagKeyAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -965,8 +904,6 @@ class TagKeysClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.TagKeys/CreateTagKey', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getTagKey();
-        $this->assertProtobufEquals($tagKey, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTagKeyTest');
         $response->pollUntilComplete([

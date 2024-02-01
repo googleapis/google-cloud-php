@@ -75,17 +75,13 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
-        $response = $gapicClient->getSetting($formattedName);
+        $response = $gapicClient->getSetting();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcesettings.v1.ResourceSettingsService/GetSetting', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -107,10 +103,8 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
         try {
-            $gapicClient->getSetting($formattedName);
+            $gapicClient->getSetting();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -140,9 +134,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSettings($settings);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $response = $gapicClient->listSettings($parent);
+        $response = $gapicClient->listSettings();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -152,8 +144,6 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcesettings.v1.ResourceSettingsService/ListSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -175,10 +165,8 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
         try {
-            $gapicClient->listSettings($parent);
+            $gapicClient->listSettings();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -205,17 +193,13 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $setting = new Setting();
-        $response = $gapicClient->updateSetting($setting);
+        $response = $gapicClient->updateSetting();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcesettings.v1.ResourceSettingsService/UpdateSetting', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSetting();
-        $this->assertProtobufEquals($setting, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -237,10 +221,8 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $setting = new Setting();
         try {
-            $gapicClient->updateSetting($setting);
+            $gapicClient->updateSetting();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -27,39 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
 use Google\Cloud\PubSub\V1\UpdateSubscriptionRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates an existing subscription by updating the fields specified in the
  * update mask. Note that certain properties of a subscription, such as its
  * topic, are not modifiable.
  *
- * @param string $subscriptionName           The name of the subscription. It must have the format
- *                                           `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
- *                                           start with a letter, and contain only letters (`[A-Za-z]`), numbers
- *                                           (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
- *                                           plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
- *                                           in length, and it must not start with `"goog"`.
- * @param string $formattedSubscriptionTopic The name of the topic from which this subscription is receiving
- *                                           messages. Format is `projects/{project}/topics/{topic}`. The value of this
- *                                           field will be `_deleted-topic_` if the topic has been deleted. Please see
- *                                           {@see SubscriberClient::topicName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_subscription_sample(
-    string $subscriptionName,
-    string $formattedSubscriptionTopic
-): void {
+function update_subscription_sample(): void
+{
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
     // Prepare the request message.
-    $subscription = (new Subscription())
-        ->setName($subscriptionName)
-        ->setTopic($formattedSubscriptionTopic);
-    $updateMask = new FieldMask();
-    $request = (new UpdateSubscriptionRequest())
-        ->setSubscription($subscription)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateSubscriptionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,22 +55,5 @@ function update_subscription_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $subscriptionName = '[NAME]';
-    $formattedSubscriptionTopic = SubscriberClient::topicName('[PROJECT]', '[TOPIC]');
-
-    update_subscription_sample($subscriptionName, $formattedSubscriptionTopic);
 }
 // [END pubsub_v1_generated_Subscriber_UpdateSubscription_sync]

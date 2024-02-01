@@ -49,7 +49,6 @@ class ListRevisionsRequest extends \Google\Protobuf\Internal\Message
      *                       To list all Revisions across Services, use "-" instead of Service name.
      *                       Format:
      *                       projects/{project}/locations/{location}/services/{service}
-     *                       Please see {@see RevisionsClient::serviceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Run\V2\ListRevisionsRequest
      *

@@ -31,11 +31,13 @@ use Google\Cloud\Scheduler\V1beta1\Job;
 /**
  * Lists jobs.
  *
- * @param string $formattedParent The location name. For example:
- *                                `projects/PROJECT_ID/locations/LOCATION_ID`. Please see
- *                                {@see CloudSchedulerClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_jobs_sample(string $formattedParent): void
+function list_jobs_sample(): void
 {
     // Create a client.
     $cloudSchedulerClient = new CloudSchedulerClient();
@@ -43,7 +45,7 @@ function list_jobs_sample(string $formattedParent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudSchedulerClient->listJobs($formattedParent);
+        $response = $cloudSchedulerClient->listJobs();
 
         /** @var Job $element */
         foreach ($response as $element) {
@@ -52,21 +54,5 @@ function list_jobs_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudSchedulerClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_jobs_sample($formattedParent);
 }
 // [END cloudscheduler_v1beta1_generated_CloudScheduler_ListJobs_sync]

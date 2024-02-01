@@ -50,9 +50,7 @@ function update_project_sample(): void
     $projectsClient = new ProjectsClient();
 
     // Prepare the request message.
-    $project = new Project();
-    $request = (new UpdateProjectRequest())
-        ->setProject($project);
+    $request = new UpdateProjectRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -61,8 +61,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $tagValuesClient = new TagValuesClient();
  * try {
- *     $tagValue = new TagValue();
- *     $operationResponse = $tagValuesClient->createTagValue($tagValue);
+ *     $operationResponse = $tagValuesClient->createTagValue();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -73,7 +72,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $tagValuesClient->createTagValue($tagValue);
+ *     $operationResponse = $tagValuesClient->createTagValue();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $tagValuesClient->resumeOperation($operationName, 'createTagValue');
@@ -330,8 +329,7 @@ class TagValuesGapicClient
      * ```
      * $tagValuesClient = new TagValuesClient();
      * try {
-     *     $tagValue = new TagValue();
-     *     $operationResponse = $tagValuesClient->createTagValue($tagValue);
+     *     $operationResponse = $tagValuesClient->createTagValue();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -342,7 +340,7 @@ class TagValuesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tagValuesClient->createTagValue($tagValue);
+     *     $operationResponse = $tagValuesClient->createTagValue();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tagValuesClient->resumeOperation($operationName, 'createTagValue');
@@ -362,11 +360,12 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param TagValue $tagValue     Required. The TagValue to be created. Only fields `short_name`,
-     *                               `description`, and `parent` are considered during the creation request.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type TagValue $tagValue
+     *           Required. The TagValue to be created. Only fields `short_name`,
+     *           `description`, and `parent` are considered during the creation request.
      *     @type bool $validateOnly
      *           Optional. Set as true to perform the validations necessary for creating the
      *           resource, but not actually perform the action.
@@ -380,10 +379,13 @@ class TagValuesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTagValue($tagValue, array $optionalArgs = [])
+    public function createTagValue(array $optionalArgs = [])
     {
         $request = new CreateTagValueRequest();
-        $request->setTagValue($tagValue);
+        if (isset($optionalArgs['tagValue'])) {
+            $request->setTagValue($optionalArgs['tagValue']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -399,8 +401,7 @@ class TagValuesGapicClient
      * ```
      * $tagValuesClient = new TagValuesClient();
      * try {
-     *     $formattedName = $tagValuesClient->tagValueName('[TAG_VALUE]');
-     *     $operationResponse = $tagValuesClient->deleteTagValue($formattedName);
+     *     $operationResponse = $tagValuesClient->deleteTagValue();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -411,7 +412,7 @@ class TagValuesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tagValuesClient->deleteTagValue($formattedName);
+     *     $operationResponse = $tagValuesClient->deleteTagValue();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tagValuesClient->resumeOperation($operationName, 'deleteTagValue');
@@ -431,11 +432,12 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name for TagValue to be deleted in the format
-     *                             tagValues/456.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name for TagValue to be deleted in the format
+     *           tagValues/456.
      *     @type bool $validateOnly
      *           Optional. Set as true to perform the validations necessary for deletion,
      *           but not actually perform the action.
@@ -452,12 +454,15 @@ class TagValuesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTagValue($name, array $optionalArgs = [])
+    public function deleteTagValue(array $optionalArgs = [])
     {
         $request = new DeleteTagValueRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -532,25 +537,25 @@ class TagValuesGapicClient
      * ```
      * $tagValuesClient = new TagValuesClient();
      * try {
-     *     $formattedName = $tagValuesClient->tagValueName('[TAG_VALUE]');
-     *     $response = $tagValuesClient->getNamespacedTagValue($formattedName);
+     *     $response = $tagValuesClient->getNamespacedTagValue();
      * } finally {
      *     $tagValuesClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A namespaced tag value name in the following format:
-     *
-     *                             `{parentId}/{tagKeyShort}/{tagValueShort}`
-     *
-     *                             Examples:
-     *                             - `42/foo/abc` for a value with short name "abc" under the key with short
-     *                             name "foo" under the organization with ID 42
-     *                             - `r2-d2/bar/xyz` for a value with short name "xyz" under the key with
-     *                             short name "bar" under the project with ID "r2-d2"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A namespaced tag value name in the following format:
+     *
+     *           `{parentId}/{tagKeyShort}/{tagValueShort}`
+     *
+     *           Examples:
+     *           - `42/foo/abc` for a value with short name "abc" under the key with short
+     *           name "foo" under the organization with ID 42
+     *           - `r2-d2/bar/xyz` for a value with short name "xyz" under the key with
+     *           short name "bar" under the project with ID "r2-d2"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -561,10 +566,13 @@ class TagValuesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getNamespacedTagValue($name, array $optionalArgs = [])
+    public function getNamespacedTagValue(array $optionalArgs = [])
     {
         $request = new GetNamespacedTagValueRequest();
-        $request->setName($name);
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+        }
+
         return $this->startCall('GetNamespacedTagValue', TagValue::class, $optionalArgs, $request)->wait();
     }
 
@@ -576,18 +584,18 @@ class TagValuesGapicClient
      * ```
      * $tagValuesClient = new TagValuesClient();
      * try {
-     *     $formattedName = $tagValuesClient->tagValueName('[TAG_VALUE]');
-     *     $response = $tagValuesClient->getTagValue($formattedName);
+     *     $response = $tagValuesClient->getTagValue();
      * } finally {
      *     $tagValuesClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Resource name for TagValue to be fetched in the format
-     *                             `tagValues/456`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Resource name for TagValue to be fetched in the format
+     *           `tagValues/456`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -598,12 +606,15 @@ class TagValuesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTagValue($name, array $optionalArgs = [])
+    public function getTagValue(array $optionalArgs = [])
     {
         $request = new GetTagValueRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetTagValue', TagValue::class, $optionalArgs, $request)->wait();
@@ -616,9 +627,8 @@ class TagValuesGapicClient
      * ```
      * $tagValuesClient = new TagValuesClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tagValuesClient->listTagValues($parent);
+     *     $pagedResponse = $tagValuesClient->listTagValues();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -626,7 +636,7 @@ class TagValuesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tagValuesClient->listTagValues($parent);
+     *     $pagedResponse = $tagValuesClient->listTagValues();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -635,10 +645,11 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -658,10 +669,13 @@ class TagValuesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTagValues($parent, array $optionalArgs = [])
+    public function listTagValues(array $optionalArgs = [])
     {
         $request = new ListTagValuesRequest();
-        $request->setParent($parent);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -790,8 +804,7 @@ class TagValuesGapicClient
      * ```
      * $tagValuesClient = new TagValuesClient();
      * try {
-     *     $tagValue = new TagValue();
-     *     $operationResponse = $tagValuesClient->updateTagValue($tagValue);
+     *     $operationResponse = $tagValuesClient->updateTagValue();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -802,7 +815,7 @@ class TagValuesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tagValuesClient->updateTagValue($tagValue);
+     *     $operationResponse = $tagValuesClient->updateTagValue();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tagValuesClient->resumeOperation($operationName, 'updateTagValue');
@@ -822,13 +835,14 @@ class TagValuesGapicClient
      * }
      * ```
      *
-     * @param TagValue $tagValue     Required. The new definition of the TagValue. Only fields `description` and
-     *                               `etag` fields can be updated by this request. If the `etag` field is
-     *                               nonempty, it must match the `etag` field of the existing ControlGroup.
-     *                               Otherwise, `ABORTED` will be returned.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type TagValue $tagValue
+     *           Required. The new definition of the TagValue. Only fields `description` and
+     *           `etag` fields can be updated by this request. If the `etag` field is
+     *           nonempty, it must match the `etag` field of the existing ControlGroup.
+     *           Otherwise, `ABORTED` will be returned.
      *     @type FieldMask $updateMask
      *           Optional. Fields to be updated.
      *     @type bool $validateOnly
@@ -844,12 +858,14 @@ class TagValuesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTagValue($tagValue, array $optionalArgs = [])
+    public function updateTagValue(array $optionalArgs = [])
     {
         $request = new UpdateTagValueRequest();
         $requestParamHeaders = [];
-        $request->setTagValue($tagValue);
-        $requestParamHeaders['tag_value.name'] = $tagValue->getName();
+        if (isset($optionalArgs['tagValue'])) {
+            $request->setTagValue($optionalArgs['tagValue']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

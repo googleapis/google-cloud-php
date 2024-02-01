@@ -31,19 +31,19 @@ use Google\Cloud\Run\V2\Task;
 /**
  * Gets information about a Task.
  *
- * @param string $formattedName The full name of the Task.
- *                              Format:
- *                              projects/{project}/locations/{location}/jobs/{job}/executions/{execution}/tasks/{task}
- *                              Please see {@see TasksClient::taskName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_task_sample(string $formattedName): void
+function get_task_sample(): void
 {
     // Create a client.
     $tasksClient = new TasksClient();
 
     // Prepare the request message.
-    $request = (new GetTaskRequest())
-        ->setName($formattedName);
+    $request = new GetTaskRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function get_task_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = TasksClient::taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]', '[TASK]');
-
-    get_task_sample($formattedName);
 }
 // [END run_v2_generated_Tasks_GetTask_sync]

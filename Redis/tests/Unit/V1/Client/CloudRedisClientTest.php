@@ -39,21 +39,16 @@ use Google\Cloud\Redis\V1\FailoverInstanceRequest;
 use Google\Cloud\Redis\V1\GetInstanceAuthStringRequest;
 use Google\Cloud\Redis\V1\GetInstanceRequest;
 use Google\Cloud\Redis\V1\ImportInstanceRequest;
-use Google\Cloud\Redis\V1\InputConfig;
 use Google\Cloud\Redis\V1\Instance;
 use Google\Cloud\Redis\V1\InstanceAuthString;
-use Google\Cloud\Redis\V1\Instance\Tier;
 use Google\Cloud\Redis\V1\ListInstancesRequest;
 use Google\Cloud\Redis\V1\ListInstancesResponse;
-use Google\Cloud\Redis\V1\OutputConfig;
 use Google\Cloud\Redis\V1\RescheduleMaintenanceRequest;
-use Google\Cloud\Redis\V1\RescheduleMaintenanceRequest\RescheduleType;
 use Google\Cloud\Redis\V1\UpdateInstanceRequest;
 use Google\Cloud\Redis\V1\UpgradeInstanceRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -155,20 +150,7 @@ class CloudRedisClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceName = 'instanceName-737857344';
-        $instance->setName($instanceName);
-        $instanceTier = Tier::TIER_UNSPECIFIED;
-        $instance->setTier($instanceTier);
-        $instanceMemorySizeGb = 193936814;
-        $instance->setMemorySizeGb($instanceMemorySizeGb);
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -179,12 +161,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/CreateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([
@@ -235,20 +211,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceName = 'instanceName-737857344';
-        $instance->setName($instanceName);
-        $instanceTier = Tier::TIER_UNSPECIFIED;
-        $instance->setTier($instanceTier);
-        $instanceMemorySizeGb = 193936814;
-        $instance->setMemorySizeGb($instanceMemorySizeGb);
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -300,10 +263,7 @@ class CloudRedisClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = new DeleteInstanceRequest();
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -314,8 +274,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/DeleteInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteInstanceTest');
         $response->pollUntilComplete([
@@ -366,10 +324,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = new DeleteInstanceRequest();
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -461,12 +416,7 @@ class CloudRedisClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $outputConfig = new OutputConfig();
-        $request = (new ExportInstanceRequest())
-            ->setName($name)
-            ->setOutputConfig($outputConfig);
+        $request = new ExportInstanceRequest();
         $response = $gapicClient->exportInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -477,10 +427,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/ExportInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getOutputConfig();
-        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportInstanceTest');
         $response->pollUntilComplete([
@@ -531,12 +477,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $outputConfig = new OutputConfig();
-        $request = (new ExportInstanceRequest())
-            ->setName($name)
-            ->setOutputConfig($outputConfig);
+        $request = new ExportInstanceRequest();
         $response = $gapicClient->exportInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -628,10 +569,7 @@ class CloudRedisClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new FailoverInstanceRequest())
-            ->setName($formattedName);
+        $request = new FailoverInstanceRequest();
         $response = $gapicClient->failoverInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -642,8 +580,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/FailoverInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/failoverInstanceTest');
         $response->pollUntilComplete([
@@ -694,10 +630,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new FailoverInstanceRequest())
-            ->setName($formattedName);
+        $request = new FailoverInstanceRequest();
         $response = $gapicClient->failoverInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -771,10 +704,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setCustomerManagedKey($customerManagedKey);
         $expectedResponse->setMaintenanceVersion($maintenanceVersion);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceRequest();
         $response = $gapicClient->getInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -782,8 +712,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/GetInstance', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -805,10 +733,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceRequest();
         try {
             $gapicClient->getInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -835,10 +760,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse = new InstanceAuthString();
         $expectedResponse->setAuthString($authString);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetInstanceAuthStringRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceAuthStringRequest();
         $response = $gapicClient->getInstanceAuthString($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -846,8 +768,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/GetInstanceAuthString', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -869,10 +789,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetInstanceAuthStringRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceAuthStringRequest();
         try {
             $gapicClient->getInstanceAuthString($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -955,12 +872,7 @@ class CloudRedisClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $inputConfig = new InputConfig();
-        $request = (new ImportInstanceRequest())
-            ->setName($name)
-            ->setInputConfig($inputConfig);
+        $request = new ImportInstanceRequest();
         $response = $gapicClient->importInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -971,10 +883,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/ImportInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputConfig();
-        $this->assertProtobufEquals($inputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importInstanceTest');
         $response->pollUntilComplete([
@@ -1025,12 +933,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $inputConfig = new InputConfig();
-        $request = (new ImportInstanceRequest())
-            ->setName($name)
-            ->setInputConfig($inputConfig);
+        $request = new ImportInstanceRequest();
         $response = $gapicClient->importInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1071,10 +974,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = new ListInstancesRequest();
         $response = $gapicClient->listInstances($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1085,8 +985,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/ListInstances', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1108,10 +1006,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = new ListInstancesRequest();
         try {
             $gapicClient->listInstances($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1194,12 +1089,7 @@ class CloudRedisClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $rescheduleType = RescheduleType::RESCHEDULE_TYPE_UNSPECIFIED;
-        $request = (new RescheduleMaintenanceRequest())
-            ->setName($formattedName)
-            ->setRescheduleType($rescheduleType);
+        $request = new RescheduleMaintenanceRequest();
         $response = $gapicClient->rescheduleMaintenance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1210,10 +1100,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/RescheduleMaintenance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getRescheduleType();
-        $this->assertProtobufEquals($rescheduleType, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/rescheduleMaintenanceTest');
         $response->pollUntilComplete([
@@ -1264,12 +1150,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $rescheduleType = RescheduleType::RESCHEDULE_TYPE_UNSPECIFIED;
-        $request = (new RescheduleMaintenanceRequest())
-            ->setName($formattedName)
-            ->setRescheduleType($rescheduleType);
+        $request = new RescheduleMaintenanceRequest();
         $response = $gapicClient->rescheduleMaintenance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1361,18 +1242,7 @@ class CloudRedisClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $instance = new Instance();
-        $instanceName = 'instanceName-737857344';
-        $instance->setName($instanceName);
-        $instanceTier = Tier::TIER_UNSPECIFIED;
-        $instance->setTier($instanceTier);
-        $instanceMemorySizeGb = 193936814;
-        $instance->setMemorySizeGb($instanceMemorySizeGb);
-        $request = (new UpdateInstanceRequest())
-            ->setUpdateMask($updateMask)
-            ->setInstance($instance);
+        $request = new UpdateInstanceRequest();
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1383,10 +1253,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/UpdateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateInstanceTest');
         $response->pollUntilComplete([
@@ -1437,18 +1303,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $instance = new Instance();
-        $instanceName = 'instanceName-737857344';
-        $instance->setName($instanceName);
-        $instanceTier = Tier::TIER_UNSPECIFIED;
-        $instance->setTier($instanceTier);
-        $instanceMemorySizeGb = 193936814;
-        $instance->setMemorySizeGb($instanceMemorySizeGb);
-        $request = (new UpdateInstanceRequest())
-            ->setUpdateMask($updateMask)
-            ->setInstance($instance);
+        $request = new UpdateInstanceRequest();
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1540,12 +1395,7 @@ class CloudRedisClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $redisVersion = 'redisVersion-685310444';
-        $request = (new UpgradeInstanceRequest())
-            ->setName($formattedName)
-            ->setRedisVersion($redisVersion);
+        $request = new UpgradeInstanceRequest();
         $response = $gapicClient->upgradeInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1556,10 +1406,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/UpgradeInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getRedisVersion();
-        $this->assertProtobufEquals($redisVersion, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/upgradeInstanceTest');
         $response->pollUntilComplete([
@@ -1610,12 +1456,7 @@ class CloudRedisClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $redisVersion = 'redisVersion-685310444';
-        $request = (new UpgradeInstanceRequest())
-            ->setName($formattedName)
-            ->setRedisVersion($redisVersion);
+        $request = new UpgradeInstanceRequest();
         $response = $gapicClient->upgradeInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1831,20 +1672,7 @@ class CloudRedisClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $instanceName = 'instanceName-737857344';
-        $instance->setName($instanceName);
-        $instanceTier = Tier::TIER_UNSPECIFIED;
-        $instance->setTier($instanceTier);
-        $instanceMemorySizeGb = 193936814;
-        $instance->setMemorySizeGb($instanceMemorySizeGb);
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstanceAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1855,12 +1683,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/CreateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([

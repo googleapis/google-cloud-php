@@ -36,18 +36,19 @@ use Google\Cloud\ResourceManager\V3\TagBinding;
  * NOTE: The `parent` field is expected to be a full resource name:
  * https://cloud.google.com/apis/design/resource_names#full_resource_name
  *
- * @param string $parent The full resource name of a resource for which you want to list
- *                       existing TagBindings. E.g.
- *                       "//cloudresourcemanager.googleapis.com/projects/123"
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_tag_bindings_sample(string $parent): void
+function list_tag_bindings_sample(): void
 {
     // Create a client.
     $tagBindingsClient = new TagBindingsClient();
 
     // Prepare the request message.
-    $request = (new ListTagBindingsRequest())
-        ->setParent($parent);
+    $request = new ListTagBindingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +62,5 @@ function list_tag_bindings_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_tag_bindings_sample($parent);
 }
 // [END cloudresourcemanager_v3_generated_TagBindings_ListTagBindings_sync]

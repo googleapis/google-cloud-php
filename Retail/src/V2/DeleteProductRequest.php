@@ -61,8 +61,7 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
      *                     INVALID_ARGUMENT error is returned.
      *
      *                     All inventory information for the named
-     *                     [Product][google.cloud.retail.v2.Product] will be deleted. Please see
-     *                     {@see ProductServiceClient::productName()} for help formatting this field.
+     *                     [Product][google.cloud.retail.v2.Product] will be deleted.
      *
      * @return \Google\Cloud\Retail\V2\DeleteProductRequest
      *

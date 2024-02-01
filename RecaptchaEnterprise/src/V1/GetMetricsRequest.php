@@ -25,8 +25,7 @@ class GetMetricsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the requested metrics, in the format
-     *                     `projects/{project}/keys/{key}/metrics`. Please see
-     *                     {@see RecaptchaEnterpriseServiceClient::metricsName()} for help formatting this field.
+     *                     `projects/{project}/keys/{key}/metrics`.
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest
      *

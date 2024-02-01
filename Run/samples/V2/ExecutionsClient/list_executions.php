@@ -32,20 +32,19 @@ use Google\Cloud\Run\V2\ListExecutionsRequest;
 /**
  * Lists Executions from a Job.
  *
- * @param string $formattedParent The Execution from which the Executions should be listed.
- *                                To list all Executions across Jobs, use "-" instead of Job name.
- *                                Format: `projects/{project}/locations/{location}/jobs/{job}`, where
- *                                `{project}` can be project id or number. Please see
- *                                {@see ExecutionsClient::jobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_executions_sample(string $formattedParent): void
+function list_executions_sample(): void
 {
     // Create a client.
     $executionsClient = new ExecutionsClient();
 
     // Prepare the request message.
-    $request = (new ListExecutionsRequest())
-        ->setParent($formattedParent);
+    $request = new ListExecutionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +58,5 @@ function list_executions_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ExecutionsClient::jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-
-    list_executions_sample($formattedParent);
 }
 // [END run_v2_generated_Executions_ListExecutions_sync]

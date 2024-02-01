@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Retail\V2\Client\PredictionServiceClient;
 use Google\Cloud\Retail\V2\PredictRequest;
 use Google\Cloud\Retail\V2\PredictResponse;
-use Google\Cloud\Retail\V2\UserEvent;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -76,16 +75,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setAttributionToken($attributionToken);
         $expectedResponse->setValidateOnly($validateOnly2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $placement = 'placement1792938725';
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventVisitorId = 'userEventVisitorId-2104193702';
-        $userEvent->setVisitorId($userEventVisitorId);
-        $request = (new PredictRequest())
-            ->setPlacement($placement)
-            ->setUserEvent($userEvent);
+        $request = new PredictRequest();
         $response = $gapicClient->predict($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -93,10 +83,6 @@ class PredictionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.PredictionService/Predict', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPlacement();
-        $this->assertProtobufEquals($placement, $actualValue);
-        $actualValue = $actualRequestObject->getUserEvent();
-        $this->assertProtobufEquals($userEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -118,16 +104,7 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $placement = 'placement1792938725';
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventVisitorId = 'userEventVisitorId-2104193702';
-        $userEvent->setVisitorId($userEventVisitorId);
-        $request = (new PredictRequest())
-            ->setPlacement($placement)
-            ->setUserEvent($userEvent);
+        $request = new PredictRequest();
         try {
             $gapicClient->predict($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -156,16 +133,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setAttributionToken($attributionToken);
         $expectedResponse->setValidateOnly($validateOnly2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $placement = 'placement1792938725';
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventVisitorId = 'userEventVisitorId-2104193702';
-        $userEvent->setVisitorId($userEventVisitorId);
-        $request = (new PredictRequest())
-            ->setPlacement($placement)
-            ->setUserEvent($userEvent);
+        $request = new PredictRequest();
         $response = $gapicClient->predictAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -173,10 +141,6 @@ class PredictionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.PredictionService/Predict', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPlacement();
-        $this->assertProtobufEquals($placement, $actualValue);
-        $actualValue = $actualRequestObject->getUserEvent();
-        $this->assertProtobufEquals($userEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

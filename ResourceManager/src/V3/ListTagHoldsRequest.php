@@ -55,8 +55,7 @@ class ListTagHoldsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the parent TagValue. Must be of the form:
-     *                       `tagValues/{tag-value-id}`. Please see
-     *                       {@see TagHoldsClient::tagValueName()} for help formatting this field.
+     *                       `tagValues/{tag-value-id}`.
      *
      * @return \Google\Cloud\ResourceManager\V3\ListTagHoldsRequest
      *

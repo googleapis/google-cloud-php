@@ -31,19 +31,19 @@ use Google\Cloud\Retail\V2\UpdateCompletionConfigRequest;
 /**
  * Updates the [CompletionConfig][google.cloud.retail.v2.CompletionConfig]s.
  *
- * @param string $completionConfigName Immutable. Fully qualified name
- *                                     `projects/&#42;/locations/&#42;/catalogs/&#42;/completionConfig`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_completion_config_sample(string $completionConfigName): void
+function update_completion_config_sample(): void
 {
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
-    $completionConfig = (new CompletionConfig())
-        ->setName($completionConfigName);
-    $request = (new UpdateCompletionConfigRequest())
-        ->setCompletionConfig($completionConfig);
+    $request = new UpdateCompletionConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function update_completion_config_sample(string $completionConfigName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $completionConfigName = '[NAME]';
-
-    update_completion_config_sample($completionConfigName);
 }
 // [END retail_v2_generated_CatalogService_UpdateCompletionConfig_sync]

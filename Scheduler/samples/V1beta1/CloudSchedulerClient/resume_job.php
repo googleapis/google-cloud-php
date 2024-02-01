@@ -40,11 +40,13 @@ use Google\Cloud\Scheduler\V1beta1\Job;
  * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED] to be
  * resumed.
  *
- * @param string $formattedName The job name. For example:
- *                              `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. Please see
- *                              {@see CloudSchedulerClient::jobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function resume_job_sample(string $formattedName): void
+function resume_job_sample(): void
 {
     // Create a client.
     $cloudSchedulerClient = new CloudSchedulerClient();
@@ -52,26 +54,10 @@ function resume_job_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $cloudSchedulerClient->resumeJob($formattedName);
+        $response = $cloudSchedulerClient->resumeJob();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudSchedulerClient::jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-
-    resume_job_sample($formattedName);
 }
 // [END cloudscheduler_v1beta1_generated_CloudScheduler_ResumeJob_sync]

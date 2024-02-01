@@ -36,23 +36,19 @@ use Google\Rpc\Status;
  * process the second request will receive an error. A maximum of 1000
  * TagValues can exist under a TagKey at any given time.
  *
- * @param string $tagValueShortName Immutable. User-assigned short name for TagValue. The short name
- *                                  should be unique for TagValues within the same parent TagKey.
- *
- *                                  The short name must be 63 characters or less, beginning and ending with
- *                                  an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),
- *                                  dots (.), and alphanumerics between.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_tag_value_sample(string $tagValueShortName): void
+function create_tag_value_sample(): void
 {
     // Create a client.
     $tagValuesClient = new TagValuesClient();
 
     // Prepare the request message.
-    $tagValue = (new TagValue())
-        ->setShortName($tagValueShortName);
-    $request = (new CreateTagValueRequest())
-        ->setTagValue($tagValue);
+    $request = new CreateTagValueRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,21 +68,5 @@ function create_tag_value_sample(string $tagValueShortName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $tagValueShortName = '[SHORT_NAME]';
-
-    create_tag_value_sample($tagValueShortName);
 }
 // [END cloudresourcemanager_v3_generated_TagValues_CreateTagValue_sync]

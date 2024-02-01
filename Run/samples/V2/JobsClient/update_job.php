@@ -26,9 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Run\V2\Client\JobsClient;
-use Google\Cloud\Run\V2\ExecutionTemplate;
 use Google\Cloud\Run\V2\Job;
-use Google\Cloud\Run\V2\TaskTemplate;
 use Google\Cloud\Run\V2\UpdateJobRequest;
 use Google\Rpc\Status;
 
@@ -47,13 +45,7 @@ function update_job_sample(): void
     $jobsClient = new JobsClient();
 
     // Prepare the request message.
-    $jobTemplateTemplate = new TaskTemplate();
-    $jobTemplate = (new ExecutionTemplate())
-        ->setTemplate($jobTemplateTemplate);
-    $job = (new Job())
-        ->setTemplate($jobTemplate);
-    $request = (new UpdateJobRequest())
-        ->setJob($job);
+    $request = new UpdateJobRequest();
 
     // Call the API and handle any network failures.
     try {

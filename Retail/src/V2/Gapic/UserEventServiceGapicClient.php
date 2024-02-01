@@ -56,9 +56,7 @@ use Google\LongRunning\Operation;
  * ```
  * $userEventServiceClient = new UserEventServiceClient();
  * try {
- *     $parent = 'parent';
- *     $userEvent = 'user_event';
- *     $response = $userEventServiceClient->collectUserEvent($parent, $userEvent);
+ *     $response = $userEventServiceClient->collectUserEvent();
  * } finally {
  *     $userEventServiceClient->close();
  * }
@@ -367,24 +365,24 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $userEvent = 'user_event';
-     *     $response = $userEventServiceClient->collectUserEvent($parent, $userEvent);
+     *     $response = $userEventServiceClient->collectUserEvent();
      * } finally {
      *     $userEventServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The parent catalog name, such as
-     *                             `projects/1234/locations/global/catalogs/default_catalog`.
-     * @param string $userEvent    Required. URL encoded UserEvent proto with a length limit of 2,000,000
-     *                             characters.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $prebuiltRule
      *           The prebuilt rule name that can convert a specific type of raw_json.
      *           For example: "ga4_bq" rule for the GA4 user event schema.
+     *     @type string $parent
+     *           Required. The parent catalog name, such as
+     *           `projects/1234/locations/global/catalogs/default_catalog`.
+     *     @type string $userEvent
+     *           Required. URL encoded UserEvent proto with a length limit of 2,000,000
+     *           characters.
      *     @type string $uri
      *           The URL including cgi-parameters but excluding the hash fragment with a
      *           length limit of 5,000 characters. This is often more useful than the
@@ -409,18 +407,21 @@ class UserEventServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function collectUserEvent(
-        $parent,
-        $userEvent,
-        array $optionalArgs = []
-    ) {
+    public function collectUserEvent(array $optionalArgs = [])
+    {
         $request = new CollectUserEventRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setUserEvent($userEvent);
-        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['prebuiltRule'])) {
             $request->setPrebuiltRule($optionalArgs['prebuiltRule']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['userEvent'])) {
+            $request->setUserEvent($optionalArgs['userEvent']);
         }
 
         if (isset($optionalArgs['uri'])) {
@@ -462,9 +463,7 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $formattedParent = $userEventServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-     *     $inputConfig = new UserEventInputConfig();
-     *     $operationResponse = $userEventServiceClient->importUserEvents($formattedParent, $inputConfig);
+     *     $operationResponse = $userEventServiceClient->importUserEvents();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -475,7 +474,7 @@ class UserEventServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $userEventServiceClient->importUserEvents($formattedParent, $inputConfig);
+     *     $operationResponse = $userEventServiceClient->importUserEvents();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $userEventServiceClient->resumeOperation($operationName, 'importUserEvents');
@@ -495,11 +494,13 @@ class UserEventServiceGapicClient
      * }
      * ```
      *
-     * @param string               $parent       Required. `projects/1234/locations/global/catalogs/default_catalog`
-     * @param UserEventInputConfig $inputConfig  Required. The desired input location of the data.
-     * @param array                $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. `projects/1234/locations/global/catalogs/default_catalog`
+     *     @type UserEventInputConfig $inputConfig
+     *           Required. The desired input location of the data.
      *     @type ImportErrorsConfig $errorsConfig
      *           The desired location of errors incurred during the Import. Cannot be set
      *           for inline user event imports.
@@ -513,16 +514,19 @@ class UserEventServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importUserEvents(
-        $parent,
-        $inputConfig,
-        array $optionalArgs = []
-    ) {
+    public function importUserEvents(array $optionalArgs = [])
+    {
         $request = new ImportUserEventsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setInputConfig($inputConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['inputConfig'])) {
+            $request->setInputConfig($optionalArgs['inputConfig']);
+        }
+
         if (isset($optionalArgs['errorsConfig'])) {
             $request->setErrorsConfig($optionalArgs['errorsConfig']);
         }
@@ -551,9 +555,7 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $formattedParent = $userEventServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-     *     $filter = 'filter';
-     *     $operationResponse = $userEventServiceClient->purgeUserEvents($formattedParent, $filter);
+     *     $operationResponse = $userEventServiceClient->purgeUserEvents();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -564,7 +566,7 @@ class UserEventServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $userEventServiceClient->purgeUserEvents($formattedParent, $filter);
+     *     $operationResponse = $userEventServiceClient->purgeUserEvents();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $userEventServiceClient->resumeOperation($operationName, 'purgeUserEvents');
@@ -584,35 +586,37 @@ class UserEventServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the catalog under which the events are
-     *                             created. The format is
-     *                             `projects/${projectId}/locations/global/catalogs/${catalogId}`
-     * @param string $filter       Required. The filter string to specify the events to be deleted with a
-     *                             length limit of 5,000 characters. Empty string filter is not allowed. The
-     *                             eligible fields for filtering are:
-     *
-     *                             * `eventType`: Double quoted
-     *                             [UserEvent.event_type][google.cloud.retail.v2.UserEvent.event_type] string.
-     *                             * `eventTime`: in ISO 8601 "zulu" format.
-     *                             * `visitorId`: Double quoted string. Specifying this will delete all
-     *                             events associated with a visitor.
-     *                             * `userId`: Double quoted string. Specifying this will delete all events
-     *                             associated with a user.
-     *
-     *                             Examples:
-     *
-     *                             * Deleting all events in a time range:
-     *                             `eventTime > "2012-04-23T18:25:43.511Z"
-     *                             eventTime < "2012-04-23T18:30:43.511Z"`
-     *                             * Deleting specific eventType in time range:
-     *                             `eventTime > "2012-04-23T18:25:43.511Z" eventType = "detail-page-view"`
-     *                             * Deleting all events for a specific visitor:
-     *                             `visitorId = "visitor1024"`
-     *
-     *                             The filtering fields are assumed to have an implicit AND.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the catalog under which the events are
+     *           created. The format is
+     *           `projects/${projectId}/locations/global/catalogs/${catalogId}`
+     *     @type string $filter
+     *           Required. The filter string to specify the events to be deleted with a
+     *           length limit of 5,000 characters. Empty string filter is not allowed. The
+     *           eligible fields for filtering are:
+     *
+     *           * `eventType`: Double quoted
+     *           [UserEvent.event_type][google.cloud.retail.v2.UserEvent.event_type] string.
+     *           * `eventTime`: in ISO 8601 "zulu" format.
+     *           * `visitorId`: Double quoted string. Specifying this will delete all
+     *           events associated with a visitor.
+     *           * `userId`: Double quoted string. Specifying this will delete all events
+     *           associated with a user.
+     *
+     *           Examples:
+     *
+     *           * Deleting all events in a time range:
+     *           `eventTime > "2012-04-23T18:25:43.511Z"
+     *           eventTime < "2012-04-23T18:30:43.511Z"`
+     *           * Deleting specific eventType in time range:
+     *           `eventTime > "2012-04-23T18:25:43.511Z" eventType = "detail-page-view"`
+     *           * Deleting all events for a specific visitor:
+     *           `visitorId = "visitor1024"`
+     *
+     *           The filtering fields are assumed to have an implicit AND.
      *     @type bool $force
      *           Actually perform the purge.
      *           If `force` is set to false, the method will return the expected purge count
@@ -627,13 +631,19 @@ class UserEventServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function purgeUserEvents($parent, $filter, array $optionalArgs = [])
+    public function purgeUserEvents(array $optionalArgs = [])
     {
         $request = new PurgeUserEventsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFilter($filter);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -666,8 +676,7 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $operationResponse = $userEventServiceClient->rejoinUserEvents($parent);
+     *     $operationResponse = $userEventServiceClient->rejoinUserEvents();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -678,7 +687,7 @@ class UserEventServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $userEventServiceClient->rejoinUserEvents($parent);
+     *     $operationResponse = $userEventServiceClient->rejoinUserEvents();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $userEventServiceClient->resumeOperation($operationName, 'rejoinUserEvents');
@@ -698,11 +707,12 @@ class UserEventServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent catalog resource name, such as
-     *                             `projects/1234/locations/global/catalogs/default_catalog`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent catalog resource name, such as
+     *           `projects/1234/locations/global/catalogs/default_catalog`.
      *     @type int $userEventRejoinScope
      *           The type of the user event rejoin to define the scope and range of the user
      *           events to be rejoined with the latest product catalog. Defaults to
@@ -719,12 +729,15 @@ class UserEventServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function rejoinUserEvents($parent, array $optionalArgs = [])
+    public function rejoinUserEvents(array $optionalArgs = [])
     {
         $request = new RejoinUserEventsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['userEventRejoinScope'])) {
             $request->setUserEventRejoinScope(
                 $optionalArgs['userEventRejoinScope']
@@ -752,20 +765,20 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $parent = 'parent';
-     *     $userEvent = new UserEvent();
-     *     $response = $userEventServiceClient->writeUserEvent($parent, $userEvent);
+     *     $response = $userEventServiceClient->writeUserEvent();
      * } finally {
      *     $userEventServiceClient->close();
      * }
      * ```
      *
-     * @param string    $parent       Required. The parent catalog resource name, such as
-     *                                `projects/1234/locations/global/catalogs/default_catalog`.
-     * @param UserEvent $userEvent    Required. User event to write.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent catalog resource name, such as
+     *           `projects/1234/locations/global/catalogs/default_catalog`.
+     *     @type UserEvent $userEvent
+     *           Required. User event to write.
      *     @type bool $writeAsync
      *           If set to true, the user event will be written asynchronously after
      *           validation, and the API will respond without waiting for the write.
@@ -781,16 +794,19 @@ class UserEventServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function writeUserEvent(
-        $parent,
-        $userEvent,
-        array $optionalArgs = []
-    ) {
+    public function writeUserEvent(array $optionalArgs = [])
+    {
         $request = new WriteUserEventRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setUserEvent($userEvent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['userEvent'])) {
+            $request->setUserEvent($optionalArgs['userEvent']);
+        }
+
         if (isset($optionalArgs['writeAsync'])) {
             $request->setWriteAsync($optionalArgs['writeAsync']);
         }

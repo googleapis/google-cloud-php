@@ -32,18 +32,19 @@ use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration;
 /**
  * List the registered apiKeys for use with predict method.
  *
- * @param string $formattedParent The parent placement resource name such as
- *                                `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
- *                                Please see {@see PredictionApiKeyRegistryClient::eventStoreName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_prediction_api_key_registrations_sample(string $formattedParent): void
+function list_prediction_api_key_registrations_sample(): void
 {
     // Create a client.
     $predictionApiKeyRegistryClient = new PredictionApiKeyRegistryClient();
 
     // Prepare the request message.
-    $request = (new ListPredictionApiKeyRegistrationsRequest())
-        ->setParent($formattedParent);
+    $request = new ListPredictionApiKeyRegistrationsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,26 +58,5 @@ function list_prediction_api_key_registrations_sample(string $formattedParent): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = PredictionApiKeyRegistryClient::eventStoreName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]',
-        '[EVENT_STORE]'
-    );
-
-    list_prediction_api_key_registrations_sample($formattedParent);
 }
 // [END recommendationengine_v1beta1_generated_PredictionApiKeyRegistry_ListPredictionApiKeyRegistrations_sync]

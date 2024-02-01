@@ -39,8 +39,7 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the project that contains the keys that will be
-     *                       listed, in the format `projects/{project}`. Please see
-     *                       {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     *                       listed, in the format `projects/{project}`.
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest
      *

@@ -31,25 +31,19 @@ use Google\Cloud\Retail\V2\UpdateProductRequest;
 /**
  * Updates a [Product][google.cloud.retail.v2.Product].
  *
- * @param string $productTitle Product title.
- *
- *                             This field must be a UTF-8 encoded string with a length limit of 1,000
- *                             characters. Otherwise, an INVALID_ARGUMENT error is returned.
- *
- *                             Corresponding properties: Google Merchant Center property
- *                             [title](https://support.google.com/merchants/answer/6324415). Schema.org
- *                             property [Product.name](https://schema.org/name).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_product_sample(string $productTitle): void
+function update_product_sample(): void
 {
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
     // Prepare the request message.
-    $product = (new Product())
-        ->setTitle($productTitle);
-    $request = (new UpdateProductRequest())
-        ->setProduct($product);
+    $request = new UpdateProductRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +53,5 @@ function update_product_sample(string $productTitle): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $productTitle = '[TITLE]';
-
-    update_product_sample($productTitle);
 }
 // [END retail_v2_generated_ProductService_UpdateProduct_sync]

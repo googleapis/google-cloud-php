@@ -60,9 +60,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $catalogServiceClient = new CatalogServiceClient();
  * try {
- *     $formattedParent = $catalogServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
- *     $catalogItem = new CatalogItem();
- *     $response = $catalogServiceClient->createCatalogItem($formattedParent, $catalogItem);
+ *     $response = $catalogServiceClient->createCatalogItem();
  * } finally {
  *     $catalogServiceClient->close();
  * }
@@ -353,20 +351,20 @@ class CatalogServiceGapicClient
      * ```
      * $catalogServiceClient = new CatalogServiceClient();
      * try {
-     *     $formattedParent = $catalogServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-     *     $catalogItem = new CatalogItem();
-     *     $response = $catalogServiceClient->createCatalogItem($formattedParent, $catalogItem);
+     *     $response = $catalogServiceClient->createCatalogItem();
      * } finally {
      *     $catalogServiceClient->close();
      * }
      * ```
      *
-     * @param string      $parent       Required. The parent catalog resource name, such as
-     *                                  `projects/&#42;/locations/global/catalogs/default_catalog`.
-     * @param CatalogItem $catalogItem  Required. The catalog item to create.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent catalog resource name, such as
+     *           `projects/&#42;/locations/global/catalogs/default_catalog`.
+     *     @type CatalogItem $catalogItem
+     *           Required. The catalog item to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -379,13 +377,19 @@ class CatalogServiceGapicClient
      *
      * @experimental
      */
-    public function createCatalogItem($parent, $catalogItem, array $optionalArgs = [])
+    public function createCatalogItem(array $optionalArgs = [])
     {
         $request = new CreateCatalogItemRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCatalogItem($catalogItem);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['catalogItem'])) {
+            $request->setCatalogItem($optionalArgs['catalogItem']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCatalogItem', CatalogItem::class, $optionalArgs, $request)->wait();
@@ -398,18 +402,18 @@ class CatalogServiceGapicClient
      * ```
      * $catalogServiceClient = new CatalogServiceClient();
      * try {
-     *     $formattedName = $catalogServiceClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-     *     $catalogServiceClient->deleteCatalogItem($formattedName);
+     *     $catalogServiceClient->deleteCatalogItem();
      * } finally {
      *     $catalogServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Full resource name of catalog item, such as
-     *                             `projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Full resource name of catalog item, such as
+     *           `projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -420,12 +424,15 @@ class CatalogServiceGapicClient
      *
      * @experimental
      */
-    public function deleteCatalogItem($name, array $optionalArgs = [])
+    public function deleteCatalogItem(array $optionalArgs = [])
     {
         $request = new DeleteCatalogItemRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteCatalogItem', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -438,18 +445,18 @@ class CatalogServiceGapicClient
      * ```
      * $catalogServiceClient = new CatalogServiceClient();
      * try {
-     *     $formattedName = $catalogServiceClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-     *     $response = $catalogServiceClient->getCatalogItem($formattedName);
+     *     $response = $catalogServiceClient->getCatalogItem();
      * } finally {
      *     $catalogServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Full resource name of catalog item, such as
-     *                             `projects/&#42;/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Full resource name of catalog item, such as
+     *           `projects/&#42;/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -462,12 +469,15 @@ class CatalogServiceGapicClient
      *
      * @experimental
      */
-    public function getCatalogItem($name, array $optionalArgs = [])
+    public function getCatalogItem(array $optionalArgs = [])
     {
         $request = new GetCatalogItemRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCatalogItem', CatalogItem::class, $optionalArgs, $request)->wait();
@@ -485,9 +495,7 @@ class CatalogServiceGapicClient
      * ```
      * $catalogServiceClient = new CatalogServiceClient();
      * try {
-     *     $formattedParent = $catalogServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-     *     $inputConfig = new InputConfig();
-     *     $operationResponse = $catalogServiceClient->importCatalogItems($formattedParent, $inputConfig);
+     *     $operationResponse = $catalogServiceClient->importCatalogItems();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -498,7 +506,7 @@ class CatalogServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $catalogServiceClient->importCatalogItems($formattedParent, $inputConfig);
+     *     $operationResponse = $catalogServiceClient->importCatalogItems();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $catalogServiceClient->resumeOperation($operationName, 'importCatalogItems');
@@ -518,16 +526,18 @@ class CatalogServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent       Required. `projects/1234/locations/global/catalogs/default_catalog`
-     * @param InputConfig $inputConfig  Required. The desired input location of the data.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. `projects/1234/locations/global/catalogs/default_catalog`
      *     @type string $requestId
      *           Optional. Unique identifier provided by client, within the ancestor
      *           dataset scope. Ensures idempotency and used for request deduplication.
      *           Server-generated if unspecified. Up to 128 characters long. This is
      *           returned as google.longrunning.Operation.name in the response.
+     *     @type InputConfig $inputConfig
+     *           Required. The desired input location of the data.
      *     @type ImportErrorsConfig $errorsConfig
      *           Optional. The desired location of errors incurred during the Import.
      *     @type RetrySettings|array $retrySettings
@@ -542,15 +552,21 @@ class CatalogServiceGapicClient
      *
      * @experimental
      */
-    public function importCatalogItems($parent, $inputConfig, array $optionalArgs = [])
+    public function importCatalogItems(array $optionalArgs = [])
     {
         $request = new ImportCatalogItemsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setInputConfig($inputConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['inputConfig'])) {
+            $request->setInputConfig($optionalArgs['inputConfig']);
         }
 
         if (isset($optionalArgs['errorsConfig'])) {
@@ -569,9 +585,8 @@ class CatalogServiceGapicClient
      * ```
      * $catalogServiceClient = new CatalogServiceClient();
      * try {
-     *     $formattedParent = $catalogServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $catalogServiceClient->listCatalogItems($formattedParent);
+     *     $pagedResponse = $catalogServiceClient->listCatalogItems();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -579,7 +594,7 @@ class CatalogServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $catalogServiceClient->listCatalogItems($formattedParent);
+     *     $pagedResponse = $catalogServiceClient->listCatalogItems();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -588,11 +603,12 @@ class CatalogServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent catalog resource name, such as
-     *                             `projects/&#42;/locations/global/catalogs/default_catalog`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent catalog resource name, such as
+     *           `projects/&#42;/locations/global/catalogs/default_catalog`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -616,12 +632,15 @@ class CatalogServiceGapicClient
      *
      * @experimental
      */
-    public function listCatalogItems($parent, array $optionalArgs = [])
+    public function listCatalogItems(array $optionalArgs = [])
     {
         $request = new ListCatalogItemsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -647,21 +666,21 @@ class CatalogServiceGapicClient
      * ```
      * $catalogServiceClient = new CatalogServiceClient();
      * try {
-     *     $formattedName = $catalogServiceClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-     *     $catalogItem = new CatalogItem();
-     *     $response = $catalogServiceClient->updateCatalogItem($formattedName, $catalogItem);
+     *     $response = $catalogServiceClient->updateCatalogItem();
      * } finally {
      *     $catalogServiceClient->close();
      * }
      * ```
      *
-     * @param string      $name         Required. Full resource name of catalog item, such as
-     *                                  `projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
-     * @param CatalogItem $catalogItem  Required. The catalog item to update/create. The 'catalog_item_id' field
-     *                                  has to match that in the 'name'.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Full resource name of catalog item, such as
+     *           `projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
+     *     @type CatalogItem $catalogItem
+     *           Required. The catalog item to update/create. The 'catalog_item_id' field
+     *           has to match that in the 'name'.
      *     @type FieldMask $updateMask
      *           Optional. Indicates which fields in the provided 'item' to update. If not
      *           set, will by default update all fields.
@@ -677,13 +696,19 @@ class CatalogServiceGapicClient
      *
      * @experimental
      */
-    public function updateCatalogItem($name, $catalogItem, array $optionalArgs = [])
+    public function updateCatalogItem(array $optionalArgs = [])
     {
         $request = new UpdateCatalogItemRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setCatalogItem($catalogItem);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['catalogItem'])) {
+            $request->setCatalogItem($optionalArgs['catalogItem']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

@@ -29,7 +29,6 @@ class GetQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
      *
      *                     Example name:
      *                     `projects/123/locations/global/quota_preferences/my-config-for-us-east1`
-     *                     Please see {@see CloudQuotasClient::quotaPreferenceName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudQuotas\V1\GetQuotaPreferenceRequest
      *

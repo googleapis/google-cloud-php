@@ -32,18 +32,19 @@ use Google\Cloud\PubSub\V1\Topic;
 /**
  * Lists matching topics.
  *
- * @param string $formattedProject The name of the project in which to list topics.
- *                                 Format is `projects/{project-id}`. Please see
- *                                 {@see PublisherClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_topics_sample(string $formattedProject): void
+function list_topics_sample(): void
 {
     // Create a client.
     $publisherClient = new PublisherClient();
 
     // Prepare the request message.
-    $request = (new ListTopicsRequest())
-        ->setProject($formattedProject);
+    $request = new ListTopicsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_topics_sample(string $formattedProject): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedProject = PublisherClient::projectName('[PROJECT]');
-
-    list_topics_sample($formattedProject);
 }
 // [END pubsub_v1_generated_Publisher_ListTopics_sync]

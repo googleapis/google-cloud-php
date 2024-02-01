@@ -24,38 +24,38 @@ class ModelService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ç
-*google/cloud/retail/v2/model_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"google/cloud/retail/v2/model.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"”
-CreateModelRequest5
-parent (	B%àAúA
-retail.googleapis.com/Catalog1
-model (2.google.cloud.retail.v2.ModelBàA
-dry_run (BàA"}
-UpdateModelRequest1
-model (2.google.cloud.retail.v2.ModelBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"D
-GetModelRequest1
-name (	B#àAúA
-retail.googleapis.com/Model"F
-PauseModelRequest1
-name (	B#àAúA
-retail.googleapis.com/Model"\'
-ResumeModelRequest
-name (	BàA"{
-ListModelsRequest5
-parent (	B%àAúA
-retail.googleapis.com/Catalog
-	page_size (BàA
+Ô
+*google/cloud/retail/v2/model_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"google/cloud/retail/v2/model.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"—
+CreateModelRequest6
+parent (	B&âAúA
+retail.googleapis.com/Catalog2
+model (2.google.cloud.retail.v2.ModelBâA
+dry_run (BâA"
+UpdateModelRequest2
+model (2.google.cloud.retail.v2.ModelBâA5
+update_mask (2.google.protobuf.FieldMaskBâA"E
+GetModelRequest2
+name (	B$âAúA
+retail.googleapis.com/Model"G
+PauseModelRequest2
+name (	B$âAúA
+retail.googleapis.com/Model"(
+ResumeModelRequest
+name (	BâA"~
+ListModelsRequest6
+parent (	B&âAúA
+retail.googleapis.com/Catalog
+	page_size (BâA
 
-page_token (	BàA"G
-DeleteModelRequest1
-name (	B#àAúA
+page_token (	BâA"H
+DeleteModelRequest2
+name (	B$âAúA
 retail.googleapis.com/Model"\\
 ListModelsResponse-
 models (2.google.cloud.retail.v2.Model
-next_page_token (	"E
-TuneModelRequest1
-name (	B#àAúA
+next_page_token (	"F
+TuneModelRequest2
+name (	B$âAúA
 retail.googleapis.com/Model"$
 CreateModelMetadata
 model (	""
@@ -63,18 +63,18 @@ page_token (	BàA"G
 model (	"
 TuneModelResponse2Å
 ModelServiceû
-CreateModel*.google.cloud.retail.v2.CreateModelRequest.google.longrunning.Operation" ‚Óä“>"5/v2/{parent=projects/*/locations/*/catalogs/*}/models:modelÚAparent,modelÊAJ
-google.cloud.retail.v2.Model*google.cloud.retail.v2.CreateModelMetadata˜
-GetModel\'.google.cloud.retail.v2.GetModelRequest.google.cloud.retail.v2.Model"D‚Óä“75/v2/{name=projects/*/locations/*/catalogs/*/models/*}ÚAname¥
+CreateModel*.google.cloud.retail.v2.CreateModelRequest.google.longrunning.Operation" ÊAJ
+google.cloud.retail.v2.Model*google.cloud.retail.v2.CreateModelMetadataÚAparent,model‚Óä“>"5/v2/{parent=projects/*/locations/*/catalogs/*}/models:model˜
+GetModel\'.google.cloud.retail.v2.GetModelRequest.google.cloud.retail.v2.Model"DÚAname‚Óä“75/v2/{name=projects/*/locations/*/catalogs/*/models/*}¥
 
-PauseModel).google.cloud.retail.v2.PauseModelRequest.google.cloud.retail.v2.Model"M‚Óä“@";/v2/{name=projects/*/locations/*/catalogs/*/models/*}:pause:*ÚAname¨
-ResumeModel*.google.cloud.retail.v2.ResumeModelRequest.google.cloud.retail.v2.Model"N‚Óä“A"</v2/{name=projects/*/locations/*/catalogs/*/models/*}:resume:*ÚAname—
-DeleteModel*.google.cloud.retail.v2.DeleteModelRequest.google.protobuf.Empty"D‚Óä“7*5/v2/{name=projects/*/locations/*/catalogs/*/models/*}ÚAname«
+PauseModel).google.cloud.retail.v2.PauseModelRequest.google.cloud.retail.v2.Model"MÚAname‚Óä“@";/v2/{name=projects/*/locations/*/catalogs/*/models/*}:pause:*¨
+ResumeModel*.google.cloud.retail.v2.ResumeModelRequest.google.cloud.retail.v2.Model"NÚAname‚Óä“A"</v2/{name=projects/*/locations/*/catalogs/*/models/*}:resume:*—
+DeleteModel*.google.cloud.retail.v2.DeleteModelRequest.google.protobuf.Empty"DÚAname‚Óä“7*5/v2/{name=projects/*/locations/*/catalogs/*/models/*}«
 
-ListModels).google.cloud.retail.v2.ListModelsRequest*.google.cloud.retail.v2.ListModelsResponse"F‚Óä“75/v2/{parent=projects/*/locations/*/catalogs/*}/modelsÚAparent¸
-UpdateModel*.google.cloud.retail.v2.UpdateModelRequest.google.cloud.retail.v2.Model"^‚Óä“D2;/v2/{model.name=projects/*/locations/*/catalogs/*/models/*}:modelÚAmodel,update_maskú
-	TuneModel(.google.cloud.retail.v2.TuneModelRequest.google.longrunning.Operation"£‚Óä“?":/v2/{name=projects/*/locations/*/catalogs/*/models/*}:tune:*ÚAnameÊAT
-(google.cloud.retail.v2.TuneModelResponse(google.cloud.retail.v2.TuneModelMetadataIÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¼
+ListModels).google.cloud.retail.v2.ListModelsRequest*.google.cloud.retail.v2.ListModelsResponse"FÚAparent‚Óä“75/v2/{parent=projects/*/locations/*/catalogs/*}/models¸
+UpdateModel*.google.cloud.retail.v2.UpdateModelRequest.google.cloud.retail.v2.Model"^ÚAmodel,update_mask‚Óä“D2;/v2/{model.name=projects/*/locations/*/catalogs/*/models/*}:modelú
+	TuneModel(.google.cloud.retail.v2.TuneModelRequest.google.longrunning.Operation"£ÊAT
+(google.cloud.retail.v2.TuneModelResponse(google.cloud.retail.v2.TuneModelMetadataÚAname‚Óä“?":/v2/{name=projects/*/locations/*/catalogs/*/models/*}:tune:*IÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¼
 com.google.cloud.retail.v2BModelServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
         , true);
 

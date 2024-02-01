@@ -35,8 +35,7 @@ class CreateAnnotationRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                               $parent     Required. Name of the parent (project+location). Please see
-     *                                                                         {@see RapidMigrationAssessmentClient::locationName()} for help formatting this field.
+     * @param string                                               $parent     Required. Name of the parent (project+location).
      * @param \Google\Cloud\RapidMigrationAssessment\V1\Annotation $annotation Required. The resource being created.
      *
      * @return \Google\Cloud\RapidMigrationAssessment\V1\CreateAnnotationRequest

@@ -52,10 +52,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $controlServiceClient = new ControlServiceClient();
  * try {
- *     $formattedParent = $controlServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
- *     $control = new Control();
- *     $controlId = 'control_id';
- *     $response = $controlServiceClient->createControl($formattedParent, $control, $controlId);
+ *     $response = $controlServiceClient->createControl();
  * } finally {
  *     $controlServiceClient->close();
  * }
@@ -317,26 +314,26 @@ class ControlServiceGapicClient
      * ```
      * $controlServiceClient = new ControlServiceClient();
      * try {
-     *     $formattedParent = $controlServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-     *     $control = new Control();
-     *     $controlId = 'control_id';
-     *     $response = $controlServiceClient->createControl($formattedParent, $control, $controlId);
+     *     $response = $controlServiceClient->createControl();
      * } finally {
      *     $controlServiceClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. Full resource name of parent catalog. Format:
-     *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
-     * @param Control $control      Required. The Control to create.
-     * @param string  $controlId    Required. The ID to use for the Control, which will become the final
-     *                              component of the Control's resource name.
-     *
-     *                              This value should be 4-63 characters, and valid characters
-     *                              are /[a-z][0-9]-_/.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Full resource name of parent catalog. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
+     *     @type Control $control
+     *           Required. The Control to create.
+     *     @type string $controlId
+     *           Required. The ID to use for the Control, which will become the final
+     *           component of the Control's resource name.
+     *
+     *           This value should be 4-63 characters, and valid characters
+     *           are /[a-z][0-9]-_/.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -347,18 +344,23 @@ class ControlServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createControl(
-        $parent,
-        $control,
-        $controlId,
-        array $optionalArgs = []
-    ) {
+    public function createControl(array $optionalArgs = [])
+    {
         $request = new CreateControlRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setControl($control);
-        $request->setControlId($controlId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['control'])) {
+            $request->setControl($optionalArgs['control']);
+        }
+
+        if (isset($optionalArgs['controlId'])) {
+            $request->setControlId($optionalArgs['controlId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -383,18 +385,18 @@ class ControlServiceGapicClient
      * ```
      * $controlServiceClient = new ControlServiceClient();
      * try {
-     *     $formattedName = $controlServiceClient->controlName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CONTROL]');
-     *     $controlServiceClient->deleteControl($formattedName);
+     *     $controlServiceClient->deleteControl();
      * } finally {
      *     $controlServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the Control to delete. Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/controls/{control_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Control to delete. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/controls/{control_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -403,12 +405,15 @@ class ControlServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteControl($name, array $optionalArgs = [])
+    public function deleteControl(array $optionalArgs = [])
     {
         $request = new DeleteControlRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -430,18 +435,18 @@ class ControlServiceGapicClient
      * ```
      * $controlServiceClient = new ControlServiceClient();
      * try {
-     *     $formattedName = $controlServiceClient->controlName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CONTROL]');
-     *     $response = $controlServiceClient->getControl($formattedName);
+     *     $response = $controlServiceClient->getControl();
      * } finally {
      *     $controlServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the Control to get. Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/controls/{control_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Control to get. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/controls/{control_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -452,12 +457,15 @@ class ControlServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getControl($name, array $optionalArgs = [])
+    public function getControl(array $optionalArgs = [])
     {
         $request = new GetControlRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -480,9 +488,8 @@ class ControlServiceGapicClient
      * ```
      * $controlServiceClient = new ControlServiceClient();
      * try {
-     *     $formattedParent = $controlServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $controlServiceClient->listControls($formattedParent);
+     *     $pagedResponse = $controlServiceClient->listControls();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -490,7 +497,7 @@ class ControlServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $controlServiceClient->listControls($formattedParent);
+     *     $pagedResponse = $controlServiceClient->listControls();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -499,11 +506,12 @@ class ControlServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The catalog resource name. Format:
-     *                             `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The catalog resource name. Format:
+     *           `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -530,12 +538,15 @@ class ControlServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listControls($parent, array $optionalArgs = [])
+    public function listControls(array $optionalArgs = [])
     {
         $request = new ListControlsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -574,17 +585,17 @@ class ControlServiceGapicClient
      * ```
      * $controlServiceClient = new ControlServiceClient();
      * try {
-     *     $control = new Control();
-     *     $response = $controlServiceClient->updateControl($control);
+     *     $response = $controlServiceClient->updateControl();
      * } finally {
      *     $controlServiceClient->close();
      * }
      * ```
      *
-     * @param Control $control      Required. The Control to update.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Control $control
+     *           Required. The Control to update.
      *     @type FieldMask $updateMask
      *           Indicates which fields in the provided
      *           [Control][google.cloud.retail.v2.Control] to update. The following are NOT
@@ -603,12 +614,14 @@ class ControlServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateControl($control, array $optionalArgs = [])
+    public function updateControl(array $optionalArgs = [])
     {
         $request = new UpdateControlRequest();
         $requestParamHeaders = [];
-        $request->setControl($control);
-        $requestParamHeaders['control.name'] = $control->getName();
+        if (isset($optionalArgs['control'])) {
+            $request->setControl($optionalArgs['control']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

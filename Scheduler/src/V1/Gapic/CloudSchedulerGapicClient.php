@@ -61,9 +61,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $cloudSchedulerClient = new CloudSchedulerClient();
  * try {
- *     $formattedParent = $cloudSchedulerClient->locationName('[PROJECT]', '[LOCATION]');
- *     $job = new Job();
- *     $response = $cloudSchedulerClient->createJob($formattedParent, $job);
+ *     $response = $cloudSchedulerClient->createJob();
  * } finally {
  *     $cloudSchedulerClient->close();
  * }
@@ -360,25 +358,25 @@ class CloudSchedulerGapicClient
      * ```
      * $cloudSchedulerClient = new CloudSchedulerClient();
      * try {
-     *     $formattedParent = $cloudSchedulerClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $job = new Job();
-     *     $response = $cloudSchedulerClient->createJob($formattedParent, $job);
+     *     $response = $cloudSchedulerClient->createJob();
      * } finally {
      *     $cloudSchedulerClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The location name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID`.
-     * @param Job    $job          Required. The job to add. The user can optionally specify a name for the
-     *                             job in [name][google.cloud.scheduler.v1.Job.name].
-     *                             [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
-     *                             existing job. If a name is not specified then the system will
-     *                             generate a random unique name that will be returned
-     *                             ([name][google.cloud.scheduler.v1.Job.name]) in the response.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID`.
+     *     @type Job $job
+     *           Required. The job to add. The user can optionally specify a name for the
+     *           job in [name][google.cloud.scheduler.v1.Job.name].
+     *           [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
+     *           existing job. If a name is not specified then the system will
+     *           generate a random unique name that will be returned
+     *           ([name][google.cloud.scheduler.v1.Job.name]) in the response.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -389,13 +387,19 @@ class CloudSchedulerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createJob($parent, $job, array $optionalArgs = [])
+    public function createJob(array $optionalArgs = [])
     {
         $request = new CreateJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setJob($job);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['job'])) {
+            $request->setJob($optionalArgs['job']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateJob', Job::class, $optionalArgs, $request)->wait();
@@ -408,18 +412,18 @@ class CloudSchedulerGapicClient
      * ```
      * $cloudSchedulerClient = new CloudSchedulerClient();
      * try {
-     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $cloudSchedulerClient->deleteJob($formattedName);
+     *     $cloudSchedulerClient->deleteJob();
      * } finally {
      *     $cloudSchedulerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The job name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The job name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -428,12 +432,15 @@ class CloudSchedulerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteJob($name, array $optionalArgs = [])
+    public function deleteJob(array $optionalArgs = [])
     {
         $request = new DeleteJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteJob', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -446,18 +453,18 @@ class CloudSchedulerGapicClient
      * ```
      * $cloudSchedulerClient = new CloudSchedulerClient();
      * try {
-     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $response = $cloudSchedulerClient->getJob($formattedName);
+     *     $response = $cloudSchedulerClient->getJob();
      * } finally {
      *     $cloudSchedulerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The job name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The job name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -468,12 +475,15 @@ class CloudSchedulerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getJob($name, array $optionalArgs = [])
+    public function getJob(array $optionalArgs = [])
     {
         $request = new GetJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetJob', Job::class, $optionalArgs, $request)->wait();
@@ -486,9 +496,8 @@ class CloudSchedulerGapicClient
      * ```
      * $cloudSchedulerClient = new CloudSchedulerClient();
      * try {
-     *     $formattedParent = $cloudSchedulerClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudSchedulerClient->listJobs($formattedParent);
+     *     $pagedResponse = $cloudSchedulerClient->listJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -496,7 +505,7 @@ class CloudSchedulerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudSchedulerClient->listJobs($formattedParent);
+     *     $pagedResponse = $cloudSchedulerClient->listJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -505,11 +514,12 @@ class CloudSchedulerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The location name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -529,12 +539,15 @@ class CloudSchedulerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listJobs($parent, array $optionalArgs = [])
+    public function listJobs(array $optionalArgs = [])
     {
         $request = new ListJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -564,18 +577,18 @@ class CloudSchedulerGapicClient
      * ```
      * $cloudSchedulerClient = new CloudSchedulerClient();
      * try {
-     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $response = $cloudSchedulerClient->pauseJob($formattedName);
+     *     $response = $cloudSchedulerClient->pauseJob();
      * } finally {
      *     $cloudSchedulerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The job name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The job name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -586,12 +599,15 @@ class CloudSchedulerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function pauseJob($name, array $optionalArgs = [])
+    public function pauseJob(array $optionalArgs = [])
     {
         $request = new PauseJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('PauseJob', Job::class, $optionalArgs, $request)->wait();
@@ -612,18 +628,18 @@ class CloudSchedulerGapicClient
      * ```
      * $cloudSchedulerClient = new CloudSchedulerClient();
      * try {
-     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $response = $cloudSchedulerClient->resumeJob($formattedName);
+     *     $response = $cloudSchedulerClient->resumeJob();
      * } finally {
      *     $cloudSchedulerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The job name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The job name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -634,12 +650,15 @@ class CloudSchedulerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resumeJob($name, array $optionalArgs = [])
+    public function resumeJob(array $optionalArgs = [])
     {
         $request = new ResumeJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ResumeJob', Job::class, $optionalArgs, $request)->wait();
@@ -655,18 +674,18 @@ class CloudSchedulerGapicClient
      * ```
      * $cloudSchedulerClient = new CloudSchedulerClient();
      * try {
-     *     $formattedName = $cloudSchedulerClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $response = $cloudSchedulerClient->runJob($formattedName);
+     *     $response = $cloudSchedulerClient->runJob();
      * } finally {
      *     $cloudSchedulerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The job name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The job name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -677,12 +696,15 @@ class CloudSchedulerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function runJob($name, array $optionalArgs = [])
+    public function runJob(array $optionalArgs = [])
     {
         $request = new RunJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RunJob', Job::class, $optionalArgs, $request)->wait();
@@ -704,23 +726,23 @@ class CloudSchedulerGapicClient
      * ```
      * $cloudSchedulerClient = new CloudSchedulerClient();
      * try {
-     *     $job = new Job();
      *     $updateMask = new FieldMask();
-     *     $response = $cloudSchedulerClient->updateJob($job, $updateMask);
+     *     $response = $cloudSchedulerClient->updateJob($updateMask);
      * } finally {
      *     $cloudSchedulerClient->close();
      * }
      * ```
      *
-     * @param Job       $job          Required. The new job properties.
-     *                                [name][google.cloud.scheduler.v1.Job.name] must be specified.
-     *
-     *                                Output only fields cannot be modified using UpdateJob.
-     *                                Any value specified for an output only field will be ignored.
      * @param FieldMask $updateMask   A  mask used to specify which fields of the job are being updated.
      * @param array     $optionalArgs {
      *     Optional.
      *
+     *     @type Job $job
+     *           Required. The new job properties.
+     *           [name][google.cloud.scheduler.v1.Job.name] must be specified.
+     *
+     *           Output only fields cannot be modified using UpdateJob.
+     *           Any value specified for an output only field will be ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -731,13 +753,15 @@ class CloudSchedulerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateJob($job, $updateMask, array $optionalArgs = [])
+    public function updateJob($updateMask, array $optionalArgs = [])
     {
         $request = new UpdateJobRequest();
         $requestParamHeaders = [];
-        $request->setJob($job);
         $request->setUpdateMask($updateMask);
-        $requestParamHeaders['job.name'] = $job->getName();
+        if (isset($optionalArgs['job'])) {
+            $request->setJob($optionalArgs['job']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateJob', Job::class, $optionalArgs, $request)->wait();

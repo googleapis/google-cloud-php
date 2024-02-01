@@ -37,21 +37,19 @@ use Google\Cloud\Retail\V2\ServingConfig;
  * Returns a FAILED_PRECONDITION error if the addition could exceed maximum
  * number of control allowed for that type of control.
  *
- * @param string $formattedServingConfig The source ServingConfig resource name . Format:
- *                                       `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
- *                                       Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
- * @param string $controlId              The id of the control to apply. Assumed to be in the same catalog
- *                                       as the serving config - if id is not found a NOT_FOUND error is returned.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function add_control_sample(string $formattedServingConfig, string $controlId): void
+function add_control_sample(): void
 {
     // Create a client.
     $servingConfigServiceClient = new ServingConfigServiceClient();
 
     // Prepare the request message.
-    $request = (new AddControlRequest())
-        ->setServingConfig($formattedServingConfig)
-        ->setControlId($controlId);
+    $request = new AddControlRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,27 +59,5 @@ function add_control_sample(string $formattedServingConfig, string $controlId): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedServingConfig = ServingConfigServiceClient::servingConfigName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]',
-        '[SERVING_CONFIG]'
-    );
-    $controlId = '[CONTROL_ID]';
-
-    add_control_sample($formattedServingConfig, $controlId);
 }
 // [END retail_v2_generated_ServingConfigService_AddControl_sync]

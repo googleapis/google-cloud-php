@@ -33,33 +33,19 @@ use Google\Cloud\Recommender\V1\ListInsightsRequest;
  * Lists insights for the specified Cloud Resource. Requires the
  * recommender.*.list IAM permission for the specified insight type.
  *
- * @param string $formattedParent The container resource on which to execute the request.
- *                                Acceptable formats:
- *
- *                                * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
- *
- *                                * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
- *
- *                                * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
- *
- *                                * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
- *
- *                                * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
- *
- *                                LOCATION here refers to GCP Locations:
- *                                https://cloud.google.com/about/locations/
- *                                INSIGHT_TYPE_ID refers to supported insight types:
- *                                https://cloud.google.com/recommender/docs/insights/insight-types. Please see
- *                                {@see RecommenderClient::insightTypeName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_insights_sample(string $formattedParent): void
+function list_insights_sample(): void
 {
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
     // Prepare the request message.
-    $request = (new ListInsightsRequest())
-        ->setParent($formattedParent);
+    $request = new ListInsightsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -73,21 +59,5 @@ function list_insights_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RecommenderClient::insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-
-    list_insights_sample($formattedParent);
 }
 // [END recommender_v1_generated_Recommender_ListInsights_sync]

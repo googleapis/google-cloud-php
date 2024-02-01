@@ -23,40 +23,40 @@ class ControlService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‡
-,google/cloud/retail/v2/control_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/retail/v2/control.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ù
-CreateControlRequest5
-parent (	B%‡A˙A
-retail.googleapis.com/Catalog5
-control (2.google.cloud.retail.v2.ControlB‡A
+Í
+,google/cloud/retail/v2/control_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/retail/v2/control.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"†
+CreateControlRequest6
+parent (	B&‚A˙A
+retail.googleapis.com/Catalog6
+control (2.google.cloud.retail.v2.ControlB‚A
 
-control_id (	B‡A"~
-UpdateControlRequest5
-control (2.google.cloud.retail.v2.ControlB‡A/
-update_mask (2.google.protobuf.FieldMask"K
-DeleteControlRequest3
-name (	B%‡A˙A
-retail.googleapis.com/Control"H
-GetControlRequest3
-name (	B%‡A˙A
-retail.googleapis.com/Control"í
-ListControlsRequest5
-parent (	B%‡A˙A
-retail.googleapis.com/Catalog
-	page_size (B‡A
+control_id (	B‚A"
+UpdateControlRequest6
+control (2.google.cloud.retail.v2.ControlB‚A/
+update_mask (2.google.protobuf.FieldMask"L
+DeleteControlRequest4
+name (	B&‚A˙A
+retail.googleapis.com/Control"I
+GetControlRequest4
+name (	B&‚A˙A
+retail.googleapis.com/Control"ñ
+ListControlsRequest6
+parent (	B&‚A˙A
+retail.googleapis.com/Catalog
+	page_size (B‚A
 
-page_token (	B‡A
-filter (	B‡A"b
+page_token (	B‚A
+filter (	B‚A"b
 ListControlsResponse1
 controls (2.google.cloud.retail.v2.Control
 next_page_token (	2‰
 ControlServiceƒ
-CreateControl,.google.cloud.retail.v2.CreateControlRequest.google.cloud.retail.v2.Control"dÇ”‰ìB"7/v2/{parent=projects/*/locations/*/catalogs/*}/controls:control⁄Aparent,control,control_idù
-DeleteControl,.google.cloud.retail.v2.DeleteControlRequest.google.protobuf.Empty"FÇ”‰ì9*7/v2/{name=projects/*/locations/*/catalogs/*/controls/*}⁄Aname∆
-UpdateControl,.google.cloud.retail.v2.UpdateControlRequest.google.cloud.retail.v2.Control"fÇ”‰ìJ2?/v2/{control.name=projects/*/locations/*/catalogs/*/controls/*}:control⁄Acontrol,update_mask†
+CreateControl,.google.cloud.retail.v2.CreateControlRequest.google.cloud.retail.v2.Control"d⁄Aparent,control,control_idÇ”‰ìB"7/v2/{parent=projects/*/locations/*/catalogs/*}/controls:controlù
+DeleteControl,.google.cloud.retail.v2.DeleteControlRequest.google.protobuf.Empty"F⁄AnameÇ”‰ì9*7/v2/{name=projects/*/locations/*/catalogs/*/controls/*}∆
+UpdateControl,.google.cloud.retail.v2.UpdateControlRequest.google.cloud.retail.v2.Control"f⁄Acontrol,update_maskÇ”‰ìJ2?/v2/{control.name=projects/*/locations/*/catalogs/*/controls/*}:control†
 
-GetControl).google.cloud.retail.v2.GetControlRequest.google.cloud.retail.v2.Control"FÇ”‰ì97/v2/{name=projects/*/locations/*/catalogs/*/controls/*}⁄Aname≥
-ListControls+.google.cloud.retail.v2.ListControlsRequest,.google.cloud.retail.v2.ListControlsResponse"HÇ”‰ì97/v2/{parent=projects/*/locations/*/catalogs/*}/controls⁄AparentI Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBæ
+GetControl).google.cloud.retail.v2.GetControlRequest.google.cloud.retail.v2.Control"F⁄AnameÇ”‰ì97/v2/{name=projects/*/locations/*/catalogs/*/controls/*}≥
+ListControls+.google.cloud.retail.v2.ListControlsRequest,.google.cloud.retail.v2.ListControlsResponse"H⁄AparentÇ”‰ì97/v2/{parent=projects/*/locations/*/catalogs/*}/controlsI Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBæ
 com.google.cloud.retail.v2BControlServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
         , true);
 

@@ -32,20 +32,19 @@ use Google\Cloud\Run\V2\Service;
 /**
  * Lists Services.
  *
- * @param string $formattedParent The location and project to list resources on.
- *                                Location must be a valid Google Cloud region, and cannot be the "-"
- *                                wildcard. Format: projects/{project}/locations/{location}, where {project}
- *                                can be project id or number. Please see
- *                                {@see ServicesClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_services_sample(string $formattedParent): void
+function list_services_sample(): void
 {
     // Create a client.
     $servicesClient = new ServicesClient();
 
     // Prepare the request message.
-    $request = (new ListServicesRequest())
-        ->setParent($formattedParent);
+    $request = new ListServicesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +58,5 @@ function list_services_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ServicesClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_services_sample($formattedParent);
 }
 // [END run_v2_generated_Services_ListServices_sync]

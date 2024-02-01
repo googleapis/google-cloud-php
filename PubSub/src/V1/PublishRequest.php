@@ -31,8 +31,7 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                  $topic    Required. The messages in the request will be published on this topic.
-     *                                                          Format is `projects/{project}/topics/{topic}`. Please see
-     *                                                          {@see PublisherClient::topicName()} for help formatting this field.
+     *                                                          Format is `projects/{project}/topics/{topic}`.
      * @param \Google\Cloud\PubSub\V1\PubsubMessage[] $messages Required. The messages to publish.
      *
      * @return \Google\Cloud\PubSub\V1\PublishRequest

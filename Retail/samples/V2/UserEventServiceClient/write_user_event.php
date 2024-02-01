@@ -31,53 +31,19 @@ use Google\Cloud\Retail\V2\WriteUserEventRequest;
 /**
  * Writes a single user event.
  *
- * @param string $parent             The parent catalog resource name, such as
- *                                   `projects/1234/locations/global/catalogs/default_catalog`.
- * @param string $userEventEventType User event type. Allowed values are:
- *
- *                                   * `add-to-cart`: Products being added to cart.
- *                                   * `category-page-view`: Special pages such as sale or promotion pages
- *                                   viewed.
- *                                   * `detail-page-view`: Products detail page viewed.
- *                                   * `home-page-view`: Homepage viewed.
- *                                   * `promotion-offered`: Promotion is offered to a user.
- *                                   * `promotion-not-offered`: Promotion is not offered to a user.
- *                                   * `purchase-complete`: User finishing a purchase.
- *                                   * `search`: Product search.
- *                                   * `shopping-cart-page-view`: User viewing a shopping cart.
- * @param string $userEventVisitorId A unique identifier for tracking visitors.
- *
- *                                   For example, this could be implemented with an HTTP cookie, which should be
- *                                   able to uniquely identify a visitor on a single device. This unique
- *                                   identifier should not change if the visitor log in/out of the website.
- *
- *                                   Don't set the field to the same fixed ID for different users. This mixes
- *                                   the event history of those users together, which results in degraded model
- *                                   quality.
- *
- *                                   The field must be a UTF-8 encoded string with a length limit of 128
- *                                   characters. Otherwise, an INVALID_ARGUMENT error is returned.
- *
- *                                   The field should not contain PII or user-data. We recommend to use Google
- *                                   Analytics [Client
- *                                   ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
- *                                   for this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function write_user_event_sample(
-    string $parent,
-    string $userEventEventType,
-    string $userEventVisitorId
-): void {
+function write_user_event_sample(): void
+{
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
     // Prepare the request message.
-    $userEvent = (new UserEvent())
-        ->setEventType($userEventEventType)
-        ->setVisitorId($userEventVisitorId);
-    $request = (new WriteUserEventRequest())
-        ->setParent($parent)
-        ->setUserEvent($userEvent);
+    $request = new WriteUserEventRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -87,23 +53,5 @@ function write_user_event_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $userEventEventType = '[EVENT_TYPE]';
-    $userEventVisitorId = '[VISITOR_ID]';
-
-    write_user_event_sample($parent, $userEventEventType, $userEventVisitorId);
 }
 // [END retail_v2_generated_UserEventService_WriteUserEvent_sync]

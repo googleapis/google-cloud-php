@@ -30,7 +30,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogItem;
 use Google\Cloud\RecommendationEngine\V1beta1\CatalogServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsResponse;
-use Google\Cloud\RecommendationEngine\V1beta1\InputConfig;
 use Google\Cloud\RecommendationEngine\V1beta1\ListCatalogItemsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -88,26 +87,13 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setItemGroupId($itemGroupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $catalogItem = new CatalogItem();
-        $catalogItemId = 'catalogItemId-1850269433';
-        $catalogItem->setId($catalogItemId);
-        $catalogItemCategoryHierarchies = [];
-        $catalogItem->setCategoryHierarchies($catalogItemCategoryHierarchies);
-        $catalogItemTitle = 'catalogItemTitle244020972';
-        $catalogItem->setTitle($catalogItemTitle);
-        $response = $gapicClient->createCatalogItem($formattedParent, $catalogItem);
+        $response = $gapicClient->createCatalogItem();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.CatalogService/CreateCatalogItem', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getCatalogItem();
-        $this->assertProtobufEquals($catalogItem, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -129,17 +115,8 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $catalogItem = new CatalogItem();
-        $catalogItemId = 'catalogItemId-1850269433';
-        $catalogItem->setId($catalogItemId);
-        $catalogItemCategoryHierarchies = [];
-        $catalogItem->setCategoryHierarchies($catalogItemCategoryHierarchies);
-        $catalogItemTitle = 'catalogItemTitle244020972';
-        $catalogItem->setTitle($catalogItemTitle);
         try {
-            $gapicClient->createCatalogItem($formattedParent, $catalogItem);
+            $gapicClient->createCatalogItem();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -162,16 +139,12 @@ class CatalogServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-        $gapicClient->deleteCatalogItem($formattedName);
+        $gapicClient->deleteCatalogItem();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.CatalogService/DeleteCatalogItem', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -193,10 +166,8 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
         try {
-            $gapicClient->deleteCatalogItem($formattedName);
+            $gapicClient->deleteCatalogItem();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -229,17 +200,13 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setItemGroupId($itemGroupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-        $response = $gapicClient->getCatalogItem($formattedName);
+        $response = $gapicClient->getCatalogItem();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.CatalogService/GetCatalogItem', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -261,10 +228,8 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
         try {
-            $gapicClient->getCatalogItem($formattedName);
+            $gapicClient->getCatalogItem();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -305,10 +270,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $inputConfig = new InputConfig();
-        $response = $gapicClient->importCatalogItems($formattedParent, $inputConfig);
+        $response = $gapicClient->importCatalogItems();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -318,10 +280,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.CatalogService/ImportCatalogItems', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInputConfig();
-        $this->assertProtobufEquals($inputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importCatalogItemsTest');
         $response->pollUntilComplete([
@@ -372,10 +330,7 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $inputConfig = new InputConfig();
-        $response = $gapicClient->importCatalogItems($formattedParent, $inputConfig);
+        $response = $gapicClient->importCatalogItems();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -415,9 +370,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCatalogItems($catalogItems);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $response = $gapicClient->listCatalogItems($formattedParent);
+        $response = $gapicClient->listCatalogItems();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -427,8 +380,6 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.CatalogService/ListCatalogItems', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -450,10 +401,8 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         try {
-            $gapicClient->listCatalogItems($formattedParent);
+            $gapicClient->listCatalogItems();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -486,26 +435,13 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setItemGroupId($itemGroupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-        $catalogItem = new CatalogItem();
-        $catalogItemId = 'catalogItemId-1850269433';
-        $catalogItem->setId($catalogItemId);
-        $catalogItemCategoryHierarchies = [];
-        $catalogItem->setCategoryHierarchies($catalogItemCategoryHierarchies);
-        $catalogItemTitle = 'catalogItemTitle244020972';
-        $catalogItem->setTitle($catalogItemTitle);
-        $response = $gapicClient->updateCatalogItem($formattedName, $catalogItem);
+        $response = $gapicClient->updateCatalogItem();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.CatalogService/UpdateCatalogItem', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getCatalogItem();
-        $this->assertProtobufEquals($catalogItem, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -527,17 +463,8 @@ class CatalogServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->catalogItemPathName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CATALOG_ITEM_PATH]');
-        $catalogItem = new CatalogItem();
-        $catalogItemId = 'catalogItemId-1850269433';
-        $catalogItem->setId($catalogItemId);
-        $catalogItemCategoryHierarchies = [];
-        $catalogItem->setCategoryHierarchies($catalogItemCategoryHierarchies);
-        $catalogItemTitle = 'catalogItemTitle244020972';
-        $catalogItem->setTitle($catalogItemTitle);
         try {
-            $gapicClient->updateCatalogItem($formattedName, $catalogItem);
+            $gapicClient->updateCatalogItem();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

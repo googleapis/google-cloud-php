@@ -22,36 +22,37 @@ class TagBindings
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ä
-2google/cloud/resourcemanager/v3/tag_bindings.protogoogle.cloud.resourcemanager.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"µ
+î
+2google/cloud/resourcemanager/v3/tag_bindings.protogoogle.cloud.resourcemanager.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"∂
 
-TagBinding
-name (	B‡A
+TagBinding
+name (	B‚A
 parent (	
 	tag_value (	!
 tag_value_namespaced_name (	:NÍAK
 .cloudresourcemanager.googleapis.com/TagBindingtagBindings/{tag_binding}"
-CreateTagBindingMetadata"|
-CreateTagBindingRequestE
-tag_binding (2+.google.cloud.resourcemanager.v3.TagBindingB‡A
-validate_only (B‡A"
-DeleteTagBindingMetadata"_
-DeleteTagBindingRequestD
-name (	B6‡A˙A0
-.cloudresourcemanager.googleapis.com/TagBinding"d
-ListTagBindingsRequest
-parent (	B	‡A˙A*
-	page_size (B‡A
+CreateTagBindingMetadata"~
+CreateTagBindingRequestF
+tag_binding (2+.google.cloud.resourcemanager.v3.TagBindingB‚A
+validate_only (B‚A"
+DeleteTagBindingMetadata"`
+DeleteTagBindingRequestE
+name (	B7‚A˙A0
+.cloudresourcemanager.googleapis.com/TagBinding"g
+ListTagBindingsRequest
+parent (	B
+‚A˙A*
+	page_size (B‚A
 
-page_token (	B‡A"u
+page_token (	B‚A"u
 ListTagBindingsResponseA
 tag_bindings (2+.google.cloud.resourcemanager.v3.TagBinding
-next_page_token (	"`
-ListEffectiveTagsRequest
-parent (	B‡A
-	page_size (B‡A
+next_page_token (	"c
+ListEffectiveTagsRequest
+parent (	B‚A
+	page_size (B‚A
 
-page_token (	B‡A"{
+page_token (	B‚A"{
 ListEffectiveTagsResponseE
 effective_tags (2-.google.cloud.resourcemanager.v3.EffectiveTag
 next_page_token (	"Ä
@@ -65,13 +66,13 @@ page_token (	B‡A"{
 tag_key_parent_name (	
 	inherited (2ë
 TagBindings¶
-ListTagBindings7.google.cloud.resourcemanager.v3.ListTagBindingsRequest8.google.cloud.resourcemanager.v3.ListTagBindingsResponse" Ç”‰ì/v3/tagBindings⁄Aparent»
-CreateTagBinding8.google.cloud.resourcemanager.v3.CreateTagBindingRequest.google.longrunning.Operation"[Ç”‰ì"/v3/tagBindings:tag_binding⁄Atag_binding A&
+ListTagBindings7.google.cloud.resourcemanager.v3.ListTagBindingsRequest8.google.cloud.resourcemanager.v3.ListTagBindingsResponse" ⁄AparentÇ”‰ì/v3/tagBindings»
+CreateTagBinding8.google.cloud.resourcemanager.v3.CreateTagBindingRequest.google.longrunning.Operation"[ A&
 
-TagBindingCreateTagBindingMetadata…
-DeleteTagBinding8.google.cloud.resourcemanager.v3.DeleteTagBindingRequest.google.longrunning.Operation"\\Ç”‰ì*/v3/{name=tagBindings/**}⁄Aname A1
-google.protobuf.EmptyDeleteTagBindingMetadataÆ
-ListEffectiveTags9.google.cloud.resourcemanager.v3.ListEffectiveTagsRequest:.google.cloud.resourcemanager.v3.ListEffectiveTagsResponse""Ç”‰ì/v3/effectiveTags⁄Aparentê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÒ
+TagBindingCreateTagBindingMetadata⁄Atag_bindingÇ”‰ì"/v3/tagBindings:tag_binding…
+DeleteTagBinding8.google.cloud.resourcemanager.v3.DeleteTagBindingRequest.google.longrunning.Operation"\\ A1
+google.protobuf.EmptyDeleteTagBindingMetadata⁄AnameÇ”‰ì*/v3/{name=tagBindings/**}Æ
+ListEffectiveTags9.google.cloud.resourcemanager.v3.ListEffectiveTagsRequest:.google.cloud.resourcemanager.v3.ListEffectiveTagsResponse""⁄AparentÇ”‰ì/v3/effectiveTagsê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÒ
 #com.google.cloud.resourcemanager.v3BTagBindingsProtoPZMcloud.google.com/go/resourcemanager/apiv3/resourcemanagerpb;resourcemanagerpb™Google.Cloud.ResourceManager.V3 Google\\Cloud\\ResourceManager\\V3Í"Google::Cloud::ResourceManager::V3bproto3'
         , true);
 

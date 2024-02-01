@@ -85,9 +85,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $subscriberClient = new SubscriberClient();
  * try {
- *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
- *     $ackIds = [];
- *     $subscriberClient->acknowledge($formattedSubscription, $ackIds);
+ *     $subscriberClient->acknowledge();
  * } finally {
  *     $subscriberClient->close();
  * }
@@ -445,22 +443,22 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $ackIds = [];
-     *     $subscriberClient->acknowledge($formattedSubscription, $ackIds);
+     *     $subscriberClient->acknowledge();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string   $subscription Required. The subscription whose message is being acknowledged.
-     *                               Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds       Required. The acknowledgment ID for the messages being acknowledged that
-     *                               was returned by the Pub/Sub system in the `Pull` response. Must not be
-     *                               empty.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $subscription
+     *           Required. The subscription whose message is being acknowledged.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
+     *     @type string[] $ackIds
+     *           Required. The acknowledgment ID for the messages being acknowledged that
+     *           was returned by the Pub/Sub system in the `Pull` response. Must not be
+     *           empty.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -469,13 +467,19 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function acknowledge($subscription, $ackIds, array $optionalArgs = [])
+    public function acknowledge(array $optionalArgs = [])
     {
         $request = new AcknowledgeRequest();
         $requestParamHeaders = [];
-        $request->setSubscription($subscription);
-        $request->setAckIds($ackIds);
-        $requestParamHeaders['subscription'] = $subscription;
+        if (isset($optionalArgs['subscription'])) {
+            $request->setSubscription($optionalArgs['subscription']);
+            $requestParamHeaders['subscription'] = $optionalArgs['subscription'];
+        }
+
+        if (isset($optionalArgs['ackIds'])) {
+            $request->setAckIds($optionalArgs['ackIds']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Acknowledge', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -503,32 +507,32 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedName = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
-     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $response = $subscriberClient->createSnapshot($formattedName, $formattedSubscription);
+     *     $response = $subscriberClient->createSnapshot();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. User-provided name for this snapshot. If the name is not provided
-     *                             in the request, the server will assign a random name for this snapshot on
-     *                             the same project as the subscription. Note that for REST API requests, you
-     *                             must specify a name.  See the [resource name
-     *                             rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
-     *                             Format is `projects/{project}/snapshots/{snap}`.
-     * @param string $subscription Required. The subscription whose backlog the snapshot retains.
-     *                             Specifically, the created snapshot is guaranteed to retain:
-     *                             (a) The existing backlog on the subscription. More precisely, this is
-     *                             defined as the messages in the subscription's backlog that are
-     *                             unacknowledged upon the successful completion of the
-     *                             `CreateSnapshot` request; as well as:
-     *                             (b) Any messages published to the subscription's topic following the
-     *                             successful completion of the CreateSnapshot request.
-     *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. User-provided name for this snapshot. If the name is not provided
+     *           in the request, the server will assign a random name for this snapshot on
+     *           the same project as the subscription. Note that for REST API requests, you
+     *           must specify a name.  See the [resource name
+     *           rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
+     *           Format is `projects/{project}/snapshots/{snap}`.
+     *     @type string $subscription
+     *           Required. The subscription whose backlog the snapshot retains.
+     *           Specifically, the created snapshot is guaranteed to retain:
+     *           (a) The existing backlog on the subscription. More precisely, this is
+     *           defined as the messages in the subscription's backlog that are
+     *           unacknowledged upon the successful completion of the
+     *           `CreateSnapshot` request; as well as:
+     *           (b) Any messages published to the subscription's topic following the
+     *           successful completion of the CreateSnapshot request.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type array $labels
      *           Optional. See [Creating and managing
      *           labels](https://cloud.google.com/pubsub/docs/labels).
@@ -542,13 +546,19 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSnapshot($name, $subscription, array $optionalArgs = [])
+    public function createSnapshot(array $optionalArgs = [])
     {
         $request = new CreateSnapshotRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setSubscription($subscription);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['subscription'])) {
+            $request->setSubscription($optionalArgs['subscription']);
+        }
+
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
         }
@@ -575,26 +585,26 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $name = 'name';
-     *     $formattedTopic = $subscriberClient->topicName('[PROJECT]', '[TOPIC]');
-     *     $response = $subscriberClient->createSubscription($name, $formattedTopic);
+     *     $response = $subscriberClient->createSubscription();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the subscription. It must have the format
-     *                             `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
-     *                             start with a letter, and contain only letters (`[A-Za-z]`), numbers
-     *                             (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
-     *                             plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
-     *                             in length, and it must not start with `"goog"`.
-     * @param string $topic        Required. The name of the topic from which this subscription is receiving
-     *                             messages. Format is `projects/{project}/topics/{topic}`. The value of this
-     *                             field will be `_deleted-topic_` if the topic has been deleted.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the subscription. It must have the format
+     *           `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
+     *           start with a letter, and contain only letters (`[A-Za-z]`), numbers
+     *           (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
+     *           plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
+     *           in length, and it must not start with `"goog"`.
+     *     @type string $topic
+     *           Required. The name of the topic from which this subscription is receiving
+     *           messages. Format is `projects/{project}/topics/{topic}`. The value of this
+     *           field will be `_deleted-topic_` if the topic has been deleted.
      *     @type PushConfig $pushConfig
      *           Optional. If push delivery is used with this subscription, this field is
      *           used to configure it.
@@ -717,13 +727,19 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSubscription($name, $topic, array $optionalArgs = [])
+    public function createSubscription(array $optionalArgs = [])
     {
         $request = new Subscription();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setTopic($topic);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['topic'])) {
+            $request->setTopic($optionalArgs['topic']);
+        }
+
         if (isset($optionalArgs['pushConfig'])) {
             $request->setPushConfig($optionalArgs['pushConfig']);
         }
@@ -808,18 +824,18 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedSnapshot = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
-     *     $subscriberClient->deleteSnapshot($formattedSnapshot);
+     *     $subscriberClient->deleteSnapshot();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $snapshot     Required. The name of the snapshot to delete.
-     *                             Format is `projects/{project}/snapshots/{snap}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $snapshot
+     *           Required. The name of the snapshot to delete.
+     *           Format is `projects/{project}/snapshots/{snap}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -828,12 +844,15 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSnapshot($snapshot, array $optionalArgs = [])
+    public function deleteSnapshot(array $optionalArgs = [])
     {
         $request = new DeleteSnapshotRequest();
         $requestParamHeaders = [];
-        $request->setSnapshot($snapshot);
-        $requestParamHeaders['snapshot'] = $snapshot;
+        if (isset($optionalArgs['snapshot'])) {
+            $request->setSnapshot($optionalArgs['snapshot']);
+            $requestParamHeaders['snapshot'] = $optionalArgs['snapshot'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteSnapshot', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -850,18 +869,18 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $subscriberClient->deleteSubscription($formattedSubscription);
+     *     $subscriberClient->deleteSubscription();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $subscription Required. The subscription to delete.
-     *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $subscription
+     *           Required. The subscription to delete.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -870,12 +889,15 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSubscription($subscription, array $optionalArgs = [])
+    public function deleteSubscription(array $optionalArgs = [])
     {
         $request = new DeleteSubscriptionRequest();
         $requestParamHeaders = [];
-        $request->setSubscription($subscription);
-        $requestParamHeaders['subscription'] = $subscription;
+        if (isset($optionalArgs['subscription'])) {
+            $request->setSubscription($optionalArgs['subscription']);
+            $requestParamHeaders['subscription'] = $optionalArgs['subscription'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteSubscription', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -892,18 +914,18 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedSnapshot = $subscriberClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
-     *     $response = $subscriberClient->getSnapshot($formattedSnapshot);
+     *     $response = $subscriberClient->getSnapshot();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $snapshot     Required. The name of the snapshot to get.
-     *                             Format is `projects/{project}/snapshots/{snap}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $snapshot
+     *           Required. The name of the snapshot to get.
+     *           Format is `projects/{project}/snapshots/{snap}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -914,12 +936,15 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSnapshot($snapshot, array $optionalArgs = [])
+    public function getSnapshot(array $optionalArgs = [])
     {
         $request = new GetSnapshotRequest();
         $requestParamHeaders = [];
-        $request->setSnapshot($snapshot);
-        $requestParamHeaders['snapshot'] = $snapshot;
+        if (isset($optionalArgs['snapshot'])) {
+            $request->setSnapshot($optionalArgs['snapshot']);
+            $requestParamHeaders['snapshot'] = $optionalArgs['snapshot'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSnapshot', Snapshot::class, $optionalArgs, $request)->wait();
@@ -932,18 +957,18 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $response = $subscriberClient->getSubscription($formattedSubscription);
+     *     $response = $subscriberClient->getSubscription();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $subscription Required. The name of the subscription to get.
-     *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $subscription
+     *           Required. The name of the subscription to get.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -954,12 +979,15 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSubscription($subscription, array $optionalArgs = [])
+    public function getSubscription(array $optionalArgs = [])
     {
         $request = new GetSubscriptionRequest();
         $requestParamHeaders = [];
-        $request->setSubscription($subscription);
-        $requestParamHeaders['subscription'] = $subscription;
+        if (isset($optionalArgs['subscription'])) {
+            $request->setSubscription($optionalArgs['subscription']);
+            $requestParamHeaders['subscription'] = $optionalArgs['subscription'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSubscription', Subscription::class, $optionalArgs, $request)->wait();
@@ -976,9 +1004,8 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
+     *     $pagedResponse = $subscriberClient->listSnapshots();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -986,7 +1013,7 @@ class SubscriberGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
+     *     $pagedResponse = $subscriberClient->listSnapshots();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -995,11 +1022,12 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $project      Required. The name of the project in which to list snapshots.
-     *                             Format is `projects/{project-id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Required. The name of the project in which to list snapshots.
+     *           Format is `projects/{project-id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1019,12 +1047,15 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSnapshots($project, array $optionalArgs = [])
+    public function listSnapshots(array $optionalArgs = [])
     {
         $request = new ListSnapshotsRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1045,9 +1076,8 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedProject = $subscriberClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
+     *     $pagedResponse = $subscriberClient->listSubscriptions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1055,7 +1085,7 @@ class SubscriberGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
+     *     $pagedResponse = $subscriberClient->listSubscriptions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1064,11 +1094,12 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $project      Required. The name of the project in which to list subscriptions.
-     *                             Format is `projects/{project-id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $project
+     *           Required. The name of the project in which to list subscriptions.
+     *           Format is `projects/{project-id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1088,12 +1119,15 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSubscriptions($project, array $optionalArgs = [])
+    public function listSubscriptions(array $optionalArgs = [])
     {
         $request = new ListSubscriptionsRequest();
         $requestParamHeaders = [];
-        $request->setProject($project);
-        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['project'])) {
+            $request->setProject($optionalArgs['project']);
+            $requestParamHeaders['project'] = $optionalArgs['project'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1118,30 +1152,30 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $ackIds = [];
-     *     $ackDeadlineSeconds = 0;
-     *     $subscriberClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
+     *     $subscriberClient->modifyAckDeadline();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string   $subscription       Required. The name of the subscription.
-     *                                     Format is `projects/{project}/subscriptions/{sub}`.
-     * @param string[] $ackIds             Required. List of acknowledgment IDs.
-     * @param int      $ackDeadlineSeconds Required. The new ack deadline with respect to the time this request was
-     *                                     sent to the Pub/Sub system. For example, if the value is 10, the new ack
-     *                                     deadline will expire 10 seconds after the `ModifyAckDeadline` call was
-     *                                     made. Specifying zero might immediately make the message available for
-     *                                     delivery to another subscriber client. This typically results in an
-     *                                     increase in the rate of message redeliveries (that is, duplicates).
-     *                                     The minimum deadline you can specify is 0 seconds.
-     *                                     The maximum deadline you can specify in a single request is 600 seconds
-     *                                     (10 minutes).
-     * @param array    $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $subscription
+     *           Required. The name of the subscription.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
+     *     @type string[] $ackIds
+     *           Required. List of acknowledgment IDs.
+     *     @type int $ackDeadlineSeconds
+     *           Required. The new ack deadline with respect to the time this request was
+     *           sent to the Pub/Sub system. For example, if the value is 10, the new ack
+     *           deadline will expire 10 seconds after the `ModifyAckDeadline` call was
+     *           made. Specifying zero might immediately make the message available for
+     *           delivery to another subscriber client. This typically results in an
+     *           increase in the rate of message redeliveries (that is, duplicates).
+     *           The minimum deadline you can specify is 0 seconds.
+     *           The maximum deadline you can specify in a single request is 600 seconds
+     *           (10 minutes).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1150,14 +1184,23 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, array $optionalArgs = [])
+    public function modifyAckDeadline(array $optionalArgs = [])
     {
         $request = new ModifyAckDeadlineRequest();
         $requestParamHeaders = [];
-        $request->setSubscription($subscription);
-        $request->setAckIds($ackIds);
-        $request->setAckDeadlineSeconds($ackDeadlineSeconds);
-        $requestParamHeaders['subscription'] = $subscription;
+        if (isset($optionalArgs['subscription'])) {
+            $request->setSubscription($optionalArgs['subscription']);
+            $requestParamHeaders['subscription'] = $optionalArgs['subscription'];
+        }
+
+        if (isset($optionalArgs['ackIds'])) {
+            $request->setAckIds($optionalArgs['ackIds']);
+        }
+
+        if (isset($optionalArgs['ackDeadlineSeconds'])) {
+            $request->setAckDeadlineSeconds($optionalArgs['ackDeadlineSeconds']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ModifyAckDeadline', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1175,25 +1218,25 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $pushConfig = new PushConfig();
-     *     $subscriberClient->modifyPushConfig($formattedSubscription, $pushConfig);
+     *     $subscriberClient->modifyPushConfig();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string     $subscription Required. The name of the subscription.
-     *                                 Format is `projects/{project}/subscriptions/{sub}`.
-     * @param PushConfig $pushConfig   Required. The push configuration for future deliveries.
-     *
-     *                                 An empty `pushConfig` indicates that the Pub/Sub system should
-     *                                 stop pushing messages from the given subscription and allow
-     *                                 messages to be pulled and acknowledged - effectively pausing
-     *                                 the subscription if `Pull` or `StreamingPull` is not called.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $subscription
+     *           Required. The name of the subscription.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
+     *     @type PushConfig $pushConfig
+     *           Required. The push configuration for future deliveries.
+     *
+     *           An empty `pushConfig` indicates that the Pub/Sub system should
+     *           stop pushing messages from the given subscription and allow
+     *           messages to be pulled and acknowledged - effectively pausing
+     *           the subscription if `Pull` or `StreamingPull` is not called.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1202,13 +1245,19 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function modifyPushConfig($subscription, $pushConfig, array $optionalArgs = [])
+    public function modifyPushConfig(array $optionalArgs = [])
     {
         $request = new ModifyPushConfigRequest();
         $requestParamHeaders = [];
-        $request->setSubscription($subscription);
-        $request->setPushConfig($pushConfig);
-        $requestParamHeaders['subscription'] = $subscription;
+        if (isset($optionalArgs['subscription'])) {
+            $request->setSubscription($optionalArgs['subscription']);
+            $requestParamHeaders['subscription'] = $optionalArgs['subscription'];
+        }
+
+        if (isset($optionalArgs['pushConfig'])) {
+            $request->setPushConfig($optionalArgs['pushConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ModifyPushConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1221,22 +1270,18 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $maxMessages = 0;
-     *     $response = $subscriberClient->pull($formattedSubscription, $maxMessages);
+     *     $response = $subscriberClient->pull();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $subscription Required. The subscription from which messages should be pulled.
-     *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param int    $maxMessages  Required. The maximum number of messages to return for this request. Must
-     *                             be a positive integer. The Pub/Sub system may return fewer than the number
-     *                             specified.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $subscription
+     *           Required. The subscription from which messages should be pulled.
+     *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type bool $returnImmediately
      *           Optional. If this field set to true, the system will respond immediately
      *           even if it there are no messages available to return in the `Pull`
@@ -1245,6 +1290,10 @@ class SubscriberGapicClient
      *           Warning: setting this field to `true` is discouraged because it adversely
      *           impacts the performance of `Pull` operations. We recommend that users do
      *           not set this field.
+     *     @type int $maxMessages
+     *           Required. The maximum number of messages to return for this request. Must
+     *           be a positive integer. The Pub/Sub system may return fewer than the number
+     *           specified.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1255,15 +1304,21 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function pull($subscription, $maxMessages, array $optionalArgs = [])
+    public function pull(array $optionalArgs = [])
     {
         $request = new PullRequest();
         $requestParamHeaders = [];
-        $request->setSubscription($subscription);
-        $request->setMaxMessages($maxMessages);
-        $requestParamHeaders['subscription'] = $subscription;
+        if (isset($optionalArgs['subscription'])) {
+            $request->setSubscription($optionalArgs['subscription']);
+            $requestParamHeaders['subscription'] = $optionalArgs['subscription'];
+        }
+
         if (isset($optionalArgs['returnImmediately'])) {
             $request->setReturnImmediately($optionalArgs['returnImmediately']);
+        }
+
+        if (isset($optionalArgs['maxMessages'])) {
+            $request->setMaxMessages($optionalArgs['maxMessages']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1284,17 +1339,17 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $formattedSubscription = $subscriberClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-     *     $response = $subscriberClient->seek($formattedSubscription);
+     *     $response = $subscriberClient->seek();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $subscription Required. The subscription to affect.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $subscription
+     *           Required. The subscription to affect.
      *     @type Timestamp $time
      *           Optional. The time to seek to.
      *           Messages retained in the subscription that were published before this
@@ -1321,12 +1376,15 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function seek($subscription, array $optionalArgs = [])
+    public function seek(array $optionalArgs = [])
     {
         $request = new SeekRequest();
         $requestParamHeaders = [];
-        $request->setSubscription($subscription);
-        $requestParamHeaders['subscription'] = $subscription;
+        if (isset($optionalArgs['subscription'])) {
+            $request->setSubscription($optionalArgs['subscription']);
+            $requestParamHeaders['subscription'] = $optionalArgs['subscription'];
+        }
+
         if (isset($optionalArgs['time'])) {
             $request->setTime($optionalArgs['time']);
         }
@@ -1353,11 +1411,7 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscription = 'subscription';
-     *     $streamAckDeadlineSeconds = 0;
      *     $request = new StreamingPullRequest();
-     *     $request->setSubscription($subscription);
-     *     $request->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
      *     $requests = [
@@ -1421,20 +1475,20 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $snapshot = new Snapshot();
-     *     $updateMask = new FieldMask();
-     *     $response = $subscriberClient->updateSnapshot($snapshot, $updateMask);
+     *     $response = $subscriberClient->updateSnapshot();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param Snapshot  $snapshot     Required. The updated snapshot object.
-     * @param FieldMask $updateMask   Required. Indicates which fields in the provided snapshot to update.
-     *                                Must be specified and non-empty.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Snapshot $snapshot
+     *           Required. The updated snapshot object.
+     *     @type FieldMask $updateMask
+     *           Required. Indicates which fields in the provided snapshot to update.
+     *           Must be specified and non-empty.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1445,13 +1499,18 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSnapshot($snapshot, $updateMask, array $optionalArgs = [])
+    public function updateSnapshot(array $optionalArgs = [])
     {
         $request = new UpdateSnapshotRequest();
         $requestParamHeaders = [];
-        $request->setSnapshot($snapshot);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['snapshot.name'] = $snapshot->getName();
+        if (isset($optionalArgs['snapshot'])) {
+            $request->setSnapshot($optionalArgs['snapshot']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateSnapshot', Snapshot::class, $optionalArgs, $request)->wait();
@@ -1466,20 +1525,20 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $subscription = new Subscription();
-     *     $updateMask = new FieldMask();
-     *     $response = $subscriberClient->updateSubscription($subscription, $updateMask);
+     *     $response = $subscriberClient->updateSubscription();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param Subscription $subscription Required. The updated subscription object.
-     * @param FieldMask    $updateMask   Required. Indicates which fields in the provided subscription to update.
-     *                                   Must be specified and non-empty.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Subscription $subscription
+     *           Required. The updated subscription object.
+     *     @type FieldMask $updateMask
+     *           Required. Indicates which fields in the provided subscription to update.
+     *           Must be specified and non-empty.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1490,13 +1549,18 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSubscription($subscription, $updateMask, array $optionalArgs = [])
+    public function updateSubscription(array $optionalArgs = [])
     {
         $request = new UpdateSubscriptionRequest();
         $requestParamHeaders = [];
-        $request->setSubscription($subscription);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['subscription.name'] = $subscription->getName();
+        if (isset($optionalArgs['subscription'])) {
+            $request->setSubscription($optionalArgs['subscription']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateSubscription', Subscription::class, $optionalArgs, $request)->wait();
@@ -1510,18 +1574,18 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $subscriberClient->getIamPolicy($resource);
+     *     $response = $subscriberClient->getIamPolicy();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1535,12 +1599,15 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1561,23 +1628,23 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $subscriberClient->setIamPolicy($resource, $policy);
+     *     $response = $subscriberClient->setIamPolicy();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1594,13 +1661,19 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1623,23 +1696,23 @@ class SubscriberGapicClient
      * ```
      * $subscriberClient = new SubscriberClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $subscriberClient->testIamPermissions($resource, $permissions);
+     *     $response = $subscriberClient->testIamPermissions();
      * } finally {
      *     $subscriberClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1650,13 +1723,19 @@ class SubscriberGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

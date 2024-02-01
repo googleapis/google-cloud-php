@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Retail\V2\Client\ProductServiceClient;
 use Google\Cloud\Retail\V2\ImportProductsRequest;
 use Google\Cloud\Retail\V2\ImportProductsResponse;
-use Google\Cloud\Retail\V2\ProductInputConfig;
 use Google\Rpc\Status;
 
 /**
@@ -40,23 +39,19 @@ use Google\Rpc\Status;
  * Note that it is possible for a subset of the
  * [Product][google.cloud.retail.v2.Product]s to be successfully updated.
  *
- * @param string $formattedParent Required.
- *                                `projects/1234/locations/global/catalogs/default_catalog/branches/default_branch`
- *
- *                                If no updateMask is specified, requires products.create permission.
- *                                If updateMask is specified, requires products.update permission. Please see
- *                                {@see ProductServiceClient::branchName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_products_sample(string $formattedParent): void
+function import_products_sample(): void
 {
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
     // Prepare the request message.
-    $inputConfig = new ProductInputConfig();
-    $request = (new ImportProductsRequest())
-        ->setParent($formattedParent)
-        ->setInputConfig($inputConfig);
+    $request = new ImportProductsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -76,26 +71,5 @@ function import_products_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ProductServiceClient::branchName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]',
-        '[BRANCH]'
-    );
-
-    import_products_sample($formattedParent);
 }
 // [END retail_v2_generated_ProductService_ImportProducts_sync]

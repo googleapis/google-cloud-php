@@ -32,17 +32,19 @@ use Google\Cloud\OsConfig\V1\PatchJob;
  * Get the patch job. This can be used to track the progress of an
  * ongoing patch job or review the details of completed jobs.
  *
- * @param string $formattedName Name of the patch in the form `projects/&#42;/patchJobs/*`
- *                              Please see {@see OsConfigServiceClient::patchJobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_patch_job_sample(string $formattedName): void
+function get_patch_job_sample(): void
 {
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
     // Prepare the request message.
-    $request = (new GetPatchJobRequest())
-        ->setName($formattedName);
+    $request = new GetPatchJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +54,5 @@ function get_patch_job_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = OsConfigServiceClient::patchJobName('[PROJECT]', '[PATCH_JOB]');
-
-    get_patch_job_sample($formattedName);
 }
 // [END osconfig_v1_generated_OsConfigService_GetPatchJob_sync]

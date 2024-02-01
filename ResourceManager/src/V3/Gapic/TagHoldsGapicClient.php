@@ -55,9 +55,7 @@ use Google\LongRunning\Operation;
  * ```
  * $tagHoldsClient = new TagHoldsClient();
  * try {
- *     $formattedParent = $tagHoldsClient->tagValueName('[TAG_VALUE]');
- *     $tagHold = new TagHold();
- *     $operationResponse = $tagHoldsClient->createTagHold($formattedParent, $tagHold);
+ *     $operationResponse = $tagHoldsClient->createTagHold();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -68,7 +66,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $tagHoldsClient->createTagHold($formattedParent, $tagHold);
+ *     $operationResponse = $tagHoldsClient->createTagHold();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $tagHoldsClient->resumeOperation($operationName, 'createTagHold');
@@ -353,9 +351,7 @@ class TagHoldsGapicClient
      * ```
      * $tagHoldsClient = new TagHoldsClient();
      * try {
-     *     $formattedParent = $tagHoldsClient->tagValueName('[TAG_VALUE]');
-     *     $tagHold = new TagHold();
-     *     $operationResponse = $tagHoldsClient->createTagHold($formattedParent, $tagHold);
+     *     $operationResponse = $tagHoldsClient->createTagHold();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -366,7 +362,7 @@ class TagHoldsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tagHoldsClient->createTagHold($formattedParent, $tagHold);
+     *     $operationResponse = $tagHoldsClient->createTagHold();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tagHoldsClient->resumeOperation($operationName, 'createTagHold');
@@ -386,12 +382,14 @@ class TagHoldsGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The resource name of the TagHold's parent TagValue. Must be of
-     *                              the form: `tagValues/{tag-value-id}`.
-     * @param TagHold $tagHold      Required. The TagHold to be created.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the TagHold's parent TagValue. Must be of
+     *           the form: `tagValues/{tag-value-id}`.
+     *     @type TagHold $tagHold
+     *           Required. The TagHold to be created.
      *     @type bool $validateOnly
      *           Optional. Set to true to perform the validations necessary for creating the
      *           resource, but not actually perform the action.
@@ -405,13 +403,19 @@ class TagHoldsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTagHold($parent, $tagHold, array $optionalArgs = [])
+    public function createTagHold(array $optionalArgs = [])
     {
         $request = new CreateTagHoldRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setTagHold($tagHold);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['tagHold'])) {
+            $request->setTagHold($optionalArgs['tagHold']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -428,8 +432,7 @@ class TagHoldsGapicClient
      * ```
      * $tagHoldsClient = new TagHoldsClient();
      * try {
-     *     $formattedName = $tagHoldsClient->tagHoldName('[TAG_VALUE]', '[TAG_HOLD]');
-     *     $operationResponse = $tagHoldsClient->deleteTagHold($formattedName);
+     *     $operationResponse = $tagHoldsClient->deleteTagHold();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -439,7 +442,7 @@ class TagHoldsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tagHoldsClient->deleteTagHold($formattedName);
+     *     $operationResponse = $tagHoldsClient->deleteTagHold();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tagHoldsClient->resumeOperation($operationName, 'deleteTagHold');
@@ -458,11 +461,12 @@ class TagHoldsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the TagHold to delete. Must be of the form:
-     *                             `tagValues/{tag-value-id}/tagHolds/{tag-hold-id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the TagHold to delete. Must be of the form:
+     *           `tagValues/{tag-value-id}/tagHolds/{tag-hold-id}`.
      *     @type bool $validateOnly
      *           Optional. Set to true to perform the validations necessary for deleting the
      *           resource, but not actually perform the action.
@@ -476,12 +480,15 @@ class TagHoldsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTagHold($name, array $optionalArgs = [])
+    public function deleteTagHold(array $optionalArgs = [])
     {
         $request = new DeleteTagHoldRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -498,9 +505,8 @@ class TagHoldsGapicClient
      * ```
      * $tagHoldsClient = new TagHoldsClient();
      * try {
-     *     $formattedParent = $tagHoldsClient->tagValueName('[TAG_VALUE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tagHoldsClient->listTagHolds($formattedParent);
+     *     $pagedResponse = $tagHoldsClient->listTagHolds();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -508,7 +514,7 @@ class TagHoldsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tagHoldsClient->listTagHolds($formattedParent);
+     *     $pagedResponse = $tagHoldsClient->listTagHolds();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -517,11 +523,12 @@ class TagHoldsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the parent TagValue. Must be of the form:
-     *                             `tagValues/{tag-value-id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the parent TagValue. Must be of the form:
+     *           `tagValues/{tag-value-id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -553,12 +560,15 @@ class TagHoldsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTagHolds($parent, array $optionalArgs = [])
+    public function listTagHolds(array $optionalArgs = [])
     {
         $request = new ListTagHoldsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

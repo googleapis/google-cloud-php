@@ -31,18 +31,19 @@ use Google\Cloud\Retail\V2\GetControlRequest;
 /**
  * Gets a Control.
  *
- * @param string $formattedName The resource name of the Control to get. Format:
- *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/controls/{control_id}`
- *                              Please see {@see ControlServiceClient::controlName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_control_sample(string $formattedName): void
+function get_control_sample(): void
 {
     // Create a client.
     $controlServiceClient = new ControlServiceClient();
 
     // Prepare the request message.
-    $request = (new GetControlRequest())
-        ->setName($formattedName);
+    $request = new GetControlRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,26 +53,5 @@ function get_control_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ControlServiceClient::controlName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]',
-        '[CONTROL]'
-    );
-
-    get_control_sample($formattedName);
 }
 // [END retail_v2_generated_ControlService_GetControl_sync]

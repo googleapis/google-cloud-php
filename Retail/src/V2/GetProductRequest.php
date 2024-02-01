@@ -41,8 +41,7 @@ class GetProductRequest extends \Google\Protobuf\Internal\Message
      *                     exists, a PERMISSION_DENIED error is returned.
      *
      *                     If the requested [Product][google.cloud.retail.v2.Product] does not exist,
-     *                     a NOT_FOUND error is returned. Please see
-     *                     {@see ProductServiceClient::productName()} for help formatting this field.
+     *                     a NOT_FOUND error is returned.
      *
      * @return \Google\Cloud\Retail\V2\GetProductRequest
      *

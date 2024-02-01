@@ -35,32 +35,19 @@ use Google\Cloud\Retail\V2\SearchResponse\SearchResult;
  * This feature is only available for users who have Retail Search enabled.
  * Enable Retail Search on Cloud Console before using this feature.
  *
- * @param string $placement The resource name of the Retail Search serving config, such as
- *                          `projects/&#42;/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
- *                          or the name of the legacy placement resource, such as
- *                          `projects/&#42;/locations/global/catalogs/default_catalog/placements/default_search`.
- *                          This field is used to identify the serving config name and the set
- *                          of models that will be used to make the search.
- * @param string $visitorId A unique identifier for tracking visitors. For example, this
- *                          could be implemented with an HTTP cookie, which should be able to uniquely
- *                          identify a visitor on a single device. This unique identifier should not
- *                          change if the visitor logs in or out of the website.
- *
- *                          This should be the same identifier as
- *                          [UserEvent.visitor_id][google.cloud.retail.v2.UserEvent.visitor_id].
- *
- *                          The field must be a UTF-8 encoded string with a length limit of 128
- *                          characters. Otherwise, an INVALID_ARGUMENT error is returned.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_sample(string $placement, string $visitorId): void
+function search_sample(): void
 {
     // Create a client.
     $searchServiceClient = new SearchServiceClient();
 
     // Prepare the request message.
-    $request = (new SearchRequest())
-        ->setPlacement($placement)
-        ->setVisitorId($visitorId);
+    $request = new SearchRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,22 +61,5 @@ function search_sample(string $placement, string $visitorId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $placement = '[PLACEMENT]';
-    $visitorId = '[VISITOR_ID]';
-
-    search_sample($placement, $visitorId);
 }
 // [END retail_v2_generated_SearchService_Search_sync]

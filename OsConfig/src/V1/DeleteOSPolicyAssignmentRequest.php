@@ -24,7 +24,6 @@ class DeleteOSPolicyAssignmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the OS policy assignment to be deleted
-     *                     Please see {@see OsConfigZonalServiceClient::oSPolicyAssignmentName()} for help formatting this field.
      *
      * @return \Google\Cloud\OsConfig\V1\DeleteOSPolicyAssignmentRequest
      *

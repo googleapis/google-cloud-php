@@ -25,8 +25,7 @@ class RetrieveLegacySecretKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $key Required. The public key name linked to the requested secret key in the
-     *                    format `projects/{project}/keys/{key}`. Please see
-     *                    {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
+     *                    format `projects/{project}/keys/{key}`.
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest
      *

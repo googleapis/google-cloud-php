@@ -63,10 +63,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $jobsClient = new JobsClient();
  * try {
- *     $formattedParent = $jobsClient->locationName('[PROJECT]', '[LOCATION]');
- *     $job = new Job();
- *     $jobId = 'job_id';
- *     $operationResponse = $jobsClient->createJob($formattedParent, $job, $jobId);
+ *     $operationResponse = $jobsClient->createJob();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -77,7 +74,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $jobsClient->createJob($formattedParent, $job, $jobId);
+ *     $operationResponse = $jobsClient->createJob();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $jobsClient->resumeOperation($operationName, 'createJob');
@@ -558,10 +555,7 @@ class JobsGapicClient
      * ```
      * $jobsClient = new JobsClient();
      * try {
-     *     $formattedParent = $jobsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $job = new Job();
-     *     $jobId = 'job_id';
-     *     $operationResponse = $jobsClient->createJob($formattedParent, $job, $jobId);
+     *     $operationResponse = $jobsClient->createJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -572,7 +566,7 @@ class JobsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobsClient->createJob($formattedParent, $job, $jobId);
+     *     $operationResponse = $jobsClient->createJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobsClient->resumeOperation($operationName, 'createJob');
@@ -592,15 +586,18 @@ class JobsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The location and project in which this Job should be created.
-     *                             Format: projects/{project}/locations/{location}, where {project} can be
-     *                             project id or number.
-     * @param Job    $job          Required. The Job instance to create.
-     * @param string $jobId        Required. The unique identifier for the Job. The name of the job becomes
-     *                             {parent}/jobs/{job_id}.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location and project in which this Job should be created.
+     *           Format: projects/{project}/locations/{location}, where {project} can be
+     *           project id or number.
+     *     @type Job $job
+     *           Required. The Job instance to create.
+     *     @type string $jobId
+     *           Required. The unique identifier for the Job. The name of the job becomes
+     *           {parent}/jobs/{job_id}.
      *     @type bool $validateOnly
      *           Indicates that the request should be validated and default values
      *           populated, without persisting the request or creating any resources.
@@ -614,14 +611,23 @@ class JobsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createJob($parent, $job, $jobId, array $optionalArgs = [])
+    public function createJob(array $optionalArgs = [])
     {
         $request = new CreateJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setJob($job);
-        $request->setJobId($jobId);
-        $requestParamHeaders['location'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['job'])) {
+            $request->setJob($optionalArgs['job']);
+        }
+
+        if (isset($optionalArgs['jobId'])) {
+            $request->setJobId($optionalArgs['jobId']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -647,8 +653,7 @@ class JobsGapicClient
      * ```
      * $jobsClient = new JobsClient();
      * try {
-     *     $formattedName = $jobsClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $operationResponse = $jobsClient->deleteJob($formattedName);
+     *     $operationResponse = $jobsClient->deleteJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -659,7 +664,7 @@ class JobsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobsClient->deleteJob($formattedName);
+     *     $operationResponse = $jobsClient->deleteJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobsClient->resumeOperation($operationName, 'deleteJob');
@@ -679,12 +684,13 @@ class JobsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The full name of the Job.
-     *                             Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
-     *                             can be project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full name of the Job.
+     *           Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     *           can be project id or number.
      *     @type bool $validateOnly
      *           Indicates that the request should be validated without actually
      *           deleting any resources.
@@ -701,12 +707,15 @@ class JobsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteJob($name, array $optionalArgs = [])
+    public function deleteJob(array $optionalArgs = [])
     {
         $request = new DeleteJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['location'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -793,19 +802,19 @@ class JobsGapicClient
      * ```
      * $jobsClient = new JobsClient();
      * try {
-     *     $formattedName = $jobsClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $response = $jobsClient->getJob($formattedName);
+     *     $response = $jobsClient->getJob();
      * } finally {
      *     $jobsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full name of the Job.
-     *                             Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
-     *                             can be project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full name of the Job.
+     *           Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     *           can be project id or number.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -816,12 +825,15 @@ class JobsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getJob($name, array $optionalArgs = [])
+    public function getJob(array $optionalArgs = [])
     {
         $request = new GetJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['location'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -843,9 +855,8 @@ class JobsGapicClient
      * ```
      * $jobsClient = new JobsClient();
      * try {
-     *     $formattedParent = $jobsClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobsClient->listJobs($formattedParent);
+     *     $pagedResponse = $jobsClient->listJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -853,7 +864,7 @@ class JobsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobsClient->listJobs($formattedParent);
+     *     $pagedResponse = $jobsClient->listJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -862,12 +873,13 @@ class JobsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The location and project to list resources on.
-     *                             Format: projects/{project}/locations/{location}, where {project} can be
-     *                             project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location and project to list resources on.
+     *           Format: projects/{project}/locations/{location}, where {project} can be
+     *           project id or number.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -889,12 +901,15 @@ class JobsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listJobs($parent, array $optionalArgs = [])
+    public function listJobs(array $optionalArgs = [])
     {
         $request = new ListJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['location'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['location'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -928,8 +943,7 @@ class JobsGapicClient
      * ```
      * $jobsClient = new JobsClient();
      * try {
-     *     $formattedName = $jobsClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-     *     $operationResponse = $jobsClient->runJob($formattedName);
+     *     $operationResponse = $jobsClient->runJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -940,7 +954,7 @@ class JobsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobsClient->runJob($formattedName);
+     *     $operationResponse = $jobsClient->runJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobsClient->resumeOperation($operationName, 'runJob');
@@ -960,12 +974,13 @@ class JobsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The full name of the Job.
-     *                             Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
-     *                             can be project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full name of the Job.
+     *           Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     *           can be project id or number.
      *     @type bool $validateOnly
      *           Indicates that the request should be validated without actually
      *           deleting any resources.
@@ -985,12 +1000,15 @@ class JobsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function runJob($name, array $optionalArgs = [])
+    public function runJob(array $optionalArgs = [])
     {
         $request = new RunJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['location'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['location'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1150,8 +1168,7 @@ class JobsGapicClient
      * ```
      * $jobsClient = new JobsClient();
      * try {
-     *     $job = new Job();
-     *     $operationResponse = $jobsClient->updateJob($job);
+     *     $operationResponse = $jobsClient->updateJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1162,7 +1179,7 @@ class JobsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobsClient->updateJob($job);
+     *     $operationResponse = $jobsClient->updateJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobsClient->resumeOperation($operationName, 'updateJob');
@@ -1182,10 +1199,11 @@ class JobsGapicClient
      * }
      * ```
      *
-     * @param Job   $job          Required. The Job to be updated.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Job $job
+     *           Required. The Job to be updated.
      *     @type bool $validateOnly
      *           Indicates that the request should be validated and default values
      *           populated, without persisting the request or updating any resources.
@@ -1203,12 +1221,15 @@ class JobsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateJob($job, array $optionalArgs = [])
+    public function updateJob(array $optionalArgs = [])
     {
         $request = new UpdateJobRequest();
         $requestParamHeaders = [];
-        $request->setJob($job);
-        $requestParamHeaders['location'] = $job->getName();
+        if (isset($optionalArgs['job'])) {
+            $request->setJob($optionalArgs['job']);
+            $requestParamHeaders['location'] = $optionalArgs['job']->getName();
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }

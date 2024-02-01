@@ -74,20 +74,13 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $expectedResponse = new PredictionApiKeyRegistration();
         $expectedResponse->setApiKey($apiKey);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
-        $response = $gapicClient->createPredictionApiKeyRegistration($formattedParent, $predictionApiKeyRegistration);
+        $response = $gapicClient->createPredictionApiKeyRegistration();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/CreatePredictionApiKeyRegistration', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPredictionApiKeyRegistration();
-        $this->assertProtobufEquals($predictionApiKeyRegistration, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -109,11 +102,8 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
         try {
-            $gapicClient->createPredictionApiKeyRegistration($formattedParent, $predictionApiKeyRegistration);
+            $gapicClient->createPredictionApiKeyRegistration();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -136,16 +126,12 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
-        $gapicClient->deletePredictionApiKeyRegistration($formattedName);
+        $gapicClient->deletePredictionApiKeyRegistration();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/DeletePredictionApiKeyRegistration', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -167,10 +153,8 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
         try {
-            $gapicClient->deletePredictionApiKeyRegistration($formattedName);
+            $gapicClient->deletePredictionApiKeyRegistration();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -200,9 +184,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPredictionApiKeyRegistrations($predictionApiKeyRegistrations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $response = $gapicClient->listPredictionApiKeyRegistrations($formattedParent);
+        $response = $gapicClient->listPredictionApiKeyRegistrations();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -212,8 +194,6 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/ListPredictionApiKeyRegistrations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -235,10 +215,8 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
         try {
-            $gapicClient->listPredictionApiKeyRegistrations($formattedParent);
+            $gapicClient->listPredictionApiKeyRegistrations();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

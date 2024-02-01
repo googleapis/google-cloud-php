@@ -46,8 +46,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                          $parent     Required. The resource name of the instance location using the form:
      *                                                    `projects/{project_id}/locations/{location_id}`
-     *                                                    where `location_id` refers to a GCP region. Please see
-     *                                                    {@see CloudRedisClient::locationName()} for help formatting this field.
+     *                                                    where `location_id` refers to a GCP region.
      * @param string                          $instanceId Required. The logical name of the Redis instance in the customer project
      *                                                    with the following restrictions:
      *

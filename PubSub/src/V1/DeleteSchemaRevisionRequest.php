@@ -38,7 +38,6 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
      *                           explicitly included.
      *
      *                           Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
-     *                           Please see {@see SchemaServiceClient::schemaName()} for help formatting this field.
      * @param string $revisionId Optional. This field is deprecated and should not be used for specifying
      *                           the revision ID. The revision ID should be specified via the `name`
      *                           parameter.

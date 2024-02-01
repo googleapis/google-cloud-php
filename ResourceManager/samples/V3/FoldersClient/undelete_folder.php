@@ -43,18 +43,19 @@ use Google\Rpc\Status;
  * documentation. The caller must have `resourcemanager.folders.undelete`
  * permission on the identified folder.
  *
- * @param string $formattedName The resource name of the folder to undelete.
- *                              Must be of the form `folders/{folder_id}`. Please see
- *                              {@see FoldersClient::folderName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function undelete_folder_sample(string $formattedName): void
+function undelete_folder_sample(): void
 {
     // Create a client.
     $foldersClient = new FoldersClient();
 
     // Prepare the request message.
-    $request = (new UndeleteFolderRequest())
-        ->setName($formattedName);
+    $request = new UndeleteFolderRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,21 +75,5 @@ function undelete_folder_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = FoldersClient::folderName('[FOLDER]');
-
-    undelete_folder_sample($formattedName);
 }
 // [END cloudresourcemanager_v3_generated_Folders_UndeleteFolder_sync]

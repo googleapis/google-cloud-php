@@ -26,39 +26,39 @@ class Task
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¯
-google/cloud/run/v2/task.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"?
-GetTaskRequest-
-name (	B‡A˙A
-run.googleapis.com/Task"Ä
-ListTasksRequest/
-parent (	B‡A˙Arun.googleapis.com/Task
+ï
+google/cloud/run/v2/task.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"@
+GetTaskRequest.
+name (	B ‚A˙A
+run.googleapis.com/Task"Å
+ListTasksRequest0
+parent (	B ‚A˙Arun.googleapis.com/Task
 	page_size (
 
 page_token (	
 show_deleted ("V
 ListTasksResponse(
 tasks (2.google.cloud.run.v2.Task
-next_page_token (	"∏
-Task
-name (	B‡A
-uid (	B‡A
+next_page_token (	"—
+Task
+name (	B‚A
+uid (	B‚A
 
-generation (B‡A:
-labels (2%.google.cloud.run.v2.Task.LabelsEntryB‡AD
-annotations (2*.google.cloud.run.v2.Task.AnnotationsEntryB‡A4
-create_time (2.google.protobuf.TimestampB‡A7
-scheduled_time" (2.google.protobuf.TimestampB‡A3
+generation (B‚A;
+labels (2%.google.cloud.run.v2.Task.LabelsEntryB‚AE
+annotations (2*.google.cloud.run.v2.Task.AnnotationsEntryB‚A5
+create_time (2.google.protobuf.TimestampB‚A8
+scheduled_time" (2.google.protobuf.TimestampB‚A4
 
-start_time (2.google.protobuf.TimestampB‡A8
-completion_time (2.google.protobuf.TimestampB‡A4
-update_time (2.google.protobuf.TimestampB‡A4
-delete_time	 (2.google.protobuf.TimestampB‡A4
+start_time (2.google.protobuf.TimestampB‚A9
+completion_time (2.google.protobuf.TimestampB‚A5
+update_time (2.google.protobuf.TimestampB‚A5
+delete_time	 (2.google.protobuf.TimestampB‚A5
 expire_time
- (2.google.protobuf.TimestampB‡A+
-job (	B‡A˙A
-run.googleapis.com/Job7
-	execution (	B$‡A˙A
+ (2.google.protobuf.TimestampB‚A,
+job (	B‚A˙A
+run.googleapis.com/Job8
+	execution (	B%‚A˙A
 run.googleapis.com/Execution2
 
 containers (2.google.cloud.run.v2.Container,
@@ -66,34 +66,34 @@ containers (2.google.cloud.run.v2.Container,
 max_retries (*
 timeout (2.google.protobuf.Duration
 service_account (	H
-execution_environment (2).google.cloud.run.v2.ExecutionEnvironment
-reconciling (B‡A7
+execution_environment (2).google.cloud.run.v2.ExecutionEnvironment
+reconciling (B‚A8
 
-conditions (2.google.cloud.run.v2.ConditionB‡A 
-observed_generation (B‡A
-index (B‡A
-retried (B‡AH
-last_attempt_result (2&.google.cloud.run.v2.TaskAttemptResultB‡AA
-encryption_key (	B)‡A˙A#
-!cloudkms.googleapis.com/CryptoKey7
+conditions (2.google.cloud.run.v2.ConditionB‚A!
+observed_generation (B‚A
+index (B‚A
+retried (B‚AI
+last_attempt_result (2&.google.cloud.run.v2.TaskAttemptResultB‚AB
+encryption_key (	B*‚A˙A#
+!cloudkms.googleapis.com/CryptoKey8
 
-vpc_access (2.google.cloud.run.v2.VpcAccessB‡A
-log_uri  (	B‡A
-satisfies_pzs! (B‡A
-etagc (	B‡A-
+vpc_access (2.google.cloud.run.v2.VpcAccessB‚A
+log_uri  (	B‚A
+satisfies_pzs! (B‚A
+etagc (	B‚A-
 LabelsEntry
 key (	
 value (	:82
 AnnotationsEntry
 key (	
 value (	:8:wÍAt
-run.googleapis.com/TaskVprojects/{project}/locations/{location}/jobs/{job}/executions/{execution}/tasks/{task}R"T
-TaskAttemptResult\'
-status (2.google.rpc.StatusB‡A
-	exit_code (B‡A2ñ
+run.googleapis.com/TaskVprojects/{project}/locations/{location}/jobs/{job}/executions/{execution}/tasks/{task}R"V
+TaskAttemptResult(
+status (2.google.rpc.StatusB‚A
+	exit_code (B‚A2ñ
 Tasksó
-GetTask#.google.cloud.run.v2.GetTaskRequest.google.cloud.run.v2.Task"LÇ”‰ì?=/v2/{name=projects/*/locations/*/jobs/*/executions/*/tasks/*}⁄Aname™
-	ListTasks%.google.cloud.run.v2.ListTasksRequest&.google.cloud.run.v2.ListTasksResponse"NÇ”‰ì?=/v2/{parent=projects/*/locations/*/jobs/*/executions/*}/tasks⁄AparentF Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBQ
+GetTask#.google.cloud.run.v2.GetTaskRequest.google.cloud.run.v2.Task"L⁄AnameÇ”‰ì?=/v2/{name=projects/*/locations/*/jobs/*/executions/*/tasks/*}™
+	ListTasks%.google.cloud.run.v2.ListTasksRequest&.google.cloud.run.v2.ListTasksResponse"N⁄AparentÇ”‰ì?=/v2/{parent=projects/*/locations/*/jobs/*/executions/*}/tasksF Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBQ
 com.google.cloud.run.v2B	TaskProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);
 

@@ -41,7 +41,6 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The catalog resource name. Format:
      *                       `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
-     *                       Please see {@see ServingConfigServiceClient::catalogName()} for help formatting this field.
      *
      * @return \Google\Cloud\Retail\V2\ListServingConfigsRequest
      *

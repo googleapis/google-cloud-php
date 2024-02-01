@@ -34,24 +34,19 @@ use Google\Cloud\Retail\V2\CompleteQueryResponse;
  * This feature is only available for users who have Retail Search enabled.
  * Enable Retail Search on Cloud Console before using this feature.
  *
- * @param string $formattedCatalog Catalog for which the completion is performed.
- *
- *                                 Full resource name of catalog, such as
- *                                 `projects/&#42;/locations/global/catalogs/default_catalog`. Please see
- *                                 {@see CompletionServiceClient::catalogName()} for help formatting this field.
- * @param string $query            The query used to generate suggestions.
- *
- *                                 The maximum number of allowed characters is 255.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function complete_query_sample(string $formattedCatalog, string $query): void
+function complete_query_sample(): void
 {
     // Create a client.
     $completionServiceClient = new CompletionServiceClient();
 
     // Prepare the request message.
-    $request = (new CompleteQueryRequest())
-        ->setCatalog($formattedCatalog)
-        ->setQuery($query);
+    $request = new CompleteQueryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,22 +56,5 @@ function complete_query_sample(string $formattedCatalog, string $query): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedCatalog = CompletionServiceClient::catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-    $query = '[QUERY]';
-
-    complete_query_sample($formattedCatalog, $query);
 }
 // [END retail_v2_generated_CompletionService_CompleteQuery_sync]

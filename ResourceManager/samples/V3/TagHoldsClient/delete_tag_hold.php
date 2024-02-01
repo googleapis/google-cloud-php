@@ -32,18 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a TagHold.
  *
- * @param string $formattedName The resource name of the TagHold to delete. Must be of the form:
- *                              `tagValues/{tag-value-id}/tagHolds/{tag-hold-id}`. Please see
- *                              {@see TagHoldsClient::tagHoldName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_tag_hold_sample(string $formattedName): void
+function delete_tag_hold_sample(): void
 {
     // Create a client.
     $tagHoldsClient = new TagHoldsClient();
 
     // Prepare the request message.
-    $request = (new DeleteTagHoldRequest())
-        ->setName($formattedName);
+    $request = new DeleteTagHoldRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +62,5 @@ function delete_tag_hold_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = TagHoldsClient::tagHoldName('[TAG_VALUE]', '[TAG_HOLD]');
-
-    delete_tag_hold_sample($formattedName);
 }
 // [END cloudresourcemanager_v3_generated_TagHolds_DeleteTagHold_sync]

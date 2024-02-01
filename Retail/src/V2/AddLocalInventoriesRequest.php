@@ -78,8 +78,7 @@ class AddLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      *
      *                        If the caller does not have permission to access the
      *                        [Product][google.cloud.retail.v2.Product], regardless of whether or not it
-     *                        exists, a PERMISSION_DENIED error is returned. Please see
-     *                        {@see ProductServiceClient::productName()} for help formatting this field.
+     *                        exists, a PERMISSION_DENIED error is returned.
      *
      * @return \Google\Cloud\Retail\V2\AddLocalInventoriesRequest
      *

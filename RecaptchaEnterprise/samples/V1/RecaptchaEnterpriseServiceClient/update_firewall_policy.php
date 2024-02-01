@@ -43,9 +43,7 @@ function update_firewall_policy_sample(): void
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
     // Prepare the request message.
-    $firewallPolicy = new FirewallPolicy();
-    $request = (new UpdateFirewallPolicyRequest())
-        ->setFirewallPolicy($firewallPolicy);
+    $request = new UpdateFirewallPolicyRequest();
 
     // Call the API and handle any network failures.
     try {

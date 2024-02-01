@@ -103,10 +103,7 @@ class TasksClientTest extends GeneratedTest
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]', '[TASK]');
-        $request = (new GetTaskRequest())
-            ->setName($formattedName);
+        $request = new GetTaskRequest();
         $response = $gapicClient->getTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -114,8 +111,6 @@ class TasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Tasks/GetTask', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -137,10 +132,7 @@ class TasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]', '[TASK]');
-        $request = (new GetTaskRequest())
-            ->setName($formattedName);
+        $request = new GetTaskRequest();
         try {
             $gapicClient->getTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -172,10 +164,7 @@ class TasksClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTasks($tasks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-        $request = (new ListTasksRequest())
-            ->setParent($formattedParent);
+        $request = new ListTasksRequest();
         $response = $gapicClient->listTasks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -186,8 +175,6 @@ class TasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Tasks/ListTasks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -209,10 +196,7 @@ class TasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-        $request = (new ListTasksRequest())
-            ->setParent($formattedParent);
+        $request = new ListTasksRequest();
         try {
             $gapicClient->listTasks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -267,10 +251,7 @@ class TasksClientTest extends GeneratedTest
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]', '[TASK]');
-        $request = (new GetTaskRequest())
-            ->setName($formattedName);
+        $request = new GetTaskRequest();
         $response = $gapicClient->getTaskAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -278,8 +259,6 @@ class TasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Tasks/GetTask', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

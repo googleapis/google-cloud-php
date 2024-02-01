@@ -32,19 +32,19 @@ use Google\Cloud\Retail\V2\Model;
 /**
  * Lists all the models linked to this event store.
  *
- * @param string $formattedParent The parent for which to list models.
- *                                Format:
- *                                `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
- *                                Please see {@see ModelServiceClient::catalogName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_models_sample(string $formattedParent): void
+function list_models_sample(): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $request = (new ListModelsRequest())
-        ->setParent($formattedParent);
+    $request = new ListModelsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +58,5 @@ function list_models_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ModelServiceClient::catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-
-    list_models_sample($formattedParent);
 }
 // [END retail_v2_generated_ModelService_ListModels_sync]

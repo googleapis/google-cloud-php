@@ -33,20 +33,19 @@ use Google\Cloud\PrivateCatalog\V1beta1\SearchCatalogsRequest;
  * Search [Catalog][google.cloud.privatecatalog.v1beta1.Catalog] resources that consumers have access to, within the
  * scope of the consumer cloud resource hierarchy context.
  *
- * @param string $resource The name of the resource context. It can be in following formats:
- *
- *                         * `projects/{project}`
- *                         * `folders/{folder}`
- *                         * `organizations/{organization}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_catalogs_sample(string $resource): void
+function search_catalogs_sample(): void
 {
     // Create a client.
     $privateCatalogClient = new PrivateCatalogClient();
 
     // Prepare the request message.
-    $request = (new SearchCatalogsRequest())
-        ->setResource($resource);
+    $request = new SearchCatalogsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +59,5 @@ function search_catalogs_sample(string $resource): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $resource = '[RESOURCE]';
-
-    search_catalogs_sample($resource);
 }
 // [END cloudprivatecatalog_v1beta1_generated_PrivateCatalog_SearchCatalogs_sync]

@@ -27,8 +27,7 @@ class GetJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The full name of the Job.
      *                     Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
-     *                     can be project id or number. Please see
-     *                     {@see JobsClient::jobName()} for help formatting this field.
+     *                     can be project id or number.
      *
      * @return \Google\Cloud\Run\V2\GetJobRequest
      *

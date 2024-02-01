@@ -32,8 +32,7 @@ class GetSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the schema to get.
-     *                     Format is `projects/{project}/schemas/{schema}`. Please see
-     *                     {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     *                     Format is `projects/{project}/schemas/{schema}`.
      *
      * @return \Google\Cloud\PubSub\V1\GetSchemaRequest
      *

@@ -24,7 +24,6 @@ class GetPatchJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the patch in the form `projects/&#42;/patchJobs/*`
-     *                     Please see {@see OsConfigServiceClient::patchJobName()} for help formatting this field.
      *
      * @return \Google\Cloud\OsConfig\V1\GetPatchJobRequest
      *

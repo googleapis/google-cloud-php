@@ -96,10 +96,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setInsightSubtype($insightSubtype);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-        $request = (new GetInsightRequest())
-            ->setName($formattedName);
+        $request = new GetInsightRequest();
         $response = $gapicClient->getInsight($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -107,8 +104,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/GetInsight', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -130,10 +125,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-        $request = (new GetInsightRequest())
-            ->setName($formattedName);
+        $request = new GetInsightRequest();
         try {
             $gapicClient->getInsight($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -166,10 +158,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setRevisionId($revisionId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->insightTypeConfigName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-        $request = (new GetInsightTypeConfigRequest())
-            ->setName($formattedName);
+        $request = new GetInsightTypeConfigRequest();
         $response = $gapicClient->getInsightTypeConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -177,8 +166,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/GetInsightTypeConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -200,10 +187,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->insightTypeConfigName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-        $request = (new GetInsightTypeConfigRequest())
-            ->setName($formattedName);
+        $request = new GetInsightTypeConfigRequest();
         try {
             $gapicClient->getInsightTypeConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -238,10 +222,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $request = (new GetRecommendationRequest())
-            ->setName($formattedName);
+        $request = new GetRecommendationRequest();
         $response = $gapicClient->getRecommendation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -249,8 +230,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/GetRecommendation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -272,10 +251,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $request = (new GetRecommendationRequest())
-            ->setName($formattedName);
+        $request = new GetRecommendationRequest();
         try {
             $gapicClient->getRecommendation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -308,10 +284,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setRevisionId($revisionId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->recommenderConfigName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
-        $request = (new GetRecommenderConfigRequest())
-            ->setName($formattedName);
+        $request = new GetRecommenderConfigRequest();
         $response = $gapicClient->getRecommenderConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -319,8 +292,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/GetRecommenderConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -342,10 +313,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->recommenderConfigName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
-        $request = (new GetRecommenderConfigRequest())
-            ->setName($formattedName);
+        $request = new GetRecommenderConfigRequest();
         try {
             $gapicClient->getRecommenderConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -377,10 +345,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInsights($insights);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-        $request = (new ListInsightsRequest())
-            ->setParent($formattedParent);
+        $request = new ListInsightsRequest();
         $response = $gapicClient->listInsights($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -391,8 +356,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/ListInsights', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -414,10 +377,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-        $request = (new ListInsightsRequest())
-            ->setParent($formattedParent);
+        $request = new ListInsightsRequest();
         try {
             $gapicClient->listInsights($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -449,10 +409,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRecommendations($recommendations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
-        $request = (new ListRecommendationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListRecommendationsRequest();
         $response = $gapicClient->listRecommendations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -463,8 +420,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/ListRecommendations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -486,10 +441,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
-        $request = (new ListRecommendationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListRecommendationsRequest();
         try {
             $gapicClient->listRecommendations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -522,12 +474,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setInsightSubtype($insightSubtype);
         $expectedResponse->setEtag($etag2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-        $etag = 'etag3123477';
-        $request = (new MarkInsightAcceptedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = new MarkInsightAcceptedRequest();
         $response = $gapicClient->markInsightAccepted($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -535,10 +482,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/MarkInsightAccepted', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getEtag();
-        $this->assertProtobufEquals($etag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -560,12 +503,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-        $etag = 'etag3123477';
-        $request = (new MarkInsightAcceptedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = new MarkInsightAcceptedRequest();
         try {
             $gapicClient->markInsightAccepted($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -600,12 +538,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag2);
         $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $etag = 'etag3123477';
-        $request = (new MarkRecommendationClaimedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = new MarkRecommendationClaimedRequest();
         $response = $gapicClient->markRecommendationClaimed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -613,10 +546,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/MarkRecommendationClaimed', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getEtag();
-        $this->assertProtobufEquals($etag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -638,12 +567,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $etag = 'etag3123477';
-        $request = (new MarkRecommendationClaimedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = new MarkRecommendationClaimedRequest();
         try {
             $gapicClient->markRecommendationClaimed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -678,10 +602,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag2);
         $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $request = (new MarkRecommendationDismissedRequest())
-            ->setName($formattedName);
+        $request = new MarkRecommendationDismissedRequest();
         $response = $gapicClient->markRecommendationDismissed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -689,8 +610,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/MarkRecommendationDismissed', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -712,10 +631,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $request = (new MarkRecommendationDismissedRequest())
-            ->setName($formattedName);
+        $request = new MarkRecommendationDismissedRequest();
         try {
             $gapicClient->markRecommendationDismissed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -750,12 +666,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag2);
         $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $etag = 'etag3123477';
-        $request = (new MarkRecommendationFailedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = new MarkRecommendationFailedRequest();
         $response = $gapicClient->markRecommendationFailed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -763,10 +674,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/MarkRecommendationFailed', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getEtag();
-        $this->assertProtobufEquals($etag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -788,12 +695,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $etag = 'etag3123477';
-        $request = (new MarkRecommendationFailedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = new MarkRecommendationFailedRequest();
         try {
             $gapicClient->markRecommendationFailed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -828,12 +730,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag2);
         $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $etag = 'etag3123477';
-        $request = (new MarkRecommendationSucceededRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = new MarkRecommendationSucceededRequest();
         $response = $gapicClient->markRecommendationSucceeded($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -841,10 +738,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/MarkRecommendationSucceeded', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getEtag();
-        $this->assertProtobufEquals($etag, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -866,12 +759,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $etag = 'etag3123477';
-        $request = (new MarkRecommendationSucceededRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = new MarkRecommendationSucceededRequest();
         try {
             $gapicClient->markRecommendationSucceeded($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -904,10 +792,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setRevisionId($revisionId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $insightTypeConfig = new InsightTypeConfig();
-        $request = (new UpdateInsightTypeConfigRequest())
-            ->setInsightTypeConfig($insightTypeConfig);
+        $request = new UpdateInsightTypeConfigRequest();
         $response = $gapicClient->updateInsightTypeConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -915,8 +800,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/UpdateInsightTypeConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getInsightTypeConfig();
-        $this->assertProtobufEquals($insightTypeConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -938,10 +821,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $insightTypeConfig = new InsightTypeConfig();
-        $request = (new UpdateInsightTypeConfigRequest())
-            ->setInsightTypeConfig($insightTypeConfig);
+        $request = new UpdateInsightTypeConfigRequest();
         try {
             $gapicClient->updateInsightTypeConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -974,10 +854,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setRevisionId($revisionId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $recommenderConfig = new RecommenderConfig();
-        $request = (new UpdateRecommenderConfigRequest())
-            ->setRecommenderConfig($recommenderConfig);
+        $request = new UpdateRecommenderConfigRequest();
         $response = $gapicClient->updateRecommenderConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -985,8 +862,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/UpdateRecommenderConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getRecommenderConfig();
-        $this->assertProtobufEquals($recommenderConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1008,10 +883,7 @@ class RecommenderClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $recommenderConfig = new RecommenderConfig();
-        $request = (new UpdateRecommenderConfigRequest())
-            ->setRecommenderConfig($recommenderConfig);
+        $request = new UpdateRecommenderConfigRequest();
         try {
             $gapicClient->updateRecommenderConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1044,10 +916,7 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setInsightSubtype($insightSubtype);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-        $request = (new GetInsightRequest())
-            ->setName($formattedName);
+        $request = new GetInsightRequest();
         $response = $gapicClient->getInsightAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1055,8 +924,6 @@ class RecommenderClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommender.v1.Recommender/GetInsight', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

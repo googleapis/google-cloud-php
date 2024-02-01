@@ -28,8 +28,7 @@ class UndeleteProjectRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the project (for example, `projects/415104041262`).
      *
-     *                     Required. Please see
-     *                     {@see ProjectsClient::projectName()} for help formatting this field.
+     *                     Required.
      *
      * @return \Google\Cloud\ResourceManager\V3\UndeleteProjectRequest
      *

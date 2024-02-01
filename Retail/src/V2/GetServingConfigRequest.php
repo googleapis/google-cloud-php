@@ -26,7 +26,6 @@ class GetServingConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the ServingConfig to get. Format:
      *                     `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
-     *                     Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\Retail\V2\GetServingConfigRequest
      *

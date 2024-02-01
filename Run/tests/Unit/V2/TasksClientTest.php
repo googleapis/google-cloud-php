@@ -101,17 +101,13 @@ class TasksClientTest extends GeneratedTest
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]', '[TASK]');
-        $response = $gapicClient->getTask($formattedName);
+        $response = $gapicClient->getTask();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Tasks/GetTask', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -133,10 +129,8 @@ class TasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]', '[TASK]');
         try {
-            $gapicClient->getTask($formattedName);
+            $gapicClient->getTask();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -166,9 +160,7 @@ class TasksClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTasks($tasks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-        $response = $gapicClient->listTasks($formattedParent);
+        $response = $gapicClient->listTasks();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -178,8 +170,6 @@ class TasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Tasks/ListTasks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -201,10 +191,8 @@ class TasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
         try {
-            $gapicClient->listTasks($formattedParent);
+            $gapicClient->listTasks();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

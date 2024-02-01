@@ -32,17 +32,19 @@ use Google\Cloud\OsConfig\V1\OSPolicyAssignment;
 /**
  * List the OS policy assignment revisions for a given OS policy assignment.
  *
- * @param string $formattedName The name of the OS policy assignment to list revisions for. Please see
- *                              {@see OsConfigZonalServiceClient::oSPolicyAssignmentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_os_policy_assignment_revisions_sample(string $formattedName): void
+function list_os_policy_assignment_revisions_sample(): void
 {
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
     // Prepare the request message.
-    $request = (new ListOSPolicyAssignmentRevisionsRequest())
-        ->setName($formattedName);
+    $request = new ListOSPolicyAssignmentRevisionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,25 +58,5 @@ function list_os_policy_assignment_revisions_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = OsConfigZonalServiceClient::oSPolicyAssignmentName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[OS_POLICY_ASSIGNMENT]'
-    );
-
-    list_os_policy_assignment_revisions_sample($formattedName);
 }
 // [END osconfig_v1_generated_OsConfigZonalService_ListOSPolicyAssignmentRevisions_sync]

@@ -29,7 +29,6 @@ class GetOSPolicyAssignmentRequest extends \Google\Protobuf\Internal\Message
      *
      *                     Format:
      *                     `projects/{project}/locations/{location}/osPolicyAssignments/{os_policy_assignment}&#64;{revisionId}`
-     *                     Please see {@see OsConfigZonalServiceClient::oSPolicyAssignmentName()} for help formatting this field.
      *
      * @return \Google\Cloud\OsConfig\V1\GetOSPolicyAssignmentRequest
      *

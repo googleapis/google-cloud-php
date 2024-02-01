@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'job_id',
-                ],
             ],
             'DeleteJob' => [
                 'method' => 'delete',

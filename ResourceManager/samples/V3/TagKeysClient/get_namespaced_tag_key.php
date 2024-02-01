@@ -33,20 +33,19 @@ use Google\Cloud\ResourceManager\V3\TagKey;
  * This method will return `PERMISSION_DENIED` if the key does not exist
  * or the user does not have permission to view it.
  *
- * @param string $formattedName A namespaced tag key name in the format
- *                              `{parentId}/{tagKeyShort}`, such as `42/foo` for a key with short name
- *                              "foo" under the organization with ID 42 or `r2-d2/bar` for a key with short
- *                              name "bar" under the project `r2-d2`. Please see
- *                              {@see TagKeysClient::tagKeyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_namespaced_tag_key_sample(string $formattedName): void
+function get_namespaced_tag_key_sample(): void
 {
     // Create a client.
     $tagKeysClient = new TagKeysClient();
 
     // Prepare the request message.
-    $request = (new GetNamespacedTagKeyRequest())
-        ->setName($formattedName);
+    $request = new GetNamespacedTagKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +55,5 @@ function get_namespaced_tag_key_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = TagKeysClient::tagKeyName('[TAG_KEY]');
-
-    get_namespaced_tag_key_sample($formattedName);
 }
 // [END cloudresourcemanager_v3_generated_TagKeys_GetNamespacedTagKey_sync]

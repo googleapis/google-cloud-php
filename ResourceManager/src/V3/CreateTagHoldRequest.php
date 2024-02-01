@@ -38,8 +38,7 @@ class CreateTagHoldRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                   $parent  Required. The resource name of the TagHold's parent TagValue. Must be of
-     *                                                          the form: `tagValues/{tag-value-id}`. Please see
-     *                                                          {@see TagHoldsClient::tagValueName()} for help formatting this field.
+     *                                                          the form: `tagValues/{tag-value-id}`.
      * @param \Google\Cloud\ResourceManager\V3\TagHold $tagHold Required. The TagHold to be created.
      *
      * @return \Google\Cloud\ResourceManager\V3\CreateTagHoldRequest

@@ -32,8 +32,7 @@ class DeleteTagHoldRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the TagHold to delete. Must be of the form:
-     *                     `tagValues/{tag-value-id}/tagHolds/{tag-hold-id}`. Please see
-     *                     {@see TagHoldsClient::tagHoldName()} for help formatting this field.
+     *                     `tagValues/{tag-value-id}/tagHolds/{tag-hold-id}`.
      *
      * @return \Google\Cloud\ResourceManager\V3\DeleteTagHoldRequest
      *

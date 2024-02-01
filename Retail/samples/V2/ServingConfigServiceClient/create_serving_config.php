@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Retail\V2\Client\ServingConfigServiceClient;
 use Google\Cloud\Retail\V2\CreateServingConfigRequest;
 use Google\Cloud\Retail\V2\ServingConfig;
-use Google\Cloud\Retail\V2\SolutionType;
 
 /**
  * Creates a ServingConfig.
@@ -36,40 +35,19 @@ use Google\Cloud\Retail\V2\SolutionType;
  * allowed in a [Catalog][google.cloud.retail.v2.Catalog], otherwise a
  * FAILED_PRECONDITION error is returned.
  *
- * @param string $formattedParent                   Full resource name of parent. Format:
- *                                                  `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
- *                                                  Please see {@see ServingConfigServiceClient::catalogName()} for help formatting this field.
- * @param string $servingConfigDisplayName          The human readable serving config display name. Used in Retail
- *                                                  UI.
- *
- *                                                  This field must be a UTF-8 encoded string with a length limit of 128
- *                                                  characters. Otherwise, an INVALID_ARGUMENT error is returned.
- * @param int    $servingConfigSolutionTypesElement Immutable. Specifies the solution types that a serving config can
- *                                                  be associated with. Currently we support setting only one type of solution.
- * @param string $servingConfigId                   The ID to use for the ServingConfig, which will become the final
- *                                                  component of the ServingConfig's resource name.
- *
- *                                                  This value should be 4-63 characters, and valid characters
- *                                                  are /[a-z][0-9]-_/.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_serving_config_sample(
-    string $formattedParent,
-    string $servingConfigDisplayName,
-    int $servingConfigSolutionTypesElement,
-    string $servingConfigId
-): void {
+function create_serving_config_sample(): void
+{
     // Create a client.
     $servingConfigServiceClient = new ServingConfigServiceClient();
 
     // Prepare the request message.
-    $servingConfigSolutionTypes = [$servingConfigSolutionTypesElement,];
-    $servingConfig = (new ServingConfig())
-        ->setDisplayName($servingConfigDisplayName)
-        ->setSolutionTypes($servingConfigSolutionTypes);
-    $request = (new CreateServingConfigRequest())
-        ->setParent($formattedParent)
-        ->setServingConfig($servingConfig)
-        ->setServingConfigId($servingConfigId);
+    $request = new CreateServingConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -79,29 +57,5 @@ function create_serving_config_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ServingConfigServiceClient::catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-    $servingConfigDisplayName = '[DISPLAY_NAME]';
-    $servingConfigSolutionTypesElement = SolutionType::SOLUTION_TYPE_UNSPECIFIED;
-    $servingConfigId = '[SERVING_CONFIG_ID]';
-
-    create_serving_config_sample(
-        $formattedParent,
-        $servingConfigDisplayName,
-        $servingConfigSolutionTypesElement,
-        $servingConfigId
-    );
 }
 // [END retail_v2_generated_ServingConfigService_CreateServingConfig_sync]

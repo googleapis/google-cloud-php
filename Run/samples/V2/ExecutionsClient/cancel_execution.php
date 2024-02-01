@@ -33,20 +33,19 @@ use Google\Rpc\Status;
 /**
  * Cancels an Execution.
  *
- * @param string $formattedName The name of the Execution to cancel.
- *                              Format:
- *                              `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
- *                              where `{project}` can be project id or number. Please see
- *                              {@see ExecutionsClient::executionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function cancel_execution_sample(string $formattedName): void
+function cancel_execution_sample(): void
 {
     // Create a client.
     $executionsClient = new ExecutionsClient();
 
     // Prepare the request message.
-    $request = (new CancelExecutionRequest())
-        ->setName($formattedName);
+    $request = new CancelExecutionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,21 +65,5 @@ function cancel_execution_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ExecutionsClient::executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-
-    cancel_execution_sample($formattedName);
 }
 // [END run_v2_generated_Executions_CancelExecution_sync]

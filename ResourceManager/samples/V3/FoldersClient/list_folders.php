@@ -38,24 +38,19 @@ use Google\Cloud\ResourceManager\V3\ListFoldersRequest;
  * The caller must have `resourcemanager.folders.list` permission on the
  * identified parent.
  *
- * @param string $parent The name of the parent resource whose folders are being listed.
- *                       Only children of this parent resource are listed; descendants are not
- *                       listed.
- *
- *                       If the parent is a folder, use the value `folders/{folder_id}`. If the
- *                       parent is an organization, use the value `organizations/{org_id}`.
- *
- *                       Access to this method is controlled by checking the
- *                       `resourcemanager.folders.list` permission on the `parent`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_folders_sample(string $parent): void
+function list_folders_sample(): void
 {
     // Create a client.
     $foldersClient = new FoldersClient();
 
     // Prepare the request message.
-    $request = (new ListFoldersRequest())
-        ->setParent($parent);
+    $request = new ListFoldersRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,21 +64,5 @@ function list_folders_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_folders_sample($parent);
 }
 // [END cloudresourcemanager_v3_generated_Folders_ListFolders_sync]

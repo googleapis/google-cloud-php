@@ -27,34 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Run\V2\Client\ServicesClient;
 use Google\Cloud\Run\V2\CreateServiceRequest;
-use Google\Cloud\Run\V2\RevisionTemplate;
 use Google\Cloud\Run\V2\Service;
 use Google\Rpc\Status;
 
 /**
  * Creates a new Service in a given project and location.
  *
- * @param string $formattedParent The location and project in which this service should be created.
- *                                Format: projects/{project}/locations/{location}, where {project} can be
- *                                project id or number. Only lowercase characters, digits, and hyphens. Please see
- *                                {@see ServicesClient::locationName()} for help formatting this field.
- * @param string $serviceId       The unique identifier for the Service. It must begin with letter,
- *                                and cannot end with hyphen; must contain fewer than 50 characters.
- *                                The name of the service becomes {parent}/services/{service_id}.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_service_sample(string $formattedParent, string $serviceId): void
+function create_service_sample(): void
 {
     // Create a client.
     $servicesClient = new ServicesClient();
 
     // Prepare the request message.
-    $serviceTemplate = new RevisionTemplate();
-    $service = (new Service())
-        ->setTemplate($serviceTemplate);
-    $request = (new CreateServiceRequest())
-        ->setParent($formattedParent)
-        ->setService($service)
-        ->setServiceId($serviceId);
+    $request = new CreateServiceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,22 +65,5 @@ function create_service_sample(string $formattedParent, string $serviceId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ServicesClient::locationName('[PROJECT]', '[LOCATION]');
-    $serviceId = '[SERVICE_ID]';
-
-    create_service_sample($formattedParent, $serviceId);
 }
 // [END run_v2_generated_Services_CreateService_sync]

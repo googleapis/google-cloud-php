@@ -46,8 +46,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $subscription      Required. The subscription from which messages should be pulled.
-     *                                  Format is `projects/{project}/subscriptions/{sub}`. Please see
-     *                                  {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     *                                  Format is `projects/{project}/subscriptions/{sub}`.
      * @param bool   $returnImmediately Optional. If this field set to true, the system will respond immediately
      *                                  even if it there are no messages available to return in the `Pull`
      *                                  response. Otherwise, the system may wait (for a bounded amount of time)
@@ -73,8 +72,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $subscription Required. The subscription from which messages should be pulled.
-     *                             Format is `projects/{project}/subscriptions/{sub}`. Please see
-     *                             {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param int    $maxMessages  Required. The maximum number of messages to return for this request. Must
      *                             be a positive integer. The Pub/Sub system may return fewer than the number
      *                             specified.

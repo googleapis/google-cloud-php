@@ -32,20 +32,19 @@ use Google\Cloud\Run\V2\Revision;
 /**
  * Lists Revisions from a given Service, or from a given location.
  *
- * @param string $formattedParent The Service from which the Revisions should be listed.
- *                                To list all Revisions across Services, use "-" instead of Service name.
- *                                Format:
- *                                projects/{project}/locations/{location}/services/{service}
- *                                Please see {@see RevisionsClient::serviceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_revisions_sample(string $formattedParent): void
+function list_revisions_sample(): void
 {
     // Create a client.
     $revisionsClient = new RevisionsClient();
 
     // Prepare the request message.
-    $request = (new ListRevisionsRequest())
-        ->setParent($formattedParent);
+    $request = new ListRevisionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +58,5 @@ function list_revisions_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RevisionsClient::serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-
-    list_revisions_sample($formattedParent);
 }
 // [END run_v2_generated_Revisions_ListRevisions_sync]

@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Retail\V2\AddLocalInventoriesRequest;
 use Google\Cloud\Retail\V2\AddLocalInventoriesResponse;
 use Google\Cloud\Retail\V2\Client\ProductServiceClient;
-use Google\Cloud\Retail\V2\LocalInventory;
 use Google\Rpc\Status;
 
 /**
@@ -61,25 +60,19 @@ use Google\Rpc\Status;
  * updates will not be marked as [done][google.longrunning.Operation.done]
  * until being obsolete.
  *
- * @param string $formattedProduct Full resource name of [Product][google.cloud.retail.v2.Product],
- *                                 such as
- *                                 `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
- *
- *                                 If the caller does not have permission to access the
- *                                 [Product][google.cloud.retail.v2.Product], regardless of whether or not it
- *                                 exists, a PERMISSION_DENIED error is returned. Please see
- *                                 {@see ProductServiceClient::productName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function add_local_inventories_sample(string $formattedProduct): void
+function add_local_inventories_sample(): void
 {
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
     // Prepare the request message.
-    $localInventories = [new LocalInventory()];
-    $request = (new AddLocalInventoriesRequest())
-        ->setProduct($formattedProduct)
-        ->setLocalInventories($localInventories);
+    $request = new AddLocalInventoriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -99,27 +92,5 @@ function add_local_inventories_sample(string $formattedProduct): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedProduct = ProductServiceClient::productName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]',
-        '[BRANCH]',
-        '[PRODUCT]'
-    );
-
-    add_local_inventories_sample($formattedProduct);
 }
 // [END retail_v2_generated_ProductService_AddLocalInventories_sync]

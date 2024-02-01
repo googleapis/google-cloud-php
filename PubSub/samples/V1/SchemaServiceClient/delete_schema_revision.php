@@ -31,23 +31,17 @@ use Google\Cloud\PubSub\V1\Schema;
 /**
  * Deletes a specific schema revision.
  *
- * @param string $formattedName The name of the schema revision to be deleted, with a revision ID
- *                              explicitly included.
- *
- *                              Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
- *                              Please see {@see SchemaServiceClient::schemaName()} for help formatting this field.
- * @param string $revisionId    Optional. This field is deprecated and should not be used for specifying
- *                              the revision ID. The revision ID should be specified via the `name`
- *                              parameter.
+ * @param string $revisionId Optional. This field is deprecated and should not be used for specifying
+ *                           the revision ID. The revision ID should be specified via the `name`
+ *                           parameter.
  */
-function delete_schema_revision_sample(string $formattedName, string $revisionId): void
+function delete_schema_revision_sample(string $revisionId): void
 {
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
     // Prepare the request message.
     $request = (new DeleteSchemaRevisionRequest())
-        ->setName($formattedName)
         ->setRevisionId($revisionId);
 
     // Call the API and handle any network failures.
@@ -71,9 +65,8 @@ function delete_schema_revision_sample(string $formattedName, string $revisionId
  */
 function callSample(): void
 {
-    $formattedName = SchemaServiceClient::schemaName('[PROJECT]', '[SCHEMA]');
     $revisionId = '[REVISION_ID]';
 
-    delete_schema_revision_sample($formattedName, $revisionId);
+    delete_schema_revision_sample($revisionId);
 }
 // [END pubsub_v1_generated_SchemaService_DeleteSchemaRevision_sync]

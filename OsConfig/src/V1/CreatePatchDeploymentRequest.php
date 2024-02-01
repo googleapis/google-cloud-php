@@ -43,8 +43,7 @@ class CreatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                    $parent            Required. The project to apply this patch deployment to in the form
-     *                                                                     `projects/*`. Please see
-     *                                                                     {@see OsConfigServiceClient::projectName()} for help formatting this field.
+     *                                                                     `projects/*`.
      * @param \Google\Cloud\OsConfig\V1\PatchDeployment $patchDeployment   Required. The patch deployment to create.
      * @param string                                    $patchDeploymentId Required. A name for the patch deployment in the project. When creating a
      *                                                                     name the following rules apply:

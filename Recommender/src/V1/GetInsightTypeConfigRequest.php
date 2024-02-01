@@ -39,7 +39,6 @@ class GetInsightTypeConfigRequest extends \Google\Protobuf\Internal\Message
      *                     * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
      *
      *                     * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
-     *                     Please see {@see RecommenderClient::insightTypeConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\Recommender\V1\GetInsightTypeConfigRequest
      *

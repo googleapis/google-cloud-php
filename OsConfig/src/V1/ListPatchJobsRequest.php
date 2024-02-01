@@ -45,7 +45,6 @@ class ListPatchJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. In the form of `projects/*`
-     *                       Please see {@see OsConfigServiceClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\OsConfig\V1\ListPatchJobsRequest
      *

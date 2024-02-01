@@ -57,8 +57,7 @@ class ListCatalogsRequest extends \Google\Protobuf\Internal\Message
      *                       If the caller does not have permission to list
      *                       [Catalog][google.cloud.retail.v2.Catalog]s under this location, regardless
      *                       of whether or not this location exists, a PERMISSION_DENIED error is
-     *                       returned. Please see
-     *                       {@see CatalogServiceClient::locationName()} for help formatting this field.
+     *                       returned.
      *
      * @return \Google\Cloud\Retail\V2\ListCatalogsRequest
      *

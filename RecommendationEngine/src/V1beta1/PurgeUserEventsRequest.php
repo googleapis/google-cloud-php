@@ -59,7 +59,6 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The resource name of the event_store under which the events are
      *                       created. The format is
      *                       `projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}`
-     *                       Please see {@see UserEventServiceClient::eventStoreName()} for help formatting this field.
      * @param string $filter Required. The filter string to specify the events to be deleted. Empty
      *                       string filter is not allowed. This filter can also be used with
      *                       ListUserEvents API to list events that will be deleted. The eligible fields

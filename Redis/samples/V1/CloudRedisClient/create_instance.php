@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Redis\V1\Client\CloudRedisClient;
 use Google\Cloud\Redis\V1\CreateInstanceRequest;
 use Google\Cloud\Redis\V1\Instance;
-use Google\Cloud\Redis\V1\Instance\Tier;
 use Google\Rpc\Status;
 
 /**
@@ -45,51 +44,19 @@ use Google\Rpc\Status;
  * The returned operation is automatically deleted after a few hours, so there
  * is no need to call DeleteOperation.
  *
- * @param string $formattedParent      The resource name of the instance location using the form:
- *                                     `projects/{project_id}/locations/{location_id}`
- *                                     where `location_id` refers to a GCP region. Please see
- *                                     {@see CloudRedisClient::locationName()} for help formatting this field.
- * @param string $instanceId           The logical name of the Redis instance in the customer project
- *                                     with the following restrictions:
- *
- *                                     * Must contain only lowercase letters, numbers, and hyphens.
- *                                     * Must start with a letter.
- *                                     * Must be between 1-40 characters.
- *                                     * Must end with a number or a letter.
- *                                     * Must be unique within the customer project / location
- * @param string $instanceName         Unique name of the resource in this scope including project and
- *                                     location using the form:
- *                                     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
- *
- *                                     Note: Redis instances are managed and addressed at regional level so
- *                                     location_id here refers to a GCP region; however, users may choose which
- *                                     specific zone (or collection of zones for cross-zone instances) an instance
- *                                     should be provisioned in. Refer to
- *                                     [location_id][google.cloud.redis.v1.Instance.location_id] and
- *                                     [alternative_location_id][google.cloud.redis.v1.Instance.alternative_location_id]
- *                                     fields for more details.
- * @param int    $instanceTier         The service tier of the instance.
- * @param int    $instanceMemorySizeGb Redis memory size in GiB.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_instance_sample(
-    string $formattedParent,
-    string $instanceId,
-    string $instanceName,
-    int $instanceTier,
-    int $instanceMemorySizeGb
-): void {
+function create_instance_sample(): void
+{
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
 
     // Prepare the request message.
-    $instance = (new Instance())
-        ->setName($instanceName)
-        ->setTier($instanceTier)
-        ->setMemorySizeGb($instanceMemorySizeGb);
-    $request = (new CreateInstanceRequest())
-        ->setParent($formattedParent)
-        ->setInstanceId($instanceId)
-        ->setInstance($instance);
+    $request = new CreateInstanceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -109,31 +76,5 @@ function create_instance_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudRedisClient::locationName('[PROJECT]', '[LOCATION]');
-    $instanceId = '[INSTANCE_ID]';
-    $instanceName = '[NAME]';
-    $instanceTier = Tier::TIER_UNSPECIFIED;
-    $instanceMemorySizeGb = 0;
-
-    create_instance_sample(
-        $formattedParent,
-        $instanceId,
-        $instanceName,
-        $instanceTier,
-        $instanceMemorySizeGb
-    );
 }
 // [END redis_v1_generated_CloudRedis_CreateInstance_sync]

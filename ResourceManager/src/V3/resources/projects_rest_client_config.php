@@ -45,9 +45,6 @@ return [
             'ListProjects' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/projects',
-                'queryParams' => [
-                    'parent',
-                ],
             ],
             'MoveProject' => [
                 'method' => 'post',

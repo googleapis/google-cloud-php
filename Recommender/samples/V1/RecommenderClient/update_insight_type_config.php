@@ -44,9 +44,7 @@ function update_insight_type_config_sample(): void
     $recommenderClient = new RecommenderClient();
 
     // Prepare the request message.
-    $insightTypeConfig = new InsightTypeConfig();
-    $request = (new UpdateInsightTypeConfigRequest())
-        ->setInsightTypeConfig($insightTypeConfig);
+    $request = new UpdateInsightTypeConfigRequest();
 
     // Call the API and handle any network failures.
     try {

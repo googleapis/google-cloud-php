@@ -32,26 +32,19 @@ use Google\Cloud\CloudQuotas\V1\QuotaPreference;
 /**
  * Lists QuotaPreferences in a given project, folder or organization.
  *
- * @param string $formattedParent Parent value of QuotaPreference resources.
- *                                Listing across different resource containers (such as 'projects/-') is not
- *                                allowed.
- *
- *                                When the value starts with 'folders' or 'organizations', it lists the
- *                                QuotaPreferences for org quotas in the container. It does not list the
- *                                QuotaPreferences in the descendant projects of the container.
- *
- *                                Example parents:
- *                                `projects/123/locations/global`
- *                                Please see {@see CloudQuotasClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_quota_preferences_sample(string $formattedParent): void
+function list_quota_preferences_sample(): void
 {
     // Create a client.
     $cloudQuotasClient = new CloudQuotasClient();
 
     // Prepare the request message.
-    $request = (new ListQuotaPreferencesRequest())
-        ->setParent($formattedParent);
+    $request = new ListQuotaPreferencesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +58,5 @@ function list_quota_preferences_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudQuotasClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_quota_preferences_sample($formattedParent);
 }
 // [END cloudquotas_v1_generated_CloudQuotas_ListQuotaPreferences_sync]

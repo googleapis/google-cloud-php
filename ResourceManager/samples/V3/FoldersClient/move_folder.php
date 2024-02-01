@@ -49,22 +49,19 @@ use Google\Rpc\Status;
  * documentation. The caller must have `resourcemanager.folders.move`
  * permission on the folder's current and proposed new parent.
  *
- * @param string $formattedName     The resource name of the Folder to move.
- *                                  Must be of the form folders/{folder_id}
- *                                  Please see {@see FoldersClient::folderName()} for help formatting this field.
- * @param string $destinationParent The resource name of the folder or organization which should be
- *                                  the folder's new parent. Must be of the form `folders/{folder_id}` or
- *                                  `organizations/{org_id}`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function move_folder_sample(string $formattedName, string $destinationParent): void
+function move_folder_sample(): void
 {
     // Create a client.
     $foldersClient = new FoldersClient();
 
     // Prepare the request message.
-    $request = (new MoveFolderRequest())
-        ->setName($formattedName)
-        ->setDestinationParent($destinationParent);
+    $request = new MoveFolderRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -84,22 +81,5 @@ function move_folder_sample(string $formattedName, string $destinationParent): v
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = FoldersClient::folderName('[FOLDER]');
-    $destinationParent = '[DESTINATION_PARENT]';
-
-    move_folder_sample($formattedName, $destinationParent);
 }
 // [END cloudresourcemanager_v3_generated_Folders_MoveFolder_sync]

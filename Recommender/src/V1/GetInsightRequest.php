@@ -23,8 +23,7 @@ class GetInsightRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Name of the insight. Please see
-     *                     {@see RecommenderClient::insightName()} for help formatting this field.
+     * @param string $name Required. Name of the insight.
      *
      * @return \Google\Cloud\Recommender\V1\GetInsightRequest
      *

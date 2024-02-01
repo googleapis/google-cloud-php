@@ -31,8 +31,7 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                               $parent    Required. The parent eventStore resource name, such as
-     *                                                                        `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`. Please see
-     *                                                                        {@see UserEventServiceClient::eventStoreName()} for help formatting this field.
+     *                                                                        `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      * @param \Google\Cloud\RecommendationEngine\V1beta1\UserEvent $userEvent Required. User event to write.
      *
      * @return \Google\Cloud\RecommendationEngine\V1beta1\WriteUserEventRequest

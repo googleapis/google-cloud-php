@@ -44,7 +44,6 @@ class CreateOSPolicyAssignmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                       $parent               Required. The parent resource name in the form:
      *                                                                           projects/{project}/locations/{location}
-     *                                                                           Please see {@see OsConfigZonalServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignment $osPolicyAssignment   Required. The OS policy assignment to be created.
      * @param string                                       $osPolicyAssignmentId Required. The logical name of the OS policy assignment in the project
      *                                                                           with the following restrictions:

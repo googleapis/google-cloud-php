@@ -58,9 +58,7 @@ function update_setting_sample(): void
     $resourceSettingsServiceClient = new ResourceSettingsServiceClient();
 
     // Prepare the request message.
-    $setting = new Setting();
-    $request = (new UpdateSettingRequest())
-        ->setSetting($setting);
+    $request = new UpdateSettingRequest();
 
     // Call the API and handle any network failures.
     try {

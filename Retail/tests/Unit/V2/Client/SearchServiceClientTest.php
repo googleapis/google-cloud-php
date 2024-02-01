@@ -87,12 +87,7 @@ class SearchServiceClientTest extends GeneratedTest
         $expectedResponse->setRedirectUri($redirectUri);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $placement = 'placement1792938725';
-        $visitorId = 'visitorId-1832599924';
-        $request = (new SearchRequest())
-            ->setPlacement($placement)
-            ->setVisitorId($visitorId);
+        $request = new SearchRequest();
         $response = $gapicClient->search($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -103,10 +98,6 @@ class SearchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.SearchService/Search', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPlacement();
-        $this->assertProtobufEquals($placement, $actualValue);
-        $actualValue = $actualRequestObject->getVisitorId();
-        $this->assertProtobufEquals($visitorId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -128,12 +119,7 @@ class SearchServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $placement = 'placement1792938725';
-        $visitorId = 'visitorId-1832599924';
-        $request = (new SearchRequest())
-            ->setPlacement($placement)
-            ->setVisitorId($visitorId);
+        $request = new SearchRequest();
         try {
             $gapicClient->search($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -173,12 +159,7 @@ class SearchServiceClientTest extends GeneratedTest
         $expectedResponse->setRedirectUri($redirectUri);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $placement = 'placement1792938725';
-        $visitorId = 'visitorId-1832599924';
-        $request = (new SearchRequest())
-            ->setPlacement($placement)
-            ->setVisitorId($visitorId);
+        $request = new SearchRequest();
         $response = $gapicClient->searchAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -189,10 +170,6 @@ class SearchServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.SearchService/Search', $actualFuncCall);
-        $actualValue = $actualRequestObject->getPlacement();
-        $this->assertProtobufEquals($placement, $actualValue);
-        $actualValue = $actualRequestObject->getVisitorId();
-        $this->assertProtobufEquals($visitorId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

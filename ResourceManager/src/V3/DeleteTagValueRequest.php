@@ -39,8 +39,7 @@ class DeleteTagValueRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name for TagValue to be deleted in the format
-     *                     tagValues/456. Please see
-     *                     {@see TagValuesClient::tagValueName()} for help formatting this field.
+     *                     tagValues/456.
      *
      * @return \Google\Cloud\ResourceManager\V3\DeleteTagValueRequest
      *

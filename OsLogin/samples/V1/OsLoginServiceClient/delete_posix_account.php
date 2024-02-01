@@ -30,19 +30,19 @@ use Google\Cloud\OsLogin\V1\DeletePosixAccountRequest;
 /**
  * Deletes a POSIX account.
  *
- * @param string $formattedName A reference to the POSIX account to update. POSIX accounts are
- *                              identified by the project ID they are associated with. A reference to the
- *                              POSIX account is in format `users/{user}/projects/{project}`. Please see
- *                              {@see OsLoginServiceClient::posixAccountName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_posix_account_sample(string $formattedName): void
+function delete_posix_account_sample(): void
 {
     // Create a client.
     $osLoginServiceClient = new OsLoginServiceClient();
 
     // Prepare the request message.
-    $request = (new DeletePosixAccountRequest())
-        ->setName($formattedName);
+    $request = new DeletePosixAccountRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +51,5 @@ function delete_posix_account_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = OsLoginServiceClient::posixAccountName('[USER]', '[PROJECT]');
-
-    delete_posix_account_sample($formattedName);
 }
 // [END oslogin_v1_generated_OsLoginService_DeletePosixAccount_sync]

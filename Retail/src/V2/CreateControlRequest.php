@@ -41,7 +41,6 @@ class CreateControlRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                          $parent    Required. Full resource name of parent catalog. Format:
      *                                                   `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
-     *                                                   Please see {@see ControlServiceClient::catalogName()} for help formatting this field.
      * @param \Google\Cloud\Retail\V2\Control $control   Required. The Control to create.
      * @param string                          $controlId Required. The ID to use for the Control, which will become the final
      *                                                   component of the Control's resource name.

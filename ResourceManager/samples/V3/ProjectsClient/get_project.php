@@ -35,17 +35,19 @@ use Google\Cloud\ResourceManager\V3\Project;
  * The caller must have `resourcemanager.projects.get` permission
  * for this project.
  *
- * @param string $formattedName The name of the project (for example, `projects/415104041262`). Please see
- *                              {@see ProjectsClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_project_sample(string $formattedName): void
+function get_project_sample(): void
 {
     // Create a client.
     $projectsClient = new ProjectsClient();
 
     // Prepare the request message.
-    $request = (new GetProjectRequest())
-        ->setName($formattedName);
+    $request = new GetProjectRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +57,5 @@ function get_project_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ProjectsClient::projectName('[PROJECT]');
-
-    get_project_sample($formattedName);
 }
 // [END cloudresourcemanager_v3_generated_Projects_GetProject_sync]

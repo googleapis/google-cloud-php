@@ -30,41 +30,24 @@ use Google\Cloud\Scheduler\V1beta1\Job;
 /**
  * Creates a job.
  *
- * @param string $formattedParent The location name. For example:
- *                                `projects/PROJECT_ID/locations/LOCATION_ID`. Please see
- *                                {@see CloudSchedulerClient::locationName()} for help formatting this field.
- */
-function create_job_sample(string $formattedParent): void
-{
-    // Create a client.
-    $cloudSchedulerClient = new CloudSchedulerClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $job = new Job();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Job $response */
-        $response = $cloudSchedulerClient->createJob($formattedParent, $job);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function create_job_sample(): void
 {
-    $formattedParent = CloudSchedulerClient::locationName('[PROJECT]', '[LOCATION]');
+    // Create a client.
+    $cloudSchedulerClient = new CloudSchedulerClient();
 
-    create_job_sample($formattedParent);
+    // Call the API and handle any network failures.
+    try {
+        /** @var Job $response */
+        $response = $cloudSchedulerClient->createJob();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudscheduler_v1beta1_generated_CloudScheduler_CreateJob_sync]

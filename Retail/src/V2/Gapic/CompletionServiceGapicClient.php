@@ -53,9 +53,7 @@ use Google\LongRunning\Operation;
  * ```
  * $completionServiceClient = new CompletionServiceClient();
  * try {
- *     $formattedCatalog = $completionServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
- *     $query = 'query';
- *     $response = $completionServiceClient->completeQuery($formattedCatalog, $query);
+ *     $response = $completionServiceClient->completeQuery();
  * } finally {
  *     $completionServiceClient->close();
  * }
@@ -320,24 +318,24 @@ class CompletionServiceGapicClient
      * ```
      * $completionServiceClient = new CompletionServiceClient();
      * try {
-     *     $formattedCatalog = $completionServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-     *     $query = 'query';
-     *     $response = $completionServiceClient->completeQuery($formattedCatalog, $query);
+     *     $response = $completionServiceClient->completeQuery();
      * } finally {
      *     $completionServiceClient->close();
      * }
      * ```
      *
-     * @param string $catalog      Required. Catalog for which the completion is performed.
-     *
-     *                             Full resource name of catalog, such as
-     *                             `projects/&#42;/locations/global/catalogs/default_catalog`.
-     * @param string $query        Required. The query used to generate suggestions.
-     *
-     *                             The maximum number of allowed characters is 255.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $catalog
+     *           Required. Catalog for which the completion is performed.
+     *
+     *           Full resource name of catalog, such as
+     *           `projects/&#42;/locations/global/catalogs/default_catalog`.
+     *     @type string $query
+     *           Required. The query used to generate suggestions.
+     *
+     *           The maximum number of allowed characters is 255.
      *     @type string $visitorId
      *           Required field. A unique identifier for tracking visitors. For example,
      *           this could be implemented with an HTTP cookie, which should be able to
@@ -411,13 +409,19 @@ class CompletionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function completeQuery($catalog, $query, array $optionalArgs = [])
+    public function completeQuery(array $optionalArgs = [])
     {
         $request = new CompleteQueryRequest();
         $requestParamHeaders = [];
-        $request->setCatalog($catalog);
-        $request->setQuery($query);
-        $requestParamHeaders['catalog'] = $catalog;
+        if (isset($optionalArgs['catalog'])) {
+            $request->setCatalog($optionalArgs['catalog']);
+            $requestParamHeaders['catalog'] = $optionalArgs['catalog'];
+        }
+
+        if (isset($optionalArgs['query'])) {
+            $request->setQuery($optionalArgs['query']);
+        }
+
         if (isset($optionalArgs['visitorId'])) {
             $request->setVisitorId($optionalArgs['visitorId']);
         }
@@ -471,9 +475,7 @@ class CompletionServiceGapicClient
      * ```
      * $completionServiceClient = new CompletionServiceClient();
      * try {
-     *     $formattedParent = $completionServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-     *     $inputConfig = new CompletionDataInputConfig();
-     *     $operationResponse = $completionServiceClient->importCompletionData($formattedParent, $inputConfig);
+     *     $operationResponse = $completionServiceClient->importCompletionData();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -484,7 +486,7 @@ class CompletionServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $completionServiceClient->importCompletionData($formattedParent, $inputConfig);
+     *     $operationResponse = $completionServiceClient->importCompletionData();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $completionServiceClient->resumeOperation($operationName, 'importCompletionData');
@@ -504,13 +506,15 @@ class CompletionServiceGapicClient
      * }
      * ```
      *
-     * @param string                    $parent       Required. The catalog which the suggestions dataset belongs to.
-     *
-     *                                                Format: `projects/1234/locations/global/catalogs/default_catalog`.
-     * @param CompletionDataInputConfig $inputConfig  Required. The desired input location of the data.
-     * @param array                     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The catalog which the suggestions dataset belongs to.
+     *
+     *           Format: `projects/1234/locations/global/catalogs/default_catalog`.
+     *     @type CompletionDataInputConfig $inputConfig
+     *           Required. The desired input location of the data.
      *     @type string $notificationPubsubTopic
      *           Pub/Sub topic for receiving notification. If this field is set,
      *           when the import is finished, a notification is sent to
@@ -527,16 +531,19 @@ class CompletionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importCompletionData(
-        $parent,
-        $inputConfig,
-        array $optionalArgs = []
-    ) {
+    public function importCompletionData(array $optionalArgs = [])
+    {
         $request = new ImportCompletionDataRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setInputConfig($inputConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['inputConfig'])) {
+            $request->setInputConfig($optionalArgs['inputConfig']);
+        }
+
         if (isset($optionalArgs['notificationPubsubTopic'])) {
             $request->setNotificationPubsubTopic(
                 $optionalArgs['notificationPubsubTopic']

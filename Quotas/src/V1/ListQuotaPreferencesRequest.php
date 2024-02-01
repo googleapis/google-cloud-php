@@ -75,7 +75,6 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      *
      *                       Example parents:
      *                       `projects/123/locations/global`
-     *                       Please see {@see CloudQuotasClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudQuotas\V1\ListQuotaPreferencesRequest
      *

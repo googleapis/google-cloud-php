@@ -46,7 +46,6 @@ use Google\Cloud\PubSub\V1\PublishRequest;
 use Google\Cloud\PubSub\V1\PublishResponse;
 use Google\Cloud\PubSub\V1\Topic;
 use Google\Cloud\PubSub\V1\UpdateTopicRequest;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -96,10 +95,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName2);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new Topic())
-            ->setName($name);
+        $request = new Topic();
         $response = $gapicClient->createTopic($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -107,8 +103,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/CreateTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -130,10 +124,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new Topic())
-            ->setName($name);
+        $request = new Topic();
         try {
             $gapicClient->createTopic($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -158,18 +149,13 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new DeleteTopicRequest())
-            ->setTopic($formattedTopic);
+        $request = new DeleteTopicRequest();
         $gapicClient->deleteTopic($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/DeleteTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -191,10 +177,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new DeleteTopicRequest())
-            ->setTopic($formattedTopic);
+        $request = new DeleteTopicRequest();
         try {
             $gapicClient->deleteTopic($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -219,10 +202,7 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DetachSubscriptionResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $request = (new DetachSubscriptionRequest())
-            ->setSubscription($formattedSubscription);
+        $request = new DetachSubscriptionRequest();
         $response = $gapicClient->detachSubscription($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -230,8 +210,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/DetachSubscription', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -253,10 +231,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $request = (new DetachSubscriptionRequest())
-            ->setSubscription($formattedSubscription);
+        $request = new DetachSubscriptionRequest();
         try {
             $gapicClient->detachSubscription($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -287,10 +262,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new GetTopicRequest())
-            ->setTopic($formattedTopic);
+        $request = new GetTopicRequest();
         $response = $gapicClient->getTopic($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -298,8 +270,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/GetTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -321,10 +291,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new GetTopicRequest())
-            ->setTopic($formattedTopic);
+        $request = new GetTopicRequest();
         try {
             $gapicClient->getTopic($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -356,10 +323,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnapshots($snapshots);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new ListTopicSnapshotsRequest())
-            ->setTopic($formattedTopic);
+        $request = new ListTopicSnapshotsRequest();
         $response = $gapicClient->listTopicSnapshots($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -370,8 +334,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/ListTopicSnapshots', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -393,10 +355,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new ListTopicSnapshotsRequest())
-            ->setTopic($formattedTopic);
+        $request = new ListTopicSnapshotsRequest();
         try {
             $gapicClient->listTopicSnapshots($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -428,10 +387,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubscriptions($subscriptions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new ListTopicSubscriptionsRequest())
-            ->setTopic($formattedTopic);
+        $request = new ListTopicSubscriptionsRequest();
         $response = $gapicClient->listTopicSubscriptions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -442,8 +398,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/ListTopicSubscriptions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -465,10 +419,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new ListTopicSubscriptionsRequest())
-            ->setTopic($formattedTopic);
+        $request = new ListTopicSubscriptionsRequest();
         try {
             $gapicClient->listTopicSubscriptions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -500,10 +451,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTopics($topics);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProject = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListTopicsRequest())
-            ->setProject($formattedProject);
+        $request = new ListTopicsRequest();
         $response = $gapicClient->listTopics($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -514,8 +462,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/ListTopics', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($formattedProject, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -537,10 +483,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProject = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListTopicsRequest())
-            ->setProject($formattedProject);
+        $request = new ListTopicsRequest();
         try {
             $gapicClient->listTopics($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -565,12 +508,7 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new PublishResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $messages = [];
-        $request = (new PublishRequest())
-            ->setTopic($formattedTopic)
-            ->setMessages($messages);
+        $request = new PublishRequest();
         $response = $gapicClient->publish($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -578,10 +516,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/Publish', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
-        $actualValue = $actualRequestObject->getMessages();
-        $this->assertProtobufEquals($messages, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -603,12 +537,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $messages = [];
-        $request = (new PublishRequest())
-            ->setTopic($formattedTopic)
-            ->setMessages($messages);
+        $request = new PublishRequest();
         try {
             $gapicClient->publish($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -639,14 +568,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $topic = new Topic();
-        $topicName = 'topicName388205658';
-        $topic->setName($topicName);
-        $updateMask = new FieldMask();
-        $request = (new UpdateTopicRequest())
-            ->setTopic($topic)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateTopicRequest();
         $response = $gapicClient->updateTopic($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -654,10 +576,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/UpdateTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($topic, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -679,14 +597,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $topic = new Topic();
-        $topicName = 'topicName388205658';
-        $topic->setName($topicName);
-        $updateMask = new FieldMask();
-        $request = (new UpdateTopicRequest())
-            ->setTopic($topic)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateTopicRequest();
         try {
             $gapicClient->updateTopic($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -715,10 +626,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -726,8 +634,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -749,10 +655,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -781,12 +684,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -794,10 +692,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -819,12 +713,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -849,12 +738,7 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -862,10 +746,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -887,12 +767,7 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -923,10 +798,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName2);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new Topic())
-            ->setName($name);
+        $request = new Topic();
         $response = $gapicClient->createTopicAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -934,8 +806,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/CreateTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

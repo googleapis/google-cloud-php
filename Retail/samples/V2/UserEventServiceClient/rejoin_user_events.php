@@ -40,17 +40,19 @@ use Google\Rpc\Status;
  * method to correct events joined with the wrong product catalog. A rejoin
  * operation can take hours or days to complete.
  *
- * @param string $parent The parent catalog resource name, such as
- *                       `projects/1234/locations/global/catalogs/default_catalog`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rejoin_user_events_sample(string $parent): void
+function rejoin_user_events_sample(): void
 {
     // Create a client.
     $userEventServiceClient = new UserEventServiceClient();
 
     // Prepare the request message.
-    $request = (new RejoinUserEventsRequest())
-        ->setParent($parent);
+    $request = new RejoinUserEventsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -70,21 +72,5 @@ function rejoin_user_events_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    rejoin_user_events_sample($parent);
 }
 // [END retail_v2_generated_UserEventService_RejoinUserEvents_sync]

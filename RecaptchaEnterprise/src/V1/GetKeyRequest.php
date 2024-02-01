@@ -25,8 +25,7 @@ class GetKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the requested key, in the format
-     *                     `projects/{project}/keys/{key}`. Please see
-     *                     {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
+     *                     `projects/{project}/keys/{key}`.
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest
      *

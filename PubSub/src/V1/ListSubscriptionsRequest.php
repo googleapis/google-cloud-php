@@ -39,8 +39,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $project Required. The name of the project in which to list subscriptions.
-     *                        Format is `projects/{project-id}`. Please see
-     *                        {@see SubscriberClient::projectName()} for help formatting this field.
+     *                        Format is `projects/{project-id}`.
      *
      * @return \Google\Cloud\PubSub\V1\ListSubscriptionsRequest
      *

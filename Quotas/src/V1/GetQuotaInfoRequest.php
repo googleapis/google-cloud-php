@@ -29,7 +29,6 @@ class GetQuotaInfoRequest extends \Google\Protobuf\Internal\Message
      *
      *                     An example name:
      *                     `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
-     *                     Please see {@see CloudQuotasClient::quotaInfoName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudQuotas\V1\GetQuotaInfoRequest
      *

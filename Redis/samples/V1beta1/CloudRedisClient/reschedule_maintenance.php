@@ -27,20 +27,19 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Redis\V1beta1\CloudRedisClient;
 use Google\Cloud\Redis\V1beta1\Instance;
-use Google\Cloud\Redis\V1beta1\RescheduleMaintenanceRequest\RescheduleType;
 use Google\Rpc\Status;
 
 /**
  * Reschedule maintenance for a given instance in a given project and
  * location.
  *
- * @param string $formattedName  Redis instance resource name using the form:
- *                               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
- *                               where `location_id` refers to a GCP region. Please see
- *                               {@see CloudRedisClient::instanceName()} for help formatting this field.
- * @param int    $rescheduleType If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function reschedule_maintenance_sample(string $formattedName, int $rescheduleType): void
+function reschedule_maintenance_sample(): void
 {
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
@@ -48,7 +47,7 @@ function reschedule_maintenance_sample(string $formattedName, int $rescheduleTyp
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudRedisClient->rescheduleMaintenance($formattedName, $rescheduleType);
+        $response = $cloudRedisClient->rescheduleMaintenance();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -63,22 +62,5 @@ function reschedule_maintenance_sample(string $formattedName, int $rescheduleTyp
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudRedisClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-    $rescheduleType = RescheduleType::RESCHEDULE_TYPE_UNSPECIFIED;
-
-    reschedule_maintenance_sample($formattedName, $rescheduleType);
 }
 // [END redis_v1beta1_generated_CloudRedis_RescheduleMaintenance_sync]

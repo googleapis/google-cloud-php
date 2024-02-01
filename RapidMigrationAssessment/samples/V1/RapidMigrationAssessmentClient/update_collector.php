@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\RapidMigrationAssessment\V1\Client\RapidMigrationAssessmentClient;
 use Google\Cloud\RapidMigrationAssessment\V1\Collector;
 use Google\Cloud\RapidMigrationAssessment\V1\UpdateCollectorRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_collector_sample(): void
     $rapidMigrationAssessmentClient = new RapidMigrationAssessmentClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $collector = new Collector();
-    $request = (new UpdateCollectorRequest())
-        ->setUpdateMask($updateMask)
-        ->setCollector($collector);
+    $request = new UpdateCollectorRequest();
 
     // Call the API and handle any network failures.
     try {

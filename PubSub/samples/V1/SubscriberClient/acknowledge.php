@@ -36,23 +36,19 @@ use Google\Cloud\PubSub\V1\Client\SubscriberClient;
  * but such a message may be redelivered later. Acknowledging a message more
  * than once will not result in an error.
  *
- * @param string $formattedSubscription The subscription whose message is being acknowledged.
- *                                      Format is `projects/{project}/subscriptions/{sub}`. Please see
- *                                      {@see SubscriberClient::subscriptionName()} for help formatting this field.
- * @param string $ackIdsElement         The acknowledgment ID for the messages being acknowledged that
- *                                      was returned by the Pub/Sub system in the `Pull` response. Must not be
- *                                      empty.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function acknowledge_sample(string $formattedSubscription, string $ackIdsElement): void
+function acknowledge_sample(): void
 {
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
     // Prepare the request message.
-    $ackIds = [$ackIdsElement,];
-    $request = (new AcknowledgeRequest())
-        ->setSubscription($formattedSubscription)
-        ->setAckIds($ackIds);
+    $request = new AcknowledgeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,22 +57,5 @@ function acknowledge_sample(string $formattedSubscription, string $ackIdsElement
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSubscription = SubscriberClient::subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-    $ackIdsElement = '[ACK_IDS]';
-
-    acknowledge_sample($formattedSubscription, $ackIdsElement);
 }
 // [END pubsub_v1_generated_Subscriber_Acknowledge_sync]

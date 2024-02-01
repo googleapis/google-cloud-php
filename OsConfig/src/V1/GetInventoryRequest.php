@@ -42,8 +42,7 @@ class GetInventoryRequest extends \Google\Protobuf\Internal\Message
      *
      *                     For `{project}`, either `project-number` or `project-id` can be provided.
      *                     For `{instance}`, either Compute Engine  `instance-id` or `instance-name`
-     *                     can be provided. Please see
-     *                     {@see OsConfigZonalServiceClient::inventoryName()} for help formatting this field.
+     *                     can be provided.
      *
      * @return \Google\Cloud\OsConfig\V1\GetInventoryRequest
      *

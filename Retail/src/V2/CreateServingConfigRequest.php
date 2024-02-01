@@ -41,7 +41,6 @@ class CreateServingConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                $parent          Required. Full resource name of parent. Format:
      *                                                               `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}`
-     *                                                               Please see {@see ServingConfigServiceClient::catalogName()} for help formatting this field.
      * @param \Google\Cloud\Retail\V2\ServingConfig $servingConfig   Required. The ServingConfig to create.
      * @param string                                $servingConfigId Required. The ID to use for the ServingConfig, which will become the final
      *                                                               component of the ServingConfig's resource name.

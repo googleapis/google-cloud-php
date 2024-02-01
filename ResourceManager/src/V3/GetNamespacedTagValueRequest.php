@@ -38,7 +38,6 @@ class GetNamespacedTagValueRequest extends \Google\Protobuf\Internal\Message
      *                     name "foo" under the organization with ID 42
      *                     - `r2-d2/bar/xyz` for a value with short name "xyz" under the key with
      *                     short name "bar" under the project with ID "r2-d2"
-     *                     Please see {@see TagValuesClient::tagValueName()} for help formatting this field.
      *
      * @return \Google\Cloud\ResourceManager\V3\GetNamespacedTagValueRequest
      *

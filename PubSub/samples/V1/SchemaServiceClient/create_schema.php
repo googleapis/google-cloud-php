@@ -31,23 +31,19 @@ use Google\Cloud\PubSub\V1\Schema;
 /**
  * Creates a schema.
  *
- * @param string $formattedParent The name of the project in which to create the schema.
- *                                Format is `projects/{project-id}`. Please see
- *                                {@see SchemaServiceClient::projectName()} for help formatting this field.
- * @param string $schemaName      Name of the schema.
- *                                Format is `projects/{project}/schemas/{schema}`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_schema_sample(string $formattedParent, string $schemaName): void
+function create_schema_sample(): void
 {
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
     // Prepare the request message.
-    $schema = (new Schema())
-        ->setName($schemaName);
-    $request = (new CreateSchemaRequest())
-        ->setParent($formattedParent)
-        ->setSchema($schema);
+    $request = new CreateSchemaRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,22 +53,5 @@ function create_schema_sample(string $formattedParent, string $schemaName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SchemaServiceClient::projectName('[PROJECT]');
-    $schemaName = '[NAME]';
-
-    create_schema_sample($formattedParent, $schemaName);
 }
 // [END pubsub_v1_generated_SchemaService_CreateSchema_sync]

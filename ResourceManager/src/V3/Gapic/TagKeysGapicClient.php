@@ -61,8 +61,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $tagKeysClient = new TagKeysClient();
  * try {
- *     $tagKey = new TagKey();
- *     $operationResponse = $tagKeysClient->createTagKey($tagKey);
+ *     $operationResponse = $tagKeysClient->createTagKey();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -73,7 +72,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $tagKeysClient->createTagKey($tagKey);
+ *     $operationResponse = $tagKeysClient->createTagKey();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $tagKeysClient->resumeOperation($operationName, 'createTagKey');
@@ -330,8 +329,7 @@ class TagKeysGapicClient
      * ```
      * $tagKeysClient = new TagKeysClient();
      * try {
-     *     $tagKey = new TagKey();
-     *     $operationResponse = $tagKeysClient->createTagKey($tagKey);
+     *     $operationResponse = $tagKeysClient->createTagKey();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -342,7 +340,7 @@ class TagKeysGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tagKeysClient->createTagKey($tagKey);
+     *     $operationResponse = $tagKeysClient->createTagKey();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tagKeysClient->resumeOperation($operationName, 'createTagKey');
@@ -362,11 +360,12 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param TagKey $tagKey       Required. The TagKey to be created. Only fields `short_name`,
-     *                             `description`, and `parent` are considered during the creation request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type TagKey $tagKey
+     *           Required. The TagKey to be created. Only fields `short_name`,
+     *           `description`, and `parent` are considered during the creation request.
      *     @type bool $validateOnly
      *           Optional. Set to true to perform validations necessary for creating the
      *           resource, but not actually perform the action.
@@ -380,10 +379,13 @@ class TagKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTagKey($tagKey, array $optionalArgs = [])
+    public function createTagKey(array $optionalArgs = [])
     {
         $request = new CreateTagKeyRequest();
-        $request->setTagKey($tagKey);
+        if (isset($optionalArgs['tagKey'])) {
+            $request->setTagKey($optionalArgs['tagKey']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -399,8 +401,7 @@ class TagKeysGapicClient
      * ```
      * $tagKeysClient = new TagKeysClient();
      * try {
-     *     $formattedName = $tagKeysClient->tagKeyName('[TAG_KEY]');
-     *     $operationResponse = $tagKeysClient->deleteTagKey($formattedName);
+     *     $operationResponse = $tagKeysClient->deleteTagKey();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -411,7 +412,7 @@ class TagKeysGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tagKeysClient->deleteTagKey($formattedName);
+     *     $operationResponse = $tagKeysClient->deleteTagKey();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tagKeysClient->resumeOperation($operationName, 'deleteTagKey');
@@ -431,12 +432,13 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of a TagKey to be deleted in the format
-     *                             `tagKeys/123`. The TagKey cannot be a parent of any existing TagValues or
-     *                             it will not be deleted successfully.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of a TagKey to be deleted in the format
+     *           `tagKeys/123`. The TagKey cannot be a parent of any existing TagValues or
+     *           it will not be deleted successfully.
      *     @type bool $validateOnly
      *           Optional. Set as true to perform validations necessary for deletion, but
      *           not actually perform the action.
@@ -453,12 +455,15 @@ class TagKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTagKey($name, array $optionalArgs = [])
+    public function deleteTagKey(array $optionalArgs = [])
     {
         $request = new DeleteTagKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -533,20 +538,20 @@ class TagKeysGapicClient
      * ```
      * $tagKeysClient = new TagKeysClient();
      * try {
-     *     $formattedName = $tagKeysClient->tagKeyName('[TAG_KEY]');
-     *     $response = $tagKeysClient->getNamespacedTagKey($formattedName);
+     *     $response = $tagKeysClient->getNamespacedTagKey();
      * } finally {
      *     $tagKeysClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A namespaced tag key name in the format
-     *                             `{parentId}/{tagKeyShort}`, such as `42/foo` for a key with short name
-     *                             "foo" under the organization with ID 42 or `r2-d2/bar` for a key with short
-     *                             name "bar" under the project `r2-d2`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A namespaced tag key name in the format
+     *           `{parentId}/{tagKeyShort}`, such as `42/foo` for a key with short name
+     *           "foo" under the organization with ID 42 or `r2-d2/bar` for a key with short
+     *           name "bar" under the project `r2-d2`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -557,10 +562,13 @@ class TagKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getNamespacedTagKey($name, array $optionalArgs = [])
+    public function getNamespacedTagKey(array $optionalArgs = [])
     {
         $request = new GetNamespacedTagKeyRequest();
-        $request->setName($name);
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+        }
+
         return $this->startCall('GetNamespacedTagKey', TagKey::class, $optionalArgs, $request)->wait();
     }
 
@@ -572,18 +580,18 @@ class TagKeysGapicClient
      * ```
      * $tagKeysClient = new TagKeysClient();
      * try {
-     *     $formattedName = $tagKeysClient->tagKeyName('[TAG_KEY]');
-     *     $response = $tagKeysClient->getTagKey($formattedName);
+     *     $response = $tagKeysClient->getTagKey();
      * } finally {
      *     $tagKeysClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A resource name in the format `tagKeys/{id}`, such as
-     *                             `tagKeys/123`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A resource name in the format `tagKeys/{id}`, such as
+     *           `tagKeys/123`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -594,12 +602,15 @@ class TagKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTagKey($name, array $optionalArgs = [])
+    public function getTagKey(array $optionalArgs = [])
     {
         $request = new GetTagKeyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetTagKey', TagKey::class, $optionalArgs, $request)->wait();
@@ -612,9 +623,8 @@ class TagKeysGapicClient
      * ```
      * $tagKeysClient = new TagKeysClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tagKeysClient->listTagKeys($parent);
+     *     $pagedResponse = $tagKeysClient->listTagKeys();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -622,7 +632,7 @@ class TagKeysGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tagKeysClient->listTagKeys($parent);
+     *     $pagedResponse = $tagKeysClient->listTagKeys();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -631,12 +641,13 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the TagKey's parent.
-     *                             Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
-     *                             `projects/{project_number}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the TagKey's parent.
+     *           Must be of the form `organizations/{org_id}` or `projects/{project_id}` or
+     *           `projects/{project_number}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -656,10 +667,13 @@ class TagKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTagKeys($parent, array $optionalArgs = [])
+    public function listTagKeys(array $optionalArgs = [])
     {
         $request = new ListTagKeysRequest();
-        $request->setParent($parent);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -788,8 +802,7 @@ class TagKeysGapicClient
      * ```
      * $tagKeysClient = new TagKeysClient();
      * try {
-     *     $tagKey = new TagKey();
-     *     $operationResponse = $tagKeysClient->updateTagKey($tagKey);
+     *     $operationResponse = $tagKeysClient->updateTagKey();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -800,7 +813,7 @@ class TagKeysGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $tagKeysClient->updateTagKey($tagKey);
+     *     $operationResponse = $tagKeysClient->updateTagKey();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $tagKeysClient->resumeOperation($operationName, 'updateTagKey');
@@ -820,13 +833,14 @@ class TagKeysGapicClient
      * }
      * ```
      *
-     * @param TagKey $tagKey       Required. The new definition of the TagKey. Only the `description` and
-     *                             `etag` fields can be updated by this request. If the `etag` field is not
-     *                             empty, it must match the `etag` field of the existing tag key. Otherwise,
-     *                             `ABORTED` will be returned.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type TagKey $tagKey
+     *           Required. The new definition of the TagKey. Only the `description` and
+     *           `etag` fields can be updated by this request. If the `etag` field is not
+     *           empty, it must match the `etag` field of the existing tag key. Otherwise,
+     *           `ABORTED` will be returned.
      *     @type FieldMask $updateMask
      *           Fields to be updated. The mask may only contain `description` or
      *           `etag`. If omitted entirely, both `description` and `etag` are assumed to
@@ -844,12 +858,14 @@ class TagKeysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTagKey($tagKey, array $optionalArgs = [])
+    public function updateTagKey(array $optionalArgs = [])
     {
         $request = new UpdateTagKeyRequest();
         $requestParamHeaders = [];
-        $request->setTagKey($tagKey);
-        $requestParamHeaders['tag_key.name'] = $tagKey->getName();
+        if (isset($optionalArgs['tagKey'])) {
+            $request->setTagKey($optionalArgs['tagKey']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

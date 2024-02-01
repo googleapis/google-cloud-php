@@ -20,14 +20,14 @@ class RecommenderConfig
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-”
-4google/cloud/recommender/v1/recommender_config.protogoogle.cloud.recommender.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"≠
+“
+4google/cloud/recommender/v1/recommender_config.protogoogle.cloud.recommender.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"¨
 RecommenderConfig
 name (	_
 recommender_generation_config (28.google.cloud.recommender.v1.RecommenderGenerationConfig
 etag (	/
-update_time (2.google.protobuf.Timestamp
-revision_id (	B‡A‡AT
+update_time (2.google.protobuf.Timestamp
+revision_id (	B‚AT
 annotations (2?.google.cloud.recommender.v1.RecommenderConfig.AnnotationsEntry
 display_name (	2
 AnnotationsEntry

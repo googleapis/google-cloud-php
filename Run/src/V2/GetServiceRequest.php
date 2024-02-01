@@ -27,8 +27,7 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The full name of the Service.
      *                     Format: projects/{project}/locations/{location}/services/{service}, where
-     *                     {project} can be project id or number. Please see
-     *                     {@see ServicesClient::serviceName()} for help formatting this field.
+     *                     {project} can be project id or number.
      *
      * @return \Google\Cloud\Run\V2\GetServiceRequest
      *

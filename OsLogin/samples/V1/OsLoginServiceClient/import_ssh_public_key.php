@@ -33,17 +33,19 @@ use Google\Cloud\OsLogin\V1\ImportSshPublicKeyResponse;
  * account information is set when no username and UID exist as part of the
  * login profile.
  *
- * @param string $formattedParent The unique ID for the user in format `users/{user}`. Please see
- *                                {@see OsLoginServiceClient::userName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_ssh_public_key_sample(string $formattedParent): void
+function import_ssh_public_key_sample(): void
 {
     // Create a client.
     $osLoginServiceClient = new OsLoginServiceClient();
 
     // Prepare the request message.
-    $request = (new ImportSshPublicKeyRequest())
-        ->setParent($formattedParent);
+    $request = new ImportSshPublicKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +55,5 @@ function import_ssh_public_key_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = OsLoginServiceClient::userName('[USER]');
-
-    import_ssh_public_key_sample($formattedParent);
 }
 // [END oslogin_v1_generated_OsLoginService_ImportSshPublicKey_sync]

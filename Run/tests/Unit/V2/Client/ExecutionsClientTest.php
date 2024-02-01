@@ -129,10 +129,7 @@ class ExecutionsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-        $request = (new CancelExecutionRequest())
-            ->setName($formattedName);
+        $request = new CancelExecutionRequest();
         $response = $gapicClient->cancelExecution($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -143,8 +140,6 @@ class ExecutionsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Executions/CancelExecution', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/cancelExecutionTest');
         $response->pollUntilComplete([
@@ -195,10 +190,7 @@ class ExecutionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-        $request = (new CancelExecutionRequest())
-            ->setName($formattedName);
+        $request = new CancelExecutionRequest();
         $response = $gapicClient->cancelExecution($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -282,10 +274,7 @@ class ExecutionsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-        $request = (new DeleteExecutionRequest())
-            ->setName($formattedName);
+        $request = new DeleteExecutionRequest();
         $response = $gapicClient->deleteExecution($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -296,8 +285,6 @@ class ExecutionsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Executions/DeleteExecution', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteExecutionTest');
         $response->pollUntilComplete([
@@ -348,10 +335,7 @@ class ExecutionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-        $request = (new DeleteExecutionRequest())
-            ->setName($formattedName);
+        $request = new DeleteExecutionRequest();
         $response = $gapicClient->deleteExecution($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -417,10 +401,7 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-        $request = (new GetExecutionRequest())
-            ->setName($formattedName);
+        $request = new GetExecutionRequest();
         $response = $gapicClient->getExecution($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -428,8 +409,6 @@ class ExecutionsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Executions/GetExecution', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -451,10 +430,7 @@ class ExecutionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-        $request = (new GetExecutionRequest())
-            ->setName($formattedName);
+        $request = new GetExecutionRequest();
         try {
             $gapicClient->getExecution($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -486,10 +462,7 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExecutions($executions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new ListExecutionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListExecutionsRequest();
         $response = $gapicClient->listExecutions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -500,8 +473,6 @@ class ExecutionsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Executions/ListExecutions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -523,10 +494,7 @@ class ExecutionsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new ListExecutionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListExecutionsRequest();
         try {
             $gapicClient->listExecutions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -601,10 +569,7 @@ class ExecutionsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-        $request = (new CancelExecutionRequest())
-            ->setName($formattedName);
+        $request = new CancelExecutionRequest();
         $response = $gapicClient->cancelExecutionAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -615,8 +580,6 @@ class ExecutionsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.run.v2.Executions/CancelExecution', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/cancelExecutionTest');
         $response->pollUntilComplete([

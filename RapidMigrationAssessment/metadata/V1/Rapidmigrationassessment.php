@@ -24,27 +24,27 @@ class Rapidmigrationassessment
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¢&
-Ggoogle/cloud/rapidmigrationassessment/v1/rapidmigrationassessment.proto(google.cloud.rapidmigrationassessment.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto;google/cloud/rapidmigrationassessment/v1/api_entities.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¼
-CreateAnnotationRequest9
-parent (	B)àAúA#
-!locations.googleapis.com/LocationM
+¾&
+Ggoogle/cloud/rapidmigrationassessment/v1/rapidmigrationassessment.proto(google.cloud.rapidmigrationassessment.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto;google/cloud/rapidmigrationassessment/v1/api_entities.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¿
+CreateAnnotationRequest:
+parent (	B*âAúA#
+!locations.googleapis.com/LocationN
 
-annotation (24.google.cloud.rapidmigrationassessment.v1.AnnotationBàA
+annotation (24.google.cloud.rapidmigrationassessment.v1.AnnotationBâA
 
-request_id (	BàA"`
-GetAnnotationRequestH
-name (	B:àAúA4
-2rapidmigrationassessment.googleapis.com/Annotation"Ô
-CreateCollectorRequest9
-parent (	B)àAúA#
-!locations.googleapis.com/Location
-collector_id (	BàAK
-	collector (23.google.cloud.rapidmigrationassessment.v1.CollectorBàA
+request_id (	BâA"a
+GetAnnotationRequestI
+name (	B;âAúA4
+2rapidmigrationassessment.googleapis.com/Annotation"Ø
+CreateCollectorRequest:
+parent (	B*âAúA#
+!locations.googleapis.com/Location
+collector_id (	BâAL
+	collector (23.google.cloud.rapidmigrationassessment.v1.CollectorBâA
 
-request_id (	BàA"›
-ListCollectorsRequest9
-parent (	B)àAúA#
+request_id (	BâA"œ
+ListCollectorsRequest:
+parent (	B*âAúA#
 !locations.googleapis.com/Location
 	page_size (
 
@@ -55,63 +55,63 @@ page_token (	
 
 collectors (23.google.cloud.rapidmigrationassessment.v1.Collector
 next_page_token (	
-unreachable (	"^
-GetCollectorRequestG
-name (	B9àAúA3
-1rapidmigrationassessment.googleapis.com/Collector"z
-DeleteCollectorRequestG
-name (	B9àAúA3
-1rapidmigrationassessment.googleapis.com/Collector
+unreachable (	"_
+GetCollectorRequestH
+name (	B:âAúA3
+1rapidmigrationassessment.googleapis.com/Collector"|
+DeleteCollectorRequestH
+name (	B:âAúA3
+1rapidmigrationassessment.googleapis.com/Collector
 
-request_id (	BàA"´
-UpdateCollectorRequest4
-update_mask (2.google.protobuf.FieldMaskBàAK
-	collector (23.google.cloud.rapidmigrationassessment.v1.CollectorBàA
+request_id (	BâA"·
+UpdateCollectorRequest5
+update_mask (2.google.protobuf.FieldMaskBâAL
+	collector (23.google.cloud.rapidmigrationassessment.v1.CollectorBâA
 
-request_id (	BàA"z
-ResumeCollectorRequestG
-name (	B9àAúA3
-1rapidmigrationassessment.googleapis.com/Collector
+request_id (	BâA"|
+ResumeCollectorRequestH
+name (	B:âAúA3
+1rapidmigrationassessment.googleapis.com/Collector
 
-request_id (	BàA"|
-RegisterCollectorRequestG
-name (	B9àAúA3
-1rapidmigrationassessment.googleapis.com/Collector
+request_id (	BâA"~
+RegisterCollectorRequestH
+name (	B:âAúA3
+1rapidmigrationassessment.googleapis.com/Collector
 
-request_id (	BàA"y
-PauseCollectorRequestG
-name (	B9àAúA3
-1rapidmigrationassessment.googleapis.com/Collector
+request_id (	BâA"{
+PauseCollectorRequestH
+name (	B:âAúA3
+1rapidmigrationassessment.googleapis.com/Collector
 
-request_id (	BàA"€
-OperationMetadata4
-create_time (2.google.protobuf.TimestampBàA1
-end_time (2.google.protobuf.TimestampBàA
-target (	BàA
-verb (	BàA
-status_message (	BàA#
-requested_cancellation (BàA
-api_version (	BàA2·
+request_id (	BâA"‡
+OperationMetadata5
+create_time (2.google.protobuf.TimestampBâA2
+end_time (2.google.protobuf.TimestampBâA
+target (	BâA
+verb (	BâA
+status_message (	BâA$
+requested_cancellation (BâA
+api_version (	BâA2·
 RapidMigrationAssessment÷
-CreateCollector@.google.cloud.rapidmigrationassessment.v1.CreateCollectorRequest.google.longrunning.Operation"‚‚Óä“;"./v1/{parent=projects/*/locations/*}/collectors:	collectorÚAparent,collector,collector_idÊA
-	CollectorOperationMetadataï
-CreateAnnotationA.google.cloud.rapidmigrationassessment.v1.CreateAnnotationRequest.google.longrunning.Operation"y‚Óä“="//v1/{parent=projects/*/locations/*}/annotations:
-annotationÚAparent,annotationÊA
+CreateCollector@.google.cloud.rapidmigrationassessment.v1.CreateCollectorRequest.google.longrunning.Operation"‚ÊA
+	CollectorOperationMetadataÚAparent,collector,collector_id‚Óä“;"./v1/{parent=projects/*/locations/*}/collectors:	collectorï
+CreateAnnotationA.google.cloud.rapidmigrationassessment.v1.CreateAnnotationRequest.google.longrunning.Operation"yÊA
 
-AnnotationOperationMetadataÅ
-GetAnnotation>.google.cloud.rapidmigrationassessment.v1.GetAnnotationRequest4.google.cloud.rapidmigrationassessment.v1.Annotation">‚Óä“1//v1/{name=projects/*/locations/*/annotations/*}ÚAnameÔ
-ListCollectors?.google.cloud.rapidmigrationassessment.v1.ListCollectorsRequest@.google.cloud.rapidmigrationassessment.v1.ListCollectorsResponse"?‚Óä“0./v1/{parent=projects/*/locations/*}/collectorsÚAparentÁ
-GetCollector=.google.cloud.rapidmigrationassessment.v1.GetCollectorRequest3.google.cloud.rapidmigrationassessment.v1.Collector"=‚Óä“0./v1/{name=projects/*/locations/*/collectors/*}ÚAnameù
-UpdateCollector@.google.cloud.rapidmigrationassessment.v1.UpdateCollectorRequest.google.longrunning.Operation"„‚Óä“E28/v1/{collector.name=projects/*/locations/*/collectors/*}:	collectorÚAcollector,update_maskÊA
-	CollectorOperationMetadataÒ
-DeleteCollector@.google.cloud.rapidmigrationassessment.v1.DeleteCollectorRequest.google.longrunning.Operation"^‚Óä“0*./v1/{name=projects/*/locations/*/collectors/*}ÚAnameÊA
-	CollectorOperationMetadataÜ
-ResumeCollector@.google.cloud.rapidmigrationassessment.v1.ResumeCollectorRequest.google.longrunning.Operation"h‚Óä“:"5/v1/{name=projects/*/locations/*/collectors/*}:resume:*ÚAnameÊA
-	CollectorOperationMetadataâ
-RegisterCollectorB.google.cloud.rapidmigrationassessment.v1.RegisterCollectorRequest.google.longrunning.Operation"j‚Óä“<"7/v1/{name=projects/*/locations/*/collectors/*}:register:*ÚAnameÊA
-	CollectorOperationMetadataÙ
-PauseCollector?.google.cloud.rapidmigrationassessment.v1.PauseCollectorRequest.google.longrunning.Operation"g‚Óä“9"4/v1/{name=projects/*/locations/*/collectors/*}:pause:*ÚAnameÊA
-	CollectorOperationMetadata[ÊA\'rapidmigrationassessment.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB½
+AnnotationOperationMetadataÚAparent,annotation‚Óä“="//v1/{parent=projects/*/locations/*}/annotations:
+annotationÅ
+GetAnnotation>.google.cloud.rapidmigrationassessment.v1.GetAnnotationRequest4.google.cloud.rapidmigrationassessment.v1.Annotation">ÚAname‚Óä“1//v1/{name=projects/*/locations/*/annotations/*}Ô
+ListCollectors?.google.cloud.rapidmigrationassessment.v1.ListCollectorsRequest@.google.cloud.rapidmigrationassessment.v1.ListCollectorsResponse"?ÚAparent‚Óä“0./v1/{parent=projects/*/locations/*}/collectorsÁ
+GetCollector=.google.cloud.rapidmigrationassessment.v1.GetCollectorRequest3.google.cloud.rapidmigrationassessment.v1.Collector"=ÚAname‚Óä“0./v1/{name=projects/*/locations/*/collectors/*}ù
+UpdateCollector@.google.cloud.rapidmigrationassessment.v1.UpdateCollectorRequest.google.longrunning.Operation"„ÊA
+	CollectorOperationMetadataÚAcollector,update_mask‚Óä“E28/v1/{collector.name=projects/*/locations/*/collectors/*}:	collectorÒ
+DeleteCollector@.google.cloud.rapidmigrationassessment.v1.DeleteCollectorRequest.google.longrunning.Operation"^ÊA
+	CollectorOperationMetadataÚAname‚Óä“0*./v1/{name=projects/*/locations/*/collectors/*}Ü
+ResumeCollector@.google.cloud.rapidmigrationassessment.v1.ResumeCollectorRequest.google.longrunning.Operation"hÊA
+	CollectorOperationMetadataÚAname‚Óä“:"5/v1/{name=projects/*/locations/*/collectors/*}:resume:*â
+RegisterCollectorB.google.cloud.rapidmigrationassessment.v1.RegisterCollectorRequest.google.longrunning.Operation"jÊA
+	CollectorOperationMetadataÚAname‚Óä“<"7/v1/{name=projects/*/locations/*/collectors/*}:register:*Ù
+PauseCollector?.google.cloud.rapidmigrationassessment.v1.PauseCollectorRequest.google.longrunning.Operation"gÊA
+	CollectorOperationMetadataÚAname‚Óä“9"4/v1/{name=projects/*/locations/*/collectors/*}:pause:*[ÊA\'rapidmigrationassessment.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB½
 ,com.google.cloud.rapidmigrationassessment.v1BRapidMigrationAssessmentProtoPZhcloud.google.com/go/rapidmigrationassessment/apiv1/rapidmigrationassessmentpb;rapidmigrationassessmentpbª(Google.Cloud.RapidMigrationAssessment.V1Ê(Google\\Cloud\\RapidMigrationAssessment\\V1ê+Google::Cloud::RapidMigrationAssessment::V1bproto3'
         , true);
 

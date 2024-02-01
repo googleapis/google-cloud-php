@@ -42,7 +42,6 @@ use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -116,20 +115,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterName = 'clusterName-1141738587';
-        $cluster->setName($clusterName);
-        $clusterShardCount = 1450084715;
-        $cluster->setShardCount($clusterShardCount);
-        $clusterPscConfigs = [];
-        $cluster->setPscConfigs($clusterPscConfigs);
-        $request = (new CreateClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new CreateClusterRequest();
         $response = $gapicClient->createCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -140,12 +126,6 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.cluster.v1.CloudRedisCluster/CreateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterId();
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createClusterTest');
         $response->pollUntilComplete([
@@ -199,20 +179,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterName = 'clusterName-1141738587';
-        $cluster->setName($clusterName);
-        $clusterShardCount = 1450084715;
-        $cluster->setShardCount($clusterShardCount);
-        $clusterPscConfigs = [];
-        $cluster->setPscConfigs($clusterPscConfigs);
-        $request = (new CreateClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new CreateClusterRequest();
         $response = $gapicClient->createCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -264,9 +231,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())->setName($formattedName);
+        $request = new DeleteClusterRequest();
         $response = $gapicClient->deleteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -277,8 +242,6 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.cluster.v1.CloudRedisCluster/DeleteCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteClusterTest');
         $response->pollUntilComplete([
@@ -332,9 +295,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())->setName($formattedName);
+        $request = new DeleteClusterRequest();
         $response = $gapicClient->deleteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -378,9 +339,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setSizeGb($sizeGb);
         $expectedResponse->setShardCount($shardCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GetClusterRequest())->setName($formattedName);
+        $request = new GetClusterRequest();
         $response = $gapicClient->getCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -388,8 +347,6 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.cluster.v1.CloudRedisCluster/GetCluster', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -414,9 +371,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GetClusterRequest())->setName($formattedName);
+        $request = new GetClusterRequest();
         try {
             $gapicClient->getCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -446,9 +401,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setClusters($clusters);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClustersRequest())->setParent($formattedParent);
+        $request = new ListClustersRequest();
         $response = $gapicClient->listClusters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -459,8 +412,6 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.cluster.v1.CloudRedisCluster/ListClusters', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -485,9 +436,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClustersRequest())->setParent($formattedParent);
+        $request = new ListClustersRequest();
         try {
             $gapicClient->listClusters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -540,16 +489,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $cluster = new Cluster();
-        $clusterName = 'clusterName-1141738587';
-        $cluster->setName($clusterName);
-        $clusterShardCount = 1450084715;
-        $cluster->setShardCount($clusterShardCount);
-        $clusterPscConfigs = [];
-        $cluster->setPscConfigs($clusterPscConfigs);
-        $request = (new UpdateClusterRequest())->setUpdateMask($updateMask)->setCluster($cluster);
+        $request = new UpdateClusterRequest();
         $response = $gapicClient->updateCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -560,10 +500,6 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.cluster.v1.CloudRedisCluster/UpdateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateClusterTest');
         $response->pollUntilComplete([
@@ -617,16 +553,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $cluster = new Cluster();
-        $clusterName = 'clusterName-1141738587';
-        $cluster->setName($clusterName);
-        $clusterShardCount = 1450084715;
-        $cluster->setShardCount($clusterShardCount);
-        $clusterPscConfigs = [];
-        $cluster->setPscConfigs($clusterPscConfigs);
-        $request = (new UpdateClusterRequest())->setUpdateMask($updateMask)->setCluster($cluster);
+        $request = new UpdateClusterRequest();
         $response = $gapicClient->updateCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -816,20 +743,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $clusterId = 'clusterId240280960';
-        $cluster = new Cluster();
-        $clusterName = 'clusterName-1141738587';
-        $cluster->setName($clusterName);
-        $clusterShardCount = 1450084715;
-        $cluster->setShardCount($clusterShardCount);
-        $clusterPscConfigs = [];
-        $cluster->setPscConfigs($clusterPscConfigs);
-        $request = (new CreateClusterRequest())
-            ->setParent($formattedParent)
-            ->setClusterId($clusterId)
-            ->setCluster($cluster);
+        $request = new CreateClusterRequest();
         $response = $gapicClient->createClusterAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -840,12 +754,6 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.redis.cluster.v1.CloudRedisCluster/CreateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterId();
-        $this->assertProtobufEquals($clusterId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createClusterTest');
         $response->pollUntilComplete([

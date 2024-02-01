@@ -46,33 +46,19 @@ use Google\Cloud\PubSub\V1\Snapshot;
  * generated name is populated in the returned Snapshot object. Note that for
  * REST API requests, you must specify a name in the request.
  *
- * @param string $formattedName         User-provided name for this snapshot. If the name is not provided
- *                                      in the request, the server will assign a random name for this snapshot on
- *                                      the same project as the subscription. Note that for REST API requests, you
- *                                      must specify a name.  See the [resource name
- *                                      rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
- *                                      Format is `projects/{project}/snapshots/{snap}`. Please see
- *                                      {@see SubscriberClient::snapshotName()} for help formatting this field.
- * @param string $formattedSubscription The subscription whose backlog the snapshot retains.
- *                                      Specifically, the created snapshot is guaranteed to retain:
- *                                      (a) The existing backlog on the subscription. More precisely, this is
- *                                      defined as the messages in the subscription's backlog that are
- *                                      unacknowledged upon the successful completion of the
- *                                      `CreateSnapshot` request; as well as:
- *                                      (b) Any messages published to the subscription's topic following the
- *                                      successful completion of the CreateSnapshot request.
- *                                      Format is `projects/{project}/subscriptions/{sub}`. Please see
- *                                      {@see SubscriberClient::subscriptionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_snapshot_sample(string $formattedName, string $formattedSubscription): void
+function create_snapshot_sample(): void
 {
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
     // Prepare the request message.
-    $request = (new CreateSnapshotRequest())
-        ->setName($formattedName)
-        ->setSubscription($formattedSubscription);
+    $request = new CreateSnapshotRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -82,22 +68,5 @@ function create_snapshot_sample(string $formattedName, string $formattedSubscrip
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SubscriberClient::snapshotName('[PROJECT]', '[SNAPSHOT]');
-    $formattedSubscription = SubscriberClient::subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-
-    create_snapshot_sample($formattedName, $formattedSubscription);
 }
 // [END pubsub_v1_generated_Subscriber_CreateSnapshot_sync]

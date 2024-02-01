@@ -47,7 +47,6 @@ use Google\Cloud\ResourceManager\V3\UpdateFolderRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -116,12 +115,7 @@ class FoldersClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $folder = new Folder();
-        $folderParent = 'folderParent-1307212104';
-        $folder->setParent($folderParent);
-        $request = (new CreateFolderRequest())
-            ->setFolder($folder);
+        $request = new CreateFolderRequest();
         $response = $gapicClient->createFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -132,8 +126,6 @@ class FoldersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Folders/CreateFolder', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFolder();
-        $this->assertProtobufEquals($folder, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createFolderTest');
         $response->pollUntilComplete([
@@ -184,12 +176,7 @@ class FoldersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $folder = new Folder();
-        $folderParent = 'folderParent-1307212104';
-        $folder->setParent($folderParent);
-        $request = (new CreateFolderRequest())
-            ->setFolder($folder);
+        $request = new CreateFolderRequest();
         $response = $gapicClient->createFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -249,10 +236,7 @@ class FoldersClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new DeleteFolderRequest())
-            ->setName($formattedName);
+        $request = new DeleteFolderRequest();
         $response = $gapicClient->deleteFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -263,8 +247,6 @@ class FoldersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Folders/DeleteFolder', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteFolderTest');
         $response->pollUntilComplete([
@@ -315,10 +297,7 @@ class FoldersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new DeleteFolderRequest())
-            ->setName($formattedName);
+        $request = new DeleteFolderRequest();
         $response = $gapicClient->deleteFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -360,10 +339,7 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new GetFolderRequest())
-            ->setName($formattedName);
+        $request = new GetFolderRequest();
         $response = $gapicClient->getFolder($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -371,8 +347,6 @@ class FoldersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Folders/GetFolder', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -394,10 +368,7 @@ class FoldersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new GetFolderRequest())
-            ->setName($formattedName);
+        $request = new GetFolderRequest();
         try {
             $gapicClient->getFolder($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -495,10 +466,7 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFolders($folders);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListFoldersRequest())
-            ->setParent($parent);
+        $request = new ListFoldersRequest();
         $response = $gapicClient->listFolders($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -509,8 +477,6 @@ class FoldersClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Folders/ListFolders', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -532,10 +498,7 @@ class FoldersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListFoldersRequest())
-            ->setParent($parent);
+        $request = new ListFoldersRequest();
         try {
             $gapicClient->listFolders($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -586,12 +549,7 @@ class FoldersClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->folderName('[FOLDER]');
-        $destinationParent = 'destinationParent-1362053637';
-        $request = (new MoveFolderRequest())
-            ->setName($formattedName)
-            ->setDestinationParent($destinationParent);
+        $request = new MoveFolderRequest();
         $response = $gapicClient->moveFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -602,10 +560,6 @@ class FoldersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Folders/MoveFolder', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getDestinationParent();
-        $this->assertProtobufEquals($destinationParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/moveFolderTest');
         $response->pollUntilComplete([
@@ -656,12 +610,7 @@ class FoldersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->folderName('[FOLDER]');
-        $destinationParent = 'destinationParent-1362053637';
-        $request = (new MoveFolderRequest())
-            ->setName($formattedName)
-            ->setDestinationParent($destinationParent);
+        $request = new MoveFolderRequest();
         $response = $gapicClient->moveFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -925,10 +874,7 @@ class FoldersClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new UndeleteFolderRequest())
-            ->setName($formattedName);
+        $request = new UndeleteFolderRequest();
         $response = $gapicClient->undeleteFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -939,8 +885,6 @@ class FoldersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Folders/UndeleteFolder', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeleteFolderTest');
         $response->pollUntilComplete([
@@ -991,10 +935,7 @@ class FoldersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new UndeleteFolderRequest())
-            ->setName($formattedName);
+        $request = new UndeleteFolderRequest();
         $response = $gapicClient->undeleteFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1054,14 +995,7 @@ class FoldersClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $folder = new Folder();
-        $folderParent = 'folderParent-1307212104';
-        $folder->setParent($folderParent);
-        $updateMask = new FieldMask();
-        $request = (new UpdateFolderRequest())
-            ->setFolder($folder)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateFolderRequest();
         $response = $gapicClient->updateFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1072,10 +1006,6 @@ class FoldersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Folders/UpdateFolder', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFolder();
-        $this->assertProtobufEquals($folder, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateFolderTest');
         $response->pollUntilComplete([
@@ -1126,14 +1056,7 @@ class FoldersClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $folder = new Folder();
-        $folderParent = 'folderParent-1307212104';
-        $folder->setParent($folderParent);
-        $updateMask = new FieldMask();
-        $request = (new UpdateFolderRequest())
-            ->setFolder($folder)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateFolderRequest();
         $response = $gapicClient->updateFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1193,12 +1116,7 @@ class FoldersClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $folder = new Folder();
-        $folderParent = 'folderParent-1307212104';
-        $folder->setParent($folderParent);
-        $request = (new CreateFolderRequest())
-            ->setFolder($folder);
+        $request = new CreateFolderRequest();
         $response = $gapicClient->createFolderAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1209,8 +1127,6 @@ class FoldersClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.resourcemanager.v3.Folders/CreateFolder', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFolder();
-        $this->assertProtobufEquals($folder, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createFolderTest');
         $response->pollUntilComplete([

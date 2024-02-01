@@ -31,8 +31,7 @@ class GetSettingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
-     *                     requirements. Please see
-     *                     {@see ResourceSettingsServiceClient::settingName()} for help formatting this field.
+     *                     requirements.
      *
      * @return \Google\Cloud\ResourceSettings\V1\GetSettingRequest
      *

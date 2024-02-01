@@ -29,37 +29,23 @@ use Google\Cloud\Scheduler\V1beta1\CloudSchedulerClient;
 /**
  * Deletes a job.
  *
- * @param string $formattedName The job name. For example:
- *                              `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. Please see
- *                              {@see CloudSchedulerClient::jobName()} for help formatting this field.
- */
-function delete_job_sample(string $formattedName): void
-{
-    // Create a client.
-    $cloudSchedulerClient = new CloudSchedulerClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $cloudSchedulerClient->deleteJob($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_job_sample(): void
 {
-    $formattedName = CloudSchedulerClient::jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+    // Create a client.
+    $cloudSchedulerClient = new CloudSchedulerClient();
 
-    delete_job_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $cloudSchedulerClient->deleteJob();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudscheduler_v1beta1_generated_CloudScheduler_DeleteJob_sync]

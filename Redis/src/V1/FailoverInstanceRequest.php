@@ -34,8 +34,7 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name               Required. Redis instance resource name using the form:
      *                                   `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *                                   where `location_id` refers to a GCP region. Please see
-     *                                   {@see CloudRedisClient::instanceName()} for help formatting this field.
+     *                                   where `location_id` refers to a GCP region.
      * @param int    $dataProtectionMode Optional. Available data protection modes that the user can choose. If it's
      *                                   unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
      *                                   For allowed values, use constants defined on {@see \Google\Cloud\Redis\V1\FailoverInstanceRequest\DataProtectionMode}

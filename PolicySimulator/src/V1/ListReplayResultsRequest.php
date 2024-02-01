@@ -55,7 +55,6 @@ class ListReplayResultsRequest extends \Google\Protobuf\Internal\Message
      *
      *                       Example:
      *                       `projects/my-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
-     *                       Please see {@see SimulatorClient::replayName()} for help formatting this field.
      *
      * @return \Google\Cloud\PolicySimulator\V1\ListReplayResultsRequest
      *

@@ -91,12 +91,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-        $controlId = 'controlId637416253';
-        $request = (new AddControlRequest())
-            ->setServingConfig($formattedServingConfig)
-            ->setControlId($controlId);
+        $request = new AddControlRequest();
         $response = $gapicClient->addControl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -104,10 +99,6 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ServingConfigService/AddControl', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServingConfig();
-        $this->assertProtobufEquals($formattedServingConfig, $actualValue);
-        $actualValue = $actualRequestObject->getControlId();
-        $this->assertProtobufEquals($controlId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -129,12 +120,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-        $controlId = 'controlId637416253';
-        $request = (new AddControlRequest())
-            ->setServingConfig($formattedServingConfig)
-            ->setControlId($controlId);
+        $request = new AddControlRequest();
         try {
             $gapicClient->addControl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -171,18 +157,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $servingConfig = new ServingConfig();
-        $servingConfigDisplayName = 'servingConfigDisplayName-490549473';
-        $servingConfig->setDisplayName($servingConfigDisplayName);
-        $servingConfigSolutionTypes = [];
-        $servingConfig->setSolutionTypes($servingConfigSolutionTypes);
-        $servingConfigId = 'servingConfigId-600821051';
-        $request = (new CreateServingConfigRequest())
-            ->setParent($formattedParent)
-            ->setServingConfig($servingConfig)
-            ->setServingConfigId($servingConfigId);
+        $request = new CreateServingConfigRequest();
         $response = $gapicClient->createServingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -190,12 +165,6 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ServingConfigService/CreateServingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getServingConfig();
-        $this->assertProtobufEquals($servingConfig, $actualValue);
-        $actualValue = $actualRequestObject->getServingConfigId();
-        $this->assertProtobufEquals($servingConfigId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -217,18 +186,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $servingConfig = new ServingConfig();
-        $servingConfigDisplayName = 'servingConfigDisplayName-490549473';
-        $servingConfig->setDisplayName($servingConfigDisplayName);
-        $servingConfigSolutionTypes = [];
-        $servingConfig->setSolutionTypes($servingConfigSolutionTypes);
-        $servingConfigId = 'servingConfigId-600821051';
-        $request = (new CreateServingConfigRequest())
-            ->setParent($formattedParent)
-            ->setServingConfig($servingConfig)
-            ->setServingConfigId($servingConfigId);
+        $request = new CreateServingConfigRequest();
         try {
             $gapicClient->createServingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -253,18 +211,13 @@ class ServingConfigServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-        $request = (new DeleteServingConfigRequest())
-            ->setName($formattedName);
+        $request = new DeleteServingConfigRequest();
         $gapicClient->deleteServingConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ServingConfigService/DeleteServingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -286,10 +239,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-        $request = (new DeleteServingConfigRequest())
-            ->setName($formattedName);
+        $request = new DeleteServingConfigRequest();
         try {
             $gapicClient->deleteServingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -326,10 +276,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-        $request = (new GetServingConfigRequest())
-            ->setName($formattedName);
+        $request = new GetServingConfigRequest();
         $response = $gapicClient->getServingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -337,8 +284,6 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ServingConfigService/GetServingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -360,10 +305,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-        $request = (new GetServingConfigRequest())
-            ->setName($formattedName);
+        $request = new GetServingConfigRequest();
         try {
             $gapicClient->getServingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -395,10 +337,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServingConfigs($servingConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $request = (new ListServingConfigsRequest())
-            ->setParent($formattedParent);
+        $request = new ListServingConfigsRequest();
         $response = $gapicClient->listServingConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -409,8 +348,6 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ServingConfigService/ListServingConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -432,10 +369,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $request = (new ListServingConfigsRequest())
-            ->setParent($formattedParent);
+        $request = new ListServingConfigsRequest();
         try {
             $gapicClient->listServingConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -472,12 +406,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-        $controlId = 'controlId637416253';
-        $request = (new RemoveControlRequest())
-            ->setServingConfig($formattedServingConfig)
-            ->setControlId($controlId);
+        $request = new RemoveControlRequest();
         $response = $gapicClient->removeControl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -485,10 +414,6 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ServingConfigService/RemoveControl', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServingConfig();
-        $this->assertProtobufEquals($formattedServingConfig, $actualValue);
-        $actualValue = $actualRequestObject->getControlId();
-        $this->assertProtobufEquals($controlId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -510,12 +435,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-        $controlId = 'controlId637416253';
-        $request = (new RemoveControlRequest())
-            ->setServingConfig($formattedServingConfig)
-            ->setControlId($controlId);
+        $request = new RemoveControlRequest();
         try {
             $gapicClient->removeControl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -552,14 +472,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $servingConfig = new ServingConfig();
-        $servingConfigDisplayName = 'servingConfigDisplayName-490549473';
-        $servingConfig->setDisplayName($servingConfigDisplayName);
-        $servingConfigSolutionTypes = [];
-        $servingConfig->setSolutionTypes($servingConfigSolutionTypes);
-        $request = (new UpdateServingConfigRequest())
-            ->setServingConfig($servingConfig);
+        $request = new UpdateServingConfigRequest();
         $response = $gapicClient->updateServingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -567,8 +480,6 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ServingConfigService/UpdateServingConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServingConfig();
-        $this->assertProtobufEquals($servingConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -590,14 +501,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $servingConfig = new ServingConfig();
-        $servingConfigDisplayName = 'servingConfigDisplayName-490549473';
-        $servingConfig->setDisplayName($servingConfigDisplayName);
-        $servingConfigSolutionTypes = [];
-        $servingConfig->setSolutionTypes($servingConfigSolutionTypes);
-        $request = (new UpdateServingConfigRequest())
-            ->setServingConfig($servingConfig);
+        $request = new UpdateServingConfigRequest();
         try {
             $gapicClient->updateServingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -634,12 +538,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
-        $controlId = 'controlId637416253';
-        $request = (new AddControlRequest())
-            ->setServingConfig($formattedServingConfig)
-            ->setControlId($controlId);
+        $request = new AddControlRequest();
         $response = $gapicClient->addControlAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -647,10 +546,6 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.ServingConfigService/AddControl', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServingConfig();
-        $this->assertProtobufEquals($formattedServingConfig, $actualValue);
-        $actualValue = $actualRequestObject->getControlId();
-        $this->assertProtobufEquals($controlId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

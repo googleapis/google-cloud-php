@@ -69,8 +69,7 @@ class ListUserEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent eventStore resource name, such as
-     *                       `projects/&#42;/locations/&#42;/catalogs/default_catalog/eventStores/default_event_store`. Please see
-     *                       {@see UserEventServiceClient::eventStoreName()} for help formatting this field.
+     *                       `projects/&#42;/locations/&#42;/catalogs/default_catalog/eventStores/default_event_store`.
      * @param string $filter Optional. Filtering expression to specify restrictions over
      *                       returned events. This is a sequence of terms, where each term applies some
      *                       kind of a restriction to the returned user events. Use this expression to

@@ -85,10 +85,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCatalogs($catalogs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new SearchCatalogsRequest())
-            ->setResource($resource);
+        $request = new SearchCatalogsRequest();
         $response = $gapicClient->searchCatalogs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -99,8 +96,6 @@ class PrivateCatalogClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.privatecatalog.v1beta1.PrivateCatalog/SearchCatalogs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -122,10 +117,7 @@ class PrivateCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new SearchCatalogsRequest())
-            ->setResource($resource);
+        $request = new SearchCatalogsRequest();
         try {
             $gapicClient->searchCatalogs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -157,10 +149,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProducts($products);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new SearchProductsRequest())
-            ->setResource($resource);
+        $request = new SearchProductsRequest();
         $response = $gapicClient->searchProducts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -171,8 +160,6 @@ class PrivateCatalogClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.privatecatalog.v1beta1.PrivateCatalog/SearchProducts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -194,10 +181,7 @@ class PrivateCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new SearchProductsRequest())
-            ->setResource($resource);
+        $request = new SearchProductsRequest();
         try {
             $gapicClient->searchProducts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -229,12 +213,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVersions($versions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $query = 'query107944136';
-        $request = (new SearchVersionsRequest())
-            ->setResource($resource)
-            ->setQuery($query);
+        $request = new SearchVersionsRequest();
         $response = $gapicClient->searchVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -245,10 +224,6 @@ class PrivateCatalogClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.privatecatalog.v1beta1.PrivateCatalog/SearchVersions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -270,12 +245,7 @@ class PrivateCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $query = 'query107944136';
-        $request = (new SearchVersionsRequest())
-            ->setResource($resource)
-            ->setQuery($query);
+        $request = new SearchVersionsRequest();
         try {
             $gapicClient->searchVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -307,10 +277,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCatalogs($catalogs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new SearchCatalogsRequest())
-            ->setResource($resource);
+        $request = new SearchCatalogsRequest();
         $response = $gapicClient->searchCatalogsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -321,8 +288,6 @@ class PrivateCatalogClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.privatecatalog.v1beta1.PrivateCatalog/SearchCatalogs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

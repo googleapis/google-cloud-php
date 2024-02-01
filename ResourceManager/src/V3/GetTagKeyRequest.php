@@ -25,8 +25,7 @@ class GetTagKeyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. A resource name in the format `tagKeys/{id}`, such as
-     *                     `tagKeys/123`. Please see
-     *                     {@see TagKeysClient::tagKeyName()} for help formatting this field.
+     *                     `tagKeys/123`.
      *
      * @return \Google\Cloud\ResourceManager\V3\GetTagKeyRequest
      *

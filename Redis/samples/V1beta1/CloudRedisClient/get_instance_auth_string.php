@@ -32,12 +32,13 @@ use Google\Cloud\Redis\V1beta1\InstanceAuthString;
  * instance the response will be empty. This information is not included in
  * the details returned to GetInstance.
  *
- * @param string $formattedName Redis instance resource name using the form:
- *                              `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
- *                              where `location_id` refers to a GCP region. Please see
- *                              {@see CloudRedisClient::instanceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_instance_auth_string_sample(string $formattedName): void
+function get_instance_auth_string_sample(): void
 {
     // Create a client.
     $cloudRedisClient = new CloudRedisClient();
@@ -45,26 +46,10 @@ function get_instance_auth_string_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var InstanceAuthString $response */
-        $response = $cloudRedisClient->getInstanceAuthString($formattedName);
+        $response = $cloudRedisClient->getInstanceAuthString();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudRedisClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-
-    get_instance_auth_string_sample($formattedName);
 }
 // [END redis_v1beta1_generated_CloudRedis_GetInstanceAuthString_sync]

@@ -45,8 +45,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string   $subscription       Required. The name of the subscription.
-     *                                     Format is `projects/{project}/subscriptions/{sub}`. Please see
-     *                                     {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     *                                     Format is `projects/{project}/subscriptions/{sub}`.
      * @param string[] $ackIds             Required. List of acknowledgment IDs.
      * @param int      $ackDeadlineSeconds Required. The new ack deadline with respect to the time this request was
      *                                     sent to the Pub/Sub system. For example, if the value is 10, the new ack

@@ -43,8 +43,7 @@ class ListRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Interna
 
     /**
      * @param string $parent Required. The resource name for the related account group in the format
-     *                       `projects/{project}/relatedaccountgroups/{relatedaccountgroup}`. Please see
-     *                       {@see RecaptchaEnterpriseServiceClient::relatedAccountGroupName()} for help formatting this field.
+     *                       `projects/{project}/relatedaccountgroups/{relatedaccountgroup}`.
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest
      *

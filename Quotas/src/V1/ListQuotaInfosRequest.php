@@ -50,7 +50,6 @@ class ListQuotaInfosRequest extends \Google\Protobuf\Internal\Message
      *                       `projects/123/locations/global/services/compute.googleapis.com`
      *                       `folders/234/locations/global/services/compute.googleapis.com`
      *                       `organizations/345/locations/global/services/compute.googleapis.com`
-     *                       Please see {@see CloudQuotasClient::serviceName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudQuotas\V1\ListQuotaInfosRequest
      *

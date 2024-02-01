@@ -35,8 +35,7 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                             $subscription Required. The name of the subscription.
-     *                                                         Format is `projects/{project}/subscriptions/{sub}`. Please see
-     *                                                         {@see SubscriberClient::subscriptionName()} for help formatting this field.
+     *                                                         Format is `projects/{project}/subscriptions/{sub}`.
      * @param \Google\Cloud\PubSub\V1\PushConfig $pushConfig   Required. The push configuration for future deliveries.
      *
      *                                                         An empty `pushConfig` indicates that the Pub/Sub system should

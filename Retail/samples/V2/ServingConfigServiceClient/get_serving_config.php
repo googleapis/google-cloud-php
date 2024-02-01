@@ -33,18 +33,19 @@ use Google\Cloud\Retail\V2\ServingConfig;
  *
  * Returns a NotFound error if the ServingConfig does not exist.
  *
- * @param string $formattedName The resource name of the ServingConfig to get. Format:
- *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
- *                              Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_serving_config_sample(string $formattedName): void
+function get_serving_config_sample(): void
 {
     // Create a client.
     $servingConfigServiceClient = new ServingConfigServiceClient();
 
     // Prepare the request message.
-    $request = (new GetServingConfigRequest())
-        ->setName($formattedName);
+    $request = new GetServingConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,26 +55,5 @@ function get_serving_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ServingConfigServiceClient::servingConfigName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CATALOG]',
-        '[SERVING_CONFIG]'
-    );
-
-    get_serving_config_sample($formattedName);
 }
 // [END retail_v2_generated_ServingConfigService_GetServingConfig_sync]

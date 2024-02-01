@@ -31,8 +31,7 @@ class RollbackSchemaRequest extends \Google\Protobuf\Internal\Message
     private $revision_id = '';
 
     /**
-     * @param string $name       Required. The schema being rolled back with revision id. Please see
-     *                           {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     * @param string $name       Required. The schema being rolled back with revision id.
      * @param string $revisionId Required. The revision ID to roll back to.
      *                           It must be a revision of the same schema.
      *

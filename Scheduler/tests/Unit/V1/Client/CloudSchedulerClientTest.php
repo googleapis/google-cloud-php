@@ -93,12 +93,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setSchedule($schedule);
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $job = new Job();
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = new CreateJobRequest();
         $response = $gapicClient->createJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -106,10 +101,6 @@ class CloudSchedulerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1.CloudScheduler/CreateJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getJob();
-        $this->assertProtobufEquals($job, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -131,12 +122,7 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $job = new Job();
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = new CreateJobRequest();
         try {
             $gapicClient->createJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -161,18 +147,13 @@ class CloudSchedulerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new DeleteJobRequest())
-            ->setName($formattedName);
+        $request = new DeleteJobRequest();
         $gapicClient->deleteJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1.CloudScheduler/DeleteJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -194,10 +175,7 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new DeleteJobRequest())
-            ->setName($formattedName);
+        $request = new DeleteJobRequest();
         try {
             $gapicClient->deleteJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -230,10 +208,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setSchedule($schedule);
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new GetJobRequest())
-            ->setName($formattedName);
+        $request = new GetJobRequest();
         $response = $gapicClient->getJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -241,8 +216,6 @@ class CloudSchedulerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1.CloudScheduler/GetJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -264,10 +237,7 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new GetJobRequest())
-            ->setName($formattedName);
+        $request = new GetJobRequest();
         try {
             $gapicClient->getJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -299,10 +269,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListJobsRequest())
-            ->setParent($formattedParent);
+        $request = new ListJobsRequest();
         $response = $gapicClient->listJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -313,8 +280,6 @@ class CloudSchedulerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1.CloudScheduler/ListJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -336,10 +301,7 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListJobsRequest())
-            ->setParent($formattedParent);
+        $request = new ListJobsRequest();
         try {
             $gapicClient->listJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -372,10 +334,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setSchedule($schedule);
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new PauseJobRequest())
-            ->setName($formattedName);
+        $request = new PauseJobRequest();
         $response = $gapicClient->pauseJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -383,8 +342,6 @@ class CloudSchedulerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1.CloudScheduler/PauseJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -406,10 +363,7 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new PauseJobRequest())
-            ->setName($formattedName);
+        $request = new PauseJobRequest();
         try {
             $gapicClient->pauseJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -442,10 +396,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setSchedule($schedule);
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new ResumeJobRequest())
-            ->setName($formattedName);
+        $request = new ResumeJobRequest();
         $response = $gapicClient->resumeJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -453,8 +404,6 @@ class CloudSchedulerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1.CloudScheduler/ResumeJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -476,10 +425,7 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new ResumeJobRequest())
-            ->setName($formattedName);
+        $request = new ResumeJobRequest();
         try {
             $gapicClient->resumeJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -512,10 +458,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setSchedule($schedule);
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new RunJobRequest())
-            ->setName($formattedName);
+        $request = new RunJobRequest();
         $response = $gapicClient->runJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -523,8 +466,6 @@ class CloudSchedulerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1.CloudScheduler/RunJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -546,10 +487,7 @@ class CloudSchedulerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new RunJobRequest())
-            ->setName($formattedName);
+        $request = new RunJobRequest();
         try {
             $gapicClient->runJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -583,10 +521,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $job = new Job();
         $updateMask = new FieldMask();
         $request = (new UpdateJobRequest())
-            ->setJob($job)
             ->setUpdateMask($updateMask);
         $response = $gapicClient->updateJob($request);
         $this->assertEquals($expectedResponse, $response);
@@ -595,8 +531,6 @@ class CloudSchedulerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1.CloudScheduler/UpdateJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getJob();
-        $this->assertProtobufEquals($job, $actualValue);
         $actualValue = $actualRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -621,10 +555,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $job = new Job();
         $updateMask = new FieldMask();
         $request = (new UpdateJobRequest())
-            ->setJob($job)
             ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateJob($request);
@@ -782,12 +714,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setSchedule($schedule);
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $job = new Job();
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = new CreateJobRequest();
         $response = $gapicClient->createJobAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -795,10 +722,6 @@ class CloudSchedulerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.scheduler.v1.CloudScheduler/CreateJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getJob();
-        $this->assertProtobufEquals($job, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

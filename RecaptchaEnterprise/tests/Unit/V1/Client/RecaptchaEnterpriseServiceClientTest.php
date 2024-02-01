@@ -103,10 +103,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse = new AnnotateAssessmentResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
         $annotation = Annotation::ANNOTATION_UNSPECIFIED;
         $request = (new AnnotateAssessmentRequest())
-            ->setName($formattedName)
             ->setAnnotation($annotation);
         $response = $gapicClient->annotateAssessment($request);
         $this->assertEquals($expectedResponse, $response);
@@ -115,8 +113,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/AnnotateAssessment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getAnnotation();
         $this->assertProtobufEquals($annotation, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -141,10 +137,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
         $annotation = Annotation::ANNOTATION_UNSPECIFIED;
         $request = (new AnnotateAssessmentRequest())
-            ->setName($formattedName)
             ->setAnnotation($annotation);
         try {
             $gapicClient->annotateAssessment($request);
@@ -172,12 +166,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse = new Assessment();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $assessment = new Assessment();
-        $request = (new CreateAssessmentRequest())
-            ->setParent($formattedParent)
-            ->setAssessment($assessment);
+        $request = new CreateAssessmentRequest();
         $response = $gapicClient->createAssessment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -185,10 +174,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/CreateAssessment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getAssessment();
-        $this->assertProtobufEquals($assessment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -210,12 +195,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $assessment = new Assessment();
-        $request = (new CreateAssessmentRequest())
-            ->setParent($formattedParent)
-            ->setAssessment($assessment);
+        $request = new CreateAssessmentRequest();
         try {
             $gapicClient->createAssessment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -248,12 +228,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setPath($path);
         $expectedResponse->setCondition($condition);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $firewallPolicy = new FirewallPolicy();
-        $request = (new CreateFirewallPolicyRequest())
-            ->setParent($formattedParent)
-            ->setFirewallPolicy($firewallPolicy);
+        $request = new CreateFirewallPolicyRequest();
         $response = $gapicClient->createFirewallPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -261,10 +236,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/CreateFirewallPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -286,12 +257,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $firewallPolicy = new FirewallPolicy();
-        $request = (new CreateFirewallPolicyRequest())
-            ->setParent($formattedParent)
-            ->setFirewallPolicy($firewallPolicy);
+        $request = new CreateFirewallPolicyRequest();
         try {
             $gapicClient->createFirewallPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -320,14 +286,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $key = new Key();
-        $keyDisplayName = 'keyDisplayName-302940530';
-        $key->setDisplayName($keyDisplayName);
-        $request = (new CreateKeyRequest())
-            ->setParent($formattedParent)
-            ->setKey($key);
+        $request = new CreateKeyRequest();
         $response = $gapicClient->createKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -335,10 +294,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/CreateKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getKey();
-        $this->assertProtobufEquals($key, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -360,14 +315,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $key = new Key();
-        $keyDisplayName = 'keyDisplayName-302940530';
-        $key->setDisplayName($keyDisplayName);
-        $request = (new CreateKeyRequest())
-            ->setParent($formattedParent)
-            ->setKey($key);
+        $request = new CreateKeyRequest();
         try {
             $gapicClient->createKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -392,18 +340,13 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]');
-        $request = (new DeleteFirewallPolicyRequest())
-            ->setName($formattedName);
+        $request = new DeleteFirewallPolicyRequest();
         $gapicClient->deleteFirewallPolicy($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/DeleteFirewallPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -425,10 +368,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]');
-        $request = (new DeleteFirewallPolicyRequest())
-            ->setName($formattedName);
+        $request = new DeleteFirewallPolicyRequest();
         try {
             $gapicClient->deleteFirewallPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -453,18 +393,13 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
-        $request = (new DeleteKeyRequest())
-            ->setName($formattedName);
+        $request = new DeleteKeyRequest();
         $gapicClient->deleteKey($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/DeleteKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -486,10 +421,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
-        $request = (new DeleteKeyRequest())
-            ->setName($formattedName);
+        $request = new DeleteKeyRequest();
         try {
             $gapicClient->deleteKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -522,10 +454,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setPath($path);
         $expectedResponse->setCondition($condition);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]');
-        $request = (new GetFirewallPolicyRequest())
-            ->setName($formattedName);
+        $request = new GetFirewallPolicyRequest();
         $response = $gapicClient->getFirewallPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -533,8 +462,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/GetFirewallPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -556,10 +483,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]');
-        $request = (new GetFirewallPolicyRequest())
-            ->setName($formattedName);
+        $request = new GetFirewallPolicyRequest();
         try {
             $gapicClient->getFirewallPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -588,10 +512,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
-        $request = (new GetKeyRequest())
-            ->setName($formattedName);
+        $request = new GetKeyRequest();
         $response = $gapicClient->getKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -599,8 +520,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/GetKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -622,10 +541,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
-        $request = (new GetKeyRequest())
-            ->setName($formattedName);
+        $request = new GetKeyRequest();
         try {
             $gapicClient->getKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -652,10 +568,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse = new Metrics();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->metricsName('[PROJECT]', '[KEY]');
-        $request = (new GetMetricsRequest())
-            ->setName($formattedName);
+        $request = new GetMetricsRequest();
         $response = $gapicClient->getMetrics($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -663,8 +576,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/GetMetrics', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -686,10 +597,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->metricsName('[PROJECT]', '[KEY]');
-        $request = (new GetMetricsRequest())
-            ->setName($formattedName);
+        $request = new GetMetricsRequest();
         try {
             $gapicClient->getMetrics($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -721,10 +629,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFirewallPolicies($firewallPolicies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListFirewallPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = new ListFirewallPoliciesRequest();
         $response = $gapicClient->listFirewallPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -735,8 +640,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListFirewallPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -758,10 +661,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListFirewallPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = new ListFirewallPoliciesRequest();
         try {
             $gapicClient->listFirewallPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -793,10 +693,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setKeys($keys);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListKeysRequest())
-            ->setParent($formattedParent);
+        $request = new ListKeysRequest();
         $response = $gapicClient->listKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -807,8 +704,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListKeys', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -830,10 +725,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListKeysRequest())
-            ->setParent($formattedParent);
+        $request = new ListKeysRequest();
         try {
             $gapicClient->listKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -865,10 +757,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRelatedAccountGroupMemberships($relatedAccountGroupMemberships);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
-        $request = (new ListRelatedAccountGroupMembershipsRequest())
-            ->setParent($formattedParent);
+        $request = new ListRelatedAccountGroupMembershipsRequest();
         $response = $gapicClient->listRelatedAccountGroupMemberships($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -879,8 +768,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListRelatedAccountGroupMemberships', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -902,10 +789,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
-        $request = (new ListRelatedAccountGroupMembershipsRequest())
-            ->setParent($formattedParent);
+        $request = new ListRelatedAccountGroupMembershipsRequest();
         try {
             $gapicClient->listRelatedAccountGroupMemberships($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -937,10 +821,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRelatedAccountGroups($relatedAccountGroups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListRelatedAccountGroupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListRelatedAccountGroupsRequest();
         $response = $gapicClient->listRelatedAccountGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -951,8 +832,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListRelatedAccountGroups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -974,10 +853,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListRelatedAccountGroupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListRelatedAccountGroupsRequest();
         try {
             $gapicClient->listRelatedAccountGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1006,10 +882,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
-        $request = (new MigrateKeyRequest())
-            ->setName($formattedName);
+        $request = new MigrateKeyRequest();
         $response = $gapicClient->migrateKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1017,8 +890,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/MigrateKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1040,10 +911,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
-        $request = (new MigrateKeyRequest())
-            ->setName($formattedName);
+        $request = new MigrateKeyRequest();
         try {
             $gapicClient->migrateKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1070,10 +938,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse = new RetrieveLegacySecretKeyResponse();
         $expectedResponse->setLegacySecretKey($legacySecretKey);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedKey = $gapicClient->keyName('[PROJECT]', '[KEY]');
-        $request = (new RetrieveLegacySecretKeyRequest())
-            ->setKey($formattedKey);
+        $request = new RetrieveLegacySecretKeyRequest();
         $response = $gapicClient->retrieveLegacySecretKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1081,8 +946,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/RetrieveLegacySecretKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getKey();
-        $this->assertProtobufEquals($formattedKey, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1104,10 +967,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedKey = $gapicClient->keyName('[PROJECT]', '[KEY]');
-        $request = (new RetrieveLegacySecretKeyRequest())
-            ->setKey($formattedKey);
+        $request = new RetrieveLegacySecretKeyRequest();
         try {
             $gapicClient->retrieveLegacySecretKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1139,10 +999,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRelatedAccountGroupMemberships($relatedAccountGroupMemberships);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProject = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
-        $request = (new SearchRelatedAccountGroupMembershipsRequest())
-            ->setProject($formattedProject);
+        $request = new SearchRelatedAccountGroupMembershipsRequest();
         $response = $gapicClient->searchRelatedAccountGroupMemberships($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1153,8 +1010,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/SearchRelatedAccountGroupMemberships', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($formattedProject, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1176,10 +1031,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProject = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
-        $request = (new SearchRelatedAccountGroupMembershipsRequest())
-            ->setProject($formattedProject);
+        $request = new SearchRelatedAccountGroupMembershipsRequest();
         try {
             $gapicClient->searchRelatedAccountGroupMemberships($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1212,10 +1064,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setPath($path);
         $expectedResponse->setCondition($condition);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $firewallPolicy = new FirewallPolicy();
-        $request = (new UpdateFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = new UpdateFirewallPolicyRequest();
         $response = $gapicClient->updateFirewallPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1223,8 +1072,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/UpdateFirewallPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getFirewallPolicy();
-        $this->assertProtobufEquals($firewallPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1246,10 +1093,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $firewallPolicy = new FirewallPolicy();
-        $request = (new UpdateFirewallPolicyRequest())
-            ->setFirewallPolicy($firewallPolicy);
+        $request = new UpdateFirewallPolicyRequest();
         try {
             $gapicClient->updateFirewallPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1278,12 +1122,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $key = new Key();
-        $keyDisplayName = 'keyDisplayName-302940530';
-        $key->setDisplayName($keyDisplayName);
-        $request = (new UpdateKeyRequest())
-            ->setKey($key);
+        $request = new UpdateKeyRequest();
         $response = $gapicClient->updateKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1291,8 +1130,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/UpdateKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getKey();
-        $this->assertProtobufEquals($key, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1314,12 +1151,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $key = new Key();
-        $keyDisplayName = 'keyDisplayName-302940530';
-        $key->setDisplayName($keyDisplayName);
-        $request = (new UpdateKeyRequest())
-            ->setKey($key);
+        $request = new UpdateKeyRequest();
         try {
             $gapicClient->updateKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1345,10 +1177,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse = new AnnotateAssessmentResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
         $annotation = Annotation::ANNOTATION_UNSPECIFIED;
         $request = (new AnnotateAssessmentRequest())
-            ->setName($formattedName)
             ->setAnnotation($annotation);
         $response = $gapicClient->annotateAssessmentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
@@ -1357,8 +1187,6 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/AnnotateAssessment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getAnnotation();
         $this->assertProtobufEquals($annotation, $actualValue);
         $this->assertTrue($transport->isExhausted());

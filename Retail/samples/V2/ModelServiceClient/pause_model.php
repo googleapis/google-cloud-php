@@ -31,19 +31,19 @@ use Google\Cloud\Retail\V2\PauseModelRequest;
 /**
  * Pauses the training of an existing model.
  *
- * @param string $formattedName The name of the model to pause.
- *                              Format:
- *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/models/{model_id}`
- *                              Please see {@see ModelServiceClient::modelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function pause_model_sample(string $formattedName): void
+function pause_model_sample(): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $request = (new PauseModelRequest())
-        ->setName($formattedName);
+    $request = new PauseModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function pause_model_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ModelServiceClient::modelName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[MODEL]');
-
-    pause_model_sample($formattedName);
 }
 // [END retail_v2_generated_ModelService_PauseModel_sync]

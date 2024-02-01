@@ -87,8 +87,7 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
      *                       LOCATION here refers to GCP Locations:
      *                       https://cloud.google.com/about/locations/
      *                       RECOMMENDER_ID refers to supported recommenders:
-     *                       https://cloud.google.com/recommender/docs/recommenders. Please see
-     *                       {@see RecommenderClient::recommenderName()} for help formatting this field.
+     *                       https://cloud.google.com/recommender/docs/recommenders.
      *
      * @return \Google\Cloud\Recommender\V1\ListRecommendationsRequest
      *
@@ -117,8 +116,7 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
      *                       LOCATION here refers to GCP Locations:
      *                       https://cloud.google.com/about/locations/
      *                       RECOMMENDER_ID refers to supported recommenders:
-     *                       https://cloud.google.com/recommender/docs/recommenders. Please see
-     *                       {@see RecommenderClient::recommenderName()} for help formatting this field.
+     *                       https://cloud.google.com/recommender/docs/recommenders.
      * @param string $filter Filter expression to restrict the recommendations returned. Supported
      *                       filter fields:
      *

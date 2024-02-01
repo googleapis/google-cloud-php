@@ -47,8 +47,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                   $parent Required. The location and project in which this Job should be created.
      *                                         Format: projects/{project}/locations/{location}, where {project} can be
-     *                                         project id or number. Please see
-     *                                         {@see JobsClient::locationName()} for help formatting this field.
+     *                                         project id or number.
      * @param \Google\Cloud\Run\V2\Job $job    Required. The Job instance to create.
      * @param string                   $jobId  Required. The unique identifier for the Job. The name of the job becomes
      *                                         {parent}/jobs/{job_id}.

@@ -38,19 +38,19 @@ use Google\Cloud\Retail\V2\UpdateAttributesConfigRequest;
  * response. The product attribute is assigned default values for missing
  * catalog attribute fields, e.g., searchable and dynamic facetable options.
  *
- * @param string $attributesConfigName Immutable. The fully qualified resource name of the attribute
- *                                     config. Format: `projects/&#42;/locations/&#42;/catalogs/&#42;/attributesConfig`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_attributes_config_sample(string $attributesConfigName): void
+function update_attributes_config_sample(): void
 {
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
-    $attributesConfig = (new AttributesConfig())
-        ->setName($attributesConfigName);
-    $request = (new UpdateAttributesConfigRequest())
-        ->setAttributesConfig($attributesConfig);
+    $request = new UpdateAttributesConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +60,5 @@ function update_attributes_config_sample(string $attributesConfigName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $attributesConfigName = '[NAME]';
-
-    update_attributes_config_sample($attributesConfigName);
 }
 // [END retail_v2_generated_CatalogService_UpdateAttributesConfig_sync]

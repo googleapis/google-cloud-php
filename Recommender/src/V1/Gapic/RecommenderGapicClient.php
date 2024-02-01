@@ -66,8 +66,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $recommenderClient = new RecommenderClient();
  * try {
- *     $formattedName = $recommenderClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
- *     $response = $recommenderClient->getInsight($formattedName);
+ *     $response = $recommenderClient->getInsight();
  * } finally {
  *     $recommenderClient->close();
  * }
@@ -1163,17 +1162,17 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-     *     $response = $recommenderClient->getInsight($formattedName);
+     *     $response = $recommenderClient->getInsight();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the insight.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the insight.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1184,12 +1183,15 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInsight($name, array $optionalArgs = [])
+    public function getInsight(array $optionalArgs = [])
     {
         $request = new GetInsightRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetInsight', Insight::class, $optionalArgs, $request)->wait();
@@ -1203,27 +1205,27 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->insightTypeConfigName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-     *     $response = $recommenderClient->getInsightTypeConfig($formattedName);
+     *     $response = $recommenderClient->getInsightTypeConfig();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the InsightTypeConfig to get.
-     *
-     *                             Acceptable formats:
-     *
-     *                             * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
-     *
-     *                             * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
-     *
-     *                             * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
-     *
-     *                             * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the InsightTypeConfig to get.
+     *
+     *           Acceptable formats:
+     *
+     *           * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
+     *
+     *           * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
+     *
+     *           * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
+     *
+     *           * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1234,12 +1236,15 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInsightTypeConfig($name, array $optionalArgs = [])
+    public function getInsightTypeConfig(array $optionalArgs = [])
     {
         $request = new GetInsightTypeConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetInsightTypeConfig', InsightTypeConfig::class, $optionalArgs, $request)->wait();
@@ -1253,17 +1258,17 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-     *     $response = $recommenderClient->getRecommendation($formattedName);
+     *     $response = $recommenderClient->getRecommendation();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the recommendation.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the recommendation.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1274,12 +1279,15 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRecommendation($name, array $optionalArgs = [])
+    public function getRecommendation(array $optionalArgs = [])
     {
         $request = new GetRecommendationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetRecommendation', Recommendation::class, $optionalArgs, $request)->wait();
@@ -1293,27 +1301,27 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->recommenderConfigName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
-     *     $response = $recommenderClient->getRecommenderConfig($formattedName);
+     *     $response = $recommenderClient->getRecommenderConfig();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the Recommendation Config to get.
-     *
-     *                             Acceptable formats:
-     *
-     *                             * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
-     *
-     *                             * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
-     *
-     *                             * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
-     *
-     *                             * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the Recommendation Config to get.
+     *
+     *           Acceptable formats:
+     *
+     *           * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *
+     *           * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *
+     *           * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *
+     *           * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1324,12 +1332,15 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRecommenderConfig($name, array $optionalArgs = [])
+    public function getRecommenderConfig(array $optionalArgs = [])
     {
         $request = new GetRecommenderConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetRecommenderConfig', RecommenderConfig::class, $optionalArgs, $request)->wait();
@@ -1343,9 +1354,8 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedParent = $recommenderClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recommenderClient->listInsights($formattedParent);
+     *     $pagedResponse = $recommenderClient->listInsights();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1353,7 +1363,7 @@ class RecommenderGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $recommenderClient->listInsights($formattedParent);
+     *     $pagedResponse = $recommenderClient->listInsights();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1362,26 +1372,27 @@ class RecommenderGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The container resource on which to execute the request.
-     *                             Acceptable formats:
-     *
-     *                             * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-     *
-     *                             * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-     *
-     *                             * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-     *
-     *                             * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-     *
-     *                             * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
-     *
-     *                             LOCATION here refers to GCP Locations:
-     *                             https://cloud.google.com/about/locations/
-     *                             INSIGHT_TYPE_ID refers to supported insight types:
-     *                             https://cloud.google.com/recommender/docs/insights/insight-types.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The container resource on which to execute the request.
+     *           Acceptable formats:
+     *
+     *           * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     *
+     *           * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     *
+     *           * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     *
+     *           * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     *
+     *           * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     *
+     *           LOCATION here refers to GCP Locations:
+     *           https://cloud.google.com/about/locations/
+     *           INSIGHT_TYPE_ID refers to supported insight types:
+     *           https://cloud.google.com/recommender/docs/insights/insight-types.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1430,12 +1441,15 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listInsights($parent, array $optionalArgs = [])
+    public function listInsights(array $optionalArgs = [])
     {
         $request = new ListInsightsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1461,9 +1475,8 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedParent = $recommenderClient->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recommenderClient->listRecommendations($formattedParent);
+     *     $pagedResponse = $recommenderClient->listRecommendations();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1471,7 +1484,7 @@ class RecommenderGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $recommenderClient->listRecommendations($formattedParent);
+     *     $pagedResponse = $recommenderClient->listRecommendations();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1480,26 +1493,27 @@ class RecommenderGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The container resource on which to execute the request.
-     *                             Acceptable formats:
-     *
-     *                             * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-     *
-     *                             * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-     *
-     *                             * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-     *
-     *                             * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-     *
-     *                             * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
-     *
-     *                             LOCATION here refers to GCP Locations:
-     *                             https://cloud.google.com/about/locations/
-     *                             RECOMMENDER_ID refers to supported recommenders:
-     *                             https://cloud.google.com/recommender/docs/recommenders.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The container resource on which to execute the request.
+     *           Acceptable formats:
+     *
+     *           * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *           * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *           * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *           * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *           * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *
+     *           LOCATION here refers to GCP Locations:
+     *           https://cloud.google.com/about/locations/
+     *           RECOMMENDER_ID refers to supported recommenders:
+     *           https://cloud.google.com/recommender/docs/recommenders.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1548,12 +1562,15 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRecommendations($parent, array $optionalArgs = [])
+    public function listRecommendations(array $optionalArgs = [])
     {
         $request = new ListRecommendationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1583,22 +1600,22 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-     *     $etag = 'etag';
-     *     $response = $recommenderClient->markInsightAccepted($formattedName, $etag);
+     *     $response = $recommenderClient->markInsightAccepted();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the insight.
-     * @param string $etag         Required. Fingerprint of the Insight. Provides optimistic locking.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the insight.
      *     @type array $stateMetadata
      *           Optional. State properties user wish to include with this state.  Full
      *           replace of the current state_metadata.
+     *     @type string $etag
+     *           Required. Fingerprint of the Insight. Provides optimistic locking.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1609,15 +1626,21 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function markInsightAccepted($name, $etag, array $optionalArgs = [])
+    public function markInsightAccepted(array $optionalArgs = [])
     {
         $request = new MarkInsightAcceptedRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setEtag($etag);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['stateMetadata'])) {
             $request->setStateMetadata($optionalArgs['stateMetadata']);
+        }
+
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1641,24 +1664,24 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-     *     $etag = 'etag';
-     *     $response = $recommenderClient->markRecommendationClaimed($formattedName, $etag);
+     *     $response = $recommenderClient->markRecommendationClaimed();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the recommendation.
-     * @param string $etag         Required. Fingerprint of the Recommendation. Provides optimistic locking.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the recommendation.
      *     @type array $stateMetadata
      *           State properties to include with this state. Overwrites any existing
      *           `state_metadata`.
      *           Keys must match the regex `/^[a-z0-9][a-z0-9_.-]{0,62}$/`.
      *           Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
+     *     @type string $etag
+     *           Required. Fingerprint of the Recommendation. Provides optimistic locking.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1669,15 +1692,21 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function markRecommendationClaimed($name, $etag, array $optionalArgs = [])
+    public function markRecommendationClaimed(array $optionalArgs = [])
     {
         $request = new MarkRecommendationClaimedRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setEtag($etag);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['stateMetadata'])) {
             $request->setStateMetadata($optionalArgs['stateMetadata']);
+        }
+
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1700,17 +1729,17 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-     *     $response = $recommenderClient->markRecommendationDismissed($formattedName);
+     *     $response = $recommenderClient->markRecommendationDismissed();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the recommendation.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the recommendation.
      *     @type string $etag
      *           Fingerprint of the Recommendation. Provides optimistic locking.
      *     @type RetrySettings|array $retrySettings
@@ -1723,12 +1752,15 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function markRecommendationDismissed($name, array $optionalArgs = [])
+    public function markRecommendationDismissed(array $optionalArgs = [])
     {
         $request = new MarkRecommendationDismissedRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -1755,24 +1787,24 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-     *     $etag = 'etag';
-     *     $response = $recommenderClient->markRecommendationFailed($formattedName, $etag);
+     *     $response = $recommenderClient->markRecommendationFailed();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the recommendation.
-     * @param string $etag         Required. Fingerprint of the Recommendation. Provides optimistic locking.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the recommendation.
      *     @type array $stateMetadata
      *           State properties to include with this state. Overwrites any existing
      *           `state_metadata`.
      *           Keys must match the regex `/^[a-z0-9][a-z0-9_.-]{0,62}$/`.
      *           Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
+     *     @type string $etag
+     *           Required. Fingerprint of the Recommendation. Provides optimistic locking.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1783,15 +1815,21 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function markRecommendationFailed($name, $etag, array $optionalArgs = [])
+    public function markRecommendationFailed(array $optionalArgs = [])
     {
         $request = new MarkRecommendationFailedRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setEtag($etag);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['stateMetadata'])) {
             $request->setStateMetadata($optionalArgs['stateMetadata']);
+        }
+
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1816,24 +1854,24 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-     *     $etag = 'etag';
-     *     $response = $recommenderClient->markRecommendationSucceeded($formattedName, $etag);
+     *     $response = $recommenderClient->markRecommendationSucceeded();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the recommendation.
-     * @param string $etag         Required. Fingerprint of the Recommendation. Provides optimistic locking.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the recommendation.
      *     @type array $stateMetadata
      *           State properties to include with this state. Overwrites any existing
      *           `state_metadata`.
      *           Keys must match the regex `/^[a-z0-9][a-z0-9_.-]{0,62}$/`.
      *           Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
+     *     @type string $etag
+     *           Required. Fingerprint of the Recommendation. Provides optimistic locking.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1844,15 +1882,21 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function markRecommendationSucceeded($name, $etag, array $optionalArgs = [])
+    public function markRecommendationSucceeded(array $optionalArgs = [])
     {
         $request = new MarkRecommendationSucceededRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setEtag($etag);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['stateMetadata'])) {
             $request->setStateMetadata($optionalArgs['stateMetadata']);
+        }
+
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1868,17 +1912,17 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $insightTypeConfig = new InsightTypeConfig();
-     *     $response = $recommenderClient->updateInsightTypeConfig($insightTypeConfig);
+     *     $response = $recommenderClient->updateInsightTypeConfig();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param InsightTypeConfig $insightTypeConfig Required. The InsightTypeConfig to update.
-     * @param array             $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type InsightTypeConfig $insightTypeConfig
+     *           Required. The InsightTypeConfig to update.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type bool $validateOnly
@@ -1894,12 +1938,14 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateInsightTypeConfig($insightTypeConfig, array $optionalArgs = [])
+    public function updateInsightTypeConfig(array $optionalArgs = [])
     {
         $request = new UpdateInsightTypeConfigRequest();
         $requestParamHeaders = [];
-        $request->setInsightTypeConfig($insightTypeConfig);
-        $requestParamHeaders['insight_type_config.name'] = $insightTypeConfig->getName();
+        if (isset($optionalArgs['insightTypeConfig'])) {
+            $request->setInsightTypeConfig($optionalArgs['insightTypeConfig']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1921,17 +1967,17 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $recommenderConfig = new RecommenderConfig();
-     *     $response = $recommenderClient->updateRecommenderConfig($recommenderConfig);
+     *     $response = $recommenderClient->updateRecommenderConfig();
      * } finally {
      *     $recommenderClient->close();
      * }
      * ```
      *
-     * @param RecommenderConfig $recommenderConfig Required. The RecommenderConfig to update.
-     * @param array             $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type RecommenderConfig $recommenderConfig
+     *           Required. The RecommenderConfig to update.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type bool $validateOnly
@@ -1947,12 +1993,14 @@ class RecommenderGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateRecommenderConfig($recommenderConfig, array $optionalArgs = [])
+    public function updateRecommenderConfig(array $optionalArgs = [])
     {
         $request = new UpdateRecommenderConfigRequest();
         $requestParamHeaders = [];
-        $request->setRecommenderConfig($recommenderConfig);
-        $requestParamHeaders['recommender_config.name'] = $recommenderConfig->getName();
+        if (isset($optionalArgs['recommenderConfig'])) {
+            $request->setRecommenderConfig($optionalArgs['recommenderConfig']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

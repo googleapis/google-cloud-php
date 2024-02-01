@@ -31,8 +31,7 @@ class MoveProjectRequest extends \Google\Protobuf\Internal\Message
     private $destination_parent = '';
 
     /**
-     * @param string $name              Required. The name of the project to move. Please see
-     *                                  {@see ProjectsClient::projectName()} for help formatting this field.
+     * @param string $name              Required. The name of the project to move.
      * @param string $destinationParent Required. The new parent to move the Project under.
      *
      * @return \Google\Cloud\ResourceManager\V3\MoveProjectRequest

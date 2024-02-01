@@ -39,8 +39,7 @@ class ListFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the project to list the policies for, in the format
-     *                       `projects/{project}`. Please see
-     *                       {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     *                       `projects/{project}`.
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesRequest
      *

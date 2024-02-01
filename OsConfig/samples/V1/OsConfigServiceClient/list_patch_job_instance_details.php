@@ -32,18 +32,19 @@ use Google\Cloud\OsConfig\V1\PatchJobInstanceDetails;
 /**
  * Get a list of instance details for a given patch job.
  *
- * @param string $formattedParent The parent for the instances are in the form of
- *                                `projects/&#42;/patchJobs/*`. Please see
- *                                {@see OsConfigServiceClient::patchJobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_patch_job_instance_details_sample(string $formattedParent): void
+function list_patch_job_instance_details_sample(): void
 {
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
     // Prepare the request message.
-    $request = (new ListPatchJobInstanceDetailsRequest())
-        ->setParent($formattedParent);
+    $request = new ListPatchJobInstanceDetailsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_patch_job_instance_details_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = OsConfigServiceClient::patchJobName('[PROJECT]', '[PATCH_JOB]');
-
-    list_patch_job_instance_details_sample($formattedParent);
 }
 // [END osconfig_v1_generated_OsConfigService_ListPatchJobInstanceDetails_sync]

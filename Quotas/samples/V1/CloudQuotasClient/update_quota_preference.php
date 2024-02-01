@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudquotas_v1_generated_CloudQuotas_UpdateQuotaPreference_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\CloudQuotas\V1\Client\CloudQuotasClient;
-use Google\Cloud\CloudQuotas\V1\QuotaConfig;
 use Google\Cloud\CloudQuotas\V1\QuotaPreference;
 use Google\Cloud\CloudQuotas\V1\UpdateQuotaPreferenceRequest;
 
@@ -33,38 +32,19 @@ use Google\Cloud\CloudQuotas\V1\UpdateQuotaPreferenceRequest;
  * Updates the parameters of a single QuotaPreference. It can updates the
  * config in any states, not just the ones pending approval.
  *
- * @param int    $quotaPreferenceQuotaConfigPreferredValue The preferred value. Must be greater than or equal to -1. If set
- *                                                         to -1, it means the value is "unlimited".
- * @param string $quotaPreferenceService                   The name of the service to which the quota preference is applied.
- * @param string $quotaPreferenceQuotaId                   The id of the quota to which the quota preference is applied. A
- *                                                         quota name is unique in the service. Example: `CpusPerProjectPerRegion`
- * @param string $quotaPreferenceContactEmail              Input only. An email address that can be used for quota related
- *                                                         communication between the Google Cloud and the user in case the Google
- *                                                         Cloud needs further information to make a decision on whether the user
- *                                                         preferred quota can be granted.
- *
- *                                                         The Google account for the email address must have quota update permission
- *                                                         for the project, folder or organization this quota preference is for.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_quota_preference_sample(
-    int $quotaPreferenceQuotaConfigPreferredValue,
-    string $quotaPreferenceService,
-    string $quotaPreferenceQuotaId,
-    string $quotaPreferenceContactEmail
-): void {
+function update_quota_preference_sample(): void
+{
     // Create a client.
     $cloudQuotasClient = new CloudQuotasClient();
 
     // Prepare the request message.
-    $quotaPreferenceQuotaConfig = (new QuotaConfig())
-        ->setPreferredValue($quotaPreferenceQuotaConfigPreferredValue);
-    $quotaPreference = (new QuotaPreference())
-        ->setQuotaConfig($quotaPreferenceQuotaConfig)
-        ->setService($quotaPreferenceService)
-        ->setQuotaId($quotaPreferenceQuotaId)
-        ->setContactEmail($quotaPreferenceContactEmail);
-    $request = (new UpdateQuotaPreferenceRequest())
-        ->setQuotaPreference($quotaPreference);
+    $request = new UpdateQuotaPreferenceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,29 +54,5 @@ function update_quota_preference_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $quotaPreferenceQuotaConfigPreferredValue = 0;
-    $quotaPreferenceService = '[SERVICE]';
-    $quotaPreferenceQuotaId = '[QUOTA_ID]';
-    $quotaPreferenceContactEmail = '[CONTACT_EMAIL]';
-
-    update_quota_preference_sample(
-        $quotaPreferenceQuotaConfigPreferredValue,
-        $quotaPreferenceService,
-        $quotaPreferenceQuotaId,
-        $quotaPreferenceContactEmail
-    );
 }
 // [END cloudquotas_v1_generated_CloudQuotas_UpdateQuotaPreference_sync]

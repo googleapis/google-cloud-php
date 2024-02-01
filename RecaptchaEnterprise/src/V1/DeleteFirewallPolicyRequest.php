@@ -25,8 +25,7 @@ class DeleteFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the policy to be deleted, in the format
-     *                     `projects/{project}/firewallpolicies/{firewallpolicy}`. Please see
-     *                     {@see RecaptchaEnterpriseServiceClient::firewallPolicyName()} for help formatting this field.
+     *                     `projects/{project}/firewallpolicies/{firewallpolicy}`.
      *
      * @return \Google\Cloud\RecaptchaEnterprise\V1\DeleteFirewallPolicyRequest
      *

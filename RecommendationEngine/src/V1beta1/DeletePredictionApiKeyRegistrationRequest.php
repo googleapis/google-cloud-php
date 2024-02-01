@@ -26,7 +26,6 @@ class DeletePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
     /**
      * @param string $name Required. The API key to unregister including full resource path.
      *                     `projects/&#42;/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>`
-     *                     Please see {@see PredictionApiKeyRegistryClient::predictionApiKeyRegistrationName()} for help formatting this field.
      *
      * @return \Google\Cloud\RecommendationEngine\V1beta1\DeletePredictionApiKeyRegistrationRequest
      *

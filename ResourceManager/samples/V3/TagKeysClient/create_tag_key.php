@@ -36,23 +36,19 @@ use Google\Rpc\Status;
  * will receive an error. A maximum of 1000 TagKeys can exist under a parent
  * at any given time.
  *
- * @param string $tagKeyShortName Immutable. The user friendly name for a TagKey. The short name
- *                                should be unique for TagKeys within the same tag namespace.
- *
- *                                The short name must be 1-63 characters, beginning and ending with
- *                                an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_),
- *                                dots (.), and alphanumerics between.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_tag_key_sample(string $tagKeyShortName): void
+function create_tag_key_sample(): void
 {
     // Create a client.
     $tagKeysClient = new TagKeysClient();
 
     // Prepare the request message.
-    $tagKey = (new TagKey())
-        ->setShortName($tagKeyShortName);
-    $request = (new CreateTagKeyRequest())
-        ->setTagKey($tagKey);
+    $request = new CreateTagKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,21 +68,5 @@ function create_tag_key_sample(string $tagKeyShortName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $tagKeyShortName = '[SHORT_NAME]';
-
-    create_tag_key_sample($tagKeyShortName);
 }
 // [END cloudresourcemanager_v3_generated_TagKeys_CreateTagKey_sync]

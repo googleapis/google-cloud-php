@@ -33,7 +33,6 @@ class AddControlRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $servingConfig Required. The source ServingConfig resource name . Format:
      *                              `projects/{project_number}/locations/{location_id}/catalogs/{catalog_id}/servingConfigs/{serving_config_id}`
-     *                              Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\Retail\V2\AddControlRequest
      *

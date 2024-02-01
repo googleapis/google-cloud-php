@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Google\Cloud\PubSub\V1\Snapshot;
 use Google\Cloud\PubSub\V1\UpdateSnapshotRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates an existing snapshot by updating the fields specified in the update
@@ -49,11 +48,7 @@ function update_snapshot_sample(): void
     $subscriberClient = new SubscriberClient();
 
     // Prepare the request message.
-    $snapshot = new Snapshot();
-    $updateMask = new FieldMask();
-    $request = (new UpdateSnapshotRequest())
-        ->setSnapshot($snapshot)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateSnapshotRequest();
 
     // Call the API and handle any network failures.
     try {

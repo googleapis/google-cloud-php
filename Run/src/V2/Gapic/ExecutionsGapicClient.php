@@ -52,8 +52,7 @@ use Google\LongRunning\Operation;
  * ```
  * $executionsClient = new ExecutionsClient();
  * try {
- *     $formattedName = $executionsClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
- *     $operationResponse = $executionsClient->cancelExecution($formattedName);
+ *     $operationResponse = $executionsClient->cancelExecution();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -64,7 +63,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $executionsClient->cancelExecution($formattedName);
+ *     $operationResponse = $executionsClient->cancelExecution();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $executionsClient->resumeOperation($operationName, 'cancelExecution');
@@ -375,8 +374,7 @@ class ExecutionsGapicClient
      * ```
      * $executionsClient = new ExecutionsClient();
      * try {
-     *     $formattedName = $executionsClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-     *     $operationResponse = $executionsClient->cancelExecution($formattedName);
+     *     $operationResponse = $executionsClient->cancelExecution();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -387,7 +385,7 @@ class ExecutionsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $executionsClient->cancelExecution($formattedName);
+     *     $operationResponse = $executionsClient->cancelExecution();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $executionsClient->resumeOperation($operationName, 'cancelExecution');
@@ -407,13 +405,14 @@ class ExecutionsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Execution to cancel.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
-     *                             where `{project}` can be project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Execution to cancel.
+     *           Format:
+     *           `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     *           where `{project}` can be project id or number.
      *     @type bool $validateOnly
      *           Indicates that the request should be validated without actually
      *           cancelling any resources.
@@ -430,12 +429,15 @@ class ExecutionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelExecution($name, array $optionalArgs = [])
+    public function cancelExecution(array $optionalArgs = [])
     {
         $request = new CancelExecutionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -465,8 +467,7 @@ class ExecutionsGapicClient
      * ```
      * $executionsClient = new ExecutionsClient();
      * try {
-     *     $formattedName = $executionsClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-     *     $operationResponse = $executionsClient->deleteExecution($formattedName);
+     *     $operationResponse = $executionsClient->deleteExecution();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -477,7 +478,7 @@ class ExecutionsGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $executionsClient->deleteExecution($formattedName);
+     *     $operationResponse = $executionsClient->deleteExecution();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $executionsClient->resumeOperation($operationName, 'deleteExecution');
@@ -497,13 +498,14 @@ class ExecutionsGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Execution to delete.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
-     *                             where `{project}` can be project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Execution to delete.
+     *           Format:
+     *           `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     *           where `{project}` can be project id or number.
      *     @type bool $validateOnly
      *           Indicates that the request should be validated without actually
      *           deleting any resources.
@@ -520,12 +522,15 @@ class ExecutionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteExecution($name, array $optionalArgs = [])
+    public function deleteExecution(array $optionalArgs = [])
     {
         $request = new DeleteExecutionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -555,20 +560,20 @@ class ExecutionsGapicClient
      * ```
      * $executionsClient = new ExecutionsClient();
      * try {
-     *     $formattedName = $executionsClient->executionName('[PROJECT]', '[LOCATION]', '[JOB]', '[EXECUTION]');
-     *     $response = $executionsClient->getExecution($formattedName);
+     *     $response = $executionsClient->getExecution();
      * } finally {
      *     $executionsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full name of the Execution.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
-     *                             where `{project}` can be project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full name of the Execution.
+     *           Format:
+     *           `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+     *           where `{project}` can be project id or number.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -579,12 +584,15 @@ class ExecutionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getExecution($name, array $optionalArgs = [])
+    public function getExecution(array $optionalArgs = [])
     {
         $request = new GetExecutionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -606,9 +614,8 @@ class ExecutionsGapicClient
      * ```
      * $executionsClient = new ExecutionsClient();
      * try {
-     *     $formattedParent = $executionsClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $executionsClient->listExecutions($formattedParent);
+     *     $pagedResponse = $executionsClient->listExecutions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -616,7 +623,7 @@ class ExecutionsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $executionsClient->listExecutions($formattedParent);
+     *     $pagedResponse = $executionsClient->listExecutions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -625,13 +632,14 @@ class ExecutionsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Execution from which the Executions should be listed.
-     *                             To list all Executions across Jobs, use "-" instead of Job name.
-     *                             Format: `projects/{project}/locations/{location}/jobs/{job}`, where
-     *                             `{project}` can be project id or number.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The Execution from which the Executions should be listed.
+     *           To list all Executions across Jobs, use "-" instead of Job name.
+     *           Format: `projects/{project}/locations/{location}/jobs/{job}`, where
+     *           `{project}` can be project id or number.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -653,12 +661,15 @@ class ExecutionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listExecutions($parent, array $optionalArgs = [])
+    public function listExecutions(array $optionalArgs = [])
     {
         $request = new ListExecutionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

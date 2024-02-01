@@ -31,23 +31,19 @@ use Google\Cloud\PubSub\V1\Schema;
 /**
  * Commits a new schema revision to an existing schema.
  *
- * @param string $formattedName The name of the schema we are revising.
- *                              Format is `projects/{project}/schemas/{schema}`. Please see
- *                              {@see SchemaServiceClient::schemaName()} for help formatting this field.
- * @param string $schemaName    Name of the schema.
- *                              Format is `projects/{project}/schemas/{schema}`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function commit_schema_sample(string $formattedName, string $schemaName): void
+function commit_schema_sample(): void
 {
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
     // Prepare the request message.
-    $schema = (new Schema())
-        ->setName($schemaName);
-    $request = (new CommitSchemaRequest())
-        ->setName($formattedName)
-        ->setSchema($schema);
+    $request = new CommitSchemaRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,22 +53,5 @@ function commit_schema_sample(string $formattedName, string $schemaName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SchemaServiceClient::schemaName('[PROJECT]', '[SCHEMA]');
-    $schemaName = '[NAME]';
-
-    commit_schema_sample($formattedName, $schemaName);
 }
 // [END pubsub_v1_generated_SchemaService_CommitSchema_sync]

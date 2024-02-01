@@ -47,8 +47,7 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the project in which to list schemas.
-     *                       Format is `projects/{project-id}`. Please see
-     *                       {@see SchemaServiceClient::projectName()} for help formatting this field.
+     *                       Format is `projects/{project-id}`.
      *
      * @return \Google\Cloud\PubSub\V1\ListSchemasRequest
      *

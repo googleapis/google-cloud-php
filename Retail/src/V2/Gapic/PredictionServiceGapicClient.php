@@ -46,9 +46,7 @@ use Google\Cloud\Retail\V2\UserEvent;
  * ```
  * $predictionServiceClient = new PredictionServiceClient();
  * try {
- *     $placement = 'placement';
- *     $userEvent = new UserEvent();
- *     $response = $predictionServiceClient->predict($placement, $userEvent);
+ *     $response = $predictionServiceClient->predict();
  * } finally {
  *     $predictionServiceClient->close();
  * }
@@ -281,45 +279,45 @@ class PredictionServiceGapicClient
      * ```
      * $predictionServiceClient = new PredictionServiceClient();
      * try {
-     *     $placement = 'placement';
-     *     $userEvent = new UserEvent();
-     *     $response = $predictionServiceClient->predict($placement, $userEvent);
+     *     $response = $predictionServiceClient->predict();
      * } finally {
      *     $predictionServiceClient->close();
      * }
      * ```
      *
-     * @param string    $placement    Required. Full resource name of the format:
-     *                                `{placement=projects/&#42;/locations/global/catalogs/default_catalog/servingConfigs/*}`
-     *                                or
-     *                                `{placement=projects/&#42;/locations/global/catalogs/default_catalog/placements/*}`.
-     *                                We recommend using the `servingConfigs` resource. `placements` is a legacy
-     *                                resource.
-     *                                The ID of the Recommendations AI serving config or placement.
-     *                                Before you can request predictions from your model, you must create at
-     *                                least one serving config or placement for it. For more information, see
-     *                                [Manage serving configs]
-     *                                (https://cloud.google.com/retail/docs/manage-configs).
-     *
-     *                                The full list of available serving configs can be seen at
-     *                                https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs
-     * @param UserEvent $userEvent    Required. Context about the user, what they are looking at and what action
-     *                                they took to trigger the predict request. Note that this user event detail
-     *                                won't be ingested to userEvent logs. Thus, a separate userEvent write
-     *                                request is required for event logging.
-     *
-     *                                Don't set
-     *                                [UserEvent.visitor_id][google.cloud.retail.v2.UserEvent.visitor_id] or
-     *                                [UserInfo.user_id][google.cloud.retail.v2.UserInfo.user_id] to the same
-     *                                fixed ID for different users. If you are trying to receive non-personalized
-     *                                recommendations (not recommended; this can negatively impact model
-     *                                performance), instead set
-     *                                [UserEvent.visitor_id][google.cloud.retail.v2.UserEvent.visitor_id] to a
-     *                                random unique ID and leave
-     *                                [UserInfo.user_id][google.cloud.retail.v2.UserInfo.user_id] unset.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $placement
+     *           Required. Full resource name of the format:
+     *           `{placement=projects/&#42;/locations/global/catalogs/default_catalog/servingConfigs/*}`
+     *           or
+     *           `{placement=projects/&#42;/locations/global/catalogs/default_catalog/placements/*}`.
+     *           We recommend using the `servingConfigs` resource. `placements` is a legacy
+     *           resource.
+     *           The ID of the Recommendations AI serving config or placement.
+     *           Before you can request predictions from your model, you must create at
+     *           least one serving config or placement for it. For more information, see
+     *           [Manage serving configs]
+     *           (https://cloud.google.com/retail/docs/manage-configs).
+     *
+     *           The full list of available serving configs can be seen at
+     *           https://console.cloud.google.com/ai/retail/catalogs/default_catalog/configs
+     *     @type UserEvent $userEvent
+     *           Required. Context about the user, what they are looking at and what action
+     *           they took to trigger the predict request. Note that this user event detail
+     *           won't be ingested to userEvent logs. Thus, a separate userEvent write
+     *           request is required for event logging.
+     *
+     *           Don't set
+     *           [UserEvent.visitor_id][google.cloud.retail.v2.UserEvent.visitor_id] or
+     *           [UserInfo.user_id][google.cloud.retail.v2.UserInfo.user_id] to the same
+     *           fixed ID for different users. If you are trying to receive non-personalized
+     *           recommendations (not recommended; this can negatively impact model
+     *           performance), instead set
+     *           [UserEvent.visitor_id][google.cloud.retail.v2.UserEvent.visitor_id] to a
+     *           random unique ID and leave
+     *           [UserInfo.user_id][google.cloud.retail.v2.UserInfo.user_id] unset.
      *     @type int $pageSize
      *           Maximum number of results to return. Set this property to the number of
      *           prediction results needed. If zero, the service will choose a reasonable
@@ -428,13 +426,19 @@ class PredictionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function predict($placement, $userEvent, array $optionalArgs = [])
+    public function predict(array $optionalArgs = [])
     {
         $request = new PredictRequest();
         $requestParamHeaders = [];
-        $request->setPlacement($placement);
-        $request->setUserEvent($userEvent);
-        $requestParamHeaders['placement'] = $placement;
+        if (isset($optionalArgs['placement'])) {
+            $request->setPlacement($optionalArgs['placement']);
+            $requestParamHeaders['placement'] = $optionalArgs['placement'];
+        }
+
+        if (isset($optionalArgs['userEvent'])) {
+            $request->setUserEvent($optionalArgs['userEvent']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }

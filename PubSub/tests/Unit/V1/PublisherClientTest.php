@@ -35,7 +35,6 @@ use Google\Cloud\PubSub\V1\ListTopicsResponse;
 use Google\Cloud\PubSub\V1\PublishResponse;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\Topic;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -85,17 +84,13 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName2);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->createTopic($name);
+        $response = $gapicClient->createTopic();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/CreateTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -117,10 +112,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->createTopic($name);
+            $gapicClient->createTopic();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -143,16 +136,12 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $gapicClient->deleteTopic($formattedTopic);
+        $gapicClient->deleteTopic();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/DeleteTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -174,10 +163,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $gapicClient->deleteTopic($formattedTopic);
+            $gapicClient->deleteTopic();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -200,17 +187,13 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DetachSubscriptionResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $response = $gapicClient->detachSubscription($formattedSubscription);
+        $response = $gapicClient->detachSubscription();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/DetachSubscription', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSubscription();
-        $this->assertProtobufEquals($formattedSubscription, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -232,10 +215,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $gapicClient->detachSubscription($formattedSubscription);
+            $gapicClient->detachSubscription();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -264,17 +245,13 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $response = $gapicClient->getTopic($formattedTopic);
+        $response = $gapicClient->getTopic();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/GetTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -296,10 +273,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $gapicClient->getTopic($formattedTopic);
+            $gapicClient->getTopic();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -329,9 +304,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnapshots($snapshots);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $response = $gapicClient->listTopicSnapshots($formattedTopic);
+        $response = $gapicClient->listTopicSnapshots();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -341,8 +314,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/ListTopicSnapshots', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -364,10 +335,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $gapicClient->listTopicSnapshots($formattedTopic);
+            $gapicClient->listTopicSnapshots();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -397,9 +366,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubscriptions($subscriptions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $response = $gapicClient->listTopicSubscriptions($formattedTopic);
+        $response = $gapicClient->listTopicSubscriptions();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -409,8 +376,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/ListTopicSubscriptions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -432,10 +397,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $gapicClient->listTopicSubscriptions($formattedTopic);
+            $gapicClient->listTopicSubscriptions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -465,9 +428,7 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTopics($topics);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedProject = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listTopics($formattedProject);
+        $response = $gapicClient->listTopics();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -477,8 +438,6 @@ class PublisherClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/ListTopics', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($formattedProject, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -500,10 +459,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedProject = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listTopics($formattedProject);
+            $gapicClient->listTopics();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -526,20 +483,13 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new PublishResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $messages = [];
-        $response = $gapicClient->publish($formattedTopic, $messages);
+        $response = $gapicClient->publish();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/Publish', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($formattedTopic, $actualValue);
-        $actualValue = $actualRequestObject->getMessages();
-        $this->assertProtobufEquals($messages, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -561,11 +511,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $messages = [];
         try {
-            $gapicClient->publish($formattedTopic, $messages);
+            $gapicClient->publish();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -594,22 +541,13 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $topic = new Topic();
-        $topicName = 'topicName388205658';
-        $topic->setName($topicName);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateTopic($topic, $updateMask);
+        $response = $gapicClient->updateTopic();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.pubsub.v1.Publisher/UpdateTopic', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTopic();
-        $this->assertProtobufEquals($topic, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -631,13 +569,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $topic = new Topic();
-        $topicName = 'topicName388205658';
-        $topic->setName($topicName);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateTopic($topic, $updateMask);
+            $gapicClient->updateTopic();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -664,17 +597,13 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -696,10 +625,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -726,20 +653,13 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -761,11 +681,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -788,20 +705,13 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -823,11 +733,8 @@ class PublisherClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

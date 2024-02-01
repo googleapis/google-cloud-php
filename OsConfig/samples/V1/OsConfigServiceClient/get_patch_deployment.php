@@ -31,18 +31,19 @@ use Google\Cloud\OsConfig\V1\PatchDeployment;
 /**
  * Get an OS Config patch deployment.
  *
- * @param string $formattedName The resource name of the patch deployment in the form
- *                              `projects/&#42;/patchDeployments/*`. Please see
- *                              {@see OsConfigServiceClient::patchDeploymentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_patch_deployment_sample(string $formattedName): void
+function get_patch_deployment_sample(): void
 {
     // Create a client.
     $osConfigServiceClient = new OsConfigServiceClient();
 
     // Prepare the request message.
-    $request = (new GetPatchDeploymentRequest())
-        ->setName($formattedName);
+    $request = new GetPatchDeploymentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function get_patch_deployment_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = OsConfigServiceClient::patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-
-    get_patch_deployment_sample($formattedName);
 }
 // [END osconfig_v1_generated_OsConfigService_GetPatchDeployment_sync]

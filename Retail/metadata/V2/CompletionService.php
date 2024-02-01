@@ -23,12 +23,12 @@ class CompletionService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ý
-/google/cloud/retail/v2/completion_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto#google/longrunning/operations.proto"Ý
-CompleteQueryRequest6
-catalog (	B%àAúA
-retail.googleapis.com/Catalog
-query (	BàA
+ÿ
+/google/cloud/retail/v2/completion_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto#google/longrunning/operations.proto"ß
+CompleteQueryRequest7
+catalog (	B&âAúA
+retail.googleapis.com/Catalog
+query (	BâA
 
 visitor_id (	
 language_codes (	
@@ -53,8 +53,8 @@ attributes (2N.google.cloud.retail.v2.CompleteQueryResponse.CompletionResult
 recent_search (	2²
 CompletionService³
 CompleteQuery,.google.cloud.retail.v2.CompleteQueryRequest-.google.cloud.retail.v2.CompleteQueryResponse"E‚Óä“?=/v2/{catalog=projects/*/locations/*/catalogs/*}:completeQuery›
-ImportCompletionData3.google.cloud.retail.v2.ImportCompletionDataRequest.google.longrunning.Operation"®‚Óä“I"D/v2/{parent=projects/*/locations/*/catalogs/*}/completionData:import:*ÊA\\
-3google.cloud.retail.v2.ImportCompletionDataResponse%google.cloud.retail.v2.ImportMetadataIÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÁ
+ImportCompletionData3.google.cloud.retail.v2.ImportCompletionDataRequest.google.longrunning.Operation"®ÊA\\
+3google.cloud.retail.v2.ImportCompletionDataResponse%google.cloud.retail.v2.ImportMetadata‚Óä“I"D/v2/{parent=projects/*/locations/*/catalogs/*}/completionData:import:*IÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÁ
 com.google.cloud.retail.v2BCompletionServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
         , true);
 
