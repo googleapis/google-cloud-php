@@ -34,22 +34,19 @@ use Google\Rpc\Status;
  * Undeploys an Index from an IndexEndpoint, removing a DeployedIndex from it,
  * and freeing all resources it's using.
  *
- * @param string $formattedIndexEndpoint The name of the IndexEndpoint resource from which to undeploy an
- *                                       Index. Format:
- *                                       `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
- *                                       Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
- * @param string $deployedIndexId        The ID of the DeployedIndex to be undeployed from the
- *                                       IndexEndpoint.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function undeploy_index_sample(string $formattedIndexEndpoint, string $deployedIndexId): void
+function undeploy_index_sample(): void
 {
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
     // Prepare the request message.
-    $request = (new UndeployIndexRequest())
-        ->setIndexEndpoint($formattedIndexEndpoint)
-        ->setDeployedIndexId($deployedIndexId);
+    $request = new UndeployIndexRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,26 +66,5 @@ function undeploy_index_sample(string $formattedIndexEndpoint, string $deployedI
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedIndexEndpoint = IndexEndpointServiceClient::indexEndpointName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[INDEX_ENDPOINT]'
-    );
-    $deployedIndexId = '[DEPLOYED_INDEX_ID]';
-
-    undeploy_index_sample($formattedIndexEndpoint, $deployedIndexId);
 }
 // [END aiplatform_v1_generated_IndexEndpointService_UndeployIndex_sync]

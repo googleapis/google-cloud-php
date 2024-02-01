@@ -47,7 +47,6 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      * @param string                              $parent    Required. The resource name of the MetadataStore where the Context should
      *                                                       be created. Format:
      *                                                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
-     *                                                       Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Context $context   Required. The Context to create.
      * @param string                              $contextId The {context} portion of the resource name with the format:
      *                                                       `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`.

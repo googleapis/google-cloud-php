@@ -35,7 +35,6 @@ class BatchImportEvaluatedAnnotationsRequest extends \Google\Protobuf\Internal\M
      * @param string                                            $parent               Required. The name of the parent ModelEvaluationSlice resource.
      *                                                                                Format:
      *                                                                                `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
-     *                                                                                Please see {@see ModelServiceClient::modelEvaluationSliceName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\EvaluatedAnnotation[] $evaluatedAnnotations Required. Evaluated annotations resource to be imported.
      *
      * @return \Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsRequest

@@ -43,7 +43,6 @@ class ListDeploymentResourcePoolsRequest extends \Google\Protobuf\Internal\Messa
     /**
      * @param string $parent Required. The parent Location which owns this collection of
      *                       DeploymentResourcePools. Format: `projects/{project}/locations/{location}`
-     *                       Please see {@see DeploymentResourcePoolServiceClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListDeploymentResourcePoolsRequest
      *

@@ -20,15 +20,15 @@ class MetadataStore
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˚
-/google/cloud/aiplatform/v1/metadata_store.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.protogoogle/protobuf/timestamp.proto"Á
-MetadataStore
-name (	B‡A4
-create_time (2.google.protobuf.TimestampB‡A4
-update_time (2.google.protobuf.TimestampB‡AC
+ˇ
+/google/cloud/aiplatform/v1/metadata_store.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.protogoogle/protobuf/timestamp.proto"Î
+MetadataStore
+name (	B‚A5
+create_time (2.google.protobuf.TimestampB‚A5
+update_time (2.google.protobuf.TimestampB‚AC
 encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpec
-description (	P
-state (2<.google.cloud.aiplatform.v1.MetadataStore.MetadataStoreStateB‡A4
+description (	Q
+state (2<.google.cloud.aiplatform.v1.MetadataStore.MetadataStoreStateB‚A4
 MetadataStoreState
 disk_utilization_bytes (:uÍAr
 \'aiplatform.googleapis.com/MetadataStoreGprojects/{project}/locations/{location}/metadataStores/{metadata_store}BÀ

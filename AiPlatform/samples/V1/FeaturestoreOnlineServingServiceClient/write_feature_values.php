@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_FeaturestoreOnlineServingService_WriteFeatureValues_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\FeaturestoreOnlineServingServiceClient;
-use Google\Cloud\AIPlatform\V1\WriteFeatureValuesPayload;
 use Google\Cloud\AIPlatform\V1\WriteFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\WriteFeatureValuesResponse;
 
@@ -36,29 +35,19 @@ use Google\Cloud\AIPlatform\V1\WriteFeatureValuesResponse;
  * values to be written must have timestamp within the online storage
  * retention.
  *
- * @param string $formattedEntityType The resource name of the EntityType for the entities being
- *                                    written. Value format:
- *                                    `projects/{project}/locations/{location}/featurestores/
- *                                    {featurestore}/entityTypes/{entityType}`. For example,
- *                                    for a machine learning model predicting user clicks on a website, an
- *                                    EntityType ID could be `user`. Please see
- *                                    {@see FeaturestoreOnlineServingServiceClient::entityTypeName()} for help formatting this field.
- * @param string $payloadsEntityId    The ID of the entity.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function write_feature_values_sample(string $formattedEntityType, string $payloadsEntityId): void
+function write_feature_values_sample(): void
 {
     // Create a client.
     $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
 
     // Prepare the request message.
-    $payloadsFeatureValues = [];
-    $writeFeatureValuesPayload = (new WriteFeatureValuesPayload())
-        ->setEntityId($payloadsEntityId)
-        ->setFeatureValues($payloadsFeatureValues);
-    $payloads = [$writeFeatureValuesPayload,];
-    $request = (new WriteFeatureValuesRequest())
-        ->setEntityType($formattedEntityType)
-        ->setPayloads($payloads);
+    $request = new WriteFeatureValuesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,27 +57,5 @@ function write_feature_values_sample(string $formattedEntityType, string $payloa
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedEntityType = FeaturestoreOnlineServingServiceClient::entityTypeName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[FEATURESTORE]',
-        '[ENTITY_TYPE]'
-    );
-    $payloadsEntityId = '[ENTITY_ID]';
-
-    write_feature_values_sample($formattedEntityType, $payloadsEntityId);
 }
 // [END aiplatform_v1_generated_FeaturestoreOnlineServingService_WriteFeatureValues_sync]

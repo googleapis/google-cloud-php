@@ -37,7 +37,6 @@ use Google\Cloud\AIPlatform\V1\CopyModelResponse;
 use Google\Cloud\AIPlatform\V1\DeleteModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest;
-use Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig;
 use Google\Cloud\AIPlatform\V1\ExportModelResponse;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationSliceRequest;
@@ -72,7 +71,6 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -118,12 +116,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse = new BatchImportEvaluatedAnnotationsResponse();
         $expectedResponse->setImportedEvaluatedAnnotationsCount($importedEvaluatedAnnotationsCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
-        $evaluatedAnnotations = [];
-        $request = (new BatchImportEvaluatedAnnotationsRequest())
-            ->setParent($formattedParent)
-            ->setEvaluatedAnnotations($evaluatedAnnotations);
+        $request = new BatchImportEvaluatedAnnotationsRequest();
         $response = $gapicClient->batchImportEvaluatedAnnotations($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -131,10 +124,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/BatchImportEvaluatedAnnotations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEvaluatedAnnotations();
-        $this->assertProtobufEquals($evaluatedAnnotations, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -156,12 +145,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
-        $evaluatedAnnotations = [];
-        $request = (new BatchImportEvaluatedAnnotationsRequest())
-            ->setParent($formattedParent)
-            ->setEvaluatedAnnotations($evaluatedAnnotations);
+        $request = new BatchImportEvaluatedAnnotationsRequest();
         try {
             $gapicClient->batchImportEvaluatedAnnotations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -186,12 +170,7 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchImportModelEvaluationSlicesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
-        $modelEvaluationSlices = [];
-        $request = (new BatchImportModelEvaluationSlicesRequest())
-            ->setParent($formattedParent)
-            ->setModelEvaluationSlices($modelEvaluationSlices);
+        $request = new BatchImportModelEvaluationSlicesRequest();
         $response = $gapicClient->batchImportModelEvaluationSlices($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -199,10 +178,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/BatchImportModelEvaluationSlices', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getModelEvaluationSlices();
-        $this->assertProtobufEquals($modelEvaluationSlices, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -224,12 +199,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
-        $modelEvaluationSlices = [];
-        $request = (new BatchImportModelEvaluationSlicesRequest())
-            ->setParent($formattedParent)
-            ->setModelEvaluationSlices($modelEvaluationSlices);
+        $request = new BatchImportModelEvaluationSlicesRequest();
         try {
             $gapicClient->batchImportModelEvaluationSlices($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -276,12 +246,7 @@ class ModelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $formattedSourceModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new CopyModelRequest())
-            ->setParent($formattedParent)
-            ->setSourceModel($formattedSourceModel);
+        $request = new CopyModelRequest();
         $response = $gapicClient->copyModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -292,10 +257,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/CopyModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSourceModel();
-        $this->assertProtobufEquals($formattedSourceModel, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/copyModelTest');
         $response->pollUntilComplete([
@@ -346,12 +307,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $formattedSourceModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new CopyModelRequest())
-            ->setParent($formattedParent)
-            ->setSourceModel($formattedSourceModel);
+        $request = new CopyModelRequest();
         $response = $gapicClient->copyModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -403,10 +359,7 @@ class ModelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new DeleteModelRequest())
-            ->setName($formattedName);
+        $request = new DeleteModelRequest();
         $response = $gapicClient->deleteModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -417,8 +370,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/DeleteModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteModelTest');
         $response->pollUntilComplete([
@@ -469,10 +420,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new DeleteModelRequest())
-            ->setName($formattedName);
+        $request = new DeleteModelRequest();
         $response = $gapicClient->deleteModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -524,10 +472,7 @@ class ModelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new DeleteModelVersionRequest())
-            ->setName($formattedName);
+        $request = new DeleteModelVersionRequest();
         $response = $gapicClient->deleteModelVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -538,8 +483,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/DeleteModelVersion', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteModelVersionTest');
         $response->pollUntilComplete([
@@ -590,10 +533,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new DeleteModelVersionRequest())
-            ->setName($formattedName);
+        $request = new DeleteModelVersionRequest();
         $response = $gapicClient->deleteModelVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -645,12 +585,7 @@ class ModelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $outputConfig = new OutputConfig();
-        $request = (new ExportModelRequest())
-            ->setName($formattedName)
-            ->setOutputConfig($outputConfig);
+        $request = new ExportModelRequest();
         $response = $gapicClient->exportModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -661,10 +596,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/ExportModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getOutputConfig();
-        $this->assertProtobufEquals($outputConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportModelTest');
         $response->pollUntilComplete([
@@ -715,12 +646,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $outputConfig = new OutputConfig();
-        $request = (new ExportModelRequest())
-            ->setName($formattedName)
-            ->setOutputConfig($outputConfig);
+        $request = new ExportModelRequest();
         $response = $gapicClient->exportModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -776,10 +702,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new GetModelRequest())
-            ->setName($formattedName);
+        $request = new GetModelRequest();
         $response = $gapicClient->getModel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -787,8 +710,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/GetModel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -810,10 +731,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new GetModelRequest())
-            ->setName($formattedName);
+        $request = new GetModelRequest();
         try {
             $gapicClient->getModel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -848,10 +766,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setDataItemSchemaUri($dataItemSchemaUri);
         $expectedResponse->setAnnotationSchemaUri($annotationSchemaUri);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
-        $request = (new GetModelEvaluationRequest())
-            ->setName($formattedName);
+        $request = new GetModelEvaluationRequest();
         $response = $gapicClient->getModelEvaluation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -859,8 +774,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/GetModelEvaluation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -882,10 +795,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
-        $request = (new GetModelEvaluationRequest())
-            ->setName($formattedName);
+        $request = new GetModelEvaluationRequest();
         try {
             $gapicClient->getModelEvaluation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -914,10 +824,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setMetricsSchemaUri($metricsSchemaUri);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
-        $request = (new GetModelEvaluationSliceRequest())
-            ->setName($formattedName);
+        $request = new GetModelEvaluationSliceRequest();
         $response = $gapicClient->getModelEvaluationSlice($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -925,8 +832,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/GetModelEvaluationSlice', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -948,10 +853,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
-        $request = (new GetModelEvaluationSliceRequest())
-            ->setName($formattedName);
+        $request = new GetModelEvaluationSliceRequest();
         try {
             $gapicClient->getModelEvaluationSlice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -986,12 +888,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setDataItemSchemaUri($dataItemSchemaUri);
         $expectedResponse->setAnnotationSchemaUri($annotationSchemaUri);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $modelEvaluation = new ModelEvaluation();
-        $request = (new ImportModelEvaluationRequest())
-            ->setParent($formattedParent)
-            ->setModelEvaluation($modelEvaluation);
+        $request = new ImportModelEvaluationRequest();
         $response = $gapicClient->importModelEvaluation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -999,10 +896,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/ImportModelEvaluation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getModelEvaluation();
-        $this->assertProtobufEquals($modelEvaluation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1024,12 +917,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $modelEvaluation = new ModelEvaluation();
-        $request = (new ImportModelEvaluationRequest())
-            ->setParent($formattedParent)
-            ->setModelEvaluation($modelEvaluation);
+        $request = new ImportModelEvaluationRequest();
         try {
             $gapicClient->importModelEvaluation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1061,10 +949,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModelEvaluationSlices($modelEvaluationSlices);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
-        $request = (new ListModelEvaluationSlicesRequest())
-            ->setParent($formattedParent);
+        $request = new ListModelEvaluationSlicesRequest();
         $response = $gapicClient->listModelEvaluationSlices($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1075,8 +960,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/ListModelEvaluationSlices', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1098,10 +981,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
-        $request = (new ListModelEvaluationSlicesRequest())
-            ->setParent($formattedParent);
+        $request = new ListModelEvaluationSlicesRequest();
         try {
             $gapicClient->listModelEvaluationSlices($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1133,10 +1013,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModelEvaluations($modelEvaluations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new ListModelEvaluationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListModelEvaluationsRequest();
         $response = $gapicClient->listModelEvaluations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1147,8 +1024,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/ListModelEvaluations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1170,10 +1045,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new ListModelEvaluationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListModelEvaluationsRequest();
         try {
             $gapicClient->listModelEvaluations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1205,10 +1077,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModels($models);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new ListModelVersionsRequest())
-            ->setName($formattedName);
+        $request = new ListModelVersionsRequest();
         $response = $gapicClient->listModelVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1219,8 +1088,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/ListModelVersions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1242,10 +1109,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new ListModelVersionsRequest())
-            ->setName($formattedName);
+        $request = new ListModelVersionsRequest();
         try {
             $gapicClient->listModelVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1277,10 +1141,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModels($models);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListModelsRequest())
-            ->setParent($formattedParent);
+        $request = new ListModelsRequest();
         $response = $gapicClient->listModels($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1291,8 +1152,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/ListModels', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1314,10 +1173,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListModelsRequest())
-            ->setParent($formattedParent);
+        $request = new ListModelsRequest();
         try {
             $gapicClient->listModels($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1364,12 +1220,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $versionAliases = [];
-        $request = (new MergeVersionAliasesRequest())
-            ->setName($formattedName)
-            ->setVersionAliases($versionAliases);
+        $request = new MergeVersionAliasesRequest();
         $response = $gapicClient->mergeVersionAliases($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1377,10 +1228,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/MergeVersionAliases', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getVersionAliases();
-        $this->assertProtobufEquals($versionAliases, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1402,12 +1249,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $versionAliases = [];
-        $request = (new MergeVersionAliasesRequest())
-            ->setName($formattedName)
-            ->setVersionAliases($versionAliases);
+        $request = new MergeVersionAliasesRequest();
         try {
             $gapicClient->mergeVersionAliases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1450,10 +1292,7 @@ class ModelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new UpdateExplanationDatasetRequest())
-            ->setModel($formattedModel);
+        $request = new UpdateExplanationDatasetRequest();
         $response = $gapicClient->updateExplanationDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1464,8 +1303,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/UpdateExplanationDataset', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getModel();
-        $this->assertProtobufEquals($formattedModel, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateExplanationDatasetTest');
         $response->pollUntilComplete([
@@ -1516,10 +1353,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new UpdateExplanationDatasetRequest())
-            ->setModel($formattedModel);
+        $request = new UpdateExplanationDatasetRequest();
         $response = $gapicClient->updateExplanationDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1575,14 +1409,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $model = new Model();
-        $modelDisplayName = 'modelDisplayName1578770308';
-        $model->setDisplayName($modelDisplayName);
-        $updateMask = new FieldMask();
-        $request = (new UpdateModelRequest())
-            ->setModel($model)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateModelRequest();
         $response = $gapicClient->updateModel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1590,10 +1417,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/UpdateModel', $actualFuncCall);
-        $actualValue = $actualRequestObject->getModel();
-        $this->assertProtobufEquals($model, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1615,14 +1438,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $model = new Model();
-        $modelDisplayName = 'modelDisplayName1578770308';
-        $model->setDisplayName($modelDisplayName);
-        $updateMask = new FieldMask();
-        $request = (new UpdateModelRequest())
-            ->setModel($model)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateModelRequest();
         try {
             $gapicClient->updateModel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1669,14 +1485,7 @@ class ModelServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $model = new Model();
-        $modelDisplayName = 'modelDisplayName1578770308';
-        $model->setDisplayName($modelDisplayName);
-        $request = (new UploadModelRequest())
-            ->setParent($formattedParent)
-            ->setModel($model);
+        $request = new UploadModelRequest();
         $response = $gapicClient->uploadModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1687,10 +1496,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/UploadModel', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getModel();
-        $this->assertProtobufEquals($model, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/uploadModelTest');
         $response->pollUntilComplete([
@@ -1741,14 +1546,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $model = new Model();
-        $modelDisplayName = 'modelDisplayName1578770308';
-        $model->setDisplayName($modelDisplayName);
-        $request = (new UploadModelRequest())
-            ->setParent($formattedParent)
-            ->setModel($model);
+        $request = new UploadModelRequest();
         $response = $gapicClient->uploadModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1910,10 +1708,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1921,8 +1716,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1944,10 +1737,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1976,12 +1766,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1989,10 +1774,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2014,12 +1795,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2044,12 +1820,7 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2057,10 +1828,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2082,12 +1849,7 @@ class ModelServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2114,12 +1876,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse = new BatchImportEvaluatedAnnotationsResponse();
         $expectedResponse->setImportedEvaluatedAnnotationsCount($importedEvaluatedAnnotationsCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
-        $evaluatedAnnotations = [];
-        $request = (new BatchImportEvaluatedAnnotationsRequest())
-            ->setParent($formattedParent)
-            ->setEvaluatedAnnotations($evaluatedAnnotations);
+        $request = new BatchImportEvaluatedAnnotationsRequest();
         $response = $gapicClient->batchImportEvaluatedAnnotationsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2127,10 +1884,6 @@ class ModelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ModelService/BatchImportEvaluatedAnnotations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEvaluatedAnnotations();
-        $this->assertProtobufEquals($evaluatedAnnotations, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

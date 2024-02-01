@@ -33,22 +33,19 @@ use Google\Rpc\Status;
 /**
  * Purges Executions.
  *
- * @param string $formattedParent The metadata store to purge Executions from.
- *                                Format:
- *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
- *                                Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
- * @param string $filter          A required filter matching the Executions to be purged.
- *                                E.g., `update_time <= 2020-11-19T11:30:00-04:00`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function purge_executions_sample(string $formattedParent, string $filter): void
+function purge_executions_sample(): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = (new PurgeExecutionsRequest())
-        ->setParent($formattedParent)
-        ->setFilter($filter);
+    $request = new PurgeExecutionsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,26 +65,5 @@ function purge_executions_sample(string $formattedParent, string $filter): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MetadataServiceClient::metadataStoreName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[METADATA_STORE]'
-    );
-    $filter = '[FILTER]';
-
-    purge_executions_sample($formattedParent, $filter);
 }
 // [END aiplatform_v1_generated_MetadataService_PurgeExecutions_sync]

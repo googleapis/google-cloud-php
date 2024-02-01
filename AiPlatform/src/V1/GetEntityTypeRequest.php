@@ -29,7 +29,6 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the EntityType resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     *                     Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetEntityTypeRequest
      *

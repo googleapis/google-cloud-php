@@ -47,7 +47,6 @@ class RawPredictRequest extends \Google\Protobuf\Internal\Message
      * @param string               $endpoint Required. The name of the Endpoint requested to serve the prediction.
      *                                       Format:
      *                                       `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     *                                       Please see {@see PredictionServiceClient::endpointName()} for help formatting this field.
      * @param \Google\Api\HttpBody $httpBody The prediction input. Supports HTTP headers and arbitrary data payload.
      *
      *                                       A [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] may have an

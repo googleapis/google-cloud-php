@@ -17,31 +17,31 @@ class Io
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Î
-#google/cloud/aiplatform/v1/io.protogoogle.cloud.aiplatform.v1"L
+×
+#google/cloud/aiplatform/v1/io.protogoogle.cloud.aiplatform.v1"M
 
-AvroSource>
+AvroSource?
 
-gcs_source (2%.google.cloud.aiplatform.v1.GcsSourceBàA"K
-	CsvSource>
+gcs_source (2%.google.cloud.aiplatform.v1.GcsSourceBâA"L
+	CsvSource?
 
-gcs_source (2%.google.cloud.aiplatform.v1.GcsSourceBàA"
-	GcsSource
-uris (	BàA"0
-GcsDestination
-output_uri_prefix (	BàA"(
-BigQuerySource
-	input_uri (	BàA".
-BigQueryDestination
+gcs_source (2%.google.cloud.aiplatform.v1.GcsSourceBâA"
+	GcsSource
+uris (	BâA"1
+GcsDestination
+output_uri_prefix (	BâA")
+BigQuerySource
+	input_uri (	BâA"/
+BigQueryDestination
 
-output_uri (	BàA"Z
-CsvDestinationH
-gcs_destination (2*.google.cloud.aiplatform.v1.GcsDestinationBàA"_
-TFRecordDestinationH
-gcs_destination (2*.google.cloud.aiplatform.v1.GcsDestinationBàA"7
-ContainerRegistryDestination
+output_uri (	BâA"[
+CsvDestinationI
+gcs_destination (2*.google.cloud.aiplatform.v1.GcsDestinationBâA"`
+TFRecordDestinationI
+gcs_destination (2*.google.cloud.aiplatform.v1.GcsDestinationBâA"8
+ContainerRegistryDestination
 
-output_uri (	BàABÅ
+output_uri (	BâABÅ
 com.google.cloud.aiplatform.v1BIoProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

@@ -45,9 +45,7 @@ function update_feature_view_sample(): void
     $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
 
     // Prepare the request message.
-    $featureView = new FeatureView();
-    $request = (new UpdateFeatureViewRequest())
-        ->setFeatureView($featureView);
+    $request = new UpdateFeatureViewRequest();
 
     // Call the API and handle any network failures.
     try {

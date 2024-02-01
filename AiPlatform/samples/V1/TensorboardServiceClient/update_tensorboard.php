@@ -28,26 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
 use Google\Cloud\AIPlatform\V1\Tensorboard;
 use Google\Cloud\AIPlatform\V1\UpdateTensorboardRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates a Tensorboard.
  *
- * @param string $tensorboardDisplayName User provided name of this Tensorboard.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_tensorboard_sample(string $tensorboardDisplayName): void
+function update_tensorboard_sample(): void
 {
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $tensorboard = (new Tensorboard())
-        ->setDisplayName($tensorboardDisplayName);
-    $request = (new UpdateTensorboardRequest())
-        ->setUpdateMask($updateMask)
-        ->setTensorboard($tensorboard);
+    $request = new UpdateTensorboardRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,21 +65,5 @@ function update_tensorboard_sample(string $tensorboardDisplayName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $tensorboardDisplayName = '[DISPLAY_NAME]';
-
-    update_tensorboard_sample($tensorboardDisplayName);
 }
 // [END aiplatform_v1_generated_TensorboardService_UpdateTensorboard_sync]

@@ -61,9 +61,7 @@ use Google\Protobuf\Value;
  * ```
  * $llmUtilityServiceClient = new LlmUtilityServiceClient();
  * try {
- *     $formattedEndpoint = $llmUtilityServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
- *     $instances = [];
- *     $response = $llmUtilityServiceClient->computeTokens($formattedEndpoint, $instances);
+ *     $response = $llmUtilityServiceClient->computeTokens();
  * } finally {
  *     $llmUtilityServiceClient->close();
  * }
@@ -365,22 +363,22 @@ class LlmUtilityServiceGapicClient
      * ```
      * $llmUtilityServiceClient = new LlmUtilityServiceClient();
      * try {
-     *     $formattedEndpoint = $llmUtilityServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-     *     $instances = [];
-     *     $response = $llmUtilityServiceClient->computeTokens($formattedEndpoint, $instances);
+     *     $response = $llmUtilityServiceClient->computeTokens();
      * } finally {
      *     $llmUtilityServiceClient->close();
      * }
      * ```
      *
-     * @param string  $endpoint     Required. The name of the Endpoint requested to get lists of tokens and
-     *                              token ids.
-     * @param Value[] $instances    Required. The instances that are the input to token computing API call.
-     *                              Schema is identical to the prediction schema of the text model, even for
-     *                              the non-text models, like chat models, or Codey models.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $endpoint
+     *           Required. The name of the Endpoint requested to get lists of tokens and
+     *           token ids.
+     *     @type Value[] $instances
+     *           Required. The instances that are the input to token computing API call.
+     *           Schema is identical to the prediction schema of the text model, even for
+     *           the non-text models, like chat models, or Codey models.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -391,16 +389,19 @@ class LlmUtilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function computeTokens(
-        $endpoint,
-        $instances,
-        array $optionalArgs = []
-    ) {
+    public function computeTokens(array $optionalArgs = [])
+    {
         $request = new ComputeTokensRequest();
         $requestParamHeaders = [];
-        $request->setEndpoint($endpoint);
-        $request->setInstances($instances);
-        $requestParamHeaders['endpoint'] = $endpoint;
+        if (isset($optionalArgs['endpoint'])) {
+            $request->setEndpoint($optionalArgs['endpoint']);
+            $requestParamHeaders['endpoint'] = $optionalArgs['endpoint'];
+        }
+
+        if (isset($optionalArgs['instances'])) {
+            $request->setInstances($optionalArgs['instances']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -422,28 +423,28 @@ class LlmUtilityServiceGapicClient
      * ```
      * $llmUtilityServiceClient = new LlmUtilityServiceClient();
      * try {
-     *     $formattedEndpoint = $llmUtilityServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-     *     $model = 'model';
-     *     $instances = [];
-     *     $contents = [];
-     *     $response = $llmUtilityServiceClient->countTokens($formattedEndpoint, $model, $instances, $contents);
+     *     $response = $llmUtilityServiceClient->countTokens();
      * } finally {
      *     $llmUtilityServiceClient->close();
      * }
      * ```
      *
-     * @param string    $endpoint     Required. The name of the Endpoint requested to perform token counting.
-     *                                Format:
-     *                                `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     * @param string    $model        Required. The name of the publisher model requested to serve the
-     *                                prediction. Format:
-     *                                `projects/{project}/locations/{location}/publishers/&#42;/models/*`
-     * @param Value[]   $instances    Required. The instances that are the input to token counting call.
-     *                                Schema is identical to the prediction schema of the underlying model.
-     * @param Content[] $contents     Required. Input content.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $endpoint
+     *           Required. The name of the Endpoint requested to perform token counting.
+     *           Format:
+     *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
+     *     @type string $model
+     *           Required. The name of the publisher model requested to serve the
+     *           prediction. Format:
+     *           `projects/{project}/locations/{location}/publishers/&#42;/models/*`
+     *     @type Value[] $instances
+     *           Required. The instances that are the input to token counting call.
+     *           Schema is identical to the prediction schema of the underlying model.
+     *     @type Content[] $contents
+     *           Required. Input content.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -454,20 +455,27 @@ class LlmUtilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function countTokens(
-        $endpoint,
-        $model,
-        $instances,
-        $contents,
-        array $optionalArgs = []
-    ) {
+    public function countTokens(array $optionalArgs = [])
+    {
         $request = new CountTokensRequest();
         $requestParamHeaders = [];
-        $request->setEndpoint($endpoint);
-        $request->setModel($model);
-        $request->setInstances($instances);
-        $request->setContents($contents);
-        $requestParamHeaders['endpoint'] = $endpoint;
+        if (isset($optionalArgs['endpoint'])) {
+            $request->setEndpoint($optionalArgs['endpoint']);
+            $requestParamHeaders['endpoint'] = $optionalArgs['endpoint'];
+        }
+
+        if (isset($optionalArgs['model'])) {
+            $request->setModel($optionalArgs['model']);
+        }
+
+        if (isset($optionalArgs['instances'])) {
+            $request->setInstances($optionalArgs['instances']);
+        }
+
+        if (isset($optionalArgs['contents'])) {
+            $request->setContents($optionalArgs['contents']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -630,18 +638,18 @@ class LlmUtilityServiceGapicClient
      * ```
      * $llmUtilityServiceClient = new LlmUtilityServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $llmUtilityServiceClient->getIamPolicy($resource);
+     *     $response = $llmUtilityServiceClient->getIamPolicy();
      * } finally {
      *     $llmUtilityServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -655,12 +663,15 @@ class LlmUtilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -692,23 +703,23 @@ class LlmUtilityServiceGapicClient
      * ```
      * $llmUtilityServiceClient = new LlmUtilityServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $llmUtilityServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $llmUtilityServiceClient->setIamPolicy();
      * } finally {
      *     $llmUtilityServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -725,13 +736,19 @@ class LlmUtilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -765,23 +782,23 @@ class LlmUtilityServiceGapicClient
      * ```
      * $llmUtilityServiceClient = new LlmUtilityServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $llmUtilityServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $llmUtilityServiceClient->testIamPermissions();
      * } finally {
      *     $llmUtilityServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -792,16 +809,19 @@ class LlmUtilityServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

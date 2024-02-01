@@ -35,7 +35,6 @@ class CreateHyperparameterTuningJobRequest extends \Google\Protobuf\Internal\Mes
      * @param string                                              $parent                  Required. The resource name of the Location to create the
      *                                                                                     HyperparameterTuningJob in. Format:
      *                                                                                     `projects/{project}/locations/{location}`
-     *                                                                                     Please see {@see JobServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\HyperparameterTuningJob $hyperparameterTuningJob Required. The HyperparameterTuningJob to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateHyperparameterTuningJobRequest

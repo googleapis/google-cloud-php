@@ -24,26 +24,26 @@ class HyperparameterTuningJob
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
             '
-√
-:google/cloud/aiplatform/v1/hyperparameter_tuning_job.protogoogle.cloud.aiplatform.v1google/api/resource.proto+google/cloud/aiplatform/v1/custom_job.proto0google/cloud/aiplatform/v1/encryption_spec.proto*google/cloud/aiplatform/v1/job_state.proto&google/cloud/aiplatform/v1/study.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"˚
-HyperparameterTuningJob
-name (	B‡A
-display_name (	B‡A>
+–
+:google/cloud/aiplatform/v1/hyperparameter_tuning_job.protogoogle.cloud.aiplatform.v1google/api/resource.proto+google/cloud/aiplatform/v1/custom_job.proto0google/cloud/aiplatform/v1/encryption_spec.proto*google/cloud/aiplatform/v1/job_state.proto&google/cloud/aiplatform/v1/study.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"à
+HyperparameterTuningJob
+name (	B‚A
+display_name (	B‚A?
 
-study_spec (2%.google.cloud.aiplatform.v1.StudySpecB‡A
-max_trial_count (B‡A!
-parallel_trial_count (B‡A
-max_failed_trial_count (F
-trial_job_spec (2).google.cloud.aiplatform.v1.CustomJobSpecB‡A6
-trials	 (2!.google.cloud.aiplatform.v1.TrialB‡A8
+study_spec (2%.google.cloud.aiplatform.v1.StudySpecB‚A
+max_trial_count (B‚A"
+parallel_trial_count (B‚A
+max_failed_trial_count (G
+trial_job_spec (2).google.cloud.aiplatform.v1.CustomJobSpecB‚A7
+trials	 (2!.google.cloud.aiplatform.v1.TrialB‚A9
 state
- (2$.google.cloud.aiplatform.v1.JobStateB‡A4
-create_time (2.google.protobuf.TimestampB‡A3
+ (2$.google.cloud.aiplatform.v1.JobStateB‚A5
+create_time (2.google.protobuf.TimestampB‚A4
 
-start_time (2.google.protobuf.TimestampB‡A1
-end_time (2.google.protobuf.TimestampB‡A4
-update_time (2.google.protobuf.TimestampB‡A&
-error (2.google.rpc.StatusB‡AO
+start_time (2.google.protobuf.TimestampB‚A2
+end_time (2.google.protobuf.TimestampB‚A5
+update_time (2.google.protobuf.TimestampB‚A\'
+error (2.google.rpc.StatusB‚AO
 labels (2?.google.cloud.aiplatform.v1.HyperparameterTuningJob.LabelsEntryC
 encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpec-
 LabelsEntry

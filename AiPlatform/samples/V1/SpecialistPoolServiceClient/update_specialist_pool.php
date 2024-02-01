@@ -28,33 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\SpecialistPoolServiceClient;
 use Google\Cloud\AIPlatform\V1\SpecialistPool;
 use Google\Cloud\AIPlatform\V1\UpdateSpecialistPoolRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates a SpecialistPool.
  *
- * @param string $specialistPoolName        The resource name of the SpecialistPool.
- * @param string $specialistPoolDisplayName The user-defined name of the SpecialistPool.
- *                                          The name can be up to 128 characters long and can consist of any UTF-8
- *                                          characters.
- *                                          This field should be unique on project-level.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_specialist_pool_sample(
-    string $specialistPoolName,
-    string $specialistPoolDisplayName
-): void {
+function update_specialist_pool_sample(): void
+{
     // Create a client.
     $specialistPoolServiceClient = new SpecialistPoolServiceClient();
 
     // Prepare the request message.
-    $specialistPool = (new SpecialistPool())
-        ->setName($specialistPoolName)
-        ->setDisplayName($specialistPoolDisplayName);
-    $updateMask = new FieldMask();
-    $request = (new UpdateSpecialistPoolRequest())
-        ->setSpecialistPool($specialistPool)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateSpecialistPoolRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,22 +65,5 @@ function update_specialist_pool_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $specialistPoolName = '[NAME]';
-    $specialistPoolDisplayName = '[DISPLAY_NAME]';
-
-    update_specialist_pool_sample($specialistPoolName, $specialistPoolDisplayName);
 }
 // [END aiplatform_v1_generated_SpecialistPoolService_UpdateSpecialistPool_sync]

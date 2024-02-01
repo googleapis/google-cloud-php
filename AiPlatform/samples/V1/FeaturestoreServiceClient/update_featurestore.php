@@ -45,9 +45,7 @@ function update_featurestore_sample(): void
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $featurestore = new Featurestore();
-    $request = (new UpdateFeaturestoreRequest())
-        ->setFeaturestore($featurestore);
+    $request = new UpdateFeaturestoreRequest();
 
     // Call the API and handle any network failures.
     try {

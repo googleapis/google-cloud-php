@@ -31,19 +31,19 @@ use Google\Cloud\AIPlatform\V1\UpsertDatapointsResponse;
 /**
  * Add/update Datapoints into an Index.
  *
- * @param string $formattedIndex The name of the Index resource to be updated.
- *                               Format:
- *                               `projects/{project}/locations/{location}/indexes/{index}`
- *                               Please see {@see IndexServiceClient::indexName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function upsert_datapoints_sample(string $formattedIndex): void
+function upsert_datapoints_sample(): void
 {
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
     // Prepare the request message.
-    $request = (new UpsertDatapointsRequest())
-        ->setIndex($formattedIndex);
+    $request = new UpsertDatapointsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function upsert_datapoints_sample(string $formattedIndex): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedIndex = IndexServiceClient::indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
-
-    upsert_datapoints_sample($formattedIndex);
 }
 // [END aiplatform_v1_generated_IndexService_UpsertDatapoints_sync]

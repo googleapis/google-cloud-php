@@ -29,7 +29,6 @@ class GetCustomJobRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the CustomJob resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/customJobs/{custom_job}`
-     *                     Please see {@see JobServiceClient::customJobName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetCustomJobRequest
      *

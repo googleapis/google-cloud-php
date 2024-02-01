@@ -45,9 +45,7 @@ function update_feature_online_store_sample(): void
     $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
 
     // Prepare the request message.
-    $featureOnlineStore = new FeatureOnlineStore();
-    $request = (new UpdateFeatureOnlineStoreRequest())
-        ->setFeatureOnlineStore($featureOnlineStore);
+    $request = new UpdateFeatureOnlineStoreRequest();
 
     // Call the API and handle any network failures.
     try {

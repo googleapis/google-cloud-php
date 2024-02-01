@@ -28,8 +28,7 @@ class GetSpecialistPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the SpecialistPool resource.
      *                     The form is
-     *                     `projects/{project}/locations/{location}/specialistPools/{specialist_pool}`. Please see
-     *                     {@see SpecialistPoolServiceClient::specialistPoolName()} for help formatting this field.
+     *                     `projects/{project}/locations/{location}/specialistPools/{specialist_pool}`.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetSpecialistPoolRequest
      *

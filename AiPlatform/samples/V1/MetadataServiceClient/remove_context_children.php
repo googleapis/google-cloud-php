@@ -33,20 +33,19 @@ use Google\Cloud\AIPlatform\V1\RemoveContextChildrenResponse;
  * child Contexts were NOT added to the parent Context, they are
  * simply skipped.
  *
- * @param string $formattedContext The resource name of the parent Context.
- *
- *                                 Format:
- *                                 `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
- *                                 Please see {@see MetadataServiceClient::contextName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function remove_context_children_sample(string $formattedContext): void
+function remove_context_children_sample(): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = (new RemoveContextChildrenRequest())
-        ->setContext($formattedContext);
+    $request = new RemoveContextChildrenRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,26 +55,5 @@ function remove_context_children_sample(string $formattedContext): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedContext = MetadataServiceClient::contextName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[METADATA_STORE]',
-        '[CONTEXT]'
-    );
-
-    remove_context_children_sample($formattedContext);
 }
 // [END aiplatform_v1_generated_MetadataService_RemoveContextChildren_sync]

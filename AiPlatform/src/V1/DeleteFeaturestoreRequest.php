@@ -37,7 +37,6 @@ class DeleteFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the Featurestore to be deleted.
      *                     Format:
      *                     `projects/{project}/locations/{location}/featurestores/{featurestore}`
-     *                     Please see {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteFeaturestoreRequest
      *
@@ -53,7 +52,6 @@ class DeleteFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      * @param string $name  Required. The name of the Featurestore to be deleted.
      *                      Format:
      *                      `projects/{project}/locations/{location}/featurestores/{featurestore}`
-     *                      Please see {@see FeaturestoreServiceClient::featurestoreName()} for help formatting this field.
      * @param bool   $force If set to true, any EntityTypes and Features for this Featurestore will
      *                      also be deleted. (Otherwise, the request will only work if the Featurestore
      *                      has no EntityTypes.)

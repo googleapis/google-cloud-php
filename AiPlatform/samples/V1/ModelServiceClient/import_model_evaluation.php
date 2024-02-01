@@ -31,20 +31,19 @@ use Google\Cloud\AIPlatform\V1\ModelEvaluation;
 /**
  * Imports an externally generated ModelEvaluation.
  *
- * @param string $formattedParent The name of the parent model resource.
- *                                Format: `projects/{project}/locations/{location}/models/{model}`
- *                                Please see {@see ModelServiceClient::modelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_model_evaluation_sample(string $formattedParent): void
+function import_model_evaluation_sample(): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $modelEvaluation = new ModelEvaluation();
-    $request = (new ImportModelEvaluationRequest())
-        ->setParent($formattedParent)
-        ->setModelEvaluation($modelEvaluation);
+    $request = new ImportModelEvaluationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function import_model_evaluation_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ModelServiceClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-
-    import_model_evaluation_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_ModelService_ImportModelEvaluation_sync]

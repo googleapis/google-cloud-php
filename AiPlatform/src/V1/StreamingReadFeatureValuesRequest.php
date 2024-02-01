@@ -49,8 +49,7 @@ class StreamingReadFeatureValuesRequest extends \Google\Protobuf\Internal\Messag
      *                           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
      *                           For example,
      *                           for a machine learning model predicting user clicks on a website, an
-     *                           EntityType ID could be `user`. Please see
-     *                           {@see FeaturestoreOnlineServingServiceClient::entityTypeName()} for help formatting this field.
+     *                           EntityType ID could be `user`.
      *
      * @return \Google\Cloud\AIPlatform\V1\StreamingReadFeatureValuesRequest
      *

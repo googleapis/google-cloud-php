@@ -44,7 +44,6 @@ class CreateTensorboardRunRequest extends \Google\Protobuf\Internal\Message
      * @param string                                     $parent           Required. The resource name of the TensorboardExperiment to create the
      *                                                                     TensorboardRun in. Format:
      *                                                                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
-     *                                                                     Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\TensorboardRun $tensorboardRun   Required. The TensorboardRun to create.
      * @param string                                     $tensorboardRunId Required. The ID to use for the Tensorboard run, which becomes the final
      *                                                                     component of the Tensorboard run's resource name.

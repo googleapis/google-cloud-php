@@ -43,7 +43,6 @@ class CreatePipelineJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                  $parent        Required. The resource name of the Location to create the PipelineJob in.
      *                                                               Format: `projects/{project}/locations/{location}`
-     *                                                               Please see {@see PipelineServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\PipelineJob $pipelineJob   Required. The PipelineJob to create.
      * @param string                                  $pipelineJobId The ID to use for the PipelineJob, which will become the final component of
      *                                                               the PipelineJob name. If not provided, an ID will be automatically

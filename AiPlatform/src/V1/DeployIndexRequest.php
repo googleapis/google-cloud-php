@@ -35,7 +35,6 @@ class DeployIndexRequest extends \Google\Protobuf\Internal\Message
      * @param string                                    $indexEndpoint Required. The name of the IndexEndpoint resource into which to deploy an
      *                                                                 Index. Format:
      *                                                                 `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
-     *                                                                 Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\DeployedIndex $deployedIndex Required. The DeployedIndex to be created within the IndexEndpoint.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeployIndexRequest

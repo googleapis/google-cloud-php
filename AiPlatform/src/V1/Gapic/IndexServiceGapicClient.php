@@ -70,9 +70,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $indexServiceClient = new IndexServiceClient();
  * try {
- *     $formattedParent = $indexServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $index = new Index();
- *     $operationResponse = $indexServiceClient->createIndex($formattedParent, $index);
+ *     $operationResponse = $indexServiceClient->createIndex();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -83,7 +81,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $indexServiceClient->createIndex($formattedParent, $index);
+ *     $operationResponse = $indexServiceClient->createIndex();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $indexServiceClient->resumeOperation($operationName, 'createIndex');
@@ -427,9 +425,7 @@ class IndexServiceGapicClient
      * ```
      * $indexServiceClient = new IndexServiceClient();
      * try {
-     *     $formattedParent = $indexServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $index = new Index();
-     *     $operationResponse = $indexServiceClient->createIndex($formattedParent, $index);
+     *     $operationResponse = $indexServiceClient->createIndex();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -440,7 +436,7 @@ class IndexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $indexServiceClient->createIndex($formattedParent, $index);
+     *     $operationResponse = $indexServiceClient->createIndex();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $indexServiceClient->resumeOperation($operationName, 'createIndex');
@@ -460,12 +456,14 @@ class IndexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to create the Index in.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param Index  $index        Required. The Index to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to create the Index in.
+     *           Format: `projects/{project}/locations/{location}`
+     *     @type Index $index
+     *           Required. The Index to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -476,13 +474,19 @@ class IndexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createIndex($parent, $index, array $optionalArgs = [])
+    public function createIndex(array $optionalArgs = [])
     {
         $request = new CreateIndexRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setIndex($index);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['index'])) {
+            $request->setIndex($optionalArgs['index']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -507,8 +511,7 @@ class IndexServiceGapicClient
      * ```
      * $indexServiceClient = new IndexServiceClient();
      * try {
-     *     $formattedName = $indexServiceClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
-     *     $operationResponse = $indexServiceClient->deleteIndex($formattedName);
+     *     $operationResponse = $indexServiceClient->deleteIndex();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -518,7 +521,7 @@ class IndexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $indexServiceClient->deleteIndex($formattedName);
+     *     $operationResponse = $indexServiceClient->deleteIndex();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $indexServiceClient->resumeOperation($operationName, 'deleteIndex');
@@ -537,12 +540,13 @@ class IndexServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Index resource to be deleted.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/indexes/{index}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Index resource to be deleted.
+     *           Format:
+     *           `projects/{project}/locations/{location}/indexes/{index}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -553,12 +557,15 @@ class IndexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteIndex($name, array $optionalArgs = [])
+    public function deleteIndex(array $optionalArgs = [])
     {
         $request = new DeleteIndexRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -580,19 +587,19 @@ class IndexServiceGapicClient
      * ```
      * $indexServiceClient = new IndexServiceClient();
      * try {
-     *     $formattedName = $indexServiceClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
-     *     $response = $indexServiceClient->getIndex($formattedName);
+     *     $response = $indexServiceClient->getIndex();
      * } finally {
      *     $indexServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Index resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/indexes/{index}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Index resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/indexes/{index}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -603,12 +610,15 @@ class IndexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIndex($name, array $optionalArgs = [])
+    public function getIndex(array $optionalArgs = [])
     {
         $request = new GetIndexRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -630,9 +640,8 @@ class IndexServiceGapicClient
      * ```
      * $indexServiceClient = new IndexServiceClient();
      * try {
-     *     $formattedParent = $indexServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $indexServiceClient->listIndexes($formattedParent);
+     *     $pagedResponse = $indexServiceClient->listIndexes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -640,7 +649,7 @@ class IndexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $indexServiceClient->listIndexes($formattedParent);
+     *     $pagedResponse = $indexServiceClient->listIndexes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -649,11 +658,12 @@ class IndexServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location from which to list the Indexes.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location from which to list the Indexes.
+     *           Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           The standard list filter.
      *     @type int $pageSize
@@ -677,12 +687,15 @@ class IndexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listIndexes($parent, array $optionalArgs = [])
+    public function listIndexes(array $optionalArgs = [])
     {
         $request = new ListIndexesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -720,19 +733,19 @@ class IndexServiceGapicClient
      * ```
      * $indexServiceClient = new IndexServiceClient();
      * try {
-     *     $formattedIndex = $indexServiceClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
-     *     $response = $indexServiceClient->removeDatapoints($formattedIndex);
+     *     $response = $indexServiceClient->removeDatapoints();
      * } finally {
      *     $indexServiceClient->close();
      * }
      * ```
      *
-     * @param string $index        Required. The name of the Index resource to be updated.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/indexes/{index}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $index
+     *           Required. The name of the Index resource to be updated.
+     *           Format:
+     *           `projects/{project}/locations/{location}/indexes/{index}`
      *     @type string[] $datapointIds
      *           A list of datapoint ids to be deleted.
      *     @type RetrySettings|array $retrySettings
@@ -745,12 +758,15 @@ class IndexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeDatapoints($index, array $optionalArgs = [])
+    public function removeDatapoints(array $optionalArgs = [])
     {
         $request = new RemoveDatapointsRequest();
         $requestParamHeaders = [];
-        $request->setIndex($index);
-        $requestParamHeaders['index'] = $index;
+        if (isset($optionalArgs['index'])) {
+            $request->setIndex($optionalArgs['index']);
+            $requestParamHeaders['index'] = $optionalArgs['index'];
+        }
+
         if (isset($optionalArgs['datapointIds'])) {
             $request->setDatapointIds($optionalArgs['datapointIds']);
         }
@@ -776,8 +792,7 @@ class IndexServiceGapicClient
      * ```
      * $indexServiceClient = new IndexServiceClient();
      * try {
-     *     $index = new Index();
-     *     $operationResponse = $indexServiceClient->updateIndex($index);
+     *     $operationResponse = $indexServiceClient->updateIndex();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -788,7 +803,7 @@ class IndexServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $indexServiceClient->updateIndex($index);
+     *     $operationResponse = $indexServiceClient->updateIndex();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $indexServiceClient->resumeOperation($operationName, 'updateIndex');
@@ -808,10 +823,11 @@ class IndexServiceGapicClient
      * }
      * ```
      *
-     * @param Index $index        Required. The Index which updates the resource on the server.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Index $index
+     *           Required. The Index which updates the resource on the server.
      *     @type FieldMask $updateMask
      *           The update mask applies to the resource.
      *           For the `FieldMask` definition, see
@@ -826,12 +842,14 @@ class IndexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateIndex($index, array $optionalArgs = [])
+    public function updateIndex(array $optionalArgs = [])
     {
         $request = new UpdateIndexRequest();
         $requestParamHeaders = [];
-        $request->setIndex($index);
-        $requestParamHeaders['index.name'] = $index->getName();
+        if (isset($optionalArgs['index'])) {
+            $request->setIndex($optionalArgs['index']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -857,19 +875,19 @@ class IndexServiceGapicClient
      * ```
      * $indexServiceClient = new IndexServiceClient();
      * try {
-     *     $formattedIndex = $indexServiceClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
-     *     $response = $indexServiceClient->upsertDatapoints($formattedIndex);
+     *     $response = $indexServiceClient->upsertDatapoints();
      * } finally {
      *     $indexServiceClient->close();
      * }
      * ```
      *
-     * @param string $index        Required. The name of the Index resource to be updated.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/indexes/{index}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $index
+     *           Required. The name of the Index resource to be updated.
+     *           Format:
+     *           `projects/{project}/locations/{location}/indexes/{index}`
      *     @type IndexDatapoint[] $datapoints
      *           A list of datapoints to be created/updated.
      *     @type RetrySettings|array $retrySettings
@@ -882,12 +900,15 @@ class IndexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function upsertDatapoints($index, array $optionalArgs = [])
+    public function upsertDatapoints(array $optionalArgs = [])
     {
         $request = new UpsertDatapointsRequest();
         $requestParamHeaders = [];
-        $request->setIndex($index);
-        $requestParamHeaders['index'] = $index;
+        if (isset($optionalArgs['index'])) {
+            $request->setIndex($optionalArgs['index']);
+            $requestParamHeaders['index'] = $optionalArgs['index'];
+        }
+
         if (isset($optionalArgs['datapoints'])) {
             $request->setDatapoints($optionalArgs['datapoints']);
         }
@@ -1054,18 +1075,18 @@ class IndexServiceGapicClient
      * ```
      * $indexServiceClient = new IndexServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $indexServiceClient->getIamPolicy($resource);
+     *     $response = $indexServiceClient->getIamPolicy();
      * } finally {
      *     $indexServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1079,12 +1100,15 @@ class IndexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1116,23 +1140,23 @@ class IndexServiceGapicClient
      * ```
      * $indexServiceClient = new IndexServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $indexServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $indexServiceClient->setIamPolicy();
      * } finally {
      *     $indexServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1149,13 +1173,19 @@ class IndexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1189,23 +1219,23 @@ class IndexServiceGapicClient
      * ```
      * $indexServiceClient = new IndexServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $indexServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $indexServiceClient->testIamPermissions();
      * } finally {
      *     $indexServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1216,16 +1246,19 @@ class IndexServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

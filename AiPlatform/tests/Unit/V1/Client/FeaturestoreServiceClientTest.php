@@ -44,13 +44,10 @@ use Google\Cloud\AIPlatform\V1\EntityType;
 use Google\Cloud\AIPlatform\V1\ExportFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\ExportFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\Feature;
-use Google\Cloud\AIPlatform\V1\FeatureSelector;
-use Google\Cloud\AIPlatform\V1\FeatureValueDestination;
 use Google\Cloud\AIPlatform\V1\Featurestore;
 use Google\Cloud\AIPlatform\V1\GetEntityTypeRequest;
 use Google\Cloud\AIPlatform\V1\GetFeatureRequest;
 use Google\Cloud\AIPlatform\V1\GetFeaturestoreRequest;
-use Google\Cloud\AIPlatform\V1\IdMatcher;
 use Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\ImportFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\ListEntityTypesRequest;
@@ -137,12 +134,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $requests = [];
-        $request = (new BatchCreateFeaturesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = new BatchCreateFeaturesRequest();
         $response = $gapicClient->batchCreateFeatures($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -153,10 +145,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/BatchCreateFeatures', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchCreateFeaturesTest');
         $response->pollUntilComplete([
@@ -207,12 +195,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $requests = [];
-        $request = (new BatchCreateFeaturesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = new BatchCreateFeaturesRequest();
         $response = $gapicClient->batchCreateFeatures($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -264,14 +247,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedFeaturestore = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $destination = new FeatureValueDestination();
-        $entityTypeSpecs = [];
-        $request = (new BatchReadFeatureValuesRequest())
-            ->setFeaturestore($formattedFeaturestore)
-            ->setDestination($destination)
-            ->setEntityTypeSpecs($entityTypeSpecs);
+        $request = new BatchReadFeatureValuesRequest();
         $response = $gapicClient->batchReadFeatureValues($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -282,12 +258,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/BatchReadFeatureValues', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFeaturestore();
-        $this->assertProtobufEquals($formattedFeaturestore, $actualValue);
-        $actualValue = $actualApiRequestObject->getDestination();
-        $this->assertProtobufEquals($destination, $actualValue);
-        $actualValue = $actualApiRequestObject->getEntityTypeSpecs();
-        $this->assertProtobufEquals($entityTypeSpecs, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchReadFeatureValuesTest');
         $response->pollUntilComplete([
@@ -338,14 +308,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedFeaturestore = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $destination = new FeatureValueDestination();
-        $entityTypeSpecs = [];
-        $request = (new BatchReadFeatureValuesRequest())
-            ->setFeaturestore($formattedFeaturestore)
-            ->setDestination($destination)
-            ->setEntityTypeSpecs($entityTypeSpecs);
+        $request = new BatchReadFeatureValuesRequest();
         $response = $gapicClient->batchReadFeatureValues($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -405,12 +368,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $entityTypeId = 'entityTypeId1181734884';
-        $request = (new CreateEntityTypeRequest())
-            ->setParent($formattedParent)
-            ->setEntityTypeId($entityTypeId);
+        $request = new CreateEntityTypeRequest();
         $response = $gapicClient->createEntityType($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -421,10 +379,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/CreateEntityType', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEntityTypeId();
-        $this->assertProtobufEquals($entityTypeId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEntityTypeTest');
         $response->pollUntilComplete([
@@ -475,12 +429,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $entityTypeId = 'entityTypeId1181734884';
-        $request = (new CreateEntityTypeRequest())
-            ->setParent($formattedParent)
-            ->setEntityTypeId($entityTypeId);
+        $request = new CreateEntityTypeRequest();
         $response = $gapicClient->createEntityType($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -542,14 +491,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $feature = new Feature();
-        $featureId = 'featureId-150697212';
-        $request = (new CreateFeatureRequest())
-            ->setParent($formattedParent)
-            ->setFeature($feature)
-            ->setFeatureId($featureId);
+        $request = new CreateFeatureRequest();
         $response = $gapicClient->createFeature($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -560,12 +502,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/CreateFeature', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeature();
-        $this->assertProtobufEquals($feature, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeatureId();
-        $this->assertProtobufEquals($featureId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createFeatureTest');
         $response->pollUntilComplete([
@@ -616,14 +552,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $feature = new Feature();
-        $featureId = 'featureId-150697212';
-        $request = (new CreateFeatureRequest())
-            ->setParent($formattedParent)
-            ->setFeature($feature)
-            ->setFeatureId($featureId);
+        $request = new CreateFeatureRequest();
         $response = $gapicClient->createFeature($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -681,14 +610,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $featurestore = new Featurestore();
-        $featurestoreId = 'featurestoreId-2136676817';
-        $request = (new CreateFeaturestoreRequest())
-            ->setParent($formattedParent)
-            ->setFeaturestore($featurestore)
-            ->setFeaturestoreId($featurestoreId);
+        $request = new CreateFeaturestoreRequest();
         $response = $gapicClient->createFeaturestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -699,12 +621,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/CreateFeaturestore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeaturestore();
-        $this->assertProtobufEquals($featurestore, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeaturestoreId();
-        $this->assertProtobufEquals($featurestoreId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createFeaturestoreTest');
         $response->pollUntilComplete([
@@ -755,14 +671,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $featurestore = new Featurestore();
-        $featurestoreId = 'featurestoreId-2136676817';
-        $request = (new CreateFeaturestoreRequest())
-            ->setParent($formattedParent)
-            ->setFeaturestore($featurestore)
-            ->setFeaturestoreId($featurestoreId);
+        $request = new CreateFeaturestoreRequest();
         $response = $gapicClient->createFeaturestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -814,10 +723,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new DeleteEntityTypeRequest())
-            ->setName($formattedName);
+        $request = new DeleteEntityTypeRequest();
         $response = $gapicClient->deleteEntityType($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -828,8 +734,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/DeleteEntityType', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteEntityTypeTest');
         $response->pollUntilComplete([
@@ -880,10 +784,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new DeleteEntityTypeRequest())
-            ->setName($formattedName);
+        $request = new DeleteEntityTypeRequest();
         $response = $gapicClient->deleteEntityType($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -935,10 +836,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
-        $request = (new DeleteFeatureRequest())
-            ->setName($formattedName);
+        $request = new DeleteFeatureRequest();
         $response = $gapicClient->deleteFeature($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -949,8 +847,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/DeleteFeature', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteFeatureTest');
         $response->pollUntilComplete([
@@ -1001,10 +897,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
-        $request = (new DeleteFeatureRequest())
-            ->setName($formattedName);
+        $request = new DeleteFeatureRequest();
         $response = $gapicClient->deleteFeature($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1056,10 +949,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new DeleteFeatureValuesRequest())
-            ->setEntityType($formattedEntityType);
+        $request = new DeleteFeatureValuesRequest();
         $response = $gapicClient->deleteFeatureValues($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1070,8 +960,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/DeleteFeatureValues', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getEntityType();
-        $this->assertProtobufEquals($formattedEntityType, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteFeatureValuesTest');
         $response->pollUntilComplete([
@@ -1122,10 +1010,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new DeleteFeatureValuesRequest())
-            ->setEntityType($formattedEntityType);
+        $request = new DeleteFeatureValuesRequest();
         $response = $gapicClient->deleteFeatureValues($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1177,10 +1062,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new DeleteFeaturestoreRequest())
-            ->setName($formattedName);
+        $request = new DeleteFeaturestoreRequest();
         $response = $gapicClient->deleteFeaturestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1191,8 +1073,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/DeleteFeaturestore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteFeaturestoreTest');
         $response->pollUntilComplete([
@@ -1243,10 +1123,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new DeleteFeaturestoreRequest())
-            ->setName($formattedName);
+        $request = new DeleteFeaturestoreRequest();
         $response = $gapicClient->deleteFeaturestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1298,18 +1175,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $destination = new FeatureValueDestination();
-        $featureSelector = new FeatureSelector();
-        $featureSelectorIdMatcher = new IdMatcher();
-        $idMatcherIds = [];
-        $featureSelectorIdMatcher->setIds($idMatcherIds);
-        $featureSelector->setIdMatcher($featureSelectorIdMatcher);
-        $request = (new ExportFeatureValuesRequest())
-            ->setEntityType($formattedEntityType)
-            ->setDestination($destination)
-            ->setFeatureSelector($featureSelector);
+        $request = new ExportFeatureValuesRequest();
         $response = $gapicClient->exportFeatureValues($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1320,12 +1186,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/ExportFeatureValues', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getEntityType();
-        $this->assertProtobufEquals($formattedEntityType, $actualValue);
-        $actualValue = $actualApiRequestObject->getDestination();
-        $this->assertProtobufEquals($destination, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeatureSelector();
-        $this->assertProtobufEquals($featureSelector, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportFeatureValuesTest');
         $response->pollUntilComplete([
@@ -1376,18 +1236,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $destination = new FeatureValueDestination();
-        $featureSelector = new FeatureSelector();
-        $featureSelectorIdMatcher = new IdMatcher();
-        $idMatcherIds = [];
-        $featureSelectorIdMatcher->setIds($idMatcherIds);
-        $featureSelector->setIdMatcher($featureSelectorIdMatcher);
-        $request = (new ExportFeatureValuesRequest())
-            ->setEntityType($formattedEntityType)
-            ->setDestination($destination)
-            ->setFeatureSelector($featureSelector);
+        $request = new ExportFeatureValuesRequest();
         $response = $gapicClient->exportFeatureValues($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1429,10 +1278,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOfflineStorageTtlDays($offlineStorageTtlDays);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new GetEntityTypeRequest())
-            ->setName($formattedName);
+        $request = new GetEntityTypeRequest();
         $response = $gapicClient->getEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1440,8 +1286,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/GetEntityType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1463,10 +1307,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new GetEntityTypeRequest())
-            ->setName($formattedName);
+        $request = new GetEntityTypeRequest();
         try {
             $gapicClient->getEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1501,10 +1342,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setDisableMonitoring($disableMonitoring);
         $expectedResponse->setVersionColumnName($versionColumnName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
-        $request = (new GetFeatureRequest())
-            ->setName($formattedName);
+        $request = new GetFeatureRequest();
         $response = $gapicClient->getFeature($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1512,8 +1350,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/GetFeature', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1535,10 +1371,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
-        $request = (new GetFeatureRequest())
-            ->setName($formattedName);
+        $request = new GetFeatureRequest();
         try {
             $gapicClient->getFeature($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1569,10 +1402,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOnlineStorageTtlDays($onlineStorageTtlDays);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new GetFeaturestoreRequest())
-            ->setName($formattedName);
+        $request = new GetFeaturestoreRequest();
         $response = $gapicClient->getFeaturestore($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1580,8 +1410,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/GetFeaturestore', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1603,10 +1431,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new GetFeaturestoreRequest())
-            ->setName($formattedName);
+        $request = new GetFeaturestoreRequest();
         try {
             $gapicClient->getFeaturestore($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1657,12 +1482,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $featureSpecs = [];
-        $request = (new ImportFeatureValuesRequest())
-            ->setEntityType($formattedEntityType)
-            ->setFeatureSpecs($featureSpecs);
+        $request = new ImportFeatureValuesRequest();
         $response = $gapicClient->importFeatureValues($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1673,10 +1493,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/ImportFeatureValues', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getEntityType();
-        $this->assertProtobufEquals($formattedEntityType, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeatureSpecs();
-        $this->assertProtobufEquals($featureSpecs, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importFeatureValuesTest');
         $response->pollUntilComplete([
@@ -1727,12 +1543,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $featureSpecs = [];
-        $request = (new ImportFeatureValuesRequest())
-            ->setEntityType($formattedEntityType)
-            ->setFeatureSpecs($featureSpecs);
+        $request = new ImportFeatureValuesRequest();
         $response = $gapicClient->importFeatureValues($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1773,10 +1584,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntityTypes($entityTypes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new ListEntityTypesRequest())
-            ->setParent($formattedParent);
+        $request = new ListEntityTypesRequest();
         $response = $gapicClient->listEntityTypes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1787,8 +1595,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/ListEntityTypes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1810,10 +1616,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new ListEntityTypesRequest())
-            ->setParent($formattedParent);
+        $request = new ListEntityTypesRequest();
         try {
             $gapicClient->listEntityTypes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1845,10 +1648,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFeatures($features);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new ListFeaturesRequest())
-            ->setParent($formattedParent);
+        $request = new ListFeaturesRequest();
         $response = $gapicClient->listFeatures($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1859,8 +1659,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/ListFeatures', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1882,10 +1680,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new ListFeaturesRequest())
-            ->setParent($formattedParent);
+        $request = new ListFeaturesRequest();
         try {
             $gapicClient->listFeatures($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1917,10 +1712,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFeaturestores($featurestores);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFeaturestoresRequest())
-            ->setParent($formattedParent);
+        $request = new ListFeaturestoresRequest();
         $response = $gapicClient->listFeaturestores($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1931,8 +1723,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/ListFeaturestores', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1954,10 +1744,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFeaturestoresRequest())
-            ->setParent($formattedParent);
+        $request = new ListFeaturestoresRequest();
         try {
             $gapicClient->listFeaturestores($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1989,10 +1776,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFeatures($features);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchFeaturesRequest())
-            ->setLocation($formattedLocation);
+        $request = new SearchFeaturesRequest();
         $response = $gapicClient->searchFeatures($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2003,8 +1787,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/SearchFeatures', $actualFuncCall);
-        $actualValue = $actualRequestObject->getLocation();
-        $this->assertProtobufEquals($formattedLocation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2026,10 +1808,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchFeaturesRequest())
-            ->setLocation($formattedLocation);
+        $request = new SearchFeaturesRequest();
         try {
             $gapicClient->searchFeatures($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2062,10 +1841,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOfflineStorageTtlDays($offlineStorageTtlDays);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $entityType = new EntityType();
-        $request = (new UpdateEntityTypeRequest())
-            ->setEntityType($entityType);
+        $request = new UpdateEntityTypeRequest();
         $response = $gapicClient->updateEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2073,8 +1849,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/UpdateEntityType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEntityType();
-        $this->assertProtobufEquals($entityType, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2096,10 +1870,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $entityType = new EntityType();
-        $request = (new UpdateEntityTypeRequest())
-            ->setEntityType($entityType);
+        $request = new UpdateEntityTypeRequest();
         try {
             $gapicClient->updateEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2134,10 +1905,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setDisableMonitoring($disableMonitoring);
         $expectedResponse->setVersionColumnName($versionColumnName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $feature = new Feature();
-        $request = (new UpdateFeatureRequest())
-            ->setFeature($feature);
+        $request = new UpdateFeatureRequest();
         $response = $gapicClient->updateFeature($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2145,8 +1913,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/UpdateFeature', $actualFuncCall);
-        $actualValue = $actualRequestObject->getFeature();
-        $this->assertProtobufEquals($feature, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2168,10 +1934,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $feature = new Feature();
-        $request = (new UpdateFeatureRequest())
-            ->setFeature($feature);
+        $request = new UpdateFeatureRequest();
         try {
             $gapicClient->updateFeature($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2220,10 +1983,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $featurestore = new Featurestore();
-        $request = (new UpdateFeaturestoreRequest())
-            ->setFeaturestore($featurestore);
+        $request = new UpdateFeaturestoreRequest();
         $response = $gapicClient->updateFeaturestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2234,8 +1994,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/UpdateFeaturestore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFeaturestore();
-        $this->assertProtobufEquals($featurestore, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateFeaturestoreTest');
         $response->pollUntilComplete([
@@ -2286,10 +2044,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $featurestore = new Featurestore();
-        $request = (new UpdateFeaturestoreRequest())
-            ->setFeaturestore($featurestore);
+        $request = new UpdateFeaturestoreRequest();
         $response = $gapicClient->updateFeaturestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2451,10 +2206,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2462,8 +2214,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2485,10 +2235,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2517,12 +2264,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2530,10 +2272,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2555,12 +2293,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2585,12 +2318,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2598,10 +2326,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2623,12 +2347,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2671,12 +2390,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $requests = [];
-        $request = (new BatchCreateFeaturesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = new BatchCreateFeaturesRequest();
         $response = $gapicClient->batchCreateFeaturesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2687,10 +2401,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeaturestoreService/BatchCreateFeatures', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchCreateFeaturesTest');
         $response->pollUntilComplete([

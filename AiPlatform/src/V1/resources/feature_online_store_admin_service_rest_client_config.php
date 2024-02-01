@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'feature_online_store_id',
-                ],
             ],
             'CreateFeatureView' => [
                 'method' => 'post',
@@ -28,9 +25,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'feature_view_id',
                 ],
             ],
             'DeleteFeatureOnlineStore' => [

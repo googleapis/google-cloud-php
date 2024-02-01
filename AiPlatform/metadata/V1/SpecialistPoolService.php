@@ -25,19 +25,19 @@ class SpecialistPoolService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-â
-8google/cloud/aiplatform/v1/specialist_pool_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto0google/cloud/aiplatform/v1/specialist_pool.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¢
-CreateSpecialistPoolRequest9
-parent (	B)àAúA#
-!locations.googleapis.com/LocationH
-specialist_pool (2*.google.cloud.aiplatform.v1.SpecialistPoolBàA"w
+ê
+8google/cloud/aiplatform/v1/specialist_pool_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto0google/cloud/aiplatform/v1/specialist_pool.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¤
+CreateSpecialistPoolRequest:
+parent (	B*âAúA#
+!locations.googleapis.com/LocationI
+specialist_pool (2*.google.cloud.aiplatform.v1.SpecialistPoolBâA"w
 %CreateSpecialistPoolOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"Z
-GetSpecialistPoolRequest>
-name (	B0àAúA*
-(aiplatform.googleapis.com/SpecialistPool"­
-ListSpecialistPoolsRequest9
-parent (	B)àAúA#
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"[
+GetSpecialistPoolRequest?
+name (	B1âAúA*
+(aiplatform.googleapis.com/SpecialistPool"®
+ListSpecialistPoolsRequest:
+parent (	B*âAúA#
 !locations.googleapis.com/Location
 	page_size (
 
@@ -45,28 +45,28 @@ page_token (	-
 	read_mask (2.google.protobuf.FieldMask"|
 ListSpecialistPoolsResponseD
 specialist_pools (2*.google.cloud.aiplatform.v1.SpecialistPool
-next_page_token (	"l
-DeleteSpecialistPoolRequest>
-name (	B0àAúA*
+next_page_token (	"m
+DeleteSpecialistPoolRequest?
+name (	B1âAúA*
 (aiplatform.googleapis.com/SpecialistPool
-force ("
-UpdateSpecialistPoolRequestH
-specialist_pool (2*.google.cloud.aiplatform.v1.SpecialistPoolBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"Â
-%UpdateSpecialistPoolOperationMetadataI
-specialist_pool (	B0àAúA*
+force ("Ÿ
+UpdateSpecialistPoolRequestI
+specialist_pool (2*.google.cloud.aiplatform.v1.SpecialistPoolBâA5
+update_mask (2.google.protobuf.FieldMaskBâA"Ã
+%UpdateSpecialistPoolOperationMetadataJ
+specialist_pool (	B1âAúA*
 (aiplatform.googleapis.com/SpecialistPoolN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2”
 
 SpecialistPoolService
-CreateSpecialistPool7.google.cloud.aiplatform.v1.CreateSpecialistPoolRequest.google.longrunning.Operation"Ÿ‚Óä“F"3/v1/{parent=projects/*/locations/*}/specialistPools:specialist_poolÚAparent,specialist_poolÊA7
-SpecialistPool%CreateSpecialistPoolOperationMetadata¹
-GetSpecialistPool4.google.cloud.aiplatform.v1.GetSpecialistPoolRequest*.google.cloud.aiplatform.v1.SpecialistPool"B‚Óä“53/v1/{name=projects/*/locations/*/specialistPools/*}ÚAnameÌ
-ListSpecialistPools6.google.cloud.aiplatform.v1.ListSpecialistPoolsRequest7.google.cloud.aiplatform.v1.ListSpecialistPoolsResponse"D‚Óä“53/v1/{parent=projects/*/locations/*}/specialistPoolsÚAparentå
-DeleteSpecialistPool7.google.cloud.aiplatform.v1.DeleteSpecialistPoolRequest.google.longrunning.Operation"u‚Óä“5*3/v1/{name=projects/*/locations/*/specialistPools/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadata¥
-UpdateSpecialistPool7.google.cloud.aiplatform.v1.UpdateSpecialistPoolRequest.google.longrunning.Operation"´‚Óä“V2C/v1/{specialist_pool.name=projects/*/locations/*/specialistPools/*}:specialist_poolÚAspecialist_pool,update_maskÊA7
-SpecialistPool%UpdateSpecialistPoolOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBØ
+CreateSpecialistPool7.google.cloud.aiplatform.v1.CreateSpecialistPoolRequest.google.longrunning.Operation"ŸÊA7
+SpecialistPool%CreateSpecialistPoolOperationMetadataÚAparent,specialist_pool‚Óä“F"3/v1/{parent=projects/*/locations/*}/specialistPools:specialist_pool¹
+GetSpecialistPool4.google.cloud.aiplatform.v1.GetSpecialistPoolRequest*.google.cloud.aiplatform.v1.SpecialistPool"BÚAname‚Óä“53/v1/{name=projects/*/locations/*/specialistPools/*}Ì
+ListSpecialistPools6.google.cloud.aiplatform.v1.ListSpecialistPoolsRequest7.google.cloud.aiplatform.v1.ListSpecialistPoolsResponse"DÚAparent‚Óä“53/v1/{parent=projects/*/locations/*}/specialistPoolså
+DeleteSpecialistPool7.google.cloud.aiplatform.v1.DeleteSpecialistPoolRequest.google.longrunning.Operation"uÊA0
+google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“5*3/v1/{name=projects/*/locations/*/specialistPools/*}¥
+UpdateSpecialistPool7.google.cloud.aiplatform.v1.UpdateSpecialistPoolRequest.google.longrunning.Operation"´ÊA7
+SpecialistPool%UpdateSpecialistPoolOperationMetadataÚAspecialist_pool,update_mask‚Óä“V2C/v1/{specialist_pool.name=projects/*/locations/*/specialistPools/*}:specialist_poolMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBØ
 com.google.cloud.aiplatform.v1BSpecialistPoolServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

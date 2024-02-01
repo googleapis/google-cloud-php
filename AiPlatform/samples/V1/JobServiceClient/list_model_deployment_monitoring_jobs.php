@@ -32,18 +32,19 @@ use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob;
 /**
  * Lists ModelDeploymentMonitoringJobs in a Location.
  *
- * @param string $formattedParent The parent of the ModelDeploymentMonitoringJob.
- *                                Format: `projects/{project}/locations/{location}`
- *                                Please see {@see JobServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_model_deployment_monitoring_jobs_sample(string $formattedParent): void
+function list_model_deployment_monitoring_jobs_sample(): void
 {
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $request = (new ListModelDeploymentMonitoringJobsRequest())
-        ->setParent($formattedParent);
+    $request = new ListModelDeploymentMonitoringJobsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_model_deployment_monitoring_jobs_sample(string $formattedParent): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = JobServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_model_deployment_monitoring_jobs_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_JobService_ListModelDeploymentMonitoringJobs_sync]

@@ -36,7 +36,6 @@ class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
      *
      *                                Format:
      *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
-     *                                Please see {@see MetadataServiceClient::contextName()} for help formatting this field.
      * @param string[] $childContexts The resource names of the child Contexts.
      *
      * @return \Google\Cloud\AIPlatform\V1\AddContextChildrenRequest

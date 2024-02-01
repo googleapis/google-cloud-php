@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
 use Google\Cloud\AIPlatform\V1\TensorboardExperiment;
 use Google\Cloud\AIPlatform\V1\UpdateTensorboardExperimentRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a TensorboardExperiment.
@@ -44,11 +43,7 @@ function update_tensorboard_experiment_sample(): void
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $tensorboardExperiment = new TensorboardExperiment();
-    $request = (new UpdateTensorboardExperimentRequest())
-        ->setUpdateMask($updateMask)
-        ->setTensorboardExperiment($tensorboardExperiment);
+    $request = new UpdateTensorboardExperimentRequest();
 
     // Call the API and handle any network failures.
     try {

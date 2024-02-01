@@ -33,8 +33,7 @@ class ComputeTokensRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                   $endpoint  Required. The name of the Endpoint requested to get lists of tokens and
-     *                                            token ids. Please see
-     *                                            {@see LlmUtilityServiceClient::endpointName()} for help formatting this field.
+     *                                            token ids.
      * @param \Google\Protobuf\Value[] $instances Required. The instances that are the input to token computing API call.
      *                                            Schema is identical to the prediction schema of the text model, even for
      *                                            the non-text models, like chat models, or Codey models.

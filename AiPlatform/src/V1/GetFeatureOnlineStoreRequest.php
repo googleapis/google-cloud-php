@@ -24,8 +24,7 @@ class GetFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the FeatureOnlineStore resource. Please see
-     *                     {@see FeatureOnlineStoreAdminServiceClient::featureOnlineStoreName()} for help formatting this field.
+     * @param string $name Required. The name of the FeatureOnlineStore resource.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetFeatureOnlineStoreRequest
      *

@@ -78,7 +78,6 @@ class ListFeatureGroupsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The resource name of the Location to list FeatureGroups.
      *                       Format:
      *                       `projects/{project}/locations/{location}`
-     *                       Please see {@see FeatureRegistryServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListFeatureGroupsRequest
      *

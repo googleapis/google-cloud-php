@@ -37,7 +37,6 @@ class MutateDeployedIndexRequest extends \Google\Protobuf\Internal\Message
      * @param string                                    $indexEndpoint Required. The name of the IndexEndpoint resource into which to deploy an
      *                                                                 Index. Format:
      *                                                                 `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
-     *                                                                 Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\DeployedIndex $deployedIndex Required. The DeployedIndex to be updated within the IndexEndpoint.
      *                                                                 Currently, the updatable fields are [DeployedIndex][automatic_resources]
      *                                                                 and [DeployedIndex][dedicated_resources]

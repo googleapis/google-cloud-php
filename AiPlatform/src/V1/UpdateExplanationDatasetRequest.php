@@ -33,7 +33,6 @@ class UpdateExplanationDatasetRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $model Required. The resource name of the Model to update.
      *                      Format: `projects/{project}/locations/{location}/models/{model}`
-     *                      Please see {@see ModelServiceClient::modelName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetRequest
      *

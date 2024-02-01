@@ -38,29 +38,19 @@ use Google\Rpc\Status;
  * a
  * [SuggestTrialsResponse][google.cloud.aiplatform.v1.SuggestTrialsResponse].
  *
- * @param string $formattedParent The project and location that the Study belongs to.
- *                                Format: `projects/{project}/locations/{location}/studies/{study}`
- *                                Please see {@see VizierServiceClient::studyName()} for help formatting this field.
- * @param int    $suggestionCount The number of suggestions requested. It must be positive.
- * @param string $clientId        The identifier of the client that is requesting the suggestion.
- *
- *                                If multiple SuggestTrialsRequests have the same `client_id`,
- *                                the service will return the identical suggested Trial if the Trial is
- *                                pending, and provide a new Trial if the last suggested Trial was completed.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function suggest_trials_sample(
-    string $formattedParent,
-    int $suggestionCount,
-    string $clientId
-): void {
+function suggest_trials_sample(): void
+{
     // Create a client.
     $vizierServiceClient = new VizierServiceClient();
 
     // Prepare the request message.
-    $request = (new SuggestTrialsRequest())
-        ->setParent($formattedParent)
-        ->setSuggestionCount($suggestionCount)
-        ->setClientId($clientId);
+    $request = new SuggestTrialsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -80,23 +70,5 @@ function suggest_trials_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = VizierServiceClient::studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-    $suggestionCount = 0;
-    $clientId = '[CLIENT_ID]';
-
-    suggest_trials_sample($formattedParent, $suggestionCount, $clientId);
 }
 // [END aiplatform_v1_generated_VizierService_SuggestTrials_sync]

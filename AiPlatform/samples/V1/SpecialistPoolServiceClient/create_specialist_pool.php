@@ -33,30 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a SpecialistPool.
  *
- * @param string $formattedParent           The parent Project name for the new SpecialistPool.
- *                                          The form is `projects/{project}/locations/{location}`. Please see
- *                                          {@see SpecialistPoolServiceClient::locationName()} for help formatting this field.
- * @param string $specialistPoolName        The resource name of the SpecialistPool.
- * @param string $specialistPoolDisplayName The user-defined name of the SpecialistPool.
- *                                          The name can be up to 128 characters long and can consist of any UTF-8
- *                                          characters.
- *                                          This field should be unique on project-level.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_specialist_pool_sample(
-    string $formattedParent,
-    string $specialistPoolName,
-    string $specialistPoolDisplayName
-): void {
+function create_specialist_pool_sample(): void
+{
     // Create a client.
     $specialistPoolServiceClient = new SpecialistPoolServiceClient();
 
     // Prepare the request message.
-    $specialistPool = (new SpecialistPool())
-        ->setName($specialistPoolName)
-        ->setDisplayName($specialistPoolDisplayName);
-    $request = (new CreateSpecialistPoolRequest())
-        ->setParent($formattedParent)
-        ->setSpecialistPool($specialistPool);
+    $request = new CreateSpecialistPoolRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -76,23 +65,5 @@ function create_specialist_pool_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SpecialistPoolServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $specialistPoolName = '[NAME]';
-    $specialistPoolDisplayName = '[DISPLAY_NAME]';
-
-    create_specialist_pool_sample($formattedParent, $specialistPoolName, $specialistPoolDisplayName);
 }
 // [END aiplatform_v1_generated_SpecialistPoolService_CreateSpecialistPool_sync]

@@ -42,7 +42,6 @@ class CreateDeploymentResourcePoolRequest extends \Google\Protobuf\Internal\Mess
     /**
      * @param string                                             $parent                   Required. The parent location resource where this DeploymentResourcePool
      *                                                                                     will be created. Format: `projects/{project}/locations/{location}`
-     *                                                                                     Please see {@see DeploymentResourcePoolServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\DeploymentResourcePool $deploymentResourcePool   Required. The DeploymentResourcePool to create.
      * @param string                                             $deploymentResourcePoolId Required. The ID to use for the DeploymentResourcePool, which
      *                                                                                     will become the final component of the DeploymentResourcePool's resource

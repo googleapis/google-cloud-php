@@ -100,9 +100,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $featurestoreServiceClient = new FeaturestoreServiceClient();
  * try {
- *     $formattedParent = $featurestoreServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
- *     $requests = [];
- *     $operationResponse = $featurestoreServiceClient->batchCreateFeatures($formattedParent, $requests);
+ *     $operationResponse = $featurestoreServiceClient->batchCreateFeatures();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -113,7 +111,7 @@ use Google\Protobuf\Timestamp;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $featurestoreServiceClient->batchCreateFeatures($formattedParent, $requests);
+ *     $operationResponse = $featurestoreServiceClient->batchCreateFeatures();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'batchCreateFeatures');
@@ -629,9 +627,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedParent = $featurestoreServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-     *     $requests = [];
-     *     $operationResponse = $featurestoreServiceClient->batchCreateFeatures($formattedParent, $requests);
+     *     $operationResponse = $featurestoreServiceClient->batchCreateFeatures();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -642,7 +638,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->batchCreateFeatures($formattedParent, $requests);
+     *     $operationResponse = $featurestoreServiceClient->batchCreateFeatures();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'batchCreateFeatures');
@@ -662,17 +658,19 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string                 $parent       Required. The resource name of the EntityType to create the batch of
-     *                                             Features under. Format:
-     *                                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     * @param CreateFeatureRequest[] $requests     Required. The request message specifying the Features to create. All
-     *                                             Features must be created under the same parent EntityType. The `parent`
-     *                                             field in each child request message can be omitted. If `parent` is set in a
-     *                                             child request, then the value must match the `parent` value in this request
-     *                                             message.
-     * @param array                  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the EntityType to create the batch of
+     *           Features under. Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *     @type CreateFeatureRequest[] $requests
+     *           Required. The request message specifying the Features to create. All
+     *           Features must be created under the same parent EntityType. The `parent`
+     *           field in each child request message can be omitted. If `parent` is set in a
+     *           child request, then the value must match the `parent` value in this request
+     *           message.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -683,16 +681,19 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCreateFeatures(
-        $parent,
-        $requests,
-        array $optionalArgs = []
-    ) {
+    public function batchCreateFeatures(array $optionalArgs = [])
+    {
         $request = new BatchCreateFeaturesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRequests($requests);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['requests'])) {
+            $request->setRequests($optionalArgs['requests']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -719,10 +720,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedFeaturestore = $featurestoreServiceClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-     *     $destination = new FeatureValueDestination();
-     *     $entityTypeSpecs = [];
-     *     $operationResponse = $featurestoreServiceClient->batchReadFeatureValues($formattedFeaturestore, $destination, $entityTypeSpecs);
+     *     $operationResponse = $featurestoreServiceClient->batchReadFeatureValues();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -733,7 +731,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->batchReadFeatureValues($formattedFeaturestore, $destination, $entityTypeSpecs);
+     *     $operationResponse = $featurestoreServiceClient->batchReadFeatureValues();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'batchReadFeatureValues');
@@ -753,13 +751,7 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string                  $featurestore    Required. The resource name of the Featurestore from which to query Feature
-     *                                                 values. Format:
-     *                                                 `projects/{project}/locations/{location}/featurestores/{featurestore}`
-     * @param FeatureValueDestination $destination     Required. Specifies output location and format.
-     * @param EntityTypeSpec[]        $entityTypeSpecs Required. Specifies EntityType grouping Features to read values of and
-     *                                                 settings.
-     * @param array                   $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type CsvSource $csvReadInstances
@@ -789,6 +781,12 @@ class FeaturestoreServiceGapicClient
      *           `2012-07-30T10:43:17.123Z`.
      *     @type BigQuerySource $bigqueryReadInstances
      *           Similar to csv_read_instances, but from BigQuery source.
+     *     @type string $featurestore
+     *           Required. The resource name of the Featurestore from which to query Feature
+     *           values. Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}`
+     *     @type FeatureValueDestination $destination
+     *           Required. Specifies output location and format.
      *     @type PassThroughField[] $passThroughFields
      *           When not empty, the specified fields in the *_read_instances source will be
      *           joined as-is in the output, in addition to those fields from the
@@ -797,6 +795,9 @@ class FeaturestoreServiceGapicClient
      *           For BigQuery source, the type of the pass-through values will be
      *           automatically inferred. For CSV source, the pass-through values will be
      *           passed as opaque bytes.
+     *     @type EntityTypeSpec[] $entityTypeSpecs
+     *           Required. Specifies EntityType grouping Features to read values of and
+     *           settings.
      *     @type Timestamp $startTime
      *           Optional. Excludes Feature values with feature generation timestamp before
      *           this timestamp. If not set, retrieve oldest values kept in Feature Store.
@@ -811,18 +812,10 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchReadFeatureValues(
-        $featurestore,
-        $destination,
-        $entityTypeSpecs,
-        array $optionalArgs = []
-    ) {
+    public function batchReadFeatureValues(array $optionalArgs = [])
+    {
         $request = new BatchReadFeatureValuesRequest();
         $requestParamHeaders = [];
-        $request->setFeaturestore($featurestore);
-        $request->setDestination($destination);
-        $request->setEntityTypeSpecs($entityTypeSpecs);
-        $requestParamHeaders['featurestore'] = $featurestore;
         if (isset($optionalArgs['csvReadInstances'])) {
             $request->setCsvReadInstances($optionalArgs['csvReadInstances']);
         }
@@ -833,8 +826,22 @@ class FeaturestoreServiceGapicClient
             );
         }
 
+        if (isset($optionalArgs['featurestore'])) {
+            $request->setFeaturestore($optionalArgs['featurestore']);
+            $requestParamHeaders['featurestore'] =
+                $optionalArgs['featurestore'];
+        }
+
+        if (isset($optionalArgs['destination'])) {
+            $request->setDestination($optionalArgs['destination']);
+        }
+
         if (isset($optionalArgs['passThroughFields'])) {
             $request->setPassThroughFields($optionalArgs['passThroughFields']);
+        }
+
+        if (isset($optionalArgs['entityTypeSpecs'])) {
+            $request->setEntityTypeSpecs($optionalArgs['entityTypeSpecs']);
         }
 
         if (isset($optionalArgs['startTime'])) {
@@ -862,9 +869,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedParent = $featurestoreServiceClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-     *     $entityTypeId = 'entity_type_id';
-     *     $operationResponse = $featurestoreServiceClient->createEntityType($formattedParent, $entityTypeId);
+     *     $operationResponse = $featurestoreServiceClient->createEntityType();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -875,7 +880,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->createEntityType($formattedParent, $entityTypeId);
+     *     $operationResponse = $featurestoreServiceClient->createEntityType();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'createEntityType');
@@ -895,21 +900,23 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Featurestore to create EntityTypes.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}`
-     * @param string $entityTypeId Required. The ID to use for the EntityType, which will become the final
-     *                             component of the EntityType's resource name.
-     *
-     *                             This value may be up to 60 characters, and valid characters are
-     *                             `[a-z0-9_]`. The first character cannot be a number.
-     *
-     *                             The value must be unique within a featurestore.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Featurestore to create EntityTypes.
+     *           Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *     @type EntityType $entityType
      *           The EntityType to create.
+     *     @type string $entityTypeId
+     *           Required. The ID to use for the EntityType, which will become the final
+     *           component of the EntityType's resource name.
+     *
+     *           This value may be up to 60 characters, and valid characters are
+     *           `[a-z0-9_]`. The first character cannot be a number.
+     *
+     *           The value must be unique within a featurestore.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -920,18 +927,21 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEntityType(
-        $parent,
-        $entityTypeId,
-        array $optionalArgs = []
-    ) {
+    public function createEntityType(array $optionalArgs = [])
+    {
         $request = new CreateEntityTypeRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEntityTypeId($entityTypeId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['entityType'])) {
             $request->setEntityType($optionalArgs['entityType']);
+        }
+
+        if (isset($optionalArgs['entityTypeId'])) {
+            $request->setEntityTypeId($optionalArgs['entityTypeId']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -955,10 +965,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedParent = $featurestoreServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-     *     $feature = new Feature();
-     *     $featureId = 'feature_id';
-     *     $operationResponse = $featurestoreServiceClient->createFeature($formattedParent, $feature, $featureId);
+     *     $operationResponse = $featurestoreServiceClient->createFeature();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -969,7 +976,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->createFeature($formattedParent, $feature, $featureId);
+     *     $operationResponse = $featurestoreServiceClient->createFeature();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'createFeature');
@@ -989,22 +996,25 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The resource name of the EntityType or FeatureGroup to create a
-     *                              Feature. Format for entity_type as parent:
-     *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     *                              Format for feature_group as parent:
-     *                              `projects/{project}/locations/{location}/featureGroups/{feature_group}`
-     * @param Feature $feature      Required. The Feature to create.
-     * @param string  $featureId    Required. The ID to use for the Feature, which will become the final
-     *                              component of the Feature's resource name.
-     *
-     *                              This value may be up to 128 characters, and valid characters are
-     *                              `[a-z0-9_]`. The first character cannot be a number.
-     *
-     *                              The value must be unique within an EntityType/FeatureGroup.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the EntityType or FeatureGroup to create a
+     *           Feature. Format for entity_type as parent:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *           Format for feature_group as parent:
+     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}`
+     *     @type Feature $feature
+     *           Required. The Feature to create.
+     *     @type string $featureId
+     *           Required. The ID to use for the Feature, which will become the final
+     *           component of the Feature's resource name.
+     *
+     *           This value may be up to 128 characters, and valid characters are
+     *           `[a-z0-9_]`. The first character cannot be a number.
+     *
+     *           The value must be unique within an EntityType/FeatureGroup.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1015,18 +1025,23 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFeature(
-        $parent,
-        $feature,
-        $featureId,
-        array $optionalArgs = []
-    ) {
+    public function createFeature(array $optionalArgs = [])
+    {
         $request = new CreateFeatureRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFeature($feature);
-        $request->setFeatureId($featureId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['feature'])) {
+            $request->setFeature($optionalArgs['feature']);
+        }
+
+        if (isset($optionalArgs['featureId'])) {
+            $request->setFeatureId($optionalArgs['featureId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1048,10 +1063,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedParent = $featurestoreServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $featurestore = new Featurestore();
-     *     $featurestoreId = 'featurestore_id';
-     *     $operationResponse = $featurestoreServiceClient->createFeaturestore($formattedParent, $featurestore, $featurestoreId);
+     *     $operationResponse = $featurestoreServiceClient->createFeaturestore();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1062,7 +1074,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->createFeaturestore($formattedParent, $featurestore, $featurestoreId);
+     *     $operationResponse = $featurestoreServiceClient->createFeaturestore();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'createFeaturestore');
@@ -1082,20 +1094,23 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string       $parent         Required. The resource name of the Location to create Featurestores.
-     *                                     Format:
-     *                                     `projects/{project}/locations/{location}`
-     * @param Featurestore $featurestore   Required. The Featurestore to create.
-     * @param string       $featurestoreId Required. The ID to use for this Featurestore, which will become the final
-     *                                     component of the Featurestore's resource name.
-     *
-     *                                     This value may be up to 60 characters, and valid characters are
-     *                                     `[a-z0-9_]`. The first character cannot be a number.
-     *
-     *                                     The value must be unique within the project and location.
-     * @param array        $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to create Featurestores.
+     *           Format:
+     *           `projects/{project}/locations/{location}`
+     *     @type Featurestore $featurestore
+     *           Required. The Featurestore to create.
+     *     @type string $featurestoreId
+     *           Required. The ID to use for this Featurestore, which will become the final
+     *           component of the Featurestore's resource name.
+     *
+     *           This value may be up to 60 characters, and valid characters are
+     *           `[a-z0-9_]`. The first character cannot be a number.
+     *
+     *           The value must be unique within the project and location.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1106,18 +1121,23 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFeaturestore(
-        $parent,
-        $featurestore,
-        $featurestoreId,
-        array $optionalArgs = []
-    ) {
+    public function createFeaturestore(array $optionalArgs = [])
+    {
         $request = new CreateFeaturestoreRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFeaturestore($featurestore);
-        $request->setFeaturestoreId($featurestoreId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['featurestore'])) {
+            $request->setFeaturestore($optionalArgs['featurestore']);
+        }
+
+        if (isset($optionalArgs['featurestoreId'])) {
+            $request->setFeaturestoreId($optionalArgs['featurestoreId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1140,8 +1160,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedName = $featurestoreServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-     *     $operationResponse = $featurestoreServiceClient->deleteEntityType($formattedName);
+     *     $operationResponse = $featurestoreServiceClient->deleteEntityType();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1151,7 +1170,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->deleteEntityType($formattedName);
+     *     $operationResponse = $featurestoreServiceClient->deleteEntityType();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'deleteEntityType');
@@ -1170,12 +1189,13 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the EntityType to be deleted.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the EntityType to be deleted.
+     *           Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
      *     @type bool $force
      *           If set to true, any Features for this EntityType will also be deleted.
      *           (Otherwise, the request will only work if the EntityType has no Features.)
@@ -1189,12 +1209,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteEntityType($name, array $optionalArgs = [])
+    public function deleteEntityType(array $optionalArgs = [])
     {
         $request = new DeleteEntityTypeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1220,8 +1243,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedName = $featurestoreServiceClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
-     *     $operationResponse = $featurestoreServiceClient->deleteFeature($formattedName);
+     *     $operationResponse = $featurestoreServiceClient->deleteFeature();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1231,7 +1253,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->deleteFeature($formattedName);
+     *     $operationResponse = $featurestoreServiceClient->deleteFeature();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'deleteFeature');
@@ -1250,13 +1272,14 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Features to be deleted.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
-     *                             `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Features to be deleted.
+     *           Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1267,12 +1290,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFeature($name, array $optionalArgs = [])
+    public function deleteFeature(array $optionalArgs = [])
     {
         $request = new DeleteFeatureRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1303,8 +1329,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedEntityType = $featurestoreServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-     *     $operationResponse = $featurestoreServiceClient->deleteFeatureValues($formattedEntityType);
+     *     $operationResponse = $featurestoreServiceClient->deleteFeatureValues();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1315,7 +1340,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->deleteFeatureValues($formattedEntityType);
+     *     $operationResponse = $featurestoreServiceClient->deleteFeatureValues();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'deleteFeatureValues');
@@ -1335,10 +1360,7 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string $entityType   Required. The resource name of the EntityType grouping the Features for
-     *                             which values are being deleted from. Format:
-     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type SelectEntity $selectEntity
@@ -1346,6 +1368,10 @@ class FeaturestoreServiceGapicClient
      *     @type SelectTimeRangeAndFeature $selectTimeRangeAndFeature
      *           Select feature values to be deleted by specifying time range and
      *           features.
+     *     @type string $entityType
+     *           Required. The resource name of the EntityType grouping the Features for
+     *           which values are being deleted from. Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1356,12 +1382,10 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFeatureValues($entityType, array $optionalArgs = [])
+    public function deleteFeatureValues(array $optionalArgs = [])
     {
         $request = new DeleteFeatureValuesRequest();
         $requestParamHeaders = [];
-        $request->setEntityType($entityType);
-        $requestParamHeaders['entity_type'] = $entityType;
         if (isset($optionalArgs['selectEntity'])) {
             $request->setSelectEntity($optionalArgs['selectEntity']);
         }
@@ -1370,6 +1394,11 @@ class FeaturestoreServiceGapicClient
             $request->setSelectTimeRangeAndFeature(
                 $optionalArgs['selectTimeRangeAndFeature']
             );
+        }
+
+        if (isset($optionalArgs['entityType'])) {
+            $request->setEntityType($optionalArgs['entityType']);
+            $requestParamHeaders['entity_type'] = $optionalArgs['entityType'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1394,8 +1423,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedName = $featurestoreServiceClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-     *     $operationResponse = $featurestoreServiceClient->deleteFeaturestore($formattedName);
+     *     $operationResponse = $featurestoreServiceClient->deleteFeaturestore();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1405,7 +1433,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->deleteFeaturestore($formattedName);
+     *     $operationResponse = $featurestoreServiceClient->deleteFeaturestore();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'deleteFeaturestore');
@@ -1424,12 +1452,13 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Featurestore to be deleted.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Featurestore to be deleted.
+     *           Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *     @type bool $force
      *           If set to true, any EntityTypes and Features for this Featurestore will
      *           also be deleted. (Otherwise, the request will only work if the Featurestore
@@ -1444,12 +1473,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteFeaturestore($name, array $optionalArgs = [])
+    public function deleteFeaturestore(array $optionalArgs = [])
     {
         $request = new DeleteFeaturestoreRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -1475,10 +1507,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedEntityType = $featurestoreServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-     *     $destination = new FeatureValueDestination();
-     *     $featureSelector = new FeatureSelector();
-     *     $operationResponse = $featurestoreServiceClient->exportFeatureValues($formattedEntityType, $destination, $featureSelector);
+     *     $operationResponse = $featurestoreServiceClient->exportFeatureValues();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1489,7 +1518,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->exportFeatureValues($formattedEntityType, $destination, $featureSelector);
+     *     $operationResponse = $featurestoreServiceClient->exportFeatureValues();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'exportFeatureValues');
@@ -1509,12 +1538,7 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string                  $entityType      Required. The resource name of the EntityType from which to export Feature
-     *                                                 values. Format:
-     *                                                 `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     * @param FeatureValueDestination $destination     Required. Specifies destination location and format.
-     * @param FeatureSelector         $featureSelector Required. Selects Features to export values of.
-     * @param array                   $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type SnapshotExport $snapshotExport
@@ -1523,6 +1547,14 @@ class FeaturestoreServiceGapicClient
      *     @type FullExport $fullExport
      *           Exports all historical values of all entities of the EntityType within a
      *           time range
+     *     @type string $entityType
+     *           Required. The resource name of the EntityType from which to export Feature
+     *           values. Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *     @type FeatureValueDestination $destination
+     *           Required. Specifies destination location and format.
+     *     @type FeatureSelector $featureSelector
+     *           Required. Selects Features to export values of.
      *     @type DestinationFeatureSetting[] $settings
      *           Per-Feature export settings.
      *     @type RetrySettings|array $retrySettings
@@ -1535,24 +1567,29 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportFeatureValues(
-        $entityType,
-        $destination,
-        $featureSelector,
-        array $optionalArgs = []
-    ) {
+    public function exportFeatureValues(array $optionalArgs = [])
+    {
         $request = new ExportFeatureValuesRequest();
         $requestParamHeaders = [];
-        $request->setEntityType($entityType);
-        $request->setDestination($destination);
-        $request->setFeatureSelector($featureSelector);
-        $requestParamHeaders['entity_type'] = $entityType;
         if (isset($optionalArgs['snapshotExport'])) {
             $request->setSnapshotExport($optionalArgs['snapshotExport']);
         }
 
         if (isset($optionalArgs['fullExport'])) {
             $request->setFullExport($optionalArgs['fullExport']);
+        }
+
+        if (isset($optionalArgs['entityType'])) {
+            $request->setEntityType($optionalArgs['entityType']);
+            $requestParamHeaders['entity_type'] = $optionalArgs['entityType'];
+        }
+
+        if (isset($optionalArgs['destination'])) {
+            $request->setDestination($optionalArgs['destination']);
+        }
+
+        if (isset($optionalArgs['featureSelector'])) {
+            $request->setFeatureSelector($optionalArgs['featureSelector']);
         }
 
         if (isset($optionalArgs['settings'])) {
@@ -1580,19 +1617,19 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedName = $featurestoreServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-     *     $response = $featurestoreServiceClient->getEntityType($formattedName);
+     *     $response = $featurestoreServiceClient->getEntityType();
      * } finally {
      *     $featurestoreServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the EntityType resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the EntityType resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1603,12 +1640,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEntityType($name, array $optionalArgs = [])
+    public function getEntityType(array $optionalArgs = [])
     {
         $request = new GetEntityTypeRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1630,21 +1670,21 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedName = $featurestoreServiceClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
-     *     $response = $featurestoreServiceClient->getFeature($formattedName);
+     *     $response = $featurestoreServiceClient->getFeature();
      * } finally {
      *     $featurestoreServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Feature resource.
-     *                             Format for entity_type as parent:
-     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     *                             Format for feature_group as parent:
-     *                             `projects/{project}/locations/{location}/featureGroups/{feature_group}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Feature resource.
+     *           Format for entity_type as parent:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *           Format for feature_group as parent:
+     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1655,12 +1695,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFeature($name, array $optionalArgs = [])
+    public function getFeature(array $optionalArgs = [])
     {
         $request = new GetFeatureRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1682,17 +1725,17 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedName = $featurestoreServiceClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-     *     $response = $featurestoreServiceClient->getFeaturestore($formattedName);
+     *     $response = $featurestoreServiceClient->getFeaturestore();
      * } finally {
      *     $featurestoreServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Featurestore resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Featurestore resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1703,12 +1746,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getFeaturestore($name, array $optionalArgs = [])
+    public function getFeaturestore(array $optionalArgs = [])
     {
         $request = new GetFeaturestoreRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1749,9 +1795,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedEntityType = $featurestoreServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-     *     $featureSpecs = [];
-     *     $operationResponse = $featurestoreServiceClient->importFeatureValues($formattedEntityType, $featureSpecs);
+     *     $operationResponse = $featurestoreServiceClient->importFeatureValues();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1762,7 +1806,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->importFeatureValues($formattedEntityType, $featureSpecs);
+     *     $operationResponse = $featurestoreServiceClient->importFeatureValues();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'importFeatureValues');
@@ -1782,13 +1826,7 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string        $entityType   Required. The resource name of the EntityType grouping the Features for
-     *                                    which values are being imported. Format:
-     *                                    `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`
-     * @param FeatureSpec[] $featureSpecs Required. Specifications defining which Feature values to import from the
-     *                                    entity. The request fails if no feature_specs are provided, and having
-     *                                    multiple feature_specs for one Feature is not allowed.
-     * @param array         $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type AvroSource $avroSource
@@ -1800,9 +1838,17 @@ class FeaturestoreServiceGapicClient
      *     @type Timestamp $featureTime
      *           Single Feature timestamp for all entities being imported. The
      *           timestamp must not have higher than millisecond precision.
+     *     @type string $entityType
+     *           Required. The resource name of the EntityType grouping the Features for
+     *           which values are being imported. Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`
      *     @type string $entityIdField
      *           Source column that holds entity IDs. If not provided, entity IDs are
      *           extracted from the column named entity_id.
+     *     @type FeatureSpec[] $featureSpecs
+     *           Required. Specifications defining which Feature values to import from the
+     *           entity. The request fails if no feature_specs are provided, and having
+     *           multiple feature_specs for one Feature is not allowed.
      *     @type bool $disableOnlineServing
      *           If set, data will not be imported for online serving. This
      *           is typically used for backfilling, where Feature generation timestamps are
@@ -1826,16 +1872,10 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importFeatureValues(
-        $entityType,
-        $featureSpecs,
-        array $optionalArgs = []
-    ) {
+    public function importFeatureValues(array $optionalArgs = [])
+    {
         $request = new ImportFeatureValuesRequest();
         $requestParamHeaders = [];
-        $request->setEntityType($entityType);
-        $request->setFeatureSpecs($featureSpecs);
-        $requestParamHeaders['entity_type'] = $entityType;
         if (isset($optionalArgs['avroSource'])) {
             $request->setAvroSource($optionalArgs['avroSource']);
         }
@@ -1856,8 +1896,17 @@ class FeaturestoreServiceGapicClient
             $request->setFeatureTime($optionalArgs['featureTime']);
         }
 
+        if (isset($optionalArgs['entityType'])) {
+            $request->setEntityType($optionalArgs['entityType']);
+            $requestParamHeaders['entity_type'] = $optionalArgs['entityType'];
+        }
+
         if (isset($optionalArgs['entityIdField'])) {
             $request->setEntityIdField($optionalArgs['entityIdField']);
+        }
+
+        if (isset($optionalArgs['featureSpecs'])) {
+            $request->setFeatureSpecs($optionalArgs['featureSpecs']);
         }
 
         if (isset($optionalArgs['disableOnlineServing'])) {
@@ -1897,9 +1946,8 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedParent = $featurestoreServiceClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $featurestoreServiceClient->listEntityTypes($formattedParent);
+     *     $pagedResponse = $featurestoreServiceClient->listEntityTypes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1907,7 +1955,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $featurestoreServiceClient->listEntityTypes($formattedParent);
+     *     $pagedResponse = $featurestoreServiceClient->listEntityTypes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1916,12 +1964,13 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Featurestore to list EntityTypes.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Featurestore to list EntityTypes.
+     *           Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *     @type string $filter
      *           Lists the EntityTypes that match the filter expression. The following
      *           filters are supported:
@@ -1971,12 +2020,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEntityTypes($parent, array $optionalArgs = [])
+    public function listEntityTypes(array $optionalArgs = [])
     {
         $request = new ListEntityTypesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2018,9 +2070,8 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedParent = $featurestoreServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $featurestoreServiceClient->listFeatures($formattedParent);
+     *     $pagedResponse = $featurestoreServiceClient->listFeatures();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2028,7 +2079,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $featurestoreServiceClient->listFeatures($formattedParent);
+     *     $pagedResponse = $featurestoreServiceClient->listFeatures();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2037,14 +2088,15 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list Features.
-     *                             Format for entity_type as parent:
-     *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     *                             Format for feature_group as parent:
-     *                             `projects/{project}/locations/{location}/featureGroups/{feature_group}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to list Features.
+     *           Format for entity_type as parent:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *           Format for feature_group as parent:
+     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}`
      *     @type string $filter
      *           Lists the Features that match the filter expression. The following
      *           filters are supported:
@@ -2104,12 +2156,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFeatures($parent, array $optionalArgs = [])
+    public function listFeatures(array $optionalArgs = [])
     {
         $request = new ListFeaturesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2155,9 +2210,8 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedParent = $featurestoreServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $featurestoreServiceClient->listFeaturestores($formattedParent);
+     *     $pagedResponse = $featurestoreServiceClient->listFeaturestores();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2165,7 +2219,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $featurestoreServiceClient->listFeaturestores($formattedParent);
+     *     $pagedResponse = $featurestoreServiceClient->listFeaturestores();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2174,12 +2228,13 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list Featurestores.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to list Featurestores.
+     *           Format:
+     *           `projects/{project}/locations/{location}`
      *     @type string $filter
      *           Lists the featurestores that match the filter expression. The following
      *           fields are supported:
@@ -2229,12 +2284,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFeaturestores($parent, array $optionalArgs = [])
+    public function listFeaturestores(array $optionalArgs = [])
     {
         $request = new ListFeaturestoresRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2276,9 +2334,8 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $formattedLocation = $featurestoreServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $featurestoreServiceClient->searchFeatures($formattedLocation);
+     *     $pagedResponse = $featurestoreServiceClient->searchFeatures();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2286,7 +2343,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $featurestoreServiceClient->searchFeatures($formattedLocation);
+     *     $pagedResponse = $featurestoreServiceClient->searchFeatures();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2295,12 +2352,13 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string $location     Required. The resource name of the Location to search Features.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $location
+     *           Required. The resource name of the Location to search Features.
+     *           Format:
+     *           `projects/{project}/locations/{location}`
      *     @type string $query
      *           Query string that is a conjunction of field-restricted queries and/or
      *           field-restricted filters.  Field-restricted queries and filters can be
@@ -2381,12 +2439,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchFeatures($location, array $optionalArgs = [])
+    public function searchFeatures(array $optionalArgs = [])
     {
         $request = new SearchFeaturesRequest();
         $requestParamHeaders = [];
-        $request->setLocation($location);
-        $requestParamHeaders['location'] = $location;
+        if (isset($optionalArgs['location'])) {
+            $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
+        }
+
         if (isset($optionalArgs['query'])) {
             $request->setQuery($optionalArgs['query']);
         }
@@ -2420,19 +2481,19 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $entityType = new EntityType();
-     *     $response = $featurestoreServiceClient->updateEntityType($entityType);
+     *     $response = $featurestoreServiceClient->updateEntityType();
      * } finally {
      *     $featurestoreServiceClient->close();
      * }
      * ```
      *
-     * @param EntityType $entityType   Required. The EntityType's `name` field is used to identify the EntityType
-     *                                 to be updated. Format:
-     *                                 `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type EntityType $entityType
+     *           Required. The EntityType's `name` field is used to identify the EntityType
+     *           to be updated. Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
      *     @type FieldMask $updateMask
      *           Field mask is used to specify the fields to be overwritten in the
      *           EntityType resource by the update.
@@ -2464,12 +2525,14 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEntityType($entityType, array $optionalArgs = [])
+    public function updateEntityType(array $optionalArgs = [])
     {
         $request = new UpdateEntityTypeRequest();
         $requestParamHeaders = [];
-        $request->setEntityType($entityType);
-        $requestParamHeaders['entity_type.name'] = $entityType->getName();
+        if (isset($optionalArgs['entityType'])) {
+            $request->setEntityType($optionalArgs['entityType']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2495,21 +2558,21 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $feature = new Feature();
-     *     $response = $featurestoreServiceClient->updateFeature($feature);
+     *     $response = $featurestoreServiceClient->updateFeature();
      * } finally {
      *     $featurestoreServiceClient->close();
      * }
      * ```
      *
-     * @param Feature $feature      Required. The Feature's `name` field is used to identify the Feature to be
-     *                              updated.
-     *                              Format:
-     *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
-     *                              `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Feature $feature
+     *           Required. The Feature's `name` field is used to identify the Feature to be
+     *           updated.
+     *           Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *     @type FieldMask $updateMask
      *           Field mask is used to specify the fields to be overwritten in the
      *           Features resource by the update.
@@ -2534,12 +2597,14 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFeature($feature, array $optionalArgs = [])
+    public function updateFeature(array $optionalArgs = [])
     {
         $request = new UpdateFeatureRequest();
         $requestParamHeaders = [];
-        $request->setFeature($feature);
-        $requestParamHeaders['feature.name'] = $feature->getName();
+        if (isset($optionalArgs['feature'])) {
+            $request->setFeature($optionalArgs['feature']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2565,8 +2630,7 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $featurestore = new Featurestore();
-     *     $operationResponse = $featurestoreServiceClient->updateFeaturestore($featurestore);
+     *     $operationResponse = $featurestoreServiceClient->updateFeaturestore();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2577,7 +2641,7 @@ class FeaturestoreServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $featurestoreServiceClient->updateFeaturestore($featurestore);
+     *     $operationResponse = $featurestoreServiceClient->updateFeaturestore();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $featurestoreServiceClient->resumeOperation($operationName, 'updateFeaturestore');
@@ -2597,12 +2661,13 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param Featurestore $featurestore Required. The Featurestore's `name` field is used to identify the
-     *                                   Featurestore to be updated. Format:
-     *                                   `projects/{project}/locations/{location}/featurestores/{featurestore}`
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Featurestore $featurestore
+     *           Required. The Featurestore's `name` field is used to identify the
+     *           Featurestore to be updated. Format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *     @type FieldMask $updateMask
      *           Field mask is used to specify the fields to be overwritten in the
      *           Featurestore resource by the update.
@@ -2628,12 +2693,14 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFeaturestore($featurestore, array $optionalArgs = [])
+    public function updateFeaturestore(array $optionalArgs = [])
     {
         $request = new UpdateFeaturestoreRequest();
         $requestParamHeaders = [];
-        $request->setFeaturestore($featurestore);
-        $requestParamHeaders['featurestore.name'] = $featurestore->getName();
+        if (isset($optionalArgs['featurestore'])) {
+            $request->setFeaturestore($optionalArgs['featurestore']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2800,18 +2867,18 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $featurestoreServiceClient->getIamPolicy($resource);
+     *     $response = $featurestoreServiceClient->getIamPolicy();
      * } finally {
      *     $featurestoreServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -2825,12 +2892,15 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -2862,23 +2932,23 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $featurestoreServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $featurestoreServiceClient->setIamPolicy();
      * } finally {
      *     $featurestoreServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -2895,13 +2965,19 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2935,23 +3011,23 @@ class FeaturestoreServiceGapicClient
      * ```
      * $featurestoreServiceClient = new FeaturestoreServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $featurestoreServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $featurestoreServiceClient->testIamPermissions();
      * } finally {
      *     $featurestoreServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2962,16 +3038,19 @@ class FeaturestoreServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

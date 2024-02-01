@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'feature_id',
-                ],
             ],
             'CreateFeatureGroup' => [
                 'method' => 'post',
@@ -28,9 +25,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'feature_group_id',
                 ],
             ],
             'DeleteFeature' => [

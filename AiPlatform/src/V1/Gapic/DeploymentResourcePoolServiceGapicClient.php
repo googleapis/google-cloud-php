@@ -66,10 +66,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $deploymentResourcePoolServiceClient = new DeploymentResourcePoolServiceClient();
  * try {
- *     $formattedParent = $deploymentResourcePoolServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $deploymentResourcePool = new DeploymentResourcePool();
- *     $deploymentResourcePoolId = 'deployment_resource_pool_id';
- *     $operationResponse = $deploymentResourcePoolServiceClient->createDeploymentResourcePool($formattedParent, $deploymentResourcePool, $deploymentResourcePoolId);
+ *     $operationResponse = $deploymentResourcePoolServiceClient->createDeploymentResourcePool();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -80,7 +77,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $deploymentResourcePoolServiceClient->createDeploymentResourcePool($formattedParent, $deploymentResourcePool, $deploymentResourcePoolId);
+ *     $operationResponse = $deploymentResourcePoolServiceClient->createDeploymentResourcePool();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $deploymentResourcePoolServiceClient->resumeOperation($operationName, 'createDeploymentResourcePool');
@@ -421,10 +418,7 @@ class DeploymentResourcePoolServiceGapicClient
      * ```
      * $deploymentResourcePoolServiceClient = new DeploymentResourcePoolServiceClient();
      * try {
-     *     $formattedParent = $deploymentResourcePoolServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $deploymentResourcePool = new DeploymentResourcePool();
-     *     $deploymentResourcePoolId = 'deployment_resource_pool_id';
-     *     $operationResponse = $deploymentResourcePoolServiceClient->createDeploymentResourcePool($formattedParent, $deploymentResourcePool, $deploymentResourcePoolId);
+     *     $operationResponse = $deploymentResourcePoolServiceClient->createDeploymentResourcePool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -435,7 +429,7 @@ class DeploymentResourcePoolServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $deploymentResourcePoolServiceClient->createDeploymentResourcePool($formattedParent, $deploymentResourcePool, $deploymentResourcePoolId);
+     *     $operationResponse = $deploymentResourcePoolServiceClient->createDeploymentResourcePool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $deploymentResourcePoolServiceClient->resumeOperation($operationName, 'createDeploymentResourcePool');
@@ -455,18 +449,21 @@ class DeploymentResourcePoolServiceGapicClient
      * }
      * ```
      *
-     * @param string                 $parent                   Required. The parent location resource where this DeploymentResourcePool
-     *                                                         will be created. Format: `projects/{project}/locations/{location}`
-     * @param DeploymentResourcePool $deploymentResourcePool   Required. The DeploymentResourcePool to create.
-     * @param string                 $deploymentResourcePoolId Required. The ID to use for the DeploymentResourcePool, which
-     *                                                         will become the final component of the DeploymentResourcePool's resource
-     *                                                         name.
-     *
-     *                                                         The maximum length is 63 characters, and valid characters
-     *                                                         are `/^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$/`.
-     * @param array                  $optionalArgs             {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location resource where this DeploymentResourcePool
+     *           will be created. Format: `projects/{project}/locations/{location}`
+     *     @type DeploymentResourcePool $deploymentResourcePool
+     *           Required. The DeploymentResourcePool to create.
+     *     @type string $deploymentResourcePoolId
+     *           Required. The ID to use for the DeploymentResourcePool, which
+     *           will become the final component of the DeploymentResourcePool's resource
+     *           name.
+     *
+     *           The maximum length is 63 characters, and valid characters
+     *           are `/^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$/`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -477,18 +474,27 @@ class DeploymentResourcePoolServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDeploymentResourcePool(
-        $parent,
-        $deploymentResourcePool,
-        $deploymentResourcePoolId,
-        array $optionalArgs = []
-    ) {
+    public function createDeploymentResourcePool(array $optionalArgs = [])
+    {
         $request = new CreateDeploymentResourcePoolRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDeploymentResourcePool($deploymentResourcePool);
-        $request->setDeploymentResourcePoolId($deploymentResourcePoolId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['deploymentResourcePool'])) {
+            $request->setDeploymentResourcePool(
+                $optionalArgs['deploymentResourcePool']
+            );
+        }
+
+        if (isset($optionalArgs['deploymentResourcePoolId'])) {
+            $request->setDeploymentResourcePoolId(
+                $optionalArgs['deploymentResourcePoolId']
+            );
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -510,8 +516,7 @@ class DeploymentResourcePoolServiceGapicClient
      * ```
      * $deploymentResourcePoolServiceClient = new DeploymentResourcePoolServiceClient();
      * try {
-     *     $formattedName = $deploymentResourcePoolServiceClient->deploymentResourcePoolName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT_RESOURCE_POOL]');
-     *     $operationResponse = $deploymentResourcePoolServiceClient->deleteDeploymentResourcePool($formattedName);
+     *     $operationResponse = $deploymentResourcePoolServiceClient->deleteDeploymentResourcePool();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -521,7 +526,7 @@ class DeploymentResourcePoolServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $deploymentResourcePoolServiceClient->deleteDeploymentResourcePool($formattedName);
+     *     $operationResponse = $deploymentResourcePoolServiceClient->deleteDeploymentResourcePool();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $deploymentResourcePoolServiceClient->resumeOperation($operationName, 'deleteDeploymentResourcePool');
@@ -540,12 +545,13 @@ class DeploymentResourcePoolServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DeploymentResourcePool to delete.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DeploymentResourcePool to delete.
+     *           Format:
+     *           `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -556,14 +562,15 @@ class DeploymentResourcePoolServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDeploymentResourcePool(
-        $name,
-        array $optionalArgs = []
-    ) {
+    public function deleteDeploymentResourcePool(array $optionalArgs = [])
+    {
         $request = new DeleteDeploymentResourcePoolRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -585,19 +592,19 @@ class DeploymentResourcePoolServiceGapicClient
      * ```
      * $deploymentResourcePoolServiceClient = new DeploymentResourcePoolServiceClient();
      * try {
-     *     $formattedName = $deploymentResourcePoolServiceClient->deploymentResourcePoolName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT_RESOURCE_POOL]');
-     *     $response = $deploymentResourcePoolServiceClient->getDeploymentResourcePool($formattedName);
+     *     $response = $deploymentResourcePoolServiceClient->getDeploymentResourcePool();
      * } finally {
      *     $deploymentResourcePoolServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DeploymentResourcePool to retrieve.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DeploymentResourcePool to retrieve.
+     *           Format:
+     *           `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -608,12 +615,15 @@ class DeploymentResourcePoolServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDeploymentResourcePool($name, array $optionalArgs = [])
+    public function getDeploymentResourcePool(array $optionalArgs = [])
     {
         $request = new GetDeploymentResourcePoolRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -635,9 +645,8 @@ class DeploymentResourcePoolServiceGapicClient
      * ```
      * $deploymentResourcePoolServiceClient = new DeploymentResourcePoolServiceClient();
      * try {
-     *     $formattedParent = $deploymentResourcePoolServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $deploymentResourcePoolServiceClient->listDeploymentResourcePools($formattedParent);
+     *     $pagedResponse = $deploymentResourcePoolServiceClient->listDeploymentResourcePools();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -645,7 +654,7 @@ class DeploymentResourcePoolServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $deploymentResourcePoolServiceClient->listDeploymentResourcePools($formattedParent);
+     *     $pagedResponse = $deploymentResourcePoolServiceClient->listDeploymentResourcePools();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -654,11 +663,12 @@ class DeploymentResourcePoolServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent Location which owns this collection of
-     *                             DeploymentResourcePools. Format: `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent Location which owns this collection of
+     *           DeploymentResourcePools. Format: `projects/{project}/locations/{location}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -678,14 +688,15 @@ class DeploymentResourcePoolServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDeploymentResourcePools(
-        $parent,
-        array $optionalArgs = []
-    ) {
+    public function listDeploymentResourcePools(array $optionalArgs = [])
+    {
         $request = new ListDeploymentResourcePoolsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -715,9 +726,8 @@ class DeploymentResourcePoolServiceGapicClient
      * ```
      * $deploymentResourcePoolServiceClient = new DeploymentResourcePoolServiceClient();
      * try {
-     *     $deploymentResourcePool = 'deployment_resource_pool';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $deploymentResourcePoolServiceClient->queryDeployedModels($deploymentResourcePool);
+     *     $pagedResponse = $deploymentResourcePoolServiceClient->queryDeployedModels();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -725,7 +735,7 @@ class DeploymentResourcePoolServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $deploymentResourcePoolServiceClient->queryDeployedModels($deploymentResourcePool);
+     *     $pagedResponse = $deploymentResourcePoolServiceClient->queryDeployedModels();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -734,12 +744,13 @@ class DeploymentResourcePoolServiceGapicClient
      * }
      * ```
      *
-     * @param string $deploymentResourcePool Required. The name of the target DeploymentResourcePool to query.
-     *                                       Format:
-     *                                       `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
-     * @param array  $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $deploymentResourcePool
+     *           Required. The name of the target DeploymentResourcePool to query.
+     *           Format:
+     *           `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -759,16 +770,18 @@ class DeploymentResourcePoolServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function queryDeployedModels(
-        $deploymentResourcePool,
-        array $optionalArgs = []
-    ) {
+    public function queryDeployedModels(array $optionalArgs = [])
+    {
         $request = new QueryDeployedModelsRequest();
         $requestParamHeaders = [];
-        $request->setDeploymentResourcePool($deploymentResourcePool);
-        $requestParamHeaders[
-            'deployment_resource_pool'
-        ] = $deploymentResourcePool;
+        if (isset($optionalArgs['deploymentResourcePool'])) {
+            $request->setDeploymentResourcePool(
+                $optionalArgs['deploymentResourcePool']
+            );
+            $requestParamHeaders['deployment_resource_pool'] =
+                $optionalArgs['deploymentResourcePool'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -939,18 +952,18 @@ class DeploymentResourcePoolServiceGapicClient
      * ```
      * $deploymentResourcePoolServiceClient = new DeploymentResourcePoolServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $deploymentResourcePoolServiceClient->getIamPolicy($resource);
+     *     $response = $deploymentResourcePoolServiceClient->getIamPolicy();
      * } finally {
      *     $deploymentResourcePoolServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -964,12 +977,15 @@ class DeploymentResourcePoolServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1001,23 +1017,23 @@ class DeploymentResourcePoolServiceGapicClient
      * ```
      * $deploymentResourcePoolServiceClient = new DeploymentResourcePoolServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $deploymentResourcePoolServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $deploymentResourcePoolServiceClient->setIamPolicy();
      * } finally {
      *     $deploymentResourcePoolServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1034,13 +1050,19 @@ class DeploymentResourcePoolServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1074,23 +1096,23 @@ class DeploymentResourcePoolServiceGapicClient
      * ```
      * $deploymentResourcePoolServiceClient = new DeploymentResourcePoolServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $deploymentResourcePoolServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $deploymentResourcePoolServiceClient->testIamPermissions();
      * } finally {
      *     $deploymentResourcePoolServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1101,16 +1123,19 @@ class DeploymentResourcePoolServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

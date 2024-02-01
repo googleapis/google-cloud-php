@@ -36,7 +36,6 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * @param string                                         $name          Required. The name of the Dataset resource.
      *                                                                      Format:
      *                                                                      `projects/{project}/locations/{location}/datasets/{dataset}`
-     *                                                                      Please see {@see DatasetServiceClient::datasetName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\ImportDataConfig[] $importConfigs Required. The desired input locations. The contents of all input locations
      *                                                                      will be imported in one batch.
      *

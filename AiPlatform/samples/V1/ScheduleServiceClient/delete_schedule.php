@@ -32,19 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a Schedule.
  *
- * @param string $formattedName The name of the Schedule resource to be deleted.
- *                              Format:
- *                              `projects/{project}/locations/{location}/schedules/{schedule}`
- *                              Please see {@see ScheduleServiceClient::scheduleName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_schedule_sample(string $formattedName): void
+function delete_schedule_sample(): void
 {
     // Create a client.
     $scheduleServiceClient = new ScheduleServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteScheduleRequest())
-        ->setName($formattedName);
+    $request = new DeleteScheduleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,21 +62,5 @@ function delete_schedule_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ScheduleServiceClient::scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-
-    delete_schedule_sample($formattedName);
 }
 // [END aiplatform_v1_generated_ScheduleService_DeleteSchedule_sync]

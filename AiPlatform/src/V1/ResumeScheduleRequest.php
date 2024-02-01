@@ -39,7 +39,6 @@ class ResumeScheduleRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the Schedule resource to be resumed.
      *                     Format:
      *                     `projects/{project}/locations/{location}/schedules/{schedule}`
-     *                     Please see {@see ScheduleServiceClient::scheduleName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ResumeScheduleRequest
      *
@@ -55,7 +54,6 @@ class ResumeScheduleRequest extends \Google\Protobuf\Internal\Message
      * @param string $name    Required. The name of the Schedule resource to be resumed.
      *                        Format:
      *                        `projects/{project}/locations/{location}/schedules/{schedule}`
-     *                        Please see {@see ScheduleServiceClient::scheduleName()} for help formatting this field.
      * @param bool   $catchUp Optional. Whether to backfill missed runs when the schedule is resumed from
      *                        PAUSED state. If set to true, all missed runs will be scheduled. New runs
      *                        will be scheduled after the backfill is complete. This will also update

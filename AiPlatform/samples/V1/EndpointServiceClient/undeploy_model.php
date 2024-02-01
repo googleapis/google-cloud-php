@@ -34,21 +34,19 @@ use Google\Rpc\Status;
  * Undeploys a Model from an Endpoint, removing a DeployedModel from it, and
  * freeing all resources it's using.
  *
- * @param string $formattedEndpoint The name of the Endpoint resource from which to undeploy a Model.
- *                                  Format:
- *                                  `projects/{project}/locations/{location}/endpoints/{endpoint}`
- *                                  Please see {@see EndpointServiceClient::endpointName()} for help formatting this field.
- * @param string $deployedModelId   The ID of the DeployedModel to be undeployed from the Endpoint.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function undeploy_model_sample(string $formattedEndpoint, string $deployedModelId): void
+function undeploy_model_sample(): void
 {
     // Create a client.
     $endpointServiceClient = new EndpointServiceClient();
 
     // Prepare the request message.
-    $request = (new UndeployModelRequest())
-        ->setEndpoint($formattedEndpoint)
-        ->setDeployedModelId($deployedModelId);
+    $request = new UndeployModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,22 +66,5 @@ function undeploy_model_sample(string $formattedEndpoint, string $deployedModelI
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedEndpoint = EndpointServiceClient::endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-    $deployedModelId = '[DEPLOYED_MODEL_ID]';
-
-    undeploy_model_sample($formattedEndpoint, $deployedModelId);
 }
 // [END aiplatform_v1_generated_EndpointService_UndeployModel_sync]

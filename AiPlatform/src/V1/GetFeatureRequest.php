@@ -35,7 +35,6 @@ class GetFeatureRequest extends \Google\Protobuf\Internal\Message
      *                     `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
      *                     Format for feature_group as parent:
      *                     `projects/{project}/locations/{location}/featureGroups/{feature_group}`
-     *                     Please see {@see FeaturestoreServiceClient::featureName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetFeatureRequest
      *

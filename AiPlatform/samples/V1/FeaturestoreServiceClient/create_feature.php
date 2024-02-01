@@ -33,31 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new Feature in a given EntityType.
  *
- * @param string $formattedParent The resource name of the EntityType or FeatureGroup to create a
- *                                Feature. Format for entity_type as parent:
- *                                `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
- *                                Format for feature_group as parent:
- *                                `projects/{project}/locations/{location}/featureGroups/{feature_group}`
- *                                Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
- * @param string $featureId       The ID to use for the Feature, which will become the final
- *                                component of the Feature's resource name.
- *
- *                                This value may be up to 128 characters, and valid characters are
- *                                `[a-z0-9_]`. The first character cannot be a number.
- *
- *                                The value must be unique within an EntityType/FeatureGroup.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_feature_sample(string $formattedParent, string $featureId): void
+function create_feature_sample(): void
 {
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $feature = new Feature();
-    $request = (new CreateFeatureRequest())
-        ->setParent($formattedParent)
-        ->setFeature($feature)
-        ->setFeatureId($featureId);
+    $request = new CreateFeatureRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -77,27 +65,5 @@ function create_feature_sample(string $formattedParent, string $featureId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = FeaturestoreServiceClient::entityTypeName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[FEATURESTORE]',
-        '[ENTITY_TYPE]'
-    );
-    $featureId = '[FEATURE_ID]';
-
-    create_feature_sample($formattedParent, $featureId);
 }
 // [END aiplatform_v1_generated_FeaturestoreService_CreateFeature_sync]

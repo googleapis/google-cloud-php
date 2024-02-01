@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest;
-use Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig;
 use Google\Cloud\AIPlatform\V1\ExportModelResponse;
 use Google\Rpc\Status;
 
@@ -37,21 +36,19 @@ use Google\Rpc\Status;
  * [supported export
  * format][google.cloud.aiplatform.v1.Model.supported_export_formats].
  *
- * @param string $formattedName The resource name of the Model to export.
- *                              The resource name may contain version id or version alias to specify the
- *                              version, if no version is specified, the default version will be exported. Please see
- *                              {@see ModelServiceClient::modelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function export_model_sample(string $formattedName): void
+function export_model_sample(): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $outputConfig = new OutputConfig();
-    $request = (new ExportModelRequest())
-        ->setName($formattedName)
-        ->setOutputConfig($outputConfig);
+    $request = new ExportModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,21 +68,5 @@ function export_model_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ModelServiceClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-
-    export_model_sample($formattedName);
 }
 // [END aiplatform_v1_generated_ModelService_ExportModel_sync]

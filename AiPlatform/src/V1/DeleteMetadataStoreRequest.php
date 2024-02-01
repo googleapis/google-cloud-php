@@ -36,7 +36,6 @@ class DeleteMetadataStoreRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the MetadataStore to delete.
      *                     Format:
      *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
-     *                     Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteMetadataStoreRequest
      *

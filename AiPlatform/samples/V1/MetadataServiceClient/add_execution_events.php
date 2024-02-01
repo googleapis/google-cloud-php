@@ -34,20 +34,19 @@ use Google\Cloud\AIPlatform\V1\Client\MetadataServiceClient;
  * already exists between the Execution and the Artifact, the Event is
  * skipped.
  *
- * @param string $formattedExecution The resource name of the Execution that the Events connect
- *                                   Artifacts with.
- *                                   Format:
- *                                   `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
- *                                   Please see {@see MetadataServiceClient::executionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function add_execution_events_sample(string $formattedExecution): void
+function add_execution_events_sample(): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = (new AddExecutionEventsRequest())
-        ->setExecution($formattedExecution);
+    $request = new AddExecutionEventsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,26 +56,5 @@ function add_execution_events_sample(string $formattedExecution): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedExecution = MetadataServiceClient::executionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[METADATA_STORE]',
-        '[EXECUTION]'
-    );
-
-    add_execution_events_sample($formattedExecution);
 }
 // [END aiplatform_v1_generated_MetadataService_AddExecutionEvents_sync]

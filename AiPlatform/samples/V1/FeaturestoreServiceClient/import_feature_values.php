@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest;
-use Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec;
 use Google\Cloud\AIPlatform\V1\ImportFeatureValuesResponse;
 use Google\Rpc\Status;
 
@@ -53,25 +52,19 @@ use Google\Rpc\Status;
  * or retention policy.
  * - Online serving cluster is under-provisioned.
  *
- * @param string $formattedEntityType The resource name of the EntityType grouping the Features for
- *                                    which values are being imported. Format:
- *                                    `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`
- *                                    Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
- * @param string $featureSpecsId      ID of the Feature to import values of. This Feature must exist
- *                                    in the target EntityType, or the request will fail.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_feature_values_sample(string $formattedEntityType, string $featureSpecsId): void
+function import_feature_values_sample(): void
 {
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $featureSpec = (new FeatureSpec())
-        ->setId($featureSpecsId);
-    $featureSpecs = [$featureSpec,];
-    $request = (new ImportFeatureValuesRequest())
-        ->setEntityType($formattedEntityType)
-        ->setFeatureSpecs($featureSpecs);
+    $request = new ImportFeatureValuesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -91,27 +84,5 @@ function import_feature_values_sample(string $formattedEntityType, string $featu
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedEntityType = FeaturestoreServiceClient::entityTypeName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[FEATURESTORE]',
-        '[ENTITY_TYPE]'
-    );
-    $featureSpecsId = '[ID]';
-
-    import_feature_values_sample($formattedEntityType, $featureSpecsId);
 }
 // [END aiplatform_v1_generated_FeaturestoreService_ImportFeatureValues_sync]

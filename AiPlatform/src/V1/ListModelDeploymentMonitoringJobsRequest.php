@@ -66,7 +66,6 @@ class ListModelDeploymentMonitoringJobsRequest extends \Google\Protobuf\Internal
     /**
      * @param string $parent Required. The parent of the ModelDeploymentMonitoringJob.
      *                       Format: `projects/{project}/locations/{location}`
-     *                       Please see {@see JobServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListModelDeploymentMonitoringJobsRequest
      *

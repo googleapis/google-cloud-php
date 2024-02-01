@@ -20,19 +20,19 @@ class EntityType
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ÿ
-,google/cloud/aiplatform/v1/entity_type.protogoogle.cloud.aiplatform.v1google/api/resource.proto8google/cloud/aiplatform/v1/featurestore_monitoring.protogoogle/protobuf/timestamp.proto"æ
+·
+,google/cloud/aiplatform/v1/entity_type.protogoogle.cloud.aiplatform.v1google/api/resource.proto8google/cloud/aiplatform/v1/featurestore_monitoring.protogoogle/protobuf/timestamp.proto"∆
 
-EntityType
-name (	B‡A
-description (	B‡A4
-create_time (2.google.protobuf.TimestampB‡A4
-update_time (2.google.protobuf.TimestampB‡AG
-labels (22.google.cloud.aiplatform.v1.EntityType.LabelsEntryB‡A
-etag (	B‡AX
-monitoring_config (28.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfigB‡A%
+EntityType
+name (	B‚A
+description (	B‚A5
+create_time (2.google.protobuf.TimestampB‚A5
+update_time (2.google.protobuf.TimestampB‚AH
+labels (22.google.cloud.aiplatform.v1.EntityType.LabelsEntryB‚A
+etag (	B‚AY
+monitoring_config (28.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfigB‚A&
 offline_storage_ttl_days
- (B‡A-
+ (B‚A-
 LabelsEntry
 key (	
 value (	:8:äÍAÜ

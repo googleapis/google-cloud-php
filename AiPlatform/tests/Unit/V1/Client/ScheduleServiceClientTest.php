@@ -49,7 +49,6 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -109,16 +108,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setAllowQueueing($allowQueueing);
         $expectedResponse->setCatchUp($catchUp);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $schedule = new Schedule();
-        $scheduleDisplayName = 'scheduleDisplayName-242731178';
-        $schedule->setDisplayName($scheduleDisplayName);
-        $scheduleMaxConcurrentRunCount = 423065016;
-        $schedule->setMaxConcurrentRunCount($scheduleMaxConcurrentRunCount);
-        $request = (new CreateScheduleRequest())
-            ->setParent($formattedParent)
-            ->setSchedule($schedule);
+        $request = new CreateScheduleRequest();
         $response = $gapicClient->createSchedule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -126,10 +116,6 @@ class ScheduleServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ScheduleService/CreateSchedule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSchedule();
-        $this->assertProtobufEquals($schedule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -151,16 +137,7 @@ class ScheduleServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $schedule = new Schedule();
-        $scheduleDisplayName = 'scheduleDisplayName-242731178';
-        $schedule->setDisplayName($scheduleDisplayName);
-        $scheduleMaxConcurrentRunCount = 423065016;
-        $schedule->setMaxConcurrentRunCount($scheduleMaxConcurrentRunCount);
-        $request = (new CreateScheduleRequest())
-            ->setParent($formattedParent)
-            ->setSchedule($schedule);
+        $request = new CreateScheduleRequest();
         try {
             $gapicClient->createSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -203,10 +180,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new DeleteScheduleRequest())
-            ->setName($formattedName);
+        $request = new DeleteScheduleRequest();
         $response = $gapicClient->deleteSchedule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -217,8 +191,6 @@ class ScheduleServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ScheduleService/DeleteSchedule', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteScheduleTest');
         $response->pollUntilComplete([
@@ -269,10 +241,7 @@ class ScheduleServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new DeleteScheduleRequest())
-            ->setName($formattedName);
+        $request = new DeleteScheduleRequest();
         $response = $gapicClient->deleteSchedule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -322,10 +291,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setAllowQueueing($allowQueueing);
         $expectedResponse->setCatchUp($catchUp);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new GetScheduleRequest())
-            ->setName($formattedName);
+        $request = new GetScheduleRequest();
         $response = $gapicClient->getSchedule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -333,8 +299,6 @@ class ScheduleServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ScheduleService/GetSchedule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -356,10 +320,7 @@ class ScheduleServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new GetScheduleRequest())
-            ->setName($formattedName);
+        $request = new GetScheduleRequest();
         try {
             $gapicClient->getSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -391,10 +352,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSchedules($schedules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSchedulesRequest())
-            ->setParent($formattedParent);
+        $request = new ListSchedulesRequest();
         $response = $gapicClient->listSchedules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -405,8 +363,6 @@ class ScheduleServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ScheduleService/ListSchedules', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -428,10 +384,7 @@ class ScheduleServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSchedulesRequest())
-            ->setParent($formattedParent);
+        $request = new ListSchedulesRequest();
         try {
             $gapicClient->listSchedules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -456,18 +409,13 @@ class ScheduleServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new PauseScheduleRequest())
-            ->setName($formattedName);
+        $request = new PauseScheduleRequest();
         $gapicClient->pauseSchedule($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ScheduleService/PauseSchedule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -489,10 +437,7 @@ class ScheduleServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new PauseScheduleRequest())
-            ->setName($formattedName);
+        $request = new PauseScheduleRequest();
         try {
             $gapicClient->pauseSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -517,18 +462,13 @@ class ScheduleServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new ResumeScheduleRequest())
-            ->setName($formattedName);
+        $request = new ResumeScheduleRequest();
         $gapicClient->resumeSchedule($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ScheduleService/ResumeSchedule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -550,10 +490,7 @@ class ScheduleServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-        $request = (new ResumeScheduleRequest())
-            ->setName($formattedName);
+        $request = new ResumeScheduleRequest();
         try {
             $gapicClient->resumeSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -594,16 +531,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setAllowQueueing($allowQueueing);
         $expectedResponse->setCatchUp($catchUp);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $schedule = new Schedule();
-        $scheduleDisplayName = 'scheduleDisplayName-242731178';
-        $schedule->setDisplayName($scheduleDisplayName);
-        $scheduleMaxConcurrentRunCount = 423065016;
-        $schedule->setMaxConcurrentRunCount($scheduleMaxConcurrentRunCount);
-        $updateMask = new FieldMask();
-        $request = (new UpdateScheduleRequest())
-            ->setSchedule($schedule)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateScheduleRequest();
         $response = $gapicClient->updateSchedule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -611,10 +539,6 @@ class ScheduleServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ScheduleService/UpdateSchedule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSchedule();
-        $this->assertProtobufEquals($schedule, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -636,16 +560,7 @@ class ScheduleServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $schedule = new Schedule();
-        $scheduleDisplayName = 'scheduleDisplayName-242731178';
-        $schedule->setDisplayName($scheduleDisplayName);
-        $scheduleMaxConcurrentRunCount = 423065016;
-        $schedule->setMaxConcurrentRunCount($scheduleMaxConcurrentRunCount);
-        $updateMask = new FieldMask();
-        $request = (new UpdateScheduleRequest())
-            ->setSchedule($schedule)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateScheduleRequest();
         try {
             $gapicClient->updateSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -798,10 +713,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -809,8 +721,6 @@ class ScheduleServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -832,10 +742,7 @@ class ScheduleServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -864,12 +771,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -877,10 +779,6 @@ class ScheduleServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -902,12 +800,7 @@ class ScheduleServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -932,12 +825,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -945,10 +833,6 @@ class ScheduleServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -970,12 +854,7 @@ class ScheduleServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1016,16 +895,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setAllowQueueing($allowQueueing);
         $expectedResponse->setCatchUp($catchUp);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $schedule = new Schedule();
-        $scheduleDisplayName = 'scheduleDisplayName-242731178';
-        $schedule->setDisplayName($scheduleDisplayName);
-        $scheduleMaxConcurrentRunCount = 423065016;
-        $schedule->setMaxConcurrentRunCount($scheduleMaxConcurrentRunCount);
-        $request = (new CreateScheduleRequest())
-            ->setParent($formattedParent)
-            ->setSchedule($schedule);
+        $request = new CreateScheduleRequest();
         $response = $gapicClient->createScheduleAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1033,10 +903,6 @@ class ScheduleServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.ScheduleService/CreateSchedule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSchedule();
-        $this->assertProtobufEquals($schedule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

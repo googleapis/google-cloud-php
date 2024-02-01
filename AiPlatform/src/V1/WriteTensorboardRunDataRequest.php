@@ -39,7 +39,6 @@ class WriteTensorboardRunDataRequest extends \Google\Protobuf\Internal\Message
      * @param string                                       $tensorboardRun Required. The resource name of the TensorboardRun to write data to.
      *                                                                     Format:
      *                                                                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
-     *                                                                     Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\TimeSeriesData[] $timeSeriesData Required. The TensorboardTimeSeries data to write.
      *                                                                     Values with in a time series are indexed by their step value.
      *                                                                     Repeated writes to the same step will overwrite the existing value for that

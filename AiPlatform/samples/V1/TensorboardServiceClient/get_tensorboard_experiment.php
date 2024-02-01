@@ -31,19 +31,19 @@ use Google\Cloud\AIPlatform\V1\TensorboardExperiment;
 /**
  * Gets a TensorboardExperiment.
  *
- * @param string $formattedName The name of the TensorboardExperiment resource.
- *                              Format:
- *                              `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
- *                              Please see {@see TensorboardServiceClient::tensorboardExperimentName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_tensorboard_experiment_sample(string $formattedName): void
+function get_tensorboard_experiment_sample(): void
 {
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $request = (new GetTensorboardExperimentRequest())
-        ->setName($formattedName);
+    $request = new GetTensorboardExperimentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,26 +53,5 @@ function get_tensorboard_experiment_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = TensorboardServiceClient::tensorboardExperimentName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[TENSORBOARD]',
-        '[EXPERIMENT]'
-    );
-
-    get_tensorboard_experiment_sample($formattedName);
 }
 // [END aiplatform_v1_generated_TensorboardService_GetTensorboardExperiment_sync]

@@ -33,21 +33,19 @@ use Google\Rpc\Status;
 /**
  * Create a version from a Dataset.
  *
- * @param string $formattedParent The name of the Dataset resource.
- *                                Format:
- *                                `projects/{project}/locations/{location}/datasets/{dataset}`
- *                                Please see {@see DatasetServiceClient::datasetName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_dataset_version_sample(string $formattedParent): void
+function create_dataset_version_sample(): void
 {
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
     // Prepare the request message.
-    $datasetVersion = new DatasetVersion();
-    $request = (new CreateDatasetVersionRequest())
-        ->setParent($formattedParent)
-        ->setDatasetVersion($datasetVersion);
+    $request = new CreateDatasetVersionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -67,21 +65,5 @@ function create_dataset_version_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DatasetServiceClient::datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-
-    create_dataset_version_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_DatasetService_CreateDatasetVersion_sync]

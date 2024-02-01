@@ -33,31 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new FeatureOnlineStore in a given project and location.
  *
- * @param string $formattedParent      The resource name of the Location to create FeatureOnlineStores.
- *                                     Format:
- *                                     `projects/{project}/locations/{location}`
- *                                     Please see {@see FeatureOnlineStoreAdminServiceClient::locationName()} for help formatting this field.
- * @param string $featureOnlineStoreId The ID to use for this FeatureOnlineStore, which will become the
- *                                     final component of the FeatureOnlineStore's resource name.
- *
- *                                     This value may be up to 60 characters, and valid characters are
- *                                     `[a-z0-9_]`. The first character cannot be a number.
- *
- *                                     The value must be unique within the project and location.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_feature_online_store_sample(
-    string $formattedParent,
-    string $featureOnlineStoreId
-): void {
+function create_feature_online_store_sample(): void
+{
     // Create a client.
     $featureOnlineStoreAdminServiceClient = new FeatureOnlineStoreAdminServiceClient();
 
     // Prepare the request message.
-    $featureOnlineStore = new FeatureOnlineStore();
-    $request = (new CreateFeatureOnlineStoreRequest())
-        ->setParent($formattedParent)
-        ->setFeatureOnlineStore($featureOnlineStore)
-        ->setFeatureOnlineStoreId($featureOnlineStoreId);
+    $request = new CreateFeatureOnlineStoreRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -77,22 +65,5 @@ function create_feature_online_store_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = FeatureOnlineStoreAdminServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $featureOnlineStoreId = '[FEATURE_ONLINE_STORE_ID]';
-
-    create_feature_online_store_sample($formattedParent, $featureOnlineStoreId);
 }
 // [END aiplatform_v1_generated_FeatureOnlineStoreAdminService_CreateFeatureOnlineStore_sync]

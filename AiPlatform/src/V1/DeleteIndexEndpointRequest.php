@@ -29,7 +29,6 @@ class DeleteIndexEndpointRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the IndexEndpoint resource to be deleted.
      *                     Format:
      *                     `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
-     *                     Please see {@see IndexEndpointServiceClient::indexEndpointName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteIndexEndpointRequest
      *

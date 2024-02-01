@@ -27,57 +27,24 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateModelDeploymentMonitoringJobRequest;
 use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob;
-use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringObjectiveConfig;
-use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringScheduleConfig;
-use Google\Cloud\AIPlatform\V1\SamplingStrategy;
-use Google\Protobuf\Duration;
 
 /**
  * Creates a ModelDeploymentMonitoringJob. It will run periodically on a
  * configured interval.
  *
- * @param string $formattedParent                               The parent of the ModelDeploymentMonitoringJob.
- *                                                              Format: `projects/{project}/locations/{location}`
- *                                                              Please see {@see JobServiceClient::locationName()} for help formatting this field.
- * @param string $modelDeploymentMonitoringJobDisplayName       The user-defined name of the ModelDeploymentMonitoringJob.
- *                                                              The name can be up to 128 characters long and can consist of any UTF-8
- *                                                              characters.
- *                                                              Display name of a ModelDeploymentMonitoringJob.
- * @param string $formattedModelDeploymentMonitoringJobEndpoint Endpoint resource name.
- *                                                              Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`
- *                                                              Please see {@see JobServiceClient::endpointName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_model_deployment_monitoring_job_sample(
-    string $formattedParent,
-    string $modelDeploymentMonitoringJobDisplayName,
-    string $formattedModelDeploymentMonitoringJobEndpoint
-): void {
+function create_model_deployment_monitoring_job_sample(): void
+{
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [
-        new ModelDeploymentMonitoringObjectiveConfig()
-    ];
-    $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
-    $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = (new ModelDeploymentMonitoringScheduleConfig())
-        ->setMonitorInterval(
-            $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfigMonitorInterval
-        );
-    $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
-    $modelDeploymentMonitoringJob = (new ModelDeploymentMonitoringJob())
-        ->setDisplayName($modelDeploymentMonitoringJobDisplayName)
-        ->setEndpoint($formattedModelDeploymentMonitoringJobEndpoint)
-        ->setModelDeploymentMonitoringObjectiveConfigs(
-            $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs
-        )
-        ->setModelDeploymentMonitoringScheduleConfig(
-            $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig
-        )
-        ->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
-    $request = (new CreateModelDeploymentMonitoringJobRequest())
-        ->setParent($formattedParent)
-        ->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+    $request = new CreateModelDeploymentMonitoringJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -87,31 +54,5 @@ function create_model_deployment_monitoring_job_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = JobServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $modelDeploymentMonitoringJobDisplayName = '[DISPLAY_NAME]';
-    $formattedModelDeploymentMonitoringJobEndpoint = JobServiceClient::endpointName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ENDPOINT]'
-    );
-
-    create_model_deployment_monitoring_job_sample(
-        $formattedParent,
-        $modelDeploymentMonitoringJobDisplayName,
-        $formattedModelDeploymentMonitoringJobEndpoint
-    );
 }
 // [END aiplatform_v1_generated_JobService_CreateModelDeploymentMonitoringJob_sync]

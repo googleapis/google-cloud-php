@@ -43,9 +43,7 @@ function update_context_sample(): void
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $context = new Context();
-    $request = (new UpdateContextRequest())
-        ->setContext($context);
+    $request = new UpdateContextRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -29,7 +29,6 @@ class DeleteTensorboardRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the Tensorboard to be deleted.
      *                     Format:
      *                     `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
-     *                     Please see {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteTensorboardRequest
      *

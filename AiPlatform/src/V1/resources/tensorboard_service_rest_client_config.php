@@ -61,9 +61,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'tensorboard_experiment_id',
-                ],
             ],
             'CreateTensorboardRun' => [
                 'method' => 'post',
@@ -75,9 +72,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'tensorboard_run_id',
                 ],
             ],
             'CreateTensorboardTimeSeries' => [
@@ -292,9 +286,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateTensorboardExperiment' => [
                 'method' => 'patch',
@@ -307,9 +298,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateTensorboardRun' => [
@@ -324,9 +312,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateTensorboardTimeSeries' => [
                 'method' => 'patch',
@@ -339,9 +324,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'WriteTensorboardExperimentData' => [

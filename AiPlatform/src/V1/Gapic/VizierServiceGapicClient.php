@@ -87,9 +87,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $vizierServiceClient = new VizierServiceClient();
  * try {
- *     $formattedTrialName = $vizierServiceClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
- *     $measurement = new Measurement();
- *     $response = $vizierServiceClient->addTrialMeasurement($formattedTrialName, $measurement);
+ *     $response = $vizierServiceClient->addTrialMeasurement();
  * } finally {
  *     $vizierServiceClient->close();
  * }
@@ -453,21 +451,21 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedTrialName = $vizierServiceClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-     *     $measurement = new Measurement();
-     *     $response = $vizierServiceClient->addTrialMeasurement($formattedTrialName, $measurement);
+     *     $response = $vizierServiceClient->addTrialMeasurement();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string      $trialName    Required. The name of the trial to add measurement.
-     *                                  Format:
-     *                                  `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
-     * @param Measurement $measurement  Required. The measurement to be added to a Trial.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $trialName
+     *           Required. The name of the trial to add measurement.
+     *           Format:
+     *           `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
+     *     @type Measurement $measurement
+     *           Required. The measurement to be added to a Trial.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -478,16 +476,19 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addTrialMeasurement(
-        $trialName,
-        $measurement,
-        array $optionalArgs = []
-    ) {
+    public function addTrialMeasurement(array $optionalArgs = [])
+    {
         $request = new AddTrialMeasurementRequest();
         $requestParamHeaders = [];
-        $request->setTrialName($trialName);
-        $request->setMeasurement($measurement);
-        $requestParamHeaders['trial_name'] = $trialName;
+        if (isset($optionalArgs['trialName'])) {
+            $request->setTrialName($optionalArgs['trialName']);
+            $requestParamHeaders['trial_name'] = $optionalArgs['trialName'];
+        }
+
+        if (isset($optionalArgs['measurement'])) {
+            $request->setMeasurement($optionalArgs['measurement']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -512,8 +513,7 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedTrialName = $vizierServiceClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-     *     $operationResponse = $vizierServiceClient->checkTrialEarlyStoppingState($formattedTrialName);
+     *     $operationResponse = $vizierServiceClient->checkTrialEarlyStoppingState();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -524,7 +524,7 @@ class VizierServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $vizierServiceClient->checkTrialEarlyStoppingState($formattedTrialName);
+     *     $operationResponse = $vizierServiceClient->checkTrialEarlyStoppingState();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $vizierServiceClient->resumeOperation($operationName, 'checkTrialEarlyStoppingState');
@@ -544,12 +544,13 @@ class VizierServiceGapicClient
      * }
      * ```
      *
-     * @param string $trialName    Required. The Trial's name.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $trialName
+     *           Required. The Trial's name.
+     *           Format:
+     *           `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -560,14 +561,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function checkTrialEarlyStoppingState(
-        $trialName,
-        array $optionalArgs = []
-    ) {
+    public function checkTrialEarlyStoppingState(array $optionalArgs = [])
+    {
         $request = new CheckTrialEarlyStoppingStateRequest();
         $requestParamHeaders = [];
-        $request->setTrialName($trialName);
-        $requestParamHeaders['trial_name'] = $trialName;
+        if (isset($optionalArgs['trialName'])) {
+            $request->setTrialName($optionalArgs['trialName']);
+            $requestParamHeaders['trial_name'] = $optionalArgs['trialName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -589,19 +591,19 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedName = $vizierServiceClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-     *     $response = $vizierServiceClient->completeTrial($formattedName);
+     *     $response = $vizierServiceClient->completeTrial();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The Trial's name.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The Trial's name.
+     *           Format:
+     *           `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
      *     @type Measurement $finalMeasurement
      *           Optional. If provided, it will be used as the completed Trial's
      *           final_measurement; Otherwise, the service will auto-select a
@@ -622,12 +624,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function completeTrial($name, array $optionalArgs = [])
+    public function completeTrial(array $optionalArgs = [])
     {
         $request = new CompleteTrialRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['finalMeasurement'])) {
             $request->setFinalMeasurement($optionalArgs['finalMeasurement']);
         }
@@ -662,20 +667,20 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedParent = $vizierServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $study = new Study();
-     *     $response = $vizierServiceClient->createStudy($formattedParent, $study);
+     *     $response = $vizierServiceClient->createStudy();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to create the CustomJob in.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param Study  $study        Required. The Study configuration used to create the Study.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to create the CustomJob in.
+     *           Format: `projects/{project}/locations/{location}`
+     *     @type Study $study
+     *           Required. The Study configuration used to create the Study.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -686,13 +691,19 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createStudy($parent, $study, array $optionalArgs = [])
+    public function createStudy(array $optionalArgs = [])
     {
         $request = new CreateStudyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setStudy($study);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['study'])) {
+            $request->setStudy($optionalArgs['study']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -714,20 +725,20 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedParent = $vizierServiceClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-     *     $trial = new Trial();
-     *     $response = $vizierServiceClient->createTrial($formattedParent, $trial);
+     *     $response = $vizierServiceClient->createTrial();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Study to create the Trial in.
-     *                             Format: `projects/{project}/locations/{location}/studies/{study}`
-     * @param Trial  $trial        Required. The Trial to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Study to create the Trial in.
+     *           Format: `projects/{project}/locations/{location}/studies/{study}`
+     *     @type Trial $trial
+     *           Required. The Trial to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -738,13 +749,19 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTrial($parent, $trial, array $optionalArgs = [])
+    public function createTrial(array $optionalArgs = [])
     {
         $request = new CreateTrialRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setTrial($trial);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['trial'])) {
+            $request->setTrial($optionalArgs['trial']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -766,18 +783,18 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedName = $vizierServiceClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-     *     $vizierServiceClient->deleteStudy($formattedName);
+     *     $vizierServiceClient->deleteStudy();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Study resource to be deleted.
-     *                             Format: `projects/{project}/locations/{location}/studies/{study}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Study resource to be deleted.
+     *           Format: `projects/{project}/locations/{location}/studies/{study}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -786,12 +803,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteStudy($name, array $optionalArgs = [])
+    public function deleteStudy(array $optionalArgs = [])
     {
         $request = new DeleteStudyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -813,19 +833,19 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedName = $vizierServiceClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-     *     $vizierServiceClient->deleteTrial($formattedName);
+     *     $vizierServiceClient->deleteTrial();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The Trial's name.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The Trial's name.
+     *           Format:
+     *           `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -834,12 +854,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTrial($name, array $optionalArgs = [])
+    public function deleteTrial(array $optionalArgs = [])
     {
         $request = new DeleteTrialRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -861,18 +884,18 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedName = $vizierServiceClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-     *     $response = $vizierServiceClient->getStudy($formattedName);
+     *     $response = $vizierServiceClient->getStudy();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Study resource.
-     *                             Format: `projects/{project}/locations/{location}/studies/{study}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Study resource.
+     *           Format: `projects/{project}/locations/{location}/studies/{study}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -883,12 +906,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getStudy($name, array $optionalArgs = [])
+    public function getStudy(array $optionalArgs = [])
     {
         $request = new GetStudyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -910,19 +936,19 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedName = $vizierServiceClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-     *     $response = $vizierServiceClient->getTrial($formattedName);
+     *     $response = $vizierServiceClient->getTrial();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Trial resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Trial resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -933,12 +959,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTrial($name, array $optionalArgs = [])
+    public function getTrial(array $optionalArgs = [])
     {
         $request = new GetTrialRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -963,17 +992,17 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedParent = $vizierServiceClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-     *     $response = $vizierServiceClient->listOptimalTrials($formattedParent);
+     *     $response = $vizierServiceClient->listOptimalTrials();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the Study that the optimal Trial belongs to.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the Study that the optimal Trial belongs to.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -984,12 +1013,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listOptimalTrials($parent, array $optionalArgs = [])
+    public function listOptimalTrials(array $optionalArgs = [])
     {
         $request = new ListOptimalTrialsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1011,9 +1043,8 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedParent = $vizierServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $vizierServiceClient->listStudies($formattedParent);
+     *     $pagedResponse = $vizierServiceClient->listStudies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1021,7 +1052,7 @@ class VizierServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $vizierServiceClient->listStudies($formattedParent);
+     *     $pagedResponse = $vizierServiceClient->listStudies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1030,11 +1061,12 @@ class VizierServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list the Study from.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to list the Study from.
+     *           Format: `projects/{project}/locations/{location}`
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -1054,12 +1086,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listStudies($parent, array $optionalArgs = [])
+    public function listStudies(array $optionalArgs = [])
     {
         $request = new ListStudiesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -1089,9 +1124,8 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedParent = $vizierServiceClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $vizierServiceClient->listTrials($formattedParent);
+     *     $pagedResponse = $vizierServiceClient->listTrials();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1099,7 +1133,7 @@ class VizierServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $vizierServiceClient->listTrials($formattedParent);
+     *     $pagedResponse = $vizierServiceClient->listTrials();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1108,11 +1142,12 @@ class VizierServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Study to list the Trial from.
-     *                             Format: `projects/{project}/locations/{location}/studies/{study}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Study to list the Trial from.
+     *           Format: `projects/{project}/locations/{location}/studies/{study}`
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -1132,12 +1167,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTrials($parent, array $optionalArgs = [])
+    public function listTrials(array $optionalArgs = [])
     {
         $request = new ListTrialsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -1168,20 +1206,20 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedParent = $vizierServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $displayName = 'display_name';
-     *     $response = $vizierServiceClient->lookupStudy($formattedParent, $displayName);
+     *     $response = $vizierServiceClient->lookupStudy();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to get the Study from.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param string $displayName  Required. The user-defined display name of the Study
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to get the Study from.
+     *           Format: `projects/{project}/locations/{location}`
+     *     @type string $displayName
+     *           Required. The user-defined display name of the Study
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1192,13 +1230,19 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function lookupStudy($parent, $displayName, array $optionalArgs = [])
+    public function lookupStudy(array $optionalArgs = [])
     {
         $request = new LookupStudyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDisplayName($displayName);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['displayName'])) {
+            $request->setDisplayName($optionalArgs['displayName']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1220,19 +1264,19 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedName = $vizierServiceClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-     *     $response = $vizierServiceClient->stopTrial($formattedName);
+     *     $response = $vizierServiceClient->stopTrial();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The Trial's name.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The Trial's name.
+     *           Format:
+     *           `projects/{project}/locations/{location}/studies/{study}/trials/{trial}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1243,12 +1287,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function stopTrial($name, array $optionalArgs = [])
+    public function stopTrial(array $optionalArgs = [])
     {
         $request = new StopTrialRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1275,10 +1322,7 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $formattedParent = $vizierServiceClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-     *     $suggestionCount = 0;
-     *     $clientId = 'client_id';
-     *     $operationResponse = $vizierServiceClient->suggestTrials($formattedParent, $suggestionCount, $clientId);
+     *     $operationResponse = $vizierServiceClient->suggestTrials();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1289,7 +1333,7 @@ class VizierServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $vizierServiceClient->suggestTrials($formattedParent, $suggestionCount, $clientId);
+     *     $operationResponse = $vizierServiceClient->suggestTrials();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $vizierServiceClient->resumeOperation($operationName, 'suggestTrials');
@@ -1309,17 +1353,20 @@ class VizierServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent          Required. The project and location that the Study belongs to.
-     *                                Format: `projects/{project}/locations/{location}/studies/{study}`
-     * @param int    $suggestionCount Required. The number of suggestions requested. It must be positive.
-     * @param string $clientId        Required. The identifier of the client that is requesting the suggestion.
-     *
-     *                                If multiple SuggestTrialsRequests have the same `client_id`,
-     *                                the service will return the identical suggested Trial if the Trial is
-     *                                pending, and provide a new Trial if the last suggested Trial was completed.
-     * @param array  $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location that the Study belongs to.
+     *           Format: `projects/{project}/locations/{location}/studies/{study}`
+     *     @type int $suggestionCount
+     *           Required. The number of suggestions requested. It must be positive.
+     *     @type string $clientId
+     *           Required. The identifier of the client that is requesting the suggestion.
+     *
+     *           If multiple SuggestTrialsRequests have the same `client_id`,
+     *           the service will return the identical suggested Trial if the Trial is
+     *           pending, and provide a new Trial if the last suggested Trial was completed.
      *     @type TrialContext[] $contexts
      *           Optional. This allows you to specify the "context" for a Trial; a context
      *           is a slice (a subspace) of the search space.
@@ -1367,18 +1414,23 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function suggestTrials(
-        $parent,
-        $suggestionCount,
-        $clientId,
-        array $optionalArgs = []
-    ) {
+    public function suggestTrials(array $optionalArgs = [])
+    {
         $request = new SuggestTrialsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSuggestionCount($suggestionCount);
-        $request->setClientId($clientId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['suggestionCount'])) {
+            $request->setSuggestionCount($optionalArgs['suggestionCount']);
+        }
+
+        if (isset($optionalArgs['clientId'])) {
+            $request->setClientId($optionalArgs['clientId']);
+        }
+
         if (isset($optionalArgs['contexts'])) {
             $request->setContexts($optionalArgs['contexts']);
         }
@@ -1545,18 +1597,18 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $vizierServiceClient->getIamPolicy($resource);
+     *     $response = $vizierServiceClient->getIamPolicy();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1570,12 +1622,15 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1607,23 +1662,23 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $vizierServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $vizierServiceClient->setIamPolicy();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1640,13 +1695,19 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1680,23 +1741,23 @@ class VizierServiceGapicClient
      * ```
      * $vizierServiceClient = new VizierServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $vizierServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $vizierServiceClient->testIamPermissions();
      * } finally {
      *     $vizierServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1707,16 +1768,19 @@ class VizierServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

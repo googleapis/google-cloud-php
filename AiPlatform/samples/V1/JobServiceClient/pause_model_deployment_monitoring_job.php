@@ -33,19 +33,19 @@ use Google\Cloud\AIPlatform\V1\PauseModelDeploymentMonitoringJobRequest;
  * [ModelDeploymentMonitoringJob.state][google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.state]
  * to 'PAUSED'.
  *
- * @param string $formattedName The resource name of the ModelDeploymentMonitoringJob to pause.
- *                              Format:
- *                              `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
- *                              Please see {@see JobServiceClient::modelDeploymentMonitoringJobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function pause_model_deployment_monitoring_job_sample(string $formattedName): void
+function pause_model_deployment_monitoring_job_sample(): void
 {
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $request = (new PauseModelDeploymentMonitoringJobRequest())
-        ->setName($formattedName);
+    $request = new PauseModelDeploymentMonitoringJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,25 +54,5 @@ function pause_model_deployment_monitoring_job_sample(string $formattedName): vo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = JobServiceClient::modelDeploymentMonitoringJobName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[MODEL_DEPLOYMENT_MONITORING_JOB]'
-    );
-
-    pause_model_deployment_monitoring_job_sample($formattedName);
 }
 // [END aiplatform_v1_generated_JobService_PauseModelDeploymentMonitoringJob_sync]

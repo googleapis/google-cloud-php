@@ -80,7 +80,6 @@ class ListFeatureViewsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The resource name of the FeatureOnlineStore to list FeatureViews.
      *                       Format:
      *                       `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
-     *                       Please see {@see FeatureOnlineStoreAdminServiceClient::featureOnlineStoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListFeatureViewsRequest
      *

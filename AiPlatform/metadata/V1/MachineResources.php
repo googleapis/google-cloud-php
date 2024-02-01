@@ -18,40 +18,40 @@ class MachineResources
         \GPBMetadata\Google\Cloud\Aiplatform\V1\AcceleratorType::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ç
+Ò
 
-2google/cloud/aiplatform/v1/machine_resources.protogoogle.cloud.aiplatform.v11google/cloud/aiplatform/v1/accelerator_type.proto"ª
-MachineSpec
-machine_type (	BàAJ
-accelerator_type (2+.google.cloud.aiplatform.v1.AcceleratorTypeBàA
-accelerator_count (
-tpu_topology (	BàA"ø
-DedicatedResourcesE
-machine_spec (2\'.google.cloud.aiplatform.v1.MachineSpecBàAàA!
-min_replica_count (BàAàA
-max_replica_count (BàAX
-autoscaling_metric_specs (21.google.cloud.aiplatform.v1.AutoscalingMetricSpecBàA"T
-AutomaticResources
-min_replica_count (BàA
-max_replica_count (BàA"¥
-BatchDedicatedResourcesE
-machine_spec (2\'.google.cloud.aiplatform.v1.MachineSpecBàAàA#
-starting_replica_count (BàA
-max_replica_count (BàA"/
-ResourcesConsumed
-replica_hours (BàA"=
+2google/cloud/aiplatform/v1/machine_resources.protogoogle.cloud.aiplatform.v11google/cloud/aiplatform/v1/accelerator_type.proto"­
+MachineSpec
+machine_type (	BâAK
+accelerator_type (2+.google.cloud.aiplatform.v1.AcceleratorTypeBâA
+accelerator_count (
+tpu_topology (	BâA"ø
+DedicatedResourcesD
+machine_spec (2\'.google.cloud.aiplatform.v1.MachineSpecBâA 
+min_replica_count (BâA
+max_replica_count (BâAY
+autoscaling_metric_specs (21.google.cloud.aiplatform.v1.AutoscalingMetricSpecBâA"V
+AutomaticResources
+min_replica_count (BâA
+max_replica_count (BâA"¦
+BatchDedicatedResourcesD
+machine_spec (2\'.google.cloud.aiplatform.v1.MachineSpecBâA$
+starting_replica_count (BâA
+max_replica_count (BâA"0
+ResourcesConsumed
+replica_hours (BâA"=
 DiskSpec
 boot_disk_type (	
 boot_disk_size_gb ("=
 PersistentDiskSpec
 	disk_type (	
-disk_size_gb ("L
-NfsMount
-server (	BàA
-path (	BàA
-mount_point (	BàA"A
-AutoscalingMetricSpec
-metric_name (	BàA
+disk_size_gb ("O
+NfsMount
+server (	BâA
+path (	BâA
+mount_point (	BâA"B
+AutoscalingMetricSpec
+metric_name (	BâA
 target (BÓ
 com.google.cloud.aiplatform.v1BMachineResourcesProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);

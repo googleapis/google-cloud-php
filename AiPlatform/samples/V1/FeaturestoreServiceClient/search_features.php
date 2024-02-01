@@ -32,19 +32,19 @@ use Google\Cloud\AIPlatform\V1\SearchFeaturesRequest;
 /**
  * Searches Features matching a query in a given project.
  *
- * @param string $formattedLocation The resource name of the Location to search Features.
- *                                  Format:
- *                                  `projects/{project}/locations/{location}`
- *                                  Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_features_sample(string $formattedLocation): void
+function search_features_sample(): void
 {
     // Create a client.
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $request = (new SearchFeaturesRequest())
-        ->setLocation($formattedLocation);
+    $request = new SearchFeaturesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +58,5 @@ function search_features_sample(string $formattedLocation): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedLocation = FeaturestoreServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    search_features_sample($formattedLocation);
 }
 // [END aiplatform_v1_generated_FeaturestoreService_SearchFeatures_sync]

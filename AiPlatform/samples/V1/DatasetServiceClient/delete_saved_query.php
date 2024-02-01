@@ -32,19 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a SavedQuery.
  *
- * @param string $formattedName The resource name of the SavedQuery to delete.
- *                              Format:
- *                              `projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}`
- *                              Please see {@see DatasetServiceClient::savedQueryName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_saved_query_sample(string $formattedName): void
+function delete_saved_query_sample(): void
 {
     // Create a client.
     $datasetServiceClient = new DatasetServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteSavedQueryRequest())
-        ->setName($formattedName);
+    $request = new DeleteSavedQueryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,26 +62,5 @@ function delete_saved_query_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DatasetServiceClient::savedQueryName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATASET]',
-        '[SAVED_QUERY]'
-    );
-
-    delete_saved_query_sample($formattedName);
 }
 // [END aiplatform_v1_generated_DatasetService_DeleteSavedQuery_sync]

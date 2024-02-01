@@ -43,9 +43,7 @@ function update_entity_type_sample(): void
     $featurestoreServiceClient = new FeaturestoreServiceClient();
 
     // Prepare the request message.
-    $entityType = new EntityType();
-    $request = (new UpdateEntityTypeRequest())
-        ->setEntityType($entityType);
+    $request = new UpdateEntityTypeRequest();
 
     // Call the API and handle any network failures.
     try {

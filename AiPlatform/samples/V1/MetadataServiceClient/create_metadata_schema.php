@@ -31,31 +31,19 @@ use Google\Cloud\AIPlatform\V1\MetadataSchema;
 /**
  * Creates a MetadataSchema.
  *
- * @param string $formattedParent      The resource name of the MetadataStore where the MetadataSchema
- *                                     should be created. Format:
- *                                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
- *                                     Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
- * @param string $metadataSchemaSchema The raw YAML string representation of the MetadataSchema. The
- *                                     combination of [MetadataSchema.version] and the schema name given by
- *                                     `title` in [MetadataSchema.schema] must be unique within a MetadataStore.
- *
- *                                     The schema is defined as an OpenAPI 3.0.2
- *                                     [MetadataSchema
- *                                     Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schemaObject)
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_metadata_schema_sample(
-    string $formattedParent,
-    string $metadataSchemaSchema
-): void {
+function create_metadata_schema_sample(): void
+{
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $metadataSchema = (new MetadataSchema())
-        ->setSchema($metadataSchemaSchema);
-    $request = (new CreateMetadataSchemaRequest())
-        ->setParent($formattedParent)
-        ->setMetadataSchema($metadataSchema);
+    $request = new CreateMetadataSchemaRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,26 +53,5 @@ function create_metadata_schema_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MetadataServiceClient::metadataStoreName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[METADATA_STORE]'
-    );
-    $metadataSchemaSchema = '[SCHEMA]';
-
-    create_metadata_schema_sample($formattedParent, $metadataSchemaSchema);
 }
 // [END aiplatform_v1_generated_MetadataService_CreateMetadataSchema_sync]

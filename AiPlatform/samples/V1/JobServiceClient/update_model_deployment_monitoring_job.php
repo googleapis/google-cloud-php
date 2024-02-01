@@ -27,56 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob;
-use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringObjectiveConfig;
-use Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringScheduleConfig;
-use Google\Cloud\AIPlatform\V1\SamplingStrategy;
 use Google\Cloud\AIPlatform\V1\UpdateModelDeploymentMonitoringJobRequest;
-use Google\Protobuf\Duration;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates a ModelDeploymentMonitoringJob.
  *
- * @param string $modelDeploymentMonitoringJobDisplayName       The user-defined name of the ModelDeploymentMonitoringJob.
- *                                                              The name can be up to 128 characters long and can consist of any UTF-8
- *                                                              characters.
- *                                                              Display name of a ModelDeploymentMonitoringJob.
- * @param string $formattedModelDeploymentMonitoringJobEndpoint Endpoint resource name.
- *                                                              Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`
- *                                                              Please see {@see JobServiceClient::endpointName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_model_deployment_monitoring_job_sample(
-    string $modelDeploymentMonitoringJobDisplayName,
-    string $formattedModelDeploymentMonitoringJobEndpoint
-): void {
+function update_model_deployment_monitoring_job_sample(): void
+{
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [
-        new ModelDeploymentMonitoringObjectiveConfig()
-    ];
-    $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
-    $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = (new ModelDeploymentMonitoringScheduleConfig())
-        ->setMonitorInterval(
-            $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfigMonitorInterval
-        );
-    $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
-    $modelDeploymentMonitoringJob = (new ModelDeploymentMonitoringJob())
-        ->setDisplayName($modelDeploymentMonitoringJobDisplayName)
-        ->setEndpoint($formattedModelDeploymentMonitoringJobEndpoint)
-        ->setModelDeploymentMonitoringObjectiveConfigs(
-            $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs
-        )
-        ->setModelDeploymentMonitoringScheduleConfig(
-            $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig
-        )
-        ->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
-    $updateMask = new FieldMask();
-    $request = (new UpdateModelDeploymentMonitoringJobRequest())
-        ->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateModelDeploymentMonitoringJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -96,29 +65,5 @@ function update_model_deployment_monitoring_job_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $modelDeploymentMonitoringJobDisplayName = '[DISPLAY_NAME]';
-    $formattedModelDeploymentMonitoringJobEndpoint = JobServiceClient::endpointName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ENDPOINT]'
-    );
-
-    update_model_deployment_monitoring_job_sample(
-        $modelDeploymentMonitoringJobDisplayName,
-        $formattedModelDeploymentMonitoringJobEndpoint
-    );
 }
 // [END aiplatform_v1_generated_JobService_UpdateModelDeploymentMonitoringJob_sync]

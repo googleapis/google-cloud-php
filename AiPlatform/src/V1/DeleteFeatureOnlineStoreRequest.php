@@ -37,7 +37,6 @@ class DeleteFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      * @param string $name  Required. The name of the FeatureOnlineStore to be deleted.
      *                      Format:
      *                      `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`
-     *                      Please see {@see FeatureOnlineStoreAdminServiceClient::featureOnlineStoreName()} for help formatting this field.
      * @param bool   $force If set to true, any FeatureViews and Features for this FeatureOnlineStore
      *                      will also be deleted. (Otherwise, the request will only work if the
      *                      FeatureOnlineStore has no FeatureViews.)

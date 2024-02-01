@@ -96,17 +96,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new AddContextArtifactsAndExecutionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $response = $gapicClient->addContextArtifactsAndExecutions($formattedContext);
+        $response = $gapicClient->addContextArtifactsAndExecutions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/AddContextArtifactsAndExecutions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($formattedContext, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -128,10 +124,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
         try {
-            $gapicClient->addContextArtifactsAndExecutions($formattedContext);
+            $gapicClient->addContextArtifactsAndExecutions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -154,17 +148,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new AddContextChildrenResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $response = $gapicClient->addContextChildren($formattedContext);
+        $response = $gapicClient->addContextChildren();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/AddContextChildren', $actualFuncCall);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($formattedContext, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -186,10 +176,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
         try {
-            $gapicClient->addContextChildren($formattedContext);
+            $gapicClient->addContextChildren();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -212,17 +200,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new AddExecutionEventsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedExecution = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $response = $gapicClient->addExecutionEvents($formattedExecution);
+        $response = $gapicClient->addExecutionEvents();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/AddExecutionEvents', $actualFuncCall);
-        $actualValue = $actualRequestObject->getExecution();
-        $this->assertProtobufEquals($formattedExecution, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -244,10 +228,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedExecution = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
         try {
-            $gapicClient->addExecutionEvents($formattedExecution);
+            $gapicClient->addExecutionEvents();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -284,20 +266,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaVersion($schemaVersion);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $artifact = new Artifact();
-        $response = $gapicClient->createArtifact($formattedParent, $artifact);
+        $response = $gapicClient->createArtifact();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/CreateArtifact', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getArtifact();
-        $this->assertProtobufEquals($artifact, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -319,11 +294,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $artifact = new Artifact();
         try {
-            $gapicClient->createArtifact($formattedParent, $artifact);
+            $gapicClient->createArtifact();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -358,20 +330,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaVersion($schemaVersion);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $context = new Context();
-        $response = $gapicClient->createContext($formattedParent, $context);
+        $response = $gapicClient->createContext();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/CreateContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($context, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -393,11 +358,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $context = new Context();
         try {
-            $gapicClient->createContext($formattedParent, $context);
+            $gapicClient->createContext();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -432,20 +394,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaVersion($schemaVersion);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $execution = new Execution();
-        $response = $gapicClient->createExecution($formattedParent, $execution);
+        $response = $gapicClient->createExecution();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/CreateExecution', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getExecution();
-        $this->assertProtobufEquals($execution, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -467,11 +422,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $execution = new Execution();
         try {
-            $gapicClient->createExecution($formattedParent, $execution);
+            $gapicClient->createExecution();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -502,22 +454,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchema($schema);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $metadataSchema = new MetadataSchema();
-        $metadataSchemaSchema = 'metadataSchemaSchema-249734287';
-        $metadataSchema->setSchema($metadataSchemaSchema);
-        $response = $gapicClient->createMetadataSchema($formattedParent, $metadataSchema);
+        $response = $gapicClient->createMetadataSchema();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/CreateMetadataSchema', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getMetadataSchema();
-        $this->assertProtobufEquals($metadataSchema, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -539,13 +482,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $metadataSchema = new MetadataSchema();
-        $metadataSchemaSchema = 'metadataSchemaSchema-249734287';
-        $metadataSchema->setSchema($metadataSchemaSchema);
         try {
-            $gapicClient->createMetadataSchema($formattedParent, $metadataSchema);
+            $gapicClient->createMetadataSchema();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -590,10 +528,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $metadataStore = new MetadataStore();
-        $response = $gapicClient->createMetadataStore($formattedParent, $metadataStore);
+        $response = $gapicClient->createMetadataStore();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -603,10 +538,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/CreateMetadataStore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getMetadataStore();
-        $this->assertProtobufEquals($metadataStore, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createMetadataStoreTest');
         $response->pollUntilComplete([
@@ -657,10 +588,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $metadataStore = new MetadataStore();
-        $response = $gapicClient->createMetadataStore($formattedParent, $metadataStore);
+        $response = $gapicClient->createMetadataStore();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -711,9 +639,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
-        $response = $gapicClient->deleteArtifact($formattedName);
+        $response = $gapicClient->deleteArtifact();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -723,8 +649,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/DeleteArtifact', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteArtifactTest');
         $response->pollUntilComplete([
@@ -775,9 +699,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
-        $response = $gapicClient->deleteArtifact($formattedName);
+        $response = $gapicClient->deleteArtifact();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -828,9 +750,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $response = $gapicClient->deleteContext($formattedName);
+        $response = $gapicClient->deleteContext();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -840,8 +760,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/DeleteContext', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteContextTest');
         $response->pollUntilComplete([
@@ -892,9 +810,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $response = $gapicClient->deleteContext($formattedName);
+        $response = $gapicClient->deleteContext();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -945,9 +861,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $response = $gapicClient->deleteExecution($formattedName);
+        $response = $gapicClient->deleteExecution();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -957,8 +871,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/DeleteExecution', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteExecutionTest');
         $response->pollUntilComplete([
@@ -1009,9 +921,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $response = $gapicClient->deleteExecution($formattedName);
+        $response = $gapicClient->deleteExecution();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1062,9 +972,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $response = $gapicClient->deleteMetadataStore($formattedName);
+        $response = $gapicClient->deleteMetadataStore();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1074,8 +982,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/DeleteMetadataStore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteMetadataStoreTest');
         $response->pollUntilComplete([
@@ -1126,9 +1032,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $response = $gapicClient->deleteMetadataStore($formattedName);
+        $response = $gapicClient->deleteMetadataStore();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1175,17 +1079,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaVersion($schemaVersion);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
-        $response = $gapicClient->getArtifact($formattedName);
+        $response = $gapicClient->getArtifact();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/GetArtifact', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1207,10 +1107,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
         try {
-            $gapicClient->getArtifact($formattedName);
+            $gapicClient->getArtifact();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1245,17 +1143,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaVersion($schemaVersion);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $response = $gapicClient->getContext($formattedName);
+        $response = $gapicClient->getContext();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/GetContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1277,10 +1171,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
         try {
-            $gapicClient->getContext($formattedName);
+            $gapicClient->getContext();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1315,17 +1207,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaVersion($schemaVersion);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $response = $gapicClient->getExecution($formattedName);
+        $response = $gapicClient->getExecution();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/GetExecution', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1347,10 +1235,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
         try {
-            $gapicClient->getExecution($formattedName);
+            $gapicClient->getExecution();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1381,17 +1267,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchema($schema);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->metadataSchemaName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[METADATA_SCHEMA]');
-        $response = $gapicClient->getMetadataSchema($formattedName);
+        $response = $gapicClient->getMetadataSchema();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/GetMetadataSchema', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1413,10 +1295,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->metadataSchemaName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[METADATA_SCHEMA]');
         try {
-            $gapicClient->getMetadataSchema($formattedName);
+            $gapicClient->getMetadataSchema();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1443,17 +1323,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $response = $gapicClient->getMetadataStore($formattedName);
+        $response = $gapicClient->getMetadataStore();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/GetMetadataStore', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1475,10 +1351,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         try {
-            $gapicClient->getMetadataStore($formattedName);
+            $gapicClient->getMetadataStore();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1508,9 +1382,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setArtifacts($artifacts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $response = $gapicClient->listArtifacts($formattedParent);
+        $response = $gapicClient->listArtifacts();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1520,8 +1392,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/ListArtifacts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1543,10 +1413,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         try {
-            $gapicClient->listArtifacts($formattedParent);
+            $gapicClient->listArtifacts();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1576,9 +1444,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setContexts($contexts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $response = $gapicClient->listContexts($formattedParent);
+        $response = $gapicClient->listContexts();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1588,8 +1454,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/ListContexts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1611,10 +1475,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         try {
-            $gapicClient->listContexts($formattedParent);
+            $gapicClient->listContexts();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1644,9 +1506,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExecutions($executions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $response = $gapicClient->listExecutions($formattedParent);
+        $response = $gapicClient->listExecutions();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1656,8 +1516,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/ListExecutions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1679,10 +1537,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         try {
-            $gapicClient->listExecutions($formattedParent);
+            $gapicClient->listExecutions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1712,9 +1568,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMetadataSchemas($metadataSchemas);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $response = $gapicClient->listMetadataSchemas($formattedParent);
+        $response = $gapicClient->listMetadataSchemas();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1724,8 +1578,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/ListMetadataSchemas', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1747,10 +1599,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         try {
-            $gapicClient->listMetadataSchemas($formattedParent);
+            $gapicClient->listMetadataSchemas();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1780,9 +1630,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMetadataStores($metadataStores);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listMetadataStores($formattedParent);
+        $response = $gapicClient->listMetadataStores();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1792,8 +1640,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/ListMetadataStores', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1815,10 +1661,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listMetadataStores($formattedParent);
+            $gapicClient->listMetadataStores();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1861,10 +1705,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->purgeArtifacts($formattedParent, $filter);
+        $response = $gapicClient->purgeArtifacts();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1874,10 +1715,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/PurgeArtifacts', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/purgeArtifactsTest');
         $response->pollUntilComplete([
@@ -1928,10 +1765,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->purgeArtifacts($formattedParent, $filter);
+        $response = $gapicClient->purgeArtifacts();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1984,10 +1818,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->purgeContexts($formattedParent, $filter);
+        $response = $gapicClient->purgeContexts();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1997,10 +1828,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/PurgeContexts', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/purgeContextsTest');
         $response->pollUntilComplete([
@@ -2051,10 +1878,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->purgeContexts($formattedParent, $filter);
+        $response = $gapicClient->purgeContexts();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2107,10 +1931,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->purgeExecutions($formattedParent, $filter);
+        $response = $gapicClient->purgeExecutions();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2120,10 +1941,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/PurgeExecutions', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/purgeExecutionsTest');
         $response->pollUntilComplete([
@@ -2174,10 +1991,7 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->purgeExecutions($formattedParent, $filter);
+        $response = $gapicClient->purgeExecutions();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2210,17 +2024,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new LineageSubgraph();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedArtifact = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
-        $response = $gapicClient->queryArtifactLineageSubgraph($formattedArtifact);
+        $response = $gapicClient->queryArtifactLineageSubgraph();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/QueryArtifactLineageSubgraph', $actualFuncCall);
-        $actualValue = $actualRequestObject->getArtifact();
-        $this->assertProtobufEquals($formattedArtifact, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2242,10 +2052,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedArtifact = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
         try {
-            $gapicClient->queryArtifactLineageSubgraph($formattedArtifact);
+            $gapicClient->queryArtifactLineageSubgraph();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2268,17 +2076,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new LineageSubgraph();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $response = $gapicClient->queryContextLineageSubgraph($formattedContext);
+        $response = $gapicClient->queryContextLineageSubgraph();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/QueryContextLineageSubgraph', $actualFuncCall);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($formattedContext, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2300,10 +2104,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
         try {
-            $gapicClient->queryContextLineageSubgraph($formattedContext);
+            $gapicClient->queryContextLineageSubgraph();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2326,17 +2128,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new LineageSubgraph();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedExecution = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $response = $gapicClient->queryExecutionInputsAndOutputs($formattedExecution);
+        $response = $gapicClient->queryExecutionInputsAndOutputs();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/QueryExecutionInputsAndOutputs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getExecution();
-        $this->assertProtobufEquals($formattedExecution, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2358,10 +2156,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedExecution = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
         try {
-            $gapicClient->queryExecutionInputsAndOutputs($formattedExecution);
+            $gapicClient->queryExecutionInputsAndOutputs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2384,17 +2180,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RemoveContextChildrenResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $response = $gapicClient->removeContextChildren($formattedContext);
+        $response = $gapicClient->removeContextChildren();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/RemoveContextChildren', $actualFuncCall);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($formattedContext, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2416,10 +2208,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
         try {
-            $gapicClient->removeContextChildren($formattedContext);
+            $gapicClient->removeContextChildren();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2456,17 +2246,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaVersion($schemaVersion);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $artifact = new Artifact();
-        $response = $gapicClient->updateArtifact($artifact);
+        $response = $gapicClient->updateArtifact();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/UpdateArtifact', $actualFuncCall);
-        $actualValue = $actualRequestObject->getArtifact();
-        $this->assertProtobufEquals($artifact, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2488,10 +2274,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $artifact = new Artifact();
         try {
-            $gapicClient->updateArtifact($artifact);
+            $gapicClient->updateArtifact();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2526,17 +2310,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaVersion($schemaVersion);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $context = new Context();
-        $response = $gapicClient->updateContext($context);
+        $response = $gapicClient->updateContext();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/UpdateContext', $actualFuncCall);
-        $actualValue = $actualRequestObject->getContext();
-        $this->assertProtobufEquals($context, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2558,10 +2338,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $context = new Context();
         try {
-            $gapicClient->updateContext($context);
+            $gapicClient->updateContext();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2596,17 +2374,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaVersion($schemaVersion);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $execution = new Execution();
-        $response = $gapicClient->updateExecution($execution);
+        $response = $gapicClient->updateExecution();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/UpdateExecution', $actualFuncCall);
-        $actualValue = $actualRequestObject->getExecution();
-        $this->assertProtobufEquals($execution, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2628,10 +2402,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $execution = new Execution();
         try {
-            $gapicClient->updateExecution($execution);
+            $gapicClient->updateExecution();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2778,17 +2550,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2810,10 +2578,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2840,20 +2606,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2875,11 +2634,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2902,20 +2658,13 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2937,11 +2686,8 @@ class MetadataServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

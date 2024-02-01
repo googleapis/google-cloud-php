@@ -42,19 +42,19 @@ use Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient;
  * [PipelineJob.state][google.cloud.aiplatform.v1.PipelineJob.state] is set to
  * `CANCELLED`.
  *
- * @param string $formattedName The name of the PipelineJob to cancel.
- *                              Format:
- *                              `projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}`
- *                              Please see {@see PipelineServiceClient::pipelineJobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function cancel_pipeline_job_sample(string $formattedName): void
+function cancel_pipeline_job_sample(): void
 {
     // Create a client.
     $pipelineServiceClient = new PipelineServiceClient();
 
     // Prepare the request message.
-    $request = (new CancelPipelineJobRequest())
-        ->setName($formattedName);
+    $request = new CancelPipelineJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,25 +63,5 @@ function cancel_pipeline_job_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = PipelineServiceClient::pipelineJobName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[PIPELINE_JOB]'
-    );
-
-    cancel_pipeline_job_sample($formattedName);
 }
 // [END aiplatform_v1_generated_PipelineService_CancelPipelineJob_sync]

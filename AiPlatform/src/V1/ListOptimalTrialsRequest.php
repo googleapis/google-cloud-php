@@ -24,8 +24,7 @@ class ListOptimalTrialsRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
 
     /**
-     * @param string $parent Required. The name of the Study that the optimal Trial belongs to. Please see
-     *                       {@see VizierServiceClient::studyName()} for help formatting this field.
+     * @param string $parent Required. The name of the Study that the optimal Trial belongs to.
      *
      * @return \Google\Cloud\AIPlatform\V1\ListOptimalTrialsRequest
      *

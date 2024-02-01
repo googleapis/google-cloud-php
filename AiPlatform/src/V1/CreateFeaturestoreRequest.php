@@ -45,7 +45,6 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      * @param string                                   $parent       Required. The resource name of the Location to create Featurestores.
      *                                                               Format:
      *                                                               `projects/{project}/locations/{location}`
-     *                                                               Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Featurestore $featurestore Required. The Featurestore to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateFeaturestoreRequest
@@ -63,7 +62,6 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      * @param string                                   $parent         Required. The resource name of the Location to create Featurestores.
      *                                                                 Format:
      *                                                                 `projects/{project}/locations/{location}`
-     *                                                                 Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\Featurestore $featurestore   Required. The Featurestore to create.
      * @param string                                   $featurestoreId Required. The ID to use for this Featurestore, which will become the final
      *                                                                 component of the Featurestore's resource name.

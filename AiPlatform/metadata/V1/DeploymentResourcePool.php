@@ -20,12 +20,12 @@ class DeploymentResourcePool
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ö
-9google/cloud/aiplatform/v1/deployment_resource_pool.protogoogle.cloud.aiplatform.v1google/api/resource.proto2google/cloud/aiplatform/v1/machine_resources.protogoogle/protobuf/timestamp.proto"È
-DeploymentResourcePool
-name (	BàAP
-dedicated_resources (2..google.cloud.aiplatform.v1.DedicatedResourcesBàA4
-create_time (2.google.protobuf.TimestampBàA:’êAŽ
+ù
+9google/cloud/aiplatform/v1/deployment_resource_pool.protogoogle.cloud.aiplatform.v1google/api/resource.proto2google/cloud/aiplatform/v1/machine_resources.protogoogle/protobuf/timestamp.proto"Ë
+DeploymentResourcePool
+name (	BâAQ
+dedicated_resources (2..google.cloud.aiplatform.v1.DedicatedResourcesBâA5
+create_time (2.google.protobuf.TimestampBâA:’êAŽ
 0aiplatform.googleapis.com/DeploymentResourcePoolZprojects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}BÙ
 com.google.cloud.aiplatform.v1BDeploymentResourcePoolProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);

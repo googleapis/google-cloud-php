@@ -35,30 +35,19 @@ use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
  * Otherwise, the number limit of data points is randomly selected from
  * this time series and returned.
  *
- * @param string $formattedTensorboard       The resource name of the Tensorboard containing
- *                                           TensorboardTimeSeries to read data from. Format:
- *                                           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`.
- *                                           The TensorboardTimeSeries referenced by
- *                                           [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
- *                                           must be sub resources of this Tensorboard. Please see
- *                                           {@see TensorboardServiceClient::tensorboardName()} for help formatting this field.
- * @param string $formattedTimeSeriesElement The resource names of the TensorboardTimeSeries to read data
- *                                           from. Format:
- *                                           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
- *                                           Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_read_tensorboard_time_series_data_sample(
-    string $formattedTensorboard,
-    string $formattedTimeSeriesElement
-): void {
+function batch_read_tensorboard_time_series_data_sample(): void
+{
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $formattedTimeSeries = [$formattedTimeSeriesElement,];
-    $request = (new BatchReadTensorboardTimeSeriesDataRequest())
-        ->setTensorboard($formattedTensorboard)
-        ->setTimeSeries($formattedTimeSeries);
+    $request = new BatchReadTensorboardTimeSeriesDataRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,33 +57,5 @@ function batch_read_tensorboard_time_series_data_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedTensorboard = TensorboardServiceClient::tensorboardName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[TENSORBOARD]'
-    );
-    $formattedTimeSeriesElement = TensorboardServiceClient::tensorboardTimeSeriesName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[TENSORBOARD]',
-        '[EXPERIMENT]',
-        '[RUN]',
-        '[TIME_SERIES]'
-    );
-
-    batch_read_tensorboard_time_series_data_sample($formattedTensorboard, $formattedTimeSeriesElement);
 }
 // [END aiplatform_v1_generated_TensorboardService_BatchReadTensorboardTimeSeriesData_sync]

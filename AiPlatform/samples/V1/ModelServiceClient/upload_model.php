@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
-use Google\Cloud\AIPlatform\V1\Model;
 use Google\Cloud\AIPlatform\V1\UploadModelRequest;
 use Google\Cloud\AIPlatform\V1\UploadModelResponse;
 use Google\Rpc\Status;
@@ -34,24 +33,19 @@ use Google\Rpc\Status;
 /**
  * Uploads a Model artifact into Vertex AI.
  *
- * @param string $formattedParent  The resource name of the Location into which to upload the Model.
- *                                 Format: `projects/{project}/locations/{location}`
- *                                 Please see {@see ModelServiceClient::locationName()} for help formatting this field.
- * @param string $modelDisplayName The display name of the Model.
- *                                 The name can be up to 128 characters long and can consist of any UTF-8
- *                                 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function upload_model_sample(string $formattedParent, string $modelDisplayName): void
+function upload_model_sample(): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $model = (new Model())
-        ->setDisplayName($modelDisplayName);
-    $request = (new UploadModelRequest())
-        ->setParent($formattedParent)
-        ->setModel($model);
+    $request = new UploadModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,22 +65,5 @@ function upload_model_sample(string $formattedParent, string $modelDisplayName):
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ModelServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $modelDisplayName = '[DISPLAY_NAME]';
-
-    upload_model_sample($formattedParent, $modelDisplayName);
 }
 // [END aiplatform_v1_generated_ModelService_UploadModel_sync]

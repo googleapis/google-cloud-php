@@ -29,7 +29,6 @@ class GetModelEvaluationRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the ModelEvaluation resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
-     *                     Please see {@see ModelServiceClient::modelEvaluationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest
      *

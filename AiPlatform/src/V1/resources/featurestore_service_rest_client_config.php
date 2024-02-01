@@ -38,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'entity_type_id',
-                ],
             ],
             'CreateFeature' => [
                 'method' => 'post',
@@ -53,9 +50,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'feature_id',
-                ],
             ],
             'CreateFeaturestore' => [
                 'method' => 'post',
@@ -67,9 +61,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'featurestore_id',
                 ],
             ],
             'DeleteEntityType' => [

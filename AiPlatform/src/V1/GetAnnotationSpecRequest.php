@@ -35,7 +35,6 @@ class GetAnnotationSpecRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the AnnotationSpec resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}`
-     *                     Please see {@see DatasetServiceClient::annotationSpecName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest
      *

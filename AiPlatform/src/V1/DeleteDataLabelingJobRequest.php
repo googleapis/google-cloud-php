@@ -29,7 +29,6 @@ class DeleteDataLabelingJobRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the DataLabelingJob to be deleted.
      *                     Format:
      *                     `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
-     *                     Please see {@see JobServiceClient::dataLabelingJobName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteDataLabelingJobRequest
      *

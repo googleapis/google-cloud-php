@@ -125,14 +125,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $featureOnlineStore = new FeatureOnlineStore();
-        $featureOnlineStoreId = 'featureOnlineStoreId-10760612';
-        $request = (new CreateFeatureOnlineStoreRequest())
-            ->setParent($formattedParent)
-            ->setFeatureOnlineStore($featureOnlineStore)
-            ->setFeatureOnlineStoreId($featureOnlineStoreId);
+        $request = new CreateFeatureOnlineStoreRequest();
         $response = $gapicClient->createFeatureOnlineStore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -143,12 +136,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/CreateFeatureOnlineStore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeatureOnlineStore();
-        $this->assertProtobufEquals($featureOnlineStore, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeatureOnlineStoreId();
-        $this->assertProtobufEquals($featureOnlineStoreId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createFeatureOnlineStoreTest');
         $response->pollUntilComplete([
@@ -199,14 +186,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $featureOnlineStore = new FeatureOnlineStore();
-        $featureOnlineStoreId = 'featureOnlineStoreId-10760612';
-        $request = (new CreateFeatureOnlineStoreRequest())
-            ->setParent($formattedParent)
-            ->setFeatureOnlineStore($featureOnlineStore)
-            ->setFeatureOnlineStoreId($featureOnlineStoreId);
+        $request = new CreateFeatureOnlineStoreRequest();
         $response = $gapicClient->createFeatureOnlineStore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -262,14 +242,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
-        $featureView = new FeatureView();
-        $featureViewId = 'featureViewId-1041382228';
-        $request = (new CreateFeatureViewRequest())
-            ->setParent($formattedParent)
-            ->setFeatureView($featureView)
-            ->setFeatureViewId($featureViewId);
+        $request = new CreateFeatureViewRequest();
         $response = $gapicClient->createFeatureView($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -280,12 +253,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/CreateFeatureView', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeatureView();
-        $this->assertProtobufEquals($featureView, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeatureViewId();
-        $this->assertProtobufEquals($featureViewId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createFeatureViewTest');
         $response->pollUntilComplete([
@@ -336,14 +303,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
-        $featureView = new FeatureView();
-        $featureViewId = 'featureViewId-1041382228';
-        $request = (new CreateFeatureViewRequest())
-            ->setParent($formattedParent)
-            ->setFeatureView($featureView)
-            ->setFeatureViewId($featureViewId);
+        $request = new CreateFeatureViewRequest();
         $response = $gapicClient->createFeatureView($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -395,10 +355,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
-        $request = (new DeleteFeatureOnlineStoreRequest())
-            ->setName($formattedName);
+        $request = new DeleteFeatureOnlineStoreRequest();
         $response = $gapicClient->deleteFeatureOnlineStore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -409,8 +366,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/DeleteFeatureOnlineStore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteFeatureOnlineStoreTest');
         $response->pollUntilComplete([
@@ -461,10 +416,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
-        $request = (new DeleteFeatureOnlineStoreRequest())
-            ->setName($formattedName);
+        $request = new DeleteFeatureOnlineStoreRequest();
         $response = $gapicClient->deleteFeatureOnlineStore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -516,10 +468,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
-        $request = (new DeleteFeatureViewRequest())
-            ->setName($formattedName);
+        $request = new DeleteFeatureViewRequest();
         $response = $gapicClient->deleteFeatureView($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -530,8 +479,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/DeleteFeatureView', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteFeatureViewTest');
         $response->pollUntilComplete([
@@ -582,10 +529,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
-        $request = (new DeleteFeatureViewRequest())
-            ->setName($formattedName);
+        $request = new DeleteFeatureViewRequest();
         $response = $gapicClient->deleteFeatureView($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -623,10 +567,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
-        $request = (new GetFeatureOnlineStoreRequest())
-            ->setName($formattedName);
+        $request = new GetFeatureOnlineStoreRequest();
         $response = $gapicClient->getFeatureOnlineStore($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -634,8 +575,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/GetFeatureOnlineStore', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -657,10 +596,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
-        $request = (new GetFeatureOnlineStoreRequest())
-            ->setName($formattedName);
+        $request = new GetFeatureOnlineStoreRequest();
         try {
             $gapicClient->getFeatureOnlineStore($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -689,10 +625,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
-        $request = (new GetFeatureViewRequest())
-            ->setName($formattedName);
+        $request = new GetFeatureViewRequest();
         $response = $gapicClient->getFeatureView($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -700,8 +633,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/GetFeatureView', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -723,10 +654,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
-        $request = (new GetFeatureViewRequest())
-            ->setName($formattedName);
+        $request = new GetFeatureViewRequest();
         try {
             $gapicClient->getFeatureView($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -753,10 +681,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new FeatureViewSync();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->featureViewSyncName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
-        $request = (new GetFeatureViewSyncRequest())
-            ->setName($formattedName);
+        $request = new GetFeatureViewSyncRequest();
         $response = $gapicClient->getFeatureViewSync($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -764,8 +689,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/GetFeatureViewSync', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -787,10 +710,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->featureViewSyncName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
-        $request = (new GetFeatureViewSyncRequest())
-            ->setName($formattedName);
+        $request = new GetFeatureViewSyncRequest();
         try {
             $gapicClient->getFeatureViewSync($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -822,10 +742,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFeatureOnlineStores($featureOnlineStores);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFeatureOnlineStoresRequest())
-            ->setParent($formattedParent);
+        $request = new ListFeatureOnlineStoresRequest();
         $response = $gapicClient->listFeatureOnlineStores($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -836,8 +753,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/ListFeatureOnlineStores', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -859,10 +774,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFeatureOnlineStoresRequest())
-            ->setParent($formattedParent);
+        $request = new ListFeatureOnlineStoresRequest();
         try {
             $gapicClient->listFeatureOnlineStores($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -894,10 +806,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFeatureViewSyncs($featureViewSyncs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
-        $request = (new ListFeatureViewSyncsRequest())
-            ->setParent($formattedParent);
+        $request = new ListFeatureViewSyncsRequest();
         $response = $gapicClient->listFeatureViewSyncs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -908,8 +817,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/ListFeatureViewSyncs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -931,10 +838,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
-        $request = (new ListFeatureViewSyncsRequest())
-            ->setParent($formattedParent);
+        $request = new ListFeatureViewSyncsRequest();
         try {
             $gapicClient->listFeatureViewSyncs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -966,10 +870,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFeatureViews($featureViews);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
-        $request = (new ListFeatureViewsRequest())
-            ->setParent($formattedParent);
+        $request = new ListFeatureViewsRequest();
         $response = $gapicClient->listFeatureViews($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -980,8 +881,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/ListFeatureViews', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1003,10 +902,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
-        $request = (new ListFeatureViewsRequest())
-            ->setParent($formattedParent);
+        $request = new ListFeatureViewsRequest();
         try {
             $gapicClient->listFeatureViews($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1033,10 +929,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new SyncFeatureViewResponse();
         $expectedResponse->setFeatureViewSync($featureViewSync);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedFeatureView = $gapicClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
-        $request = (new SyncFeatureViewRequest())
-            ->setFeatureView($formattedFeatureView);
+        $request = new SyncFeatureViewRequest();
         $response = $gapicClient->syncFeatureView($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1044,8 +937,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/SyncFeatureView', $actualFuncCall);
-        $actualValue = $actualRequestObject->getFeatureView();
-        $this->assertProtobufEquals($formattedFeatureView, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1067,10 +958,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedFeatureView = $gapicClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
-        $request = (new SyncFeatureViewRequest())
-            ->setFeatureView($formattedFeatureView);
+        $request = new SyncFeatureViewRequest();
         try {
             $gapicClient->syncFeatureView($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1117,10 +1005,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $featureOnlineStore = new FeatureOnlineStore();
-        $request = (new UpdateFeatureOnlineStoreRequest())
-            ->setFeatureOnlineStore($featureOnlineStore);
+        $request = new UpdateFeatureOnlineStoreRequest();
         $response = $gapicClient->updateFeatureOnlineStore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1131,8 +1016,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/UpdateFeatureOnlineStore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFeatureOnlineStore();
-        $this->assertProtobufEquals($featureOnlineStore, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateFeatureOnlineStoreTest');
         $response->pollUntilComplete([
@@ -1183,10 +1066,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $featureOnlineStore = new FeatureOnlineStore();
-        $request = (new UpdateFeatureOnlineStoreRequest())
-            ->setFeatureOnlineStore($featureOnlineStore);
+        $request = new UpdateFeatureOnlineStoreRequest();
         $response = $gapicClient->updateFeatureOnlineStore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1242,10 +1122,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $featureView = new FeatureView();
-        $request = (new UpdateFeatureViewRequest())
-            ->setFeatureView($featureView);
+        $request = new UpdateFeatureViewRequest();
         $response = $gapicClient->updateFeatureView($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1256,8 +1133,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/UpdateFeatureView', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getFeatureView();
-        $this->assertProtobufEquals($featureView, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateFeatureViewTest');
         $response->pollUntilComplete([
@@ -1308,10 +1183,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $featureView = new FeatureView();
-        $request = (new UpdateFeatureViewRequest())
-            ->setFeatureView($featureView);
+        $request = new UpdateFeatureViewRequest();
         $response = $gapicClient->updateFeatureView($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1473,10 +1345,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1484,8 +1353,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1507,10 +1374,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1539,12 +1403,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1552,10 +1411,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1577,12 +1432,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1607,12 +1457,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1620,10 +1465,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1645,12 +1486,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1697,14 +1533,7 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $featureOnlineStore = new FeatureOnlineStore();
-        $featureOnlineStoreId = 'featureOnlineStoreId-10760612';
-        $request = (new CreateFeatureOnlineStoreRequest())
-            ->setParent($formattedParent)
-            ->setFeatureOnlineStore($featureOnlineStore)
-            ->setFeatureOnlineStoreId($featureOnlineStoreId);
+        $request = new CreateFeatureOnlineStoreRequest();
         $response = $gapicClient->createFeatureOnlineStoreAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1715,12 +1544,6 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService/CreateFeatureOnlineStore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeatureOnlineStore();
-        $this->assertProtobufEquals($featureOnlineStore, $actualValue);
-        $actualValue = $actualApiRequestObject->getFeatureOnlineStoreId();
-        $this->assertProtobufEquals($featureOnlineStoreId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createFeatureOnlineStoreTest');
         $response->pollUntilComplete([

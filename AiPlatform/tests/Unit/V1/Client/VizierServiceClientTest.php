@@ -45,10 +45,8 @@ use Google\Cloud\AIPlatform\V1\ListStudiesResponse;
 use Google\Cloud\AIPlatform\V1\ListTrialsRequest;
 use Google\Cloud\AIPlatform\V1\ListTrialsResponse;
 use Google\Cloud\AIPlatform\V1\LookupStudyRequest;
-use Google\Cloud\AIPlatform\V1\Measurement;
 use Google\Cloud\AIPlatform\V1\StopTrialRequest;
 use Google\Cloud\AIPlatform\V1\Study;
-use Google\Cloud\AIPlatform\V1\StudySpec;
 use Google\Cloud\AIPlatform\V1\SuggestTrialsRequest;
 use Google\Cloud\AIPlatform\V1\SuggestTrialsResponse;
 use Google\Cloud\AIPlatform\V1\Trial;
@@ -117,12 +115,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTrialName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $measurement = new Measurement();
-        $request = (new AddTrialMeasurementRequest())
-            ->setTrialName($formattedTrialName)
-            ->setMeasurement($measurement);
+        $request = new AddTrialMeasurementRequest();
         $response = $gapicClient->addTrialMeasurement($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -130,10 +123,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/AddTrialMeasurement', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTrialName();
-        $this->assertProtobufEquals($formattedTrialName, $actualValue);
-        $actualValue = $actualRequestObject->getMeasurement();
-        $this->assertProtobufEquals($measurement, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -155,12 +144,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTrialName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $measurement = new Measurement();
-        $request = (new AddTrialMeasurementRequest())
-            ->setTrialName($formattedTrialName)
-            ->setMeasurement($measurement);
+        $request = new AddTrialMeasurementRequest();
         try {
             $gapicClient->addTrialMeasurement($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -205,10 +189,7 @@ class VizierServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedTrialName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $request = (new CheckTrialEarlyStoppingStateRequest())
-            ->setTrialName($formattedTrialName);
+        $request = new CheckTrialEarlyStoppingStateRequest();
         $response = $gapicClient->checkTrialEarlyStoppingState($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -219,8 +200,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/CheckTrialEarlyStoppingState', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getTrialName();
-        $this->assertProtobufEquals($formattedTrialName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/checkTrialEarlyStoppingStateTest');
         $response->pollUntilComplete([
@@ -271,10 +250,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedTrialName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $request = (new CheckTrialEarlyStoppingStateRequest())
-            ->setTrialName($formattedTrialName);
+        $request = new CheckTrialEarlyStoppingStateRequest();
         $response = $gapicClient->checkTrialEarlyStoppingState($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -318,10 +294,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason2);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $request = (new CompleteTrialRequest())
-            ->setName($formattedName);
+        $request = new CompleteTrialRequest();
         $response = $gapicClient->completeTrial($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -329,8 +302,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/CompleteTrial', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -352,10 +323,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $request = (new CompleteTrialRequest())
-            ->setName($formattedName);
+        $request = new CompleteTrialRequest();
         try {
             $gapicClient->completeTrial($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -386,20 +354,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setInactiveReason($inactiveReason);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $study = new Study();
-        $studyDisplayName = 'studyDisplayName-569693980';
-        $study->setDisplayName($studyDisplayName);
-        $studyStudySpec = new StudySpec();
-        $studySpecMetrics = [];
-        $studyStudySpec->setMetrics($studySpecMetrics);
-        $studySpecParameters = [];
-        $studyStudySpec->setParameters($studySpecParameters);
-        $study->setStudySpec($studyStudySpec);
-        $request = (new CreateStudyRequest())
-            ->setParent($formattedParent)
-            ->setStudy($study);
+        $request = new CreateStudyRequest();
         $response = $gapicClient->createStudy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -407,10 +362,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/CreateStudy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getStudy();
-        $this->assertProtobufEquals($study, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -432,20 +383,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $study = new Study();
-        $studyDisplayName = 'studyDisplayName-569693980';
-        $study->setDisplayName($studyDisplayName);
-        $studyStudySpec = new StudySpec();
-        $studySpecMetrics = [];
-        $studyStudySpec->setMetrics($studySpecMetrics);
-        $studySpecParameters = [];
-        $studyStudySpec->setParameters($studySpecParameters);
-        $study->setStudySpec($studyStudySpec);
-        $request = (new CreateStudyRequest())
-            ->setParent($formattedParent)
-            ->setStudy($study);
+        $request = new CreateStudyRequest();
         try {
             $gapicClient->createStudy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -480,12 +418,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $trial = new Trial();
-        $request = (new CreateTrialRequest())
-            ->setParent($formattedParent)
-            ->setTrial($trial);
+        $request = new CreateTrialRequest();
         $response = $gapicClient->createTrial($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -493,10 +426,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/CreateTrial', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getTrial();
-        $this->assertProtobufEquals($trial, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -518,12 +447,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $trial = new Trial();
-        $request = (new CreateTrialRequest())
-            ->setParent($formattedParent)
-            ->setTrial($trial);
+        $request = new CreateTrialRequest();
         try {
             $gapicClient->createTrial($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -548,18 +472,13 @@ class VizierServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $request = (new DeleteStudyRequest())
-            ->setName($formattedName);
+        $request = new DeleteStudyRequest();
         $gapicClient->deleteStudy($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/DeleteStudy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -581,10 +500,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $request = (new DeleteStudyRequest())
-            ->setName($formattedName);
+        $request = new DeleteStudyRequest();
         try {
             $gapicClient->deleteStudy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -609,18 +525,13 @@ class VizierServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $request = (new DeleteTrialRequest())
-            ->setName($formattedName);
+        $request = new DeleteTrialRequest();
         $gapicClient->deleteTrial($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/DeleteTrial', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -642,10 +553,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $request = (new DeleteTrialRequest())
-            ->setName($formattedName);
+        $request = new DeleteTrialRequest();
         try {
             $gapicClient->deleteTrial($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -676,10 +584,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setInactiveReason($inactiveReason);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $request = (new GetStudyRequest())
-            ->setName($formattedName);
+        $request = new GetStudyRequest();
         $response = $gapicClient->getStudy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -687,8 +592,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/GetStudy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -710,10 +613,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $request = (new GetStudyRequest())
-            ->setName($formattedName);
+        $request = new GetStudyRequest();
         try {
             $gapicClient->getStudy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -748,10 +648,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $request = (new GetTrialRequest())
-            ->setName($formattedName);
+        $request = new GetTrialRequest();
         $response = $gapicClient->getTrial($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -759,8 +656,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/GetTrial', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -782,10 +677,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $request = (new GetTrialRequest())
-            ->setName($formattedName);
+        $request = new GetTrialRequest();
         try {
             $gapicClient->getTrial($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -810,10 +702,7 @@ class VizierServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListOptimalTrialsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $request = (new ListOptimalTrialsRequest())
-            ->setParent($formattedParent);
+        $request = new ListOptimalTrialsRequest();
         $response = $gapicClient->listOptimalTrials($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -821,8 +710,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/ListOptimalTrials', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -844,10 +731,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $request = (new ListOptimalTrialsRequest())
-            ->setParent($formattedParent);
+        $request = new ListOptimalTrialsRequest();
         try {
             $gapicClient->listOptimalTrials($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -879,10 +763,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStudies($studies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListStudiesRequest())
-            ->setParent($formattedParent);
+        $request = new ListStudiesRequest();
         $response = $gapicClient->listStudies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -893,8 +774,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/ListStudies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -916,10 +795,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListStudiesRequest())
-            ->setParent($formattedParent);
+        $request = new ListStudiesRequest();
         try {
             $gapicClient->listStudies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -951,10 +827,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTrials($trials);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $request = (new ListTrialsRequest())
-            ->setParent($formattedParent);
+        $request = new ListTrialsRequest();
         $response = $gapicClient->listTrials($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -965,8 +838,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/ListTrials', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -988,10 +859,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $request = (new ListTrialsRequest())
-            ->setParent($formattedParent);
+        $request = new ListTrialsRequest();
         try {
             $gapicClient->listTrials($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1022,12 +890,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName2);
         $expectedResponse->setInactiveReason($inactiveReason);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $displayName = 'displayName1615086568';
-        $request = (new LookupStudyRequest())
-            ->setParent($formattedParent)
-            ->setDisplayName($displayName);
+        $request = new LookupStudyRequest();
         $response = $gapicClient->lookupStudy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1035,10 +898,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/LookupStudy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDisplayName();
-        $this->assertProtobufEquals($displayName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1060,12 +919,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $displayName = 'displayName1615086568';
-        $request = (new LookupStudyRequest())
-            ->setParent($formattedParent)
-            ->setDisplayName($displayName);
+        $request = new LookupStudyRequest();
         try {
             $gapicClient->lookupStudy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1100,10 +954,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $request = (new StopTrialRequest())
-            ->setName($formattedName);
+        $request = new StopTrialRequest();
         $response = $gapicClient->stopTrial($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1111,8 +962,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/StopTrial', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1134,10 +983,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $request = (new StopTrialRequest())
-            ->setName($formattedName);
+        $request = new StopTrialRequest();
         try {
             $gapicClient->stopTrial($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1180,14 +1026,7 @@ class VizierServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $suggestionCount = 390130452;
-        $clientId = 'clientId-1904089585';
-        $request = (new SuggestTrialsRequest())
-            ->setParent($formattedParent)
-            ->setSuggestionCount($suggestionCount)
-            ->setClientId($clientId);
+        $request = new SuggestTrialsRequest();
         $response = $gapicClient->suggestTrials($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1198,12 +1037,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/SuggestTrials', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSuggestionCount();
-        $this->assertProtobufEquals($suggestionCount, $actualValue);
-        $actualValue = $actualApiRequestObject->getClientId();
-        $this->assertProtobufEquals($clientId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/suggestTrialsTest');
         $response->pollUntilComplete([
@@ -1254,14 +1087,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $suggestionCount = 390130452;
-        $clientId = 'clientId-1904089585';
-        $request = (new SuggestTrialsRequest())
-            ->setParent($formattedParent)
-            ->setSuggestionCount($suggestionCount)
-            ->setClientId($clientId);
+        $request = new SuggestTrialsRequest();
         $response = $gapicClient->suggestTrials($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1423,10 +1249,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1434,8 +1257,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1457,10 +1278,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1489,12 +1307,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1502,10 +1315,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1527,12 +1336,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1557,12 +1361,7 @@ class VizierServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1570,10 +1369,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1595,12 +1390,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1635,12 +1425,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTrialName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $measurement = new Measurement();
-        $request = (new AddTrialMeasurementRequest())
-            ->setTrialName($formattedTrialName)
-            ->setMeasurement($measurement);
+        $request = new AddTrialMeasurementRequest();
         $response = $gapicClient->addTrialMeasurementAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1648,10 +1433,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/AddTrialMeasurement', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTrialName();
-        $this->assertProtobufEquals($formattedTrialName, $actualValue);
-        $actualValue = $actualRequestObject->getMeasurement();
-        $this->assertProtobufEquals($measurement, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

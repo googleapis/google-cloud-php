@@ -45,9 +45,7 @@ function update_feature_group_sample(): void
     $featureRegistryServiceClient = new FeatureRegistryServiceClient();
 
     // Prepare the request message.
-    $featureGroup = new FeatureGroup();
-    $request = (new UpdateFeatureGroupRequest())
-        ->setFeatureGroup($featureGroup);
+    $request = new UpdateFeatureGroupRequest();
 
     // Call the API and handle any network failures.
     try {

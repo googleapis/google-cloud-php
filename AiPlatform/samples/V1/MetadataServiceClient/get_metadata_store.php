@@ -31,19 +31,19 @@ use Google\Cloud\AIPlatform\V1\MetadataStore;
 /**
  * Retrieves a specific MetadataStore.
  *
- * @param string $formattedName The resource name of the MetadataStore to retrieve.
- *                              Format:
- *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}`
- *                              Please see {@see MetadataServiceClient::metadataStoreName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_metadata_store_sample(string $formattedName): void
+function get_metadata_store_sample(): void
 {
     // Create a client.
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $request = (new GetMetadataStoreRequest())
-        ->setName($formattedName);
+    $request = new GetMetadataStoreRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,25 +53,5 @@ function get_metadata_store_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = MetadataServiceClient::metadataStoreName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[METADATA_STORE]'
-    );
-
-    get_metadata_store_sample($formattedName);
 }
 // [END aiplatform_v1_generated_MetadataService_GetMetadataStore_sync]

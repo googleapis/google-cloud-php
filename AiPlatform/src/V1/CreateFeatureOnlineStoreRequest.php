@@ -45,7 +45,6 @@ class CreateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      * @param string                                         $parent               Required. The resource name of the Location to create FeatureOnlineStores.
      *                                                                             Format:
      *                                                                             `projects/{project}/locations/{location}`
-     *                                                                             Please see {@see FeatureOnlineStoreAdminServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\FeatureOnlineStore $featureOnlineStore   Required. The FeatureOnlineStore to create.
      * @param string                                         $featureOnlineStoreId Required. The ID to use for this FeatureOnlineStore, which will become the
      *                                                                             final component of the FeatureOnlineStore's resource name.

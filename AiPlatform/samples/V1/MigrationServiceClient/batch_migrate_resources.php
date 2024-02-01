@@ -28,27 +28,25 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\BatchMigrateResourcesRequest;
 use Google\Cloud\AIPlatform\V1\BatchMigrateResourcesResponse;
 use Google\Cloud\AIPlatform\V1\Client\MigrationServiceClient;
-use Google\Cloud\AIPlatform\V1\MigrateResourceRequest;
 use Google\Rpc\Status;
 
 /**
  * Batch migrates resources from ml.googleapis.com, automl.googleapis.com,
  * and datalabeling.googleapis.com to Vertex AI.
  *
- * @param string $formattedParent The location of the migrated resource will live in.
- *                                Format: `projects/{project}/locations/{location}`
- *                                Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_migrate_resources_sample(string $formattedParent): void
+function batch_migrate_resources_sample(): void
 {
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
     // Prepare the request message.
-    $migrateResourceRequests = [new MigrateResourceRequest()];
-    $request = (new BatchMigrateResourcesRequest())
-        ->setParent($formattedParent)
-        ->setMigrateResourceRequests($migrateResourceRequests);
+    $request = new BatchMigrateResourcesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,21 +66,5 @@ function batch_migrate_resources_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = MigrationServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    batch_migrate_resources_sample($formattedParent);
 }
 // [END aiplatform_v1_generated_MigrationService_BatchMigrateResources_sync]

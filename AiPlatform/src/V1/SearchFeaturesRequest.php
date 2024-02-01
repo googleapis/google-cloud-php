@@ -102,7 +102,6 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
      * @param string $location Required. The resource name of the Location to search Features.
      *                         Format:
      *                         `projects/{project}/locations/{location}`
-     *                         Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\SearchFeaturesRequest
      *
@@ -118,7 +117,6 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
      * @param string $location Required. The resource name of the Location to search Features.
      *                         Format:
      *                         `projects/{project}/locations/{location}`
-     *                         Please see {@see FeaturestoreServiceClient::locationName()} for help formatting this field.
      * @param string $query    Query string that is a conjunction of field-restricted queries and/or
      *                         field-restricted filters.  Field-restricted queries and filters can be
      *                         combined using `AND` to form a conjunction.

@@ -27,26 +27,23 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient;
 use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
-use Google\Protobuf\Value;
 
 /**
  * Perform an online prediction.
  *
- * @param string $formattedEndpoint The name of the Endpoint requested to serve the prediction.
- *                                  Format:
- *                                  `projects/{project}/locations/{location}/endpoints/{endpoint}`
- *                                  Please see {@see PredictionServiceClient::endpointName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function predict_sample(string $formattedEndpoint): void
+function predict_sample(): void
 {
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
     // Prepare the request message.
-    $instances = [new Value()];
-    $request = (new PredictRequest())
-        ->setEndpoint($formattedEndpoint)
-        ->setInstances($instances);
+    $request = new PredictRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +53,5 @@ function predict_sample(string $formattedEndpoint): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedEndpoint = PredictionServiceClient::endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-
-    predict_sample($formattedEndpoint);
 }
 // [END aiplatform_v1_generated_PredictionService_Predict_sync]

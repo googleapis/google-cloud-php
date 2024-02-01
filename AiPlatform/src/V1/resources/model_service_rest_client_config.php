@@ -198,9 +198,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UploadModel' => [
                 'method' => 'post',

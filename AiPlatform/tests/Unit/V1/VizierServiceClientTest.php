@@ -31,9 +31,7 @@ use Google\Cloud\AIPlatform\V1\CheckTrialEarlyStoppingStateResponse;
 use Google\Cloud\AIPlatform\V1\ListOptimalTrialsResponse;
 use Google\Cloud\AIPlatform\V1\ListStudiesResponse;
 use Google\Cloud\AIPlatform\V1\ListTrialsResponse;
-use Google\Cloud\AIPlatform\V1\Measurement;
 use Google\Cloud\AIPlatform\V1\Study;
-use Google\Cloud\AIPlatform\V1\StudySpec;
 use Google\Cloud\AIPlatform\V1\SuggestTrialsResponse;
 use Google\Cloud\AIPlatform\V1\Trial;
 use Google\Cloud\AIPlatform\V1\VizierServiceClient;
@@ -97,20 +95,13 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTrialName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $measurement = new Measurement();
-        $response = $gapicClient->addTrialMeasurement($formattedTrialName, $measurement);
+        $response = $gapicClient->addTrialMeasurement();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/AddTrialMeasurement', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTrialName();
-        $this->assertProtobufEquals($formattedTrialName, $actualValue);
-        $actualValue = $actualRequestObject->getMeasurement();
-        $this->assertProtobufEquals($measurement, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -132,11 +123,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTrialName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $measurement = new Measurement();
         try {
-            $gapicClient->addTrialMeasurement($formattedTrialName, $measurement);
+            $gapicClient->addTrialMeasurement();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -179,9 +167,7 @@ class VizierServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedTrialName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $response = $gapicClient->checkTrialEarlyStoppingState($formattedTrialName);
+        $response = $gapicClient->checkTrialEarlyStoppingState();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -191,8 +177,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/CheckTrialEarlyStoppingState', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getTrialName();
-        $this->assertProtobufEquals($formattedTrialName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/checkTrialEarlyStoppingStateTest');
         $response->pollUntilComplete([
@@ -243,9 +227,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedTrialName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $response = $gapicClient->checkTrialEarlyStoppingState($formattedTrialName);
+        $response = $gapicClient->checkTrialEarlyStoppingState();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -288,17 +270,13 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason2);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $response = $gapicClient->completeTrial($formattedName);
+        $response = $gapicClient->completeTrial();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/CompleteTrial', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -320,10 +298,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
         try {
-            $gapicClient->completeTrial($formattedName);
+            $gapicClient->completeTrial();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -352,28 +328,13 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setInactiveReason($inactiveReason);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $study = new Study();
-        $studyDisplayName = 'studyDisplayName-569693980';
-        $study->setDisplayName($studyDisplayName);
-        $studyStudySpec = new StudySpec();
-        $studySpecMetrics = [];
-        $studyStudySpec->setMetrics($studySpecMetrics);
-        $studySpecParameters = [];
-        $studyStudySpec->setParameters($studySpecParameters);
-        $study->setStudySpec($studyStudySpec);
-        $response = $gapicClient->createStudy($formattedParent, $study);
+        $response = $gapicClient->createStudy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/CreateStudy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getStudy();
-        $this->assertProtobufEquals($study, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -395,19 +356,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $study = new Study();
-        $studyDisplayName = 'studyDisplayName-569693980';
-        $study->setDisplayName($studyDisplayName);
-        $studyStudySpec = new StudySpec();
-        $studySpecMetrics = [];
-        $studyStudySpec->setMetrics($studySpecMetrics);
-        $studySpecParameters = [];
-        $studyStudySpec->setParameters($studySpecParameters);
-        $study->setStudySpec($studyStudySpec);
         try {
-            $gapicClient->createStudy($formattedParent, $study);
+            $gapicClient->createStudy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -440,20 +390,13 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $trial = new Trial();
-        $response = $gapicClient->createTrial($formattedParent, $trial);
+        $response = $gapicClient->createTrial();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/CreateTrial', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getTrial();
-        $this->assertProtobufEquals($trial, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -475,11 +418,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $trial = new Trial();
         try {
-            $gapicClient->createTrial($formattedParent, $trial);
+            $gapicClient->createTrial();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -502,16 +442,12 @@ class VizierServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $gapicClient->deleteStudy($formattedName);
+        $gapicClient->deleteStudy();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/DeleteStudy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -533,10 +469,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
         try {
-            $gapicClient->deleteStudy($formattedName);
+            $gapicClient->deleteStudy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -559,16 +493,12 @@ class VizierServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $gapicClient->deleteTrial($formattedName);
+        $gapicClient->deleteTrial();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/DeleteTrial', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -590,10 +520,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
         try {
-            $gapicClient->deleteTrial($formattedName);
+            $gapicClient->deleteTrial();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -622,17 +550,13 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setInactiveReason($inactiveReason);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $response = $gapicClient->getStudy($formattedName);
+        $response = $gapicClient->getStudy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/GetStudy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -654,10 +578,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
         try {
-            $gapicClient->getStudy($formattedName);
+            $gapicClient->getStudy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -690,17 +612,13 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $response = $gapicClient->getTrial($formattedName);
+        $response = $gapicClient->getTrial();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/GetTrial', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -722,10 +640,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
         try {
-            $gapicClient->getTrial($formattedName);
+            $gapicClient->getTrial();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -748,17 +664,13 @@ class VizierServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListOptimalTrialsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $response = $gapicClient->listOptimalTrials($formattedParent);
+        $response = $gapicClient->listOptimalTrials();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/ListOptimalTrials', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -780,10 +692,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
         try {
-            $gapicClient->listOptimalTrials($formattedParent);
+            $gapicClient->listOptimalTrials();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -813,9 +723,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStudies($studies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listStudies($formattedParent);
+        $response = $gapicClient->listStudies();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -825,8 +733,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/ListStudies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -848,10 +754,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listStudies($formattedParent);
+            $gapicClient->listStudies();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -881,9 +785,7 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTrials($trials);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $response = $gapicClient->listTrials($formattedParent);
+        $response = $gapicClient->listTrials();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -893,8 +795,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/ListTrials', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -916,10 +816,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
         try {
-            $gapicClient->listTrials($formattedParent);
+            $gapicClient->listTrials();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -948,20 +846,13 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName2);
         $expectedResponse->setInactiveReason($inactiveReason);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $displayName = 'displayName1615086568';
-        $response = $gapicClient->lookupStudy($formattedParent, $displayName);
+        $response = $gapicClient->lookupStudy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/LookupStudy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDisplayName();
-        $this->assertProtobufEquals($displayName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -983,11 +874,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $displayName = 'displayName1615086568';
         try {
-            $gapicClient->lookupStudy($formattedParent, $displayName);
+            $gapicClient->lookupStudy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1020,17 +908,13 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setInfeasibleReason($infeasibleReason);
         $expectedResponse->setCustomJob($customJob);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
-        $response = $gapicClient->stopTrial($formattedName);
+        $response = $gapicClient->stopTrial();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/StopTrial', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1052,10 +936,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trialName('[PROJECT]', '[LOCATION]', '[STUDY]', '[TRIAL]');
         try {
-            $gapicClient->stopTrial($formattedName);
+            $gapicClient->stopTrial();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1096,11 +978,7 @@ class VizierServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $suggestionCount = 390130452;
-        $clientId = 'clientId-1904089585';
-        $response = $gapicClient->suggestTrials($formattedParent, $suggestionCount, $clientId);
+        $response = $gapicClient->suggestTrials();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1110,12 +988,6 @@ class VizierServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.VizierService/SuggestTrials', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSuggestionCount();
-        $this->assertProtobufEquals($suggestionCount, $actualValue);
-        $actualValue = $actualApiRequestObject->getClientId();
-        $this->assertProtobufEquals($clientId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/suggestTrialsTest');
         $response->pollUntilComplete([
@@ -1166,11 +1038,7 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->studyName('[PROJECT]', '[LOCATION]', '[STUDY]');
-        $suggestionCount = 390130452;
-        $clientId = 'clientId-1904089585';
-        $response = $gapicClient->suggestTrials($formattedParent, $suggestionCount, $clientId);
+        $response = $gapicClient->suggestTrials();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1327,17 +1195,13 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1359,10 +1223,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1389,20 +1251,13 @@ class VizierServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1424,11 +1279,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1451,20 +1303,13 @@ class VizierServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1486,11 +1331,8 @@ class VizierServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

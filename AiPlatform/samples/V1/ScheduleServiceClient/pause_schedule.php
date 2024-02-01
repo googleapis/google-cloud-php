@@ -33,19 +33,19 @@ use Google\Cloud\AIPlatform\V1\PauseScheduleRequest;
  * the schedule is paused, no new runs will be created. Already created runs
  * will NOT be paused or canceled.
  *
- * @param string $formattedName The name of the Schedule resource to be paused.
- *                              Format:
- *                              `projects/{project}/locations/{location}/schedules/{schedule}`
- *                              Please see {@see ScheduleServiceClient::scheduleName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function pause_schedule_sample(string $formattedName): void
+function pause_schedule_sample(): void
 {
     // Create a client.
     $scheduleServiceClient = new ScheduleServiceClient();
 
     // Prepare the request message.
-    $request = (new PauseScheduleRequest())
-        ->setName($formattedName);
+    $request = new PauseScheduleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +54,5 @@ function pause_schedule_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ScheduleServiceClient::scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-
-    pause_schedule_sample($formattedName);
 }
 // [END aiplatform_v1_generated_ScheduleService_PauseSchedule_sync]

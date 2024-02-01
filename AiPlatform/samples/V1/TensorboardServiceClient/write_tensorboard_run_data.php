@@ -25,9 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START aiplatform_v1_generated_TensorboardService_WriteTensorboardRunData_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
-use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries\ValueType;
-use Google\Cloud\AIPlatform\V1\TimeSeriesData;
-use Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint;
 use Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest;
 use Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataResponse;
 
@@ -35,33 +32,19 @@ use Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataResponse;
  * Write time series data points into multiple TensorboardTimeSeries under
  * a TensorboardRun. If any data fail to be ingested, an error is returned.
  *
- * @param string $formattedTensorboardRun               The resource name of the TensorboardRun to write data to.
- *                                                      Format:
- *                                                      `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
- *                                                      Please see {@see TensorboardServiceClient::tensorboardRunName()} for help formatting this field.
- * @param string $timeSeriesDataTensorboardTimeSeriesId The ID of the TensorboardTimeSeries, which will become the final
- *                                                      component of the TensorboardTimeSeries' resource name
- * @param int    $timeSeriesDataValueType               Immutable. The value type of this time series. All the values in
- *                                                      this time series data must match this value type.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function write_tensorboard_run_data_sample(
-    string $formattedTensorboardRun,
-    string $timeSeriesDataTensorboardTimeSeriesId,
-    int $timeSeriesDataValueType
-): void {
+function write_tensorboard_run_data_sample(): void
+{
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $timeSeriesDataValues = [new TimeSeriesDataPoint()];
-    $timeSeriesData = (new TimeSeriesData())
-        ->setTensorboardTimeSeriesId($timeSeriesDataTensorboardTimeSeriesId)
-        ->setValueType($timeSeriesDataValueType)
-        ->setValues($timeSeriesDataValues);
-    $timeSeriesData = [$timeSeriesData,];
-    $request = (new WriteTensorboardRunDataRequest())
-        ->setTensorboardRun($formattedTensorboardRun)
-        ->setTimeSeriesData($timeSeriesData);
+    $request = new WriteTensorboardRunDataRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,33 +54,5 @@ function write_tensorboard_run_data_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedTensorboardRun = TensorboardServiceClient::tensorboardRunName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[TENSORBOARD]',
-        '[EXPERIMENT]',
-        '[RUN]'
-    );
-    $timeSeriesDataTensorboardTimeSeriesId = '[TENSORBOARD_TIME_SERIES_ID]';
-    $timeSeriesDataValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
-
-    write_tensorboard_run_data_sample(
-        $formattedTensorboardRun,
-        $timeSeriesDataTensorboardTimeSeriesId,
-        $timeSeriesDataValueType
-    );
 }
 // [END aiplatform_v1_generated_TensorboardService_WriteTensorboardRunData_sync]

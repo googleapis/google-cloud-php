@@ -33,18 +33,19 @@ use Google\Rpc\Status;
 /**
  * Incrementally update the dataset used for an examples model.
  *
- * @param string $formattedModel The resource name of the Model to update.
- *                               Format: `projects/{project}/locations/{location}/models/{model}`
- *                               Please see {@see ModelServiceClient::modelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_explanation_dataset_sample(string $formattedModel): void
+function update_explanation_dataset_sample(): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $request = (new UpdateExplanationDatasetRequest())
-        ->setModel($formattedModel);
+    $request = new UpdateExplanationDatasetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -64,21 +65,5 @@ function update_explanation_dataset_sample(string $formattedModel): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedModel = ModelServiceClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-
-    update_explanation_dataset_sample($formattedModel);
 }
 // [END aiplatform_v1_generated_ModelService_UpdateExplanationDataset_sync]

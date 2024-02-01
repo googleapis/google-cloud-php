@@ -29,7 +29,6 @@ class GetTrainingPipelineRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the TrainingPipeline resource.
      *                     Format:
      *                     `projects/{project}/locations/{location}/trainingPipelines/{training_pipeline}`
-     *                     Please see {@see PipelineServiceClient::trainingPipelineName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetTrainingPipelineRequest
      *

@@ -55,7 +55,6 @@ use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use Google\Protobuf\Value;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -98,18 +97,13 @@ class PipelineServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
-        $request = (new CancelPipelineJobRequest())
-            ->setName($formattedName);
+        $request = new CancelPipelineJobRequest();
         $gapicClient->cancelPipelineJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/CancelPipelineJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -131,10 +125,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
-        $request = (new CancelPipelineJobRequest())
-            ->setName($formattedName);
+        $request = new CancelPipelineJobRequest();
         try {
             $gapicClient->cancelPipelineJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -159,18 +150,13 @@ class PipelineServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->trainingPipelineName('[PROJECT]', '[LOCATION]', '[TRAINING_PIPELINE]');
-        $request = (new CancelTrainingPipelineRequest())
-            ->setName($formattedName);
+        $request = new CancelTrainingPipelineRequest();
         $gapicClient->cancelTrainingPipeline($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/CancelTrainingPipeline', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -192,10 +178,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trainingPipelineName('[PROJECT]', '[LOCATION]', '[TRAINING_PIPELINE]');
-        $request = (new CancelTrainingPipelineRequest())
-            ->setName($formattedName);
+        $request = new CancelTrainingPipelineRequest();
         try {
             $gapicClient->cancelTrainingPipeline($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -232,12 +215,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $expectedResponse->setTemplateUri($templateUri);
         $expectedResponse->setScheduleName($scheduleName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $pipelineJob = new PipelineJob();
-        $request = (new CreatePipelineJobRequest())
-            ->setParent($formattedParent)
-            ->setPipelineJob($pipelineJob);
+        $request = new CreatePipelineJobRequest();
         $response = $gapicClient->createPipelineJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -245,10 +223,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/CreatePipelineJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPipelineJob();
-        $this->assertProtobufEquals($pipelineJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -270,12 +244,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $pipelineJob = new PipelineJob();
-        $request = (new CreatePipelineJobRequest())
-            ->setParent($formattedParent)
-            ->setPipelineJob($pipelineJob);
+        $request = new CreatePipelineJobRequest();
         try {
             $gapicClient->createPipelineJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -310,18 +279,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $expectedResponse->setModelId($modelId);
         $expectedResponse->setParentModel($parentModel);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $trainingPipeline = new TrainingPipeline();
-        $trainingPipelineDisplayName = 'trainingPipelineDisplayName-236550351';
-        $trainingPipeline->setDisplayName($trainingPipelineDisplayName);
-        $trainingPipelineTrainingTaskDefinition = 'trainingPipelineTrainingTaskDefinition2032083182';
-        $trainingPipeline->setTrainingTaskDefinition($trainingPipelineTrainingTaskDefinition);
-        $trainingPipelineTrainingTaskInputs = new Value();
-        $trainingPipeline->setTrainingTaskInputs($trainingPipelineTrainingTaskInputs);
-        $request = (new CreateTrainingPipelineRequest())
-            ->setParent($formattedParent)
-            ->setTrainingPipeline($trainingPipeline);
+        $request = new CreateTrainingPipelineRequest();
         $response = $gapicClient->createTrainingPipeline($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -329,10 +287,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/CreateTrainingPipeline', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getTrainingPipeline();
-        $this->assertProtobufEquals($trainingPipeline, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -354,18 +308,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $trainingPipeline = new TrainingPipeline();
-        $trainingPipelineDisplayName = 'trainingPipelineDisplayName-236550351';
-        $trainingPipeline->setDisplayName($trainingPipelineDisplayName);
-        $trainingPipelineTrainingTaskDefinition = 'trainingPipelineTrainingTaskDefinition2032083182';
-        $trainingPipeline->setTrainingTaskDefinition($trainingPipelineTrainingTaskDefinition);
-        $trainingPipelineTrainingTaskInputs = new Value();
-        $trainingPipeline->setTrainingTaskInputs($trainingPipelineTrainingTaskInputs);
-        $request = (new CreateTrainingPipelineRequest())
-            ->setParent($formattedParent)
-            ->setTrainingPipeline($trainingPipeline);
+        $request = new CreateTrainingPipelineRequest();
         try {
             $gapicClient->createTrainingPipeline($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -408,10 +351,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
-        $request = (new DeletePipelineJobRequest())
-            ->setName($formattedName);
+        $request = new DeletePipelineJobRequest();
         $response = $gapicClient->deletePipelineJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -422,8 +362,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/DeletePipelineJob', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deletePipelineJobTest');
         $response->pollUntilComplete([
@@ -474,10 +412,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
-        $request = (new DeletePipelineJobRequest())
-            ->setName($formattedName);
+        $request = new DeletePipelineJobRequest();
         $response = $gapicClient->deletePipelineJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -529,10 +464,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->trainingPipelineName('[PROJECT]', '[LOCATION]', '[TRAINING_PIPELINE]');
-        $request = (new DeleteTrainingPipelineRequest())
-            ->setName($formattedName);
+        $request = new DeleteTrainingPipelineRequest();
         $response = $gapicClient->deleteTrainingPipeline($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -543,8 +475,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/DeleteTrainingPipeline', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteTrainingPipelineTest');
         $response->pollUntilComplete([
@@ -595,10 +525,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trainingPipelineName('[PROJECT]', '[LOCATION]', '[TRAINING_PIPELINE]');
-        $request = (new DeleteTrainingPipelineRequest())
-            ->setName($formattedName);
+        $request = new DeleteTrainingPipelineRequest();
         $response = $gapicClient->deleteTrainingPipeline($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -644,10 +571,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $expectedResponse->setTemplateUri($templateUri);
         $expectedResponse->setScheduleName($scheduleName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
-        $request = (new GetPipelineJobRequest())
-            ->setName($formattedName);
+        $request = new GetPipelineJobRequest();
         $response = $gapicClient->getPipelineJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -655,8 +579,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/GetPipelineJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -678,10 +600,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
-        $request = (new GetPipelineJobRequest())
-            ->setName($formattedName);
+        $request = new GetPipelineJobRequest();
         try {
             $gapicClient->getPipelineJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -716,10 +635,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $expectedResponse->setModelId($modelId);
         $expectedResponse->setParentModel($parentModel);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->trainingPipelineName('[PROJECT]', '[LOCATION]', '[TRAINING_PIPELINE]');
-        $request = (new GetTrainingPipelineRequest())
-            ->setName($formattedName);
+        $request = new GetTrainingPipelineRequest();
         $response = $gapicClient->getTrainingPipeline($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -727,8 +643,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/GetTrainingPipeline', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -750,10 +664,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->trainingPipelineName('[PROJECT]', '[LOCATION]', '[TRAINING_PIPELINE]');
-        $request = (new GetTrainingPipelineRequest())
-            ->setName($formattedName);
+        $request = new GetTrainingPipelineRequest();
         try {
             $gapicClient->getTrainingPipeline($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -785,10 +696,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPipelineJobs($pipelineJobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPipelineJobsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPipelineJobsRequest();
         $response = $gapicClient->listPipelineJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -799,8 +707,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/ListPipelineJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -822,10 +728,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPipelineJobsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPipelineJobsRequest();
         try {
             $gapicClient->listPipelineJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -857,10 +760,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTrainingPipelines($trainingPipelines);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListTrainingPipelinesRequest())
-            ->setParent($formattedParent);
+        $request = new ListTrainingPipelinesRequest();
         $response = $gapicClient->listTrainingPipelines($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -871,8 +771,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/ListTrainingPipelines', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -894,10 +792,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListTrainingPipelinesRequest())
-            ->setParent($formattedParent);
+        $request = new ListTrainingPipelinesRequest();
         try {
             $gapicClient->listTrainingPipelines($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1050,10 +945,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1061,8 +953,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1084,10 +974,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1116,12 +1003,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1129,10 +1011,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1154,12 +1032,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1184,12 +1057,7 @@ class PipelineServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1197,10 +1065,6 @@ class PipelineServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1222,12 +1086,7 @@ class PipelineServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1252,18 +1111,13 @@ class PipelineServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
-        $request = (new CancelPipelineJobRequest())
-            ->setName($formattedName);
+        $request = new CancelPipelineJobRequest();
         $gapicClient->cancelPipelineJobAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PipelineService/CancelPipelineJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

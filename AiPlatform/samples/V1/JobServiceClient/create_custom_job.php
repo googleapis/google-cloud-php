@@ -27,35 +27,24 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\JobServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateCustomJobRequest;
 use Google\Cloud\AIPlatform\V1\CustomJob;
-use Google\Cloud\AIPlatform\V1\CustomJobSpec;
-use Google\Cloud\AIPlatform\V1\WorkerPoolSpec;
 
 /**
  * Creates a CustomJob. A created CustomJob right away
  * will be attempted to be run.
  *
- * @param string $formattedParent      The resource name of the Location to create the CustomJob in.
- *                                     Format: `projects/{project}/locations/{location}`
- *                                     Please see {@see JobServiceClient::locationName()} for help formatting this field.
- * @param string $customJobDisplayName The display name of the CustomJob.
- *                                     The name can be up to 128 characters long and can consist of any UTF-8
- *                                     characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_custom_job_sample(string $formattedParent, string $customJobDisplayName): void
+function create_custom_job_sample(): void
 {
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $customJobJobSpecWorkerPoolSpecs = [new WorkerPoolSpec()];
-    $customJobJobSpec = (new CustomJobSpec())
-        ->setWorkerPoolSpecs($customJobJobSpecWorkerPoolSpecs);
-    $customJob = (new CustomJob())
-        ->setDisplayName($customJobDisplayName)
-        ->setJobSpec($customJobJobSpec);
-    $request = (new CreateCustomJobRequest())
-        ->setParent($formattedParent)
-        ->setCustomJob($customJob);
+    $request = new CreateCustomJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,22 +54,5 @@ function create_custom_job_sample(string $formattedParent, string $customJobDisp
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = JobServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $customJobDisplayName = '[DISPLAY_NAME]';
-
-    create_custom_job_sample($formattedParent, $customJobDisplayName);
 }
 // [END aiplatform_v1_generated_JobService_CreateCustomJob_sync]

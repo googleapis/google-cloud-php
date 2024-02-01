@@ -26,8 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\AIPlatform\V1\Client\FeaturestoreOnlineServingServiceClient;
-use Google\Cloud\AIPlatform\V1\FeatureSelector;
-use Google\Cloud\AIPlatform\V1\IdMatcher;
 use Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\StreamingReadFeatureValuesRequest;
 
@@ -36,42 +34,19 @@ use Google\Cloud\AIPlatform\V1\StreamingReadFeatureValuesRequest;
  * for different entities may be broken
  * up across multiple responses.
  *
- * @param string $formattedEntityType                The resource name of the entities' type.
- *                                                   Value format:
- *                                                   `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
- *                                                   For example,
- *                                                   for a machine learning model predicting user clicks on a website, an
- *                                                   EntityType ID could be `user`. Please see
- *                                                   {@see FeaturestoreOnlineServingServiceClient::entityTypeName()} for help formatting this field.
- * @param string $entityIdsElement                   IDs of entities to read Feature values of. The maximum number of
- *                                                   IDs is 100. For example, for a machine learning model predicting user
- *                                                   clicks on a website, an entity ID could be `user_123`.
- * @param string $featureSelectorIdMatcherIdsElement The following are accepted as `ids`:
- *
- *                                                   * A single-element list containing only `*`, which selects all Features
- *                                                   in the target EntityType, or
- *                                                   * A list containing only Feature IDs, which selects only Features with
- *                                                   those IDs in the target EntityType.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function streaming_read_feature_values_sample(
-    string $formattedEntityType,
-    string $entityIdsElement,
-    string $featureSelectorIdMatcherIdsElement
-): void {
+function streaming_read_feature_values_sample(): void
+{
     // Create a client.
     $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
 
     // Prepare the request message.
-    $entityIds = [$entityIdsElement,];
-    $featureSelectorIdMatcherIds = [$featureSelectorIdMatcherIdsElement,];
-    $featureSelectorIdMatcher = (new IdMatcher())
-        ->setIds($featureSelectorIdMatcherIds);
-    $featureSelector = (new FeatureSelector())
-        ->setIdMatcher($featureSelectorIdMatcher);
-    $request = (new StreamingReadFeatureValuesRequest())
-        ->setEntityType($formattedEntityType)
-        ->setEntityIds($entityIds)
-        ->setFeatureSelector($featureSelector);
+    $request = new StreamingReadFeatureValuesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -85,32 +60,5 @@ function streaming_read_feature_values_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedEntityType = FeaturestoreOnlineServingServiceClient::entityTypeName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[FEATURESTORE]',
-        '[ENTITY_TYPE]'
-    );
-    $entityIdsElement = '[ENTITY_IDS]';
-    $featureSelectorIdMatcherIdsElement = '[IDS]';
-
-    streaming_read_feature_values_sample(
-        $formattedEntityType,
-        $entityIdsElement,
-        $featureSelectorIdMatcherIdsElement
-    );
 }
 // [END aiplatform_v1_generated_FeaturestoreOnlineServingService_StreamingReadFeatureValues_sync]

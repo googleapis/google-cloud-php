@@ -74,7 +74,6 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
      * @param string                   $endpoint        Required. The name of the Endpoint requested to serve the explanation.
      *                                                  Format:
      *                                                  `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     *                                                  Please see {@see PredictionServiceClient::endpointName()} for help formatting this field.
      * @param \Google\Protobuf\Value[] $instances       Required. The instances that are the input to the explanation call.
      *                                                  A DeployedModel may have an upper limit on the number of instances it
      *                                                  supports per request, and when it is exceeded the explanation call errors

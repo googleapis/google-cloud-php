@@ -37,7 +37,6 @@ class DeleteFeatureGroupRequest extends \Google\Protobuf\Internal\Message
      * @param string $name  Required. The name of the FeatureGroup to be deleted.
      *                      Format:
      *                      `projects/{project}/locations/{location}/featureGroups/{feature_group}`
-     *                      Please see {@see FeatureRegistryServiceClient::featureGroupName()} for help formatting this field.
      * @param bool   $force If set to true, any Features under this FeatureGroup
      *                      will also be deleted. (Otherwise, the request will only work if the
      *                      FeatureGroup has no Features.)

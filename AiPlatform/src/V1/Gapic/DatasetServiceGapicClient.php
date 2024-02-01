@@ -88,9 +88,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $datasetServiceClient = new DatasetServiceClient();
  * try {
- *     $formattedParent = $datasetServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $dataset = new Dataset();
- *     $operationResponse = $datasetServiceClient->createDataset($formattedParent, $dataset);
+ *     $operationResponse = $datasetServiceClient->createDataset();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -101,7 +99,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $datasetServiceClient->createDataset($formattedParent, $dataset);
+ *     $operationResponse = $datasetServiceClient->createDataset();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'createDataset');
@@ -568,9 +566,7 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedParent = $datasetServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $dataset = new Dataset();
-     *     $operationResponse = $datasetServiceClient->createDataset($formattedParent, $dataset);
+     *     $operationResponse = $datasetServiceClient->createDataset();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -581,7 +577,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datasetServiceClient->createDataset($formattedParent, $dataset);
+     *     $operationResponse = $datasetServiceClient->createDataset();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'createDataset');
@@ -601,12 +597,14 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The resource name of the Location to create the Dataset in.
-     *                              Format: `projects/{project}/locations/{location}`
-     * @param Dataset $dataset      Required. The Dataset to create.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to create the Dataset in.
+     *           Format: `projects/{project}/locations/{location}`
+     *     @type Dataset $dataset
+     *           Required. The Dataset to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -617,13 +615,19 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDataset($parent, $dataset, array $optionalArgs = [])
+    public function createDataset(array $optionalArgs = [])
     {
         $request = new CreateDatasetRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDataset($dataset);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['dataset'])) {
+            $request->setDataset($optionalArgs['dataset']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -645,9 +649,7 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedParent = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-     *     $datasetVersion = new DatasetVersion();
-     *     $operationResponse = $datasetServiceClient->createDatasetVersion($formattedParent, $datasetVersion);
+     *     $operationResponse = $datasetServiceClient->createDatasetVersion();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -658,7 +660,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datasetServiceClient->createDatasetVersion($formattedParent, $datasetVersion);
+     *     $operationResponse = $datasetServiceClient->createDatasetVersion();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'createDatasetVersion');
@@ -678,15 +680,17 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string         $parent         Required. The name of the Dataset resource.
-     *                                       Format:
-     *                                       `projects/{project}/locations/{location}/datasets/{dataset}`
-     * @param DatasetVersion $datasetVersion Required. The version to be created. The same CMEK policies with the
-     *                                       original Dataset will be applied the dataset version. So here we don't need
-     *                                       to specify the EncryptionSpecType here.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the Dataset resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}`
+     *     @type DatasetVersion $datasetVersion
+     *           Required. The version to be created. The same CMEK policies with the
+     *           original Dataset will be applied the dataset version. So here we don't need
+     *           to specify the EncryptionSpecType here.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -697,16 +701,19 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDatasetVersion(
-        $parent,
-        $datasetVersion,
-        array $optionalArgs = []
-    ) {
+    public function createDatasetVersion(array $optionalArgs = [])
+    {
         $request = new CreateDatasetVersionRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDatasetVersion($datasetVersion);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['datasetVersion'])) {
+            $request->setDatasetVersion($optionalArgs['datasetVersion']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -728,8 +735,7 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedName = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-     *     $operationResponse = $datasetServiceClient->deleteDataset($formattedName);
+     *     $operationResponse = $datasetServiceClient->deleteDataset();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -739,7 +745,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datasetServiceClient->deleteDataset($formattedName);
+     *     $operationResponse = $datasetServiceClient->deleteDataset();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'deleteDataset');
@@ -758,12 +764,13 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the Dataset to delete.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Dataset to delete.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -774,12 +781,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDataset($name, array $optionalArgs = [])
+    public function deleteDataset(array $optionalArgs = [])
     {
         $request = new DeleteDatasetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -801,8 +811,7 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedName = $datasetServiceClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
-     *     $operationResponse = $datasetServiceClient->deleteDatasetVersion($formattedName);
+     *     $operationResponse = $datasetServiceClient->deleteDatasetVersion();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -812,7 +821,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datasetServiceClient->deleteDatasetVersion($formattedName);
+     *     $operationResponse = $datasetServiceClient->deleteDatasetVersion();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'deleteDatasetVersion');
@@ -831,12 +840,13 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the Dataset version to delete.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Dataset version to delete.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -847,12 +857,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDatasetVersion($name, array $optionalArgs = [])
+    public function deleteDatasetVersion(array $optionalArgs = [])
     {
         $request = new DeleteDatasetVersionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -874,8 +887,7 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedName = $datasetServiceClient->savedQueryName('[PROJECT]', '[LOCATION]', '[DATASET]', '[SAVED_QUERY]');
-     *     $operationResponse = $datasetServiceClient->deleteSavedQuery($formattedName);
+     *     $operationResponse = $datasetServiceClient->deleteSavedQuery();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -885,7 +897,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datasetServiceClient->deleteSavedQuery($formattedName);
+     *     $operationResponse = $datasetServiceClient->deleteSavedQuery();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'deleteSavedQuery');
@@ -904,12 +916,13 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the SavedQuery to delete.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the SavedQuery to delete.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -920,12 +933,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSavedQuery($name, array $optionalArgs = [])
+    public function deleteSavedQuery(array $optionalArgs = [])
     {
         $request = new DeleteSavedQueryRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -947,9 +963,7 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedName = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-     *     $exportConfig = new ExportDataConfig();
-     *     $operationResponse = $datasetServiceClient->exportData($formattedName, $exportConfig);
+     *     $operationResponse = $datasetServiceClient->exportData();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -960,7 +974,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datasetServiceClient->exportData($formattedName, $exportConfig);
+     *     $operationResponse = $datasetServiceClient->exportData();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'exportData');
@@ -980,13 +994,15 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string           $name         Required. The name of the Dataset resource.
-     *                                       Format:
-     *                                       `projects/{project}/locations/{location}/datasets/{dataset}`
-     * @param ExportDataConfig $exportConfig Required. The desired output location.
-     * @param array            $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Dataset resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}`
+     *     @type ExportDataConfig $exportConfig
+     *           Required. The desired output location.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -997,13 +1013,19 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportData($name, $exportConfig, array $optionalArgs = [])
+    public function exportData(array $optionalArgs = [])
     {
         $request = new ExportDataRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setExportConfig($exportConfig);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['exportConfig'])) {
+            $request->setExportConfig($optionalArgs['exportConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1025,19 +1047,19 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedName = $datasetServiceClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
-     *     $response = $datasetServiceClient->getAnnotationSpec($formattedName);
+     *     $response = $datasetServiceClient->getAnnotationSpec();
      * } finally {
      *     $datasetServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the AnnotationSpec resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the AnnotationSpec resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}`
      *     @type FieldMask $readMask
      *           Mask specifying which fields to read.
      *     @type RetrySettings|array $retrySettings
@@ -1050,12 +1072,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAnnotationSpec($name, array $optionalArgs = [])
+    public function getAnnotationSpec(array $optionalArgs = [])
     {
         $request = new GetAnnotationSpecRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
         }
@@ -1081,17 +1106,17 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedName = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-     *     $response = $datasetServiceClient->getDataset($formattedName);
+     *     $response = $datasetServiceClient->getDataset();
      * } finally {
      *     $datasetServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Dataset resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Dataset resource.
      *     @type FieldMask $readMask
      *           Mask specifying which fields to read.
      *     @type RetrySettings|array $retrySettings
@@ -1104,12 +1129,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDataset($name, array $optionalArgs = [])
+    public function getDataset(array $optionalArgs = [])
     {
         $request = new GetDatasetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
         }
@@ -1135,19 +1163,19 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedName = $datasetServiceClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
-     *     $response = $datasetServiceClient->getDatasetVersion($formattedName);
+     *     $response = $datasetServiceClient->getDatasetVersion();
      * } finally {
      *     $datasetServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the Dataset version to delete.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the Dataset version to delete.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
      *     @type FieldMask $readMask
      *           Mask specifying which fields to read.
      *     @type RetrySettings|array $retrySettings
@@ -1160,12 +1188,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDatasetVersion($name, array $optionalArgs = [])
+    public function getDatasetVersion(array $optionalArgs = [])
     {
         $request = new GetDatasetVersionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
         }
@@ -1191,9 +1222,7 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedName = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-     *     $importConfigs = [];
-     *     $operationResponse = $datasetServiceClient->importData($formattedName, $importConfigs);
+     *     $operationResponse = $datasetServiceClient->importData();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1204,7 +1233,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datasetServiceClient->importData($formattedName, $importConfigs);
+     *     $operationResponse = $datasetServiceClient->importData();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'importData');
@@ -1224,14 +1253,16 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string             $name          Required. The name of the Dataset resource.
-     *                                          Format:
-     *                                          `projects/{project}/locations/{location}/datasets/{dataset}`
-     * @param ImportDataConfig[] $importConfigs Required. The desired input locations. The contents of all input locations
-     *                                          will be imported in one batch.
-     * @param array              $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Dataset resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}`
+     *     @type ImportDataConfig[] $importConfigs
+     *           Required. The desired input locations. The contents of all input locations
+     *           will be imported in one batch.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1242,13 +1273,19 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importData($name, $importConfigs, array $optionalArgs = [])
+    public function importData(array $optionalArgs = [])
     {
         $request = new ImportDataRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setImportConfigs($importConfigs);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['importConfigs'])) {
+            $request->setImportConfigs($optionalArgs['importConfigs']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1270,9 +1307,8 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedParent = $datasetServiceClient->dataItemName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATA_ITEM]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datasetServiceClient->listAnnotations($formattedParent);
+     *     $pagedResponse = $datasetServiceClient->listAnnotations();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1280,7 +1316,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datasetServiceClient->listAnnotations($formattedParent);
+     *     $pagedResponse = $datasetServiceClient->listAnnotations();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1289,12 +1325,13 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the DataItem to list Annotations from.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}/dataItems/{data_item}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the DataItem to list Annotations from.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}/dataItems/{data_item}`
      *     @type string $filter
      *           The standard list filter.
      *     @type int $pageSize
@@ -1321,12 +1358,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAnnotations($parent, array $optionalArgs = [])
+    public function listAnnotations(array $optionalArgs = [])
     {
         $request = new ListAnnotationsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1368,9 +1408,8 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedParent = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datasetServiceClient->listDataItems($formattedParent);
+     *     $pagedResponse = $datasetServiceClient->listDataItems();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1378,7 +1417,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datasetServiceClient->listDataItems($formattedParent);
+     *     $pagedResponse = $datasetServiceClient->listDataItems();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1387,12 +1426,13 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Dataset to list DataItems from.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Dataset to list DataItems from.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}`
      *     @type string $filter
      *           The standard list filter.
      *     @type int $pageSize
@@ -1419,12 +1459,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDataItems($parent, array $optionalArgs = [])
+    public function listDataItems(array $optionalArgs = [])
     {
         $request = new ListDataItemsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1466,9 +1509,8 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedParent = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datasetServiceClient->listDatasetVersions($formattedParent);
+     *     $pagedResponse = $datasetServiceClient->listDatasetVersions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1476,7 +1518,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datasetServiceClient->listDatasetVersions($formattedParent);
+     *     $pagedResponse = $datasetServiceClient->listDatasetVersions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1485,12 +1527,13 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Dataset to list DatasetVersions from.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Dataset to list DatasetVersions from.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}`
      *     @type string $filter
      *           Optional. The standard list filter.
      *     @type int $pageSize
@@ -1517,12 +1560,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDatasetVersions($parent, array $optionalArgs = [])
+    public function listDatasetVersions(array $optionalArgs = [])
     {
         $request = new ListDatasetVersionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1564,9 +1610,8 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedParent = $datasetServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datasetServiceClient->listDatasets($formattedParent);
+     *     $pagedResponse = $datasetServiceClient->listDatasets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1574,7 +1619,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datasetServiceClient->listDatasets($formattedParent);
+     *     $pagedResponse = $datasetServiceClient->listDatasets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1583,11 +1628,12 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the Dataset's parent resource.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the Dataset's parent resource.
+     *           Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           An expression for filtering the results of the request. For field names
      *           both snake_case and camelCase are supported.
@@ -1632,12 +1678,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDatasets($parent, array $optionalArgs = [])
+    public function listDatasets(array $optionalArgs = [])
     {
         $request = new ListDatasetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1679,9 +1728,8 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedParent = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datasetServiceClient->listSavedQueries($formattedParent);
+     *     $pagedResponse = $datasetServiceClient->listSavedQueries();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1689,7 +1737,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datasetServiceClient->listSavedQueries($formattedParent);
+     *     $pagedResponse = $datasetServiceClient->listSavedQueries();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1698,12 +1746,13 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Dataset to list SavedQueries from.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Dataset to list SavedQueries from.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}`
      *     @type string $filter
      *           The standard list filter.
      *     @type int $pageSize
@@ -1730,12 +1779,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSavedQueries($parent, array $optionalArgs = [])
+    public function listSavedQueries(array $optionalArgs = [])
     {
         $request = new ListSavedQueriesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1777,8 +1829,7 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedName = $datasetServiceClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
-     *     $operationResponse = $datasetServiceClient->restoreDatasetVersion($formattedName);
+     *     $operationResponse = $datasetServiceClient->restoreDatasetVersion();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1789,7 +1840,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $datasetServiceClient->restoreDatasetVersion($formattedName);
+     *     $operationResponse = $datasetServiceClient->restoreDatasetVersion();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'restoreDatasetVersion');
@@ -1809,12 +1860,13 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DatasetVersion resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DatasetVersion resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1825,12 +1877,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function restoreDatasetVersion($name, array $optionalArgs = [])
+    public function restoreDatasetVersion(array $optionalArgs = [])
     {
         $request = new RestoreDatasetVersionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1852,9 +1907,8 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $formattedDataset = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $datasetServiceClient->searchDataItems($formattedDataset);
+     *     $pagedResponse = $datasetServiceClient->searchDataItems();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1862,7 +1916,7 @@ class DatasetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $datasetServiceClient->searchDataItems($formattedDataset);
+     *     $pagedResponse = $datasetServiceClient->searchDataItems();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1871,10 +1925,7 @@ class DatasetServiceGapicClient
      * }
      * ```
      *
-     * @param string $dataset      Required. The resource name of the Dataset from which to search DataItems.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/datasets/{dataset}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
      *     @type string $orderByDataItem
@@ -1882,6 +1933,10 @@ class DatasetServiceGapicClient
      *           ascending order. Use "desc" after a field name for descending.
      *     @type OrderByAnnotation $orderByAnnotation
      *           Expression that allows ranking results based on annotation's property.
+     *     @type string $dataset
+     *           Required. The resource name of the Dataset from which to search DataItems.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}`
      *     @type string $savedQuery
      *           The resource name of a SavedQuery(annotation set in UI).
      *           Format:
@@ -1945,18 +2000,21 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchDataItems($dataset, array $optionalArgs = [])
+    public function searchDataItems(array $optionalArgs = [])
     {
         $request = new SearchDataItemsRequest();
         $requestParamHeaders = [];
-        $request->setDataset($dataset);
-        $requestParamHeaders['dataset'] = $dataset;
         if (isset($optionalArgs['orderByDataItem'])) {
             $request->setOrderByDataItem($optionalArgs['orderByDataItem']);
         }
 
         if (isset($optionalArgs['orderByAnnotation'])) {
             $request->setOrderByAnnotation($optionalArgs['orderByAnnotation']);
+        }
+
+        if (isset($optionalArgs['dataset'])) {
+            $request->setDataset($optionalArgs['dataset']);
+            $requestParamHeaders['dataset'] = $optionalArgs['dataset'];
         }
 
         if (isset($optionalArgs['savedQuery'])) {
@@ -2020,25 +2078,25 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $dataset = new Dataset();
-     *     $updateMask = new FieldMask();
-     *     $response = $datasetServiceClient->updateDataset($dataset, $updateMask);
+     *     $response = $datasetServiceClient->updateDataset();
      * } finally {
      *     $datasetServiceClient->close();
      * }
      * ```
      *
-     * @param Dataset   $dataset      Required. The Dataset which replaces the resource on the server.
-     * @param FieldMask $updateMask   Required. The update mask applies to the resource.
-     *                                For the `FieldMask` definition, see
-     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
-     *
-     *                                * `display_name`
-     *                                * `description`
-     *                                * `labels`
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Dataset $dataset
+     *           Required. The Dataset which replaces the resource on the server.
+     *     @type FieldMask $updateMask
+     *           Required. The update mask applies to the resource.
+     *           For the `FieldMask` definition, see
+     *           [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
+     *
+     *           * `display_name`
+     *           * `description`
+     *           * `labels`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2049,16 +2107,18 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDataset(
-        $dataset,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateDataset(array $optionalArgs = [])
+    {
         $request = new UpdateDatasetRequest();
         $requestParamHeaders = [];
-        $request->setDataset($dataset);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['dataset.name'] = $dataset->getName();
+        if (isset($optionalArgs['dataset'])) {
+            $request->setDataset($optionalArgs['dataset']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2221,18 +2281,18 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $datasetServiceClient->getIamPolicy($resource);
+     *     $response = $datasetServiceClient->getIamPolicy();
      * } finally {
      *     $datasetServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -2246,12 +2306,15 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -2283,23 +2346,23 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $datasetServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $datasetServiceClient->setIamPolicy();
      * } finally {
      *     $datasetServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -2316,13 +2379,19 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2356,23 +2425,23 @@ class DatasetServiceGapicClient
      * ```
      * $datasetServiceClient = new DatasetServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $datasetServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $datasetServiceClient->testIamPermissions();
      * } finally {
      *     $datasetServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2383,16 +2452,19 @@ class DatasetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

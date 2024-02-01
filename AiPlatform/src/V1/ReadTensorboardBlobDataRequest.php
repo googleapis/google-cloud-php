@@ -35,7 +35,6 @@ class ReadTensorboardBlobDataRequest extends \Google\Protobuf\Internal\Message
      * @param string $timeSeries Required. The resource name of the TensorboardTimeSeries to list Blobs.
      *                           Format:
      *                           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
-     *                           Please see {@see TensorboardServiceClient::tensorboardTimeSeriesName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataRequest
      *

@@ -27,27 +27,23 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\EndpointServiceClient;
 use Google\Cloud\AIPlatform\V1\Endpoint;
 use Google\Cloud\AIPlatform\V1\UpdateEndpointRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates an Endpoint.
  *
- * @param string $endpointDisplayName The display name of the Endpoint.
- *                                    The name can be up to 128 characters long and can consist of any UTF-8
- *                                    characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_endpoint_sample(string $endpointDisplayName): void
+function update_endpoint_sample(): void
 {
     // Create a client.
     $endpointServiceClient = new EndpointServiceClient();
 
     // Prepare the request message.
-    $endpoint = (new Endpoint())
-        ->setDisplayName($endpointDisplayName);
-    $updateMask = new FieldMask();
-    $request = (new UpdateEndpointRequest())
-        ->setEndpoint($endpoint)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateEndpointRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +53,5 @@ function update_endpoint_sample(string $endpointDisplayName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $endpointDisplayName = '[DISPLAY_NAME]';
-
-    update_endpoint_sample($endpointDisplayName);
 }
 // [END aiplatform_v1_generated_EndpointService_UpdateEndpoint_sync]

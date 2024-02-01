@@ -111,8 +111,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $jobServiceClient = new JobServiceClient();
  * try {
- *     $formattedName = $jobServiceClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
- *     $jobServiceClient->cancelBatchPredictionJob($formattedName);
+ *     $jobServiceClient->cancelBatchPredictionJob();
  * } finally {
  *     $jobServiceClient->close();
  * }
@@ -994,19 +993,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-     *     $jobServiceClient->cancelBatchPredictionJob($formattedName);
+     *     $jobServiceClient->cancelBatchPredictionJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the BatchPredictionJob to cancel.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/batchPredictionJobs/{batch_prediction_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the BatchPredictionJob to cancel.
+     *           Format:
+     *           `projects/{project}/locations/{location}/batchPredictionJobs/{batch_prediction_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1015,12 +1014,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelBatchPredictionJob($name, array $optionalArgs = [])
+    public function cancelBatchPredictionJob(array $optionalArgs = [])
     {
         $request = new CancelBatchPredictionJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1054,19 +1056,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-     *     $jobServiceClient->cancelCustomJob($formattedName);
+     *     $jobServiceClient->cancelCustomJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the CustomJob to cancel.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/customJobs/{custom_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the CustomJob to cancel.
+     *           Format:
+     *           `projects/{project}/locations/{location}/customJobs/{custom_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1075,12 +1077,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelCustomJob($name, array $optionalArgs = [])
+    public function cancelCustomJob(array $optionalArgs = [])
     {
         $request = new CancelCustomJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1102,19 +1107,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-     *     $jobServiceClient->cancelDataLabelingJob($formattedName);
+     *     $jobServiceClient->cancelDataLabelingJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DataLabelingJob.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DataLabelingJob.
+     *           Format:
+     *           `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1123,12 +1128,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelDataLabelingJob($name, array $optionalArgs = [])
+    public function cancelDataLabelingJob(array $optionalArgs = [])
     {
         $request = new CancelDataLabelingJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1163,19 +1171,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-     *     $jobServiceClient->cancelHyperparameterTuningJob($formattedName);
+     *     $jobServiceClient->cancelHyperparameterTuningJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the HyperparameterTuningJob to cancel.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the HyperparameterTuningJob to cancel.
+     *           Format:
+     *           `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1184,14 +1192,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelHyperparameterTuningJob(
-        $name,
-        array $optionalArgs = []
-    ) {
+    public function cancelHyperparameterTuningJob(array $optionalArgs = [])
+    {
         $request = new CancelHyperparameterTuningJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1225,19 +1234,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-     *     $jobServiceClient->cancelNasJob($formattedName);
+     *     $jobServiceClient->cancelNasJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the NasJob to cancel.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/nasJobs/{nas_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the NasJob to cancel.
+     *           Format:
+     *           `projects/{project}/locations/{location}/nasJobs/{nas_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1246,12 +1255,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelNasJob($name, array $optionalArgs = [])
+    public function cancelNasJob(array $optionalArgs = [])
     {
         $request = new CancelNasJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1274,20 +1286,20 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $batchPredictionJob = new BatchPredictionJob();
-     *     $response = $jobServiceClient->createBatchPredictionJob($formattedParent, $batchPredictionJob);
+     *     $response = $jobServiceClient->createBatchPredictionJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string             $parent             Required. The resource name of the Location to create the
-     *                                               BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
-     * @param BatchPredictionJob $batchPredictionJob Required. The BatchPredictionJob to create.
-     * @param array              $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to create the
+     *           BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
+     *     @type BatchPredictionJob $batchPredictionJob
+     *           Required. The BatchPredictionJob to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1298,16 +1310,21 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBatchPredictionJob(
-        $parent,
-        $batchPredictionJob,
-        array $optionalArgs = []
-    ) {
+    public function createBatchPredictionJob(array $optionalArgs = [])
+    {
         $request = new CreateBatchPredictionJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setBatchPredictionJob($batchPredictionJob);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['batchPredictionJob'])) {
+            $request->setBatchPredictionJob(
+                $optionalArgs['batchPredictionJob']
+            );
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1330,20 +1347,20 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $customJob = new CustomJob();
-     *     $response = $jobServiceClient->createCustomJob($formattedParent, $customJob);
+     *     $response = $jobServiceClient->createCustomJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string    $parent       Required. The resource name of the Location to create the CustomJob in.
-     *                                Format: `projects/{project}/locations/{location}`
-     * @param CustomJob $customJob    Required. The CustomJob to create.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to create the CustomJob in.
+     *           Format: `projects/{project}/locations/{location}`
+     *     @type CustomJob $customJob
+     *           Required. The CustomJob to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1354,16 +1371,19 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCustomJob(
-        $parent,
-        $customJob,
-        array $optionalArgs = []
-    ) {
+    public function createCustomJob(array $optionalArgs = [])
+    {
         $request = new CreateCustomJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCustomJob($customJob);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['customJob'])) {
+            $request->setCustomJob($optionalArgs['customJob']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1385,20 +1405,20 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $dataLabelingJob = new DataLabelingJob();
-     *     $response = $jobServiceClient->createDataLabelingJob($formattedParent, $dataLabelingJob);
+     *     $response = $jobServiceClient->createDataLabelingJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string          $parent          Required. The parent of the DataLabelingJob.
-     *                                         Format: `projects/{project}/locations/{location}`
-     * @param DataLabelingJob $dataLabelingJob Required. The DataLabelingJob to create.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent of the DataLabelingJob.
+     *           Format: `projects/{project}/locations/{location}`
+     *     @type DataLabelingJob $dataLabelingJob
+     *           Required. The DataLabelingJob to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1409,16 +1429,19 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDataLabelingJob(
-        $parent,
-        $dataLabelingJob,
-        array $optionalArgs = []
-    ) {
+    public function createDataLabelingJob(array $optionalArgs = [])
+    {
         $request = new CreateDataLabelingJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDataLabelingJob($dataLabelingJob);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['dataLabelingJob'])) {
+            $request->setDataLabelingJob($optionalArgs['dataLabelingJob']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1440,21 +1463,21 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $hyperparameterTuningJob = new HyperparameterTuningJob();
-     *     $response = $jobServiceClient->createHyperparameterTuningJob($formattedParent, $hyperparameterTuningJob);
+     *     $response = $jobServiceClient->createHyperparameterTuningJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string                  $parent                  Required. The resource name of the Location to create the
-     *                                                         HyperparameterTuningJob in. Format:
-     *                                                         `projects/{project}/locations/{location}`
-     * @param HyperparameterTuningJob $hyperparameterTuningJob Required. The HyperparameterTuningJob to create.
-     * @param array                   $optionalArgs            {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to create the
+     *           HyperparameterTuningJob in. Format:
+     *           `projects/{project}/locations/{location}`
+     *     @type HyperparameterTuningJob $hyperparameterTuningJob
+     *           Required. The HyperparameterTuningJob to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1465,16 +1488,21 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createHyperparameterTuningJob(
-        $parent,
-        $hyperparameterTuningJob,
-        array $optionalArgs = []
-    ) {
+    public function createHyperparameterTuningJob(array $optionalArgs = [])
+    {
         $request = new CreateHyperparameterTuningJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setHyperparameterTuningJob($hyperparameterTuningJob);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['hyperparameterTuningJob'])) {
+            $request->setHyperparameterTuningJob(
+                $optionalArgs['hyperparameterTuningJob']
+            );
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1497,20 +1525,20 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
-     *     $response = $jobServiceClient->createModelDeploymentMonitoringJob($formattedParent, $modelDeploymentMonitoringJob);
+     *     $response = $jobServiceClient->createModelDeploymentMonitoringJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string                       $parent                       Required. The parent of the ModelDeploymentMonitoringJob.
-     *                                                                   Format: `projects/{project}/locations/{location}`
-     * @param ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob Required. The ModelDeploymentMonitoringJob to create
-     * @param array                        $optionalArgs                 {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent of the ModelDeploymentMonitoringJob.
+     *           Format: `projects/{project}/locations/{location}`
+     *     @type ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob
+     *           Required. The ModelDeploymentMonitoringJob to create
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1521,18 +1549,21 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createModelDeploymentMonitoringJob(
-        $parent,
-        $modelDeploymentMonitoringJob,
-        array $optionalArgs = []
-    ) {
+    public function createModelDeploymentMonitoringJob(array $optionalArgs = [])
+    {
         $request = new CreateModelDeploymentMonitoringJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setModelDeploymentMonitoringJob(
-            $modelDeploymentMonitoringJob
-        );
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['modelDeploymentMonitoringJob'])) {
+            $request->setModelDeploymentMonitoringJob(
+                $optionalArgs['modelDeploymentMonitoringJob']
+            );
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1554,20 +1585,20 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $nasJob = new NasJob();
-     *     $response = $jobServiceClient->createNasJob($formattedParent, $nasJob);
+     *     $response = $jobServiceClient->createNasJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to create the NasJob in.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param NasJob $nasJob       Required. The NasJob to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to create the NasJob in.
+     *           Format: `projects/{project}/locations/{location}`
+     *     @type NasJob $nasJob
+     *           Required. The NasJob to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1578,13 +1609,19 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createNasJob($parent, $nasJob, array $optionalArgs = [])
+    public function createNasJob(array $optionalArgs = [])
     {
         $request = new CreateNasJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setNasJob($nasJob);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['nasJob'])) {
+            $request->setNasJob($optionalArgs['nasJob']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1607,8 +1644,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-     *     $operationResponse = $jobServiceClient->deleteBatchPredictionJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteBatchPredictionJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1618,7 +1654,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobServiceClient->deleteBatchPredictionJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteBatchPredictionJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'deleteBatchPredictionJob');
@@ -1637,12 +1673,13 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the BatchPredictionJob resource to be deleted.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/batchPredictionJobs/{batch_prediction_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the BatchPredictionJob resource to be deleted.
+     *           Format:
+     *           `projects/{project}/locations/{location}/batchPredictionJobs/{batch_prediction_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1653,12 +1690,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBatchPredictionJob($name, array $optionalArgs = [])
+    public function deleteBatchPredictionJob(array $optionalArgs = [])
     {
         $request = new DeleteBatchPredictionJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1680,8 +1720,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-     *     $operationResponse = $jobServiceClient->deleteCustomJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteCustomJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1691,7 +1730,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobServiceClient->deleteCustomJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteCustomJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'deleteCustomJob');
@@ -1710,12 +1749,13 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the CustomJob resource to be deleted.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/customJobs/{custom_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the CustomJob resource to be deleted.
+     *           Format:
+     *           `projects/{project}/locations/{location}/customJobs/{custom_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1726,12 +1766,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCustomJob($name, array $optionalArgs = [])
+    public function deleteCustomJob(array $optionalArgs = [])
     {
         $request = new DeleteCustomJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1753,8 +1796,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-     *     $operationResponse = $jobServiceClient->deleteDataLabelingJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteDataLabelingJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1764,7 +1806,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobServiceClient->deleteDataLabelingJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteDataLabelingJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'deleteDataLabelingJob');
@@ -1783,12 +1825,13 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DataLabelingJob to be deleted.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DataLabelingJob to be deleted.
+     *           Format:
+     *           `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1799,12 +1842,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDataLabelingJob($name, array $optionalArgs = [])
+    public function deleteDataLabelingJob(array $optionalArgs = [])
     {
         $request = new DeleteDataLabelingJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1826,8 +1872,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-     *     $operationResponse = $jobServiceClient->deleteHyperparameterTuningJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteHyperparameterTuningJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1837,7 +1882,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobServiceClient->deleteHyperparameterTuningJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteHyperparameterTuningJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'deleteHyperparameterTuningJob');
@@ -1856,12 +1901,13 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the HyperparameterTuningJob resource to be deleted.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the HyperparameterTuningJob resource to be deleted.
+     *           Format:
+     *           `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1872,14 +1918,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteHyperparameterTuningJob(
-        $name,
-        array $optionalArgs = []
-    ) {
+    public function deleteHyperparameterTuningJob(array $optionalArgs = [])
+    {
         $request = new DeleteHyperparameterTuningJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1901,8 +1948,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-     *     $operationResponse = $jobServiceClient->deleteModelDeploymentMonitoringJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteModelDeploymentMonitoringJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1912,7 +1958,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobServiceClient->deleteModelDeploymentMonitoringJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteModelDeploymentMonitoringJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'deleteModelDeploymentMonitoringJob');
@@ -1931,12 +1977,13 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the model monitoring job to delete.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the model monitoring job to delete.
+     *           Format:
+     *           `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1947,14 +1994,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteModelDeploymentMonitoringJob(
-        $name,
-        array $optionalArgs = []
-    ) {
+    public function deleteModelDeploymentMonitoringJob(array $optionalArgs = [])
+    {
         $request = new DeleteModelDeploymentMonitoringJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1976,8 +2024,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-     *     $operationResponse = $jobServiceClient->deleteNasJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteNasJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1987,7 +2034,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobServiceClient->deleteNasJob($formattedName);
+     *     $operationResponse = $jobServiceClient->deleteNasJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'deleteNasJob');
@@ -2006,12 +2053,13 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the NasJob resource to be deleted.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/nasJobs/{nas_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the NasJob resource to be deleted.
+     *           Format:
+     *           `projects/{project}/locations/{location}/nasJobs/{nas_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2022,12 +2070,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteNasJob($name, array $optionalArgs = [])
+    public function deleteNasJob(array $optionalArgs = [])
     {
         $request = new DeleteNasJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2049,19 +2100,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-     *     $response = $jobServiceClient->getBatchPredictionJob($formattedName);
+     *     $response = $jobServiceClient->getBatchPredictionJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the BatchPredictionJob resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/batchPredictionJobs/{batch_prediction_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the BatchPredictionJob resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/batchPredictionJobs/{batch_prediction_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2072,12 +2123,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBatchPredictionJob($name, array $optionalArgs = [])
+    public function getBatchPredictionJob(array $optionalArgs = [])
     {
         $request = new GetBatchPredictionJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2099,19 +2153,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-     *     $response = $jobServiceClient->getCustomJob($formattedName);
+     *     $response = $jobServiceClient->getCustomJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the CustomJob resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/customJobs/{custom_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the CustomJob resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/customJobs/{custom_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2122,12 +2176,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCustomJob($name, array $optionalArgs = [])
+    public function getCustomJob(array $optionalArgs = [])
     {
         $request = new GetCustomJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2149,19 +2206,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-     *     $response = $jobServiceClient->getDataLabelingJob($formattedName);
+     *     $response = $jobServiceClient->getDataLabelingJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DataLabelingJob.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the DataLabelingJob.
+     *           Format:
+     *           `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2172,12 +2229,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDataLabelingJob($name, array $optionalArgs = [])
+    public function getDataLabelingJob(array $optionalArgs = [])
     {
         $request = new GetDataLabelingJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2199,19 +2259,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-     *     $response = $jobServiceClient->getHyperparameterTuningJob($formattedName);
+     *     $response = $jobServiceClient->getHyperparameterTuningJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the HyperparameterTuningJob resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the HyperparameterTuningJob resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2222,12 +2282,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getHyperparameterTuningJob($name, array $optionalArgs = [])
+    public function getHyperparameterTuningJob(array $optionalArgs = [])
     {
         $request = new GetHyperparameterTuningJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2249,19 +2312,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-     *     $response = $jobServiceClient->getModelDeploymentMonitoringJob($formattedName);
+     *     $response = $jobServiceClient->getModelDeploymentMonitoringJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the ModelDeploymentMonitoringJob.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the ModelDeploymentMonitoringJob.
+     *           Format:
+     *           `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2272,14 +2335,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getModelDeploymentMonitoringJob(
-        $name,
-        array $optionalArgs = []
-    ) {
+    public function getModelDeploymentMonitoringJob(array $optionalArgs = [])
+    {
         $request = new GetModelDeploymentMonitoringJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2301,19 +2365,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-     *     $response = $jobServiceClient->getNasJob($formattedName);
+     *     $response = $jobServiceClient->getNasJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the NasJob resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/nasJobs/{nas_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the NasJob resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/nasJobs/{nas_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2324,12 +2388,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getNasJob($name, array $optionalArgs = [])
+    public function getNasJob(array $optionalArgs = [])
     {
         $request = new GetNasJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2351,19 +2418,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->nasTrialDetailName('[PROJECT]', '[LOCATION]', '[NAS_JOB]', '[NAS_TRIAL_DETAIL]');
-     *     $response = $jobServiceClient->getNasTrialDetail($formattedName);
+     *     $response = $jobServiceClient->getNasTrialDetail();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the NasTrialDetail resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the NasTrialDetail resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2374,12 +2441,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getNasTrialDetail($name, array $optionalArgs = [])
+    public function getNasTrialDetail(array $optionalArgs = [])
     {
         $request = new GetNasTrialDetailRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2401,9 +2471,8 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobServiceClient->listBatchPredictionJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listBatchPredictionJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2411,7 +2480,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobServiceClient->listBatchPredictionJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listBatchPredictionJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2420,11 +2489,12 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list the BatchPredictionJobs
-     *                             from. Format: `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to list the BatchPredictionJobs
+     *           from. Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           The standard list filter.
      *
@@ -2468,12 +2538,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBatchPredictionJobs($parent, array $optionalArgs = [])
+    public function listBatchPredictionJobs(array $optionalArgs = [])
     {
         $request = new ListBatchPredictionJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2511,9 +2584,8 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobServiceClient->listCustomJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listCustomJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2521,7 +2593,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobServiceClient->listCustomJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listCustomJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2530,11 +2602,12 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list the CustomJobs from.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to list the CustomJobs from.
+     *           Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           The standard list filter.
      *
@@ -2577,12 +2650,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCustomJobs($parent, array $optionalArgs = [])
+    public function listCustomJobs(array $optionalArgs = [])
     {
         $request = new ListCustomJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2620,9 +2696,8 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobServiceClient->listDataLabelingJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listDataLabelingJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2630,7 +2705,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobServiceClient->listDataLabelingJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listDataLabelingJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2639,11 +2714,12 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent of the DataLabelingJob.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent of the DataLabelingJob.
+     *           Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           The standard list filter.
      *
@@ -2693,12 +2769,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDataLabelingJobs($parent, array $optionalArgs = [])
+    public function listDataLabelingJobs(array $optionalArgs = [])
     {
         $request = new ListDataLabelingJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2740,9 +2819,8 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobServiceClient->listHyperparameterTuningJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listHyperparameterTuningJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2750,7 +2828,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobServiceClient->listHyperparameterTuningJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listHyperparameterTuningJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2759,12 +2837,13 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list the
-     *                             HyperparameterTuningJobs from. Format:
-     *                             `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to list the
+     *           HyperparameterTuningJobs from. Format:
+     *           `projects/{project}/locations/{location}`
      *     @type string $filter
      *           The standard list filter.
      *
@@ -2807,14 +2886,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listHyperparameterTuningJobs(
-        $parent,
-        array $optionalArgs = []
-    ) {
+    public function listHyperparameterTuningJobs(array $optionalArgs = [])
+    {
         $request = new ListHyperparameterTuningJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2852,9 +2932,8 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobServiceClient->listModelDeploymentMonitoringJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listModelDeploymentMonitoringJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2862,7 +2941,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobServiceClient->listModelDeploymentMonitoringJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listModelDeploymentMonitoringJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2871,11 +2950,12 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent of the ModelDeploymentMonitoringJob.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent of the ModelDeploymentMonitoringJob.
+     *           Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           The standard list filter.
      *
@@ -2918,14 +2998,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listModelDeploymentMonitoringJobs(
-        $parent,
-        array $optionalArgs = []
-    ) {
+    public function listModelDeploymentMonitoringJobs(array $optionalArgs = [])
+    {
         $request = new ListModelDeploymentMonitoringJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2963,9 +3044,8 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobServiceClient->listNasJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listNasJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2973,7 +3053,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobServiceClient->listNasJobs($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listNasJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2982,11 +3062,12 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list the NasJobs
-     *                             from. Format: `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to list the NasJobs
+     *           from. Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           The standard list filter.
      *
@@ -3029,12 +3110,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listNasJobs($parent, array $optionalArgs = [])
+    public function listNasJobs(array $optionalArgs = [])
     {
         $request = new ListNasJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -3072,9 +3156,8 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobServiceClient->listNasTrialDetails($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listNasTrialDetails();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3082,7 +3165,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobServiceClient->listNasTrialDetails($formattedParent);
+     *     $pagedResponse = $jobServiceClient->listNasTrialDetails();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3091,12 +3174,13 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the NasJob resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/nasJobs/{nas_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the NasJob resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/nasJobs/{nas_job}`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3116,12 +3200,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listNasTrialDetails($parent, array $optionalArgs = [])
+    public function listNasTrialDetails(array $optionalArgs = [])
     {
         $request = new ListNasTrialDetailsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3154,19 +3241,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-     *     $jobServiceClient->pauseModelDeploymentMonitoringJob($formattedName);
+     *     $jobServiceClient->pauseModelDeploymentMonitoringJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the ModelDeploymentMonitoringJob to pause.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the ModelDeploymentMonitoringJob to pause.
+     *           Format:
+     *           `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3175,14 +3262,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function pauseModelDeploymentMonitoringJob(
-        $name,
-        array $optionalArgs = []
-    ) {
+    public function pauseModelDeploymentMonitoringJob(array $optionalArgs = [])
+    {
         $request = new PauseModelDeploymentMonitoringJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3206,19 +3294,19 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-     *     $jobServiceClient->resumeModelDeploymentMonitoringJob($formattedName);
+     *     $jobServiceClient->resumeModelDeploymentMonitoringJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the ModelDeploymentMonitoringJob to resume.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the ModelDeploymentMonitoringJob to resume.
+     *           Format:
+     *           `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3227,14 +3315,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resumeModelDeploymentMonitoringJob(
-        $name,
-        array $optionalArgs = []
-    ) {
+    public function resumeModelDeploymentMonitoringJob(array $optionalArgs = [])
+    {
         $request = new ResumeModelDeploymentMonitoringJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3256,11 +3345,8 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedModelDeploymentMonitoringJob = $jobServiceClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-     *     $deployedModelId = 'deployed_model_id';
-     *     $objectives = [];
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobServiceClient->searchModelDeploymentMonitoringStatsAnomalies($formattedModelDeploymentMonitoringJob, $deployedModelId, $objectives);
+     *     $pagedResponse = $jobServiceClient->searchModelDeploymentMonitoringStatsAnomalies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3268,7 +3354,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobServiceClient->searchModelDeploymentMonitoringStatsAnomalies($formattedModelDeploymentMonitoringJob, $deployedModelId, $objectives);
+     *     $pagedResponse = $jobServiceClient->searchModelDeploymentMonitoringStatsAnomalies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3277,20 +3363,23 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string                    $modelDeploymentMonitoringJob Required. ModelDeploymentMonitoring Job resource name.
-     *                                                                Format:
-     *                                                                `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
-     * @param string                    $deployedModelId              Required. The DeployedModel ID of the
-     *                                                                [ModelDeploymentMonitoringObjectiveConfig.deployed_model_id].
-     * @param StatsAnomaliesObjective[] $objectives                   Required. Objectives of the stats to retrieve.
-     * @param array                     $optionalArgs                 {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $modelDeploymentMonitoringJob
+     *           Required. ModelDeploymentMonitoring Job resource name.
+     *           Format:
+     *           `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
+     *     @type string $deployedModelId
+     *           Required. The DeployedModel ID of the
+     *           [ModelDeploymentMonitoringObjectiveConfig.deployed_model_id].
      *     @type string $featureDisplayName
      *           The feature display name. If specified, only return the stats belonging to
      *           this feature. Format:
      *           [ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies.feature_display_name][google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies.feature_display_name],
      *           example: "user_destination".
+     *     @type StatsAnomaliesObjective[] $objectives
+     *           Required. Objectives of the stats to retrieve.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3317,25 +3406,30 @@ class JobServiceGapicClient
      * @throws ApiException if the remote call fails
      */
     public function searchModelDeploymentMonitoringStatsAnomalies(
-        $modelDeploymentMonitoringJob,
-        $deployedModelId,
-        $objectives,
         array $optionalArgs = []
     ) {
         $request = new SearchModelDeploymentMonitoringStatsAnomaliesRequest();
         $requestParamHeaders = [];
-        $request->setModelDeploymentMonitoringJob(
-            $modelDeploymentMonitoringJob
-        );
-        $request->setDeployedModelId($deployedModelId);
-        $request->setObjectives($objectives);
-        $requestParamHeaders[
-            'model_deployment_monitoring_job'
-        ] = $modelDeploymentMonitoringJob;
+        if (isset($optionalArgs['modelDeploymentMonitoringJob'])) {
+            $request->setModelDeploymentMonitoringJob(
+                $optionalArgs['modelDeploymentMonitoringJob']
+            );
+            $requestParamHeaders['model_deployment_monitoring_job'] =
+                $optionalArgs['modelDeploymentMonitoringJob'];
+        }
+
+        if (isset($optionalArgs['deployedModelId'])) {
+            $request->setDeployedModelId($optionalArgs['deployedModelId']);
+        }
+
         if (isset($optionalArgs['featureDisplayName'])) {
             $request->setFeatureDisplayName(
                 $optionalArgs['featureDisplayName']
             );
+        }
+
+        if (isset($optionalArgs['objectives'])) {
+            $request->setObjectives($optionalArgs['objectives']);
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -3375,9 +3469,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $jobServiceClient->updateModelDeploymentMonitoringJob($modelDeploymentMonitoringJob, $updateMask);
+     *     $operationResponse = $jobServiceClient->updateModelDeploymentMonitoringJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -3388,7 +3480,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobServiceClient->updateModelDeploymentMonitoringJob($modelDeploymentMonitoringJob, $updateMask);
+     *     $operationResponse = $jobServiceClient->updateModelDeploymentMonitoringJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'updateModelDeploymentMonitoringJob');
@@ -3408,37 +3500,39 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob Required. The model monitoring configuration which replaces the resource on
-     *                                                                   the server.
-     * @param FieldMask                    $updateMask                   Required. The update mask is used to specify the fields to be overwritten
-     *                                                                   in the ModelDeploymentMonitoringJob resource by the update. The fields
-     *                                                                   specified in the update_mask are relative to the resource, not the full
-     *                                                                   request. A field will be overwritten if it is in the mask. If the user does
-     *                                                                   not provide a mask then only the non-empty fields present in the request
-     *                                                                   will be overwritten. Set the update_mask to `*` to override all fields. For
-     *                                                                   the objective config, the user can either provide the update mask for
-     *                                                                   model_deployment_monitoring_objective_configs or any combination of its
-     *                                                                   nested fields, such as:
-     *                                                                   model_deployment_monitoring_objective_configs.objective_config.training_dataset.
-     *
-     *                                                                   Updatable fields:
-     *
-     *                                                                   * `display_name`
-     *                                                                   * `model_deployment_monitoring_schedule_config`
-     *                                                                   * `model_monitoring_alert_config`
-     *                                                                   * `logging_sampling_strategy`
-     *                                                                   * `labels`
-     *                                                                   * `log_ttl`
-     *                                                                   * `enable_monitoring_pipeline_logs`
-     *                                                                   .  and
-     *                                                                   * `model_deployment_monitoring_objective_configs`
-     *                                                                   .  or
-     *                                                                   * `model_deployment_monitoring_objective_configs.objective_config.training_dataset`
-     *                                                                   * `model_deployment_monitoring_objective_configs.objective_config.training_prediction_skew_detection_config`
-     *                                                                   * `model_deployment_monitoring_objective_configs.objective_config.prediction_drift_detection_config`
-     * @param array                        $optionalArgs                 {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ModelDeploymentMonitoringJob $modelDeploymentMonitoringJob
+     *           Required. The model monitoring configuration which replaces the resource on
+     *           the server.
+     *     @type FieldMask $updateMask
+     *           Required. The update mask is used to specify the fields to be overwritten
+     *           in the ModelDeploymentMonitoringJob resource by the update. The fields
+     *           specified in the update_mask are relative to the resource, not the full
+     *           request. A field will be overwritten if it is in the mask. If the user does
+     *           not provide a mask then only the non-empty fields present in the request
+     *           will be overwritten. Set the update_mask to `*` to override all fields. For
+     *           the objective config, the user can either provide the update mask for
+     *           model_deployment_monitoring_objective_configs or any combination of its
+     *           nested fields, such as:
+     *           model_deployment_monitoring_objective_configs.objective_config.training_dataset.
+     *
+     *           Updatable fields:
+     *
+     *           * `display_name`
+     *           * `model_deployment_monitoring_schedule_config`
+     *           * `model_monitoring_alert_config`
+     *           * `logging_sampling_strategy`
+     *           * `labels`
+     *           * `log_ttl`
+     *           * `enable_monitoring_pipeline_logs`
+     *           .  and
+     *           * `model_deployment_monitoring_objective_configs`
+     *           .  or
+     *           * `model_deployment_monitoring_objective_configs.objective_config.training_dataset`
+     *           * `model_deployment_monitoring_objective_configs.objective_config.training_prediction_skew_detection_config`
+     *           * `model_deployment_monitoring_objective_configs.objective_config.prediction_drift_detection_config`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3449,20 +3543,20 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateModelDeploymentMonitoringJob(
-        $modelDeploymentMonitoringJob,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateModelDeploymentMonitoringJob(array $optionalArgs = [])
+    {
         $request = new UpdateModelDeploymentMonitoringJobRequest();
         $requestParamHeaders = [];
-        $request->setModelDeploymentMonitoringJob(
-            $modelDeploymentMonitoringJob
-        );
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders[
-            'model_deployment_monitoring_job.name'
-        ] = $modelDeploymentMonitoringJob->getName();
+        if (isset($optionalArgs['modelDeploymentMonitoringJob'])) {
+            $request->setModelDeploymentMonitoringJob(
+                $optionalArgs['modelDeploymentMonitoringJob']
+            );
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3625,18 +3719,18 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $jobServiceClient->getIamPolicy($resource);
+     *     $response = $jobServiceClient->getIamPolicy();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -3650,12 +3744,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -3687,23 +3784,23 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $jobServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $jobServiceClient->setIamPolicy();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -3720,13 +3817,19 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -3760,23 +3863,23 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $jobServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $jobServiceClient->testIamPermissions();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3787,16 +3890,19 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

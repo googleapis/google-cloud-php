@@ -33,26 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates an IndexEndpoint.
  *
- * @param string $formattedParent          The resource name of the Location to create the IndexEndpoint in.
- *                                         Format: `projects/{project}/locations/{location}`
- *                                         Please see {@see IndexEndpointServiceClient::locationName()} for help formatting this field.
- * @param string $indexEndpointDisplayName The display name of the IndexEndpoint.
- *                                         The name can be up to 128 characters long and can consist of any UTF-8
- *                                         characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_index_endpoint_sample(
-    string $formattedParent,
-    string $indexEndpointDisplayName
-): void {
+function create_index_endpoint_sample(): void
+{
     // Create a client.
     $indexEndpointServiceClient = new IndexEndpointServiceClient();
 
     // Prepare the request message.
-    $indexEndpoint = (new IndexEndpoint())
-        ->setDisplayName($indexEndpointDisplayName);
-    $request = (new CreateIndexEndpointRequest())
-        ->setParent($formattedParent)
-        ->setIndexEndpoint($indexEndpoint);
+    $request = new CreateIndexEndpointRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,22 +65,5 @@ function create_index_endpoint_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = IndexEndpointServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $indexEndpointDisplayName = '[DISPLAY_NAME]';
-
-    create_index_endpoint_sample($formattedParent, $indexEndpointDisplayName);
 }
 // [END aiplatform_v1_generated_IndexEndpointService_CreateIndexEndpoint_sync]

@@ -85,17 +85,13 @@ class PredictionServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DirectPredictResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $response = $gapicClient->directPredict($formattedEndpoint);
+        $response = $gapicClient->directPredict();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PredictionService/DirectPredict', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEndpoint();
-        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -117,10 +113,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         try {
-            $gapicClient->directPredict($formattedEndpoint);
+            $gapicClient->directPredict();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -145,17 +139,13 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse = new DirectRawPredictResponse();
         $expectedResponse->setOutput($output);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $response = $gapicClient->directRawPredict($formattedEndpoint);
+        $response = $gapicClient->directRawPredict();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PredictionService/DirectRawPredict', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEndpoint();
-        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -177,10 +167,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         try {
-            $gapicClient->directRawPredict($formattedEndpoint);
+            $gapicClient->directRawPredict();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -205,20 +193,13 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse = new ExplainResponse();
         $expectedResponse->setDeployedModelId($deployedModelId2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $instances = [];
-        $response = $gapicClient->explain($formattedEndpoint, $instances);
+        $response = $gapicClient->explain();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PredictionService/Explain', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEndpoint();
-        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
-        $actualValue = $actualRequestObject->getInstances();
-        $this->assertProtobufEquals($instances, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -240,11 +221,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $instances = [];
         try {
-            $gapicClient->explain($formattedEndpoint, $instances);
+            $gapicClient->explain();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -275,20 +253,13 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setModelVersionId($modelVersionId);
         $expectedResponse->setModelDisplayName($modelDisplayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $instances = [];
-        $response = $gapicClient->predict($formattedEndpoint, $instances);
+        $response = $gapicClient->predict();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PredictionService/Predict', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEndpoint();
-        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
-        $actualValue = $actualRequestObject->getInstances();
-        $this->assertProtobufEquals($instances, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -310,11 +281,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $instances = [];
         try {
-            $gapicClient->predict($formattedEndpoint, $instances);
+            $gapicClient->predict();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -341,17 +309,13 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setContentType($contentType);
         $expectedResponse->setData($data);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $response = $gapicClient->rawPredict($formattedEndpoint);
+        $response = $gapicClient->rawPredict();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PredictionService/RawPredict', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEndpoint();
-        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -373,10 +337,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         try {
-            $gapicClient->rawPredict($formattedEndpoint);
+            $gapicClient->rawPredict();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -404,8 +366,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse3 = new StreamingPredictResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $serverStream = $gapicClient->serverStreamingPredict($formattedEndpoint);
+        $serverStream = $gapicClient->serverStreamingPredict();
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -418,8 +379,6 @@ class PredictionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PredictionService/ServerStreamingPredict', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEndpoint();
-        $this->assertProtobufEquals($formattedEndpoint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -442,8 +401,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $serverStream = $gapicClient->serverStreamingPredict($formattedEndpoint);
+        $serverStream = $gapicClient->serverStreamingPredict();
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -474,9 +432,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse3 = new GenerateContentResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $model = 'model104069929';
-        $contents = [];
-        $serverStream = $gapicClient->streamGenerateContent($model, $contents);
+        $serverStream = $gapicClient->streamGenerateContent();
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -489,10 +445,6 @@ class PredictionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.aiplatform.v1.PredictionService/StreamGenerateContent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getModel();
-        $this->assertProtobufEquals($model, $actualValue);
-        $actualValue = $actualRequestObject->getContents();
-        $this->assertProtobufEquals($contents, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -515,9 +467,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
-        $model = 'model104069929';
-        $contents = [];
-        $serverStream = $gapicClient->streamGenerateContent($model, $contents);
+        $serverStream = $gapicClient->streamGenerateContent();
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -548,15 +498,9 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse3 = new StreamingPredictResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $request = new StreamingPredictRequest();
-        $request->setEndpoint($formattedEndpoint);
-        $formattedEndpoint2 = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $request2 = new StreamingPredictRequest();
-        $request2->setEndpoint($formattedEndpoint2);
-        $formattedEndpoint3 = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $request3 = new StreamingPredictRequest();
-        $request3->setEndpoint($formattedEndpoint3);
         $bidi = $gapicClient->streamingPredict();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
@@ -648,15 +592,9 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse3->setOutput($output3);
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $request = new StreamingRawPredictRequest();
-        $request->setEndpoint($formattedEndpoint);
-        $formattedEndpoint2 = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $request2 = new StreamingRawPredictRequest();
-        $request2->setEndpoint($formattedEndpoint2);
-        $formattedEndpoint3 = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $request3 = new StreamingRawPredictRequest();
-        $request3->setEndpoint($formattedEndpoint3);
         $bidi = $gapicClient->streamingRawPredict();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
@@ -861,17 +799,13 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -893,10 +827,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -923,20 +855,13 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -958,11 +883,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -985,20 +907,13 @@ class PredictionServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1020,11 +935,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

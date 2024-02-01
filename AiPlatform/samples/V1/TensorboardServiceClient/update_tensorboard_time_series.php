@@ -26,33 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\TensorboardServiceClient;
 use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries;
-use Google\Cloud\AIPlatform\V1\TensorboardTimeSeries\ValueType;
 use Google\Cloud\AIPlatform\V1\UpdateTensorboardTimeSeriesRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a TensorboardTimeSeries.
  *
- * @param string $tensorboardTimeSeriesDisplayName User provided name of this TensorboardTimeSeries.
- *                                                 This value should be unique among all TensorboardTimeSeries resources
- *                                                 belonging to the same TensorboardRun resource (parent resource).
- * @param int    $tensorboardTimeSeriesValueType   Immutable. Type of TensorboardTimeSeries value.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_tensorboard_time_series_sample(
-    string $tensorboardTimeSeriesDisplayName,
-    int $tensorboardTimeSeriesValueType
-): void {
+function update_tensorboard_time_series_sample(): void
+{
     // Create a client.
     $tensorboardServiceClient = new TensorboardServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $tensorboardTimeSeries = (new TensorboardTimeSeries())
-        ->setDisplayName($tensorboardTimeSeriesDisplayName)
-        ->setValueType($tensorboardTimeSeriesValueType);
-    $request = (new UpdateTensorboardTimeSeriesRequest())
-        ->setUpdateMask($updateMask)
-        ->setTensorboardTimeSeries($tensorboardTimeSeries);
+    $request = new UpdateTensorboardTimeSeriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,25 +53,5 @@ function update_tensorboard_time_series_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $tensorboardTimeSeriesDisplayName = '[DISPLAY_NAME]';
-    $tensorboardTimeSeriesValueType = ValueType::VALUE_TYPE_UNSPECIFIED;
-
-    update_tensorboard_time_series_sample(
-        $tensorboardTimeSeriesDisplayName,
-        $tensorboardTimeSeriesValueType
-    );
 }
 // [END aiplatform_v1_generated_TensorboardService_UpdateTensorboardTimeSeries_sync]

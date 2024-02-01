@@ -62,10 +62,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
  * try {
- *     $formattedEntityType = $featurestoreOnlineServingServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
- *     $entityId = 'entity_id';
- *     $featureSelector = new FeatureSelector();
- *     $response = $featurestoreOnlineServingServiceClient->readFeatureValues($formattedEntityType, $entityId, $featureSelector);
+ *     $response = $featurestoreOnlineServingServiceClient->readFeatureValues();
  * } finally {
  *     $featurestoreOnlineServingServiceClient->close();
  * }
@@ -299,27 +296,27 @@ class FeaturestoreOnlineServingServiceGapicClient
      * ```
      * $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
      * try {
-     *     $formattedEntityType = $featurestoreOnlineServingServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-     *     $entityId = 'entity_id';
-     *     $featureSelector = new FeatureSelector();
-     *     $response = $featurestoreOnlineServingServiceClient->readFeatureValues($formattedEntityType, $entityId, $featureSelector);
+     *     $response = $featurestoreOnlineServingServiceClient->readFeatureValues();
      * } finally {
      *     $featurestoreOnlineServingServiceClient->close();
      * }
      * ```
      *
-     * @param string          $entityType      Required. The resource name of the EntityType for the entity being read.
-     *                                         Value format:
-     *                                         `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
-     *                                         For example, for a machine learning model predicting user clicks on a
-     *                                         website, an EntityType ID could be `user`.
-     * @param string          $entityId        Required. ID for a specific entity. For example,
-     *                                         for a machine learning model predicting user clicks on a website, an entity
-     *                                         ID could be `user_123`.
-     * @param FeatureSelector $featureSelector Required. Selector choosing Features of the target EntityType.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $entityType
+     *           Required. The resource name of the EntityType for the entity being read.
+     *           Value format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
+     *           For example, for a machine learning model predicting user clicks on a
+     *           website, an EntityType ID could be `user`.
+     *     @type string $entityId
+     *           Required. ID for a specific entity. For example,
+     *           for a machine learning model predicting user clicks on a website, an entity
+     *           ID could be `user_123`.
+     *     @type FeatureSelector $featureSelector
+     *           Required. Selector choosing Features of the target EntityType.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -330,18 +327,23 @@ class FeaturestoreOnlineServingServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readFeatureValues(
-        $entityType,
-        $entityId,
-        $featureSelector,
-        array $optionalArgs = []
-    ) {
+    public function readFeatureValues(array $optionalArgs = [])
+    {
         $request = new ReadFeatureValuesRequest();
         $requestParamHeaders = [];
-        $request->setEntityType($entityType);
-        $request->setEntityId($entityId);
-        $request->setFeatureSelector($featureSelector);
-        $requestParamHeaders['entity_type'] = $entityType;
+        if (isset($optionalArgs['entityType'])) {
+            $request->setEntityType($optionalArgs['entityType']);
+            $requestParamHeaders['entity_type'] = $optionalArgs['entityType'];
+        }
+
+        if (isset($optionalArgs['entityId'])) {
+            $request->setEntityId($optionalArgs['entityId']);
+        }
+
+        if (isset($optionalArgs['featureSelector'])) {
+            $request->setFeatureSelector($optionalArgs['featureSelector']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -365,11 +367,8 @@ class FeaturestoreOnlineServingServiceGapicClient
      * ```
      * $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
      * try {
-     *     $formattedEntityType = $featurestoreOnlineServingServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-     *     $entityIds = [];
-     *     $featureSelector = new FeatureSelector();
      *     // Read all responses until the stream is complete
-     *     $stream = $featurestoreOnlineServingServiceClient->streamingReadFeatureValues($formattedEntityType, $entityIds, $featureSelector);
+     *     $stream = $featurestoreOnlineServingServiceClient->streamingReadFeatureValues();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -378,20 +377,23 @@ class FeaturestoreOnlineServingServiceGapicClient
      * }
      * ```
      *
-     * @param string          $entityType      Required. The resource name of the entities' type.
-     *                                         Value format:
-     *                                         `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
-     *                                         For example,
-     *                                         for a machine learning model predicting user clicks on a website, an
-     *                                         EntityType ID could be `user`.
-     * @param string[]        $entityIds       Required. IDs of entities to read Feature values of. The maximum number of
-     *                                         IDs is 100. For example, for a machine learning model predicting user
-     *                                         clicks on a website, an entity ID could be `user_123`.
-     * @param FeatureSelector $featureSelector Required. Selector choosing Features of the target EntityType. Feature IDs
-     *                                         will be deduplicated.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $entityType
+     *           Required. The resource name of the entities' type.
+     *           Value format:
+     *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
+     *           For example,
+     *           for a machine learning model predicting user clicks on a website, an
+     *           EntityType ID could be `user`.
+     *     @type string[] $entityIds
+     *           Required. IDs of entities to read Feature values of. The maximum number of
+     *           IDs is 100. For example, for a machine learning model predicting user
+     *           clicks on a website, an entity ID could be `user_123`.
+     *     @type FeatureSelector $featureSelector
+     *           Required. Selector choosing Features of the target EntityType. Feature IDs
+     *           will be deduplicated.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -400,18 +402,23 @@ class FeaturestoreOnlineServingServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function streamingReadFeatureValues(
-        $entityType,
-        $entityIds,
-        $featureSelector,
-        array $optionalArgs = []
-    ) {
+    public function streamingReadFeatureValues(array $optionalArgs = [])
+    {
         $request = new StreamingReadFeatureValuesRequest();
         $requestParamHeaders = [];
-        $request->setEntityType($entityType);
-        $request->setEntityIds($entityIds);
-        $request->setFeatureSelector($featureSelector);
-        $requestParamHeaders['entity_type'] = $entityType;
+        if (isset($optionalArgs['entityType'])) {
+            $request->setEntityType($optionalArgs['entityType']);
+            $requestParamHeaders['entity_type'] = $optionalArgs['entityType'];
+        }
+
+        if (isset($optionalArgs['entityIds'])) {
+            $request->setEntityIds($optionalArgs['entityIds']);
+        }
+
+        if (isset($optionalArgs['featureSelector'])) {
+            $request->setFeatureSelector($optionalArgs['featureSelector']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -438,25 +445,25 @@ class FeaturestoreOnlineServingServiceGapicClient
      * ```
      * $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
      * try {
-     *     $formattedEntityType = $featurestoreOnlineServingServiceClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-     *     $payloads = [];
-     *     $response = $featurestoreOnlineServingServiceClient->writeFeatureValues($formattedEntityType, $payloads);
+     *     $response = $featurestoreOnlineServingServiceClient->writeFeatureValues();
      * } finally {
      *     $featurestoreOnlineServingServiceClient->close();
      * }
      * ```
      *
-     * @param string                      $entityType   Required. The resource name of the EntityType for the entities being
-     *                                                  written. Value format:
-     *                                                  `projects/{project}/locations/{location}/featurestores/
-     *                                                  {featurestore}/entityTypes/{entityType}`. For example,
-     *                                                  for a machine learning model predicting user clicks on a website, an
-     *                                                  EntityType ID could be `user`.
-     * @param WriteFeatureValuesPayload[] $payloads     Required. The entities to be written. Up to 100,000 feature values can be
-     *                                                  written across all `payloads`.
-     * @param array                       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $entityType
+     *           Required. The resource name of the EntityType for the entities being
+     *           written. Value format:
+     *           `projects/{project}/locations/{location}/featurestores/
+     *           {featurestore}/entityTypes/{entityType}`. For example,
+     *           for a machine learning model predicting user clicks on a website, an
+     *           EntityType ID could be `user`.
+     *     @type WriteFeatureValuesPayload[] $payloads
+     *           Required. The entities to be written. Up to 100,000 feature values can be
+     *           written across all `payloads`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -467,16 +474,19 @@ class FeaturestoreOnlineServingServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function writeFeatureValues(
-        $entityType,
-        $payloads,
-        array $optionalArgs = []
-    ) {
+    public function writeFeatureValues(array $optionalArgs = [])
+    {
         $request = new WriteFeatureValuesRequest();
         $requestParamHeaders = [];
-        $request->setEntityType($entityType);
-        $request->setPayloads($payloads);
-        $requestParamHeaders['entity_type'] = $entityType;
+        if (isset($optionalArgs['entityType'])) {
+            $request->setEntityType($optionalArgs['entityType']);
+            $requestParamHeaders['entity_type'] = $optionalArgs['entityType'];
+        }
+
+        if (isset($optionalArgs['payloads'])) {
+            $request->setPayloads($optionalArgs['payloads']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -639,18 +649,18 @@ class FeaturestoreOnlineServingServiceGapicClient
      * ```
      * $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $featurestoreOnlineServingServiceClient->getIamPolicy($resource);
+     *     $response = $featurestoreOnlineServingServiceClient->getIamPolicy();
      * } finally {
      *     $featurestoreOnlineServingServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -664,12 +674,15 @@ class FeaturestoreOnlineServingServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -701,23 +714,23 @@ class FeaturestoreOnlineServingServiceGapicClient
      * ```
      * $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $featurestoreOnlineServingServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $featurestoreOnlineServingServiceClient->setIamPolicy();
      * } finally {
      *     $featurestoreOnlineServingServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -734,13 +747,19 @@ class FeaturestoreOnlineServingServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -774,23 +793,23 @@ class FeaturestoreOnlineServingServiceGapicClient
      * ```
      * $featurestoreOnlineServingServiceClient = new FeaturestoreOnlineServingServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $featurestoreOnlineServingServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $featurestoreOnlineServingServiceClient->testIamPermissions();
      * } finally {
      *     $featurestoreOnlineServingServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -801,16 +820,19 @@ class FeaturestoreOnlineServingServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

@@ -29,7 +29,6 @@ class GetExecutionRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The resource name of the Execution to retrieve.
      *                     Format:
      *                     `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
-     *                     Please see {@see MetadataServiceClient::executionName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\GetExecutionRequest
      *

@@ -27,27 +27,23 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\ModelServiceClient;
 use Google\Cloud\AIPlatform\V1\Model;
 use Google\Cloud\AIPlatform\V1\UpdateModelRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a Model.
  *
- * @param string $modelDisplayName The display name of the Model.
- *                                 The name can be up to 128 characters long and can consist of any UTF-8
- *                                 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_model_sample(string $modelDisplayName): void
+function update_model_sample(): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $model = (new Model())
-        ->setDisplayName($modelDisplayName);
-    $updateMask = new FieldMask();
-    $request = (new UpdateModelRequest())
-        ->setModel($model)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +53,5 @@ function update_model_sample(string $modelDisplayName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $modelDisplayName = '[DISPLAY_NAME]';
-
-    update_model_sample($modelDisplayName);
 }
 // [END aiplatform_v1_generated_ModelService_UpdateModel_sync]

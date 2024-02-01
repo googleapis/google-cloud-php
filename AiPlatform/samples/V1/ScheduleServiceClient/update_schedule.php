@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\ScheduleServiceClient;
 use Google\Cloud\AIPlatform\V1\Schedule;
 use Google\Cloud\AIPlatform\V1\UpdateScheduleRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates an active or paused Schedule.
@@ -38,28 +37,19 @@ use Google\Protobuf\FieldMask;
  * update time will be skipped while already created runs will NOT be paused
  * or canceled.
  *
- * @param string $scheduleDisplayName           User provided name of the Schedule.
- *                                              The name can be up to 128 characters long and can consist of any UTF-8
- *                                              characters.
- * @param int    $scheduleMaxConcurrentRunCount Maximum number of runs that can be started concurrently for this
- *                                              Schedule. This is the limit for starting the scheduled requests and not the
- *                                              execution of the operations/jobs created by the requests (if applicable).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_schedule_sample(
-    string $scheduleDisplayName,
-    int $scheduleMaxConcurrentRunCount
-): void {
+function update_schedule_sample(): void
+{
     // Create a client.
     $scheduleServiceClient = new ScheduleServiceClient();
 
     // Prepare the request message.
-    $schedule = (new Schedule())
-        ->setDisplayName($scheduleDisplayName)
-        ->setMaxConcurrentRunCount($scheduleMaxConcurrentRunCount);
-    $updateMask = new FieldMask();
-    $request = (new UpdateScheduleRequest())
-        ->setSchedule($schedule)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateScheduleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,22 +59,5 @@ function update_schedule_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $scheduleDisplayName = '[DISPLAY_NAME]';
-    $scheduleMaxConcurrentRunCount = 0;
-
-    update_schedule_sample($scheduleDisplayName, $scheduleMaxConcurrentRunCount);
 }
 // [END aiplatform_v1_generated_ScheduleService_UpdateSchedule_sync]

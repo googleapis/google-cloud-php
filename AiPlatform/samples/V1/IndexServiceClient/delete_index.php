@@ -35,19 +35,19 @@ use Google\Rpc\Status;
  * [DeployedIndexes][google.cloud.aiplatform.v1.Index.deployed_indexes] had
  * been undeployed.
  *
- * @param string $formattedName The name of the Index resource to be deleted.
- *                              Format:
- *                              `projects/{project}/locations/{location}/indexes/{index}`
- *                              Please see {@see IndexServiceClient::indexName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_index_sample(string $formattedName): void
+function delete_index_sample(): void
 {
     // Create a client.
     $indexServiceClient = new IndexServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteIndexRequest())
-        ->setName($formattedName);
+    $request = new DeleteIndexRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +65,5 @@ function delete_index_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = IndexServiceClient::indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
-
-    delete_index_sample($formattedName);
 }
 // [END aiplatform_v1_generated_IndexService_DeleteIndex_sync]

@@ -72,8 +72,7 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
      *
      *                         The request may error with FAILED_PRECONDITION if the number of Artifacts,
      *                         the number of Executions, or the number of Events that would be returned
-     *                         for the Context exceeds 1000. Please see
-     *                         {@see MetadataServiceClient::artifactName()} for help formatting this field.
+     *                         for the Context exceeds 1000.
      *
      * @return \Google\Cloud\AIPlatform\V1\QueryArtifactLineageSubgraphRequest
      *

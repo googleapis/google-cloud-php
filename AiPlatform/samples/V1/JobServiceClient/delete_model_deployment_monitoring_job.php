@@ -32,19 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a ModelDeploymentMonitoringJob.
  *
- * @param string $formattedName The resource name of the model monitoring job to delete.
- *                              Format:
- *                              `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
- *                              Please see {@see JobServiceClient::modelDeploymentMonitoringJobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_model_deployment_monitoring_job_sample(string $formattedName): void
+function delete_model_deployment_monitoring_job_sample(): void
 {
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteModelDeploymentMonitoringJobRequest())
-        ->setName($formattedName);
+    $request = new DeleteModelDeploymentMonitoringJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,25 +62,5 @@ function delete_model_deployment_monitoring_job_sample(string $formattedName): v
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = JobServiceClient::modelDeploymentMonitoringJobName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[MODEL_DEPLOYMENT_MONITORING_JOB]'
-    );
-
-    delete_model_deployment_monitoring_job_sample($formattedName);
 }
 // [END aiplatform_v1_generated_JobService_DeleteModelDeploymentMonitoringJob_sync]

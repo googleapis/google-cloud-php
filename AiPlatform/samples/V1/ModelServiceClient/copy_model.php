@@ -38,23 +38,19 @@ use Google\Rpc\Status;
  * region-agnostic, as well as making sure that any resources (e.g. files) it
  * depends on remain accessible.
  *
- * @param string $formattedParent      The resource name of the Location into which to copy the Model.
- *                                     Format: `projects/{project}/locations/{location}`
- *                                     Please see {@see ModelServiceClient::locationName()} for help formatting this field.
- * @param string $formattedSourceModel The resource name of the Model to copy. That Model must be in the
- *                                     same Project. Format:
- *                                     `projects/{project}/locations/{location}/models/{model}`
- *                                     Please see {@see ModelServiceClient::modelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function copy_model_sample(string $formattedParent, string $formattedSourceModel): void
+function copy_model_sample(): void
 {
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
     // Prepare the request message.
-    $request = (new CopyModelRequest())
-        ->setParent($formattedParent)
-        ->setSourceModel($formattedSourceModel);
+    $request = new CopyModelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,22 +70,5 @@ function copy_model_sample(string $formattedParent, string $formattedSourceModel
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ModelServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $formattedSourceModel = ModelServiceClient::modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-
-    copy_model_sample($formattedParent, $formattedSourceModel);
 }
 // [END aiplatform_v1_generated_ModelService_CopyModel_sync]

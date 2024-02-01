@@ -33,7 +33,6 @@ class CreateBatchPredictionJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                         $parent             Required. The resource name of the Location to create the
      *                                                                           BatchPredictionJob in. Format: `projects/{project}/locations/{location}`
-     *                                                                           Please see {@see JobServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\BatchPredictionJob $batchPredictionJob Required. The BatchPredictionJob to create.
      *
      * @return \Google\Cloud\AIPlatform\V1\CreateBatchPredictionJobRequest

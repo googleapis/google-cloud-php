@@ -43,9 +43,7 @@ function update_artifact_sample(): void
     $metadataServiceClient = new MetadataServiceClient();
 
     // Prepare the request message.
-    $artifact = new Artifact();
-    $request = (new UpdateArtifactRequest())
-        ->setArtifact($artifact);
+    $request = new UpdateArtifactRequest();
 
     // Call the API and handle any network failures.
     try {

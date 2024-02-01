@@ -69,9 +69,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $scheduleServiceClient = new ScheduleServiceClient();
  * try {
- *     $formattedParent = $scheduleServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $schedule = new Schedule();
- *     $response = $scheduleServiceClient->createSchedule($formattedParent, $schedule);
+ *     $response = $scheduleServiceClient->createSchedule();
  * } finally {
  *     $scheduleServiceClient->close();
  * }
@@ -622,20 +620,20 @@ class ScheduleServiceGapicClient
      * ```
      * $scheduleServiceClient = new ScheduleServiceClient();
      * try {
-     *     $formattedParent = $scheduleServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $schedule = new Schedule();
-     *     $response = $scheduleServiceClient->createSchedule($formattedParent, $schedule);
+     *     $response = $scheduleServiceClient->createSchedule();
      * } finally {
      *     $scheduleServiceClient->close();
      * }
      * ```
      *
-     * @param string   $parent       Required. The resource name of the Location to create the Schedule in.
-     *                               Format: `projects/{project}/locations/{location}`
-     * @param Schedule $schedule     Required. The Schedule to create.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to create the Schedule in.
+     *           Format: `projects/{project}/locations/{location}`
+     *     @type Schedule $schedule
+     *           Required. The Schedule to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -646,13 +644,19 @@ class ScheduleServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSchedule($parent, $schedule, array $optionalArgs = [])
+    public function createSchedule(array $optionalArgs = [])
     {
         $request = new CreateScheduleRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSchedule($schedule);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['schedule'])) {
+            $request->setSchedule($optionalArgs['schedule']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -674,8 +678,7 @@ class ScheduleServiceGapicClient
      * ```
      * $scheduleServiceClient = new ScheduleServiceClient();
      * try {
-     *     $formattedName = $scheduleServiceClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-     *     $operationResponse = $scheduleServiceClient->deleteSchedule($formattedName);
+     *     $operationResponse = $scheduleServiceClient->deleteSchedule();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -685,7 +688,7 @@ class ScheduleServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $scheduleServiceClient->deleteSchedule($formattedName);
+     *     $operationResponse = $scheduleServiceClient->deleteSchedule();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $scheduleServiceClient->resumeOperation($operationName, 'deleteSchedule');
@@ -704,12 +707,13 @@ class ScheduleServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Schedule resource to be deleted.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/schedules/{schedule}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Schedule resource to be deleted.
+     *           Format:
+     *           `projects/{project}/locations/{location}/schedules/{schedule}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -720,12 +724,15 @@ class ScheduleServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSchedule($name, array $optionalArgs = [])
+    public function deleteSchedule(array $optionalArgs = [])
     {
         $request = new DeleteScheduleRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -747,19 +754,19 @@ class ScheduleServiceGapicClient
      * ```
      * $scheduleServiceClient = new ScheduleServiceClient();
      * try {
-     *     $formattedName = $scheduleServiceClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-     *     $response = $scheduleServiceClient->getSchedule($formattedName);
+     *     $response = $scheduleServiceClient->getSchedule();
      * } finally {
      *     $scheduleServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Schedule resource.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/schedules/{schedule}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Schedule resource.
+     *           Format:
+     *           `projects/{project}/locations/{location}/schedules/{schedule}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -770,12 +777,15 @@ class ScheduleServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSchedule($name, array $optionalArgs = [])
+    public function getSchedule(array $optionalArgs = [])
     {
         $request = new GetScheduleRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -797,9 +807,8 @@ class ScheduleServiceGapicClient
      * ```
      * $scheduleServiceClient = new ScheduleServiceClient();
      * try {
-     *     $formattedParent = $scheduleServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $scheduleServiceClient->listSchedules($formattedParent);
+     *     $pagedResponse = $scheduleServiceClient->listSchedules();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -807,7 +816,7 @@ class ScheduleServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $scheduleServiceClient->listSchedules($formattedParent);
+     *     $pagedResponse = $scheduleServiceClient->listSchedules();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -816,11 +825,12 @@ class ScheduleServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the Location to list the Schedules from.
-     *                             Format: `projects/{project}/locations/{location}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the Location to list the Schedules from.
+     *           Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           Lists the Schedules that match the filter expression. The following
      *           fields are supported:
@@ -889,12 +899,15 @@ class ScheduleServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSchedules($parent, array $optionalArgs = [])
+    public function listSchedules(array $optionalArgs = [])
     {
         $request = new ListSchedulesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -935,19 +948,19 @@ class ScheduleServiceGapicClient
      * ```
      * $scheduleServiceClient = new ScheduleServiceClient();
      * try {
-     *     $formattedName = $scheduleServiceClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-     *     $scheduleServiceClient->pauseSchedule($formattedName);
+     *     $scheduleServiceClient->pauseSchedule();
      * } finally {
      *     $scheduleServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Schedule resource to be paused.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/schedules/{schedule}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Schedule resource to be paused.
+     *           Format:
+     *           `projects/{project}/locations/{location}/schedules/{schedule}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -956,12 +969,15 @@ class ScheduleServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function pauseSchedule($name, array $optionalArgs = [])
+    public function pauseSchedule(array $optionalArgs = [])
     {
         $request = new PauseScheduleRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -990,19 +1006,19 @@ class ScheduleServiceGapicClient
      * ```
      * $scheduleServiceClient = new ScheduleServiceClient();
      * try {
-     *     $formattedName = $scheduleServiceClient->scheduleName('[PROJECT]', '[LOCATION]', '[SCHEDULE]');
-     *     $scheduleServiceClient->resumeSchedule($formattedName);
+     *     $scheduleServiceClient->resumeSchedule();
      * } finally {
      *     $scheduleServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Schedule resource to be resumed.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/schedules/{schedule}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Schedule resource to be resumed.
+     *           Format:
+     *           `projects/{project}/locations/{location}/schedules/{schedule}`
      *     @type bool $catchUp
      *           Optional. Whether to backfill missed runs when the schedule is resumed from
      *           PAUSED state. If set to true, all missed runs will be scheduled. New runs
@@ -1017,12 +1033,15 @@ class ScheduleServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resumeSchedule($name, array $optionalArgs = [])
+    public function resumeSchedule(array $optionalArgs = [])
     {
         $request = new ResumeScheduleRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['catchUp'])) {
             $request->setCatchUp($optionalArgs['catchUp']);
         }
@@ -1054,25 +1073,25 @@ class ScheduleServiceGapicClient
      * ```
      * $scheduleServiceClient = new ScheduleServiceClient();
      * try {
-     *     $schedule = new Schedule();
-     *     $updateMask = new FieldMask();
-     *     $response = $scheduleServiceClient->updateSchedule($schedule, $updateMask);
+     *     $response = $scheduleServiceClient->updateSchedule();
      * } finally {
      *     $scheduleServiceClient->close();
      * }
      * ```
      *
-     * @param Schedule  $schedule     Required. The Schedule which replaces the resource on the server.
-     *                                The following restrictions will be applied:
-     *
-     *                                * The scheduled request type cannot be changed.
-     *                                * The non-empty fields cannot be unset.
-     *                                * The output_only fields will be ignored if specified.
-     * @param FieldMask $updateMask   Required. The update mask applies to the resource. See
-     *                                [google.protobuf.FieldMask][google.protobuf.FieldMask].
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Schedule $schedule
+     *           Required. The Schedule which replaces the resource on the server.
+     *           The following restrictions will be applied:
+     *
+     *           * The scheduled request type cannot be changed.
+     *           * The non-empty fields cannot be unset.
+     *           * The output_only fields will be ignored if specified.
+     *     @type FieldMask $updateMask
+     *           Required. The update mask applies to the resource. See
+     *           [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1083,16 +1102,18 @@ class ScheduleServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSchedule(
-        $schedule,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateSchedule(array $optionalArgs = [])
+    {
         $request = new UpdateScheduleRequest();
         $requestParamHeaders = [];
-        $request->setSchedule($schedule);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['schedule.name'] = $schedule->getName();
+        if (isset($optionalArgs['schedule'])) {
+            $request->setSchedule($optionalArgs['schedule']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1255,18 +1276,18 @@ class ScheduleServiceGapicClient
      * ```
      * $scheduleServiceClient = new ScheduleServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $scheduleServiceClient->getIamPolicy($resource);
+     *     $response = $scheduleServiceClient->getIamPolicy();
      * } finally {
      *     $scheduleServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1280,12 +1301,15 @@ class ScheduleServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1317,23 +1341,23 @@ class ScheduleServiceGapicClient
      * ```
      * $scheduleServiceClient = new ScheduleServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $scheduleServiceClient->setIamPolicy($resource, $policy);
+     *     $response = $scheduleServiceClient->setIamPolicy();
      * } finally {
      *     $scheduleServiceClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1350,13 +1374,19 @@ class ScheduleServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1390,23 +1420,23 @@ class ScheduleServiceGapicClient
      * ```
      * $scheduleServiceClient = new ScheduleServiceClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $scheduleServiceClient->testIamPermissions($resource, $permissions);
+     *     $response = $scheduleServiceClient->testIamPermissions();
      * } finally {
      *     $scheduleServiceClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1417,16 +1447,19 @@ class ScheduleServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

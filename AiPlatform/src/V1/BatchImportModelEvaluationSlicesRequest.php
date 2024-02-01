@@ -35,7 +35,6 @@ class BatchImportModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\
      * @param string                                             $parent                Required. The name of the parent ModelEvaluation resource.
      *                                                                                  Format:
      *                                                                                  `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
-     *                                                                                  Please see {@see ModelServiceClient::modelEvaluationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice[] $modelEvaluationSlices Required. Model evaluation slice resource to be imported.
      *
      * @return \Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest

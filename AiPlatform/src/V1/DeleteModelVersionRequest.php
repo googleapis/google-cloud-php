@@ -30,7 +30,6 @@ class DeleteModelVersionRequest extends \Google\Protobuf\Internal\Message
      *                     explicitly included.
      *
      *                     Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
-     *                     Please see {@see ModelServiceClient::modelName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest
      *
