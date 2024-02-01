@@ -23,8 +23,7 @@ class GetPublicBlueprintRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the public blueprint. Please see
-     *                     {@see TelcoAutomationClient::publicBlueprintName()} for help formatting this field.
+     * @param string $name Required. The name of the public blueprint.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\GetPublicBlueprintRequest
      *

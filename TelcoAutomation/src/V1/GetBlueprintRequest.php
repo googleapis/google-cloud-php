@@ -38,8 +38,7 @@ class GetBlueprintRequest extends \Google\Protobuf\Internal\Message
      *                     Case 1: If the name provided in the request is
      *                     {blueprint_id}&#64;{revision_id}, then the revision with revision_id will be
      *                     returned. Case 2: If the name provided in the request is {blueprint}, then
-     *                     the current state of the blueprint is returned. Please see
-     *                     {@see TelcoAutomationClient::blueprintName()} for help formatting this field.
+     *                     the current state of the blueprint is returned.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\GetBlueprintRequest
      *

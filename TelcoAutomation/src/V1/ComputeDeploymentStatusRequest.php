@@ -23,8 +23,7 @@ class ComputeDeploymentStatusRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the deployment without revisionID. Please see
-     *                     {@see TelcoAutomationClient::deploymentName()} for help formatting this field.
+     * @param string $name Required. The name of the deployment without revisionID.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\ComputeDeploymentStatusRequest
      *

@@ -25,8 +25,7 @@ class ApproveBlueprintRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the blueprint to approve. The blueprint must be in
-     *                     Proposed state. A new revision is committed on approval. Please see
-     *                     {@see TelcoAutomationClient::blueprintName()} for help formatting this field.
+     *                     Proposed state. A new revision is committed on approval.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\ApproveBlueprintRequest
      *

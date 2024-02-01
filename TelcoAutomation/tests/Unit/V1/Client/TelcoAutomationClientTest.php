@@ -90,7 +90,6 @@ use Google\Cloud\TelcoAutomation\V1\UpdateHydratedDeploymentRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -152,14 +151,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new ApplyDeploymentRequest())->setName($formattedName);
+        $request = new ApplyDeploymentRequest();
         $response = $gapicClient->applyDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -167,8 +159,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ApplyDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -193,14 +183,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new ApplyDeploymentRequest())->setName($formattedName);
+        $request = new ApplyDeploymentRequest();
         try {
             $gapicClient->applyDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -229,15 +212,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->hydratedDeploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]',
-            '[HYDRATED_DEPLOYMENT]'
-        );
-        $request = (new ApplyHydratedDeploymentRequest())->setName($formattedName);
+        $request = new ApplyHydratedDeploymentRequest();
         $response = $gapicClient->applyHydratedDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -245,8 +220,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ApplyHydratedDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -271,15 +244,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->hydratedDeploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]',
-            '[HYDRATED_DEPLOYMENT]'
-        );
-        $request = (new ApplyHydratedDeploymentRequest())->setName($formattedName);
+        $request = new ApplyHydratedDeploymentRequest();
         try {
             $gapicClient->applyHydratedDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -318,14 +283,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setSourceProvider($sourceProvider);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new ApproveBlueprintRequest())->setName($formattedName);
+        $request = new ApproveBlueprintRequest();
         $response = $gapicClient->approveBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -333,8 +291,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ApproveBlueprint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -359,14 +315,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new ApproveBlueprintRequest())->setName($formattedName);
+        $request = new ApproveBlueprintRequest();
         try {
             $gapicClient->approveBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -393,14 +342,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse = new ComputeDeploymentStatusResponse();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new ComputeDeploymentStatusRequest())->setName($formattedName);
+        $request = new ComputeDeploymentStatusRequest();
         $response = $gapicClient->computeDeploymentStatus($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -408,8 +350,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ComputeDeploymentStatus', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -434,14 +374,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new ComputeDeploymentStatusRequest())->setName($formattedName);
+        $request = new ComputeDeploymentStatusRequest();
         try {
             $gapicClient->computeDeploymentStatus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -480,12 +413,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setSourceProvider($sourceProvider);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $blueprint = new Blueprint();
-        $blueprintSourceBlueprint = 'blueprintSourceBlueprint115443109';
-        $blueprint->setSourceBlueprint($blueprintSourceBlueprint);
-        $request = (new CreateBlueprintRequest())->setParent($formattedParent)->setBlueprint($blueprint);
+        $request = new CreateBlueprintRequest();
         $response = $gapicClient->createBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -493,10 +421,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/CreateBlueprint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getBlueprint();
-        $this->assertProtobufEquals($blueprint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -521,12 +445,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $blueprint = new Blueprint();
-        $blueprintSourceBlueprint = 'blueprintSourceBlueprint115443109';
-        $blueprint->setSourceBlueprint($blueprintSourceBlueprint);
-        $request = (new CreateBlueprintRequest())->setParent($formattedParent)->setBlueprint($blueprint);
+        $request = new CreateBlueprintRequest();
         try {
             $gapicClient->createBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -567,12 +486,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $deployment = new Deployment();
-        $deploymentSourceBlueprintRevision = 'deploymentSourceBlueprintRevision-1529084882';
-        $deployment->setSourceBlueprintRevision($deploymentSourceBlueprintRevision);
-        $request = (new CreateDeploymentRequest())->setParent($formattedParent)->setDeployment($deployment);
+        $request = new CreateDeploymentRequest();
         $response = $gapicClient->createDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -580,10 +494,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/CreateDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDeployment();
-        $this->assertProtobufEquals($deployment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -608,12 +518,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $deployment = new Deployment();
-        $deploymentSourceBlueprintRevision = 'deploymentSourceBlueprintRevision-1529084882';
-        $deployment->setSourceBlueprintRevision($deploymentSourceBlueprintRevision);
-        $request = (new CreateDeploymentRequest())->setParent($formattedParent)->setDeployment($deployment);
+        $request = new CreateDeploymentRequest();
         try {
             $gapicClient->createDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -662,14 +567,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $edgeSlmId = 'edgeSlmId974932168';
-        $edgeSlm = new EdgeSlm();
-        $request = (new CreateEdgeSlmRequest())
-            ->setParent($formattedParent)
-            ->setEdgeSlmId($edgeSlmId)
-            ->setEdgeSlm($edgeSlm);
+        $request = new CreateEdgeSlmRequest();
         $response = $gapicClient->createEdgeSlm($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -680,12 +578,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/CreateEdgeSlm', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getEdgeSlmId();
-        $this->assertProtobufEquals($edgeSlmId, $actualValue);
-        $actualValue = $actualApiRequestObject->getEdgeSlm();
-        $this->assertProtobufEquals($edgeSlm, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEdgeSlmTest');
         $response->pollUntilComplete([
@@ -739,14 +631,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $edgeSlmId = 'edgeSlmId974932168';
-        $edgeSlm = new EdgeSlm();
-        $request = (new CreateEdgeSlmRequest())
-            ->setParent($formattedParent)
-            ->setEdgeSlmId($edgeSlmId)
-            ->setEdgeSlm($edgeSlm);
+        $request = new CreateEdgeSlmRequest();
         $response = $gapicClient->createEdgeSlm($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -802,14 +687,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $orchestrationClusterId = 'orchestrationClusterId314535486';
-        $orchestrationCluster = new OrchestrationCluster();
-        $request = (new CreateOrchestrationClusterRequest())
-            ->setParent($formattedParent)
-            ->setOrchestrationClusterId($orchestrationClusterId)
-            ->setOrchestrationCluster($orchestrationCluster);
+        $request = new CreateOrchestrationClusterRequest();
         $response = $gapicClient->createOrchestrationCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -823,12 +701,6 @@ class TelcoAutomationClientTest extends GeneratedTest
             '/google.cloud.telcoautomation.v1.TelcoAutomation/CreateOrchestrationCluster',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getOrchestrationClusterId();
-        $this->assertProtobufEquals($orchestrationClusterId, $actualValue);
-        $actualValue = $actualApiRequestObject->getOrchestrationCluster();
-        $this->assertProtobufEquals($orchestrationCluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createOrchestrationClusterTest');
         $response->pollUntilComplete([
@@ -882,14 +754,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $orchestrationClusterId = 'orchestrationClusterId314535486';
-        $orchestrationCluster = new OrchestrationCluster();
-        $request = (new CreateOrchestrationClusterRequest())
-            ->setParent($formattedParent)
-            ->setOrchestrationClusterId($orchestrationClusterId)
-            ->setOrchestrationCluster($orchestrationCluster);
+        $request = new CreateOrchestrationClusterRequest();
         $response = $gapicClient->createOrchestrationCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -923,22 +788,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new DeleteBlueprintRequest())->setName($formattedName);
+        $request = new DeleteBlueprintRequest();
         $gapicClient->deleteBlueprint($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/DeleteBlueprint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -963,14 +819,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new DeleteBlueprintRequest())->setName($formattedName);
+        $request = new DeleteBlueprintRequest();
         try {
             $gapicClient->deleteBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1013,9 +862,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->edgeSlmName('[PROJECT]', '[LOCATION]', '[EDGE_SLM]');
-        $request = (new DeleteEdgeSlmRequest())->setName($formattedName);
+        $request = new DeleteEdgeSlmRequest();
         $response = $gapicClient->deleteEdgeSlm($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1026,8 +873,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/DeleteEdgeSlm', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteEdgeSlmTest');
         $response->pollUntilComplete([
@@ -1081,9 +926,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->edgeSlmName('[PROJECT]', '[LOCATION]', '[EDGE_SLM]');
-        $request = (new DeleteEdgeSlmRequest())->setName($formattedName);
+        $request = new DeleteEdgeSlmRequest();
         $response = $gapicClient->deleteEdgeSlm($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1135,9 +978,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new DeleteOrchestrationClusterRequest())->setName($formattedName);
+        $request = new DeleteOrchestrationClusterRequest();
         $response = $gapicClient->deleteOrchestrationCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1151,8 +992,6 @@ class TelcoAutomationClientTest extends GeneratedTest
             '/google.cloud.telcoautomation.v1.TelcoAutomation/DeleteOrchestrationCluster',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteOrchestrationClusterTest');
         $response->pollUntilComplete([
@@ -1206,9 +1045,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new DeleteOrchestrationClusterRequest())->setName($formattedName);
+        $request = new DeleteOrchestrationClusterRequest();
         $response = $gapicClient->deleteOrchestrationCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1242,14 +1079,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DiscardBlueprintChangesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new DiscardBlueprintChangesRequest())->setName($formattedName);
+        $request = new DiscardBlueprintChangesRequest();
         $response = $gapicClient->discardBlueprintChanges($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1257,8 +1087,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/DiscardBlueprintChanges', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1283,14 +1111,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new DiscardBlueprintChangesRequest())->setName($formattedName);
+        $request = new DiscardBlueprintChangesRequest();
         try {
             $gapicClient->discardBlueprintChanges($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1315,14 +1136,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DiscardDeploymentChangesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new DiscardDeploymentChangesRequest())->setName($formattedName);
+        $request = new DiscardDeploymentChangesRequest();
         $response = $gapicClient->discardDeploymentChanges($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1330,8 +1144,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/DiscardDeploymentChanges', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1356,14 +1168,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new DiscardDeploymentChangesRequest())->setName($formattedName);
+        $request = new DiscardDeploymentChangesRequest();
         try {
             $gapicClient->discardDeploymentChanges($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1402,14 +1207,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setSourceProvider($sourceProvider);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new GetBlueprintRequest())->setName($formattedName);
+        $request = new GetBlueprintRequest();
         $response = $gapicClient->getBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1417,8 +1215,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/GetBlueprint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1443,14 +1239,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new GetBlueprintRequest())->setName($formattedName);
+        $request = new GetBlueprintRequest();
         try {
             $gapicClient->getBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1491,14 +1280,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new GetDeploymentRequest())->setName($formattedName);
+        $request = new GetDeploymentRequest();
         $response = $gapicClient->getDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1506,8 +1288,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/GetDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1532,14 +1312,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new GetDeploymentRequest())->setName($formattedName);
+        $request = new GetDeploymentRequest();
         try {
             $gapicClient->getDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1570,9 +1343,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setOrchestrationCluster($orchestrationCluster);
         $expectedResponse->setTnaVersion($tnaVersion);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->edgeSlmName('[PROJECT]', '[LOCATION]', '[EDGE_SLM]');
-        $request = (new GetEdgeSlmRequest())->setName($formattedName);
+        $request = new GetEdgeSlmRequest();
         $response = $gapicClient->getEdgeSlm($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1580,8 +1351,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/GetEdgeSlm', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1606,9 +1375,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->edgeSlmName('[PROJECT]', '[LOCATION]', '[EDGE_SLM]');
-        $request = (new GetEdgeSlmRequest())->setName($formattedName);
+        $request = new GetEdgeSlmRequest();
         try {
             $gapicClient->getEdgeSlm($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1637,15 +1404,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->hydratedDeploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]',
-            '[HYDRATED_DEPLOYMENT]'
-        );
-        $request = (new GetHydratedDeploymentRequest())->setName($formattedName);
+        $request = new GetHydratedDeploymentRequest();
         $response = $gapicClient->getHydratedDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1653,8 +1412,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/GetHydratedDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1679,15 +1436,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->hydratedDeploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]',
-            '[HYDRATED_DEPLOYMENT]'
-        );
-        $request = (new GetHydratedDeploymentRequest())->setName($formattedName);
+        $request = new GetHydratedDeploymentRequest();
         try {
             $gapicClient->getHydratedDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1716,9 +1465,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setTnaVersion($tnaVersion);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new GetOrchestrationClusterRequest())->setName($formattedName);
+        $request = new GetOrchestrationClusterRequest();
         $response = $gapicClient->getOrchestrationCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1726,8 +1473,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/GetOrchestrationCluster', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1752,9 +1497,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new GetOrchestrationClusterRequest())->setName($formattedName);
+        $request = new GetOrchestrationClusterRequest();
         try {
             $gapicClient->getOrchestrationCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1789,9 +1532,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setSourceProvider($sourceProvider);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->publicBlueprintName('[PROJECT]', '[LOCATION]', '[PUBLIC_LUEPRINT]');
-        $request = (new GetPublicBlueprintRequest())->setName($formattedName);
+        $request = new GetPublicBlueprintRequest();
         $response = $gapicClient->getPublicBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1799,8 +1540,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/GetPublicBlueprint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1825,9 +1564,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->publicBlueprintName('[PROJECT]', '[LOCATION]', '[PUBLIC_LUEPRINT]');
-        $request = (new GetPublicBlueprintRequest())->setName($formattedName);
+        $request = new GetPublicBlueprintRequest();
         try {
             $gapicClient->getPublicBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1857,14 +1594,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBlueprints($blueprints);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new ListBlueprintRevisionsRequest())->setName($formattedName);
+        $request = new ListBlueprintRevisionsRequest();
         $response = $gapicClient->listBlueprintRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1875,8 +1605,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ListBlueprintRevisions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1901,14 +1629,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new ListBlueprintRevisionsRequest())->setName($formattedName);
+        $request = new ListBlueprintRevisionsRequest();
         try {
             $gapicClient->listBlueprintRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1938,9 +1659,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBlueprints($blueprints);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new ListBlueprintsRequest())->setParent($formattedParent);
+        $request = new ListBlueprintsRequest();
         $response = $gapicClient->listBlueprints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1951,8 +1670,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ListBlueprints', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1977,9 +1694,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new ListBlueprintsRequest())->setParent($formattedParent);
+        $request = new ListBlueprintsRequest();
         try {
             $gapicClient->listBlueprints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2009,14 +1724,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeployments($deployments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new ListDeploymentRevisionsRequest())->setName($formattedName);
+        $request = new ListDeploymentRevisionsRequest();
         $response = $gapicClient->listDeploymentRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2027,8 +1735,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ListDeploymentRevisions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2053,14 +1759,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new ListDeploymentRevisionsRequest())->setName($formattedName);
+        $request = new ListDeploymentRevisionsRequest();
         try {
             $gapicClient->listDeploymentRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2090,9 +1789,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeployments($deployments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new ListDeploymentsRequest())->setParent($formattedParent);
+        $request = new ListDeploymentsRequest();
         $response = $gapicClient->listDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2103,8 +1800,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ListDeployments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2129,9 +1824,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $request = (new ListDeploymentsRequest())->setParent($formattedParent);
+        $request = new ListDeploymentsRequest();
         try {
             $gapicClient->listDeployments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2161,9 +1854,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEdgeSlms($edgeSlms);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListEdgeSlmsRequest())->setParent($formattedParent);
+        $request = new ListEdgeSlmsRequest();
         $response = $gapicClient->listEdgeSlms($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2174,8 +1865,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ListEdgeSlms', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2200,9 +1889,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListEdgeSlmsRequest())->setParent($formattedParent);
+        $request = new ListEdgeSlmsRequest();
         try {
             $gapicClient->listEdgeSlms($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2232,14 +1919,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setHydratedDeployments($hydratedDeployments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new ListHydratedDeploymentsRequest())->setParent($formattedParent);
+        $request = new ListHydratedDeploymentsRequest();
         $response = $gapicClient->listHydratedDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2250,8 +1930,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ListHydratedDeployments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2276,14 +1954,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new ListHydratedDeploymentsRequest())->setParent($formattedParent);
+        $request = new ListHydratedDeploymentsRequest();
         try {
             $gapicClient->listHydratedDeployments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2313,9 +1984,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOrchestrationClusters($orchestrationClusters);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListOrchestrationClustersRequest())->setParent($formattedParent);
+        $request = new ListOrchestrationClustersRequest();
         $response = $gapicClient->listOrchestrationClusters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2329,8 +1998,6 @@ class TelcoAutomationClientTest extends GeneratedTest
             '/google.cloud.telcoautomation.v1.TelcoAutomation/ListOrchestrationClusters',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2355,9 +2022,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListOrchestrationClustersRequest())->setParent($formattedParent);
+        $request = new ListOrchestrationClustersRequest();
         try {
             $gapicClient->listOrchestrationClusters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2387,9 +2052,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPublicBlueprints($publicBlueprints);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPublicBlueprintsRequest())->setParent($formattedParent);
+        $request = new ListPublicBlueprintsRequest();
         $response = $gapicClient->listPublicBlueprints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2400,8 +2063,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ListPublicBlueprints', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2426,9 +2087,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPublicBlueprintsRequest())->setParent($formattedParent);
+        $request = new ListPublicBlueprintsRequest();
         try {
             $gapicClient->listPublicBlueprints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2467,14 +2126,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setSourceProvider($sourceProvider);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new ProposeBlueprintRequest())->setName($formattedName);
+        $request = new ProposeBlueprintRequest();
         $response = $gapicClient->proposeBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2482,8 +2134,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ProposeBlueprint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2508,14 +2158,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new ProposeBlueprintRequest())->setName($formattedName);
+        $request = new ProposeBlueprintRequest();
         try {
             $gapicClient->proposeBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2554,14 +2197,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setSourceProvider($sourceProvider);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new RejectBlueprintRequest())->setName($formattedName);
+        $request = new RejectBlueprintRequest();
         $response = $gapicClient->rejectBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2569,8 +2205,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/RejectBlueprint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2595,14 +2229,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->blueprintName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[BLUEPRINT]'
-        );
-        $request = (new RejectBlueprintRequest())->setName($formattedName);
+        $request = new RejectBlueprintRequest();
         try {
             $gapicClient->rejectBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2627,22 +2254,13 @@ class TelcoAutomationClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new RemoveDeploymentRequest())->setName($formattedName);
+        $request = new RemoveDeploymentRequest();
         $gapicClient->removeDeployment($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/RemoveDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2667,14 +2285,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new RemoveDeploymentRequest())->setName($formattedName);
+        $request = new RemoveDeploymentRequest();
         try {
             $gapicClient->removeDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2715,15 +2326,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $revisionId = 'revisionId513861631';
-        $request = (new RollbackDeploymentRequest())->setName($formattedName)->setRevisionId($revisionId);
+        $request = new RollbackDeploymentRequest();
         $response = $gapicClient->rollbackDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2731,10 +2334,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/RollbackDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getRevisionId();
-        $this->assertProtobufEquals($revisionId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2759,15 +2358,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $revisionId = 'revisionId513861631';
-        $request = (new RollbackDeploymentRequest())->setName($formattedName)->setRevisionId($revisionId);
+        $request = new RollbackDeploymentRequest();
         try {
             $gapicClient->rollbackDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2797,10 +2388,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBlueprints($blueprints);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $query = 'query107944136';
-        $request = (new SearchBlueprintRevisionsRequest())->setParent($formattedParent)->setQuery($query);
+        $request = new SearchBlueprintRevisionsRequest();
         $response = $gapicClient->searchBlueprintRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2811,10 +2399,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/SearchBlueprintRevisions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2839,10 +2423,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $query = 'query107944136';
-        $request = (new SearchBlueprintRevisionsRequest())->setParent($formattedParent)->setQuery($query);
+        $request = new SearchBlueprintRevisionsRequest();
         try {
             $gapicClient->searchBlueprintRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2872,10 +2453,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeployments($deployments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $query = 'query107944136';
-        $request = (new SearchDeploymentRevisionsRequest())->setParent($formattedParent)->setQuery($query);
+        $request = new SearchDeploymentRevisionsRequest();
         $response = $gapicClient->searchDeploymentRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2889,10 +2467,6 @@ class TelcoAutomationClientTest extends GeneratedTest
             '/google.cloud.telcoautomation.v1.TelcoAutomation/SearchDeploymentRevisions',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2917,10 +2491,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->orchestrationClusterName('[PROJECT]', '[LOCATION]', '[ORCHESTRATION_CLUSTER]');
-        $query = 'query107944136';
-        $request = (new SearchDeploymentRevisionsRequest())->setParent($formattedParent)->setQuery($query);
+        $request = new SearchDeploymentRevisionsRequest();
         try {
             $gapicClient->searchDeploymentRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2959,12 +2530,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setSourceProvider($sourceProvider);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $blueprint = new Blueprint();
-        $blueprintSourceBlueprint = 'blueprintSourceBlueprint115443109';
-        $blueprint->setSourceBlueprint($blueprintSourceBlueprint);
-        $updateMask = new FieldMask();
-        $request = (new UpdateBlueprintRequest())->setBlueprint($blueprint)->setUpdateMask($updateMask);
+        $request = new UpdateBlueprintRequest();
         $response = $gapicClient->updateBlueprint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2972,10 +2538,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/UpdateBlueprint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getBlueprint();
-        $this->assertProtobufEquals($blueprint, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3000,12 +2562,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $blueprint = new Blueprint();
-        $blueprintSourceBlueprint = 'blueprintSourceBlueprint115443109';
-        $blueprint->setSourceBlueprint($blueprintSourceBlueprint);
-        $updateMask = new FieldMask();
-        $request = (new UpdateBlueprintRequest())->setBlueprint($blueprint)->setUpdateMask($updateMask);
+        $request = new UpdateBlueprintRequest();
         try {
             $gapicClient->updateBlueprint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3046,12 +2603,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $deployment = new Deployment();
-        $deploymentSourceBlueprintRevision = 'deploymentSourceBlueprintRevision-1529084882';
-        $deployment->setSourceBlueprintRevision($deploymentSourceBlueprintRevision);
-        $updateMask = new FieldMask();
-        $request = (new UpdateDeploymentRequest())->setDeployment($deployment)->setUpdateMask($updateMask);
+        $request = new UpdateDeploymentRequest();
         $response = $gapicClient->updateDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3059,10 +2611,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/UpdateDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDeployment();
-        $this->assertProtobufEquals($deployment, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3087,12 +2635,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $deployment = new Deployment();
-        $deploymentSourceBlueprintRevision = 'deploymentSourceBlueprintRevision-1529084882';
-        $deployment->setSourceBlueprintRevision($deploymentSourceBlueprintRevision);
-        $updateMask = new FieldMask();
-        $request = (new UpdateDeploymentRequest())->setDeployment($deployment)->setUpdateMask($updateMask);
+        $request = new UpdateDeploymentRequest();
         try {
             $gapicClient->updateDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3121,12 +2664,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $hydratedDeployment = new HydratedDeployment();
-        $updateMask = new FieldMask();
-        $request = (new UpdateHydratedDeploymentRequest())
-            ->setHydratedDeployment($hydratedDeployment)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateHydratedDeploymentRequest();
         $response = $gapicClient->updateHydratedDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3134,10 +2672,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/UpdateHydratedDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getHydratedDeployment();
-        $this->assertProtobufEquals($hydratedDeployment, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3162,12 +2696,7 @@ class TelcoAutomationClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $hydratedDeployment = new HydratedDeployment();
-        $updateMask = new FieldMask();
-        $request = (new UpdateHydratedDeploymentRequest())
-            ->setHydratedDeployment($hydratedDeployment)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateHydratedDeploymentRequest();
         try {
             $gapicClient->updateHydratedDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3336,14 +2865,7 @@ class TelcoAutomationClientTest extends GeneratedTest
         $expectedResponse->setWorkloadCluster($workloadCluster);
         $expectedResponse->setRollbackSupport($rollbackSupport);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deploymentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ORCHESTRATION_CLUSTER]',
-            '[DEPLOYMENT]'
-        );
-        $request = (new ApplyDeploymentRequest())->setName($formattedName);
+        $request = new ApplyDeploymentRequest();
         $response = $gapicClient->applyDeploymentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3351,8 +2873,6 @@ class TelcoAutomationClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.telcoautomation.v1.TelcoAutomation/ApplyDeployment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

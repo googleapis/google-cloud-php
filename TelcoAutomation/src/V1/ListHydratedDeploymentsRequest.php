@@ -39,8 +39,7 @@ class ListHydratedDeploymentsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The deployment managing the hydrated deployments. Please see
-     *                       {@see TelcoAutomationClient::deploymentName()} for help formatting this field.
+     * @param string $parent Required. The deployment managing the hydrated deployments.
      *
      * @return \Google\Cloud\TelcoAutomation\V1\ListHydratedDeploymentsRequest
      *
