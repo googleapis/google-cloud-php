@@ -82,22 +82,13 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setUuid($uuid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $sessionTemplate = new SessionTemplate();
-        $sessionTemplateName = 'sessionTemplateName-1744858149';
-        $sessionTemplate->setName($sessionTemplateName);
-        $response = $gapicClient->createSessionTemplate($formattedParent, $sessionTemplate);
+        $response = $gapicClient->createSessionTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/CreateSessionTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSessionTemplate();
-        $this->assertProtobufEquals($sessionTemplate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -119,13 +110,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $sessionTemplate = new SessionTemplate();
-        $sessionTemplateName = 'sessionTemplateName-1744858149';
-        $sessionTemplate->setName($sessionTemplateName);
         try {
-            $gapicClient->createSessionTemplate($formattedParent, $sessionTemplate);
+            $gapicClient->createSessionTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -148,16 +134,12 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->sessionTemplateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
-        $gapicClient->deleteSessionTemplate($formattedName);
+        $gapicClient->deleteSessionTemplate();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/DeleteSessionTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -179,10 +161,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->sessionTemplateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
         try {
-            $gapicClient->deleteSessionTemplate($formattedName);
+            $gapicClient->deleteSessionTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -213,17 +193,13 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setUuid($uuid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->sessionTemplateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
-        $response = $gapicClient->getSessionTemplate($formattedName);
+        $response = $gapicClient->getSessionTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/GetSessionTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -245,10 +221,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->sessionTemplateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
         try {
-            $gapicClient->getSessionTemplate($formattedName);
+            $gapicClient->getSessionTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -278,9 +252,7 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSessionTemplates($sessionTemplates);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listSessionTemplates($formattedParent);
+        $response = $gapicClient->listSessionTemplates();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -290,8 +262,6 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/ListSessionTemplates', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -313,10 +283,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listSessionTemplates($formattedParent);
+            $gapicClient->listSessionTemplates();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -347,19 +315,13 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setCreator($creator);
         $expectedResponse->setUuid($uuid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $sessionTemplate = new SessionTemplate();
-        $sessionTemplateName = 'sessionTemplateName-1744858149';
-        $sessionTemplate->setName($sessionTemplateName);
-        $response = $gapicClient->updateSessionTemplate($sessionTemplate);
+        $response = $gapicClient->updateSessionTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.SessionTemplateController/UpdateSessionTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSessionTemplate();
-        $this->assertProtobufEquals($sessionTemplate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -381,12 +343,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $sessionTemplate = new SessionTemplate();
-        $sessionTemplateName = 'sessionTemplateName-1744858149';
-        $sessionTemplate->setName($sessionTemplateName);
         try {
-            $gapicClient->updateSessionTemplate($sessionTemplate);
+            $gapicClient->updateSessionTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -413,17 +371,13 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -445,10 +399,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -475,20 +427,13 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -510,11 +455,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -537,20 +479,13 @@ class SessionTemplateControllerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -572,11 +507,8 @@ class SessionTemplateControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

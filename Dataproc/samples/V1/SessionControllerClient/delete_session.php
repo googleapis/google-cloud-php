@@ -34,17 +34,19 @@ use Google\Rpc\Status;
  * Deletes the interactive session resource. If the session is not in terminal
  * state, it is terminated, and then deleted.
  *
- * @param string $formattedName The name of the session resource to delete. Please see
- *                              {@see SessionControllerClient::sessionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_session_sample(string $formattedName): void
+function delete_session_sample(): void
 {
     // Create a client.
     $sessionControllerClient = new SessionControllerClient();
 
     // Prepare the request message.
-    $request = (new DeleteSessionRequest())
-        ->setName($formattedName);
+    $request = new DeleteSessionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -64,21 +66,5 @@ function delete_session_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SessionControllerClient::sessionName('[PROJECT]', '[LOCATION]', '[SESSION]');
-
-    delete_session_sample($formattedName);
 }
 // [END dataproc_v1_generated_SessionController_DeleteSession_sync]

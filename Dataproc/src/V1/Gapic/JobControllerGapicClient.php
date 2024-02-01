@@ -63,10 +63,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $jobControllerClient = new JobControllerClient();
  * try {
- *     $projectId = 'project_id';
- *     $region = 'region';
- *     $jobId = 'job_id';
- *     $response = $jobControllerClient->cancelJob($projectId, $region, $jobId);
+ *     $response = $jobControllerClient->cancelJob();
  * } finally {
  *     $jobControllerClient->close();
  * }
@@ -224,22 +221,22 @@ class JobControllerGapicClient
      * ```
      * $jobControllerClient = new JobControllerClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $region = 'region';
-     *     $jobId = 'job_id';
-     *     $response = $jobControllerClient->cancelJob($projectId, $region, $jobId);
+     *     $response = $jobControllerClient->cancelJob();
      * } finally {
      *     $jobControllerClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
-     *                             belongs to.
-     * @param string $region       Required. The Dataproc region in which to handle the request.
-     * @param string $jobId        Required. The job ID.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud Platform project that the job
+     *           belongs to.
+     *     @type string $region
+     *           Required. The Dataproc region in which to handle the request.
+     *     @type string $jobId
+     *           Required. The job ID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -250,16 +247,25 @@ class JobControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function cancelJob($projectId, $region, $jobId, array $optionalArgs = [])
+    public function cancelJob(array $optionalArgs = [])
     {
         $request = new CancelJobRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setRegion($region);
-        $request->setJobId($jobId);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['job_id'] = $jobId;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['jobId'])) {
+            $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CancelJob', Job::class, $optionalArgs, $request)->wait();
@@ -273,22 +279,22 @@ class JobControllerGapicClient
      * ```
      * $jobControllerClient = new JobControllerClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $region = 'region';
-     *     $jobId = 'job_id';
-     *     $jobControllerClient->deleteJob($projectId, $region, $jobId);
+     *     $jobControllerClient->deleteJob();
      * } finally {
      *     $jobControllerClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
-     *                             belongs to.
-     * @param string $region       Required. The Dataproc region in which to handle the request.
-     * @param string $jobId        Required. The job ID.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud Platform project that the job
+     *           belongs to.
+     *     @type string $region
+     *           Required. The Dataproc region in which to handle the request.
+     *     @type string $jobId
+     *           Required. The job ID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -297,16 +303,25 @@ class JobControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteJob($projectId, $region, $jobId, array $optionalArgs = [])
+    public function deleteJob(array $optionalArgs = [])
     {
         $request = new DeleteJobRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setRegion($region);
-        $request->setJobId($jobId);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['job_id'] = $jobId;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['jobId'])) {
+            $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteJob', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -319,22 +334,22 @@ class JobControllerGapicClient
      * ```
      * $jobControllerClient = new JobControllerClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $region = 'region';
-     *     $jobId = 'job_id';
-     *     $response = $jobControllerClient->getJob($projectId, $region, $jobId);
+     *     $response = $jobControllerClient->getJob();
      * } finally {
      *     $jobControllerClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
-     *                             belongs to.
-     * @param string $region       Required. The Dataproc region in which to handle the request.
-     * @param string $jobId        Required. The job ID.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud Platform project that the job
+     *           belongs to.
+     *     @type string $region
+     *           Required. The Dataproc region in which to handle the request.
+     *     @type string $jobId
+     *           Required. The job ID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -345,16 +360,25 @@ class JobControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getJob($projectId, $region, $jobId, array $optionalArgs = [])
+    public function getJob(array $optionalArgs = [])
     {
         $request = new GetJobRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setRegion($region);
-        $request->setJobId($jobId);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['job_id'] = $jobId;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['jobId'])) {
+            $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetJob', Job::class, $optionalArgs, $request)->wait();
@@ -367,10 +391,8 @@ class JobControllerGapicClient
      * ```
      * $jobControllerClient = new JobControllerClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobControllerClient->listJobs($projectId, $region);
+     *     $pagedResponse = $jobControllerClient->listJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -378,7 +400,7 @@ class JobControllerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobControllerClient->listJobs($projectId, $region);
+     *     $pagedResponse = $jobControllerClient->listJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -387,12 +409,14 @@ class JobControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
-     *                             belongs to.
-     * @param string $region       Required. The Dataproc region in which to handle the request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud Platform project that the job
+     *           belongs to.
+     *     @type string $region
+     *           Required. The Dataproc region in which to handle the request.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -436,14 +460,20 @@ class JobControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listJobs($projectId, $region, array $optionalArgs = [])
+    public function listJobs(array $optionalArgs = [])
     {
         $request = new ListJobsRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setRegion($region);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -476,22 +506,22 @@ class JobControllerGapicClient
      * ```
      * $jobControllerClient = new JobControllerClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $region = 'region';
-     *     $job = new Job();
-     *     $response = $jobControllerClient->submitJob($projectId, $region, $job);
+     *     $response = $jobControllerClient->submitJob();
      * } finally {
      *     $jobControllerClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
-     *                             belongs to.
-     * @param string $region       Required. The Dataproc region in which to handle the request.
-     * @param Job    $job          Required. The job resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud Platform project that the job
+     *           belongs to.
+     *     @type string $region
+     *           Required. The Dataproc region in which to handle the request.
+     *     @type Job $job
+     *           Required. The job resource.
      *     @type string $requestId
      *           Optional. A unique id used to identify the request. If the server
      *           receives two
@@ -515,15 +545,24 @@ class JobControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function submitJob($projectId, $region, $job, array $optionalArgs = [])
+    public function submitJob(array $optionalArgs = [])
     {
         $request = new SubmitJobRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setRegion($region);
-        $request->setJob($job);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['job'])) {
+            $request->setJob($optionalArgs['job']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -540,10 +579,7 @@ class JobControllerGapicClient
      * ```
      * $jobControllerClient = new JobControllerClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $region = 'region';
-     *     $job = new Job();
-     *     $operationResponse = $jobControllerClient->submitJobAsOperation($projectId, $region, $job);
+     *     $operationResponse = $jobControllerClient->submitJobAsOperation();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -554,7 +590,7 @@ class JobControllerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobControllerClient->submitJobAsOperation($projectId, $region, $job);
+     *     $operationResponse = $jobControllerClient->submitJobAsOperation();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobControllerClient->resumeOperation($operationName, 'submitJobAsOperation');
@@ -574,13 +610,16 @@ class JobControllerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform project that the job
-     *                             belongs to.
-     * @param string $region       Required. The Dataproc region in which to handle the request.
-     * @param Job    $job          Required. The job resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud Platform project that the job
+     *           belongs to.
+     *     @type string $region
+     *           Required. The Dataproc region in which to handle the request.
+     *     @type Job $job
+     *           Required. The job resource.
      *     @type string $requestId
      *           Optional. A unique id used to identify the request. If the server
      *           receives two
@@ -604,15 +643,24 @@ class JobControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function submitJobAsOperation($projectId, $region, $job, array $optionalArgs = [])
+    public function submitJobAsOperation(array $optionalArgs = [])
     {
         $request = new SubmitJobRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setRegion($region);
-        $request->setJob($job);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['job'])) {
+            $request->setJob($optionalArgs['job']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -629,31 +677,31 @@ class JobControllerGapicClient
      * ```
      * $jobControllerClient = new JobControllerClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $region = 'region';
-     *     $jobId = 'job_id';
-     *     $job = new Job();
-     *     $updateMask = new FieldMask();
-     *     $response = $jobControllerClient->updateJob($projectId, $region, $jobId, $job, $updateMask);
+     *     $response = $jobControllerClient->updateJob();
      * } finally {
      *     $jobControllerClient->close();
      * }
      * ```
      *
-     * @param string    $projectId    Required. The ID of the Google Cloud Platform project that the job
-     *                                belongs to.
-     * @param string    $region       Required. The Dataproc region in which to handle the request.
-     * @param string    $jobId        Required. The job ID.
-     * @param Job       $job          Required. The changes to the job.
-     * @param FieldMask $updateMask   Required. Specifies the path, relative to <code>Job</code>, of
-     *                                the field to update. For example, to update the labels of a Job the
-     *                                <code>update_mask</code> parameter would be specified as
-     *                                <code>labels</code>, and the `PATCH` request body would specify the new
-     *                                value. <strong>Note:</strong> Currently, <code>labels</code> is the only
-     *                                field that can be updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud Platform project that the job
+     *           belongs to.
+     *     @type string $region
+     *           Required. The Dataproc region in which to handle the request.
+     *     @type string $jobId
+     *           Required. The job ID.
+     *     @type Job $job
+     *           Required. The changes to the job.
+     *     @type FieldMask $updateMask
+     *           Required. Specifies the path, relative to <code>Job</code>, of
+     *           the field to update. For example, to update the labels of a Job the
+     *           <code>update_mask</code> parameter would be specified as
+     *           <code>labels</code>, and the `PATCH` request body would specify the new
+     *           value. <strong>Note:</strong> Currently, <code>labels</code> is the only
+     *           field that can be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -664,18 +712,33 @@ class JobControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateJob($projectId, $region, $jobId, $job, $updateMask, array $optionalArgs = [])
+    public function updateJob(array $optionalArgs = [])
     {
         $request = new UpdateJobRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setRegion($region);
-        $request->setJobId($jobId);
-        $request->setJob($job);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['project_id'] = $projectId;
-        $requestParamHeaders['region'] = $region;
-        $requestParamHeaders['job_id'] = $jobId;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
+        if (isset($optionalArgs['region'])) {
+            $request->setRegion($optionalArgs['region']);
+            $requestParamHeaders['region'] = $optionalArgs['region'];
+        }
+
+        if (isset($optionalArgs['jobId'])) {
+            $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
+        }
+
+        if (isset($optionalArgs['job'])) {
+            $request->setJob($optionalArgs['job']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateJob', Job::class, $optionalArgs, $request)->wait();
@@ -689,18 +752,18 @@ class JobControllerGapicClient
      * ```
      * $jobControllerClient = new JobControllerClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $jobControllerClient->getIamPolicy($resource);
+     *     $response = $jobControllerClient->getIamPolicy();
      * } finally {
      *     $jobControllerClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -714,12 +777,15 @@ class JobControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -740,23 +806,23 @@ class JobControllerGapicClient
      * ```
      * $jobControllerClient = new JobControllerClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $jobControllerClient->setIamPolicy($resource, $policy);
+     *     $response = $jobControllerClient->setIamPolicy();
      * } finally {
      *     $jobControllerClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -773,13 +839,19 @@ class JobControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -802,23 +874,23 @@ class JobControllerGapicClient
      * ```
      * $jobControllerClient = new JobControllerClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $jobControllerClient->testIamPermissions($resource, $permissions);
+     *     $response = $jobControllerClient->testIamPermissions();
      * } finally {
      *     $jobControllerClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -829,13 +901,19 @@ class JobControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

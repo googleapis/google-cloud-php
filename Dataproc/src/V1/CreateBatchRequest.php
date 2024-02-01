@@ -52,8 +52,7 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string                          $parent  Required. The parent resource where this batch will be created. Please see
-     *                                                 {@see BatchControllerClient::locationName()} for help formatting this field.
+     * @param string                          $parent  Required. The parent resource where this batch will be created.
      * @param \Google\Cloud\Dataproc\V1\Batch $batch   Required. The batch to create.
      * @param string                          $batchId Optional. The ID to use for the batch, which will become the final
      *                                                 component of the batch's resource name.

@@ -56,7 +56,6 @@ class CreateNodeGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                              $parent      Required. The parent resource where this node group will be created.
      *                                                         Format: `projects/{project}/regions/{region}/clusters/{cluster}`
-     *                                                         Please see {@see NodeGroupControllerClient::clusterRegionName()} for help formatting this field.
      * @param \Google\Cloud\Dataproc\V1\NodeGroup $nodeGroup   Required. The node group to create.
      * @param string                              $nodeGroupId Optional. An optional node group ID. Generated if not specified.
      *

@@ -35,32 +35,19 @@ use Google\Rpc\Status;
  * [Operation.metadata][google.longrunning.Operation.metadata] will be
  * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
  *
- * @param string $projectId          The ID of the Google Cloud Platform project that the cluster
- *                                   belongs to.
- * @param string $region             The Dataproc region in which to handle the request.
- * @param string $clusterProjectId   The Google Cloud Platform project ID that the cluster belongs to.
- * @param string $clusterClusterName The cluster name, which must be unique within a project.
- *                                   The name must start with a lowercase letter, and can contain
- *                                   up to 51 lowercase letters, numbers, and hyphens. It cannot end
- *                                   with a hyphen. The name of a deleted cluster can be reused.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_cluster_sample(
-    string $projectId,
-    string $region,
-    string $clusterProjectId,
-    string $clusterClusterName
-): void {
+function create_cluster_sample(): void
+{
     // Create a client.
     $clusterControllerClient = new ClusterControllerClient();
 
     // Prepare the request message.
-    $cluster = (new Cluster())
-        ->setProjectId($clusterProjectId)
-        ->setClusterName($clusterClusterName);
-    $request = (new CreateClusterRequest())
-        ->setProjectId($projectId)
-        ->setRegion($region)
-        ->setCluster($cluster);
+    $request = new CreateClusterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -80,24 +67,5 @@ function create_cluster_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $projectId = '[PROJECT_ID]';
-    $region = '[REGION]';
-    $clusterProjectId = '[PROJECT_ID]';
-    $clusterClusterName = '[CLUSTER_NAME]';
-
-    create_cluster_sample($projectId, $region, $clusterProjectId, $clusterClusterName);
 }
 // [END dataproc_v1_generated_ClusterController_CreateCluster_sync]

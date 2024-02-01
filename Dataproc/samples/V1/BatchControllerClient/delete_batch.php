@@ -31,19 +31,19 @@ use Google\Cloud\Dataproc\V1\DeleteBatchRequest;
  * Deletes the batch workload resource. If the batch is not in terminal state,
  * the delete fails and the response returns `FAILED_PRECONDITION`.
  *
- * @param string $formattedName The fully qualified name of the batch to retrieve
- *                              in the format
- *                              "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
- *                              Please see {@see BatchControllerClient::batchName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_batch_sample(string $formattedName): void
+function delete_batch_sample(): void
 {
     // Create a client.
     $batchControllerClient = new BatchControllerClient();
 
     // Prepare the request message.
-    $request = (new DeleteBatchRequest())
-        ->setName($formattedName);
+    $request = new DeleteBatchRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +52,5 @@ function delete_batch_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = BatchControllerClient::batchName('[PROJECT]', '[LOCATION]', '[BATCH]');
-
-    delete_batch_sample($formattedName);
 }
 // [END dataproc_v1_generated_BatchController_DeleteBatch_sync]

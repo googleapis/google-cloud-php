@@ -29,14 +29,12 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataproc\V1\Job;
 use Google\Cloud\Dataproc\V1\JobControllerClient;
-use Google\Cloud\Dataproc\V1\JobPlacement;
 use Google\Cloud\Dataproc\V1\ListJobsResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -88,23 +86,13 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse->setJobUuid($jobUuid);
         $expectedResponse->setDone($done);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $jobId = 'jobId-1154752291';
-        $response = $gapicClient->cancelJob($projectId, $region, $jobId);
+        $response = $gapicClient->cancelJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/CancelJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getJobId();
-        $this->assertProtobufEquals($jobId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -126,12 +114,8 @@ class JobControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $jobId = 'jobId-1154752291';
         try {
-            $gapicClient->cancelJob($projectId, $region, $jobId);
+            $gapicClient->cancelJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -154,22 +138,12 @@ class JobControllerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $jobId = 'jobId-1154752291';
-        $gapicClient->deleteJob($projectId, $region, $jobId);
+        $gapicClient->deleteJob();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/DeleteJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getJobId();
-        $this->assertProtobufEquals($jobId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -191,12 +165,8 @@ class JobControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $jobId = 'jobId-1154752291';
         try {
-            $gapicClient->deleteJob($projectId, $region, $jobId);
+            $gapicClient->deleteJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -227,23 +197,13 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse->setJobUuid($jobUuid);
         $expectedResponse->setDone($done);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $jobId = 'jobId-1154752291';
-        $response = $gapicClient->getJob($projectId, $region, $jobId);
+        $response = $gapicClient->getJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/GetJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getJobId();
-        $this->assertProtobufEquals($jobId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -265,12 +225,8 @@ class JobControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $jobId = 'jobId-1154752291';
         try {
-            $gapicClient->getJob($projectId, $region, $jobId);
+            $gapicClient->getJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -300,10 +256,7 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $response = $gapicClient->listJobs($projectId, $region);
+        $response = $gapicClient->listJobs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -313,10 +266,6 @@ class JobControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/ListJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -338,11 +287,8 @@ class JobControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
         try {
-            $gapicClient->listJobs($projectId, $region);
+            $gapicClient->listJobs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -373,27 +319,13 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse->setJobUuid($jobUuid);
         $expectedResponse->setDone($done);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $job = new Job();
-        $jobPlacement = new JobPlacement();
-        $placementClusterName = 'placementClusterName1028110208';
-        $jobPlacement->setClusterName($placementClusterName);
-        $job->setPlacement($jobPlacement);
-        $response = $gapicClient->submitJob($projectId, $region, $job);
+        $response = $gapicClient->submitJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/SubmitJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getJob();
-        $this->assertProtobufEquals($job, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -415,16 +347,8 @@ class JobControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $job = new Job();
-        $jobPlacement = new JobPlacement();
-        $placementClusterName = 'placementClusterName1028110208';
-        $jobPlacement->setClusterName($placementClusterName);
-        $job->setPlacement($jobPlacement);
         try {
-            $gapicClient->submitJob($projectId, $region, $job);
+            $gapicClient->submitJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -473,15 +397,7 @@ class JobControllerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $job = new Job();
-        $jobPlacement = new JobPlacement();
-        $placementClusterName = 'placementClusterName1028110208';
-        $jobPlacement->setClusterName($placementClusterName);
-        $job->setPlacement($jobPlacement);
-        $response = $gapicClient->submitJobAsOperation($projectId, $region, $job);
+        $response = $gapicClient->submitJobAsOperation();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -491,12 +407,6 @@ class JobControllerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/SubmitJobAsOperation', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getJob();
-        $this->assertProtobufEquals($job, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/submitJobAsOperationTest');
         $response->pollUntilComplete([
@@ -547,15 +457,7 @@ class JobControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $job = new Job();
-        $jobPlacement = new JobPlacement();
-        $placementClusterName = 'placementClusterName1028110208';
-        $jobPlacement->setClusterName($placementClusterName);
-        $job->setPlacement($jobPlacement);
-        $response = $gapicClient->submitJobAsOperation($projectId, $region, $job);
+        $response = $gapicClient->submitJobAsOperation();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -596,33 +498,13 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse->setJobUuid($jobUuid);
         $expectedResponse->setDone($done);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $jobId = 'jobId-1154752291';
-        $job = new Job();
-        $jobPlacement = new JobPlacement();
-        $placementClusterName = 'placementClusterName1028110208';
-        $jobPlacement->setClusterName($placementClusterName);
-        $job->setPlacement($jobPlacement);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateJob($projectId, $region, $jobId, $job, $updateMask);
+        $response = $gapicClient->updateJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.JobController/UpdateJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getJobId();
-        $this->assertProtobufEquals($jobId, $actualValue);
-        $actualValue = $actualRequestObject->getJob();
-        $this->assertProtobufEquals($job, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -644,18 +526,8 @@ class JobControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $jobId = 'jobId-1154752291';
-        $job = new Job();
-        $jobPlacement = new JobPlacement();
-        $placementClusterName = 'placementClusterName1028110208';
-        $jobPlacement->setClusterName($placementClusterName);
-        $job->setPlacement($jobPlacement);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateJob($projectId, $region, $jobId, $job, $updateMask);
+            $gapicClient->updateJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -682,17 +554,13 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -714,10 +582,8 @@ class JobControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -744,20 +610,13 @@ class JobControllerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -779,11 +638,8 @@ class JobControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -806,20 +662,13 @@ class JobControllerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -841,11 +690,8 @@ class JobControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

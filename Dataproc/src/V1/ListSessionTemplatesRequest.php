@@ -45,8 +45,7 @@ class ListSessionTemplatesRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
-     * @param string $parent Required. The parent that owns this collection of session templates. Please see
-     *                       {@see SessionTemplateControllerClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent that owns this collection of session templates.
      *
      * @return \Google\Cloud\Dataproc\V1\ListSessionTemplatesRequest
      *

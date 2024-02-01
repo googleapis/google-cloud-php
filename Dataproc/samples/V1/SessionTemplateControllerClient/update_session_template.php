@@ -31,18 +31,19 @@ use Google\Cloud\Dataproc\V1\UpdateSessionTemplateRequest;
 /**
  * Updates the session template synchronously.
  *
- * @param string $sessionTemplateName The resource name of the session template.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_session_template_sample(string $sessionTemplateName): void
+function update_session_template_sample(): void
 {
     // Create a client.
     $sessionTemplateControllerClient = new SessionTemplateControllerClient();
 
     // Prepare the request message.
-    $sessionTemplate = (new SessionTemplate())
-        ->setName($sessionTemplateName);
-    $request = (new UpdateSessionTemplateRequest())
-        ->setSessionTemplate($sessionTemplate);
+    $request = new UpdateSessionTemplateRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function update_session_template_sample(string $sessionTemplateName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $sessionTemplateName = '[NAME]';
-
-    update_session_template_sample($sessionTemplateName);
 }
 // [END dataproc_v1_generated_SessionTemplateController_UpdateSessionTemplate_sync]

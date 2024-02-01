@@ -34,26 +34,19 @@ use Google\Cloud\Dataproc\V1\WorkflowTemplate;
  * Can retrieve previously instantiated template by specifying optional
  * version parameter.
  *
- * @param string $formattedName The resource name of the workflow template, as described
- *                              in https://cloud.google.com/apis/design/resource_names.
- *
- *                              * For `projects.regions.workflowTemplates.get`, the resource name of the
- *                              template has the following format:
- *                              `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
- *
- *                              * For `projects.locations.workflowTemplates.get`, the resource name of the
- *                              template has the following format:
- *                              `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
- *                              Please see {@see WorkflowTemplateServiceClient::workflowTemplateName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_workflow_template_sample(string $formattedName): void
+function get_workflow_template_sample(): void
 {
     // Create a client.
     $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
 
     // Prepare the request message.
-    $request = (new GetWorkflowTemplateRequest())
-        ->setName($formattedName);
+    $request = new GetWorkflowTemplateRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,25 +56,5 @@ function get_workflow_template_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = WorkflowTemplateServiceClient::workflowTemplateName(
-        '[PROJECT]',
-        '[REGION]',
-        '[WORKFLOW_TEMPLATE]'
-    );
-
-    get_workflow_template_sample($formattedName);
 }
 // [END dataproc_v1_generated_WorkflowTemplateService_GetWorkflowTemplate_sync]

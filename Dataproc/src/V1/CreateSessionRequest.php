@@ -53,8 +53,7 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string                            $parent    Required. The parent resource where this session will be created. Please see
-     *                                                     {@see SessionControllerClient::locationName()} for help formatting this field.
+     * @param string                            $parent    Required. The parent resource where this session will be created.
      * @param \Google\Cloud\Dataproc\V1\Session $session   Required. The interactive session to create.
      * @param string                            $sessionId Required. The ID to use for the session, which becomes the final component
      *                                                     of the session's resource name.

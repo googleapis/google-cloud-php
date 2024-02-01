@@ -36,8 +36,7 @@ class DeleteSessionRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string $name Required. The name of the session resource to delete. Please see
-     *                     {@see SessionControllerClient::sessionName()} for help formatting this field.
+     * @param string $name Required. The name of the session resource to delete.
      *
      * @return \Google\Cloud\Dataproc\V1\DeleteSessionRequest
      *

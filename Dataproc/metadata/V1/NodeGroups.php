@@ -23,31 +23,31 @@ class NodeGroups
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-È
-*google/cloud/dataproc/v1/node_groups.protogoogle.cloud.dataproc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/cloud/dataproc/v1/clusters.proto#google/longrunning/operations.protogoogle/protobuf/duration.proto"Æ
-CreateNodeGroupRequest9
-parent (	B)àAúA#!dataproc.googleapis.com/NodeGroup<
+Ñ
+*google/cloud/dataproc/v1/node_groups.protogoogle.cloud.dataproc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/cloud/dataproc/v1/clusters.proto#google/longrunning/operations.protogoogle/protobuf/duration.proto"Ê
+CreateNodeGroupRequest:
+parent (	B*âAúA#!dataproc.googleapis.com/NodeGroup=
 
-node_group (2#.google.cloud.dataproc.v1.NodeGroupBàA
-node_group_id (	BàA
+node_group (2#.google.cloud.dataproc.v1.NodeGroupBâA
+node_group_id (	BâA
 
-request_id (	BàA"ž
-ResizeNodeGroupRequest
-name (	BàA
-size (BàA
+request_id (	BâA"¢
+ResizeNodeGroupRequest
+name (	BâA
+size (BâA
 
-request_id (	BàAE
-graceful_decommission_timeout (2.google.protobuf.DurationBàA"N
-GetNodeGroupRequest7
-name (	B)àAúA#
+request_id (	BâAF
+graceful_decommission_timeout (2.google.protobuf.DurationBâA"O
+GetNodeGroupRequest8
+name (	B*âAúA#
 !dataproc.googleapis.com/NodeGroup2§
 NodeGroupController•
-CreateNodeGroup0.google.cloud.dataproc.v1.CreateNodeGroupRequest.google.longrunning.Operation"°‚Óä“E"7/v1/{parent=projects/*/regions/*/clusters/*}/nodeGroups:
-node_groupÚAparent,node_group,node_group_idÊA@
-	NodeGroup3google.cloud.dataproc.v1.NodeGroupOperationMetadataý
-ResizeNodeGroup0.google.cloud.dataproc.v1.ResizeNodeGroupRequest.google.longrunning.Operation"˜‚Óä“C">/v1/{name=projects/*/regions/*/clusters/*/nodeGroups/*}:resize:*ÚA	name,sizeÊA@
-	NodeGroup3google.cloud.dataproc.v1.NodeGroupOperationMetadataª
-GetNodeGroup-.google.cloud.dataproc.v1.GetNodeGroupRequest#.google.cloud.dataproc.v1.NodeGroup"F‚Óä“97/v1/{name=projects/*/regions/*/clusters/*/nodeGroups/*}ÚAnameKÊAdataproc.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÐ
+CreateNodeGroup0.google.cloud.dataproc.v1.CreateNodeGroupRequest.google.longrunning.Operation"°ÊA@
+	NodeGroup3google.cloud.dataproc.v1.NodeGroupOperationMetadataÚAparent,node_group,node_group_id‚Óä“E"7/v1/{parent=projects/*/regions/*/clusters/*}/nodeGroups:
+node_groupý
+ResizeNodeGroup0.google.cloud.dataproc.v1.ResizeNodeGroupRequest.google.longrunning.Operation"˜ÊA@
+	NodeGroup3google.cloud.dataproc.v1.NodeGroupOperationMetadataÚA	name,size‚Óä“C">/v1/{name=projects/*/regions/*/clusters/*/nodeGroups/*}:resize:*ª
+GetNodeGroup-.google.cloud.dataproc.v1.GetNodeGroupRequest#.google.cloud.dataproc.v1.NodeGroup"FÚAname‚Óä“97/v1/{name=projects/*/regions/*/clusters/*/nodeGroups/*}KÊAdataproc.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÐ
 com.google.cloud.dataproc.v1BNodeGroupsProtoPZ;cloud.google.com/go/dataproc/v2/apiv1/dataprocpb;dataprocpbêA_
 %dataproc.googleapis.com/ClusterRegion6projects/{project}/regions/{region}/clusters/{cluster}bproto3'
         , true);

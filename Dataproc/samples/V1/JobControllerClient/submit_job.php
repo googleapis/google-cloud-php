@@ -26,34 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Dataproc\V1\Client\JobControllerClient;
 use Google\Cloud\Dataproc\V1\Job;
-use Google\Cloud\Dataproc\V1\JobPlacement;
 use Google\Cloud\Dataproc\V1\SubmitJobRequest;
 
 /**
  * Submits a job to a cluster.
  *
- * @param string $projectId               The ID of the Google Cloud Platform project that the job
- *                                        belongs to.
- * @param string $region                  The Dataproc region in which to handle the request.
- * @param string $jobPlacementClusterName The name of the cluster where the job will be submitted.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function submit_job_sample(
-    string $projectId,
-    string $region,
-    string $jobPlacementClusterName
-): void {
+function submit_job_sample(): void
+{
     // Create a client.
     $jobControllerClient = new JobControllerClient();
 
     // Prepare the request message.
-    $jobPlacement = (new JobPlacement())
-        ->setClusterName($jobPlacementClusterName);
-    $job = (new Job())
-        ->setPlacement($jobPlacement);
-    $request = (new SubmitJobRequest())
-        ->setProjectId($projectId)
-        ->setRegion($region)
-        ->setJob($job);
+    $request = new SubmitJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,23 +53,5 @@ function submit_job_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $projectId = '[PROJECT_ID]';
-    $region = '[REGION]';
-    $jobPlacementClusterName = '[CLUSTER_NAME]';
-
-    submit_job_sample($projectId, $region, $jobPlacementClusterName);
 }
 // [END dataproc_v1_generated_JobController_SubmitJob_sync]

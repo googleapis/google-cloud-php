@@ -32,26 +32,19 @@ use Google\Cloud\Dataproc\V1\WorkflowTemplate;
 /**
  * Lists workflows that match the specified filter in the request.
  *
- * @param string $formattedParent The resource name of the region or location, as described
- *                                in https://cloud.google.com/apis/design/resource_names.
- *
- *                                * For `projects.regions.workflowTemplates,list`, the resource
- *                                name of the region has the following format:
- *                                `projects/{project_id}/regions/{region}`
- *
- *                                * For `projects.locations.workflowTemplates.list`, the
- *                                resource name of the location has the following format:
- *                                `projects/{project_id}/locations/{location}`
- *                                Please see {@see WorkflowTemplateServiceClient::regionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_workflow_templates_sample(string $formattedParent): void
+function list_workflow_templates_sample(): void
 {
     // Create a client.
     $workflowTemplateServiceClient = new WorkflowTemplateServiceClient();
 
     // Prepare the request message.
-    $request = (new ListWorkflowTemplatesRequest())
-        ->setParent($formattedParent);
+    $request = new ListWorkflowTemplatesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +58,5 @@ function list_workflow_templates_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = WorkflowTemplateServiceClient::regionName('[PROJECT]', '[REGION]');
-
-    list_workflow_templates_sample($formattedParent);
 }
 // [END dataproc_v1_generated_WorkflowTemplateService_ListWorkflowTemplates_sync]

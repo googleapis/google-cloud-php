@@ -48,7 +48,6 @@ class GetWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      *                     * For `projects.locations.workflowTemplates.get`, the resource name of the
      *                     template has the following format:
      *                     `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
-     *                     Please see {@see WorkflowTemplateServiceClient::workflowTemplateName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataproc\V1\GetWorkflowTemplateRequest
      *

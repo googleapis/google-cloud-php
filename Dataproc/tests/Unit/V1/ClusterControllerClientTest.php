@@ -36,7 +36,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -104,15 +103,7 @@ class ClusterControllerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $cluster = new Cluster();
-        $clusterProjectId = 'clusterProjectId-927164102';
-        $cluster->setProjectId($clusterProjectId);
-        $clusterClusterName = 'clusterClusterName2146953547';
-        $cluster->setClusterName($clusterClusterName);
-        $response = $gapicClient->createCluster($projectId, $region, $cluster);
+        $response = $gapicClient->createCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -122,12 +113,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.ClusterController/CreateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createClusterTest');
         $response->pollUntilComplete([
@@ -178,15 +163,7 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $cluster = new Cluster();
-        $clusterProjectId = 'clusterProjectId-927164102';
-        $cluster->setProjectId($clusterProjectId);
-        $clusterClusterName = 'clusterClusterName2146953547';
-        $cluster->setClusterName($clusterClusterName);
-        $response = $gapicClient->createCluster($projectId, $region, $cluster);
+        $response = $gapicClient->createCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -237,11 +214,7 @@ class ClusterControllerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $response = $gapicClient->deleteCluster($projectId, $region, $clusterName);
+        $response = $gapicClient->deleteCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -251,12 +224,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.ClusterController/DeleteCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterName();
-        $this->assertProtobufEquals($clusterName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteClusterTest');
         $response->pollUntilComplete([
@@ -307,11 +274,7 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $response = $gapicClient->deleteCluster($projectId, $region, $clusterName);
+        $response = $gapicClient->deleteCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -364,11 +327,7 @@ class ClusterControllerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $response = $gapicClient->diagnoseCluster($projectId, $region, $clusterName);
+        $response = $gapicClient->diagnoseCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -378,12 +337,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.ClusterController/DiagnoseCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterName();
-        $this->assertProtobufEquals($clusterName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/diagnoseClusterTest');
         $response->pollUntilComplete([
@@ -434,11 +387,7 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $response = $gapicClient->diagnoseCluster($projectId, $region, $clusterName);
+        $response = $gapicClient->diagnoseCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -477,23 +426,13 @@ class ClusterControllerClientTest extends GeneratedTest
         $expectedResponse->setClusterName($clusterName2);
         $expectedResponse->setClusterUuid($clusterUuid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $response = $gapicClient->getCluster($projectId, $region, $clusterName);
+        $response = $gapicClient->getCluster();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.ClusterController/GetCluster', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualRequestObject->getClusterName();
-        $this->assertProtobufEquals($clusterName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -515,12 +454,8 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
         try {
-            $gapicClient->getCluster($projectId, $region, $clusterName);
+            $gapicClient->getCluster();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -550,10 +485,7 @@ class ClusterControllerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setClusters($clusters);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $response = $gapicClient->listClusters($projectId, $region);
+        $response = $gapicClient->listClusters();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -563,10 +495,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.ClusterController/ListClusters', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -588,11 +516,8 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
         try {
-            $gapicClient->listClusters($projectId, $region);
+            $gapicClient->listClusters();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -639,11 +564,7 @@ class ClusterControllerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $response = $gapicClient->startCluster($projectId, $region, $clusterName);
+        $response = $gapicClient->startCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -653,12 +574,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.ClusterController/StartCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterName();
-        $this->assertProtobufEquals($clusterName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/startClusterTest');
         $response->pollUntilComplete([
@@ -709,11 +624,7 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $response = $gapicClient->startCluster($projectId, $region, $clusterName);
+        $response = $gapicClient->startCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -770,11 +681,7 @@ class ClusterControllerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $response = $gapicClient->stopCluster($projectId, $region, $clusterName);
+        $response = $gapicClient->stopCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -784,12 +691,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.ClusterController/StopCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterName();
-        $this->assertProtobufEquals($clusterName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/stopClusterTest');
         $response->pollUntilComplete([
@@ -840,11 +741,7 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $response = $gapicClient->stopCluster($projectId, $region, $clusterName);
+        $response = $gapicClient->stopCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -901,17 +798,7 @@ class ClusterControllerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $cluster = new Cluster();
-        $clusterProjectId = 'clusterProjectId-927164102';
-        $cluster->setProjectId($clusterProjectId);
-        $clusterClusterName = 'clusterClusterName2146953547';
-        $cluster->setClusterName($clusterClusterName);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateCluster($projectId, $region, $clusterName, $cluster, $updateMask);
+        $response = $gapicClient->updateCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -921,16 +808,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataproc.v1.ClusterController/UpdateCluster', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $actualValue = $actualApiRequestObject->getClusterName();
-        $this->assertProtobufEquals($clusterName, $actualValue);
-        $actualValue = $actualApiRequestObject->getCluster();
-        $this->assertProtobufEquals($cluster, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateClusterTest');
         $response->pollUntilComplete([
@@ -981,17 +858,7 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $region = 'region-934795532';
-        $clusterName = 'clusterName-1018081872';
-        $cluster = new Cluster();
-        $clusterProjectId = 'clusterProjectId-927164102';
-        $cluster->setProjectId($clusterProjectId);
-        $clusterClusterName = 'clusterClusterName2146953547';
-        $cluster->setClusterName($clusterClusterName);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateCluster($projectId, $region, $clusterName, $cluster, $updateMask);
+        $response = $gapicClient->updateCluster();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1028,17 +895,13 @@ class ClusterControllerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1060,10 +923,8 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1090,20 +951,13 @@ class ClusterControllerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1125,11 +979,8 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1152,20 +1003,13 @@ class ClusterControllerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1187,11 +1031,8 @@ class ClusterControllerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

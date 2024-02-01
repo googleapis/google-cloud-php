@@ -61,9 +61,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $nodeGroupControllerClient = new NodeGroupControllerClient();
  * try {
- *     $formattedParent = $nodeGroupControllerClient->clusterRegionName('[PROJECT]', '[REGION]', '[CLUSTER]');
- *     $nodeGroup = new NodeGroup();
- *     $operationResponse = $nodeGroupControllerClient->createNodeGroup($formattedParent, $nodeGroup);
+ *     $operationResponse = $nodeGroupControllerClient->createNodeGroup();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -74,7 +72,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $nodeGroupControllerClient->createNodeGroup($formattedParent, $nodeGroup);
+ *     $operationResponse = $nodeGroupControllerClient->createNodeGroup();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $nodeGroupControllerClient->resumeOperation($operationName, 'createNodeGroup');
@@ -367,9 +365,7 @@ class NodeGroupControllerGapicClient
      * ```
      * $nodeGroupControllerClient = new NodeGroupControllerClient();
      * try {
-     *     $formattedParent = $nodeGroupControllerClient->clusterRegionName('[PROJECT]', '[REGION]', '[CLUSTER]');
-     *     $nodeGroup = new NodeGroup();
-     *     $operationResponse = $nodeGroupControllerClient->createNodeGroup($formattedParent, $nodeGroup);
+     *     $operationResponse = $nodeGroupControllerClient->createNodeGroup();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -380,7 +376,7 @@ class NodeGroupControllerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $nodeGroupControllerClient->createNodeGroup($formattedParent, $nodeGroup);
+     *     $operationResponse = $nodeGroupControllerClient->createNodeGroup();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $nodeGroupControllerClient->resumeOperation($operationName, 'createNodeGroup');
@@ -400,12 +396,14 @@ class NodeGroupControllerGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The parent resource where this node group will be created.
-     *                                Format: `projects/{project}/regions/{region}/clusters/{cluster}`
-     * @param NodeGroup $nodeGroup    Required. The node group to create.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource where this node group will be created.
+     *           Format: `projects/{project}/regions/{region}/clusters/{cluster}`
+     *     @type NodeGroup $nodeGroup
+     *           Required. The node group to create.
      *     @type string $nodeGroupId
      *           Optional. An optional node group ID. Generated if not specified.
      *
@@ -435,13 +433,19 @@ class NodeGroupControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createNodeGroup($parent, $nodeGroup, array $optionalArgs = [])
+    public function createNodeGroup(array $optionalArgs = [])
     {
         $request = new CreateNodeGroupRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setNodeGroup($nodeGroup);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['nodeGroup'])) {
+            $request->setNodeGroup($optionalArgs['nodeGroup']);
+        }
+
         if (isset($optionalArgs['nodeGroupId'])) {
             $request->setNodeGroupId($optionalArgs['nodeGroupId']);
         }
@@ -463,19 +467,19 @@ class NodeGroupControllerGapicClient
      * ```
      * $nodeGroupControllerClient = new NodeGroupControllerClient();
      * try {
-     *     $formattedName = $nodeGroupControllerClient->nodeGroupName('[PROJECT]', '[REGION]', '[CLUSTER]', '[NODE_GROUP]');
-     *     $response = $nodeGroupControllerClient->getNodeGroup($formattedName);
+     *     $response = $nodeGroupControllerClient->getNodeGroup();
      * } finally {
      *     $nodeGroupControllerClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the node group to retrieve.
-     *                             Format:
-     *                             `projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the node group to retrieve.
+     *           Format:
+     *           `projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -486,12 +490,15 @@ class NodeGroupControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getNodeGroup($name, array $optionalArgs = [])
+    public function getNodeGroup(array $optionalArgs = [])
     {
         $request = new GetNodeGroupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetNodeGroup', NodeGroup::class, $optionalArgs, $request)->wait();
@@ -506,9 +513,7 @@ class NodeGroupControllerGapicClient
      * ```
      * $nodeGroupControllerClient = new NodeGroupControllerClient();
      * try {
-     *     $name = 'name';
-     *     $size = 0;
-     *     $operationResponse = $nodeGroupControllerClient->resizeNodeGroup($name, $size);
+     *     $operationResponse = $nodeGroupControllerClient->resizeNodeGroup();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -519,7 +524,7 @@ class NodeGroupControllerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $nodeGroupControllerClient->resizeNodeGroup($name, $size);
+     *     $operationResponse = $nodeGroupControllerClient->resizeNodeGroup();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $nodeGroupControllerClient->resumeOperation($operationName, 'resizeNodeGroup');
@@ -539,15 +544,17 @@ class NodeGroupControllerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the node group to resize.
-     *                             Format:
-     *                             `projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}`
-     * @param int    $size         Required. The number of running instances for the node group to maintain.
-     *                             The group adds or removes instances to maintain the number of instances
-     *                             specified by this parameter.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the node group to resize.
+     *           Format:
+     *           `projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}`
+     *     @type int $size
+     *           Required. The number of running instances for the node group to maintain.
+     *           The group adds or removes instances to maintain the number of instances
+     *           specified by this parameter.
      *     @type string $requestId
      *           Optional. A unique ID used to identify the request. If the server receives
      *           two
@@ -584,13 +591,19 @@ class NodeGroupControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resizeNodeGroup($name, $size, array $optionalArgs = [])
+    public function resizeNodeGroup(array $optionalArgs = [])
     {
         $request = new ResizeNodeGroupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setSize($size);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['size'])) {
+            $request->setSize($optionalArgs['size']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -612,18 +625,18 @@ class NodeGroupControllerGapicClient
      * ```
      * $nodeGroupControllerClient = new NodeGroupControllerClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $nodeGroupControllerClient->getIamPolicy($resource);
+     *     $response = $nodeGroupControllerClient->getIamPolicy();
      * } finally {
      *     $nodeGroupControllerClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -637,12 +650,15 @@ class NodeGroupControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -663,23 +679,23 @@ class NodeGroupControllerGapicClient
      * ```
      * $nodeGroupControllerClient = new NodeGroupControllerClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $nodeGroupControllerClient->setIamPolicy($resource, $policy);
+     *     $response = $nodeGroupControllerClient->setIamPolicy();
      * } finally {
      *     $nodeGroupControllerClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -696,13 +712,19 @@ class NodeGroupControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -725,23 +747,23 @@ class NodeGroupControllerGapicClient
      * ```
      * $nodeGroupControllerClient = new NodeGroupControllerClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $nodeGroupControllerClient->testIamPermissions($resource, $permissions);
+     *     $response = $nodeGroupControllerClient->testIamPermissions();
      * } finally {
      *     $nodeGroupControllerClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -752,13 +774,19 @@ class NodeGroupControllerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataproc\V1\Client\NodeGroupControllerClient;
 use Google\Cloud\Dataproc\V1\CreateNodeGroupRequest;
 use Google\Cloud\Dataproc\V1\NodeGroup;
-use Google\Cloud\Dataproc\V1\NodeGroup\Role;
 use Google\Rpc\Status;
 
 /**
@@ -36,23 +35,19 @@ use Google\Rpc\Status;
  * [Operation.metadata][google.longrunning.Operation.metadata] is
  * [NodeGroupOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).
  *
- * @param string $formattedParent       The parent resource where this node group will be created.
- *                                      Format: `projects/{project}/regions/{region}/clusters/{cluster}`
- *                                      Please see {@see NodeGroupControllerClient::clusterRegionName()} for help formatting this field.
- * @param int    $nodeGroupRolesElement Node group roles.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_node_group_sample(string $formattedParent, int $nodeGroupRolesElement): void
+function create_node_group_sample(): void
 {
     // Create a client.
     $nodeGroupControllerClient = new NodeGroupControllerClient();
 
     // Prepare the request message.
-    $nodeGroupRoles = [$nodeGroupRolesElement,];
-    $nodeGroup = (new NodeGroup())
-        ->setRoles($nodeGroupRoles);
-    $request = (new CreateNodeGroupRequest())
-        ->setParent($formattedParent)
-        ->setNodeGroup($nodeGroup);
+    $request = new CreateNodeGroupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,26 +67,5 @@ function create_node_group_sample(string $formattedParent, int $nodeGroupRolesEl
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = NodeGroupControllerClient::clusterRegionName(
-        '[PROJECT]',
-        '[REGION]',
-        '[CLUSTER]'
-    );
-    $nodeGroupRolesElement = Role::ROLE_UNSPECIFIED;
-
-    create_node_group_sample($formattedParent, $nodeGroupRolesElement);
 }
 // [END dataproc_v1_generated_NodeGroupController_CreateNodeGroup_sync]

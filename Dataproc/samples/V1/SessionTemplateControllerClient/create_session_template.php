@@ -31,23 +31,19 @@ use Google\Cloud\Dataproc\V1\SessionTemplate;
 /**
  * Create a session template synchronously.
  *
- * @param string $formattedParent     The parent resource where this session template will be created. Please see
- *                                    {@see SessionTemplateControllerClient::locationName()} for help formatting this field.
- * @param string $sessionTemplateName The resource name of the session template.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_session_template_sample(
-    string $formattedParent,
-    string $sessionTemplateName
-): void {
+function create_session_template_sample(): void
+{
     // Create a client.
     $sessionTemplateControllerClient = new SessionTemplateControllerClient();
 
     // Prepare the request message.
-    $sessionTemplate = (new SessionTemplate())
-        ->setName($sessionTemplateName);
-    $request = (new CreateSessionTemplateRequest())
-        ->setParent($formattedParent)
-        ->setSessionTemplate($sessionTemplate);
+    $request = new CreateSessionTemplateRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,22 +53,5 @@ function create_session_template_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SessionTemplateControllerClient::locationName('[PROJECT]', '[LOCATION]');
-    $sessionTemplateName = '[NAME]';
-
-    create_session_template_sample($formattedParent, $sessionTemplateName);
 }
 // [END dataproc_v1_generated_SessionTemplateController_CreateSessionTemplate_sync]
