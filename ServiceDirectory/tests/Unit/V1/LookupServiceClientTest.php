@@ -72,17 +72,13 @@ class LookupServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ResolveServiceResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $response = $gapicClient->resolveService($formattedName);
+        $response = $gapicClient->resolveService();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.LookupService/ResolveService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -104,10 +100,8 @@ class LookupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
         try {
-            $gapicClient->resolveService($formattedName);
+            $gapicClient->resolveService();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -325,10 +325,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $expectedResponse->setSshHost($sshHost);
         $expectedResponse->setSshPort($sshPort);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->environmentName('[USER]', '[ENVIRONMENT]');
-        $request = (new GetEnvironmentRequest())
-            ->setName($formattedName);
+        $request = new GetEnvironmentRequest();
         $response = $gapicClient->getEnvironment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -336,8 +333,6 @@ class CloudShellServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.shell.v1.CloudShellService/GetEnvironment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -359,10 +354,7 @@ class CloudShellServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->environmentName('[USER]', '[ENVIRONMENT]');
-        $request = (new GetEnvironmentRequest())
-            ->setName($formattedName);
+        $request = new GetEnvironmentRequest();
         try {
             $gapicClient->getEnvironment($request);
             // If the $gapicClient method call did not throw, fail the test

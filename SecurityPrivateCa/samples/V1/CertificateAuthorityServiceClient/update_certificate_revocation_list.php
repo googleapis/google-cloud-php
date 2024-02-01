@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList;
 use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateRevocationListRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -47,11 +46,7 @@ function update_certificate_revocation_list_sample(): void
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $certificateRevocationList = new CertificateRevocationList();
-    $updateMask = new FieldMask();
-    $request = (new UpdateCertificateRevocationListRequest())
-        ->setCertificateRevocationList($certificateRevocationList)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateCertificateRevocationListRequest();
 
     // Call the API and handle any network failures.
     try {

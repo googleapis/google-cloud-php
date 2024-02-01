@@ -44,9 +44,7 @@ function update_finding_sample(): void
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $finding = new Finding();
-    $request = (new UpdateFindingRequest())
-        ->setFinding($finding);
+    $request = new UpdateFindingRequest();
 
     // Call the API and handle any network failures.
     try {

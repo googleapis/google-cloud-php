@@ -32,23 +32,19 @@ use Google\Cloud\SecurityCenterManagement\V1\DeleteEventThreatDetectionCustomMod
  * descendants in the Resource Manager hierarchy. This method is only
  * supported for resident custom modules.
  *
- * @param string $formattedName The resource name of the ETD custom module.
- *
- *                              Its format is:
- *
- *                              * "organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}".
- *                              * "folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}".
- *                              * "projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}". Please see
- *                              {@see SecurityCenterManagementClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_event_threat_detection_custom_module_sample(string $formattedName): void
+function delete_event_threat_detection_custom_module_sample(): void
 {
     // Create a client.
     $securityCenterManagementClient = new SecurityCenterManagementClient();
 
     // Prepare the request message.
-    $request = (new DeleteEventThreatDetectionCustomModuleRequest())
-        ->setName($formattedName);
+    $request = new DeleteEventThreatDetectionCustomModuleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,25 +53,5 @@ function delete_event_threat_detection_custom_module_sample(string $formattedNam
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SecurityCenterManagementClient::eventThreatDetectionCustomModuleName(
-        '[ORGANIZATION]',
-        '[LOCATION]',
-        '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
-    );
-
-    delete_event_threat_detection_custom_module_sample($formattedName);
 }
 // [END securitycentermanagement_v1_generated_SecurityCenterManagement_DeleteEventThreatDetectionCustomModule_sync]

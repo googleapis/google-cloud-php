@@ -38,8 +38,7 @@ class ListCommentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of Case object for which comments should be
-     *                       listed. Please see
-     *                       {@see CommentServiceClient::caseName()} for help formatting this field.
+     *                       listed.
      *
      * @return \Google\Cloud\Support\V2\ListCommentsRequest
      *

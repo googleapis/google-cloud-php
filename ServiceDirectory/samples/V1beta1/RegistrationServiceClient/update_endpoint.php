@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\ServiceDirectory\V1beta1\Endpoint;
 use Google\Cloud\ServiceDirectory\V1beta1\RegistrationServiceClient;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates an endpoint.
@@ -42,14 +41,10 @@ function update_endpoint_sample(): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $endpoint = new Endpoint();
-    $updateMask = new FieldMask();
-
     // Call the API and handle any network failures.
     try {
         /** @var Endpoint $response */
-        $response = $registrationServiceClient->updateEndpoint($endpoint, $updateMask);
+        $response = $registrationServiceClient->updateEndpoint();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

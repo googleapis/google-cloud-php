@@ -34,21 +34,19 @@ use Google\Cloud\SecurityCenterManagement\V1\ListEventThreatDetectionCustomModul
  * Resource Manager parent. This includes resident modules defined at the
  * scope of the parent along with modules inherited from ancestors.
  *
- * @param string $formattedParent Name of parent to list custom modules. Its format is
- *                                "organizations/{organization}/locations/{location}",
- *                                "folders/{folder}/locations/{location}",
- *                                or
- *                                "projects/{project}/locations/{location}"
- *                                Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_event_threat_detection_custom_modules_sample(string $formattedParent): void
+function list_event_threat_detection_custom_modules_sample(): void
 {
     // Create a client.
     $securityCenterManagementClient = new SecurityCenterManagementClient();
 
     // Prepare the request message.
-    $request = (new ListEventThreatDetectionCustomModulesRequest())
-        ->setParent($formattedParent);
+    $request = new ListEventThreatDetectionCustomModulesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,24 +60,5 @@ function list_event_threat_detection_custom_modules_sample(string $formattedPare
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecurityCenterManagementClient::organizationLocationName(
-        '[ORGANIZATION]',
-        '[LOCATION]'
-    );
-
-    list_event_threat_detection_custom_modules_sample($formattedParent);
 }
 // [END securitycentermanagement_v1_generated_SecurityCenterManagement_ListEventThreatDetectionCustomModules_sync]

@@ -118,9 +118,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'filter',
-                ],
             ],
             'ListServices' => [
                 'method' => 'get',

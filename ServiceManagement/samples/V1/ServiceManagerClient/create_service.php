@@ -55,9 +55,7 @@ function create_service_sample(): void
     $serviceManagerClient = new ServiceManagerClient();
 
     // Prepare the request message.
-    $service = new ManagedService();
-    $request = (new CreateServiceRequest())
-        ->setService($service);
+    $request = new CreateServiceRequest();
 
     // Call the API and handle any network failures.
     try {

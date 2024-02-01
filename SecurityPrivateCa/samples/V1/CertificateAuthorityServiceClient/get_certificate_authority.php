@@ -32,20 +32,19 @@ use Google\Cloud\Security\PrivateCA\V1\GetCertificateAuthorityRequest;
  * Returns a
  * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
  *
- * @param string $formattedName The
- *                              [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the
- *                              [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
- *                              to get. Please see
- *                              {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_certificate_authority_sample(string $formattedName): void
+function get_certificate_authority_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $request = (new GetCertificateAuthorityRequest())
-        ->setName($formattedName);
+    $request = new GetCertificateAuthorityRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,26 +54,5 @@ function get_certificate_authority_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CertificateAuthorityServiceClient::certificateAuthorityName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CA_POOL]',
-        '[CERTIFICATE_AUTHORITY]'
-    );
-
-    get_certificate_authority_sample($formattedName);
 }
 // [END privateca_v1_generated_CertificateAuthorityService_GetCertificateAuthority_sync]

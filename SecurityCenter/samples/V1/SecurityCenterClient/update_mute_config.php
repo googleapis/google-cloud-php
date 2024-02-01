@@ -31,37 +31,19 @@ use Google\Cloud\SecurityCenter\V1\UpdateMuteConfigRequest;
 /**
  * Updates a mute config.
  *
- * @param string $muteConfigFilter An expression that defines the filter to apply across
- *                                 create/update events of findings. While creating a filter string, be
- *                                 mindful of the scope in which the mute configuration is being created.
- *                                 E.g., If a filter contains project = X but is created under the project = Y
- *                                 scope, it might not match any findings.
- *
- *                                 The following field and operator combinations are supported:
- *
- *                                 * severity: `=`, `:`
- *                                 * category: `=`, `:`
- *                                 * resource.name: `=`, `:`
- *                                 * resource.project_name: `=`, `:`
- *                                 * resource.project_display_name: `=`, `:`
- *                                 * resource.folders.resource_folder: `=`, `:`
- *                                 * resource.parent_name: `=`, `:`
- *                                 * resource.parent_display_name: `=`, `:`
- *                                 * resource.type: `=`, `:`
- *                                 * finding_class: `=`, `:`
- *                                 * indicator.ip_addresses: `=`, `:`
- *                                 * indicator.domains: `=`, `:`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_mute_config_sample(string $muteConfigFilter): void
+function update_mute_config_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $muteConfig = (new MuteConfig())
-        ->setFilter($muteConfigFilter);
-    $request = (new UpdateMuteConfigRequest())
-        ->setMuteConfig($muteConfig);
+    $request = new UpdateMuteConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,21 +53,5 @@ function update_mute_config_sample(string $muteConfigFilter): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $muteConfigFilter = '[FILTER]';
-
-    update_mute_config_sample($muteConfigFilter);
 }
 // [END securitycenter_v1_generated_SecurityCenter_UpdateMuteConfig_sync]

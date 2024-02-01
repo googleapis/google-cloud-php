@@ -42,8 +42,7 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     protected $filter = '';
 
     /**
-     * @param string $parent Required. Parent value for ListRepositoriesRequest. Please see
-     *                       {@see SecureSourceManagerClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Parent value for ListRepositoriesRequest.
      *
      * @return \Google\Cloud\SecureSourceManager\V1\ListRepositoriesRequest
      *

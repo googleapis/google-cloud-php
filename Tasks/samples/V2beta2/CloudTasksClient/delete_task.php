@@ -33,37 +33,23 @@ use Google\Cloud\Tasks\V2beta2\CloudTasksClient;
  * cannot be deleted if it has completed successfully or permanently
  * failed.
  *
- * @param string $formattedName The task name. For example:
- *                              `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
- *                              Please see {@see CloudTasksClient::taskName()} for help formatting this field.
- */
-function delete_task_sample(string $formattedName): void
-{
-    // Create a client.
-    $cloudTasksClient = new CloudTasksClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $cloudTasksClient->deleteTask($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_task_sample(): void
 {
-    $formattedName = CloudTasksClient::taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
+    // Create a client.
+    $cloudTasksClient = new CloudTasksClient();
 
-    delete_task_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $cloudTasksClient->deleteTask();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudtasks_v2beta2_generated_CloudTasks_DeleteTask_sync]

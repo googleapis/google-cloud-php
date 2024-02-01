@@ -38,17 +38,19 @@ use Google\Cloud\StorageTransfer\V1\GoogleServiceAccount;
  * account is created and owned by Storage Transfer Service and can
  * only be used by Storage Transfer Service.
  *
- * @param string $projectId The ID of the Google Cloud project that the Google service
- *                          account is associated with.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_google_service_account_sample(string $projectId): void
+function get_google_service_account_sample(): void
 {
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
     // Prepare the request message.
-    $request = (new GetGoogleServiceAccountRequest())
-        ->setProjectId($projectId);
+    $request = new GetGoogleServiceAccountRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +60,5 @@ function get_google_service_account_sample(string $projectId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $projectId = '[PROJECT_ID]';
-
-    get_google_service_account_sample($projectId);
 }
 // [END storagetransfer_v1_generated_StorageTransferService_GetGoogleServiceAccount_sync]

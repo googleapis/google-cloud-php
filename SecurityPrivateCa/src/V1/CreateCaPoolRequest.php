@@ -58,8 +58,7 @@ class CreateCaPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                     $parent   Required. The resource name of the location associated with the
      *                                                             [CaPool][google.cloud.security.privateca.v1.CaPool], in the format
-     *                                                             `projects/&#42;/locations/*`. Please see
-     *                                                             {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
+     *                                                             `projects/&#42;/locations/*`.
      * @param \Google\Cloud\Security\PrivateCA\V1\CaPool $caPool   Required. A [CaPool][google.cloud.security.privateca.v1.CaPool] with
      *                                                             initial field values.
      * @param string                                     $caPoolId Required. It must be unique within a location and match the regular

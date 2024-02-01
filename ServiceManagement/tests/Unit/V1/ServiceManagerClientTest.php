@@ -30,7 +30,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Api\Service;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-use Google\Cloud\ServiceManagement\V1\ConfigSource;
 use Google\Cloud\ServiceManagement\V1\GenerateConfigReportResponse;
 use Google\Cloud\ServiceManagement\V1\ListServiceConfigsResponse;
 use Google\Cloud\ServiceManagement\V1\ListServiceRolloutsResponse;
@@ -108,9 +107,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $service = new ManagedService();
-        $response = $gapicClient->createService($service);
+        $response = $gapicClient->createService();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -120,8 +117,6 @@ class ServiceManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/CreateService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getService();
-        $this->assertProtobufEquals($service, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createServiceTest');
         $response->pollUntilComplete([
@@ -172,9 +167,7 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $service = new ManagedService();
-        $response = $gapicClient->createService($service);
+        $response = $gapicClient->createService();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -215,20 +208,13 @@ class ServiceManagerClientTest extends GeneratedTest
         $expectedResponse->setProducerProjectId($producerProjectId);
         $expectedResponse->setId($id);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $serviceConfig = new Service();
-        $response = $gapicClient->createServiceConfig($serviceName, $serviceConfig);
+        $response = $gapicClient->createServiceConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/CreateServiceConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServiceName();
-        $this->assertProtobufEquals($serviceName, $actualValue);
-        $actualValue = $actualRequestObject->getServiceConfig();
-        $this->assertProtobufEquals($serviceConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -250,11 +236,8 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $serviceConfig = new Service();
         try {
-            $gapicClient->createServiceConfig($serviceName, $serviceConfig);
+            $gapicClient->createServiceConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -301,10 +284,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $rollout = new Rollout();
-        $response = $gapicClient->createServiceRollout($serviceName, $rollout);
+        $response = $gapicClient->createServiceRollout();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -314,10 +294,6 @@ class ServiceManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/CreateServiceRollout', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getServiceName();
-        $this->assertProtobufEquals($serviceName, $actualValue);
-        $actualValue = $actualApiRequestObject->getRollout();
-        $this->assertProtobufEquals($rollout, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createServiceRolloutTest');
         $response->pollUntilComplete([
@@ -368,10 +344,7 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $rollout = new Rollout();
-        $response = $gapicClient->createServiceRollout($serviceName, $rollout);
+        $response = $gapicClient->createServiceRollout();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -422,9 +395,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $response = $gapicClient->deleteService($serviceName);
+        $response = $gapicClient->deleteService();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -434,8 +405,6 @@ class ServiceManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/DeleteService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getServiceName();
-        $this->assertProtobufEquals($serviceName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteServiceTest');
         $response->pollUntilComplete([
@@ -486,9 +455,7 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $response = $gapicClient->deleteService($serviceName);
+        $response = $gapicClient->deleteService();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -525,17 +492,13 @@ class ServiceManagerClientTest extends GeneratedTest
         $expectedResponse->setServiceName($serviceName);
         $expectedResponse->setId($id);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $newConfig = new Any();
-        $response = $gapicClient->generateConfigReport($newConfig);
+        $response = $gapicClient->generateConfigReport();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/GenerateConfigReport', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNewConfig();
-        $this->assertProtobufEquals($newConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -557,10 +520,8 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $newConfig = new Any();
         try {
-            $gapicClient->generateConfigReport($newConfig);
+            $gapicClient->generateConfigReport();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -587,17 +548,13 @@ class ServiceManagerClientTest extends GeneratedTest
         $expectedResponse->setServiceName($serviceName2);
         $expectedResponse->setProducerProjectId($producerProjectId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $response = $gapicClient->getService($serviceName);
+        $response = $gapicClient->getService();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/GetService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServiceName();
-        $this->assertProtobufEquals($serviceName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -619,10 +576,8 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $serviceName = 'serviceName359880149';
         try {
-            $gapicClient->getService($serviceName);
+            $gapicClient->getService();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -653,20 +608,13 @@ class ServiceManagerClientTest extends GeneratedTest
         $expectedResponse->setProducerProjectId($producerProjectId);
         $expectedResponse->setId($id);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $configId = 'configId-804450504';
-        $response = $gapicClient->getServiceConfig($serviceName, $configId);
+        $response = $gapicClient->getServiceConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/GetServiceConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServiceName();
-        $this->assertProtobufEquals($serviceName, $actualValue);
-        $actualValue = $actualRequestObject->getConfigId();
-        $this->assertProtobufEquals($configId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -688,11 +636,8 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $configId = 'configId-804450504';
         try {
-            $gapicClient->getServiceConfig($serviceName, $configId);
+            $gapicClient->getServiceConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -721,20 +666,13 @@ class ServiceManagerClientTest extends GeneratedTest
         $expectedResponse->setCreatedBy($createdBy);
         $expectedResponse->setServiceName($serviceName2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $rolloutId = 'rolloutId-91142551';
-        $response = $gapicClient->getServiceRollout($serviceName, $rolloutId);
+        $response = $gapicClient->getServiceRollout();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/GetServiceRollout', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServiceName();
-        $this->assertProtobufEquals($serviceName, $actualValue);
-        $actualValue = $actualRequestObject->getRolloutId();
-        $this->assertProtobufEquals($rolloutId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -756,11 +694,8 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $rolloutId = 'rolloutId-91142551';
         try {
-            $gapicClient->getServiceRollout($serviceName, $rolloutId);
+            $gapicClient->getServiceRollout();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -790,9 +725,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServiceConfigs($serviceConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $response = $gapicClient->listServiceConfigs($serviceName);
+        $response = $gapicClient->listServiceConfigs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -802,8 +735,6 @@ class ServiceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/ListServiceConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServiceName();
-        $this->assertProtobufEquals($serviceName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -825,10 +756,8 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $serviceName = 'serviceName359880149';
         try {
-            $gapicClient->listServiceConfigs($serviceName);
+            $gapicClient->listServiceConfigs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -858,10 +787,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRollouts($rollouts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->listServiceRollouts($serviceName, $filter);
+        $response = $gapicClient->listServiceRollouts();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -871,10 +797,6 @@ class ServiceManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/ListServiceRollouts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServiceName();
-        $this->assertProtobufEquals($serviceName, $actualValue);
-        $actualValue = $actualRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -896,11 +818,8 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $filter = 'filter-1274492040';
         try {
-            $gapicClient->listServiceRollouts($serviceName, $filter);
+            $gapicClient->listServiceRollouts();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1003,10 +922,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $configSource = new ConfigSource();
-        $response = $gapicClient->submitConfigSource($serviceName, $configSource);
+        $response = $gapicClient->submitConfigSource();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1016,10 +932,6 @@ class ServiceManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/SubmitConfigSource', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getServiceName();
-        $this->assertProtobufEquals($serviceName, $actualValue);
-        $actualValue = $actualApiRequestObject->getConfigSource();
-        $this->assertProtobufEquals($configSource, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/submitConfigSourceTest');
         $response->pollUntilComplete([
@@ -1070,10 +982,7 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $configSource = new ConfigSource();
-        $response = $gapicClient->submitConfigSource($serviceName, $configSource);
+        $response = $gapicClient->submitConfigSource();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1124,9 +1033,7 @@ class ServiceManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $response = $gapicClient->undeleteService($serviceName);
+        $response = $gapicClient->undeleteService();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1136,8 +1043,6 @@ class ServiceManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.api.servicemanagement.v1.ServiceManager/UndeleteService', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getServiceName();
-        $this->assertProtobufEquals($serviceName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeleteServiceTest');
         $response->pollUntilComplete([
@@ -1188,9 +1093,7 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $serviceName = 'serviceName359880149';
-        $response = $gapicClient->undeleteService($serviceName);
+        $response = $gapicClient->undeleteService();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1227,17 +1130,13 @@ class ServiceManagerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1259,10 +1158,8 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1289,20 +1186,13 @@ class ServiceManagerClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1324,11 +1214,8 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1351,20 +1238,13 @@ class ServiceManagerClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1386,11 +1266,8 @@ class ServiceManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

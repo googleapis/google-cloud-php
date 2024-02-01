@@ -87,8 +87,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $speechClient = new SpeechClient();
  * try {
- *     $formattedRecognizer = $speechClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
- *     $operationResponse = $speechClient->batchRecognize($formattedRecognizer);
+ *     $operationResponse = $speechClient->batchRecognize();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -99,7 +98,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $speechClient->batchRecognize($formattedRecognizer);
+ *     $operationResponse = $speechClient->batchRecognize();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'batchRecognize');
@@ -552,8 +551,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedRecognizer = $speechClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-     *     $operationResponse = $speechClient->batchRecognize($formattedRecognizer);
+     *     $operationResponse = $speechClient->batchRecognize();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -564,7 +562,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->batchRecognize($formattedRecognizer);
+     *     $operationResponse = $speechClient->batchRecognize();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'batchRecognize');
@@ -584,13 +582,14 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param string $recognizer   Required. The name of the Recognizer to use during recognition. The
-     *                             expected format is
-     *                             `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
-     *                             {recognizer} segment may be set to `_` to use an empty implicit Recognizer.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $recognizer
+     *           Required. The name of the Recognizer to use during recognition. The
+     *           expected format is
+     *           `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
+     *           {recognizer} segment may be set to `_` to use an empty implicit Recognizer.
      *     @type RecognitionConfig $config
      *           Features and audio metadata to use for the Automatic Speech Recognition.
      *           This field in combination with the
@@ -630,12 +629,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchRecognize($recognizer, array $optionalArgs = [])
+    public function batchRecognize(array $optionalArgs = [])
     {
         $request = new BatchRecognizeRequest();
         $requestParamHeaders = [];
-        $request->setRecognizer($recognizer);
-        $requestParamHeaders['recognizer'] = $recognizer;
+        if (isset($optionalArgs['recognizer'])) {
+            $request->setRecognizer($optionalArgs['recognizer']);
+            $requestParamHeaders['recognizer'] = $optionalArgs['recognizer'];
+        }
+
         if (isset($optionalArgs['config'])) {
             $request->setConfig($optionalArgs['config']);
         }
@@ -668,9 +670,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $customClass = new CustomClass();
-     *     $formattedParent = $speechClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $operationResponse = $speechClient->createCustomClass($customClass, $formattedParent);
+     *     $operationResponse = $speechClient->createCustomClass();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -681,7 +681,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->createCustomClass($customClass, $formattedParent);
+     *     $operationResponse = $speechClient->createCustomClass();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'createCustomClass');
@@ -701,12 +701,11 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param CustomClass $customClass  Required. The CustomClass to create.
-     * @param string      $parent       Required. The project and location where this CustomClass will be created.
-     *                                  The expected format is `projects/{project}/locations/{location}`.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type CustomClass $customClass
+     *           Required. The CustomClass to create.
      *     @type bool $validateOnly
      *           If set, validate the request and preview the CustomClass, but do not
      *           actually create it.
@@ -716,6 +715,9 @@ class SpeechGapicClient
      *
      *           This value should be 4-63 characters, and valid characters
      *           are /[a-z][0-9]-/.
+     *     @type string $parent
+     *           Required. The project and location where this CustomClass will be created.
+     *           The expected format is `projects/{project}/locations/{location}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -726,19 +728,25 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCustomClass($customClass, $parent, array $optionalArgs = [])
+    public function createCustomClass(array $optionalArgs = [])
     {
         $request = new CreateCustomClassRequest();
         $requestParamHeaders = [];
-        $request->setCustomClass($customClass);
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['customClass'])) {
+            $request->setCustomClass($optionalArgs['customClass']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
         if (isset($optionalArgs['customClassId'])) {
             $request->setCustomClassId($optionalArgs['customClassId']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -753,9 +761,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $phraseSet = new PhraseSet();
-     *     $formattedParent = $speechClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $operationResponse = $speechClient->createPhraseSet($phraseSet, $formattedParent);
+     *     $operationResponse = $speechClient->createPhraseSet();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -766,7 +772,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->createPhraseSet($phraseSet, $formattedParent);
+     *     $operationResponse = $speechClient->createPhraseSet();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'createPhraseSet');
@@ -786,12 +792,11 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param PhraseSet $phraseSet    Required. The PhraseSet to create.
-     * @param string    $parent       Required. The project and location where this PhraseSet will be created.
-     *                                The expected format is `projects/{project}/locations/{location}`.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type PhraseSet $phraseSet
+     *           Required. The PhraseSet to create.
      *     @type bool $validateOnly
      *           If set, validate the request and preview the PhraseSet, but do not
      *           actually create it.
@@ -801,6 +806,9 @@ class SpeechGapicClient
      *
      *           This value should be 4-63 characters, and valid characters
      *           are /[a-z][0-9]-/.
+     *     @type string $parent
+     *           Required. The project and location where this PhraseSet will be created.
+     *           The expected format is `projects/{project}/locations/{location}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -811,19 +819,25 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createPhraseSet($phraseSet, $parent, array $optionalArgs = [])
+    public function createPhraseSet(array $optionalArgs = [])
     {
         $request = new CreatePhraseSetRequest();
         $requestParamHeaders = [];
-        $request->setPhraseSet($phraseSet);
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['phraseSet'])) {
+            $request->setPhraseSet($optionalArgs['phraseSet']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
         if (isset($optionalArgs['phraseSetId'])) {
             $request->setPhraseSetId($optionalArgs['phraseSetId']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -838,9 +852,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $recognizer = new Recognizer();
-     *     $formattedParent = $speechClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $operationResponse = $speechClient->createRecognizer($recognizer, $formattedParent);
+     *     $operationResponse = $speechClient->createRecognizer();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -851,7 +863,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->createRecognizer($recognizer, $formattedParent);
+     *     $operationResponse = $speechClient->createRecognizer();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'createRecognizer');
@@ -871,12 +883,11 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param Recognizer $recognizer   Required. The Recognizer to create.
-     * @param string     $parent       Required. The project and location where this Recognizer will be created.
-     *                                 The expected format is `projects/{project}/locations/{location}`.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Recognizer $recognizer
+     *           Required. The Recognizer to create.
      *     @type bool $validateOnly
      *           If set, validate the request and preview the Recognizer, but do not
      *           actually create it.
@@ -886,6 +897,9 @@ class SpeechGapicClient
      *
      *           This value should be 4-63 characters, and valid characters
      *           are /[a-z][0-9]-/.
+     *     @type string $parent
+     *           Required. The project and location where this Recognizer will be created.
+     *           The expected format is `projects/{project}/locations/{location}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -896,19 +910,25 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createRecognizer($recognizer, $parent, array $optionalArgs = [])
+    public function createRecognizer(array $optionalArgs = [])
     {
         $request = new CreateRecognizerRequest();
         $requestParamHeaders = [];
-        $request->setRecognizer($recognizer);
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['recognizer'])) {
+            $request->setRecognizer($optionalArgs['recognizer']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
         if (isset($optionalArgs['recognizerId'])) {
             $request->setRecognizerId($optionalArgs['recognizerId']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -923,8 +943,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedName = $speechClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-     *     $operationResponse = $speechClient->deleteCustomClass($formattedName);
+     *     $operationResponse = $speechClient->deleteCustomClass();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -935,7 +954,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->deleteCustomClass($formattedName);
+     *     $operationResponse = $speechClient->deleteCustomClass();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'deleteCustomClass');
@@ -955,12 +974,13 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the CustomClass to delete.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/customClasses/{custom_class}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the CustomClass to delete.
+     *           Format:
+     *           `projects/{project}/locations/{location}/customClasses/{custom_class}`
      *     @type bool $validateOnly
      *           If set, validate the request and preview the deleted CustomClass, but do
      *           not actually delete it.
@@ -981,12 +1001,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCustomClass($name, array $optionalArgs = [])
+    public function deleteCustomClass(array $optionalArgs = [])
     {
         $request = new DeleteCustomClassRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1011,8 +1034,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedName = $speechClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-     *     $operationResponse = $speechClient->deletePhraseSet($formattedName);
+     *     $operationResponse = $speechClient->deletePhraseSet();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1023,7 +1045,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->deletePhraseSet($formattedName);
+     *     $operationResponse = $speechClient->deletePhraseSet();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'deletePhraseSet');
@@ -1043,11 +1065,12 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the PhraseSet to delete.
-     *                             Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the PhraseSet to delete.
+     *           Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
      *     @type bool $validateOnly
      *           If set, validate the request and preview the deleted PhraseSet, but do not
      *           actually delete it.
@@ -1068,12 +1091,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePhraseSet($name, array $optionalArgs = [])
+    public function deletePhraseSet(array $optionalArgs = [])
     {
         $request = new DeletePhraseSetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1098,8 +1124,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedName = $speechClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-     *     $operationResponse = $speechClient->deleteRecognizer($formattedName);
+     *     $operationResponse = $speechClient->deleteRecognizer();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1110,7 +1135,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->deleteRecognizer($formattedName);
+     *     $operationResponse = $speechClient->deleteRecognizer();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'deleteRecognizer');
@@ -1130,11 +1155,12 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Recognizer to delete.
-     *                             Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Recognizer to delete.
+     *           Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`
      *     @type bool $validateOnly
      *           If set, validate the request and preview the deleted Recognizer, but do not
      *           actually delete it.
@@ -1155,12 +1181,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteRecognizer($name, array $optionalArgs = [])
+    public function deleteRecognizer(array $optionalArgs = [])
     {
         $request = new DeleteRecognizerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1185,19 +1214,19 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedName = $speechClient->configName('[PROJECT]', '[LOCATION]');
-     *     $response = $speechClient->getConfig($formattedName);
+     *     $response = $speechClient->getConfig();
      * } finally {
      *     $speechClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the config to retrieve. There is exactly one config
-     *                             resource per project per location. The expected format is
-     *                             `projects/{project}/locations/{location}/config`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the config to retrieve. There is exactly one config
+     *           resource per project per location. The expected format is
+     *           `projects/{project}/locations/{location}/config`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1208,12 +1237,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConfig($name, array $optionalArgs = [])
+    public function getConfig(array $optionalArgs = [])
     {
         $request = new GetConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetConfig', Config::class, $optionalArgs, $request)->wait();
@@ -1227,18 +1259,18 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedName = $speechClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-     *     $response = $speechClient->getCustomClass($formattedName);
+     *     $response = $speechClient->getCustomClass();
      * } finally {
      *     $speechClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the CustomClass to retrieve. The expected format is
-     *                             `projects/{project}/locations/{location}/customClasses/{custom_class}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the CustomClass to retrieve. The expected format is
+     *           `projects/{project}/locations/{location}/customClasses/{custom_class}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1249,12 +1281,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCustomClass($name, array $optionalArgs = [])
+    public function getCustomClass(array $optionalArgs = [])
     {
         $request = new GetCustomClassRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCustomClass', CustomClass::class, $optionalArgs, $request)->wait();
@@ -1268,18 +1303,18 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedName = $speechClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-     *     $response = $speechClient->getPhraseSet($formattedName);
+     *     $response = $speechClient->getPhraseSet();
      * } finally {
      *     $speechClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the PhraseSet to retrieve. The expected format is
-     *                             `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the PhraseSet to retrieve. The expected format is
+     *           `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1290,12 +1325,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPhraseSet($name, array $optionalArgs = [])
+    public function getPhraseSet(array $optionalArgs = [])
     {
         $request = new GetPhraseSetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetPhraseSet', PhraseSet::class, $optionalArgs, $request)->wait();
@@ -1311,18 +1349,18 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedName = $speechClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-     *     $response = $speechClient->getRecognizer($formattedName);
+     *     $response = $speechClient->getRecognizer();
      * } finally {
      *     $speechClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Recognizer to retrieve. The expected format is
-     *                             `projects/{project}/locations/{location}/recognizers/{recognizer}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Recognizer to retrieve. The expected format is
+     *           `projects/{project}/locations/{location}/recognizers/{recognizer}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1333,12 +1371,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRecognizer($name, array $optionalArgs = [])
+    public function getRecognizer(array $optionalArgs = [])
     {
         $request = new GetRecognizerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetRecognizer', Recognizer::class, $optionalArgs, $request)->wait();
@@ -1351,9 +1392,8 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedParent = $speechClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $speechClient->listCustomClasses($formattedParent);
+     *     $pagedResponse = $speechClient->listCustomClasses();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1361,7 +1401,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $speechClient->listCustomClasses($formattedParent);
+     *     $pagedResponse = $speechClient->listCustomClasses();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1370,11 +1410,12 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location of CustomClass resources to list. The
-     *                             expected format is `projects/{project}/locations/{location}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location of CustomClass resources to list. The
+     *           expected format is `projects/{project}/locations/{location}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1396,12 +1437,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCustomClasses($parent, array $optionalArgs = [])
+    public function listCustomClasses(array $optionalArgs = [])
     {
         $request = new ListCustomClassesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1426,9 +1470,8 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedParent = $speechClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $speechClient->listPhraseSets($formattedParent);
+     *     $pagedResponse = $speechClient->listPhraseSets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1436,7 +1479,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $speechClient->listPhraseSets($formattedParent);
+     *     $pagedResponse = $speechClient->listPhraseSets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1445,11 +1488,12 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location of PhraseSet resources to list. The
-     *                             expected format is `projects/{project}/locations/{location}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location of PhraseSet resources to list. The
+     *           expected format is `projects/{project}/locations/{location}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1471,12 +1515,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPhraseSets($parent, array $optionalArgs = [])
+    public function listPhraseSets(array $optionalArgs = [])
     {
         $request = new ListPhraseSetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1501,9 +1548,8 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedParent = $speechClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $speechClient->listRecognizers($formattedParent);
+     *     $pagedResponse = $speechClient->listRecognizers();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1511,7 +1557,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $speechClient->listRecognizers($formattedParent);
+     *     $pagedResponse = $speechClient->listRecognizers();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1520,11 +1566,12 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The project and location of Recognizers to list. The expected
-     *                             format is `projects/{project}/locations/{location}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The project and location of Recognizers to list. The expected
+     *           format is `projects/{project}/locations/{location}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1546,12 +1593,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRecognizers($parent, array $optionalArgs = [])
+    public function listRecognizers(array $optionalArgs = [])
     {
         $request = new ListRecognizersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1577,20 +1627,20 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedRecognizer = $speechClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-     *     $response = $speechClient->recognize($formattedRecognizer);
+     *     $response = $speechClient->recognize();
      * } finally {
      *     $speechClient->close();
      * }
      * ```
      *
-     * @param string $recognizer   Required. The name of the Recognizer to use during recognition. The
-     *                             expected format is
-     *                             `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
-     *                             {recognizer} segment may be set to `_` to use an empty implicit Recognizer.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $recognizer
+     *           Required. The name of the Recognizer to use during recognition. The
+     *           expected format is
+     *           `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
+     *           {recognizer} segment may be set to `_` to use an empty implicit Recognizer.
      *     @type RecognitionConfig $config
      *           Features and audio metadata to use for the Automatic Speech Recognition.
      *           This field in combination with the
@@ -1636,12 +1686,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function recognize($recognizer, array $optionalArgs = [])
+    public function recognize(array $optionalArgs = [])
     {
         $request = new RecognizeRequest();
         $requestParamHeaders = [];
-        $request->setRecognizer($recognizer);
-        $requestParamHeaders['recognizer'] = $recognizer;
+        if (isset($optionalArgs['recognizer'])) {
+            $request->setRecognizer($optionalArgs['recognizer']);
+            $requestParamHeaders['recognizer'] = $optionalArgs['recognizer'];
+        }
+
         if (isset($optionalArgs['config'])) {
             $request->setConfig($optionalArgs['config']);
         }
@@ -1671,9 +1724,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $recognizer = 'recognizer';
      *     $request = new StreamingRecognizeRequest();
-     *     $request->setRecognizer($recognizer);
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
      *     $requests = [
@@ -1732,8 +1783,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedName = $speechClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-     *     $operationResponse = $speechClient->undeleteCustomClass($formattedName);
+     *     $operationResponse = $speechClient->undeleteCustomClass();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1744,7 +1794,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->undeleteCustomClass($formattedName);
+     *     $operationResponse = $speechClient->undeleteCustomClass();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'undeleteCustomClass');
@@ -1764,12 +1814,13 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the CustomClass to undelete.
-     *                             Format:
-     *                             `projects/{project}/locations/{location}/customClasses/{custom_class}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the CustomClass to undelete.
+     *           Format:
+     *           `projects/{project}/locations/{location}/customClasses/{custom_class}`
      *     @type bool $validateOnly
      *           If set, validate the request and preview the undeleted CustomClass, but do
      *           not actually undelete it.
@@ -1787,12 +1838,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeleteCustomClass($name, array $optionalArgs = [])
+    public function undeleteCustomClass(array $optionalArgs = [])
     {
         $request = new UndeleteCustomClassRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1813,8 +1867,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedName = $speechClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-     *     $operationResponse = $speechClient->undeletePhraseSet($formattedName);
+     *     $operationResponse = $speechClient->undeletePhraseSet();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1825,7 +1878,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->undeletePhraseSet($formattedName);
+     *     $operationResponse = $speechClient->undeletePhraseSet();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'undeletePhraseSet');
@@ -1845,11 +1898,12 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the PhraseSet to undelete.
-     *                             Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the PhraseSet to undelete.
+     *           Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
      *     @type bool $validateOnly
      *           If set, validate the request and preview the undeleted PhraseSet, but do
      *           not actually undelete it.
@@ -1867,12 +1921,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeletePhraseSet($name, array $optionalArgs = [])
+    public function undeletePhraseSet(array $optionalArgs = [])
     {
         $request = new UndeletePhraseSetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1893,8 +1950,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $formattedName = $speechClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-     *     $operationResponse = $speechClient->undeleteRecognizer($formattedName);
+     *     $operationResponse = $speechClient->undeleteRecognizer();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1905,7 +1961,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->undeleteRecognizer($formattedName);
+     *     $operationResponse = $speechClient->undeleteRecognizer();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'undeleteRecognizer');
@@ -1925,11 +1981,12 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the Recognizer to undelete.
-     *                             Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the Recognizer to undelete.
+     *           Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`
      *     @type bool $validateOnly
      *           If set, validate the request and preview the undeleted Recognizer, but do
      *           not actually undelete it.
@@ -1947,12 +2004,15 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeleteRecognizer($name, array $optionalArgs = [])
+    public function undeleteRecognizer(array $optionalArgs = [])
     {
         $request = new UndeleteRecognizerRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1973,20 +2033,20 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $config = new Config();
-     *     $response = $speechClient->updateConfig($config);
+     *     $response = $speechClient->updateConfig();
      * } finally {
      *     $speechClient->close();
      * }
      * ```
      *
-     * @param Config $config       Required. The config to update.
-     *
-     *                             The config's `name` field is used to identify the config to be updated.
-     *                             The expected format is `projects/{project}/locations/{location}/config`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Config $config
+     *           Required. The config to update.
+     *
+     *           The config's `name` field is used to identify the config to be updated.
+     *           The expected format is `projects/{project}/locations/{location}/config`.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
@@ -1999,12 +2059,14 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateConfig($config, array $optionalArgs = [])
+    public function updateConfig(array $optionalArgs = [])
     {
         $request = new UpdateConfigRequest();
         $requestParamHeaders = [];
-        $request->setConfig($config);
-        $requestParamHeaders['config.name'] = $config->getName();
+        if (isset($optionalArgs['config'])) {
+            $request->setConfig($optionalArgs['config']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2021,8 +2083,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $customClass = new CustomClass();
-     *     $operationResponse = $speechClient->updateCustomClass($customClass);
+     *     $operationResponse = $speechClient->updateCustomClass();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2033,7 +2094,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->updateCustomClass($customClass);
+     *     $operationResponse = $speechClient->updateCustomClass();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'updateCustomClass');
@@ -2053,14 +2114,15 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param CustomClass $customClass  Required. The CustomClass to update.
-     *
-     *                                  The CustomClass's `name` field is used to identify the CustomClass to
-     *                                  update. Format:
-     *                                  `projects/{project}/locations/{location}/customClasses/{custom_class}`.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type CustomClass $customClass
+     *           Required. The CustomClass to update.
+     *
+     *           The CustomClass's `name` field is used to identify the CustomClass to
+     *           update. Format:
+     *           `projects/{project}/locations/{location}/customClasses/{custom_class}`.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated. If empty, all fields are considered for
      *           update.
@@ -2077,12 +2139,14 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCustomClass($customClass, array $optionalArgs = [])
+    public function updateCustomClass(array $optionalArgs = [])
     {
         $request = new UpdateCustomClassRequest();
         $requestParamHeaders = [];
-        $request->setCustomClass($customClass);
-        $requestParamHeaders['custom_class.name'] = $customClass->getName();
+        if (isset($optionalArgs['customClass'])) {
+            $request->setCustomClass($optionalArgs['customClass']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2103,8 +2167,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $phraseSet = new PhraseSet();
-     *     $operationResponse = $speechClient->updatePhraseSet($phraseSet);
+     *     $operationResponse = $speechClient->updatePhraseSet();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2115,7 +2178,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->updatePhraseSet($phraseSet);
+     *     $operationResponse = $speechClient->updatePhraseSet();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'updatePhraseSet');
@@ -2135,13 +2198,14 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param PhraseSet $phraseSet    Required. The PhraseSet to update.
-     *
-     *                                The PhraseSet's `name` field is used to identify the PhraseSet to update.
-     *                                Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type PhraseSet $phraseSet
+     *           Required. The PhraseSet to update.
+     *
+     *           The PhraseSet's `name` field is used to identify the PhraseSet to update.
+     *           Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
      *     @type FieldMask $updateMask
      *           The list of fields to update. If empty, all non-default valued fields are
      *           considered for update. Use `*` to update the entire PhraseSet resource.
@@ -2158,12 +2222,14 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updatePhraseSet($phraseSet, array $optionalArgs = [])
+    public function updatePhraseSet(array $optionalArgs = [])
     {
         $request = new UpdatePhraseSetRequest();
         $requestParamHeaders = [];
-        $request->setPhraseSet($phraseSet);
-        $requestParamHeaders['phrase_set.name'] = $phraseSet->getName();
+        if (isset($optionalArgs['phraseSet'])) {
+            $request->setPhraseSet($optionalArgs['phraseSet']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2184,8 +2250,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $recognizer = new Recognizer();
-     *     $operationResponse = $speechClient->updateRecognizer($recognizer);
+     *     $operationResponse = $speechClient->updateRecognizer();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2196,7 +2261,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->updateRecognizer($recognizer);
+     *     $operationResponse = $speechClient->updateRecognizer();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'updateRecognizer');
@@ -2216,13 +2281,14 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param Recognizer $recognizer   Required. The Recognizer to update.
-     *
-     *                                 The Recognizer's `name` field is used to identify the Recognizer to update.
-     *                                 Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Recognizer $recognizer
+     *           Required. The Recognizer to update.
+     *
+     *           The Recognizer's `name` field is used to identify the Recognizer to update.
+     *           Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`.
      *     @type FieldMask $updateMask
      *           The list of fields to update. If empty, all non-default valued fields are
      *           considered for update. Use `*` to update the entire Recognizer resource.
@@ -2239,12 +2305,14 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateRecognizer($recognizer, array $optionalArgs = [])
+    public function updateRecognizer(array $optionalArgs = [])
     {
         $request = new UpdateRecognizerRequest();
         $requestParamHeaders = [];
-        $request->setRecognizer($recognizer);
-        $requestParamHeaders['recognizer.name'] = $recognizer->getName();
+        if (isset($optionalArgs['recognizer'])) {
+            $request->setRecognizer($optionalArgs['recognizer']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

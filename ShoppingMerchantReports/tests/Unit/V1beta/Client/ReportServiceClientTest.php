@@ -79,10 +79,7 @@ class ReportServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $query = 'query107944136';
-        $request = (new SearchRequest())->setParent($parent)->setQuery($query);
+        $request = new SearchRequest();
         $response = $gapicClient->search($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -93,10 +90,6 @@ class ReportServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.merchant.reports.v1beta.ReportService/Search', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -121,10 +114,7 @@ class ReportServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $query = 'query107944136';
-        $request = (new SearchRequest())->setParent($parent)->setQuery($query);
+        $request = new SearchRequest();
         try {
             $gapicClient->search($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -154,10 +144,7 @@ class ReportServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $query = 'query107944136';
-        $request = (new SearchRequest())->setParent($parent)->setQuery($query);
+        $request = new SearchRequest();
         $response = $gapicClient->searchAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -168,10 +155,6 @@ class ReportServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.merchant.reports.v1beta.ReportService/Search', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -30,8 +30,7 @@ class DeleteCompanyRequest extends \Google\Protobuf\Internal\Message
      *
      *                     The format is
      *                     "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     *                     example, "projects/foo/tenants/bar/companies/baz". Please see
-     *                     {@see CompanyServiceClient::companyName()} for help formatting this field.
+     *                     example, "projects/foo/tenants/bar/companies/baz".
      *
      * @return \Google\Cloud\Talent\V4\DeleteCompanyRequest
      *

@@ -36,19 +36,19 @@ use Google\Cloud\SecurityCenter\V1\ListBigQueryExportsRequest;
  * immediately under the folder plus the ones created under the projects
  * within the folder are returned.
  *
- * @param string $formattedParent The parent, which owns the collection of BigQuery exports. Its
- *                                format is "organizations/[organization_id]", "folders/[folder_id]",
- *                                "projects/[project_id]". Please see
- *                                {@see SecurityCenterClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_big_query_exports_sample(string $formattedParent): void
+function list_big_query_exports_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $request = (new ListBigQueryExportsRequest())
-        ->setParent($formattedParent);
+    $request = new ListBigQueryExportsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,21 +62,5 @@ function list_big_query_exports_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecurityCenterClient::projectName('[PROJECT]');
-
-    list_big_query_exports_sample($formattedParent);
 }
 // [END securitycenter_v1_generated_SecurityCenter_ListBigQueryExports_sync]

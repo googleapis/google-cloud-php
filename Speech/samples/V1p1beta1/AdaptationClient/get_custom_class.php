@@ -30,12 +30,13 @@ use Google\Cloud\Speech\V1p1beta1\CustomClass;
 /**
  * Get a custom class.
  *
- * @param string $formattedName The name of the custom class to retrieve. Format:
- *
- *                              `projects/{project}/locations/{location}/customClasses/{custom_class}`
- *                              Please see {@see AdaptationClient::customClassName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_custom_class_sample(string $formattedName): void
+function get_custom_class_sample(): void
 {
     // Create a client.
     $adaptationClient = new AdaptationClient();
@@ -43,26 +44,10 @@ function get_custom_class_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var CustomClass $response */
-        $response = $adaptationClient->getCustomClass($formattedName);
+        $response = $adaptationClient->getCustomClass();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AdaptationClient::customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-
-    get_custom_class_sample($formattedName);
 }
 // [END speech_v1p1beta1_generated_Adaptation_GetCustomClass_sync]

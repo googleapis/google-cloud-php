@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Talent\V4\ClientEvent;
 use Google\Cloud\Talent\V4\Client\EventServiceClient;
 use Google\Cloud\Talent\V4\CreateClientEventRequest;
-use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -78,16 +77,7 @@ class EventServiceClientTest extends GeneratedTest
         $expectedResponse->setEventId($eventId);
         $expectedResponse->setEventNotes($eventNotes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $clientEvent = new ClientEvent();
-        $clientEventEventId = 'clientEventEventId319230150';
-        $clientEvent->setEventId($clientEventEventId);
-        $clientEventCreateTime = new Timestamp();
-        $clientEvent->setCreateTime($clientEventCreateTime);
-        $request = (new CreateClientEventRequest())
-            ->setParent($formattedParent)
-            ->setClientEvent($clientEvent);
+        $request = new CreateClientEventRequest();
         $response = $gapicClient->createClientEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -95,10 +85,6 @@ class EventServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.EventService/CreateClientEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getClientEvent();
-        $this->assertProtobufEquals($clientEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -120,16 +106,7 @@ class EventServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $clientEvent = new ClientEvent();
-        $clientEventEventId = 'clientEventEventId319230150';
-        $clientEvent->setEventId($clientEventEventId);
-        $clientEventCreateTime = new Timestamp();
-        $clientEvent->setCreateTime($clientEventCreateTime);
-        $request = (new CreateClientEventRequest())
-            ->setParent($formattedParent)
-            ->setClientEvent($clientEvent);
+        $request = new CreateClientEventRequest();
         try {
             $gapicClient->createClientEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -160,16 +137,7 @@ class EventServiceClientTest extends GeneratedTest
         $expectedResponse->setEventId($eventId);
         $expectedResponse->setEventNotes($eventNotes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $clientEvent = new ClientEvent();
-        $clientEventEventId = 'clientEventEventId319230150';
-        $clientEvent->setEventId($clientEventEventId);
-        $clientEventCreateTime = new Timestamp();
-        $clientEvent->setCreateTime($clientEventCreateTime);
-        $request = (new CreateClientEventRequest())
-            ->setParent($formattedParent)
-            ->setClientEvent($clientEvent);
+        $request = new CreateClientEventRequest();
         $response = $gapicClient->createClientEventAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -177,10 +145,6 @@ class EventServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.EventService/CreateClientEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getClientEvent();
-        $this->assertProtobufEquals($clientEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

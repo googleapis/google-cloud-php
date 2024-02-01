@@ -42,7 +42,6 @@ use Google\Cloud\SecurityCenter\V1\CreateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSourceRequest;
-use Google\Cloud\SecurityCenter\V1\CustomConfig;
 use Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest;
@@ -50,8 +49,6 @@ use Google\Cloud\SecurityCenter\V1\DeleteSecurityHealthAnalyticsCustomModuleRequ
 use Google\Cloud\SecurityCenter\V1\EffectiveSecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\ExternalSystem;
 use Google\Cloud\SecurityCenter\V1\Finding;
-use Google\Cloud\SecurityCenter\V1\Finding\Mute;
-use Google\Cloud\SecurityCenter\V1\Finding\State;
 use Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\GetEffectiveSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\GetMuteConfigRequest;
@@ -94,7 +91,6 @@ use Google\Cloud\SecurityCenter\V1\SecurityMarks;
 use Google\Cloud\SecurityCenter\V1\SetFindingStateRequest;
 use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
 use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest;
-use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource;
 use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse;
 use Google\Cloud\SecurityCenter\V1\Source;
 use Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest;
@@ -110,7 +106,6 @@ use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -171,10 +166,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new BulkMuteFindingsRequest())
-            ->setParent($parent);
+        $request = new BulkMuteFindingsRequest();
         $response = $gapicClient->bulkMuteFindings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -185,8 +177,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/BulkMuteFindings', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/bulkMuteFindingsTest');
         $response->pollUntilComplete([
@@ -237,10 +227,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new BulkMuteFindingsRequest())
-            ->setParent($parent);
+        $request = new BulkMuteFindingsRequest();
         $response = $gapicClient->bulkMuteFindings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -286,14 +273,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setMostRecentEditor($mostRecentEditor);
         $expectedResponse->setPrincipal($principal);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $bigQueryExport = new BigQueryExport();
-        $bigQueryExportId = 'bigQueryExportId269737360';
-        $request = (new CreateBigQueryExportRequest())
-            ->setParent($formattedParent)
-            ->setBigQueryExport($bigQueryExport)
-            ->setBigQueryExportId($bigQueryExportId);
+        $request = new CreateBigQueryExportRequest();
         $response = $gapicClient->createBigQueryExport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -301,12 +281,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateBigQueryExport', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getBigQueryExport();
-        $this->assertProtobufEquals($bigQueryExport, $actualValue);
-        $actualValue = $actualRequestObject->getBigQueryExportId();
-        $this->assertProtobufEquals($bigQueryExportId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -328,14 +302,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $bigQueryExport = new BigQueryExport();
-        $bigQueryExportId = 'bigQueryExportId269737360';
-        $request = (new CreateBigQueryExportRequest())
-            ->setParent($formattedParent)
-            ->setBigQueryExport($bigQueryExport)
-            ->setBigQueryExportId($bigQueryExportId);
+        $request = new CreateBigQueryExportRequest();
         try {
             $gapicClient->createBigQueryExport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -382,14 +349,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextSteps($nextSteps);
         $expectedResponse->setModuleName($moduleName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-        $findingId = 'findingId728776081';
-        $finding = new Finding();
-        $request = (new CreateFindingRequest())
-            ->setParent($formattedParent)
-            ->setFindingId($findingId)
-            ->setFinding($finding);
+        $request = new CreateFindingRequest();
         $response = $gapicClient->createFinding($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -397,12 +357,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateFinding', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getFindingId();
-        $this->assertProtobufEquals($findingId, $actualValue);
-        $actualValue = $actualRequestObject->getFinding();
-        $this->assertProtobufEquals($finding, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -424,14 +378,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-        $findingId = 'findingId728776081';
-        $finding = new Finding();
-        $request = (new CreateFindingRequest())
-            ->setParent($formattedParent)
-            ->setFindingId($findingId)
-            ->setFinding($finding);
+        $request = new CreateFindingRequest();
         try {
             $gapicClient->createFinding($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -466,16 +413,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setMostRecentEditor($mostRecentEditor);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $muteConfig = new MuteConfig();
-        $muteConfigFilter = 'muteConfigFilter-1921414637';
-        $muteConfig->setFilter($muteConfigFilter);
-        $muteConfigId = 'muteConfigId-547860334';
-        $request = (new CreateMuteConfigRequest())
-            ->setParent($formattedParent)
-            ->setMuteConfig($muteConfig)
-            ->setMuteConfigId($muteConfigId);
+        $request = new CreateMuteConfigRequest();
         $response = $gapicClient->createMuteConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -483,12 +421,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateMuteConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getMuteConfig();
-        $this->assertProtobufEquals($muteConfig, $actualValue);
-        $actualValue = $actualRequestObject->getMuteConfigId();
-        $this->assertProtobufEquals($muteConfigId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -510,16 +442,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $muteConfig = new MuteConfig();
-        $muteConfigFilter = 'muteConfigFilter-1921414637';
-        $muteConfig->setFilter($muteConfigFilter);
-        $muteConfigId = 'muteConfigId-547860334';
-        $request = (new CreateMuteConfigRequest())
-            ->setParent($formattedParent)
-            ->setMuteConfig($muteConfig)
-            ->setMuteConfigId($muteConfigId);
+        $request = new CreateMuteConfigRequest();
         try {
             $gapicClient->createMuteConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -552,14 +475,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setPubsubTopic($pubsubTopic);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $configId = 'configId-804450504';
-        $notificationConfig = new NotificationConfig();
-        $request = (new CreateNotificationConfigRequest())
-            ->setParent($formattedParent)
-            ->setConfigId($configId)
-            ->setNotificationConfig($notificationConfig);
+        $request = new CreateNotificationConfigRequest();
         $response = $gapicClient->createNotificationConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -567,12 +483,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateNotificationConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getConfigId();
-        $this->assertProtobufEquals($configId, $actualValue);
-        $actualValue = $actualRequestObject->getNotificationConfig();
-        $this->assertProtobufEquals($notificationConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -594,14 +504,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $configId = 'configId-804450504';
-        $notificationConfig = new NotificationConfig();
-        $request = (new CreateNotificationConfigRequest())
-            ->setParent($formattedParent)
-            ->setConfigId($configId)
-            ->setNotificationConfig($notificationConfig);
+        $request = new CreateNotificationConfigRequest();
         try {
             $gapicClient->createNotificationConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -634,12 +537,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setLastEditor($lastEditor);
         $expectedResponse->setAncestorModule($ancestorModule);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
-        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-        $request = (new CreateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setParent($formattedParent)
-            ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $request = new CreateSecurityHealthAnalyticsCustomModuleRequest();
         $response = $gapicClient->createSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -647,10 +545,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateSecurityHealthAnalyticsCustomModule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSecurityHealthAnalyticsCustomModule();
-        $this->assertProtobufEquals($securityHealthAnalyticsCustomModule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -672,12 +566,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
-        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-        $request = (new CreateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setParent($formattedParent)
-            ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $request = new CreateSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->createSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -710,12 +599,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $source = new Source();
-        $request = (new CreateSourceRequest())
-            ->setParent($formattedParent)
-            ->setSource($source);
+        $request = new CreateSourceRequest();
         $response = $gapicClient->createSource($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -723,10 +607,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateSource', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSource();
-        $this->assertProtobufEquals($source, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -748,12 +628,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $source = new Source();
-        $request = (new CreateSourceRequest())
-            ->setParent($formattedParent)
-            ->setSource($source);
+        $request = new CreateSourceRequest();
         try {
             $gapicClient->createSource($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -778,18 +653,13 @@ class SecurityCenterClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
-        $request = (new DeleteBigQueryExportRequest())
-            ->setName($formattedName);
+        $request = new DeleteBigQueryExportRequest();
         $gapicClient->deleteBigQueryExport($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/DeleteBigQueryExport', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -811,10 +681,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
-        $request = (new DeleteBigQueryExportRequest())
-            ->setName($formattedName);
+        $request = new DeleteBigQueryExportRequest();
         try {
             $gapicClient->deleteBigQueryExport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -839,18 +706,13 @@ class SecurityCenterClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
-        $request = (new DeleteMuteConfigRequest())
-            ->setName($formattedName);
+        $request = new DeleteMuteConfigRequest();
         $gapicClient->deleteMuteConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/DeleteMuteConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -872,10 +734,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
-        $request = (new DeleteMuteConfigRequest())
-            ->setName($formattedName);
+        $request = new DeleteMuteConfigRequest();
         try {
             $gapicClient->deleteMuteConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -900,18 +759,13 @@ class SecurityCenterClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
-        $request = (new DeleteNotificationConfigRequest())
-            ->setName($formattedName);
+        $request = new DeleteNotificationConfigRequest();
         $gapicClient->deleteNotificationConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/DeleteNotificationConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -933,10 +787,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
-        $request = (new DeleteNotificationConfigRequest())
-            ->setName($formattedName);
+        $request = new DeleteNotificationConfigRequest();
         try {
             $gapicClient->deleteNotificationConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -961,18 +812,13 @@ class SecurityCenterClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
-        $request = (new DeleteSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $request = new DeleteSecurityHealthAnalyticsCustomModuleRequest();
         $gapicClient->deleteSecurityHealthAnalyticsCustomModule($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/DeleteSecurityHealthAnalyticsCustomModule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -994,10 +840,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
-        $request = (new DeleteSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $request = new DeleteSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->deleteSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1034,10 +877,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setMostRecentEditor($mostRecentEditor);
         $expectedResponse->setPrincipal($principal);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
-        $request = (new GetBigQueryExportRequest())
-            ->setName($formattedName);
+        $request = new GetBigQueryExportRequest();
         $response = $gapicClient->getBigQueryExport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1045,8 +885,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetBigQueryExport', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1068,10 +906,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
-        $request = (new GetBigQueryExportRequest())
-            ->setName($formattedName);
+        $request = new GetBigQueryExportRequest();
         try {
             $gapicClient->getBigQueryExport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1100,10 +935,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->effectiveSecurityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[EFFECTIVE_CUSTOM_MODULE]');
-        $request = (new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $request = new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest();
         $response = $gapicClient->getEffectiveSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1111,8 +943,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetEffectiveSecurityHealthAnalyticsCustomModule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1134,10 +964,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->effectiveSecurityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[EFFECTIVE_CUSTOM_MODULE]');
-        $request = (new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $request = new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->getEffectiveSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1238,10 +1065,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setMostRecentEditor($mostRecentEditor);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
-        $request = (new GetMuteConfigRequest())
-            ->setName($formattedName);
+        $request = new GetMuteConfigRequest();
         $response = $gapicClient->getMuteConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1249,8 +1073,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetMuteConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1272,10 +1094,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
-        $request = (new GetMuteConfigRequest())
-            ->setName($formattedName);
+        $request = new GetMuteConfigRequest();
         try {
             $gapicClient->getMuteConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1308,10 +1127,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setPubsubTopic($pubsubTopic);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
-        $request = (new GetNotificationConfigRequest())
-            ->setName($formattedName);
+        $request = new GetNotificationConfigRequest();
         $response = $gapicClient->getNotificationConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1319,8 +1135,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetNotificationConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1342,10 +1156,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
-        $request = (new GetNotificationConfigRequest())
-            ->setName($formattedName);
+        $request = new GetNotificationConfigRequest();
         try {
             $gapicClient->getNotificationConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1374,10 +1185,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEnableAssetDiscovery($enableAssetDiscovery);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->organizationSettingsName('[ORGANIZATION]');
-        $request = (new GetOrganizationSettingsRequest())
-            ->setName($formattedName);
+        $request = new GetOrganizationSettingsRequest();
         $response = $gapicClient->getOrganizationSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1385,8 +1193,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetOrganizationSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1408,10 +1214,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->organizationSettingsName('[ORGANIZATION]');
-        $request = (new GetOrganizationSettingsRequest())
-            ->setName($formattedName);
+        $request = new GetOrganizationSettingsRequest();
         try {
             $gapicClient->getOrganizationSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1444,10 +1247,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setLastEditor($lastEditor);
         $expectedResponse->setAncestorModule($ancestorModule);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
-        $request = (new GetSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $request = new GetSecurityHealthAnalyticsCustomModuleRequest();
         $response = $gapicClient->getSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1455,8 +1255,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetSecurityHealthAnalyticsCustomModule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1478,10 +1276,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
-        $request = (new GetSecurityHealthAnalyticsCustomModuleRequest())
-            ->setName($formattedName);
+        $request = new GetSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->getSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1514,10 +1309,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-        $request = (new GetSourceRequest())
-            ->setName($formattedName);
+        $request = new GetSourceRequest();
         $response = $gapicClient->getSource($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1525,8 +1317,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetSource', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1548,10 +1338,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-        $request = (new GetSourceRequest())
-            ->setName($formattedName);
+        $request = new GetSourceRequest();
         try {
             $gapicClient->getSource($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1585,12 +1372,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setGroupByResults($groupByResults);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $groupBy = 'groupBy506361367';
-        $request = (new GroupAssetsRequest())
-            ->setParent($formattedParent)
-            ->setGroupBy($groupBy);
+        $request = new GroupAssetsRequest();
         $response = $gapicClient->groupAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1601,10 +1383,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GroupAssets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGroupBy();
-        $this->assertProtobufEquals($groupBy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1626,12 +1404,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $groupBy = 'groupBy506361367';
-        $request = (new GroupAssetsRequest())
-            ->setParent($formattedParent)
-            ->setGroupBy($groupBy);
+        $request = new GroupAssetsRequest();
         try {
             $gapicClient->groupAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1665,12 +1438,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setGroupByResults($groupByResults);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-        $groupBy = 'groupBy506361367';
-        $request = (new GroupFindingsRequest())
-            ->setParent($formattedParent)
-            ->setGroupBy($groupBy);
+        $request = new GroupFindingsRequest();
         $response = $gapicClient->groupFindings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1681,10 +1449,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GroupFindings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getGroupBy();
-        $this->assertProtobufEquals($groupBy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1706,12 +1470,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-        $groupBy = 'groupBy506361367';
-        $request = (new GroupFindingsRequest())
-            ->setParent($formattedParent)
-            ->setGroupBy($groupBy);
+        $request = new GroupFindingsRequest();
         try {
             $gapicClient->groupFindings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1745,10 +1504,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setListAssetsResults($listAssetsResults);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListAssetsRequest())
-            ->setParent($formattedParent);
+        $request = new ListAssetsRequest();
         $response = $gapicClient->listAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1759,8 +1515,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListAssets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1782,10 +1536,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListAssetsRequest())
-            ->setParent($formattedParent);
+        $request = new ListAssetsRequest();
         try {
             $gapicClient->listAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1817,10 +1568,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBigQueryExports($bigQueryExports);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListBigQueryExportsRequest())
-            ->setParent($formattedParent);
+        $request = new ListBigQueryExportsRequest();
         $response = $gapicClient->listBigQueryExports($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1831,8 +1579,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListBigQueryExports', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1854,10 +1600,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListBigQueryExportsRequest())
-            ->setParent($formattedParent);
+        $request = new ListBigQueryExportsRequest();
         try {
             $gapicClient->listBigQueryExports($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1889,10 +1632,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSecurityHealthAnalyticsCustomModules($securityHealthAnalyticsCustomModules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
-        $request = (new ListDescendantSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = new ListDescendantSecurityHealthAnalyticsCustomModulesRequest();
         $response = $gapicClient->listDescendantSecurityHealthAnalyticsCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1903,8 +1643,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListDescendantSecurityHealthAnalyticsCustomModules', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1926,10 +1664,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
-        $request = (new ListDescendantSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = new ListDescendantSecurityHealthAnalyticsCustomModulesRequest();
         try {
             $gapicClient->listDescendantSecurityHealthAnalyticsCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1961,10 +1696,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEffectiveSecurityHealthAnalyticsCustomModules($effectiveSecurityHealthAnalyticsCustomModules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
-        $request = (new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest();
         $response = $gapicClient->listEffectiveSecurityHealthAnalyticsCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1975,8 +1707,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListEffectiveSecurityHealthAnalyticsCustomModules', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1998,10 +1728,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
-        $request = (new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest();
         try {
             $gapicClient->listEffectiveSecurityHealthAnalyticsCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2035,10 +1762,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setListFindingsResults($listFindingsResults);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-        $request = (new ListFindingsRequest())
-            ->setParent($formattedParent);
+        $request = new ListFindingsRequest();
         $response = $gapicClient->listFindings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2049,8 +1773,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListFindings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2072,10 +1794,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-        $request = (new ListFindingsRequest())
-            ->setParent($formattedParent);
+        $request = new ListFindingsRequest();
         try {
             $gapicClient->listFindings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2107,10 +1826,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMuteConfigs($muteConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListMuteConfigsRequest())
-            ->setParent($formattedParent);
+        $request = new ListMuteConfigsRequest();
         $response = $gapicClient->listMuteConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2121,8 +1837,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListMuteConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2144,10 +1858,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListMuteConfigsRequest())
-            ->setParent($formattedParent);
+        $request = new ListMuteConfigsRequest();
         try {
             $gapicClient->listMuteConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2179,10 +1890,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNotificationConfigs($notificationConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListNotificationConfigsRequest())
-            ->setParent($formattedParent);
+        $request = new ListNotificationConfigsRequest();
         $response = $gapicClient->listNotificationConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2193,8 +1901,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListNotificationConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2216,10 +1922,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListNotificationConfigsRequest())
-            ->setParent($formattedParent);
+        $request = new ListNotificationConfigsRequest();
         try {
             $gapicClient->listNotificationConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2251,10 +1954,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSecurityHealthAnalyticsCustomModules($securityHealthAnalyticsCustomModules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
-        $request = (new ListSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = new ListSecurityHealthAnalyticsCustomModulesRequest();
         $response = $gapicClient->listSecurityHealthAnalyticsCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2265,8 +1965,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListSecurityHealthAnalyticsCustomModules', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2288,10 +1986,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
-        $request = (new ListSecurityHealthAnalyticsCustomModulesRequest())
-            ->setParent($formattedParent);
+        $request = new ListSecurityHealthAnalyticsCustomModulesRequest();
         try {
             $gapicClient->listSecurityHealthAnalyticsCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2323,10 +2018,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSources($sources);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListSourcesRequest())
-            ->setParent($formattedParent);
+        $request = new ListSourcesRequest();
         $response = $gapicClient->listSources($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2337,8 +2029,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListSources', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2360,10 +2050,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListSourcesRequest())
-            ->setParent($formattedParent);
+        $request = new ListSourcesRequest();
         try {
             $gapicClient->listSources($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2406,10 +2093,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new RunAssetDiscoveryRequest())
-            ->setParent($formattedParent);
+        $request = new RunAssetDiscoveryRequest();
         $response = $gapicClient->runAssetDiscovery($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2420,8 +2104,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/RunAssetDiscovery', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/runAssetDiscoveryTest');
         $response->pollUntilComplete([
@@ -2472,10 +2154,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new RunAssetDiscoveryRequest())
-            ->setParent($formattedParent);
+        $request = new RunAssetDiscoveryRequest();
         $response = $gapicClient->runAssetDiscovery($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2531,14 +2210,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextSteps($nextSteps);
         $expectedResponse->setModuleName($moduleName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-        $state = State::STATE_UNSPECIFIED;
-        $startTime = new Timestamp();
-        $request = (new SetFindingStateRequest())
-            ->setName($formattedName)
-            ->setState($state)
-            ->setStartTime($startTime);
+        $request = new SetFindingStateRequest();
         $response = $gapicClient->setFindingState($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2546,12 +2218,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/SetFindingState', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getState();
-        $this->assertProtobufEquals($state, $actualValue);
-        $actualValue = $actualRequestObject->getStartTime();
-        $this->assertProtobufEquals($startTime, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2573,14 +2239,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-        $state = State::STATE_UNSPECIFIED;
-        $startTime = new Timestamp();
-        $request = (new SetFindingStateRequest())
-            ->setName($formattedName)
-            ->setState($state)
-            ->setStartTime($startTime);
+        $request = new SetFindingStateRequest();
         try {
             $gapicClient->setFindingState($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2699,12 +2358,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextSteps($nextSteps);
         $expectedResponse->setModuleName($moduleName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-        $mute = Mute::MUTE_UNSPECIFIED;
-        $request = (new SetMuteRequest())
-            ->setName($formattedName)
-            ->setMute($mute);
+        $request = new SetMuteRequest();
         $response = $gapicClient->setMute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2712,10 +2366,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/SetMute', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getMute();
-        $this->assertProtobufEquals($mute, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2737,12 +2387,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-        $mute = Mute::MUTE_UNSPECIFIED;
-        $request = (new SetMuteRequest())
-            ->setName($formattedName)
-            ->setMute($mute);
+        $request = new SetMuteRequest();
         try {
             $gapicClient->setMute($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2767,16 +2412,7 @@ class SecurityCenterClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SimulateSecurityHealthAnalyticsCustomModuleResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $customConfig = new CustomConfig();
-        $resource = new SimulatedResource();
-        $resourceResourceType = 'resourceResourceType305300374';
-        $resource->setResourceType($resourceResourceType);
-        $request = (new SimulateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setParent($parent)
-            ->setCustomConfig($customConfig)
-            ->setResource($resource);
+        $request = new SimulateSecurityHealthAnalyticsCustomModuleRequest();
         $response = $gapicClient->simulateSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2784,12 +2420,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/SimulateSecurityHealthAnalyticsCustomModule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getCustomConfig();
-        $this->assertProtobufEquals($customConfig, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2811,16 +2441,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $customConfig = new CustomConfig();
-        $resource = new SimulatedResource();
-        $resourceResourceType = 'resourceResourceType305300374';
-        $resource->setResourceType($resourceResourceType);
-        $request = (new SimulateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setParent($parent)
-            ->setCustomConfig($customConfig)
-            ->setResource($resource);
+        $request = new SimulateSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->simulateSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2925,10 +2546,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setMostRecentEditor($mostRecentEditor);
         $expectedResponse->setPrincipal($principal);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $bigQueryExport = new BigQueryExport();
-        $request = (new UpdateBigQueryExportRequest())
-            ->setBigQueryExport($bigQueryExport);
+        $request = new UpdateBigQueryExportRequest();
         $response = $gapicClient->updateBigQueryExport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2936,8 +2554,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateBigQueryExport', $actualFuncCall);
-        $actualValue = $actualRequestObject->getBigQueryExport();
-        $this->assertProtobufEquals($bigQueryExport, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2959,10 +2575,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $bigQueryExport = new BigQueryExport();
-        $request = (new UpdateBigQueryExportRequest())
-            ->setBigQueryExport($bigQueryExport);
+        $request = new UpdateBigQueryExportRequest();
         try {
             $gapicClient->updateBigQueryExport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2993,10 +2606,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUid($externalUid);
         $expectedResponse->setStatus($status);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $externalSystem = new ExternalSystem();
-        $request = (new UpdateExternalSystemRequest())
-            ->setExternalSystem($externalSystem);
+        $request = new UpdateExternalSystemRequest();
         $response = $gapicClient->updateExternalSystem($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3004,8 +2614,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateExternalSystem', $actualFuncCall);
-        $actualValue = $actualRequestObject->getExternalSystem();
-        $this->assertProtobufEquals($externalSystem, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3027,10 +2635,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $externalSystem = new ExternalSystem();
-        $request = (new UpdateExternalSystemRequest())
-            ->setExternalSystem($externalSystem);
+        $request = new UpdateExternalSystemRequest();
         try {
             $gapicClient->updateExternalSystem($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3077,10 +2682,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNextSteps($nextSteps);
         $expectedResponse->setModuleName($moduleName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $finding = new Finding();
-        $request = (new UpdateFindingRequest())
-            ->setFinding($finding);
+        $request = new UpdateFindingRequest();
         $response = $gapicClient->updateFinding($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3088,8 +2690,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateFinding', $actualFuncCall);
-        $actualValue = $actualRequestObject->getFinding();
-        $this->assertProtobufEquals($finding, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3111,10 +2711,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $finding = new Finding();
-        $request = (new UpdateFindingRequest())
-            ->setFinding($finding);
+        $request = new UpdateFindingRequest();
         try {
             $gapicClient->updateFinding($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3149,12 +2746,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setFilter($filter);
         $expectedResponse->setMostRecentEditor($mostRecentEditor);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $muteConfig = new MuteConfig();
-        $muteConfigFilter = 'muteConfigFilter-1921414637';
-        $muteConfig->setFilter($muteConfigFilter);
-        $request = (new UpdateMuteConfigRequest())
-            ->setMuteConfig($muteConfig);
+        $request = new UpdateMuteConfigRequest();
         $response = $gapicClient->updateMuteConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3162,8 +2754,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateMuteConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getMuteConfig();
-        $this->assertProtobufEquals($muteConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3185,12 +2775,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $muteConfig = new MuteConfig();
-        $muteConfigFilter = 'muteConfigFilter-1921414637';
-        $muteConfig->setFilter($muteConfigFilter);
-        $request = (new UpdateMuteConfigRequest())
-            ->setMuteConfig($muteConfig);
+        $request = new UpdateMuteConfigRequest();
         try {
             $gapicClient->updateMuteConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3223,10 +2808,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setPubsubTopic($pubsubTopic);
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $notificationConfig = new NotificationConfig();
-        $request = (new UpdateNotificationConfigRequest())
-            ->setNotificationConfig($notificationConfig);
+        $request = new UpdateNotificationConfigRequest();
         $response = $gapicClient->updateNotificationConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3234,8 +2816,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateNotificationConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNotificationConfig();
-        $this->assertProtobufEquals($notificationConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3257,10 +2837,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $notificationConfig = new NotificationConfig();
-        $request = (new UpdateNotificationConfigRequest())
-            ->setNotificationConfig($notificationConfig);
+        $request = new UpdateNotificationConfigRequest();
         try {
             $gapicClient->updateNotificationConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3289,10 +2866,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setEnableAssetDiscovery($enableAssetDiscovery);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $organizationSettings = new OrganizationSettings();
-        $request = (new UpdateOrganizationSettingsRequest())
-            ->setOrganizationSettings($organizationSettings);
+        $request = new UpdateOrganizationSettingsRequest();
         $response = $gapicClient->updateOrganizationSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3300,8 +2874,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateOrganizationSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getOrganizationSettings();
-        $this->assertProtobufEquals($organizationSettings, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3323,10 +2895,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $organizationSettings = new OrganizationSettings();
-        $request = (new UpdateOrganizationSettingsRequest())
-            ->setOrganizationSettings($organizationSettings);
+        $request = new UpdateOrganizationSettingsRequest();
         try {
             $gapicClient->updateOrganizationSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3359,10 +2928,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setLastEditor($lastEditor);
         $expectedResponse->setAncestorModule($ancestorModule);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-        $request = (new UpdateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $request = new UpdateSecurityHealthAnalyticsCustomModuleRequest();
         $response = $gapicClient->updateSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3370,8 +2936,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateSecurityHealthAnalyticsCustomModule', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSecurityHealthAnalyticsCustomModule();
-        $this->assertProtobufEquals($securityHealthAnalyticsCustomModule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3393,10 +2957,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-        $request = (new UpdateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $request = new UpdateSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->updateSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3425,10 +2986,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $securityMarks = new SecurityMarks();
-        $request = (new UpdateSecurityMarksRequest())
-            ->setSecurityMarks($securityMarks);
+        $request = new UpdateSecurityMarksRequest();
         $response = $gapicClient->updateSecurityMarks($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3436,8 +2994,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateSecurityMarks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSecurityMarks();
-        $this->assertProtobufEquals($securityMarks, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3459,10 +3015,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $securityMarks = new SecurityMarks();
-        $request = (new UpdateSecurityMarksRequest())
-            ->setSecurityMarks($securityMarks);
+        $request = new UpdateSecurityMarksRequest();
         try {
             $gapicClient->updateSecurityMarks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3495,10 +3048,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $source = new Source();
-        $request = (new UpdateSourceRequest())
-            ->setSource($source);
+        $request = new UpdateSourceRequest();
         $response = $gapicClient->updateSource($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3506,8 +3056,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateSource', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSource();
-        $this->assertProtobufEquals($source, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3529,10 +3077,7 @@ class SecurityCenterClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $source = new Source();
-        $request = (new UpdateSourceRequest())
-            ->setSource($source);
+        $request = new UpdateSourceRequest();
         try {
             $gapicClient->updateSource($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3575,10 +3120,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new BulkMuteFindingsRequest())
-            ->setParent($parent);
+        $request = new BulkMuteFindingsRequest();
         $response = $gapicClient->bulkMuteFindingsAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3589,8 +3131,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/BulkMuteFindings', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/bulkMuteFindingsTest');
         $response->pollUntilComplete([

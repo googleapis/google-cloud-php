@@ -42,13 +42,10 @@ function update_notification_config_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $notificationConfig = new NotificationConfig();
-
     // Call the API and handle any network failures.
     try {
         /** @var NotificationConfig $response */
-        $response = $securityCenterClient->updateNotificationConfig($notificationConfig);
+        $response = $securityCenterClient->updateNotificationConfig();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

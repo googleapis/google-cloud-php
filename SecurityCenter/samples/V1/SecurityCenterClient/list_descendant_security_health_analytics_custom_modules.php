@@ -33,21 +33,19 @@ use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
  * Returns a list of all resident SecurityHealthAnalyticsCustomModules under
  * the given CRM parent and all of the parent’s CRM descendants.
  *
- * @param string $formattedParent Name of parent to list descendant custom modules. Its format is
- *                                "organizations/{organization}/securityHealthAnalyticsSettings",
- *                                "folders/{folder}/securityHealthAnalyticsSettings", or
- *                                "projects/{project}/securityHealthAnalyticsSettings"
- *                                Please see {@see SecurityCenterClient::securityHealthAnalyticsSettingsName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_descendant_security_health_analytics_custom_modules_sample(
-    string $formattedParent
-): void {
+function list_descendant_security_health_analytics_custom_modules_sample(): void
+{
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $request = (new ListDescendantSecurityHealthAnalyticsCustomModulesRequest())
-        ->setParent($formattedParent);
+    $request = new ListDescendantSecurityHealthAnalyticsCustomModulesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +59,5 @@ function list_descendant_security_health_analytics_custom_modules_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecurityCenterClient::securityHealthAnalyticsSettingsName('[ORGANIZATION]');
-
-    list_descendant_security_health_analytics_custom_modules_sample($formattedParent);
 }
 // [END securitycenter_v1_generated_SecurityCenter_ListDescendantSecurityHealthAnalyticsCustomModules_sync]

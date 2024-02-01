@@ -84,10 +84,7 @@ class AccountsServiceClientTest extends GeneratedTest
         $expectedResponse->setHomepageUri($homepageUri);
         $expectedResponse->setParent($parent2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new GetAccountRequest())
-            ->setName($formattedName);
+        $request = new GetAccountRequest();
         $response = $gapicClient->getAccount($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -95,8 +92,6 @@ class AccountsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.css.v1.AccountsService/GetAccount', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -118,10 +113,7 @@ class AccountsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new GetAccountRequest())
-            ->setName($formattedName);
+        $request = new GetAccountRequest();
         try {
             $gapicClient->getAccount($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -153,10 +145,7 @@ class AccountsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAccounts($accounts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new ListChildAccountsRequest())
-            ->setParent($formattedParent);
+        $request = new ListChildAccountsRequest();
         $response = $gapicClient->listChildAccounts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -167,8 +156,6 @@ class AccountsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.css.v1.AccountsService/ListChildAccounts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -190,10 +177,7 @@ class AccountsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new ListChildAccountsRequest())
-            ->setParent($formattedParent);
+        $request = new ListChildAccountsRequest();
         try {
             $gapicClient->listChildAccounts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -228,10 +212,7 @@ class AccountsServiceClientTest extends GeneratedTest
         $expectedResponse->setHomepageUri($homepageUri);
         $expectedResponse->setParent($parent2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new UpdateAccountLabelsRequest())
-            ->setName($formattedName);
+        $request = new UpdateAccountLabelsRequest();
         $response = $gapicClient->updateLabels($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -239,8 +220,6 @@ class AccountsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.css.v1.AccountsService/UpdateLabels', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -262,10 +241,7 @@ class AccountsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new UpdateAccountLabelsRequest())
-            ->setName($formattedName);
+        $request = new UpdateAccountLabelsRequest();
         try {
             $gapicClient->updateLabels($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -300,10 +276,7 @@ class AccountsServiceClientTest extends GeneratedTest
         $expectedResponse->setHomepageUri($homepageUri);
         $expectedResponse->setParent($parent2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new GetAccountRequest())
-            ->setName($formattedName);
+        $request = new GetAccountRequest();
         $response = $gapicClient->getAccountAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -311,8 +284,6 @@ class AccountsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.css.v1.AccountsService/GetAccount', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -31,18 +31,13 @@ use Google\Cloud\Speech\V1p1beta1\CustomClass;
 /**
  * List custom classes.
  *
- * @param string $formattedParent The parent, which owns this collection of custom classes. Format:
- *
- *                                `projects/{project}/locations/{location}/customClasses`
- *
- *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
- *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`
- *                                endpoint, use the `global` location. To specify a region, use a
- *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
- *                                with matching `us` or `eu` location value. Please see
- *                                {@see AdaptationClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_custom_classes_sample(string $formattedParent): void
+function list_custom_classes_sample(): void
 {
     // Create a client.
     $adaptationClient = new AdaptationClient();
@@ -50,7 +45,7 @@ function list_custom_classes_sample(string $formattedParent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $adaptationClient->listCustomClasses($formattedParent);
+        $response = $adaptationClient->listCustomClasses();
 
         /** @var CustomClass $element */
         foreach ($response as $element) {
@@ -59,21 +54,5 @@ function list_custom_classes_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AdaptationClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_custom_classes_sample($formattedParent);
 }
 // [END speech_v1p1beta1_generated_Adaptation_ListCustomClasses_sync]

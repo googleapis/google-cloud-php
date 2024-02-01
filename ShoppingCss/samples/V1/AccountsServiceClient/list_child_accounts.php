@@ -33,18 +33,19 @@ use Google\Shopping\Css\V1\ListChildAccountsRequest;
  * Lists all the accounts under the specified CSS account ID, and
  * optionally filters by label ID and account name.
  *
- * @param string $formattedParent The parent account. Must be a CSS group or domain.
- *                                Format: accounts/{account}
- *                                Please see {@see AccountsServiceClient::accountName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_child_accounts_sample(string $formattedParent): void
+function list_child_accounts_sample(): void
 {
     // Create a client.
     $accountsServiceClient = new AccountsServiceClient();
 
     // Prepare the request message.
-    $request = (new ListChildAccountsRequest())
-        ->setParent($formattedParent);
+    $request = new ListChildAccountsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +59,5 @@ function list_child_accounts_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AccountsServiceClient::accountName('[ACCOUNT]');
-
-    list_child_accounts_sample($formattedParent);
 }
 // [END css_v1_generated_AccountsService_ListChildAccounts_sync]

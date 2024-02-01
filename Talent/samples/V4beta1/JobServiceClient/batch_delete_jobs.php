@@ -29,52 +29,23 @@ use Google\Cloud\Talent\V4beta1\JobServiceClient;
 /**
  * Deletes a list of [Job][google.cloud.talent.v4beta1.Job]s by filter.
  *
- * @param string $formattedParent The resource name of the tenant under which the job is created.
- *
- *                                The format is "projects/{project_id}/tenants/{tenant_id}". For example,
- *                                "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
- *                                is created. For example, "projects/foo". Please see
- *                                {@see JobServiceClient::projectName()} for help formatting this field.
- * @param string $filter          The filter string specifies the jobs to be deleted.
- *
- *                                Supported operator: =, AND
- *
- *                                The fields eligible for filtering are:
- *
- *                                * `companyName` (Required)
- *                                * `requisitionId` (Required)
- *
- *                                Sample Query: companyName = "projects/foo/companies/bar" AND
- *                                requisitionId = "req-1"
- */
-function batch_delete_jobs_sample(string $formattedParent, string $filter): void
-{
-    // Create a client.
-    $jobServiceClient = new JobServiceClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $jobServiceClient->batchDeleteJobs($formattedParent, $filter);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function batch_delete_jobs_sample(): void
 {
-    $formattedParent = JobServiceClient::projectName('[PROJECT]');
-    $filter = '[FILTER]';
+    // Create a client.
+    $jobServiceClient = new JobServiceClient();
 
-    batch_delete_jobs_sample($formattedParent, $filter);
+    // Call the API and handle any network failures.
+    try {
+        $jobServiceClient->batchDeleteJobs();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END jobs_v4beta1_generated_JobService_BatchDeleteJobs_sync]

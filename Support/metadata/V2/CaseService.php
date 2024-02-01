@@ -23,16 +23,16 @@ class CaseService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∏
-*google/cloud/support/v2/case_service.protogoogle.cloud.support.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"google/cloud/support/v2/case.proto(google/cloud/support/v2/escalation.proto google/protobuf/field_mask.proto"H
-GetCaseRequest6
-name (	B(‡A˙A"
- cloudsupport.googleapis.com/Case"
-CreateCaseRequest8
-parent (	B(‡A˙A" cloudsupport.googleapis.com/Case0
-case (2.google.cloud.support.v2.CaseB‡A"É
-ListCasesRequest8
-parent (	B(‡A˙A" cloudsupport.googleapis.com/Case
+¿
+*google/cloud/support/v2/case_service.protogoogle.cloud.support.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"google/cloud/support/v2/case.proto(google/cloud/support/v2/escalation.proto google/protobuf/field_mask.proto"I
+GetCaseRequest7
+name (	B)‚A˙A"
+ cloudsupport.googleapis.com/Case"Å
+CreateCaseRequest9
+parent (	B)‚A˙A" cloudsupport.googleapis.com/Case1
+case (2.google.cloud.support.v2.CaseB‚A"Ñ
+ListCasesRequest9
+parent (	B)‚A˙A" cloudsupport.googleapis.com/Case
 filter (	
 	page_size (
 
@@ -48,17 +48,17 @@ page_token (	"Z
 page_token (	"\\
 SearchCasesResponse,
 cases (2.google.cloud.support.v2.Case
-next_page_token (	"Ü
-EscalateCaseRequest6
-name (	B(‡A˙A"
+next_page_token (	"á
+EscalateCaseRequest7
+name (	B)‚A˙A"
  cloudsupport.googleapis.com/Case7
 
-escalation (2#.google.cloud.support.v2.Escalation"v
-UpdateCaseRequest0
-case (2.google.cloud.support.v2.CaseB‡A/
-update_mask (2.google.protobuf.FieldMask"J
-CloseCaseRequest6
-name (	B(‡A˙A"
+escalation (2#.google.cloud.support.v2.Escalation"w
+UpdateCaseRequest1
+case (2.google.cloud.support.v2.CaseB‚A/
+update_mask (2.google.protobuf.FieldMask"K
+CloseCaseRequest7
+name (	B)‚A˙A"
  cloudsupport.googleapis.com/Case"X
  SearchCaseClassificationsRequest
 query (	
@@ -69,13 +69,13 @@ page_token (	"á
 case_classifications (2+.google.cloud.support.v2.CaseClassification
 next_page_token (	2œ
 CaseService•
-GetCase\'.google.cloud.support.v2.GetCaseRequest.google.cloud.support.v2.Case"RÇ”‰ìE/v2/{name=projects/*/cases/*}Z$"/v2/{name=organizations/*/cases/*}⁄Aname∏
-	ListCases).google.cloud.support.v2.ListCasesRequest*.google.cloud.support.v2.ListCasesResponse"TÇ”‰ìE/v2/{parent=projects/*}/casesZ$"/v2/{parent=organizations/*}/cases⁄Aparent√
+GetCase\'.google.cloud.support.v2.GetCaseRequest.google.cloud.support.v2.Case"R⁄AnameÇ”‰ìE/v2/{name=projects/*/cases/*}Z$"/v2/{name=organizations/*/cases/*}∏
+	ListCases).google.cloud.support.v2.ListCasesRequest*.google.cloud.support.v2.ListCasesResponse"T⁄AparentÇ”‰ìE/v2/{parent=projects/*}/casesZ$"/v2/{parent=organizations/*}/cases√
 SearchCases+.google.cloud.support.v2.SearchCasesRequest,.google.cloud.support.v2.SearchCasesResponse"YÇ”‰ìS$/v2/{parent=projects/*}/cases:searchZ+)/v2/{parent=organizations/*}/cases:searchæ
 
-CreateCase*.google.cloud.support.v2.CreateCaseRequest.google.cloud.support.v2.Case"eÇ”‰ìQ"/v2/{parent=projects/*}/cases:caseZ*""/v2/{parent=organizations/*}/cases:case⁄Aparent,caseÕ
+CreateCase*.google.cloud.support.v2.CreateCaseRequest.google.cloud.support.v2.Case"e⁄Aparent,caseÇ”‰ìQ"/v2/{parent=projects/*}/cases:caseZ*""/v2/{parent=organizations/*}/cases:caseÕ
 
-UpdateCase*.google.cloud.support.v2.UpdateCaseRequest.google.cloud.support.v2.Case"tÇ”‰ì[2"/v2/{case.name=projects/*/cases/*}:caseZ/2\'/v2/{case.name=organizations/*/cases/*}:case⁄Acase,update_mask¿
+UpdateCase*.google.cloud.support.v2.UpdateCaseRequest.google.cloud.support.v2.Case"t⁄Acase,update_maskÇ”‰ì[2"/v2/{case.name=projects/*/cases/*}:caseZ/2\'/v2/{case.name=organizations/*/cases/*}:case¿
 EscalateCase,.google.cloud.support.v2.EscalateCaseRequest.google.cloud.support.v2.Case"cÇ”‰ì]"&/v2/{name=projects/*/cases/*}:escalate:*Z0"+/v2/{name=organizations/*/cases/*}:escalate:*¥
 	CloseCase).google.cloud.support.v2.CloseCaseRequest.google.cloud.support.v2.Case"]Ç”‰ìW"#/v2/{name=projects/*/cases/*}:close:*Z-"(/v2/{name=organizations/*/cases/*}:close:*∫
 SearchCaseClassifications9.google.cloud.support.v2.SearchCaseClassificationsRequest:.google.cloud.support.v2.SearchCaseClassificationsResponse"&Ç”‰ì /v2/caseClassifications:searchO Acloudsupport.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBπ

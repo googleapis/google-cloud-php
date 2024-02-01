@@ -57,7 +57,6 @@ class ListChildAccountsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent account. Must be a CSS group or domain.
      *                       Format: accounts/{account}
-     *                       Please see {@see AccountsServiceClient::accountName()} for help formatting this field.
      *
      * @return \Google\Shopping\Css\V1\ListChildAccountsRequest
      *

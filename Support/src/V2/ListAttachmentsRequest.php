@@ -40,8 +40,7 @@ class ListAttachmentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of Case object for which attachments should be
-     *                       listed. Please see
-     *                       {@see CaseAttachmentServiceClient::caseName()} for help formatting this field.
+     *                       listed.
      *
      * @return \Google\Cloud\Support\V2\ListAttachmentsRequest
      *

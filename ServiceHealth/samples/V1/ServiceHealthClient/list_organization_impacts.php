@@ -33,23 +33,19 @@ use Google\Cloud\ServiceHealth\V1\OrganizationImpact;
  * Lists assets impacted by organization events under a given organization and
  * location.
  *
- * @param string $formattedParent Parent value using the form
- *                                `organizations/{organization_id}/locations/{location}/organizationImpacts`.
- *
- *                                `organization_id` - ID (number) of the project that contains the event. To
- *                                get your `organization_id`, see
- *                                [Getting your organization resource
- *                                ID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). Please see
- *                                {@see ServiceHealthClient::organizationLocationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_organization_impacts_sample(string $formattedParent): void
+function list_organization_impacts_sample(): void
 {
     // Create a client.
     $serviceHealthClient = new ServiceHealthClient();
 
     // Prepare the request message.
-    $request = (new ListOrganizationImpactsRequest())
-        ->setParent($formattedParent);
+    $request = new ListOrganizationImpactsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,21 +59,5 @@ function list_organization_impacts_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ServiceHealthClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-
-    list_organization_impacts_sample($formattedParent);
 }
 // [END servicehealth_v1_generated_ServiceHealth_ListOrganizationImpacts_sync]

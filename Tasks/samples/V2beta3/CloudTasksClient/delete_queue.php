@@ -41,37 +41,23 @@ use Google\Cloud\Tasks\V2beta3\CloudTasksClient;
  * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
  * this method.
  *
- * @param string $formattedName The queue name. For example:
- *                              `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
- *                              Please see {@see CloudTasksClient::queueName()} for help formatting this field.
- */
-function delete_queue_sample(string $formattedName): void
-{
-    // Create a client.
-    $cloudTasksClient = new CloudTasksClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $cloudTasksClient->deleteQueue($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_queue_sample(): void
 {
-    $formattedName = CloudTasksClient::queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+    // Create a client.
+    $cloudTasksClient = new CloudTasksClient();
 
-    delete_queue_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $cloudTasksClient->deleteQueue();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudtasks_v2beta3_generated_CloudTasks_DeleteQueue_sync]

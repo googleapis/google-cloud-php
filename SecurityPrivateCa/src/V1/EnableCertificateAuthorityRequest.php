@@ -44,8 +44,7 @@ class EnableCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     /**
      * @param string $name Required. The resource name for this
      *                     [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     *                     in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
-     *                     {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+     *                     in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\EnableCertificateAuthorityRequest
      *

@@ -50,8 +50,7 @@ class ListSecretsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the project associated with the
-     *                       [Secrets][google.cloud.secretmanager.v1.Secret], in the format `projects/*`. Please see
-     *                       {@see SecretManagerServiceClient::projectName()} for help formatting this field.
+     *                       [Secrets][google.cloud.secretmanager.v1.Secret], in the format `projects/*`.
      *
      * @return \Google\Cloud\SecretManager\V1\ListSecretsRequest
      *

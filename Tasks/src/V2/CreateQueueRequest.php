@@ -41,8 +41,7 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
      *
      *                                             The list of allowed locations can be obtained by calling Cloud
      *                                             Tasks' implementation of
-     *                                             [ListLocations][google.cloud.location.Locations.ListLocations]. Please see
-     *                                             {@see CloudTasksClient::locationName()} for help formatting this field.
+     *                                             [ListLocations][google.cloud.location.Locations.ListLocations].
      * @param \Google\Cloud\Tasks\V2\Queue $queue  Required. The queue to create.
      *
      *                                             [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an

@@ -32,24 +32,19 @@ use Google\Cloud\ServiceHealth\V1\ListEventsRequest;
 /**
  * Lists events under a given project and location.
  *
- * @param string $formattedParent Parent value using the form
- *                                `projects/{project_id}/locations/{location}/events`.
- *
- *                                `project_id` - ID of the project for which to list service health
- *                                events.
- *                                `location` - The location to get the service health events from.
- *                                To retrieve service health events of category = INCIDENT, use `location` =
- *                                `global`. Please see
- *                                {@see ServiceHealthClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_events_sample(string $formattedParent): void
+function list_events_sample(): void
 {
     // Create a client.
     $serviceHealthClient = new ServiceHealthClient();
 
     // Prepare the request message.
-    $request = (new ListEventsRequest())
-        ->setParent($formattedParent);
+    $request = new ListEventsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,21 +58,5 @@ function list_events_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ServiceHealthClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_events_sample($formattedParent);
 }
 // [END servicehealth_v1_generated_ServiceHealth_ListEvents_sync]

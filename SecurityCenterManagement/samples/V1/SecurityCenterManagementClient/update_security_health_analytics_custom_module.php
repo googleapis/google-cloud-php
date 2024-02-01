@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\SecurityCenterManagement\V1\Client\SecurityCenterManagementClient;
 use Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenterManagement\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the SecurityHealthAnalyticsCustomModule under the given name based
@@ -48,11 +47,7 @@ function update_security_health_analytics_custom_module_sample(): void
     $securityCenterManagementClient = new SecurityCenterManagementClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-    $request = (new UpdateSecurityHealthAnalyticsCustomModuleRequest())
-        ->setUpdateMask($updateMask)
-        ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+    $request = new UpdateSecurityHealthAnalyticsCustomModuleRequest();
 
     // Call the API and handle any network failures.
     try {

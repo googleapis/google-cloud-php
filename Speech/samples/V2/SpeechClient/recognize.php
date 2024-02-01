@@ -32,20 +32,19 @@ use Google\Cloud\Speech\V2\RecognizeResponse;
  * Performs synchronous Speech recognition: receive results after all audio
  * has been sent and processed.
  *
- * @param string $formattedRecognizer The name of the Recognizer to use during recognition. The
- *                                    expected format is
- *                                    `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
- *                                    {recognizer} segment may be set to `_` to use an empty implicit Recognizer. Please see
- *                                    {@see SpeechClient::recognizerName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function recognize_sample(string $formattedRecognizer): void
+function recognize_sample(): void
 {
     // Create a client.
     $speechClient = new SpeechClient();
 
     // Prepare the request message.
-    $request = (new RecognizeRequest())
-        ->setRecognizer($formattedRecognizer);
+    $request = new RecognizeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +54,5 @@ function recognize_sample(string $formattedRecognizer): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedRecognizer = SpeechClient::recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-
-    recognize_sample($formattedRecognizer);
 }
 // [END speech_v2_generated_Speech_Recognize_sync]

@@ -32,7 +32,6 @@ class DeleteSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *                     "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
      *                     or
      *                     "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
-     *                     Please see {@see SecurityCenterClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\DeleteSecurityHealthAnalyticsCustomModuleRequest
      *

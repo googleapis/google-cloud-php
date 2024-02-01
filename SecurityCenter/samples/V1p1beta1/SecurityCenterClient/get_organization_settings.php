@@ -30,11 +30,13 @@ use Google\Cloud\SecurityCenter\V1p1beta1\SecurityCenterClient;
 /**
  * Gets the settings for an organization.
  *
- * @param string $formattedName Name of the organization to get organization settings for. Its format is
- *                              "organizations/[organization_id]/organizationSettings". Please see
- *                              {@see SecurityCenterClient::organizationSettingsName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_organization_settings_sample(string $formattedName): void
+function get_organization_settings_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
@@ -42,26 +44,10 @@ function get_organization_settings_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var OrganizationSettings $response */
-        $response = $securityCenterClient->getOrganizationSettings($formattedName);
+        $response = $securityCenterClient->getOrganizationSettings();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SecurityCenterClient::organizationSettingsName('[ORGANIZATION]');
-
-    get_organization_settings_sample($formattedName);
 }
 // [END securitycenter_v1p1beta1_generated_SecurityCenter_GetOrganizationSettings_sync]

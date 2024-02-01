@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Tasks\V2beta2\CloudTasksClient;
 use Google\Cloud\Tasks\V2beta2\LeaseTasksResponse;
-use Google\Protobuf\Duration;
 
 /**
  * Leases tasks from a pull queue for
@@ -53,41 +52,24 @@ use Google\Protobuf\Duration;
  * [max_tasks_dispatched_per_second][google.cloud.tasks.v2beta2.RateLimits.max_tasks_dispatched_per_second]
  * is exceeded.
  *
- * @param string $formattedParent The queue name. For example:
- *                                `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
- *                                Please see {@see CloudTasksClient::queueName()} for help formatting this field.
- */
-function lease_tasks_sample(string $formattedParent): void
-{
-    // Create a client.
-    $cloudTasksClient = new CloudTasksClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $leaseDuration = new Duration();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var LeaseTasksResponse $response */
-        $response = $cloudTasksClient->leaseTasks($formattedParent, $leaseDuration);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function lease_tasks_sample(): void
 {
-    $formattedParent = CloudTasksClient::queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+    // Create a client.
+    $cloudTasksClient = new CloudTasksClient();
 
-    lease_tasks_sample($formattedParent);
+    // Call the API and handle any network failures.
+    try {
+        /** @var LeaseTasksResponse $response */
+        $response = $cloudTasksClient->leaseTasks();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudtasks_v2beta2_generated_CloudTasks_LeaseTasks_sync]

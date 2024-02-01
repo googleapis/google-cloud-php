@@ -31,21 +31,19 @@ use Google\Cloud\Talent\V4\UpdateTenantRequest;
 /**
  * Updates specified tenant.
  *
- * @param string $tenantExternalId Client side tenant identifier, used to uniquely identify the
- *                                 tenant.
- *
- *                                 The maximum number of allowed characters is 255.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_tenant_sample(string $tenantExternalId): void
+function update_tenant_sample(): void
 {
     // Create a client.
     $tenantServiceClient = new TenantServiceClient();
 
     // Prepare the request message.
-    $tenant = (new Tenant())
-        ->setExternalId($tenantExternalId);
-    $request = (new UpdateTenantRequest())
-        ->setTenant($tenant);
+    $request = new UpdateTenantRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +53,5 @@ function update_tenant_sample(string $tenantExternalId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $tenantExternalId = '[EXTERNAL_ID]';
-
-    update_tenant_sample($tenantExternalId);
 }
 // [END jobs_v4_generated_TenantService_UpdateTenant_sync]

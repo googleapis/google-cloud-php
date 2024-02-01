@@ -38,21 +38,19 @@ use Google\Cloud\StorageTransfer\V1\UpdateTransferJobRequest;
  * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], or
  * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED]).
  *
- * @param string $jobName   The name of job to update.
- * @param string $projectId The ID of the Google Cloud project that owns the
- *                          job.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_transfer_job_sample(string $jobName, string $projectId): void
+function update_transfer_job_sample(): void
 {
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
     // Prepare the request message.
-    $transferJob = new TransferJob();
-    $request = (new UpdateTransferJobRequest())
-        ->setJobName($jobName)
-        ->setProjectId($projectId)
-        ->setTransferJob($transferJob);
+    $request = new UpdateTransferJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,22 +60,5 @@ function update_transfer_job_sample(string $jobName, string $projectId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $jobName = '[JOB_NAME]';
-    $projectId = '[PROJECT_ID]';
-
-    update_transfer_job_sample($jobName, $projectId);
 }
 // [END storagetransfer_v1_generated_StorageTransferService_UpdateTransferJob_sync]

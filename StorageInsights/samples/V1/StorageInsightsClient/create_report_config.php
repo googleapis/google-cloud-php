@@ -31,19 +31,19 @@ use Google\Cloud\StorageInsights\V1\ReportConfig;
 /**
  * Creates a new ReportConfig in a given project and location.
  *
- * @param string $formattedParent Value for parent. Please see
- *                                {@see StorageInsightsClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_report_config_sample(string $formattedParent): void
+function create_report_config_sample(): void
 {
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
     // Prepare the request message.
-    $reportConfig = new ReportConfig();
-    $request = (new CreateReportConfigRequest())
-        ->setParent($formattedParent)
-        ->setReportConfig($reportConfig);
+    $request = new CreateReportConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function create_report_config_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = StorageInsightsClient::locationName('[PROJECT]', '[LOCATION]');
-
-    create_report_config_sample($formattedParent);
 }
 // [END storageinsights_v1_generated_StorageInsights_CreateReportConfig_sync]

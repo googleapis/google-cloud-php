@@ -24,8 +24,7 @@ class DeleteNamespaceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the namespace to delete. Please see
-     *                     {@see RegistrationServiceClient::namespaceName()} for help formatting this field.
+     * @param string $name Required. The name of the namespace to delete.
      *
      * @return \Google\Cloud\ServiceDirectory\V1\DeleteNamespaceRequest
      *

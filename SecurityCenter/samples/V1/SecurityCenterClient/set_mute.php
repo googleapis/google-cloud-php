@@ -26,30 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\Finding;
-use Google\Cloud\SecurityCenter\V1\Finding\Mute;
 use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
 
 /**
  * Updates the mute state of a finding.
  *
- * @param string $formattedName The [relative resource
- *                              name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
- *                              of the finding. Example:
- *                              "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
- *                              "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
- *                              "projects/{project_id}/sources/{source_id}/findings/{finding_id}". Please see
- *                              {@see SecurityCenterClient::findingName()} for help formatting this field.
- * @param int    $mute          The desired state of the Mute.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function set_mute_sample(string $formattedName, int $mute): void
+function set_mute_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $request = (new SetMuteRequest())
-        ->setName($formattedName)
-        ->setMute($mute);
+    $request = new SetMuteRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,22 +53,5 @@ function set_mute_sample(string $formattedName, int $mute): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SecurityCenterClient::findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-    $mute = Mute::MUTE_UNSPECIFIED;
-
-    set_mute_sample($formattedName, $mute);
 }
 // [END securitycenter_v1_generated_SecurityCenter_SetMute_sync]

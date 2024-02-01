@@ -28,7 +28,6 @@ class DeleteRegionalInventoryRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the `RegionalInventory` resource to delete.
      *                     Format:
      *                     `accounts/{account}/products/{product}/regionalInventories/{region}`
-     *                     Please see {@see RegionalInventoryServiceClient::regionalInventoryName()} for help formatting this field.
      *
      * @return \Google\Shopping\Merchant\Inventories\V1beta\DeleteRegionalInventoryRequest
      *

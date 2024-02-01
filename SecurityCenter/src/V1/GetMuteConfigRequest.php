@@ -30,7 +30,6 @@ class GetMuteConfigRequest extends \Google\Protobuf\Internal\Message
      *                     organizations/{organization}/muteConfigs/{config_id},
      *                     folders/{folder}/muteConfigs/{config_id}, or
      *                     projects/{project}/muteConfigs/{config_id}
-     *                     Please see {@see SecurityCenterClient::muteConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\GetMuteConfigRequest
      *

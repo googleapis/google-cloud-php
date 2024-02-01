@@ -59,8 +59,7 @@ class CreateCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                                  $parent                Required. The resource name of the location associated with the
      *                                                                                       [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate],
-     *                                                                                       in the format `projects/&#42;/locations/*`. Please see
-     *                                                                                       {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
+     *                                                                                       in the format `projects/&#42;/locations/*`.
      * @param \Google\Cloud\Security\PrivateCA\V1\CertificateTemplate $certificateTemplate   Required. A
      *                                                                                       [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
      *                                                                                       with initial field values.

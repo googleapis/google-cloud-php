@@ -79,12 +79,7 @@ class CommentServiceClientTest extends GeneratedTest
         $expectedResponse->setBody($body);
         $expectedResponse->setPlainTextBody($plainTextBody);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $comment = new Comment();
-        $request = (new CreateCommentRequest())
-            ->setParent($formattedParent)
-            ->setComment($comment);
+        $request = new CreateCommentRequest();
         $response = $gapicClient->createComment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -92,10 +87,6 @@ class CommentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.support.v2.CommentService/CreateComment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getComment();
-        $this->assertProtobufEquals($comment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -117,12 +108,7 @@ class CommentServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $comment = new Comment();
-        $request = (new CreateCommentRequest())
-            ->setParent($formattedParent)
-            ->setComment($comment);
+        $request = new CreateCommentRequest();
         try {
             $gapicClient->createComment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -154,10 +140,7 @@ class CommentServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setComments($comments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new ListCommentsRequest())
-            ->setParent($formattedParent);
+        $request = new ListCommentsRequest();
         $response = $gapicClient->listComments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -168,8 +151,6 @@ class CommentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.support.v2.CommentService/ListComments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -191,10 +172,7 @@ class CommentServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new ListCommentsRequest())
-            ->setParent($formattedParent);
+        $request = new ListCommentsRequest();
         try {
             $gapicClient->listComments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -225,12 +203,7 @@ class CommentServiceClientTest extends GeneratedTest
         $expectedResponse->setBody($body);
         $expectedResponse->setPlainTextBody($plainTextBody);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $comment = new Comment();
-        $request = (new CreateCommentRequest())
-            ->setParent($formattedParent)
-            ->setComment($comment);
+        $request = new CreateCommentRequest();
         $response = $gapicClient->createCommentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -238,10 +211,6 @@ class CommentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.support.v2.CommentService/CreateComment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getComment();
-        $this->assertProtobufEquals($comment, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

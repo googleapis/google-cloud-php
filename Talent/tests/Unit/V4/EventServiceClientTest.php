@@ -28,7 +28,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Talent\V4\ClientEvent;
 use Google\Cloud\Talent\V4\EventServiceClient;
-use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -77,24 +76,13 @@ class EventServiceClientTest extends GeneratedTest
         $expectedResponse->setEventId($eventId);
         $expectedResponse->setEventNotes($eventNotes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $clientEvent = new ClientEvent();
-        $clientEventEventId = 'clientEventEventId319230150';
-        $clientEvent->setEventId($clientEventEventId);
-        $clientEventCreateTime = new Timestamp();
-        $clientEvent->setCreateTime($clientEventCreateTime);
-        $response = $gapicClient->createClientEvent($formattedParent, $clientEvent);
+        $response = $gapicClient->createClientEvent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.EventService/CreateClientEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getClientEvent();
-        $this->assertProtobufEquals($clientEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -116,15 +104,8 @@ class EventServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $clientEvent = new ClientEvent();
-        $clientEventEventId = 'clientEventEventId319230150';
-        $clientEvent->setEventId($clientEventEventId);
-        $clientEventCreateTime = new Timestamp();
-        $clientEvent->setCreateTime($clientEventCreateTime);
         try {
-            $gapicClient->createClientEvent($formattedParent, $clientEvent);
+            $gapicClient->createClientEvent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

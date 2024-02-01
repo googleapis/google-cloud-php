@@ -31,21 +31,19 @@ use Google\Cloud\Talent\V4\DeleteCompanyRequest;
  * Deletes specified company.
  * Prerequisite: The company has no jobs associated with it.
  *
- * @param string $formattedName The resource name of the company to be deleted.
- *
- *                              The format is
- *                              "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
- *                              example, "projects/foo/tenants/bar/companies/baz". Please see
- *                              {@see CompanyServiceClient::companyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_company_sample(string $formattedName): void
+function delete_company_sample(): void
 {
     // Create a client.
     $companyServiceClient = new CompanyServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteCompanyRequest())
-        ->setName($formattedName);
+    $request = new DeleteCompanyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +52,5 @@ function delete_company_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CompanyServiceClient::companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-
-    delete_company_sample($formattedName);
 }
 // [END jobs_v4_generated_CompanyService_DeleteCompany_sync]

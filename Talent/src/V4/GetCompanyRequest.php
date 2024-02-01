@@ -30,8 +30,7 @@ class GetCompanyRequest extends \Google\Protobuf\Internal\Message
      *
      *                     The format is
      *                     "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     *                     example, "projects/api-test-project/tenants/foo/companies/bar". Please see
-     *                     {@see CompanyServiceClient::companyName()} for help formatting this field.
+     *                     example, "projects/api-test-project/tenants/foo/companies/bar".
      *
      * @return \Google\Cloud\Talent\V4\GetCompanyRequest
      *

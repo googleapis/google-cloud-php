@@ -49,7 +49,6 @@ class ListReportDetailsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent value for ListReportDetailsRequest
-     *                       Please see {@see StorageInsightsClient::reportConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\StorageInsights\V1\ListReportDetailsRequest
      *

@@ -35,18 +35,19 @@ use Google\Rpc\Status;
  * parent can be either an organization, folder or project. The findings
  * matched by the filter will be muted after the LRO is done.
  *
- * @param string $parent The parent, at which bulk action needs to be applied. Its format
- *                       is "organizations/[organization_id]", "folders/[folder_id]",
- *                       "projects/[project_id]".
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function bulk_mute_findings_sample(string $parent): void
+function bulk_mute_findings_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $request = (new BulkMuteFindingsRequest())
-        ->setParent($parent);
+    $request = new BulkMuteFindingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,21 +67,5 @@ function bulk_mute_findings_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    bulk_mute_findings_sample($parent);
 }
 // [END securitycenter_v1_generated_SecurityCenter_BulkMuteFindings_sync]

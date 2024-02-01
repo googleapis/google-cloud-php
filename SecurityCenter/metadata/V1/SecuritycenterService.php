@@ -43,69 +43,70 @@ class SecuritycenterService
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
             '
-å÷
-;google/cloud/securitycenter/v1/securitycenter_service.protogoogle.cloud.securitycenter.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/securitycenter/v1/asset.proto4google/cloud/securitycenter/v1/bigquery_export.protoVgoogle/cloud/securitycenter/v1/effective_security_health_analytics_custom_module.proto4google/cloud/securitycenter/v1/external_system.proto,google/cloud/securitycenter/v1/finding.proto+google/cloud/securitycenter/v1/folder.proto0google/cloud/securitycenter/v1/mute_config.proto8google/cloud/securitycenter/v1/notification_config.proto:google/cloud/securitycenter/v1/organization_settings.protoAgoogle/cloud/securitycenter/v1/run_asset_discovery_response.protoLgoogle/cloud/securitycenter/v1/security_health_analytics_custom_config.protoLgoogle/cloud/securitycenter/v1/security_health_analytics_custom_module.proto3google/cloud/securitycenter/v1/security_marks.proto+google/cloud/securitycenter/v1/source.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"a
-BulkMuteFindingsRequest
-parent (	B	‡A˙A
+À÷
+;google/cloud/securitycenter/v1/securitycenter_service.protogoogle.cloud.securitycenter.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/securitycenter/v1/asset.proto4google/cloud/securitycenter/v1/bigquery_export.protoVgoogle/cloud/securitycenter/v1/effective_security_health_analytics_custom_module.proto4google/cloud/securitycenter/v1/external_system.proto,google/cloud/securitycenter/v1/finding.proto+google/cloud/securitycenter/v1/folder.proto0google/cloud/securitycenter/v1/mute_config.proto8google/cloud/securitycenter/v1/notification_config.proto:google/cloud/securitycenter/v1/organization_settings.protoAgoogle/cloud/securitycenter/v1/run_asset_discovery_response.protoLgoogle/cloud/securitycenter/v1/security_health_analytics_custom_config.protoLgoogle/cloud/securitycenter/v1/security_health_analytics_custom_module.proto3google/cloud/securitycenter/v1/security_marks.proto+google/cloud/securitycenter/v1/source.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"b
+BulkMuteFindingsRequest
+parent (	B
+‚A˙A
 *
 filter (	
 mute_annotation (	B"
-BulkMuteFindingsResponse"¨
-CreateFindingRequest<
-parent (	B,‡A˙A&
-$securitycenter.googleapis.com/Source
+BulkMuteFindingsResponse"Ø
+CreateFindingRequest=
+parent (	B-‚A˙A&
+$securitycenter.googleapis.com/Source
 
-finding_id (	B‡A=
-finding (2\'.google.cloud.securitycenter.v1.FindingB‡A"æ
-CreateMuteConfigRequest@
-parent (	B0‡A˙A*(securitycenter.googleapis.com/MuteConfigD
-mute_config (2*.google.cloud.securitycenter.v1.MuteConfigB‡A
-mute_config_id (	B‡A"Ÿ
-CreateNotificationConfigRequestH
-parent (	B8‡A˙A20securitycenter.googleapis.com/NotificationConfig
-	config_id (	B‡AT
-notification_config (22.google.cloud.securitycenter.v1.NotificationConfigB‡A"à
-0CreateSecurityHealthAnalyticsCustomModuleRequestY
-parent (	BI‡A˙ACAsecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModuley
-\'security_health_analytics_custom_module (2C.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModuleB‡A"ú
-CreateSourceRequestH
-parent (	B8‡A˙A2
-0cloudresourcemanager.googleapis.com/Organization;
-source (2&.google.cloud.securitycenter.v1.SourceB‡A"Y
-DeleteMuteConfigRequest>
-name (	B0‡A˙A*
-(securitycenter.googleapis.com/MuteConfig"i
-DeleteNotificationConfigRequestF
-name (	B8‡A˙A2
-0securitycenter.googleapis.com/NotificationConfig"ã
-0DeleteSecurityHealthAnalyticsCustomModuleRequestW
-name (	BI‡A˙AC
-Asecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModule"^
-GetBigQueryExportRequestB
-name (	B4‡A˙A.
-,securitycenter.googleapis.com/BigQueryExport"V
-GetMuteConfigRequest>
-name (	B0‡A˙A*
-(securitycenter.googleapis.com/MuteConfig"f
-GetNotificationConfigRequestF
-name (	B8‡A˙A2
-0securitycenter.googleapis.com/NotificationConfig"j
-GetOrganizationSettingsRequestH
-name (	B:‡A˙A4
-2securitycenter.googleapis.com/OrganizationSettings"ö
-6GetEffectiveSecurityHealthAnalyticsCustomModuleRequest`
-name (	BR‡A˙AL
-Jsecuritycenter.googleapis.com/EffectiveSecurityHealthAnalyticsCustomModule"à
--GetSecurityHealthAnalyticsCustomModuleRequestW
-name (	BI‡A˙AC
-Asecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModule"N
-GetSourceRequest:
-name (	B,‡A˙A&
-$securitycenter.googleapis.com/Source"É
-GroupAssetsRequest;
-parent (	B+‡A˙A%#securitycenter.googleapis.com/Asset
-filter (	
-group_by (	B‡A3
+finding_id (	B‚A>
+finding (2\'.google.cloud.securitycenter.v1.FindingB‚A"¡
+CreateMuteConfigRequestA
+parent (	B1‚A˙A*(securitycenter.googleapis.com/MuteConfigE
+mute_config (2*.google.cloud.securitycenter.v1.MuteConfigB‚A
+mute_config_id (	B‚A"‹
+CreateNotificationConfigRequestI
+parent (	B9‚A˙A20securitycenter.googleapis.com/NotificationConfig
+	config_id (	B‚AU
+notification_config (22.google.cloud.securitycenter.v1.NotificationConfigB‚A"ä
+0CreateSecurityHealthAnalyticsCustomModuleRequestZ
+parent (	BJ‚A˙ACAsecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModulez
+\'security_health_analytics_custom_module (2C.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModuleB‚A"û
+CreateSourceRequestI
+parent (	B9‚A˙A2
+0cloudresourcemanager.googleapis.com/Organization<
+source (2&.google.cloud.securitycenter.v1.SourceB‚A"Z
+DeleteMuteConfigRequest?
+name (	B1‚A˙A*
+(securitycenter.googleapis.com/MuteConfig"j
+DeleteNotificationConfigRequestG
+name (	B9‚A˙A2
+0securitycenter.googleapis.com/NotificationConfig"å
+0DeleteSecurityHealthAnalyticsCustomModuleRequestX
+name (	BJ‚A˙AC
+Asecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModule"_
+GetBigQueryExportRequestC
+name (	B5‚A˙A.
+,securitycenter.googleapis.com/BigQueryExport"W
+GetMuteConfigRequest?
+name (	B1‚A˙A*
+(securitycenter.googleapis.com/MuteConfig"g
+GetNotificationConfigRequestG
+name (	B9‚A˙A2
+0securitycenter.googleapis.com/NotificationConfig"k
+GetOrganizationSettingsRequestI
+name (	B;‚A˙A4
+2securitycenter.googleapis.com/OrganizationSettings"õ
+6GetEffectiveSecurityHealthAnalyticsCustomModuleRequesta
+name (	BS‚A˙AL
+Jsecuritycenter.googleapis.com/EffectiveSecurityHealthAnalyticsCustomModule"â
+-GetSecurityHealthAnalyticsCustomModuleRequestX
+name (	BJ‚A˙AC
+Asecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModule"O
+GetSourceRequest;
+name (	B-‚A˙A&
+$securitycenter.googleapis.com/Source"Ö
+GroupAssetsRequest<
+parent (	B,‚A˙A%#securitycenter.googleapis.com/Asset
+filter (	
+group_by (	B‚A3
 compare_duration (2.google.protobuf.Duration-
 	read_time (2.google.protobuf.Timestamp
 
@@ -116,12 +117,12 @@ page_token (	
 	read_time (2.google.protobuf.Timestamp
 next_page_token (	
 
-total_size ("Ü
-GroupFindingsRequest<
-parent (	B,‡A˙A&
+total_size ("à
+GroupFindingsRequest=
+parent (	B-‚A˙A&
 $securitycenter.googleapis.com/Source
-filter (	
-group_by (	B‡A-
+filter (	
+group_by (	B‚A-
 	read_time (2.google.protobuf.Timestamp3
 compare_duration (2.google.protobuf.Duration
 
@@ -139,57 +140,57 @@ properties (2;.google.cloud.securitycenter.v1.GroupResult.PropertiesEntry
 count (I
 PropertiesEntry
 key (	%
-value (2.google.protobuf.Value:8"Ω
-9ListDescendantSecurityHealthAnalyticsCustomModulesRequestY
-parent (	BI‡A˙ACAsecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModule
+value (2.google.protobuf.Value:8"æ
+9ListDescendantSecurityHealthAnalyticsCustomModulesRequestZ
+parent (	BJ‚A˙ACAsecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModule
 	page_size (
 
 page_token (	"Ã
 :ListDescendantSecurityHealthAnalyticsCustomModulesResponseu
 (security_health_analytics_custom_modules (2C.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule
-next_page_token (	"Å
-ListMuteConfigsRequest@
-parent (	B0‡A˙A*(securitycenter.googleapis.com/MuteConfig
+next_page_token (	"Ç
+ListMuteConfigsRequestA
+parent (	B1‚A˙A*(securitycenter.googleapis.com/MuteConfig
 	page_size (
 
 page_token (	"t
 ListMuteConfigsResponse@
 mute_configs (2*.google.cloud.securitycenter.v1.MuteConfig
-next_page_token (	"ë
-ListNotificationConfigsRequestH
-parent (	B8‡A˙A20securitycenter.googleapis.com/NotificationConfig
+next_page_token (	"í
+ListNotificationConfigsRequestI
+parent (	B9‚A˙A20securitycenter.googleapis.com/NotificationConfig
 
 page_token (	
 	page_size ("å
 ListNotificationConfigsResponseP
 notification_configs (22.google.cloud.securitycenter.v1.NotificationConfig
-next_page_token (	"º
-8ListEffectiveSecurityHealthAnalyticsCustomModulesRequestY
-parent (	BI‡A˙ACAsecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModule
+next_page_token (	"Ω
+8ListEffectiveSecurityHealthAnalyticsCustomModulesRequestZ
+parent (	BJ‚A˙ACAsecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModule
 	page_size (
 
 page_token (	"ﬂ
 9ListEffectiveSecurityHealthAnalyticsCustomModulesResponseà
 2effective_security_health_analytics_custom_modules (2L.google.cloud.securitycenter.v1.EffectiveSecurityHealthAnalyticsCustomModule
-next_page_token (	"≥
-/ListSecurityHealthAnalyticsCustomModulesRequestY
-parent (	BI‡A˙ACAsecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModule
+next_page_token (	"¥
+/ListSecurityHealthAnalyticsCustomModulesRequestZ
+parent (	BJ‚A˙ACAsecuritycenter.googleapis.com/SecurityHealthAnalyticsCustomModule
 	page_size (
 
 page_token (	"¬
 0ListSecurityHealthAnalyticsCustomModulesResponseu
 (security_health_analytics_custom_modules (2C.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule
-next_page_token (	"y
-ListSourcesRequest<
-parent (	B,‡A˙A&$securitycenter.googleapis.com/Source
+next_page_token (	"z
+ListSourcesRequest=
+parent (	B-‚A˙A&$securitycenter.googleapis.com/Source
 
 page_token (	
 	page_size ("g
 ListSourcesResponse7
 sources (2&.google.cloud.securitycenter.v1.Source
-next_page_token (	"≠
-ListAssetsRequest;
-parent (	B+‡A˙A%#securitycenter.googleapis.com/Asset
+next_page_token (	"Æ
+ListAssetsRequest<
+parent (	B,‚A˙A%#securitycenter.googleapis.com/Asset
 filter (	
 order_by (	-
 	read_time (2.google.protobuf.Timestamp3
@@ -214,9 +215,9 @@ total_size (Ó
 ADDED
 REMOVED
 
-ACTIVE"∞
-ListFindingsRequest<
-parent (	B,‡A˙A&
+ACTIVE"±
+ListFindingsRequest=
+parent (	B-‚A˙A&
 $securitycenter.googleapis.com/Source
 filter (	
 order_by (	-
@@ -226,17 +227,17 @@ $securitycenter.googleapis.com/Source
 field_mask (2.google.protobuf.FieldMask
 
 page_token (	
-	page_size	 ("¨
+	page_size	 ("≠
 ListFindingsResponsef
 list_findings_results (2G.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult-
 	read_time (2.google.protobuf.Timestamp
 next_page_token (	
 
-total_size (œ
+total_size (–
 ListFindingsResult8
 finding (2\'.google.cloud.securitycenter.v1.Findingi
-state_change (2S.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.StateChangeg
-resource (2P.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.ResourceB‡A€
+state_change (2S.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.StateChangeh
+resource (2P.google.cloud.securitycenter.v1.ListFindingsResponse.ListFindingsResult.ResourceB‚A€
 Resource
 name (	
 display_name (	
@@ -252,128 +253,128 @@ total_size (œ
 CHANGED
 	UNCHANGED	
 ADDED
-REMOVED"Õ
-SetFindingStateRequest;
-name (	B-‡A˙A\'
-%securitycenter.googleapis.com/FindingA
-state (2-.google.cloud.securitycenter.v1.Finding.StateB‡A3
+REMOVED"–
+SetFindingStateRequest<
+name (	B.‚A˙A\'
+%securitycenter.googleapis.com/FindingB
+state (2-.google.cloud.securitycenter.v1.Finding.StateB‚A4
 
-start_time (2.google.protobuf.TimestampB‡A"é
-SetMuteRequest;
-name (	B-‡A˙A\'
-%securitycenter.googleapis.com/Finding?
-mute (2,.google.cloud.securitycenter.v1.Finding.MuteB‡A"d
-RunAssetDiscoveryRequestH
-parent (	B8‡A˙A2
-0cloudresourcemanager.googleapis.com/Organization"¨
-2SimulateSecurityHealthAnalyticsCustomModuleRequest
-parent (	B‡AH
-custom_config (2,.google.cloud.securitycenter.v1.CustomConfigB‡A{
-resource (2d.google.cloud.securitycenter.v1.SimulateSecurityHealthAnalyticsCustomModuleRequest.SimulatedResourceB‡Aô
-SimulatedResource
-resource_type (	B‡A3
-resource_data (2.google.protobuf.StructB‡A3
-iam_policy_data (2.google.iam.v1.PolicyB‡A"Ÿ
+start_time (2.google.protobuf.TimestampB‚A"ê
+SetMuteRequest<
+name (	B.‚A˙A\'
+%securitycenter.googleapis.com/Finding@
+mute (2,.google.cloud.securitycenter.v1.Finding.MuteB‚A"e
+RunAssetDiscoveryRequestI
+parent (	B9‚A˙A2
+0cloudresourcemanager.googleapis.com/Organization"≤
+2SimulateSecurityHealthAnalyticsCustomModuleRequest
+parent (	B‚AI
+custom_config (2,.google.cloud.securitycenter.v1.CustomConfigB‚A|
+resource (2d.google.cloud.securitycenter.v1.SimulateSecurityHealthAnalyticsCustomModuleRequest.SimulatedResourceB‚Aú
+SimulatedResource
+resource_type (	B‚A4
+resource_data (2.google.protobuf.StructB‚A4
+iam_policy_data (2.google.iam.v1.PolicyB‚A"Ÿ
 3SimulateSecurityHealthAnalyticsCustomModuleResponses
 result (2c.google.cloud.securitycenter.v1.SimulateSecurityHealthAnalyticsCustomModuleResponse.SimulatedResult¨
 SimulatedResult:
 finding (2\'.google.cloud.securitycenter.v1.FindingH .
 no_violation (2.google.protobuf.EmptyH #
 error (2.google.rpc.StatusH B
-result"ú
-UpdateExternalSystemRequestL
-external_system (2..google.cloud.securitycenter.v1.ExternalSystemB‡A/
-update_mask (2.google.protobuf.FieldMask"Ü
-UpdateFindingRequest=
-finding (2\'.google.cloud.securitycenter.v1.FindingB‡A/
-update_mask (2.google.protobuf.FieldMask"ê
-UpdateMuteConfigRequestD
-mute_config (2*.google.cloud.securitycenter.v1.MuteConfigB‡A/
-update_mask (2.google.protobuf.FieldMask"®
-UpdateNotificationConfigRequestT
-notification_config (22.google.cloud.securitycenter.v1.NotificationConfigB‡A/
-update_mask (2.google.protobuf.FieldMask"Æ
-!UpdateOrganizationSettingsRequestX
-organization_settings (24.google.cloud.securitycenter.v1.OrganizationSettingsB‡A/
-update_mask (2.google.protobuf.FieldMask"ﬁ
-0UpdateSecurityHealthAnalyticsCustomModuleRequesty
-\'security_health_analytics_custom_module (2C.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModuleB‡A/
-update_mask (2.google.protobuf.FieldMask"É
-UpdateSourceRequest;
-source (2&.google.cloud.securitycenter.v1.SourceB‡A/
-update_mask (2.google.protobuf.FieldMask"…
-UpdateSecurityMarksRequestJ
-security_marks (2-.google.cloud.securitycenter.v1.SecurityMarksB‡A/
+result"ù
+UpdateExternalSystemRequestM
+external_system (2..google.cloud.securitycenter.v1.ExternalSystemB‚A/
+update_mask (2.google.protobuf.FieldMask"á
+UpdateFindingRequest>
+finding (2\'.google.cloud.securitycenter.v1.FindingB‚A/
+update_mask (2.google.protobuf.FieldMask"ë
+UpdateMuteConfigRequestE
+mute_config (2*.google.cloud.securitycenter.v1.MuteConfigB‚A/
+update_mask (2.google.protobuf.FieldMask"©
+UpdateNotificationConfigRequestU
+notification_config (22.google.cloud.securitycenter.v1.NotificationConfigB‚A/
+update_mask (2.google.protobuf.FieldMask"Ø
+!UpdateOrganizationSettingsRequestY
+organization_settings (24.google.cloud.securitycenter.v1.OrganizationSettingsB‚A/
+update_mask (2.google.protobuf.FieldMask"ﬂ
+0UpdateSecurityHealthAnalyticsCustomModuleRequestz
+\'security_health_analytics_custom_module (2C.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModuleB‚A/
+update_mask (2.google.protobuf.FieldMask"Ñ
+UpdateSourceRequest<
+source (2&.google.cloud.securitycenter.v1.SourceB‚A/
+update_mask (2.google.protobuf.FieldMask" 
+UpdateSecurityMarksRequestK
+security_marks (2-.google.cloud.securitycenter.v1.SecurityMarksB‚A/
 update_mask (2.google.protobuf.FieldMask.
 
-start_time (2.google.protobuf.Timestamp"‘
-CreateBigQueryExportRequestD
-parent (	B4‡A˙A.,securitycenter.googleapis.com/BigQueryExportM
-big_query_export (2..google.cloud.securitycenter.v1.BigQueryExportB‡A 
-big_query_export_id (	B‡A"ù
-UpdateBigQueryExportRequestM
-big_query_export (2..google.cloud.securitycenter.v1.BigQueryExportB‡A/
-update_mask (2.google.protobuf.FieldMask"â
-ListBigQueryExportsRequestD
-parent (	B4‡A˙A.,securitycenter.googleapis.com/BigQueryExport
+start_time (2.google.protobuf.Timestamp"◊
+CreateBigQueryExportRequestE
+parent (	B5‚A˙A.,securitycenter.googleapis.com/BigQueryExportN
+big_query_export (2..google.cloud.securitycenter.v1.BigQueryExportB‚A!
+big_query_export_id (	B‚A"û
+UpdateBigQueryExportRequestN
+big_query_export (2..google.cloud.securitycenter.v1.BigQueryExportB‚A/
+update_mask (2.google.protobuf.FieldMask"ä
+ListBigQueryExportsRequestE
+parent (	B5‚A˙A.,securitycenter.googleapis.com/BigQueryExport
 	page_size (
 
 page_token (	"Å
 ListBigQueryExportsResponseI
 big_query_exports (2..google.cloud.securitycenter.v1.BigQueryExport
-next_page_token (	"a
-DeleteBigQueryExportRequestB
-name (	B4‡A˙A.
+next_page_token (	"b
+DeleteBigQueryExportRequestC
+name (	B5‚A˙A.
 ,securitycenter.googleapis.com/BigQueryExport2èx
 SecurityCenter‚
-BulkMuteFindings7.google.cloud.securitycenter.v1.BulkMuteFindingsRequest.google.longrunning.Operation"ıÇ”‰ìí"./v1/{parent=organizations/*}/findings:bulkMute:*Z-"(/v1/{parent=folders/*}/findings:bulkMute:*Z.")/v1/{parent=projects/*}/findings:bulkMute:*⁄Aparent AP
-7google.cloud.securitycenter.v1.BulkMuteFindingsResponsegoogle.protobuf.Empty’
-)CreateSecurityHealthAnalyticsCustomModuleP.google.cloud.securitycenter.v1.CreateSecurityHealthAnalyticsCustomModuleRequestC.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule"êÇ”‰ìÿ"J/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModules:\'security_health_analytics_custom_moduleZo"D/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModules:\'security_health_analytics_custom_moduleZp"E/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules:\'security_health_analytics_custom_module⁄A.parent,security_health_analytics_custom_module±
-CreateSource3.google.cloud.securitycenter.v1.CreateSourceRequest&.google.cloud.securitycenter.v1.Source"DÇ”‰ì."$/v1/{parent=organizations/*}/sources:source⁄Aparent,sourceÃ
-CreateFinding4.google.cloud.securitycenter.v1.CreateFindingRequest\'.google.cloud.securitycenter.v1.Finding"\\Ç”‰ì:"//v1/{parent=organizations/*/sources/*}/findings:finding⁄Aparent,finding_id,findingÿ
-CreateMuteConfig7.google.cloud.securitycenter.v1.CreateMuteConfigRequest*.google.cloud.securitycenter.v1.MuteConfig"ﬁÇ”‰ìû"(/v1/{parent=organizations/*}/muteConfigs:mute_configZ1""/v1/{parent=folders/*}/muteConfigs:mute_configZ2"#/v1/{parent=projects/*}/muteConfigs:mute_config⁄Aparent,mute_config⁄A!parent,mute_config,mute_config_id´
-CreateNotificationConfig?.google.cloud.securitycenter.v1.CreateNotificationConfigRequest2.google.cloud.securitycenter.v1.NotificationConfig"ôÇ”‰ìŒ"0/v1/{parent=organizations/*}/notificationConfigs:notification_configZA"*/v1/{parent=folders/*}/notificationConfigs:notification_configZB"+/v1/{parent=projects/*}/notificationConfigs:notification_config⁄A$parent,config_id,notification_config⁄Aparent,notification_configÍ
-DeleteMuteConfig7.google.cloud.securitycenter.v1.DeleteMuteConfigRequest.google.protobuf.Empty"ÑÇ”‰ìw*(/v1/{name=organizations/*/muteConfigs/*}Z$*"/v1/{name=folders/*/muteConfigs/*}Z%*#/v1/{name=projects/*/muteConfigs/*}⁄Anameì
-DeleteNotificationConfig?.google.cloud.securitycenter.v1.DeleteNotificationConfigRequest.google.protobuf.Empty"ùÇ”‰ìè*0/v1/{name=organizations/*/notificationConfigs/*}Z,**/v1/{name=folders/*/notificationConfigs/*}Z-*+/v1/{name=projects/*/notificationConfigs/*}⁄AnameÉ
-)DeleteSecurityHealthAnalyticsCustomModuleP.google.cloud.securitycenter.v1.DeleteSecurityHealthAnalyticsCustomModuleRequest.google.protobuf.Empty"ÎÇ”‰ì›*J/v1/{name=organizations/*/securityHealthAnalyticsSettings/customModules/*}ZF*D/v1/{name=folders/*/securityHealthAnalyticsSettings/customModules/*}ZG*E/v1/{name=projects/*/securityHealthAnalyticsSettings/customModules/*}⁄Anameë
-GetBigQueryExport8.google.cloud.securitycenter.v1.GetBigQueryExportRequest..google.cloud.securitycenter.v1.BigQueryExport"ëÇ”‰ìÉ,/v1/{name=organizations/*/bigQueryExports/*}Z(&/v1/{name=folders/*/bigQueryExports/*}Z)\'/v1/{name=projects/*/bigQueryExports/*}⁄Anameñ
-GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"KÇ”‰ì:"5/v1/{resource=organizations/*/sources/*}:getIamPolicy:*⁄Aresource¯
-GetMuteConfig4.google.cloud.securitycenter.v1.GetMuteConfigRequest*.google.cloud.securitycenter.v1.MuteConfig"ÑÇ”‰ìw(/v1/{name=organizations/*/muteConfigs/*}Z$"/v1/{name=folders/*/muteConfigs/*}Z%#/v1/{name=projects/*/muteConfigs/*}⁄Aname©
-GetNotificationConfig<.google.cloud.securitycenter.v1.GetNotificationConfigRequest2.google.cloud.securitycenter.v1.NotificationConfig"ùÇ”‰ìè0/v1/{name=organizations/*/notificationConfigs/*}Z,*/v1/{name=folders/*/notificationConfigs/*}Z-+/v1/{name=projects/*/notificationConfigs/*}⁄Anameœ
-GetOrganizationSettings>.google.cloud.securitycenter.v1.GetOrganizationSettingsRequest4.google.cloud.securitycenter.v1.OrganizationSettings">Ç”‰ì1//v1/{name=organizations/*/organizationSettings}⁄Aname‡
-/GetEffectiveSecurityHealthAnalyticsCustomModuleV.google.cloud.securitycenter.v1.GetEffectiveSecurityHealthAnalyticsCustomModuleRequestL.google.cloud.securitycenter.v1.EffectiveSecurityHealthAnalyticsCustomModule"ÜÇ”‰ì¯S/v1/{name=organizations/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}ZOM/v1/{name=folders/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}ZPN/v1/{name=projects/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}⁄Aname™
-&GetSecurityHealthAnalyticsCustomModuleM.google.cloud.securitycenter.v1.GetSecurityHealthAnalyticsCustomModuleRequestC.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule"ÎÇ”‰ì›J/v1/{name=organizations/*/securityHealthAnalyticsSettings/customModules/*}ZFD/v1/{name=folders/*/securityHealthAnalyticsSettings/customModules/*}ZGE/v1/{name=projects/*/securityHealthAnalyticsSettings/customModules/*}⁄Anameö
-	GetSource0.google.cloud.securitycenter.v1.GetSourceRequest&.google.cloud.securitycenter.v1.Source"3Ç”‰ì&$/v1/{name=organizations/*/sources/*}⁄AnameÜ
+BulkMuteFindings7.google.cloud.securitycenter.v1.BulkMuteFindingsRequest.google.longrunning.Operation"ı AP
+7google.cloud.securitycenter.v1.BulkMuteFindingsResponsegoogle.protobuf.Empty⁄AparentÇ”‰ìí"./v1/{parent=organizations/*}/findings:bulkMute:*Z-"(/v1/{parent=folders/*}/findings:bulkMute:*Z.")/v1/{parent=projects/*}/findings:bulkMute:*’
+)CreateSecurityHealthAnalyticsCustomModuleP.google.cloud.securitycenter.v1.CreateSecurityHealthAnalyticsCustomModuleRequestC.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule"ê⁄A.parent,security_health_analytics_custom_moduleÇ”‰ìÿ"J/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModules:\'security_health_analytics_custom_moduleZo"D/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModules:\'security_health_analytics_custom_moduleZp"E/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules:\'security_health_analytics_custom_module±
+CreateSource3.google.cloud.securitycenter.v1.CreateSourceRequest&.google.cloud.securitycenter.v1.Source"D⁄Aparent,sourceÇ”‰ì."$/v1/{parent=organizations/*}/sources:sourceÃ
+CreateFinding4.google.cloud.securitycenter.v1.CreateFindingRequest\'.google.cloud.securitycenter.v1.Finding"\\⁄Aparent,finding_id,findingÇ”‰ì:"//v1/{parent=organizations/*/sources/*}/findings:findingÿ
+CreateMuteConfig7.google.cloud.securitycenter.v1.CreateMuteConfigRequest*.google.cloud.securitycenter.v1.MuteConfig"ﬁ⁄Aparent,mute_config⁄A!parent,mute_config,mute_config_idÇ”‰ìû"(/v1/{parent=organizations/*}/muteConfigs:mute_configZ1""/v1/{parent=folders/*}/muteConfigs:mute_configZ2"#/v1/{parent=projects/*}/muteConfigs:mute_config´
+CreateNotificationConfig?.google.cloud.securitycenter.v1.CreateNotificationConfigRequest2.google.cloud.securitycenter.v1.NotificationConfig"ô⁄A$parent,config_id,notification_config⁄Aparent,notification_configÇ”‰ìŒ"0/v1/{parent=organizations/*}/notificationConfigs:notification_configZA"*/v1/{parent=folders/*}/notificationConfigs:notification_configZB"+/v1/{parent=projects/*}/notificationConfigs:notification_configÍ
+DeleteMuteConfig7.google.cloud.securitycenter.v1.DeleteMuteConfigRequest.google.protobuf.Empty"Ñ⁄AnameÇ”‰ìw*(/v1/{name=organizations/*/muteConfigs/*}Z$*"/v1/{name=folders/*/muteConfigs/*}Z%*#/v1/{name=projects/*/muteConfigs/*}ì
+DeleteNotificationConfig?.google.cloud.securitycenter.v1.DeleteNotificationConfigRequest.google.protobuf.Empty"ù⁄AnameÇ”‰ìè*0/v1/{name=organizations/*/notificationConfigs/*}Z,**/v1/{name=folders/*/notificationConfigs/*}Z-*+/v1/{name=projects/*/notificationConfigs/*}É
+)DeleteSecurityHealthAnalyticsCustomModuleP.google.cloud.securitycenter.v1.DeleteSecurityHealthAnalyticsCustomModuleRequest.google.protobuf.Empty"Î⁄AnameÇ”‰ì›*J/v1/{name=organizations/*/securityHealthAnalyticsSettings/customModules/*}ZF*D/v1/{name=folders/*/securityHealthAnalyticsSettings/customModules/*}ZG*E/v1/{name=projects/*/securityHealthAnalyticsSettings/customModules/*}ë
+GetBigQueryExport8.google.cloud.securitycenter.v1.GetBigQueryExportRequest..google.cloud.securitycenter.v1.BigQueryExport"ë⁄AnameÇ”‰ìÉ,/v1/{name=organizations/*/bigQueryExports/*}Z(&/v1/{name=folders/*/bigQueryExports/*}Z)\'/v1/{name=projects/*/bigQueryExports/*}ñ
+GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"K⁄AresourceÇ”‰ì:"5/v1/{resource=organizations/*/sources/*}:getIamPolicy:*¯
+GetMuteConfig4.google.cloud.securitycenter.v1.GetMuteConfigRequest*.google.cloud.securitycenter.v1.MuteConfig"Ñ⁄AnameÇ”‰ìw(/v1/{name=organizations/*/muteConfigs/*}Z$"/v1/{name=folders/*/muteConfigs/*}Z%#/v1/{name=projects/*/muteConfigs/*}©
+GetNotificationConfig<.google.cloud.securitycenter.v1.GetNotificationConfigRequest2.google.cloud.securitycenter.v1.NotificationConfig"ù⁄AnameÇ”‰ìè0/v1/{name=organizations/*/notificationConfigs/*}Z,*/v1/{name=folders/*/notificationConfigs/*}Z-+/v1/{name=projects/*/notificationConfigs/*}œ
+GetOrganizationSettings>.google.cloud.securitycenter.v1.GetOrganizationSettingsRequest4.google.cloud.securitycenter.v1.OrganizationSettings">⁄AnameÇ”‰ì1//v1/{name=organizations/*/organizationSettings}‡
+/GetEffectiveSecurityHealthAnalyticsCustomModuleV.google.cloud.securitycenter.v1.GetEffectiveSecurityHealthAnalyticsCustomModuleRequestL.google.cloud.securitycenter.v1.EffectiveSecurityHealthAnalyticsCustomModule"Ü⁄AnameÇ”‰ì¯S/v1/{name=organizations/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}ZOM/v1/{name=folders/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}ZPN/v1/{name=projects/*/securityHealthAnalyticsSettings/effectiveCustomModules/*}™
+&GetSecurityHealthAnalyticsCustomModuleM.google.cloud.securitycenter.v1.GetSecurityHealthAnalyticsCustomModuleRequestC.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule"Î⁄AnameÇ”‰ì›J/v1/{name=organizations/*/securityHealthAnalyticsSettings/customModules/*}ZFD/v1/{name=folders/*/securityHealthAnalyticsSettings/customModules/*}ZGE/v1/{name=projects/*/securityHealthAnalyticsSettings/customModules/*}ö
+	GetSource0.google.cloud.securitycenter.v1.GetSourceRequest&.google.cloud.securitycenter.v1.Source"3⁄AnameÇ”‰ì&$/v1/{name=organizations/*/sources/*}Ü
 GroupAssets2.google.cloud.securitycenter.v1.GroupAssetsRequest3.google.cloud.securitycenter.v1.GroupAssetsResponse"çàÇ”‰ìÉ")/v1/{parent=organizations/*}/assets:group:*Z("#/v1/{parent=folders/*}/assets:group:*Z)"$/v1/{parent=projects/*}/assets:group:*ø
-GroupFindings4.google.cloud.securitycenter.v1.GroupFindingsRequest5.google.cloud.securitycenter.v1.GroupFindingsResponse"¿Ç”‰ìß"5/v1/{parent=organizations/*/sources/*}/findings:group:*Z4"//v1/{parent=folders/*/sources/*}/findings:group:*Z5"0/v1/{parent=projects/*/sources/*}/findings:group:*⁄Aparent,group_byÊ
+GroupFindings4.google.cloud.securitycenter.v1.GroupFindingsRequest5.google.cloud.securitycenter.v1.GroupFindingsResponse"¿⁄Aparent,group_byÇ”‰ìß"5/v1/{parent=organizations/*/sources/*}/findings:group:*Z4"//v1/{parent=folders/*/sources/*}/findings:group:*Z5"0/v1/{parent=projects/*/sources/*}/findings:group:*Ê
 
 ListAssets1.google.cloud.securitycenter.v1.ListAssetsRequest2.google.cloud.securitycenter.v1.ListAssetsResponse"qàÇ”‰ìh#/v1/{parent=organizations/*}/assetsZ/v1/{parent=folders/*}/assetsZ /v1/{parent=projects/*}/assetsà
-2ListDescendantSecurityHealthAnalyticsCustomModulesY.google.cloud.securitycenter.v1.ListDescendantSecurityHealthAnalyticsCustomModulesRequestZ.google.cloud.securitycenter.v1.ListDescendantSecurityHealthAnalyticsCustomModulesResponse"öÇ”‰ìäY/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModules:listDescendantZUS/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModules:listDescendantZVT/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules:listDescendant⁄Aparentè
+2ListDescendantSecurityHealthAnalyticsCustomModulesY.google.cloud.securitycenter.v1.ListDescendantSecurityHealthAnalyticsCustomModulesRequestZ.google.cloud.securitycenter.v1.ListDescendantSecurityHealthAnalyticsCustomModulesResponse"ö⁄AparentÇ”‰ìäY/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModules:listDescendantZUS/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModules:listDescendantZVT/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules:listDescendantè
 ListFindings3.google.cloud.securitycenter.v1.ListFindingsRequest4.google.cloud.securitycenter.v1.ListFindingsResponse"ìÇ”‰ìå//v1/{parent=organizations/*/sources/*}/findingsZ+)/v1/{parent=folders/*/sources/*}/findingsZ,*/v1/{parent=projects/*/sources/*}/findingsã
-ListMuteConfigs6.google.cloud.securitycenter.v1.ListMuteConfigsRequest7.google.cloud.securitycenter.v1.ListMuteConfigsResponse"ÜÇ”‰ìw(/v1/{parent=organizations/*}/muteConfigsZ$"/v1/{parent=folders/*}/muteConfigsZ%#/v1/{parent=projects/*}/muteConfigs⁄Aparentº
-ListNotificationConfigs>.google.cloud.securitycenter.v1.ListNotificationConfigsRequest?.google.cloud.securitycenter.v1.ListNotificationConfigsResponse"üÇ”‰ìè0/v1/{parent=organizations/*}/notificationConfigsZ,*/v1/{parent=folders/*}/notificationConfigsZ-+/v1/{parent=projects/*}/notificationConfigs⁄AparentÛ
-1ListEffectiveSecurityHealthAnalyticsCustomModulesX.google.cloud.securitycenter.v1.ListEffectiveSecurityHealthAnalyticsCustomModulesRequestY.google.cloud.securitycenter.v1.ListEffectiveSecurityHealthAnalyticsCustomModulesResponse"àÇ”‰ì¯S/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/effectiveCustomModulesZOM/v1/{parent=folders/*/securityHealthAnalyticsSettings}/effectiveCustomModulesZPN/v1/{parent=projects/*/securityHealthAnalyticsSettings}/effectiveCustomModules⁄AparentΩ
-(ListSecurityHealthAnalyticsCustomModulesO.google.cloud.securitycenter.v1.ListSecurityHealthAnalyticsCustomModulesRequestP.google.cloud.securitycenter.v1.ListSecurityHealthAnalyticsCustomModulesResponse"ÌÇ”‰ì›J/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModulesZFD/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModulesZGE/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules⁄AparentÚ
-ListSources2.google.cloud.securitycenter.v1.ListSourcesRequest3.google.cloud.securitycenter.v1.ListSourcesResponse"zÇ”‰ìk$/v1/{parent=organizations/*}/sourcesZ /v1/{parent=folders/*}/sourcesZ!/v1/{parent=projects/*}/sources⁄Aparentä
-RunAssetDiscovery8.google.cloud.securitycenter.v1.RunAssetDiscoveryRequest.google.longrunning.Operation"õàÇ”‰ì5"0/v1/{parent=organizations/*}/assets:runDiscovery:*⁄Aparent AQ
-8google.cloud.securitycenter.v1.RunAssetDiscoveryResponsegoogle.protobuf.Emptyƒ
-SetFindingState6.google.cloud.securitycenter.v1.SetFindingStateRequest\'.google.cloud.securitycenter.v1.Finding"œÇ”‰ì∞"8/v1/{name=organizations/*/sources/*/findings/*}:setState:*Z7"2/v1/{name=folders/*/sources/*/findings/*}:setState:*Z8"3/v1/{name=projects/*/sources/*/findings/*}:setState:*⁄Aname,state,start_time•
-SetMute..google.cloud.securitycenter.v1.SetMuteRequest\'.google.cloud.securitycenter.v1.Finding"¿Ç”‰ì≠"7/v1/{name=organizations/*/sources/*/findings/*}:setMute:*Z6"1/v1/{name=folders/*/sources/*/findings/*}:setMute:*Z7"2/v1/{name=projects/*/sources/*/findings/*}:setMute:*⁄A	name,muteù
-SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"RÇ”‰ì:"5/v1/{resource=organizations/*/sources/*}:setIamPolicy:*⁄Aresource,policy»
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"]Ç”‰ì@";/v1/{resource=organizations/*/sources/*}:testIamPermissions:*⁄Aresource,permissionsÅ
-+SimulateSecurityHealthAnalyticsCustomModuleR.google.cloud.securitycenter.v1.SimulateSecurityHealthAnalyticsCustomModuleRequestS.google.cloud.securitycenter.v1.SimulateSecurityHealthAnalyticsCustomModuleResponse"®Ç”‰ìÅ"S/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModules:simulate:*ZR"M/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModules:simulate:*ZS"N/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules:simulate:*⁄Aparent,custom_config,resource–
-UpdateExternalSystem;.google.cloud.securitycenter.v1.UpdateExternalSystemRequest..google.cloud.securitycenter.v1.ExternalSystem" Ç”‰ì•2Q/v1/{external_system.name=organizations/*/sources/*/findings/*/externalSystems/*}:external_systemZ^2K/v1/{external_system.name=folders/*/sources/*/findings/*/externalSystems/*}:external_systemZ_2L/v1/{external_system.name=projects/*/sources/*/findings/*/externalSystems/*}:external_system⁄Aexternal_system,update_mask¡
-UpdateFinding4.google.cloud.securitycenter.v1.UpdateFindingRequest\'.google.cloud.securitycenter.v1.Finding"–Ç”‰ìø27/v1/{finding.name=organizations/*/sources/*/findings/*}:findingZ<21/v1/{finding.name=folders/*/sources/*/findings/*}:findingZ=22/v1/{finding.name=projects/*/sources/*/findings/*}:finding⁄Afinding›
-UpdateMuteConfig7.google.cloud.securitycenter.v1.UpdateMuteConfigRequest*.google.cloud.securitycenter.v1.MuteConfig"„Ç”‰ì¬24/v1/{mute_config.name=organizations/*/muteConfigs/*}:mute_configZ=2./v1/{mute_config.name=folders/*/muteConfigs/*}:mute_configZ>2//v1/{mute_config.name=projects/*/muteConfigs/*}:mute_config⁄Amute_config,update_mask€
-UpdateNotificationConfig?.google.cloud.securitycenter.v1.UpdateNotificationConfigRequest2.google.cloud.securitycenter.v1.NotificationConfig"…Ç”‰ìä2D/v1/{notification_config.name=organizations/*/notificationConfigs/*}:notification_configZU2>/v1/{notification_config.name=folders/*/notificationConfigs/*}:notification_configZV2?/v1/{notification_config.name=projects/*/notificationConfigs/*}:notification_config⁄Anotification_config⁄Anotification_config,update_maskì
-UpdateOrganizationSettingsA.google.cloud.securitycenter.v1.UpdateOrganizationSettingsRequest4.google.cloud.securitycenter.v1.OrganizationSettings"|Ç”‰ì^2E/v1/{organization_settings.name=organizations/*/organizationSettings}:organization_settings⁄Aorganization_settings‘
-)UpdateSecurityHealthAnalyticsCustomModuleP.google.cloud.securitycenter.v1.UpdateSecurityHealthAnalyticsCustomModuleRequestC.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule"èÇ”‰ì“2r/v1/{security_health_analytics_custom_module.name=organizations/*/securityHealthAnalyticsSettings/customModules/*}:\'security_health_analytics_custom_moduleZó2l/v1/{security_health_analytics_custom_module.name=folders/*/securityHealthAnalyticsSettings/customModules/*}:\'security_health_analytics_custom_moduleZò2m/v1/{security_health_analytics_custom_module.name=projects/*/securityHealthAnalyticsSettings/customModules/*}:\'security_health_analytics_custom_module⁄A3security_health_analytics_custom_module,update_mask±
-UpdateSource3.google.cloud.securitycenter.v1.UpdateSourceRequest&.google.cloud.securitycenter.v1.Source"DÇ”‰ì52+/v1/{source.name=organizations/*/sources/*}:source⁄Asourceü
-UpdateSecurityMarks:.google.cloud.securitycenter.v1.UpdateSecurityMarksRequest-.google.cloud.securitycenter.v1.SecurityMarks"úÇ”‰ìÑ2@/v1/{security_marks.name=organizations/*/assets/*/securityMarks}:security_marksZL2:/v1/{security_marks.name=folders/*/assets/*/securityMarks}:security_marksZM2;/v1/{security_marks.name=projects/*/assets/*/securityMarks}:security_marksZ^2L/v1/{security_marks.name=organizations/*/sources/*/findings/*/securityMarks}:security_marksZX2F/v1/{security_marks.name=folders/*/sources/*/findings/*/securityMarks}:security_marksZY2G/v1/{security_marks.name=projects/*/sources/*/findings/*/securityMarks}:security_marks⁄Asecurity_marksÙ
-CreateBigQueryExport;.google.cloud.securitycenter.v1.CreateBigQueryExportRequest..google.cloud.securitycenter.v1.BigQueryExport"ÓÇ”‰ìπ",/v1/{parent=organizations/*}/bigQueryExports:big_query_exportZ:"&/v1/{parent=folders/*}/bigQueryExports:big_query_exportZ;"\'/v1/{parent=projects/*}/bigQueryExports:big_query_export⁄A+parent,big_query_export,big_query_export_idˇ
-DeleteBigQueryExport;.google.cloud.securitycenter.v1.DeleteBigQueryExportRequest.google.protobuf.Empty"ëÇ”‰ìÉ*,/v1/{name=organizations/*/bigQueryExports/*}Z(*&/v1/{name=folders/*/bigQueryExports/*}Z)*\'/v1/{name=projects/*/bigQueryExports/*}⁄Anameò
-UpdateBigQueryExport;.google.cloud.securitycenter.v1.UpdateBigQueryExportRequest..google.cloud.securitycenter.v1.BigQueryExport"íÇ”‰ìÏ2=/v1/{big_query_export.name=organizations/*/bigQueryExports/*}:big_query_exportZK27/v1/{big_query_export.name=folders/*/bigQueryExports/*}:big_query_exportZL28/v1/{big_query_export.name=projects/*/bigQueryExports/*}:big_query_export⁄Abig_query_export,update_mask§
-ListBigQueryExports:.google.cloud.securitycenter.v1.ListBigQueryExportsRequest;.google.cloud.securitycenter.v1.ListBigQueryExportsResponse"ìÇ”‰ìÉ,/v1/{parent=organizations/*}/bigQueryExportsZ(&/v1/{parent=folders/*}/bigQueryExportsZ)\'/v1/{parent=projects/*}/bigQueryExports⁄AparentQ Asecuritycenter.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÿ
+ListMuteConfigs6.google.cloud.securitycenter.v1.ListMuteConfigsRequest7.google.cloud.securitycenter.v1.ListMuteConfigsResponse"Ü⁄AparentÇ”‰ìw(/v1/{parent=organizations/*}/muteConfigsZ$"/v1/{parent=folders/*}/muteConfigsZ%#/v1/{parent=projects/*}/muteConfigsº
+ListNotificationConfigs>.google.cloud.securitycenter.v1.ListNotificationConfigsRequest?.google.cloud.securitycenter.v1.ListNotificationConfigsResponse"ü⁄AparentÇ”‰ìè0/v1/{parent=organizations/*}/notificationConfigsZ,*/v1/{parent=folders/*}/notificationConfigsZ-+/v1/{parent=projects/*}/notificationConfigsÛ
+1ListEffectiveSecurityHealthAnalyticsCustomModulesX.google.cloud.securitycenter.v1.ListEffectiveSecurityHealthAnalyticsCustomModulesRequestY.google.cloud.securitycenter.v1.ListEffectiveSecurityHealthAnalyticsCustomModulesResponse"à⁄AparentÇ”‰ì¯S/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/effectiveCustomModulesZOM/v1/{parent=folders/*/securityHealthAnalyticsSettings}/effectiveCustomModulesZPN/v1/{parent=projects/*/securityHealthAnalyticsSettings}/effectiveCustomModulesΩ
+(ListSecurityHealthAnalyticsCustomModulesO.google.cloud.securitycenter.v1.ListSecurityHealthAnalyticsCustomModulesRequestP.google.cloud.securitycenter.v1.ListSecurityHealthAnalyticsCustomModulesResponse"Ì⁄AparentÇ”‰ì›J/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModulesZFD/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModulesZGE/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModulesÚ
+ListSources2.google.cloud.securitycenter.v1.ListSourcesRequest3.google.cloud.securitycenter.v1.ListSourcesResponse"z⁄AparentÇ”‰ìk$/v1/{parent=organizations/*}/sourcesZ /v1/{parent=folders/*}/sourcesZ!/v1/{parent=projects/*}/sourcesä
+RunAssetDiscovery8.google.cloud.securitycenter.v1.RunAssetDiscoveryRequest.google.longrunning.Operation"õà AQ
+8google.cloud.securitycenter.v1.RunAssetDiscoveryResponsegoogle.protobuf.Empty⁄AparentÇ”‰ì5"0/v1/{parent=organizations/*}/assets:runDiscovery:*ƒ
+SetFindingState6.google.cloud.securitycenter.v1.SetFindingStateRequest\'.google.cloud.securitycenter.v1.Finding"œ⁄Aname,state,start_timeÇ”‰ì∞"8/v1/{name=organizations/*/sources/*/findings/*}:setState:*Z7"2/v1/{name=folders/*/sources/*/findings/*}:setState:*Z8"3/v1/{name=projects/*/sources/*/findings/*}:setState:*•
+SetMute..google.cloud.securitycenter.v1.SetMuteRequest\'.google.cloud.securitycenter.v1.Finding"¿⁄A	name,muteÇ”‰ì≠"7/v1/{name=organizations/*/sources/*/findings/*}:setMute:*Z6"1/v1/{name=folders/*/sources/*/findings/*}:setMute:*Z7"2/v1/{name=projects/*/sources/*/findings/*}:setMute:*ù
+SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"R⁄Aresource,policyÇ”‰ì:"5/v1/{resource=organizations/*/sources/*}:setIamPolicy:*»
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"]⁄Aresource,permissionsÇ”‰ì@";/v1/{resource=organizations/*/sources/*}:testIamPermissions:*Å
++SimulateSecurityHealthAnalyticsCustomModuleR.google.cloud.securitycenter.v1.SimulateSecurityHealthAnalyticsCustomModuleRequestS.google.cloud.securitycenter.v1.SimulateSecurityHealthAnalyticsCustomModuleResponse"®⁄Aparent,custom_config,resourceÇ”‰ìÅ"S/v1/{parent=organizations/*/securityHealthAnalyticsSettings}/customModules:simulate:*ZR"M/v1/{parent=folders/*/securityHealthAnalyticsSettings}/customModules:simulate:*ZS"N/v1/{parent=projects/*/securityHealthAnalyticsSettings}/customModules:simulate:*–
+UpdateExternalSystem;.google.cloud.securitycenter.v1.UpdateExternalSystemRequest..google.cloud.securitycenter.v1.ExternalSystem" ⁄Aexternal_system,update_maskÇ”‰ì•2Q/v1/{external_system.name=organizations/*/sources/*/findings/*/externalSystems/*}:external_systemZ^2K/v1/{external_system.name=folders/*/sources/*/findings/*/externalSystems/*}:external_systemZ_2L/v1/{external_system.name=projects/*/sources/*/findings/*/externalSystems/*}:external_system¡
+UpdateFinding4.google.cloud.securitycenter.v1.UpdateFindingRequest\'.google.cloud.securitycenter.v1.Finding"–⁄AfindingÇ”‰ìø27/v1/{finding.name=organizations/*/sources/*/findings/*}:findingZ<21/v1/{finding.name=folders/*/sources/*/findings/*}:findingZ=22/v1/{finding.name=projects/*/sources/*/findings/*}:finding›
+UpdateMuteConfig7.google.cloud.securitycenter.v1.UpdateMuteConfigRequest*.google.cloud.securitycenter.v1.MuteConfig"„⁄Amute_config,update_maskÇ”‰ì¬24/v1/{mute_config.name=organizations/*/muteConfigs/*}:mute_configZ=2./v1/{mute_config.name=folders/*/muteConfigs/*}:mute_configZ>2//v1/{mute_config.name=projects/*/muteConfigs/*}:mute_config€
+UpdateNotificationConfig?.google.cloud.securitycenter.v1.UpdateNotificationConfigRequest2.google.cloud.securitycenter.v1.NotificationConfig"…⁄Anotification_config⁄Anotification_config,update_maskÇ”‰ìä2D/v1/{notification_config.name=organizations/*/notificationConfigs/*}:notification_configZU2>/v1/{notification_config.name=folders/*/notificationConfigs/*}:notification_configZV2?/v1/{notification_config.name=projects/*/notificationConfigs/*}:notification_configì
+UpdateOrganizationSettingsA.google.cloud.securitycenter.v1.UpdateOrganizationSettingsRequest4.google.cloud.securitycenter.v1.OrganizationSettings"|⁄Aorganization_settingsÇ”‰ì^2E/v1/{organization_settings.name=organizations/*/organizationSettings}:organization_settings‘
+)UpdateSecurityHealthAnalyticsCustomModuleP.google.cloud.securitycenter.v1.UpdateSecurityHealthAnalyticsCustomModuleRequestC.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule"è⁄A3security_health_analytics_custom_module,update_maskÇ”‰ì“2r/v1/{security_health_analytics_custom_module.name=organizations/*/securityHealthAnalyticsSettings/customModules/*}:\'security_health_analytics_custom_moduleZó2l/v1/{security_health_analytics_custom_module.name=folders/*/securityHealthAnalyticsSettings/customModules/*}:\'security_health_analytics_custom_moduleZò2m/v1/{security_health_analytics_custom_module.name=projects/*/securityHealthAnalyticsSettings/customModules/*}:\'security_health_analytics_custom_module±
+UpdateSource3.google.cloud.securitycenter.v1.UpdateSourceRequest&.google.cloud.securitycenter.v1.Source"D⁄AsourceÇ”‰ì52+/v1/{source.name=organizations/*/sources/*}:sourceü
+UpdateSecurityMarks:.google.cloud.securitycenter.v1.UpdateSecurityMarksRequest-.google.cloud.securitycenter.v1.SecurityMarks"ú⁄Asecurity_marksÇ”‰ìÑ2@/v1/{security_marks.name=organizations/*/assets/*/securityMarks}:security_marksZL2:/v1/{security_marks.name=folders/*/assets/*/securityMarks}:security_marksZM2;/v1/{security_marks.name=projects/*/assets/*/securityMarks}:security_marksZ^2L/v1/{security_marks.name=organizations/*/sources/*/findings/*/securityMarks}:security_marksZX2F/v1/{security_marks.name=folders/*/sources/*/findings/*/securityMarks}:security_marksZY2G/v1/{security_marks.name=projects/*/sources/*/findings/*/securityMarks}:security_marksÙ
+CreateBigQueryExport;.google.cloud.securitycenter.v1.CreateBigQueryExportRequest..google.cloud.securitycenter.v1.BigQueryExport"Ó⁄A+parent,big_query_export,big_query_export_idÇ”‰ìπ",/v1/{parent=organizations/*}/bigQueryExports:big_query_exportZ:"&/v1/{parent=folders/*}/bigQueryExports:big_query_exportZ;"\'/v1/{parent=projects/*}/bigQueryExports:big_query_exportˇ
+DeleteBigQueryExport;.google.cloud.securitycenter.v1.DeleteBigQueryExportRequest.google.protobuf.Empty"ë⁄AnameÇ”‰ìÉ*,/v1/{name=organizations/*/bigQueryExports/*}Z(*&/v1/{name=folders/*/bigQueryExports/*}Z)*\'/v1/{name=projects/*/bigQueryExports/*}ò
+UpdateBigQueryExport;.google.cloud.securitycenter.v1.UpdateBigQueryExportRequest..google.cloud.securitycenter.v1.BigQueryExport"í⁄Abig_query_export,update_maskÇ”‰ìÏ2=/v1/{big_query_export.name=organizations/*/bigQueryExports/*}:big_query_exportZK27/v1/{big_query_export.name=folders/*/bigQueryExports/*}:big_query_exportZL28/v1/{big_query_export.name=projects/*/bigQueryExports/*}:big_query_export§
+ListBigQueryExports:.google.cloud.securitycenter.v1.ListBigQueryExportsRequest;.google.cloud.securitycenter.v1.ListBigQueryExportsResponse"ì⁄AparentÇ”‰ìÉ,/v1/{parent=organizations/*}/bigQueryExportsZ(&/v1/{parent=folders/*}/bigQueryExportsZ)\'/v1/{parent=projects/*}/bigQueryExportsQ Asecuritycenter.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÿ
 "com.google.cloud.securitycenter.v1PZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpb™Google.Cloud.SecurityCenter.V1 Google\\Cloud\\SecurityCenter\\V1Í!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 

@@ -33,20 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a [CustomClass][google.cloud.speech.v2.CustomClass].
  *
- * @param string $formattedParent The project and location where this CustomClass will be created.
- *                                The expected format is `projects/{project}/locations/{location}`. Please see
- *                                {@see SpeechClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_custom_class_sample(string $formattedParent): void
+function create_custom_class_sample(): void
 {
     // Create a client.
     $speechClient = new SpeechClient();
 
     // Prepare the request message.
-    $customClass = new CustomClass();
-    $request = (new CreateCustomClassRequest())
-        ->setCustomClass($customClass)
-        ->setParent($formattedParent);
+    $request = new CreateCustomClassRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,21 +65,5 @@ function create_custom_class_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SpeechClient::locationName('[PROJECT]', '[LOCATION]');
-
-    create_custom_class_sample($formattedParent);
 }
 // [END speech_v2_generated_Speech_CreateCustomClass_sync]

@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\StorageInsights\V1\Client\StorageInsightsClient;
 use Google\Cloud\StorageInsights\V1\ReportConfig;
 use Google\Cloud\StorageInsights\V1\UpdateReportConfigRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the parameters of a single ReportConfig.
@@ -44,11 +43,7 @@ function update_report_config_sample(): void
     $storageInsightsClient = new StorageInsightsClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $reportConfig = new ReportConfig();
-    $request = (new UpdateReportConfigRequest())
-        ->setUpdateMask($updateMask)
-        ->setReportConfig($reportConfig);
+    $request = new UpdateReportConfigRequest();
 
     // Call the API and handle any network failures.
     try {

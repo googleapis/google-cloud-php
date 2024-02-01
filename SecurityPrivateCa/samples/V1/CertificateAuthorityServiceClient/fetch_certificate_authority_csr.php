@@ -41,19 +41,19 @@ use Google\Cloud\Security\PrivateCA\V1\FetchCertificateAuthorityCsrResponse;
  * resource, or could be an on-prem certificate authority. See also
  * [ActivateCertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthorityService.ActivateCertificateAuthority].
  *
- * @param string $formattedName The resource name for this
- *                              [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
- *                              in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
- *                              {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function fetch_certificate_authority_csr_sample(string $formattedName): void
+function fetch_certificate_authority_csr_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $request = (new FetchCertificateAuthorityCsrRequest())
-        ->setName($formattedName);
+    $request = new FetchCertificateAuthorityCsrRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,26 +63,5 @@ function fetch_certificate_authority_csr_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CertificateAuthorityServiceClient::certificateAuthorityName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CA_POOL]',
-        '[CERTIFICATE_AUTHORITY]'
-    );
-
-    fetch_certificate_authority_csr_sample($formattedName);
 }
 // [END privateca_v1_generated_CertificateAuthorityService_FetchCertificateAuthorityCsr_sync]

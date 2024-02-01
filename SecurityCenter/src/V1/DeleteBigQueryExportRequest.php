@@ -30,7 +30,6 @@ class DeleteBigQueryExportRequest extends \Google\Protobuf\Internal\Message
      *                     organizations/{organization}/bigQueryExports/{export_id},
      *                     folders/{folder}/bigQueryExports/{export_id}, or
      *                     projects/{project}/bigQueryExports/{export_id}
-     *                     Please see {@see SecurityCenterClient::bigQueryExportName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest
      *

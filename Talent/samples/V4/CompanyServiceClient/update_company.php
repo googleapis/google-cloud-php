@@ -31,23 +31,19 @@ use Google\Cloud\Talent\V4\UpdateCompanyRequest;
 /**
  * Updates specified company.
  *
- * @param string $companyDisplayName The display name of the company, for example, "Google LLC".
- * @param string $companyExternalId  Client side company identifier, used to uniquely identify the
- *                                   company.
- *
- *                                   The maximum number of allowed characters is 255.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_company_sample(string $companyDisplayName, string $companyExternalId): void
+function update_company_sample(): void
 {
     // Create a client.
     $companyServiceClient = new CompanyServiceClient();
 
     // Prepare the request message.
-    $company = (new Company())
-        ->setDisplayName($companyDisplayName)
-        ->setExternalId($companyExternalId);
-    $request = (new UpdateCompanyRequest())
-        ->setCompany($company);
+    $request = new UpdateCompanyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,22 +53,5 @@ function update_company_sample(string $companyDisplayName, string $companyExtern
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $companyDisplayName = '[DISPLAY_NAME]';
-    $companyExternalId = '[EXTERNAL_ID]';
-
-    update_company_sample($companyDisplayName, $companyExternalId);
 }
 // [END jobs_v4_generated_CompanyService_UpdateCompany_sync]

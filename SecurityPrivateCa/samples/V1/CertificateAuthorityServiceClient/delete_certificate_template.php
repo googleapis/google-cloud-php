@@ -33,19 +33,19 @@ use Google\Rpc\Status;
  * DeleteCertificateTemplate deletes a
  * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate].
  *
- * @param string $formattedName The resource name for this
- *                              [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
- *                              in the format `projects/&#42;/locations/&#42;/certificateTemplates/*`. Please see
- *                              {@see CertificateAuthorityServiceClient::certificateTemplateName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_certificate_template_sample(string $formattedName): void
+function delete_certificate_template_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteCertificateTemplateRequest())
-        ->setName($formattedName);
+    $request = new DeleteCertificateTemplateRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,25 +63,5 @@ function delete_certificate_template_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CertificateAuthorityServiceClient::certificateTemplateName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CERTIFICATE_TEMPLATE]'
-    );
-
-    delete_certificate_template_sample($formattedName);
 }
 // [END privateca_v1_generated_CertificateAuthorityService_DeleteCertificateTemplate_sync]

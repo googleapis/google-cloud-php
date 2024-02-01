@@ -34,18 +34,19 @@ use Google\Cloud\SecretManager\V1\SecretVersion;
  * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
  * [DISABLED][google.cloud.secretmanager.v1.SecretVersion.State.DISABLED].
  *
- * @param string $formattedName The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to disable in the format
- *                              `projects/&#42;/secrets/&#42;/versions/*`. Please see
- *                              {@see SecretManagerServiceClient::secretVersionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function disable_secret_version_sample(string $formattedName): void
+function disable_secret_version_sample(): void
 {
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
     // Prepare the request message.
-    $request = (new DisableSecretVersionRequest())
-        ->setName($formattedName);
+    $request = new DisableSecretVersionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,25 +56,5 @@ function disable_secret_version_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SecretManagerServiceClient::secretVersionName(
-        '[PROJECT]',
-        '[SECRET]',
-        '[SECRET_VERSION]'
-    );
-
-    disable_secret_version_sample($formattedName);
 }
 // [END secretmanager_v1_generated_SecretManagerService_DisableSecretVersion_sync]

@@ -32,20 +32,19 @@ use Google\Cloud\Talent\V4\Tenant;
 /**
  * Lists all tenants associated with the project.
  *
- * @param string $formattedParent Resource name of the project under which the tenant is created.
- *
- *                                The format is "projects/{project_id}", for example,
- *                                "projects/foo". Please see
- *                                {@see TenantServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_tenants_sample(string $formattedParent): void
+function list_tenants_sample(): void
 {
     // Create a client.
     $tenantServiceClient = new TenantServiceClient();
 
     // Prepare the request message.
-    $request = (new ListTenantsRequest())
-        ->setParent($formattedParent);
+    $request = new ListTenantsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +58,5 @@ function list_tenants_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = TenantServiceClient::projectName('[PROJECT]');
-
-    list_tenants_sample($formattedParent);
 }
 // [END jobs_v4_generated_TenantService_ListTenants_sync]

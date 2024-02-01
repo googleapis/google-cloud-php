@@ -81,10 +81,7 @@ class CssProductsServiceClientTest extends GeneratedTest
         $expectedResponse->setContentLanguage($contentLanguage);
         $expectedResponse->setFeedLabel($feedLabel);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->cssProductName('[ACCOUNT]', '[CSS_PRODUCT]');
-        $request = (new GetCssProductRequest())
-            ->setName($formattedName);
+        $request = new GetCssProductRequest();
         $response = $gapicClient->getCssProduct($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -92,8 +89,6 @@ class CssProductsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.css.v1.CssProductsService/GetCssProduct', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -115,10 +110,7 @@ class CssProductsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->cssProductName('[ACCOUNT]', '[CSS_PRODUCT]');
-        $request = (new GetCssProductRequest())
-            ->setName($formattedName);
+        $request = new GetCssProductRequest();
         try {
             $gapicClient->getCssProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -150,10 +142,7 @@ class CssProductsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCssProducts($cssProducts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new ListCssProductsRequest())
-            ->setParent($formattedParent);
+        $request = new ListCssProductsRequest();
         $response = $gapicClient->listCssProducts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -164,8 +153,6 @@ class CssProductsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.css.v1.CssProductsService/ListCssProducts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -187,10 +174,7 @@ class CssProductsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new ListCssProductsRequest())
-            ->setParent($formattedParent);
+        $request = new ListCssProductsRequest();
         try {
             $gapicClient->listCssProducts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -223,10 +207,7 @@ class CssProductsServiceClientTest extends GeneratedTest
         $expectedResponse->setContentLanguage($contentLanguage);
         $expectedResponse->setFeedLabel($feedLabel);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->cssProductName('[ACCOUNT]', '[CSS_PRODUCT]');
-        $request = (new GetCssProductRequest())
-            ->setName($formattedName);
+        $request = new GetCssProductRequest();
         $response = $gapicClient->getCssProductAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -234,8 +215,6 @@ class CssProductsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.css.v1.CssProductsService/GetCssProduct', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -24,8 +24,7 @@ class GetNamespaceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the namespace to retrieve. Please see
-     *                     {@see RegistrationServiceClient::namespaceName()} for help formatting this field.
+     * @param string $name Required. The name of the namespace to retrieve.
      *
      * @return \Google\Cloud\ServiceDirectory\V1\GetNamespaceRequest
      *

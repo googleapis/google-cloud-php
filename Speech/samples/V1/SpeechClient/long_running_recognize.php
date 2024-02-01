@@ -26,8 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
-use Google\Cloud\Speech\V1\RecognitionAudio;
-use Google\Cloud\Speech\V1\RecognitionConfig;
 use Google\Cloud\Speech\V1\SpeechClient;
 use Google\Rpc\Status;
 
@@ -39,27 +37,21 @@ use Google\Rpc\Status;
  * For more information on asynchronous speech recognition, see the
  * [how-to](https://cloud.google.com/speech-to-text/docs/async-recognize).
  *
- * @param string $configLanguageCode The language of the supplied audio as a
- *                                   [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
- *                                   Example: "en-US".
- *                                   See [Language
- *                                   Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
- *                                   of the currently supported language codes.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function long_running_recognize_sample(string $configLanguageCode): void
+function long_running_recognize_sample(): void
 {
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $config = (new RecognitionConfig())
-        ->setLanguageCode($configLanguageCode);
-    $audio = new RecognitionAudio();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $speechClient->longRunningRecognize($config, $audio);
+        $response = $speechClient->longRunningRecognize();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -74,21 +66,5 @@ function long_running_recognize_sample(string $configLanguageCode): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $configLanguageCode = '[LANGUAGE_CODE]';
-
-    long_running_recognize_sample($configLanguageCode);
 }
 // [END speech_v1_generated_Speech_LongRunningRecognize_sync]

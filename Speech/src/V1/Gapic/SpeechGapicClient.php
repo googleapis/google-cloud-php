@@ -55,9 +55,7 @@ use Google\LongRunning\Operation;
  * ```
  * $speechClient = new Google\Cloud\Speech\V1\SpeechClient();
  * try {
- *     $config = new Google\Cloud\Speech\V1\RecognitionConfig();
- *     $audio = new Google\Cloud\Speech\V1\RecognitionAudio();
- *     $operationResponse = $speechClient->longRunningRecognize($config, $audio);
+ *     $operationResponse = $speechClient->longRunningRecognize();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -68,7 +66,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $speechClient->longRunningRecognize($config, $audio);
+ *     $operationResponse = $speechClient->longRunningRecognize();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'longRunningRecognize');
@@ -392,9 +390,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new Google\Cloud\Speech\V1\SpeechClient();
      * try {
-     *     $config = new Google\Cloud\Speech\V1\RecognitionConfig();
-     *     $audio = new Google\Cloud\Speech\V1\RecognitionAudio();
-     *     $operationResponse = $speechClient->longRunningRecognize($config, $audio);
+     *     $operationResponse = $speechClient->longRunningRecognize();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -405,7 +401,7 @@ class SpeechGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->longRunningRecognize($config, $audio);
+     *     $operationResponse = $speechClient->longRunningRecognize();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'longRunningRecognize');
@@ -425,12 +421,14 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       Required. Provides information to the recognizer that specifies how to
-     *                                        process the request.
-     * @param RecognitionAudio  $audio        Required. The audio data to be recognized.
-     * @param array             $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type RecognitionConfig $config
+     *           Required. Provides information to the recognizer that specifies how to
+     *           process the request.
+     *     @type RecognitionAudio $audio
+     *           Required. The audio data to be recognized.
      *     @type TranscriptOutputConfig $outputConfig
      *           Optional. Specifies an optional destination for the recognition results.
      *     @type RetrySettings|array $retrySettings
@@ -443,11 +441,17 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function longRunningRecognize($config, $audio, array $optionalArgs = [])
+    public function longRunningRecognize(array $optionalArgs = [])
     {
         $request = new LongRunningRecognizeRequest();
-        $request->setConfig($config);
-        $request->setAudio($audio);
+        if (isset($optionalArgs['config'])) {
+            $request->setConfig($optionalArgs['config']);
+        }
+
+        if (isset($optionalArgs['audio'])) {
+            $request->setAudio($optionalArgs['audio']);
+        }
+
         if (isset($optionalArgs['outputConfig'])) {
             $request->setOutputConfig($optionalArgs['outputConfig']);
         }
@@ -463,20 +467,20 @@ class SpeechGapicClient
      * ```
      * $speechClient = new Google\Cloud\Speech\V1\SpeechClient();
      * try {
-     *     $config = new Google\Cloud\Speech\V1\RecognitionConfig();
-     *     $audio = new Google\Cloud\Speech\V1\RecognitionAudio();
-     *     $response = $speechClient->recognize($config, $audio);
+     *     $response = $speechClient->recognize();
      * } finally {
      *     $speechClient->close();
      * }
      * ```
      *
-     * @param RecognitionConfig $config       Required. Provides information to the recognizer that specifies how to
-     *                                        process the request.
-     * @param RecognitionAudio  $audio        Required. The audio data to be recognized.
-     * @param array             $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type RecognitionConfig $config
+     *           Required. Provides information to the recognizer that specifies how to
+     *           process the request.
+     *     @type RecognitionAudio $audio
+     *           Required. The audio data to be recognized.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -487,11 +491,17 @@ class SpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function recognize($config, $audio, array $optionalArgs = [])
+    public function recognize(array $optionalArgs = [])
     {
         $request = new RecognizeRequest();
-        $request->setConfig($config);
-        $request->setAudio($audio);
+        if (isset($optionalArgs['config'])) {
+            $request->setConfig($optionalArgs['config']);
+        }
+
+        if (isset($optionalArgs['audio'])) {
+            $request->setAudio($optionalArgs['audio']);
+        }
+
         return $this->startCall('Recognize', RecognizeResponse::class, $optionalArgs, $request)->wait();
     }
 

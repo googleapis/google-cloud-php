@@ -29,8 +29,6 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
-use Google\Cloud\Speech\V1\RecognitionAudio;
-use Google\Cloud\Speech\V1\RecognitionConfig;
 use Google\Cloud\Speech\V1\RecognizeResponse;
 use Google\Cloud\Speech\V1\SpeechClient;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
@@ -100,12 +98,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $config = new RecognitionConfig();
-        $configLanguageCode = 'configLanguageCode-537965113';
-        $config->setLanguageCode($configLanguageCode);
-        $audio = new RecognitionAudio();
-        $response = $gapicClient->longRunningRecognize($config, $audio);
+        $response = $gapicClient->longRunningRecognize();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -115,10 +108,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v1.Speech/LongRunningRecognize', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getConfig();
-        $this->assertProtobufEquals($config, $actualValue);
-        $actualValue = $actualApiRequestObject->getAudio();
-        $this->assertProtobufEquals($audio, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/longRunningRecognizeTest');
         $response->pollUntilComplete([
@@ -169,12 +158,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $config = new RecognitionConfig();
-        $configLanguageCode = 'configLanguageCode-537965113';
-        $config->setLanguageCode($configLanguageCode);
-        $audio = new RecognitionAudio();
-        $response = $gapicClient->longRunningRecognize($config, $audio);
+        $response = $gapicClient->longRunningRecognize();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -209,22 +193,13 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponse = new RecognizeResponse();
         $expectedResponse->setRequestId($requestId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $config = new RecognitionConfig();
-        $configLanguageCode = 'configLanguageCode-537965113';
-        $config->setLanguageCode($configLanguageCode);
-        $audio = new RecognitionAudio();
-        $response = $gapicClient->recognize($config, $audio);
+        $response = $gapicClient->recognize();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v1.Speech/Recognize', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConfig();
-        $this->assertProtobufEquals($config, $actualValue);
-        $actualValue = $actualRequestObject->getAudio();
-        $this->assertProtobufEquals($audio, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -246,13 +221,8 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $config = new RecognitionConfig();
-        $configLanguageCode = 'configLanguageCode-537965113';
-        $config->setLanguageCode($configLanguageCode);
-        $audio = new RecognitionAudio();
         try {
-            $gapicClient->recognize($config, $audio);
+            $gapicClient->recognize();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -31,20 +31,19 @@ use Google\Cloud\Talent\V4\Tenant;
 /**
  * Retrieves specified tenant.
  *
- * @param string $formattedName The resource name of the tenant to be retrieved.
- *
- *                              The format is "projects/{project_id}/tenants/{tenant_id}", for example,
- *                              "projects/foo/tenants/bar". Please see
- *                              {@see TenantServiceClient::tenantName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_tenant_sample(string $formattedName): void
+function get_tenant_sample(): void
 {
     // Create a client.
     $tenantServiceClient = new TenantServiceClient();
 
     // Prepare the request message.
-    $request = (new GetTenantRequest())
-        ->setName($formattedName);
+    $request = new GetTenantRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function get_tenant_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = TenantServiceClient::tenantName('[PROJECT]', '[TENANT]');
-
-    get_tenant_sample($formattedName);
 }
 // [END jobs_v4_generated_TenantService_GetTenant_sync]

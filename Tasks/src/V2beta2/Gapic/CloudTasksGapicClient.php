@@ -86,9 +86,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $cloudTasksClient = new CloudTasksClient();
  * try {
- *     $formattedName = $cloudTasksClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
- *     $scheduleTime = new Timestamp();
- *     $cloudTasksClient->acknowledgeTask($formattedName, $scheduleTime);
+ *     $cloudTasksClient->acknowledgeTask();
  * } finally {
  *     $cloudTasksClient->close();
  * }
@@ -414,24 +412,24 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-     *     $scheduleTime = new Timestamp();
-     *     $cloudTasksClient->acknowledgeTask($formattedName, $scheduleTime);
+     *     $cloudTasksClient->acknowledgeTask();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string    $name         Required. The task name. For example:
-     *                                `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param Timestamp $scheduleTime Required. The task's current schedule time, available in the
-     *                                [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
-     *                                [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     *                                [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
-     *                                This restriction is to ensure that your worker currently holds the lease.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The task name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *     @type Timestamp $scheduleTime
+     *           Required. The task's current schedule time, available in the
+     *           [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
+     *           [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
+     *           [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     *           This restriction is to ensure that your worker currently holds the lease.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -442,13 +440,19 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function acknowledgeTask($name, $scheduleTime, array $optionalArgs = [])
+    public function acknowledgeTask(array $optionalArgs = [])
     {
         $request = new AcknowledgeTaskRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setScheduleTime($scheduleTime);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['scheduleTime'])) {
+            $request->setScheduleTime($optionalArgs['scheduleTime']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('AcknowledgeTask', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -466,24 +470,24 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-     *     $scheduleTime = new Timestamp();
-     *     $response = $cloudTasksClient->cancelLease($formattedName, $scheduleTime);
+     *     $response = $cloudTasksClient->cancelLease();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string    $name         Required. The task name. For example:
-     *                                `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param Timestamp $scheduleTime Required. The task's current schedule time, available in the
-     *                                [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
-     *                                [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     *                                [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
-     *                                This restriction is to ensure that your worker currently holds the lease.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The task name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *     @type Timestamp $scheduleTime
+     *           Required. The task's current schedule time, available in the
+     *           [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
+     *           [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
+     *           [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     *           This restriction is to ensure that your worker currently holds the lease.
      *     @type int $responseView
      *           The response_view specifies which subset of the
      *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
@@ -511,13 +515,19 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function cancelLease($name, $scheduleTime, array $optionalArgs = [])
+    public function cancelLease(array $optionalArgs = [])
     {
         $request = new CancelLeaseRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setScheduleTime($scheduleTime);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['scheduleTime'])) {
+            $request->setScheduleTime($optionalArgs['scheduleTime']);
+        }
+
         if (isset($optionalArgs['responseView'])) {
             $request->setResponseView($optionalArgs['responseView']);
         }
@@ -545,27 +555,27 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedParent = $cloudTasksClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $queue = new Queue();
-     *     $response = $cloudTasksClient->createQueue($formattedParent, $queue);
+     *     $response = $cloudTasksClient->createQueue();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The location name in which the queue will be created.
-     *                             For example: `projects/PROJECT_ID/locations/LOCATION_ID`
-     *
-     *                             The list of allowed locations can be obtained by calling Cloud
-     *                             Tasks' implementation of
-     *                             [ListLocations][google.cloud.location.Locations.ListLocations].
-     * @param Queue  $queue        Required. The queue to create.
-     *
-     *                             [Queue's name][google.cloud.tasks.v2beta2.Queue.name] cannot be the same as
-     *                             an existing queue.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location name in which the queue will be created.
+     *           For example: `projects/PROJECT_ID/locations/LOCATION_ID`
+     *
+     *           The list of allowed locations can be obtained by calling Cloud
+     *           Tasks' implementation of
+     *           [ListLocations][google.cloud.location.Locations.ListLocations].
+     *     @type Queue $queue
+     *           Required. The queue to create.
+     *
+     *           [Queue's name][google.cloud.tasks.v2beta2.Queue.name] cannot be the same as
+     *           an existing queue.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -578,13 +588,19 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function createQueue($parent, $queue, array $optionalArgs = [])
+    public function createQueue(array $optionalArgs = [])
     {
         $request = new CreateQueueRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setQueue($queue);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['queue'])) {
+            $request->setQueue($optionalArgs['queue']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateQueue', Queue::class, $optionalArgs, $request)->wait();
@@ -605,54 +621,54 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedParent = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-     *     $task = new Task();
-     *     $response = $cloudTasksClient->createTask($formattedParent, $task);
+     *     $response = $cloudTasksClient->createTask();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The queue name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-     *
-     *                             The queue must already exist.
-     * @param Task   $task         Required. The task to add.
-     *
-     *                             Task names have the following format:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`.
-     *                             The user can optionally specify a task
-     *                             [name][google.cloud.tasks.v2beta2.Task.name]. If a name is not specified
-     *                             then the system will generate a random unique task id, which will be set in
-     *                             the task returned in the [response][google.cloud.tasks.v2beta2.Task.name].
-     *
-     *                             If [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] is not
-     *                             set or is in the past then Cloud Tasks will set it to the current time.
-     *
-     *                             Task De-duplication:
-     *
-     *                             Explicitly specifying a task ID enables task de-duplication.  If
-     *                             a task's ID is identical to that of an existing task or a task
-     *                             that was deleted or completed recently then the call will fail
-     *                             with [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS].
-     *                             If the task's queue was created using Cloud Tasks, then another task with
-     *                             the same name can't be created for ~1 hour after the original task was
-     *                             deleted or completed. If the task's queue was created using queue.yaml or
-     *                             queue.xml, then another task with the same name can't be created
-     *                             for ~9 days after the original task was deleted or completed.
-     *
-     *                             Because there is an extra lookup cost to identify duplicate task
-     *                             names, these [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask]
-     *                             calls have significantly increased latency. Using hashed strings for the
-     *                             task id or for the prefix of the task id is recommended. Choosing task ids
-     *                             that are sequential or have sequential prefixes, for example using a
-     *                             timestamp, causes an increase in latency and error rates in all
-     *                             task commands. The infrastructure relies on an approximately
-     *                             uniform distribution of task ids to store and serve tasks
-     *                             efficiently.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The queue name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *
+     *           The queue must already exist.
+     *     @type Task $task
+     *           Required. The task to add.
+     *
+     *           Task names have the following format:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`.
+     *           The user can optionally specify a task
+     *           [name][google.cloud.tasks.v2beta2.Task.name]. If a name is not specified
+     *           then the system will generate a random unique task id, which will be set in
+     *           the task returned in the [response][google.cloud.tasks.v2beta2.Task.name].
+     *
+     *           If [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] is not
+     *           set or is in the past then Cloud Tasks will set it to the current time.
+     *
+     *           Task De-duplication:
+     *
+     *           Explicitly specifying a task ID enables task de-duplication.  If
+     *           a task's ID is identical to that of an existing task or a task
+     *           that was deleted or completed recently then the call will fail
+     *           with [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS].
+     *           If the task's queue was created using Cloud Tasks, then another task with
+     *           the same name can't be created for ~1 hour after the original task was
+     *           deleted or completed. If the task's queue was created using queue.yaml or
+     *           queue.xml, then another task with the same name can't be created
+     *           for ~9 days after the original task was deleted or completed.
+     *
+     *           Because there is an extra lookup cost to identify duplicate task
+     *           names, these [CreateTask][google.cloud.tasks.v2beta2.CloudTasks.CreateTask]
+     *           calls have significantly increased latency. Using hashed strings for the
+     *           task id or for the prefix of the task id is recommended. Choosing task ids
+     *           that are sequential or have sequential prefixes, for example using a
+     *           timestamp, causes an increase in latency and error rates in all
+     *           task commands. The infrastructure relies on an approximately
+     *           uniform distribution of task ids to store and serve tasks
+     *           efficiently.
      *     @type int $responseView
      *           The response_view specifies which subset of the
      *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
@@ -680,13 +696,19 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function createTask($parent, $task, array $optionalArgs = [])
+    public function createTask(array $optionalArgs = [])
     {
         $request = new CreateTaskRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setTask($task);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['task'])) {
+            $request->setTask($optionalArgs['task']);
+        }
+
         if (isset($optionalArgs['responseView'])) {
             $request->setResponseView($optionalArgs['responseView']);
         }
@@ -715,18 +737,18 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-     *     $cloudTasksClient->deleteQueue($formattedName);
+     *     $cloudTasksClient->deleteQueue();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The queue name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The queue name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -737,12 +759,15 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function deleteQueue($name, array $optionalArgs = [])
+    public function deleteQueue(array $optionalArgs = [])
     {
         $request = new DeleteQueueRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteQueue', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -759,18 +784,18 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-     *     $cloudTasksClient->deleteTask($formattedName);
+     *     $cloudTasksClient->deleteTask();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The task name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The task name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -781,12 +806,15 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function deleteTask($name, array $optionalArgs = [])
+    public function deleteTask(array $optionalArgs = [])
     {
         $request = new DeleteTaskRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteTask', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -856,18 +884,18 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-     *     $response = $cloudTasksClient->getQueue($formattedName);
+     *     $response = $cloudTasksClient->getQueue();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the queue. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the queue. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *     @type FieldMask $readMask
      *           Optional. Read mask is used for a more granular control over what the API
      *           returns. If the mask is not present all fields will be returned except
@@ -885,12 +913,15 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function getQueue($name, array $optionalArgs = [])
+    public function getQueue(array $optionalArgs = [])
     {
         $request = new GetQueueRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
         }
@@ -907,18 +938,18 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-     *     $response = $cloudTasksClient->getTask($formattedName);
+     *     $response = $cloudTasksClient->getTask();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The task name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The task name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      *     @type int $responseView
      *           The response_view specifies which subset of the
      *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
@@ -946,12 +977,15 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function getTask($name, array $optionalArgs = [])
+    public function getTask(array $optionalArgs = [])
     {
         $request = new GetTaskRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['responseView'])) {
             $request->setResponseView($optionalArgs['responseView']);
         }
@@ -990,41 +1024,18 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedParent = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-     *     $leaseDuration = new Duration();
-     *     $response = $cloudTasksClient->leaseTasks($formattedParent, $leaseDuration);
+     *     $response = $cloudTasksClient->leaseTasks();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string   $parent        Required. The queue name. For example:
-     *                                `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-     * @param Duration $leaseDuration Required. The duration of the lease.
-     *
-     *                                Each task returned in the
-     *                                [response][google.cloud.tasks.v2beta2.LeaseTasksResponse] will have its
-     *                                [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] set to the
-     *                                current time plus the `lease_duration`. The task is leased until its
-     *                                [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time]; thus, the
-     *                                task will not be returned to another
-     *                                [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] call before
-     *                                its [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
-     *
-     *
-     *                                After the worker has successfully finished the work associated
-     *                                with the task, the worker must call via
-     *                                [AcknowledgeTask][google.cloud.tasks.v2beta2.CloudTasks.AcknowledgeTask]
-     *                                before the [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
-     *                                Otherwise the task will be returned to a later
-     *                                [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] call so that
-     *                                another worker can retry it.
-     *
-     *                                The maximum lease duration is 1 week.
-     *                                `lease_duration` will be truncated to the nearest second.
-     * @param array    $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The queue name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *     @type int $maxTasks
      *           The maximum number of tasks to lease.
      *
@@ -1037,6 +1048,29 @@ class CloudTasksGapicClient
      *           response][google.cloud.tasks.v2beta2.LeaseTasksResponse] is 32 MB. If the
      *           sum of all task sizes requested reaches this limit, fewer tasks than
      *           requested are returned.
+     *     @type Duration $leaseDuration
+     *           Required. The duration of the lease.
+     *
+     *           Each task returned in the
+     *           [response][google.cloud.tasks.v2beta2.LeaseTasksResponse] will have its
+     *           [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] set to the
+     *           current time plus the `lease_duration`. The task is leased until its
+     *           [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time]; thus, the
+     *           task will not be returned to another
+     *           [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] call before
+     *           its [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
+     *
+     *
+     *           After the worker has successfully finished the work associated
+     *           with the task, the worker must call via
+     *           [AcknowledgeTask][google.cloud.tasks.v2beta2.CloudTasks.AcknowledgeTask]
+     *           before the [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time].
+     *           Otherwise the task will be returned to a later
+     *           [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] call so that
+     *           another worker can retry it.
+     *
+     *           The maximum lease duration is 1 week.
+     *           `lease_duration` will be truncated to the nearest second.
      *     @type int $responseView
      *           The response_view specifies which subset of the
      *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
@@ -1096,15 +1130,21 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function leaseTasks($parent, $leaseDuration, array $optionalArgs = [])
+    public function leaseTasks(array $optionalArgs = [])
     {
         $request = new LeaseTasksRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setLeaseDuration($leaseDuration);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['maxTasks'])) {
             $request->setMaxTasks($optionalArgs['maxTasks']);
+        }
+
+        if (isset($optionalArgs['leaseDuration'])) {
+            $request->setLeaseDuration($optionalArgs['leaseDuration']);
         }
 
         if (isset($optionalArgs['responseView'])) {
@@ -1129,9 +1169,8 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedParent = $cloudTasksClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudTasksClient->listQueues($formattedParent);
+     *     $pagedResponse = $cloudTasksClient->listQueues();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1139,7 +1178,7 @@ class CloudTasksGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudTasksClient->listQueues($formattedParent);
+     *     $pagedResponse = $cloudTasksClient->listQueues();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1148,11 +1187,12 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The location name.
-     *                             For example: `projects/PROJECT_ID/locations/LOCATION_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location name.
+     *           For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      *     @type string $filter
      *           `filter` can be used to specify a subset of queues. Any
      *           [Queue][google.cloud.tasks.v2beta2.Queue] field can be used as a filter and
@@ -1190,12 +1230,15 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function listQueues($parent, array $optionalArgs = [])
+    public function listQueues(array $optionalArgs = [])
     {
         $request = new ListQueuesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1232,9 +1275,8 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedParent = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudTasksClient->listTasks($formattedParent);
+     *     $pagedResponse = $cloudTasksClient->listTasks();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1242,7 +1284,7 @@ class CloudTasksGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudTasksClient->listTasks($formattedParent);
+     *     $pagedResponse = $cloudTasksClient->listTasks();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1251,11 +1293,12 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The queue name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The queue name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *     @type int $responseView
      *           The response_view specifies which subset of the
      *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
@@ -1292,12 +1335,15 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function listTasks($parent, array $optionalArgs = [])
+    public function listTasks(array $optionalArgs = [])
     {
         $request = new ListTasksRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['responseView'])) {
             $request->setResponseView($optionalArgs['responseView']);
         }
@@ -1329,18 +1375,18 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-     *     $response = $cloudTasksClient->pauseQueue($formattedName);
+     *     $response = $cloudTasksClient->pauseQueue();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The queue name. For example:
-     *                             `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The queue name. For example:
+     *           `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1353,12 +1399,15 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function pauseQueue($name, array $optionalArgs = [])
+    public function pauseQueue(array $optionalArgs = [])
     {
         $request = new PauseQueueRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('PauseQueue', Queue::class, $optionalArgs, $request)->wait();
@@ -1376,18 +1425,18 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-     *     $response = $cloudTasksClient->purgeQueue($formattedName);
+     *     $response = $cloudTasksClient->purgeQueue();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The queue name. For example:
-     *                             `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The queue name. For example:
+     *           `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1400,12 +1449,15 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function purgeQueue($name, array $optionalArgs = [])
+    public function purgeQueue(array $optionalArgs = [])
     {
         $request = new PurgeQueueRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('PurgeQueue', Queue::class, $optionalArgs, $request)->wait();
@@ -1423,30 +1475,30 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-     *     $scheduleTime = new Timestamp();
-     *     $leaseDuration = new Duration();
-     *     $response = $cloudTasksClient->renewLease($formattedName, $scheduleTime, $leaseDuration);
+     *     $response = $cloudTasksClient->renewLease();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string    $name          Required. The task name. For example:
-     *                                 `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param Timestamp $scheduleTime  Required. The task's current schedule time, available in the
-     *                                 [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
-     *                                 [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
-     *                                 [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
-     *                                 This restriction is to ensure that your worker currently holds the lease.
-     * @param Duration  $leaseDuration Required. The desired new lease duration, starting from now.
-     *
-     *
-     *                                 The maximum lease duration is 1 week.
-     *                                 `lease_duration` will be truncated to the nearest second.
-     * @param array     $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The task name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     *     @type Timestamp $scheduleTime
+     *           Required. The task's current schedule time, available in the
+     *           [schedule_time][google.cloud.tasks.v2beta2.Task.schedule_time] returned by
+     *           [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks] response or
+     *           [RenewLease][google.cloud.tasks.v2beta2.CloudTasks.RenewLease] response.
+     *           This restriction is to ensure that your worker currently holds the lease.
+     *     @type Duration $leaseDuration
+     *           Required. The desired new lease duration, starting from now.
+     *
+     *
+     *           The maximum lease duration is 1 week.
+     *           `lease_duration` will be truncated to the nearest second.
      *     @type int $responseView
      *           The response_view specifies which subset of the
      *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
@@ -1474,14 +1526,23 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function renewLease($name, $scheduleTime, $leaseDuration, array $optionalArgs = [])
+    public function renewLease(array $optionalArgs = [])
     {
         $request = new RenewLeaseRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setScheduleTime($scheduleTime);
-        $request->setLeaseDuration($leaseDuration);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['scheduleTime'])) {
+            $request->setScheduleTime($optionalArgs['scheduleTime']);
+        }
+
+        if (isset($optionalArgs['leaseDuration'])) {
+            $request->setLeaseDuration($optionalArgs['leaseDuration']);
+        }
+
         if (isset($optionalArgs['responseView'])) {
             $request->setResponseView($optionalArgs['responseView']);
         }
@@ -1512,18 +1573,18 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-     *     $response = $cloudTasksClient->resumeQueue($formattedName);
+     *     $response = $cloudTasksClient->resumeQueue();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The queue name. For example:
-     *                             `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The queue name. For example:
+     *           `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1536,12 +1597,15 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function resumeQueue($name, array $optionalArgs = [])
+    public function resumeQueue(array $optionalArgs = [])
     {
         $request = new ResumeQueueRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ResumeQueue', Queue::class, $optionalArgs, $request)->wait();
@@ -1583,18 +1647,18 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $formattedName = $cloudTasksClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-     *     $response = $cloudTasksClient->runTask($formattedName);
+     *     $response = $cloudTasksClient->runTask();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The task name. For example:
-     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The task name. For example:
+     *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      *     @type int $responseView
      *           The response_view specifies which subset of the
      *           [Task][google.cloud.tasks.v2beta2.Task] will be returned.
@@ -1622,12 +1686,15 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function runTask($name, array $optionalArgs = [])
+    public function runTask(array $optionalArgs = [])
     {
         $request = new RunTaskRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['responseView'])) {
             $request->setResponseView($optionalArgs['responseView']);
         }
@@ -1781,25 +1848,25 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $queue = new Queue();
-     *     $response = $cloudTasksClient->updateQueue($queue);
+     *     $response = $cloudTasksClient->updateQueue();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param Queue $queue        Required. The queue to create or update.
-     *
-     *                            The queue's [name][google.cloud.tasks.v2beta2.Queue.name] must be
-     *                            specified.
-     *
-     *                            Output only fields cannot be modified using UpdateQueue.
-     *                            Any value specified for an output only field will be ignored.
-     *                            The queue's [name][google.cloud.tasks.v2beta2.Queue.name] cannot be
-     *                            changed.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Queue $queue
+     *           Required. The queue to create or update.
+     *
+     *           The queue's [name][google.cloud.tasks.v2beta2.Queue.name] must be
+     *           specified.
+     *
+     *           Output only fields cannot be modified using UpdateQueue.
+     *           Any value specified for an output only field will be ignored.
+     *           The queue's [name][google.cloud.tasks.v2beta2.Queue.name] cannot be
+     *           changed.
      *     @type FieldMask $updateMask
      *           A mask used to specify which fields of the queue are being updated.
      *
@@ -1816,12 +1883,14 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function updateQueue($queue, array $optionalArgs = [])
+    public function updateQueue(array $optionalArgs = [])
     {
         $request = new UpdateQueueRequest();
         $requestParamHeaders = [];
-        $request->setQueue($queue);
-        $requestParamHeaders['queue.name'] = $queue->getName();
+        if (isset($optionalArgs['queue'])) {
+            $request->setQueue($optionalArgs['queue']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1842,19 +1911,19 @@ class CloudTasksGapicClient
      * ```
      * $cloudTasksClient = new CloudTasksClient();
      * try {
-     *     $appId = 'app_id';
-     *     $cloudTasksClient->uploadQueueYaml($appId);
+     *     $cloudTasksClient->uploadQueueYaml();
      * } finally {
      *     $cloudTasksClient->close();
      * }
      * ```
      *
-     * @param string $appId        Required. The App ID is supplied as an HTTP parameter. Unlike internal
-     *                             usage of App ID, it does not include a region prefix. Rather, the App ID
-     *                             represents the Project ID against which to make the request.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $appId
+     *           Required. The App ID is supplied as an HTTP parameter. Unlike internal
+     *           usage of App ID, it does not include a region prefix. Rather, the App ID
+     *           represents the Project ID against which to make the request.
      *     @type HttpBody $httpBody
      *           The http body contains the queue.yaml file which used to update queue lists
      *     @type RetrySettings|array $retrySettings
@@ -1867,10 +1936,13 @@ class CloudTasksGapicClient
      *
      * @experimental
      */
-    public function uploadQueueYaml($appId, array $optionalArgs = [])
+    public function uploadQueueYaml(array $optionalArgs = [])
     {
         $request = new UploadQueueYamlRequest();
-        $request->setAppId($appId);
+        if (isset($optionalArgs['appId'])) {
+            $request->setAppId($optionalArgs['appId']);
+        }
+
         if (isset($optionalArgs['httpBody'])) {
             $request->setHttpBody($optionalArgs['httpBody']);
         }

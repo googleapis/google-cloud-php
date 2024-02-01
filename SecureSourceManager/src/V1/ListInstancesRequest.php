@@ -48,8 +48,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
-     * @param string $parent Required. Parent value for ListInstancesRequest. Please see
-     *                       {@see SecureSourceManagerClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Parent value for ListInstancesRequest.
      *
      * @return \Google\Cloud\SecureSourceManager\V1\ListInstancesRequest
      *

@@ -34,8 +34,7 @@ class GetEventRequest extends \Google\Protobuf\Internal\Message
      *
      *                     `project_id` - Project ID of the project that contains the event. <br>
      *                     `location` - The location to get the service health events from. <br>
-     *                     `event_id` - Event ID to retrieve. Please see
-     *                     {@see ServiceHealthClient::eventName()} for help formatting this field.
+     *                     `event_id` - Event ID to retrieve.
      *
      * @return \Google\Cloud\ServiceHealth\V1\GetEventRequest
      *

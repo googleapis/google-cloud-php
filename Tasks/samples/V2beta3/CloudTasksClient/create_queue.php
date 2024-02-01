@@ -41,45 +41,24 @@ use Google\Cloud\Tasks\V2beta3\Queue;
  * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
  * this method.
  *
- * @param string $formattedParent The location name in which the queue will be created.
- *                                For example: `projects/PROJECT_ID/locations/LOCATION_ID`
- *
- *                                The list of allowed locations can be obtained by calling Cloud
- *                                Tasks' implementation of
- *                                [ListLocations][google.cloud.location.Locations.ListLocations]. Please see
- *                                {@see CloudTasksClient::locationName()} for help formatting this field.
- */
-function create_queue_sample(string $formattedParent): void
-{
-    // Create a client.
-    $cloudTasksClient = new CloudTasksClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $queue = new Queue();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Queue $response */
-        $response = $cloudTasksClient->createQueue($formattedParent, $queue);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function create_queue_sample(): void
 {
-    $formattedParent = CloudTasksClient::locationName('[PROJECT]', '[LOCATION]');
+    // Create a client.
+    $cloudTasksClient = new CloudTasksClient();
 
-    create_queue_sample($formattedParent);
+    // Call the API and handle any network failures.
+    try {
+        /** @var Queue $response */
+        $response = $cloudTasksClient->createQueue();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudtasks_v2beta3_generated_CloudTasks_CreateQueue_sync]

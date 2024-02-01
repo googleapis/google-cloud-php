@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
 use Google\Cloud\ServiceManagement\V1\GenerateConfigReportRequest;
 use Google\Cloud\ServiceManagement\V1\GenerateConfigReportResponse;
-use Google\Protobuf\Any;
 
 /**
  * Generates and returns a report (errors, warnings and changes from
@@ -54,9 +53,7 @@ function generate_config_report_sample(): void
     $serviceManagerClient = new ServiceManagerClient();
 
     // Prepare the request message.
-    $newConfig = new Any();
-    $request = (new GenerateConfigReportRequest())
-        ->setNewConfig($newConfig);
+    $request = new GenerateConfigReportRequest();
 
     // Call the API and handle any network failures.
     try {

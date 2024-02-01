@@ -37,17 +37,19 @@ use Google\Shopping\Merchant\Inventories\V1beta\RegionalInventory;
  *
  * `RegionalInventory` resources are listed per product for a given account.
  *
- * @param string $parent The `name` of the parent product to list `RegionalInventory`
- *                       resources for. Format: `accounts/{account}/products/{product}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_regional_inventories_sample(string $parent): void
+function list_regional_inventories_sample(): void
 {
     // Create a client.
     $regionalInventoryServiceClient = new RegionalInventoryServiceClient();
 
     // Prepare the request message.
-    $request = (new ListRegionalInventoriesRequest())
-        ->setParent($parent);
+    $request = new ListRegionalInventoriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,21 +63,5 @@ function list_regional_inventories_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_regional_inventories_sample($parent);
 }
 // [END merchantapi_v1beta_generated_RegionalInventoryService_ListRegionalInventories_sync]

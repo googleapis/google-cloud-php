@@ -30,17 +30,13 @@ use Google\Cloud\Talent\V4beta1\CompanyServiceClient;
 /**
  * Retrieves specified company.
  *
- * @param string $formattedName The resource name of the company to be retrieved.
- *
- *                              The format is
- *                              "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
- *                              example, "projects/api-test-project/tenants/foo/companies/bar".
- *
- *                              If tenant id is unspecified, the default tenant is used, for
- *                              example, "projects/api-test-project/companies/bar". Please see
- *                              {@see CompanyServiceClient::companyName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_company_sample(string $formattedName): void
+function get_company_sample(): void
 {
     // Create a client.
     $companyServiceClient = new CompanyServiceClient();
@@ -48,26 +44,10 @@ function get_company_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var Company $response */
-        $response = $companyServiceClient->getCompany($formattedName);
+        $response = $companyServiceClient->getCompany();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CompanyServiceClient::companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-
-    get_company_sample($formattedName);
 }
 // [END jobs_v4beta1_generated_CompanyService_GetCompany_sync]

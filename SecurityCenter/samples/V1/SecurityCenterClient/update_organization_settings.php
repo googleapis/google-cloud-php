@@ -43,9 +43,7 @@ function update_organization_settings_sample(): void
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $organizationSettings = new OrganizationSettings();
-    $request = (new UpdateOrganizationSettingsRequest())
-        ->setOrganizationSettings($organizationSettings);
+    $request = new UpdateOrganizationSettingsRequest();
 
     // Call the API and handle any network failures.
     try {

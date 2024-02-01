@@ -47,9 +47,7 @@ function update_security_health_analytics_custom_module_sample(): void
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-    $request = (new UpdateSecurityHealthAnalyticsCustomModuleRequest())
-        ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+    $request = new UpdateSecurityHealthAnalyticsCustomModuleRequest();
 
     // Call the API and handle any network failures.
     try {

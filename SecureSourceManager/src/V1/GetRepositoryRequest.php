@@ -27,8 +27,7 @@ class GetRepositoryRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Name of the repository to retrieve.
      *                     The format is
-     *                     `projects/{project_number}/locations/{location_id}/repositories/{repository_id}`. Please see
-     *                     {@see SecureSourceManagerClient::repositoryName()} for help formatting this field.
+     *                     `projects/{project_number}/locations/{location_id}/repositories/{repository_id}`.
      *
      * @return \Google\Cloud\SecureSourceManager\V1\GetRepositoryRequest
      *

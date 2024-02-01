@@ -34,7 +34,6 @@ class GetAccountRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the managed CSS/MC account.
      *                     Format: accounts/{account}
-     *                     Please see {@see AccountsServiceClient::accountName()} for help formatting this field.
      *
      * @return \Google\Shopping\Css\V1\GetAccountRequest
      *

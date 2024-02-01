@@ -35,23 +35,19 @@ use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult;
  * To list across all sources provide a `-` as the source id.
  * Example: /v1/organizations/{organization_id}/sources/-/findings
  *
- * @param string $formattedParent Name of the source the findings belong to. Its format is
- *                                "organizations/[organization_id]/sources/[source_id],
- *                                folders/[folder_id]/sources/[source_id], or
- *                                projects/[project_id]/sources/[source_id]". To list across all sources
- *                                provide a source_id of `-`. For example:
- *                                organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
- *                                projects/{projects_id}/sources/-
- *                                Please see {@see SecurityCenterClient::sourceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_findings_sample(string $formattedParent): void
+function list_findings_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $request = (new ListFindingsRequest())
-        ->setParent($formattedParent);
+    $request = new ListFindingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +61,5 @@ function list_findings_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecurityCenterClient::sourceName('[ORGANIZATION]', '[SOURCE]');
-
-    list_findings_sample($formattedParent);
 }
 // [END securitycenter_v1_generated_SecurityCenter_ListFindings_sync]

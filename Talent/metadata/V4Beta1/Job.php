@@ -20,15 +20,15 @@ class Job
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ã
-%google/cloud/talent/v4beta1/job.protogoogle.cloud.talent.v4beta1google/api/resource.proto(google/cloud/talent/v4beta1/common.protogoogle/protobuf/timestamp.proto"‡
+ì
+%google/cloud/talent/v4beta1/job.protogoogle.cloud.talent.v4beta1google/api/resource.proto(google/cloud/talent/v4beta1/common.protogoogle/protobuf/timestamp.proto"Ë
 Job
-name (	4
-company (	B#‡A˙A
-jobs.googleapis.com/Company
-requisition_id (	B‡A
-title (	B‡A
-description (	B‡A
+name (	5
+company (	B$‚A˙A
+jobs.googleapis.com/Company
+requisition_id (	B‚A
+title (	B‚A
+description (	B‚A
 	addresses (	J
 application_info (20.google.cloud.talent.v4beta1.Job.ApplicationInfo=
 job_benefits (2\'.google.cloud.talent.v4beta1.JobBenefitH
@@ -52,11 +52,11 @@ visibility (2\'.google.cloud.talent.v4beta1.VisibilityB2
 job_start_time (2.google.protobuf.Timestamp0
 job_end_time (2.google.protobuf.Timestamp8
 posting_publish_time (2.google.protobuf.Timestamp7
-posting_expire_time (2.google.protobuf.Timestamp<
-posting_create_time (2.google.protobuf.TimestampB‡A<
-posting_update_time (2.google.protobuf.TimestampB‡A!
-company_display_name (	B‡AG
-derived_info (2,.google.cloud.talent.v4beta1.Job.DerivedInfoB‡AN
+posting_expire_time (2.google.protobuf.Timestamp=
+posting_create_time (2.google.protobuf.TimestampB‚A=
+posting_update_time (2.google.protobuf.TimestampB‚A"
+company_display_name (	B‚AH
+derived_info (2,.google.cloud.talent.v4beta1.Job.DerivedInfoB‚AN
 processing_options (22.google.cloud.talent.v4beta1.Job.ProcessingOptionsD
 ApplicationInfo
 emails (	

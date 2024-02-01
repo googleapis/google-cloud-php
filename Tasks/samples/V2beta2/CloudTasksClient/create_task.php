@@ -38,43 +38,24 @@ use Google\Cloud\Tasks\V2beta2\Task;
  * * For [pull queues][google.cloud.tasks.v2beta2.PullTarget], the maximum
  * task size is 1MB.
  *
- * @param string $formattedParent The queue name. For example:
- *                                `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
- *
- *                                The queue must already exist. Please see
- *                                {@see CloudTasksClient::queueName()} for help formatting this field.
- */
-function create_task_sample(string $formattedParent): void
-{
-    // Create a client.
-    $cloudTasksClient = new CloudTasksClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $task = new Task();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Task $response */
-        $response = $cloudTasksClient->createTask($formattedParent, $task);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function create_task_sample(): void
 {
-    $formattedParent = CloudTasksClient::queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
+    // Create a client.
+    $cloudTasksClient = new CloudTasksClient();
 
-    create_task_sample($formattedParent);
+    // Call the API and handle any network failures.
+    try {
+        /** @var Task $response */
+        $response = $cloudTasksClient->createTask();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudtasks_v2beta2_generated_CloudTasks_CreateTask_sync]

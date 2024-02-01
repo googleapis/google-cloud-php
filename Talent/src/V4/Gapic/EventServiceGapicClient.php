@@ -45,9 +45,7 @@ use Google\Cloud\Talent\V4\CreateClientEventRequest;
  * ```
  * $eventServiceClient = new EventServiceClient();
  * try {
- *     $formattedParent = $eventServiceClient->tenantName('[PROJECT]', '[TENANT]');
- *     $clientEvent = new ClientEvent();
- *     $response = $eventServiceClient->createClientEvent($formattedParent, $clientEvent);
+ *     $response = $eventServiceClient->createClientEvent();
  * } finally {
  *     $eventServiceClient->close();
  * }
@@ -263,23 +261,23 @@ class EventServiceGapicClient
      * ```
      * $eventServiceClient = new EventServiceClient();
      * try {
-     *     $formattedParent = $eventServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $clientEvent = new ClientEvent();
-     *     $response = $eventServiceClient->createClientEvent($formattedParent, $clientEvent);
+     *     $response = $eventServiceClient->createClientEvent();
      * } finally {
      *     $eventServiceClient->close();
      * }
      * ```
      *
-     * @param string      $parent       Required. Resource name of the tenant under which the event is created.
-     *
-     *                                  The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                                  "projects/foo/tenants/bar".
-     * @param ClientEvent $clientEvent  Required. Events issued when end user interacts with customer's application
-     *                                  that uses Cloud Talent Solution.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the tenant under which the event is created.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/foo/tenants/bar".
+     *     @type ClientEvent $clientEvent
+     *           Required. Events issued when end user interacts with customer's application
+     *           that uses Cloud Talent Solution.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -290,13 +288,19 @@ class EventServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createClientEvent($parent, $clientEvent, array $optionalArgs = [])
+    public function createClientEvent(array $optionalArgs = [])
     {
         $request = new CreateClientEventRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setClientEvent($clientEvent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['clientEvent'])) {
+            $request->setClientEvent($optionalArgs['clientEvent']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateClientEvent', ClientEvent::class, $optionalArgs, $request)->wait();

@@ -79,8 +79,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      * @param string                                               $recognizer Required. The name of the Recognizer to use during recognition. The
      *                                                                         expected format is
      *                                                                         `projects/{project}/locations/{location}/recognizers/{recognizer}`. The
-     *                                                                         {recognizer} segment may be set to `_` to use an empty implicit Recognizer. Please see
-     *                                                                         {@see SpeechClient::recognizerName()} for help formatting this field.
+     *                                                                         {recognizer} segment may be set to `_` to use an empty implicit Recognizer.
      * @param \Google\Cloud\Speech\V2\RecognitionConfig            $config     Features and audio metadata to use for the Automatic Speech Recognition.
      *                                                                         This field in combination with the
      *                                                                         [config_mask][google.cloud.speech.v2.BatchRecognizeRequest.config_mask]

@@ -95,9 +95,7 @@ class ServiceHealthClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setParentEvent($parentEvent);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->eventName('[PROJECT]', '[LOCATION]', '[EVENT]');
-        $request = (new GetEventRequest())->setName($formattedName);
+        $request = new GetEventRequest();
         $response = $gapicClient->getEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -105,8 +103,6 @@ class ServiceHealthClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicehealth.v1.ServiceHealth/GetEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -131,9 +127,7 @@ class ServiceHealthClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->eventName('[PROJECT]', '[LOCATION]', '[EVENT]');
-        $request = (new GetEventRequest())->setName($formattedName);
+        $request = new GetEventRequest();
         try {
             $gapicClient->getEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -166,9 +160,7 @@ class ServiceHealthClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setParentEvent($parentEvent);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->organizationEventName('[ORGANIZATION]', '[LOCATION]', '[EVENT]');
-        $request = (new GetOrganizationEventRequest())->setName($formattedName);
+        $request = new GetOrganizationEventRequest();
         $response = $gapicClient->getOrganizationEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -176,8 +168,6 @@ class ServiceHealthClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicehealth.v1.ServiceHealth/GetOrganizationEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -202,9 +192,7 @@ class ServiceHealthClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->organizationEventName('[ORGANIZATION]', '[LOCATION]', '[EVENT]');
-        $request = (new GetOrganizationEventRequest())->setName($formattedName);
+        $request = new GetOrganizationEventRequest();
         try {
             $gapicClient->getOrganizationEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -231,9 +219,7 @@ class ServiceHealthClientTest extends GeneratedTest
         $expectedResponse = new OrganizationImpact();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->organizationImpactName('[ORGANIZATION]', '[LOCATION]', '[ORGANIZATION_IMPACT]');
-        $request = (new GetOrganizationImpactRequest())->setName($formattedName);
+        $request = new GetOrganizationImpactRequest();
         $response = $gapicClient->getOrganizationImpact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -241,8 +227,6 @@ class ServiceHealthClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicehealth.v1.ServiceHealth/GetOrganizationImpact', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -267,9 +251,7 @@ class ServiceHealthClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->organizationImpactName('[ORGANIZATION]', '[LOCATION]', '[ORGANIZATION_IMPACT]');
-        $request = (new GetOrganizationImpactRequest())->setName($formattedName);
+        $request = new GetOrganizationImpactRequest();
         try {
             $gapicClient->getOrganizationImpact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -299,9 +281,7 @@ class ServiceHealthClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEvents($events);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListEventsRequest())->setParent($formattedParent);
+        $request = new ListEventsRequest();
         $response = $gapicClient->listEvents($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -312,8 +292,6 @@ class ServiceHealthClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicehealth.v1.ServiceHealth/ListEvents', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -338,9 +316,7 @@ class ServiceHealthClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListEventsRequest())->setParent($formattedParent);
+        $request = new ListEventsRequest();
         try {
             $gapicClient->listEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -370,9 +346,7 @@ class ServiceHealthClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOrganizationEvents($organizationEvents);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListOrganizationEventsRequest())->setParent($formattedParent);
+        $request = new ListOrganizationEventsRequest();
         $response = $gapicClient->listOrganizationEvents($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -383,8 +357,6 @@ class ServiceHealthClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicehealth.v1.ServiceHealth/ListOrganizationEvents', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -409,9 +381,7 @@ class ServiceHealthClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListOrganizationEventsRequest())->setParent($formattedParent);
+        $request = new ListOrganizationEventsRequest();
         try {
             $gapicClient->listOrganizationEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -441,9 +411,7 @@ class ServiceHealthClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOrganizationImpacts($organizationImpacts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListOrganizationImpactsRequest())->setParent($formattedParent);
+        $request = new ListOrganizationImpactsRequest();
         $response = $gapicClient->listOrganizationImpacts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -454,8 +422,6 @@ class ServiceHealthClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicehealth.v1.ServiceHealth/ListOrganizationImpacts', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -480,9 +446,7 @@ class ServiceHealthClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListOrganizationImpactsRequest())->setParent($formattedParent);
+        $request = new ListOrganizationImpactsRequest();
         try {
             $gapicClient->listOrganizationImpacts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -643,9 +607,7 @@ class ServiceHealthClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setParentEvent($parentEvent);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->eventName('[PROJECT]', '[LOCATION]', '[EVENT]');
-        $request = (new GetEventRequest())->setName($formattedName);
+        $request = new GetEventRequest();
         $response = $gapicClient->getEventAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -653,8 +615,6 @@ class ServiceHealthClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicehealth.v1.ServiceHealth/GetEvent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

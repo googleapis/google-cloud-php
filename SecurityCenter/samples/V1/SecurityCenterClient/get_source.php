@@ -31,18 +31,19 @@ use Google\Cloud\SecurityCenter\V1\Source;
 /**
  * Gets a source.
  *
- * @param string $formattedName Relative resource name of the source. Its format is
- *                              "organizations/[organization_id]/source/[source_id]". Please see
- *                              {@see SecurityCenterClient::sourceName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_source_sample(string $formattedName): void
+function get_source_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $request = (new GetSourceRequest())
-        ->setName($formattedName);
+    $request = new GetSourceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function get_source_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SecurityCenterClient::sourceName('[ORGANIZATION]', '[SOURCE]');
-
-    get_source_sample($formattedName);
 }
 // [END securitycenter_v1_generated_SecurityCenter_GetSource_sync]

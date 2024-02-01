@@ -32,8 +32,7 @@ class CreateSourceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                 $parent Required. Resource name of the new source's parent. Its format should be
-     *                                                       "organizations/[organization_id]". Please see
-     *                                                       {@see SecurityCenterClient::organizationName()} for help formatting this field.
+     *                                                       "organizations/[organization_id]".
      * @param \Google\Cloud\SecurityCenter\V1\Source $source Required. The Source being created, only the display_name and description
      *                                                       will be used. All other fields will be ignored.
      *

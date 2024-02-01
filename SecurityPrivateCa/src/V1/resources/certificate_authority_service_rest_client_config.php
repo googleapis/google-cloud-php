@@ -50,9 +50,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'ca_pool_id',
-                ],
             ],
             'CreateCertificate' => [
                 'method' => 'post',
@@ -77,9 +74,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'certificate_authority_id',
-                ],
             ],
             'CreateCertificateTemplate' => [
                 'method' => 'post',
@@ -91,9 +85,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'certificate_template_id',
                 ],
             ],
             'DeleteCaPool' => [
@@ -322,9 +313,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateCertificate' => [
                 'method' => 'patch',
@@ -337,9 +325,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateCertificateAuthority' => [
@@ -354,9 +339,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateCertificateRevocationList' => [
                 'method' => 'patch',
@@ -370,9 +352,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateCertificateTemplate' => [
                 'method' => 'patch',
@@ -385,9 +364,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

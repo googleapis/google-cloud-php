@@ -35,19 +35,19 @@ use Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse;
  * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
  * resources in the [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
- * @param string $formattedCaPool The resource name for the
- *                                [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
- *                                `projects/&#42;/locations/&#42;/caPools/*`. Please see
- *                                {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function fetch_ca_certs_sample(string $formattedCaPool): void
+function fetch_ca_certs_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $request = (new FetchCaCertsRequest())
-        ->setCaPool($formattedCaPool);
+    $request = new FetchCaCertsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,25 +57,5 @@ function fetch_ca_certs_sample(string $formattedCaPool): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedCaPool = CertificateAuthorityServiceClient::caPoolName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CA_POOL]'
-    );
-
-    fetch_ca_certs_sample($formattedCaPool);
 }
 // [END privateca_v1_generated_CertificateAuthorityService_FetchCaCerts_sync]

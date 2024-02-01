@@ -49,10 +49,7 @@ use Google\Cloud\Talent\V4beta1\CompleteQueryResponse;
  * ```
  * $completionClient = new CompletionClient();
  * try {
- *     $formattedParent = $completionClient->projectName('[PROJECT]');
- *     $query = 'query';
- *     $pageSize = 0;
- *     $response = $completionClient->completeQuery($formattedParent, $query, $pageSize);
+ *     $response = $completionClient->completeQuery();
  * } finally {
  *     $completionClient->close();
  * }
@@ -401,31 +398,27 @@ class CompletionGapicClient
      * ```
      * $completionClient = new CompletionClient();
      * try {
-     *     $formattedParent = $completionClient->projectName('[PROJECT]');
-     *     $query = 'query';
-     *     $pageSize = 0;
-     *     $response = $completionClient->completeQuery($formattedParent, $query, $pageSize);
+     *     $response = $completionClient->completeQuery();
      * } finally {
      *     $completionClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of tenant the completion is performed within.
-     *
-     *                             The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                             "projects/foo/tenant/bar".
-     *
-     *                             If tenant id is unspecified, the default tenant is used, for
-     *                             example, "projects/foo".
-     * @param string $query        Required. The query used to generate suggestions.
-     *
-     *                             The maximum number of allowed characters is 255.
-     * @param int    $pageSize     Required. Completion result count.
-     *
-     *                             The maximum allowed page size is 10.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of tenant the completion is performed within.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/foo/tenant/bar".
+     *
+     *           If tenant id is unspecified, the default tenant is used, for
+     *           example, "projects/foo".
+     *     @type string $query
+     *           Required. The query used to generate suggestions.
+     *
+     *           The maximum number of allowed characters is 255.
      *     @type string[] $languageCodes
      *           The list of languages of the query. This is
      *           the BCP-47 language code, such as "en-US" or "sr-Latn".
@@ -433,6 +426,10 @@ class CompletionGapicClient
      *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
      *
      *           The maximum number of allowed characters is 255.
+     *     @type int $pageSize
+     *           Required. Completion result count.
+     *
+     *           The maximum allowed page size is 10.
      *     @type string $company
      *           If provided, restricts completion to specified company.
      *
@@ -462,16 +459,25 @@ class CompletionGapicClient
      *
      * @experimental
      */
-    public function completeQuery($parent, $query, $pageSize, array $optionalArgs = [])
+    public function completeQuery(array $optionalArgs = [])
     {
         $request = new CompleteQueryRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setQuery($query);
-        $request->setPageSize($pageSize);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['query'])) {
+            $request->setQuery($optionalArgs['query']);
+        }
+
         if (isset($optionalArgs['languageCodes'])) {
             $request->setLanguageCodes($optionalArgs['languageCodes']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
         }
 
         if (isset($optionalArgs['company'])) {

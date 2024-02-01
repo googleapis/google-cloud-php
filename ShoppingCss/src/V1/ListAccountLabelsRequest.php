@@ -44,7 +44,6 @@ class ListAccountLabelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent account.
      *                       Format: accounts/{account}
-     *                       Please see {@see AccountLabelsServiceClient::accountName()} for help formatting this field.
      *
      * @return \Google\Shopping\Css\V1\ListAccountLabelsRequest
      *

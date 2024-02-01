@@ -33,37 +33,23 @@ use Google\Cloud\Tasks\V2beta2\CloudTasksClient;
  * string. This method was added to support gcloud clients versions before
  * 322.0.0. New clients should use CreateQueue instead of this method.
  *
- * @param string $appId The App ID is supplied as an HTTP parameter. Unlike internal
- *                      usage of App ID, it does not include a region prefix. Rather, the App ID
- *                      represents the Project ID against which to make the request.
- */
-function upload_queue_yaml_sample(string $appId): void
-{
-    // Create a client.
-    $cloudTasksClient = new CloudTasksClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $cloudTasksClient->uploadQueueYaml($appId);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function upload_queue_yaml_sample(): void
 {
-    $appId = '[APP_ID]';
+    // Create a client.
+    $cloudTasksClient = new CloudTasksClient();
 
-    upload_queue_yaml_sample($appId);
+    // Call the API and handle any network failures.
+    try {
+        $cloudTasksClient->uploadQueueYaml();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudtasks_v2beta2_generated_CloudTasks_UploadQueueYaml_sync]

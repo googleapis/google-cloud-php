@@ -33,29 +33,19 @@ use Google\Cloud\ServiceManagement\V1\Rollout;
  * Lists the history of the service configuration rollouts for a managed
  * service, from the newest to the oldest.
  *
- * @param string $serviceName The name of the service.  See the
- *                            [overview](https://cloud.google.com/service-management/overview) for naming
- *                            requirements.  For example: `example.googleapis.com`.
- * @param string $filter      Use `filter` to return subset of rollouts.
- *                            The following filters are supported:
- *
- *                            -- By [status]
- *                            [google.api.servicemanagement.v1.Rollout.RolloutStatus]. For example,
- *                            `filter='status=SUCCESS'`
- *
- *                            -- By [strategy]
- *                            [google.api.servicemanagement.v1.Rollout.strategy]. For example,
- *                            `filter='strategy=TrafficPercentStrategy'`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_service_rollouts_sample(string $serviceName, string $filter): void
+function list_service_rollouts_sample(): void
 {
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
     // Prepare the request message.
-    $request = (new ListServiceRolloutsRequest())
-        ->setServiceName($serviceName)
-        ->setFilter($filter);
+    $request = new ListServiceRolloutsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,22 +59,5 @@ function list_service_rollouts_sample(string $serviceName, string $filter): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $serviceName = '[SERVICE_NAME]';
-    $filter = '[FILTER]';
-
-    list_service_rollouts_sample($serviceName, $filter);
 }
 // [END servicemanagement_v1_generated_ServiceManager_ListServiceRollouts_sync]

@@ -26,8 +26,7 @@ class GetPhraseSetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the PhraseSet to retrieve. The expected format is
-     *                     `projects/{project}/locations/{location}/phraseSets/{phrase_set}`. Please see
-     *                     {@see SpeechClient::phraseSetName()} for help formatting this field.
+     *                     `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
      *
      * @return \Google\Cloud\Speech\V2\GetPhraseSetRequest
      *

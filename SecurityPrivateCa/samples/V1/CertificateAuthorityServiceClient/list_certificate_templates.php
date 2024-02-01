@@ -33,19 +33,19 @@ use Google\Cloud\Security\PrivateCA\V1\ListCertificateTemplatesRequest;
  * Lists
  * [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate].
  *
- * @param string $formattedParent The resource name of the location associated with the
- *                                [CertificateTemplates][google.cloud.security.privateca.v1.CertificateTemplate],
- *                                in the format `projects/&#42;/locations/*`. Please see
- *                                {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_certificate_templates_sample(string $formattedParent): void
+function list_certificate_templates_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $request = (new ListCertificateTemplatesRequest())
-        ->setParent($formattedParent);
+    $request = new ListCertificateTemplatesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -59,21 +59,5 @@ function list_certificate_templates_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CertificateAuthorityServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_certificate_templates_sample($formattedParent);
 }
 // [END privateca_v1_generated_CertificateAuthorityService_ListCertificateTemplates_sync]

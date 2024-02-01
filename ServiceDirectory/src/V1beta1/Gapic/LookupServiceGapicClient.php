@@ -52,8 +52,7 @@ use Google\Cloud\ServiceDirectory\V1beta1\ResolveServiceResponse;
  * ```
  * $lookupServiceClient = new LookupServiceClient();
  * try {
- *     $formattedName = $lookupServiceClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
- *     $response = $lookupServiceClient->resolveService($formattedName);
+ *     $response = $lookupServiceClient->resolveService();
  * } finally {
  *     $lookupServiceClient->close();
  * }
@@ -292,17 +291,17 @@ class LookupServiceGapicClient
      * ```
      * $lookupServiceClient = new LookupServiceClient();
      * try {
-     *     $formattedName = $lookupServiceClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-     *     $response = $lookupServiceClient->resolveService($formattedName);
+     *     $response = $lookupServiceClient->resolveService();
      * } finally {
      *     $lookupServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the service to resolve.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the service to resolve.
      *     @type int $maxEndpoints
      *           Optional. The maximum number of endpoints to return. Defaults to 25.
      *           Maximum is 100. If a value less than one is specified, the Default is used.
@@ -356,12 +355,15 @@ class LookupServiceGapicClient
      *
      * @experimental
      */
-    public function resolveService($name, array $optionalArgs = [])
+    public function resolveService(array $optionalArgs = [])
     {
         $request = new ResolveServiceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['maxEndpoints'])) {
             $request->setMaxEndpoints($optionalArgs['maxEndpoints']);
         }

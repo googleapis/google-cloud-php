@@ -56,11 +56,13 @@ use Google\Cloud\Tasks\V2beta3\Task;
  * [NOT_FOUND][google.rpc.Code.NOT_FOUND] when it is called on a
  * task that has already succeeded or permanently failed.
  *
- * @param string $formattedName The task name. For example:
- *                              `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
- *                              Please see {@see CloudTasksClient::taskName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function run_task_sample(string $formattedName): void
+function run_task_sample(): void
 {
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
@@ -68,26 +70,10 @@ function run_task_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var Task $response */
-        $response = $cloudTasksClient->runTask($formattedName);
+        $response = $cloudTasksClient->runTask();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudTasksClient::taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-
-    run_task_sample($formattedName);
 }
 // [END cloudtasks_v2beta3_generated_CloudTasks_RunTask_sync]

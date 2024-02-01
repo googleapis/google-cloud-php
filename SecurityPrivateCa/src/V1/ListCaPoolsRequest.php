@@ -59,8 +59,7 @@ class ListCaPoolsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the location associated with the
      *                       [CaPools][google.cloud.security.privateca.v1.CaPool], in the format
-     *                       `projects/&#42;/locations/*`. Please see
-     *                       {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
+     *                       `projects/&#42;/locations/*`.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\ListCaPoolsRequest
      *

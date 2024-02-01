@@ -32,19 +32,19 @@ use Google\Cloud\SecurityCenter\V1\Source;
 /**
  * Lists all sources belonging to an organization.
  *
- * @param string $formattedParent Resource name of the parent of sources to list. Its format should
- *                                be "organizations/[organization_id]", "folders/[folder_id]", or
- *                                "projects/[project_id]". Please see
- *                                {@see SecurityCenterClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_sources_sample(string $formattedParent): void
+function list_sources_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $request = (new ListSourcesRequest())
-        ->setParent($formattedParent);
+    $request = new ListSourcesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +58,5 @@ function list_sources_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecurityCenterClient::projectName('[PROJECT]');
-
-    list_sources_sample($formattedParent);
 }
 // [END securitycenter_v1_generated_SecurityCenter_ListSources_sync]

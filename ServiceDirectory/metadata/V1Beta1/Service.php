@@ -20,15 +20,15 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-÷
-3google/cloud/servicedirectory/v1beta1/service.proto%google.cloud.servicedirectory.v1beta1google/api/resource.proto4google/cloud/servicedirectory/v1beta1/endpoint.protogoogle/protobuf/timestamp.proto"Í
-Service
-name (	B‡AS
-metadata (2<.google.cloud.servicedirectory.v1beta1.Service.MetadataEntryB‡AG
-	endpoints (2/.google.cloud.servicedirectory.v1beta1.EndpointB‡A4
-create_time (2.google.protobuf.TimestampB‡A4
-update_time (2.google.protobuf.TimestampB‡A
-uid (	B‡A/
+‹
+3google/cloud/servicedirectory/v1beta1/service.proto%google.cloud.servicedirectory.v1beta1google/api/resource.proto4google/cloud/servicedirectory/v1beta1/endpoint.protogoogle/protobuf/timestamp.proto"
+Service
+name (	B‚AT
+metadata (2<.google.cloud.servicedirectory.v1beta1.Service.MetadataEntryB‚AH
+	endpoints (2/.google.cloud.servicedirectory.v1beta1.EndpointB‚A5
+create_time (2.google.protobuf.TimestampB‚A5
+update_time (2.google.protobuf.TimestampB‚A
+uid (	B‚A/
 MetadataEntry
 key (	
 value (	:8:ÍA|

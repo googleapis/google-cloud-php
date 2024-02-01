@@ -60,8 +60,7 @@ class ListCertificateRevocationListsRequest extends \Google\Protobuf\Internal\Me
     /**
      * @param string $parent Required. The resource name of the location associated with the
      *                       [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList],
-     *                       in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
-     *                       {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+     *                       in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\ListCertificateRevocationListsRequest
      *

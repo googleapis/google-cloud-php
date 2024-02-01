@@ -29,37 +29,23 @@ use Google\Cloud\SecretManager\V1beta1\SecretManagerServiceClient;
 /**
  * Deletes a [Secret][google.cloud.secrets.v1beta1.Secret].
  *
- * @param string $formattedName The resource name of the [Secret][google.cloud.secrets.v1beta1.Secret] to delete in the format
- *                              `projects/&#42;/secrets/*`. Please see
- *                              {@see SecretManagerServiceClient::secretName()} for help formatting this field.
- */
-function delete_secret_sample(string $formattedName): void
-{
-    // Create a client.
-    $secretManagerServiceClient = new SecretManagerServiceClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $secretManagerServiceClient->deleteSecret($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_secret_sample(): void
 {
-    $formattedName = SecretManagerServiceClient::secretName('[PROJECT]', '[SECRET]');
+    // Create a client.
+    $secretManagerServiceClient = new SecretManagerServiceClient();
 
-    delete_secret_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $secretManagerServiceClient->deleteSecret();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END secretmanager_v1beta1_generated_SecretManagerService_DeleteSecret_sync]

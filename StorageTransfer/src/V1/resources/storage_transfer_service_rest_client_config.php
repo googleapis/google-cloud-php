@@ -50,9 +50,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'agent_pool_id',
-                ],
             ],
             'CreateTransferJob' => [
                 'method' => 'post',
@@ -79,9 +76,6 @@ return [
                             'getJobName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'project_id',
                 ],
             ],
             'GetAgentPool' => [
@@ -116,9 +110,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'project_id',
-                ],
             ],
             'ListAgentPools' => [
                 'method' => 'get',
@@ -134,9 +125,6 @@ return [
             'ListTransferJobs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/transferJobs',
-                'queryParams' => [
-                    'filter',
-                ],
             ],
             'PauseTransferOperation' => [
                 'method' => 'post',

@@ -81,10 +81,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
  * try {
- *     $formattedName = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
- *     $pemCaCertificate = 'pem_ca_certificate';
- *     $subordinateConfig = new SubordinateConfig();
- *     $operationResponse = $certificateAuthorityServiceClient->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
+ *     $operationResponse = $certificateAuthorityServiceClient->activateCertificateAuthority();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -95,7 +92,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $certificateAuthorityServiceClient->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
+ *     $operationResponse = $certificateAuthorityServiceClient->activateCertificateAuthority();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $certificateAuthorityServiceClient->resumeOperation($operationName, 'activateCertificateAuthority');
@@ -507,10 +504,7 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-     *     $pemCaCertificate = 'pem_ca_certificate';
-     *     $subordinateConfig = new SubordinateConfig();
-     *     $operationResponse = $certificateAuthorityServiceClient->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
+     *     $operationResponse = $certificateAuthorityServiceClient->activateCertificateAuthority();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -521,7 +515,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateAuthorityServiceClient->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
+     *     $operationResponse = $certificateAuthorityServiceClient->activateCertificateAuthority();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateAuthorityServiceClient->resumeOperation($operationName, 'activateCertificateAuthority');
@@ -541,15 +535,18 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string            $name              Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
-     *                                             format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
-     * @param string            $pemCaCertificate  Required. The signed CA certificate issued from
-     *                                             [FetchCertificateAuthorityCsrResponse.pem_csr][google.cloud.security.privateca.v1beta1.FetchCertificateAuthorityCsrResponse.pem_csr].
-     * @param SubordinateConfig $subordinateConfig Required. Must include information about the issuer of 'pem_ca_certificate', and any
-     *                                             further issuers until the self-signed CA.
-     * @param array             $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
+     *           format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
+     *     @type string $pemCaCertificate
+     *           Required. The signed CA certificate issued from
+     *           [FetchCertificateAuthorityCsrResponse.pem_csr][google.cloud.security.privateca.v1beta1.FetchCertificateAuthorityCsrResponse.pem_csr].
+     *     @type SubordinateConfig $subordinateConfig
+     *           Required. Must include information about the issuer of 'pem_ca_certificate', and any
+     *           further issuers until the self-signed CA.
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -576,14 +573,23 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function activateCertificateAuthority($name, $pemCaCertificate, $subordinateConfig, array $optionalArgs = [])
+    public function activateCertificateAuthority(array $optionalArgs = [])
     {
         $request = new ActivateCertificateAuthorityRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setPemCaCertificate($pemCaCertificate);
-        $request->setSubordinateConfig($subordinateConfig);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['pemCaCertificate'])) {
+            $request->setPemCaCertificate($optionalArgs['pemCaCertificate']);
+        }
+
+        if (isset($optionalArgs['subordinateConfig'])) {
+            $request->setSubordinateConfig($optionalArgs['subordinateConfig']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -601,26 +607,26 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedParent = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-     *     $certificate = new Certificate();
-     *     $response = $certificateAuthorityServiceClient->createCertificate($formattedParent, $certificate);
+     *     $response = $certificateAuthorityServiceClient->createCertificate();
      * } finally {
      *     $certificateAuthorityServiceClient->close();
      * }
      * ```
      *
-     * @param string      $parent       Required. The resource name of the location and [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]
-     *                                  associated with the [Certificate][google.cloud.security.privateca.v1beta1.Certificate], in the format
-     *                                  `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
-     * @param Certificate $certificate  Required. A [Certificate][google.cloud.security.privateca.v1beta1.Certificate] with initial field values.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the location and [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]
+     *           associated with the [Certificate][google.cloud.security.privateca.v1beta1.Certificate], in the format
+     *           `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
      *     @type string $certificateId
      *           Optional. It must be unique within a location and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a
      *           [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the Enterprise [CertificateAuthority.Tier][google.cloud.security.privateca.v1beta1.CertificateAuthority.Tier],
      *           but is optional and its value is ignored otherwise.
+     *     @type Certificate $certificate
+     *           Required. A [Certificate][google.cloud.security.privateca.v1beta1.Certificate] with initial field values.
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -647,15 +653,21 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function createCertificate($parent, $certificate, array $optionalArgs = [])
+    public function createCertificate(array $optionalArgs = [])
     {
         $request = new CreateCertificateRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCertificate($certificate);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['certificateId'])) {
             $request->setCertificateId($optionalArgs['certificateId']);
+        }
+
+        if (isset($optionalArgs['certificate'])) {
+            $request->setCertificate($optionalArgs['certificate']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -674,10 +686,7 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedParent = $certificateAuthorityServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $certificateAuthorityId = 'certificate_authority_id';
-     *     $certificateAuthority = new CertificateAuthority();
-     *     $operationResponse = $certificateAuthorityServiceClient->createCertificateAuthority($formattedParent, $certificateAuthorityId, $certificateAuthority);
+     *     $operationResponse = $certificateAuthorityServiceClient->createCertificateAuthority();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -688,7 +697,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateAuthorityServiceClient->createCertificateAuthority($formattedParent, $certificateAuthorityId, $certificateAuthority);
+     *     $operationResponse = $certificateAuthorityServiceClient->createCertificateAuthority();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateAuthorityServiceClient->resumeOperation($operationName, 'createCertificateAuthority');
@@ -708,15 +717,18 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string               $parent                 Required. The resource name of the location associated with the
-     *                                                     [CertificateAuthorities][google.cloud.security.privateca.v1beta1.CertificateAuthority], in the format
-     *                                                     `projects/&#42;/locations/*`.
-     * @param string               $certificateAuthorityId Required. It must be unique within a location and match the regular
-     *                                                     expression `[a-zA-Z0-9_-]{1,63}`
-     * @param CertificateAuthority $certificateAuthority   Required. A [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] with initial field values.
-     * @param array                $optionalArgs           {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the location associated with the
+     *           [CertificateAuthorities][google.cloud.security.privateca.v1beta1.CertificateAuthority], in the format
+     *           `projects/&#42;/locations/*`.
+     *     @type string $certificateAuthorityId
+     *           Required. It must be unique within a location and match the regular
+     *           expression `[a-zA-Z0-9_-]{1,63}`
+     *     @type CertificateAuthority $certificateAuthority
+     *           Required. A [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] with initial field values.
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -743,14 +755,23 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function createCertificateAuthority($parent, $certificateAuthorityId, $certificateAuthority, array $optionalArgs = [])
+    public function createCertificateAuthority(array $optionalArgs = [])
     {
         $request = new CreateCertificateAuthorityRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCertificateAuthorityId($certificateAuthorityId);
-        $request->setCertificateAuthority($certificateAuthority);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['certificateAuthorityId'])) {
+            $request->setCertificateAuthorityId($optionalArgs['certificateAuthorityId']);
+        }
+
+        if (isset($optionalArgs['certificateAuthority'])) {
+            $request->setCertificateAuthority($optionalArgs['certificateAuthority']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -767,8 +788,7 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-     *     $operationResponse = $certificateAuthorityServiceClient->disableCertificateAuthority($formattedName);
+     *     $operationResponse = $certificateAuthorityServiceClient->disableCertificateAuthority();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -779,7 +799,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateAuthorityServiceClient->disableCertificateAuthority($formattedName);
+     *     $operationResponse = $certificateAuthorityServiceClient->disableCertificateAuthority();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateAuthorityServiceClient->resumeOperation($operationName, 'disableCertificateAuthority');
@@ -799,11 +819,12 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
-     *                             format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
+     *           format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -830,12 +851,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function disableCertificateAuthority($name, array $optionalArgs = [])
+    public function disableCertificateAuthority(array $optionalArgs = [])
     {
         $request = new DisableCertificateAuthorityRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -852,8 +876,7 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-     *     $operationResponse = $certificateAuthorityServiceClient->enableCertificateAuthority($formattedName);
+     *     $operationResponse = $certificateAuthorityServiceClient->enableCertificateAuthority();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -864,7 +887,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateAuthorityServiceClient->enableCertificateAuthority($formattedName);
+     *     $operationResponse = $certificateAuthorityServiceClient->enableCertificateAuthority();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateAuthorityServiceClient->resumeOperation($operationName, 'enableCertificateAuthority');
@@ -884,11 +907,12 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
-     *                             format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
+     *           format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -915,12 +939,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function enableCertificateAuthority($name, array $optionalArgs = [])
+    public function enableCertificateAuthority(array $optionalArgs = [])
     {
         $request = new EnableCertificateAuthorityRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -943,18 +970,18 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-     *     $response = $certificateAuthorityServiceClient->fetchCertificateAuthorityCsr($formattedName);
+     *     $response = $certificateAuthorityServiceClient->fetchCertificateAuthorityCsr();
      * } finally {
      *     $certificateAuthorityServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
-     *                             format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
+     *           format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -967,12 +994,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function fetchCertificateAuthorityCsr($name, array $optionalArgs = [])
+    public function fetchCertificateAuthorityCsr(array $optionalArgs = [])
     {
         $request = new FetchCertificateAuthorityCsrRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('FetchCertificateAuthorityCsr', FetchCertificateAuthorityCsrResponse::class, $optionalArgs, $request)->wait();
@@ -985,17 +1015,17 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->certificateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE]');
-     *     $response = $certificateAuthorityServiceClient->getCertificate($formattedName);
+     *     $response = $certificateAuthorityServiceClient->getCertificate();
      * } finally {
      *     $certificateAuthorityServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.security.privateca.v1beta1.Certificate.name] of the [Certificate][google.cloud.security.privateca.v1beta1.Certificate] to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [name][google.cloud.security.privateca.v1beta1.Certificate.name] of the [Certificate][google.cloud.security.privateca.v1beta1.Certificate] to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1008,12 +1038,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function getCertificate($name, array $optionalArgs = [])
+    public function getCertificate(array $optionalArgs = [])
     {
         $request = new GetCertificateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCertificate', Certificate::class, $optionalArgs, $request)->wait();
@@ -1026,18 +1059,18 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-     *     $response = $certificateAuthorityServiceClient->getCertificateAuthority($formattedName);
+     *     $response = $certificateAuthorityServiceClient->getCertificateAuthority();
      * } finally {
      *     $certificateAuthorityServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.security.privateca.v1beta1.CertificateAuthority.name] of the [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] to
-     *                             get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [name][google.cloud.security.privateca.v1beta1.CertificateAuthority.name] of the [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] to
+     *           get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1050,12 +1083,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function getCertificateAuthority($name, array $optionalArgs = [])
+    public function getCertificateAuthority(array $optionalArgs = [])
     {
         $request = new GetCertificateAuthorityRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCertificateAuthority', CertificateAuthority::class, $optionalArgs, $request)->wait();
@@ -1068,18 +1104,18 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->certificateRevocationListName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE_REVOCATION_LIST]');
-     *     $response = $certificateAuthorityServiceClient->getCertificateRevocationList($formattedName);
+     *     $response = $certificateAuthorityServiceClient->getCertificateRevocationList();
      * } finally {
      *     $certificateAuthorityServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.security.privateca.v1beta1.CertificateRevocationList.name] of the
-     *                             [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList] to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [name][google.cloud.security.privateca.v1beta1.CertificateRevocationList.name] of the
+     *           [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList] to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1092,12 +1128,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function getCertificateRevocationList($name, array $optionalArgs = [])
+    public function getCertificateRevocationList(array $optionalArgs = [])
     {
         $request = new GetCertificateRevocationListRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCertificateRevocationList', CertificateRevocationList::class, $optionalArgs, $request)->wait();
@@ -1110,17 +1149,17 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->reusableConfigName('[PROJECT]', '[LOCATION]', '[REUSABLE_CONFIG]');
-     *     $response = $certificateAuthorityServiceClient->getReusableConfig($formattedName);
+     *     $response = $certificateAuthorityServiceClient->getReusableConfig();
      * } finally {
      *     $certificateAuthorityServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The [name][ReusableConfigs.name] of the [ReusableConfigs][] to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [name][ReusableConfigs.name] of the [ReusableConfigs][] to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1133,12 +1172,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function getReusableConfig($name, array $optionalArgs = [])
+    public function getReusableConfig(array $optionalArgs = [])
     {
         $request = new GetReusableConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetReusableConfig', ReusableConfig::class, $optionalArgs, $request)->wait();
@@ -1151,9 +1193,8 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedParent = $certificateAuthorityServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificateAuthorities($formattedParent);
+     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificateAuthorities();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1161,7 +1202,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificateAuthorities($formattedParent);
+     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificateAuthorities();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1170,12 +1211,13 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the location associated with the
-     *                             [CertificateAuthorities][google.cloud.security.privateca.v1beta1.CertificateAuthority], in the format
-     *                             `projects/&#42;/locations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the location associated with the
+     *           [CertificateAuthorities][google.cloud.security.privateca.v1beta1.CertificateAuthority], in the format
+     *           `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1201,12 +1243,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function listCertificateAuthorities($parent, array $optionalArgs = [])
+    public function listCertificateAuthorities(array $optionalArgs = [])
     {
         $request = new ListCertificateAuthoritiesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1235,9 +1280,8 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedParent = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificateRevocationLists($formattedParent);
+     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificateRevocationLists();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1245,7 +1289,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificateRevocationLists($formattedParent);
+     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificateRevocationLists();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1254,12 +1298,13 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the location associated with the
-     *                             [CertificateRevocationLists][google.cloud.security.privateca.v1beta1.CertificateRevocationList], in the format
-     *                             `projects/&#42;/locations/&#42;/certificateauthorities/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the location associated with the
+     *           [CertificateRevocationLists][google.cloud.security.privateca.v1beta1.CertificateRevocationList], in the format
+     *           `projects/&#42;/locations/&#42;/certificateauthorities/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1285,12 +1330,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function listCertificateRevocationLists($parent, array $optionalArgs = [])
+    public function listCertificateRevocationLists(array $optionalArgs = [])
     {
         $request = new ListCertificateRevocationListsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1319,9 +1367,8 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedParent = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificates($formattedParent);
+     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificates();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1329,7 +1376,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificates($formattedParent);
+     *     $pagedResponse = $certificateAuthorityServiceClient->listCertificates();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1338,12 +1385,13 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the location associated with the
-     *                             [Certificates][google.cloud.security.privateca.v1beta1.Certificate], in the format
-     *                             `projects/&#42;/locations/&#42;/certificateauthorities/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the location associated with the
+     *           [Certificates][google.cloud.security.privateca.v1beta1.Certificate], in the format
+     *           `projects/&#42;/locations/&#42;/certificateauthorities/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1373,12 +1421,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function listCertificates($parent, array $optionalArgs = [])
+    public function listCertificates(array $optionalArgs = [])
     {
         $request = new ListCertificatesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1407,9 +1458,8 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedParent = $certificateAuthorityServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $certificateAuthorityServiceClient->listReusableConfigs($formattedParent);
+     *     $pagedResponse = $certificateAuthorityServiceClient->listReusableConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1417,7 +1467,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $certificateAuthorityServiceClient->listReusableConfigs($formattedParent);
+     *     $pagedResponse = $certificateAuthorityServiceClient->listReusableConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1426,12 +1476,13 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the location associated with the
-     *                             [ReusableConfigs][google.cloud.security.privateca.v1beta1.ReusableConfig], in the format
-     *                             `projects/&#42;/locations/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the location associated with the
+     *           [ReusableConfigs][google.cloud.security.privateca.v1beta1.ReusableConfig], in the format
+     *           `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1457,12 +1508,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function listReusableConfigs($parent, array $optionalArgs = [])
+    public function listReusableConfigs(array $optionalArgs = [])
     {
         $request = new ListReusableConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1491,8 +1545,7 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-     *     $operationResponse = $certificateAuthorityServiceClient->restoreCertificateAuthority($formattedName);
+     *     $operationResponse = $certificateAuthorityServiceClient->restoreCertificateAuthority();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1503,7 +1556,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateAuthorityServiceClient->restoreCertificateAuthority($formattedName);
+     *     $operationResponse = $certificateAuthorityServiceClient->restoreCertificateAuthority();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateAuthorityServiceClient->resumeOperation($operationName, 'restoreCertificateAuthority');
@@ -1523,11 +1576,12 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
-     *                             format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
+     *           format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -1554,12 +1608,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function restoreCertificateAuthority($name, array $optionalArgs = [])
+    public function restoreCertificateAuthority(array $optionalArgs = [])
     {
         $request = new RestoreCertificateAuthorityRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1576,21 +1633,21 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->certificateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE]');
-     *     $reason = RevocationReason::REVOCATION_REASON_UNSPECIFIED;
-     *     $response = $certificateAuthorityServiceClient->revokeCertificate($formattedName, $reason);
+     *     $response = $certificateAuthorityServiceClient->revokeCertificate();
      * } finally {
      *     $certificateAuthorityServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [Certificate][google.cloud.security.privateca.v1beta1.Certificate] in the
-     *                             format `projects/&#42;/locations/&#42;/certificateAuthorities/&#42;/certificates/*`.
-     * @param int    $reason       Required. The [RevocationReason][google.cloud.security.privateca.v1beta1.RevocationReason] for revoking this certificate.
-     *                             For allowed values, use constants defined on {@see \Google\Cloud\Security\PrivateCA\V1beta1\RevocationReason}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for this [Certificate][google.cloud.security.privateca.v1beta1.Certificate] in the
+     *           format `projects/&#42;/locations/&#42;/certificateAuthorities/&#42;/certificates/*`.
+     *     @type int $reason
+     *           Required. The [RevocationReason][google.cloud.security.privateca.v1beta1.RevocationReason] for revoking this certificate.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Security\PrivateCA\V1beta1\RevocationReason}
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -1617,13 +1674,19 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function revokeCertificate($name, $reason, array $optionalArgs = [])
+    public function revokeCertificate(array $optionalArgs = [])
     {
         $request = new RevokeCertificateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setReason($reason);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['reason'])) {
+            $request->setReason($optionalArgs['reason']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1640,8 +1703,7 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $formattedName = $certificateAuthorityServiceClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-     *     $operationResponse = $certificateAuthorityServiceClient->scheduleDeleteCertificateAuthority($formattedName);
+     *     $operationResponse = $certificateAuthorityServiceClient->scheduleDeleteCertificateAuthority();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1652,7 +1714,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateAuthorityServiceClient->scheduleDeleteCertificateAuthority($formattedName);
+     *     $operationResponse = $certificateAuthorityServiceClient->scheduleDeleteCertificateAuthority();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateAuthorityServiceClient->resumeOperation($operationName, 'scheduleDeleteCertificateAuthority');
@@ -1672,11 +1734,12 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
-     *                             format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name for this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] in the
+     *           format `projects/&#42;/locations/&#42;/certificateAuthorities/*`.
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -1703,12 +1766,15 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function scheduleDeleteCertificateAuthority($name, array $optionalArgs = [])
+    public function scheduleDeleteCertificateAuthority(array $optionalArgs = [])
     {
         $request = new ScheduleDeleteCertificateAuthorityRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1726,19 +1792,19 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $certificate = new Certificate();
-     *     $updateMask = new FieldMask();
-     *     $response = $certificateAuthorityServiceClient->updateCertificate($certificate, $updateMask);
+     *     $response = $certificateAuthorityServiceClient->updateCertificate();
      * } finally {
      *     $certificateAuthorityServiceClient->close();
      * }
      * ```
      *
-     * @param Certificate $certificate  Required. [Certificate][google.cloud.security.privateca.v1beta1.Certificate] with updated values.
-     * @param FieldMask   $updateMask   Required. A list of fields to be updated in this request.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Certificate $certificate
+     *           Required. [Certificate][google.cloud.security.privateca.v1beta1.Certificate] with updated values.
+     *     @type FieldMask $updateMask
+     *           Required. A list of fields to be updated in this request.
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -1765,13 +1831,18 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function updateCertificate($certificate, $updateMask, array $optionalArgs = [])
+    public function updateCertificate(array $optionalArgs = [])
     {
         $request = new UpdateCertificateRequest();
         $requestParamHeaders = [];
-        $request->setCertificate($certificate);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['certificate.name'] = $certificate->getName();
+        if (isset($optionalArgs['certificate'])) {
+            $request->setCertificate($optionalArgs['certificate']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1788,9 +1859,7 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $certificateAuthority = new CertificateAuthority();
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $certificateAuthorityServiceClient->updateCertificateAuthority($certificateAuthority, $updateMask);
+     *     $operationResponse = $certificateAuthorityServiceClient->updateCertificateAuthority();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1801,7 +1870,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateAuthorityServiceClient->updateCertificateAuthority($certificateAuthority, $updateMask);
+     *     $operationResponse = $certificateAuthorityServiceClient->updateCertificateAuthority();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateAuthorityServiceClient->resumeOperation($operationName, 'updateCertificateAuthority');
@@ -1821,11 +1890,13 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param CertificateAuthority $certificateAuthority Required. [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] with updated values.
-     * @param FieldMask            $updateMask           Required. A list of fields to be updated in this request.
-     * @param array                $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type CertificateAuthority $certificateAuthority
+     *           Required. [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] with updated values.
+     *     @type FieldMask $updateMask
+     *           Required. A list of fields to be updated in this request.
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -1852,13 +1923,18 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function updateCertificateAuthority($certificateAuthority, $updateMask, array $optionalArgs = [])
+    public function updateCertificateAuthority(array $optionalArgs = [])
     {
         $request = new UpdateCertificateAuthorityRequest();
         $requestParamHeaders = [];
-        $request->setCertificateAuthority($certificateAuthority);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['certificate_authority.name'] = $certificateAuthority->getName();
+        if (isset($optionalArgs['certificateAuthority'])) {
+            $request->setCertificateAuthority($optionalArgs['certificateAuthority']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1875,9 +1951,7 @@ class CertificateAuthorityServiceGapicClient
      * ```
      * $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
      * try {
-     *     $certificateRevocationList = new CertificateRevocationList();
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $certificateAuthorityServiceClient->updateCertificateRevocationList($certificateRevocationList, $updateMask);
+     *     $operationResponse = $certificateAuthorityServiceClient->updateCertificateRevocationList();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1888,7 +1962,7 @@ class CertificateAuthorityServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateAuthorityServiceClient->updateCertificateRevocationList($certificateRevocationList, $updateMask);
+     *     $operationResponse = $certificateAuthorityServiceClient->updateCertificateRevocationList();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateAuthorityServiceClient->resumeOperation($operationName, 'updateCertificateRevocationList');
@@ -1908,11 +1982,13 @@ class CertificateAuthorityServiceGapicClient
      * }
      * ```
      *
-     * @param CertificateRevocationList $certificateRevocationList Required. [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList] with updated values.
-     * @param FieldMask                 $updateMask                Required. A list of fields to be updated in this request.
-     * @param array                     $optionalArgs              {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type CertificateRevocationList $certificateRevocationList
+     *           Required. [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList] with updated values.
+     *     @type FieldMask $updateMask
+     *           Required. A list of fields to be updated in this request.
      *     @type string $requestId
      *           Optional. An ID to identify requests. Specify a unique request ID so that if you must
      *           retry your request, the server will know to ignore the request if it has
@@ -1939,13 +2015,18 @@ class CertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function updateCertificateRevocationList($certificateRevocationList, $updateMask, array $optionalArgs = [])
+    public function updateCertificateRevocationList(array $optionalArgs = [])
     {
         $request = new UpdateCertificateRevocationListRequest();
         $requestParamHeaders = [];
-        $request->setCertificateRevocationList($certificateRevocationList);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['certificate_revocation_list.name'] = $certificateRevocationList->getName();
+        if (isset($optionalArgs['certificateRevocationList'])) {
+            $request->setCertificateRevocationList($optionalArgs['certificateRevocationList']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

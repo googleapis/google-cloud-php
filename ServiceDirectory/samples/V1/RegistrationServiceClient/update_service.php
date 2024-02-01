@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
 use Google\Cloud\ServiceDirectory\V1\Service;
 use Google\Cloud\ServiceDirectory\V1\UpdateServiceRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a service.
@@ -44,11 +43,7 @@ function update_service_sample(): void
     $registrationServiceClient = new RegistrationServiceClient();
 
     // Prepare the request message.
-    $service = new Service();
-    $updateMask = new FieldMask();
-    $request = (new UpdateServiceRequest())
-        ->setService($service)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateServiceRequest();
 
     // Call the API and handle any network failures.
     try {

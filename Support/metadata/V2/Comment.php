@@ -20,14 +20,14 @@ class Comment
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∂
-%google/cloud/support/v2/comment.protogoogle.cloud.support.v2google/api/resource.proto#google/cloud/support/v2/actor.protogoogle/protobuf/timestamp.proto"“
-Comment
-name (	B‡A4
-create_time (2.google.protobuf.TimestampB‡A4
-creator (2.google.cloud.support.v2.ActorB‡A
-body (	
-plain_text_body (	B‡A:õÍAó
+∫
+%google/cloud/support/v2/comment.protogoogle.cloud.support.v2google/api/resource.proto#google/cloud/support/v2/actor.protogoogle/protobuf/timestamp.proto"÷
+Comment
+name (	B‚A5
+create_time (2.google.protobuf.TimestampB‚A5
+creator (2.google.cloud.support.v2.ActorB‚A
+body (	
+plain_text_body (	B‚A:õÍAó
 #cloudsupport.googleapis.com/Comment<organizations/{organization}/cases/{case}/comments/{comment}2projects/{project}/cases/{case}/comments/{comment}Bµ
 com.google.cloud.support.v2BCommentProtoPZ5cloud.google.com/go/support/apiv2/supportpb;supportpb™Google.Cloud.Support.V2 Google\\Cloud\\Support\\V2ÍGoogle::Cloud::Support::V2bproto3'
         , true);

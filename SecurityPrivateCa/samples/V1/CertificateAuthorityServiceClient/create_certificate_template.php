@@ -35,26 +35,19 @@ use Google\Rpc\Status;
  * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
  * in a given Project and Location.
  *
- * @param string $formattedParent       The resource name of the location associated with the
- *                                      [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate],
- *                                      in the format `projects/&#42;/locations/*`. Please see
- *                                      {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
- * @param string $certificateTemplateId It must be unique within a location and match the regular
- *                                      expression `[a-zA-Z0-9_-]{1,63}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_certificate_template_sample(
-    string $formattedParent,
-    string $certificateTemplateId
-): void {
+function create_certificate_template_sample(): void
+{
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $certificateTemplate = new CertificateTemplate();
-    $request = (new CreateCertificateTemplateRequest())
-        ->setParent($formattedParent)
-        ->setCertificateTemplateId($certificateTemplateId)
-        ->setCertificateTemplate($certificateTemplate);
+    $request = new CreateCertificateTemplateRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,22 +67,5 @@ function create_certificate_template_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CertificateAuthorityServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $certificateTemplateId = '[CERTIFICATE_TEMPLATE_ID]';
-
-    create_certificate_template_sample($formattedParent, $certificateTemplateId);
 }
 // [END privateca_v1_generated_CertificateAuthorityService_CreateCertificateTemplate_sync]

@@ -77,8 +77,7 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
      * @param string                      $parent Required. The queue name. For example:
      *                                            `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *
-     *                                            The queue must already exist. Please see
-     *                                            {@see CloudTasksClient::queueName()} for help formatting this field.
+     *                                            The queue must already exist.
      * @param \Google\Cloud\Tasks\V2\Task $task   Required. The task to add.
      *
      *                                            Task names have the following format:

@@ -36,8 +36,7 @@ class CreateExternalAccountKeyRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                                     $parent             Required. The parent resource where this external_account_key will be created.
      *                                                                                       Format: projects/[project_id]/locations/[location].
-     *                                                                                       At present only the "global" location is supported. Please see
-     *                                                                                       {@see PublicCertificateAuthorityServiceClient::locationName()} for help formatting this field.
+     *                                                                                       At present only the "global" location is supported.
      * @param \Google\Cloud\Security\PublicCA\V1beta1\ExternalAccountKey $externalAccountKey Required. The external account key to create. This field only exists to future-proof
      *                                                                                       the API. At present, all fields in ExternalAccountKey are output only and
      *                                                                                       all values are ignored. For the purpose of the

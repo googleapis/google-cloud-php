@@ -43,9 +43,7 @@ function update_big_query_export_sample(): void
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $bigQueryExport = new BigQueryExport();
-    $request = (new UpdateBigQueryExportRequest())
-        ->setBigQueryExport($bigQueryExport);
+    $request = new UpdateBigQueryExportRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -52,8 +52,7 @@ class ListCustomClassesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project and location of CustomClass resources to list. The
-     *                       expected format is `projects/{project}/locations/{location}`. Please see
-     *                       {@see SpeechClient::locationName()} for help formatting this field.
+     *                       expected format is `projects/{project}/locations/{location}`.
      *
      * @return \Google\Cloud\Speech\V2\ListCustomClassesRequest
      *

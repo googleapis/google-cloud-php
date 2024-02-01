@@ -30,8 +30,7 @@ class GetCertificateAuthorityRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The
      *                     [name][google.cloud.security.privateca.v1.CertificateAuthority.name] of the
      *                     [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     *                     to get. Please see
-     *                     {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+     *                     to get.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\GetCertificateAuthorityRequest
      *

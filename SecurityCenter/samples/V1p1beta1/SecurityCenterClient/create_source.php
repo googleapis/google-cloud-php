@@ -30,41 +30,24 @@ use Google\Cloud\SecurityCenter\V1p1beta1\Source;
 /**
  * Creates a source.
  *
- * @param string $formattedParent Resource name of the new source's parent. Its format should be
- *                                "organizations/[organization_id]". Please see
- *                                {@see SecurityCenterClient::organizationName()} for help formatting this field.
- */
-function create_source_sample(string $formattedParent): void
-{
-    // Create a client.
-    $securityCenterClient = new SecurityCenterClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $source = new Source();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Source $response */
-        $response = $securityCenterClient->createSource($formattedParent, $source);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function create_source_sample(): void
 {
-    $formattedParent = SecurityCenterClient::organizationName('[ORGANIZATION]');
+    // Create a client.
+    $securityCenterClient = new SecurityCenterClient();
 
-    create_source_sample($formattedParent);
+    // Call the API and handle any network failures.
+    try {
+        /** @var Source $response */
+        $response = $securityCenterClient->createSource();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END securitycenter_v1p1beta1_generated_SecurityCenter_CreateSource_sync]

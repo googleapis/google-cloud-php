@@ -33,7 +33,6 @@ use Google\Cloud\StorageInsights\V1\ListReportDetailsResponse;
 use Google\Cloud\StorageInsights\V1\ReportConfig;
 use Google\Cloud\StorageInsights\V1\ReportDetail;
 use Google\Cloud\StorageInsights\V1\StorageInsightsClient;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -81,20 +80,13 @@ class StorageInsightsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $reportConfig = new ReportConfig();
-        $response = $gapicClient->createReportConfig($formattedParent, $reportConfig);
+        $response = $gapicClient->createReportConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.storageinsights.v1.StorageInsights/CreateReportConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getReportConfig();
-        $this->assertProtobufEquals($reportConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -116,11 +108,8 @@ class StorageInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $reportConfig = new ReportConfig();
         try {
-            $gapicClient->createReportConfig($formattedParent, $reportConfig);
+            $gapicClient->createReportConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -143,16 +132,12 @@ class StorageInsightsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $gapicClient->deleteReportConfig($formattedName);
+        $gapicClient->deleteReportConfig();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.storageinsights.v1.StorageInsights/DeleteReportConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -174,10 +159,8 @@ class StorageInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
         try {
-            $gapicClient->deleteReportConfig($formattedName);
+            $gapicClient->deleteReportConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -204,17 +187,13 @@ class StorageInsightsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $response = $gapicClient->getReportConfig($formattedName);
+        $response = $gapicClient->getReportConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.storageinsights.v1.StorageInsights/GetReportConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -236,10 +215,8 @@ class StorageInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
         try {
-            $gapicClient->getReportConfig($formattedName);
+            $gapicClient->getReportConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -268,17 +245,13 @@ class StorageInsightsClientTest extends GeneratedTest
         $expectedResponse->setReportPathPrefix($reportPathPrefix);
         $expectedResponse->setShardsCount($shardsCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->reportDetailName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT_DETAIL]');
-        $response = $gapicClient->getReportDetail($formattedName);
+        $response = $gapicClient->getReportDetail();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.storageinsights.v1.StorageInsights/GetReportDetail', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -300,10 +273,8 @@ class StorageInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->reportDetailName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT_DETAIL]');
         try {
-            $gapicClient->getReportDetail($formattedName);
+            $gapicClient->getReportDetail();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -333,9 +304,7 @@ class StorageInsightsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReportConfigs($reportConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listReportConfigs($formattedParent);
+        $response = $gapicClient->listReportConfigs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -345,8 +314,6 @@ class StorageInsightsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.storageinsights.v1.StorageInsights/ListReportConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -368,10 +335,8 @@ class StorageInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listReportConfigs($formattedParent);
+            $gapicClient->listReportConfigs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -401,9 +366,7 @@ class StorageInsightsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReportDetails($reportDetails);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $response = $gapicClient->listReportDetails($formattedParent);
+        $response = $gapicClient->listReportDetails();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -413,8 +376,6 @@ class StorageInsightsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.storageinsights.v1.StorageInsights/ListReportDetails', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -436,10 +397,8 @@ class StorageInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
         try {
-            $gapicClient->listReportDetails($formattedParent);
+            $gapicClient->listReportDetails();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -466,20 +425,13 @@ class StorageInsightsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $reportConfig = new ReportConfig();
-        $response = $gapicClient->updateReportConfig($updateMask, $reportConfig);
+        $response = $gapicClient->updateReportConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.storageinsights.v1.StorageInsights/UpdateReportConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualRequestObject->getReportConfig();
-        $this->assertProtobufEquals($reportConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -501,11 +453,8 @@ class StorageInsightsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $reportConfig = new ReportConfig();
         try {
-            $gapicClient->updateReportConfig($updateMask, $reportConfig);
+            $gapicClient->updateReportConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

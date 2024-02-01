@@ -30,8 +30,7 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      *
      *                     The format is
      *                     "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
-     *                     example, "projects/foo/tenants/bar/jobs/baz". Please see
-     *                     {@see JobServiceClient::jobName()} for help formatting this field.
+     *                     example, "projects/foo/tenants/bar/jobs/baz".
      *
      * @return \Google\Cloud\Talent\V4\DeleteJobRequest
      *

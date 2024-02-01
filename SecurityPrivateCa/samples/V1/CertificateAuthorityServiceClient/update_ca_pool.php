@@ -26,31 +26,26 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Security\PrivateCA\V1\CaPool;
-use Google\Cloud\Security\PrivateCA\V1\CaPool\Tier;
 use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCaPoolRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Update a [CaPool][google.cloud.security.privateca.v1.CaPool].
  *
- * @param int $caPoolTier Immutable. The
- *                        [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this
- *                        [CaPool][google.cloud.security.privateca.v1.CaPool].
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_ca_pool_sample(int $caPoolTier): void
+function update_ca_pool_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $caPool = (new CaPool())
-        ->setTier($caPoolTier);
-    $updateMask = new FieldMask();
-    $request = (new UpdateCaPoolRequest())
-        ->setCaPool($caPool)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateCaPoolRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -70,21 +65,5 @@ function update_ca_pool_sample(int $caPoolTier): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $caPoolTier = Tier::TIER_UNSPECIFIED;
-
-    update_ca_pool_sample($caPoolTier);
 }
 // [END privateca_v1_generated_CertificateAuthorityService_UpdateCaPool_sync]

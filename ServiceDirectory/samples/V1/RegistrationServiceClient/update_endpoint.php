@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
 use Google\Cloud\ServiceDirectory\V1\Endpoint;
 use Google\Cloud\ServiceDirectory\V1\UpdateEndpointRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates an endpoint.
@@ -44,11 +43,7 @@ function update_endpoint_sample(): void
     $registrationServiceClient = new RegistrationServiceClient();
 
     // Prepare the request message.
-    $endpoint = new Endpoint();
-    $updateMask = new FieldMask();
-    $request = (new UpdateEndpointRequest())
-        ->setEndpoint($endpoint)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateEndpointRequest();
 
     // Call the API and handle any network failures.
     try {

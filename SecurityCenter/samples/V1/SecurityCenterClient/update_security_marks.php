@@ -43,9 +43,7 @@ function update_security_marks_sample(): void
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $securityMarks = new SecurityMarks();
-    $request = (new UpdateSecurityMarksRequest())
-        ->setSecurityMarks($securityMarks);
+    $request = new UpdateSecurityMarksRequest();
 
     // Call the API and handle any network failures.
     try {

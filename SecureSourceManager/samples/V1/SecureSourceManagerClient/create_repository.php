@@ -35,24 +35,19 @@ use Google\Rpc\Status;
  *
  * **Host: Data Plane**
  *
- * @param string $formattedParent The project in which to create the repository. Values are of the
- *                                form `projects/{project_number}/locations/{location_id}`
- *                                Please see {@see SecureSourceManagerClient::locationName()} for help formatting this field.
- * @param string $repositoryId    The ID to use for the repository, which will become the final
- *                                component of the repository's resource name. This value should be 4-63
- *                                characters, and valid characters are /[a-z][0-9]-/.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_repository_sample(string $formattedParent, string $repositoryId): void
+function create_repository_sample(): void
 {
     // Create a client.
     $secureSourceManagerClient = new SecureSourceManagerClient();
 
     // Prepare the request message.
-    $repository = new Repository();
-    $request = (new CreateRepositoryRequest())
-        ->setParent($formattedParent)
-        ->setRepository($repository)
-        ->setRepositoryId($repositoryId);
+    $request = new CreateRepositoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,22 +67,5 @@ function create_repository_sample(string $formattedParent, string $repositoryId)
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecureSourceManagerClient::locationName('[PROJECT]', '[LOCATION]');
-    $repositoryId = '[REPOSITORY_ID]';
-
-    create_repository_sample($formattedParent, $repositoryId);
 }
 // [END securesourcemanager_v1_generated_SecureSourceManager_CreateRepository_sync]

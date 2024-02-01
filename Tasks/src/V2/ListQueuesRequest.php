@@ -65,7 +65,6 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The location name.
      *                       For example: `projects/PROJECT_ID/locations/LOCATION_ID`
-     *                       Please see {@see CloudTasksClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Tasks\V2\ListQueuesRequest
      *

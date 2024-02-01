@@ -31,17 +31,19 @@ use Google\Cloud\StorageInsights\V1\ReportConfig;
 /**
  * Gets details of a single ReportConfig.
  *
- * @param string $formattedName Name of the resource
- *                              Please see {@see StorageInsightsClient::reportConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_report_config_sample(string $formattedName): void
+function get_report_config_sample(): void
 {
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
     // Prepare the request message.
-    $request = (new GetReportConfigRequest())
-        ->setName($formattedName);
+    $request = new GetReportConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,25 +53,5 @@ function get_report_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = StorageInsightsClient::reportConfigName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REPORT_CONFIG]'
-    );
-
-    get_report_config_sample($formattedName);
 }
 // [END storageinsights_v1_generated_StorageInsights_GetReportConfig_sync]

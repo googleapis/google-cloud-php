@@ -31,12 +31,13 @@ use Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfig;
 /**
  * Lists [ReusableConfigs][google.cloud.security.privateca.v1beta1.ReusableConfig].
  *
- * @param string $formattedParent The resource name of the location associated with the
- *                                [ReusableConfigs][google.cloud.security.privateca.v1beta1.ReusableConfig], in the format
- *                                `projects/&#42;/locations/*`. Please see
- *                                {@see CertificateAuthorityServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_reusable_configs_sample(string $formattedParent): void
+function list_reusable_configs_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
@@ -44,7 +45,7 @@ function list_reusable_configs_sample(string $formattedParent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $certificateAuthorityServiceClient->listReusableConfigs($formattedParent);
+        $response = $certificateAuthorityServiceClient->listReusableConfigs();
 
         /** @var ReusableConfig $element */
         foreach ($response as $element) {
@@ -53,21 +54,5 @@ function list_reusable_configs_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CertificateAuthorityServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_reusable_configs_sample($formattedParent);
 }
 // [END privateca_v1beta1_generated_CertificateAuthorityService_ListReusableConfigs_sync]

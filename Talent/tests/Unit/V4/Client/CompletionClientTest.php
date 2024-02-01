@@ -71,14 +71,7 @@ class CompletionClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new CompleteQueryResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTenant = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $query = 'query107944136';
-        $pageSize = 883849137;
-        $request = (new CompleteQueryRequest())
-            ->setTenant($formattedTenant)
-            ->setQuery($query)
-            ->setPageSize($pageSize);
+        $request = new CompleteQueryRequest();
         $response = $gapicClient->completeQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -86,12 +79,6 @@ class CompletionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.Completion/CompleteQuery', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTenant();
-        $this->assertProtobufEquals($formattedTenant, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
-        $actualValue = $actualRequestObject->getPageSize();
-        $this->assertProtobufEquals($pageSize, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -113,14 +100,7 @@ class CompletionClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedTenant = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $query = 'query107944136';
-        $pageSize = 883849137;
-        $request = (new CompleteQueryRequest())
-            ->setTenant($formattedTenant)
-            ->setQuery($query)
-            ->setPageSize($pageSize);
+        $request = new CompleteQueryRequest();
         try {
             $gapicClient->completeQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -145,14 +125,7 @@ class CompletionClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new CompleteQueryResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedTenant = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $query = 'query107944136';
-        $pageSize = 883849137;
-        $request = (new CompleteQueryRequest())
-            ->setTenant($formattedTenant)
-            ->setQuery($query)
-            ->setPageSize($pageSize);
+        $request = new CompleteQueryRequest();
         $response = $gapicClient->completeQueryAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -160,12 +133,6 @@ class CompletionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.Completion/CompleteQuery', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTenant();
-        $this->assertProtobufEquals($formattedTenant, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
-        $actualValue = $actualRequestObject->getPageSize();
-        $this->assertProtobufEquals($pageSize, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

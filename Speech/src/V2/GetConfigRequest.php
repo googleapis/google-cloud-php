@@ -28,8 +28,7 @@ class GetConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the config to retrieve. There is exactly one config
      *                     resource per project per location. The expected format is
-     *                     `projects/{project}/locations/{location}/config`. Please see
-     *                     {@see SpeechClient::configName()} for help formatting this field.
+     *                     `projects/{project}/locations/{location}/config`.
      *
      * @return \Google\Cloud\Speech\V2\GetConfigRequest
      *

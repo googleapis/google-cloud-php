@@ -45,9 +45,7 @@ function update_notification_config_sample(): void
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $notificationConfig = new NotificationConfig();
-    $request = (new UpdateNotificationConfigRequest())
-        ->setNotificationConfig($notificationConfig);
+    $request = new UpdateNotificationConfigRequest();
 
     // Call the API and handle any network failures.
     try {

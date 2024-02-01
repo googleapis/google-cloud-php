@@ -31,21 +31,19 @@ use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
 /**
  * Retrieves a SecurityHealthAnalyticsCustomModule.
  *
- * @param string $formattedName Name of the custom module to get. Its format is
- *                              "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
- *                              "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
- *                              or
- *                              "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
- *                              Please see {@see SecurityCenterClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_security_health_analytics_custom_module_sample(string $formattedName): void
+function get_security_health_analytics_custom_module_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $request = (new GetSecurityHealthAnalyticsCustomModuleRequest())
-        ->setName($formattedName);
+    $request = new GetSecurityHealthAnalyticsCustomModuleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,24 +53,5 @@ function get_security_health_analytics_custom_module_sample(string $formattedNam
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SecurityCenterClient::securityHealthAnalyticsCustomModuleName(
-        '[ORGANIZATION]',
-        '[CUSTOM_MODULE]'
-    );
-
-    get_security_health_analytics_custom_module_sample($formattedName);
 }
 // [END securitycenter_v1_generated_SecurityCenter_GetSecurityHealthAnalyticsCustomModule_sync]

@@ -31,29 +31,19 @@ use Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomM
 /**
  * Validates the given Event Threat Detection custom module.
  *
- * @param string $formattedParent Resource name of the parent to validate the Custom Module under.
- *
- *                                Its format is:
- *
- *                                * "organizations/{organization}/locations/{location}". Please see
- *                                {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
- * @param string $rawText         The raw text of the module's contents. Used to generate error
- *                                messages.
- * @param string $type            The type of the module (e.g. CONFIGURABLE_BAD_IP).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function validate_event_threat_detection_custom_module_sample(
-    string $formattedParent,
-    string $rawText,
-    string $type
-): void {
+function validate_event_threat_detection_custom_module_sample(): void
+{
     // Create a client.
     $securityCenterManagementClient = new SecurityCenterManagementClient();
 
     // Prepare the request message.
-    $request = (new ValidateEventThreatDetectionCustomModuleRequest())
-        ->setParent($formattedParent)
-        ->setRawText($rawText)
-        ->setType($type);
+    $request = new ValidateEventThreatDetectionCustomModuleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,26 +53,5 @@ function validate_event_threat_detection_custom_module_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecurityCenterManagementClient::organizationLocationName(
-        '[ORGANIZATION]',
-        '[LOCATION]'
-    );
-    $rawText = '[RAW_TEXT]';
-    $type = '[TYPE]';
-
-    validate_event_threat_detection_custom_module_sample($formattedParent, $rawText, $type);
 }
 // [END securitycentermanagement_v1_generated_SecurityCenterManagement_ValidateEventThreatDetectionCustomModule_sync]

@@ -39,24 +39,19 @@ use Google\Shopping\Merchant\Inventories\V1beta\LocalInventory;
  * It might take up to 30 minutes for the new or updated `LocalInventory`
  * resource to appear in products.
  *
- * @param string $parent                  The account and product where this inventory will be inserted.
- *                                        Format: `accounts/{account}/products/{product}`
- * @param string $localInventoryStoreCode Store code (the store ID from your Business Profile) of the
- *                                        physical store the product is sold in. See the [Local product inventory
- *                                        feed specification](https://support.google.com/merchants/answer/3061342)
- *                                        for more information.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function insert_local_inventory_sample(string $parent, string $localInventoryStoreCode): void
+function insert_local_inventory_sample(): void
 {
     // Create a client.
     $localInventoryServiceClient = new LocalInventoryServiceClient();
 
     // Prepare the request message.
-    $localInventory = (new LocalInventory())
-        ->setStoreCode($localInventoryStoreCode);
-    $request = (new InsertLocalInventoryRequest())
-        ->setParent($parent)
-        ->setLocalInventory($localInventory);
+    $request = new InsertLocalInventoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,22 +61,5 @@ function insert_local_inventory_sample(string $parent, string $localInventorySto
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $localInventoryStoreCode = '[STORE_CODE]';
-
-    insert_local_inventory_sample($parent, $localInventoryStoreCode);
 }
 // [END merchantapi_v1beta_generated_LocalInventoryService_InsertLocalInventory_sync]

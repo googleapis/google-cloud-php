@@ -21,25 +21,25 @@ class CommentService
         \GPBMetadata\Google\Cloud\Support\V2\Comment::initOnce();
         $pool->internalAddGeneratedFile(
             '
-›
+ž
 
--google/cloud/support/v2/comment_service.protogoogle.cloud.support.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto%google/cloud/support/v2/comment.proto"v
-ListCommentsRequest8
-parent (	B(àAúA"
+-google/cloud/support/v2/comment_service.protogoogle.cloud.support.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto%google/cloud/support/v2/comment.proto"w
+ListCommentsRequest9
+parent (	B)âAúA"
  cloudsupport.googleapis.com/Case
 	page_size (
 
 page_token (	"c
 ListCommentsResponse2
 comments (2 .google.cloud.support.v2.Comment
-next_page_token (	"ˆ
-CreateCommentRequest8
-parent (	B(àAúA"
- cloudsupport.googleapis.com/Case6
-comment (2 .google.cloud.support.v2.CommentBàA2¥
+next_page_token (	"Š
+CreateCommentRequest9
+parent (	B)âAúA"
+ cloudsupport.googleapis.com/Case7
+comment (2 .google.cloud.support.v2.CommentBâA2¥
 CommentService×
-ListComments,.google.cloud.support.v2.ListCommentsRequest-.google.cloud.support.v2.ListCommentsResponse"j‚Óä“[(/v2/{parent=projects/*/cases/*}/commentsZ/-/v2/{parent=organizations/*/cases/*}/commentsÚAparentç
-CreateComment-.google.cloud.support.v2.CreateCommentRequest .google.cloud.support.v2.Comment"„‚Óä“m"(/v2/{parent=projects/*/cases/*}/comments:commentZ8"-/v2/{parent=organizations/*/cases/*}/comments:commentÚAparent,commentOÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¼
+ListComments,.google.cloud.support.v2.ListCommentsRequest-.google.cloud.support.v2.ListCommentsResponse"jÚAparent‚Óä“[(/v2/{parent=projects/*/cases/*}/commentsZ/-/v2/{parent=organizations/*/cases/*}/commentsç
+CreateComment-.google.cloud.support.v2.CreateCommentRequest .google.cloud.support.v2.Comment"„ÚAparent,comment‚Óä“m"(/v2/{parent=projects/*/cases/*}/comments:commentZ8"-/v2/{parent=organizations/*/cases/*}/comments:commentOÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¼
 com.google.cloud.support.v2BCommentServiceProtoPZ5cloud.google.com/go/support/apiv2/supportpb;supportpbªGoogle.Cloud.Support.V2ÊGoogle\\Cloud\\Support\\V2êGoogle::Cloud::Support::V2bproto3'
         , true);
 

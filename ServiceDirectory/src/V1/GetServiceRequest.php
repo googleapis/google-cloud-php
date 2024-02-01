@@ -26,8 +26,7 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the service to get. Please see
-     *                     {@see RegistrationServiceClient::serviceName()} for help formatting this field.
+     * @param string $name Required. The name of the service to get.
      *
      * @return \Google\Cloud\ServiceDirectory\V1\GetServiceRequest
      *

@@ -31,28 +31,19 @@ use Google\Cloud\ServiceDirectory\V1\PBNamespace;
 /**
  * Creates a namespace, and returns the new namespace.
  *
- * @param string $formattedParent The resource name of the project and location the namespace
- *                                will be created in. Please see
- *                                {@see RegistrationServiceClient::locationName()} for help formatting this field.
- * @param string $namespaceId     The Resource ID must be 1-63 characters long, and comply with
- *                                <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
- *                                Specifically, the name must be 1-63 characters long and match the regular
- *                                expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
- *                                character must be a lowercase letter, and all following characters must
- *                                be a dash, lowercase letter, or digit, except the last character, which
- *                                cannot be a dash.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_namespace_sample(string $formattedParent, string $namespaceId): void
+function create_namespace_sample(): void
 {
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
     // Prepare the request message.
-    $namespace = new PBNamespace();
-    $request = (new CreateNamespaceRequest())
-        ->setParent($formattedParent)
-        ->setNamespaceId($namespaceId)
-        ->setNamespace($namespace);
+    $request = new CreateNamespaceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,22 +53,5 @@ function create_namespace_sample(string $formattedParent, string $namespaceId): 
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RegistrationServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $namespaceId = '[NAMESPACE_ID]';
-
-    create_namespace_sample($formattedParent, $namespaceId);
 }
 // [END servicedirectory_v1_generated_RegistrationService_CreateNamespace_sync]

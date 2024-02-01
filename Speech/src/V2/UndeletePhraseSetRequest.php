@@ -43,7 +43,6 @@ class UndeletePhraseSetRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the PhraseSet to undelete.
      *                     Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
-     *                     Please see {@see SpeechClient::phraseSetName()} for help formatting this field.
      *
      * @return \Google\Cloud\Speech\V2\UndeletePhraseSetRequest
      *

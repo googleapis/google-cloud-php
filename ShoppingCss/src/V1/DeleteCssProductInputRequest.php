@@ -35,7 +35,6 @@ class DeleteCssProductInputRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the CSS product input resource to delete.
      *                     Format: accounts/{account}/cssProductInputs/{css_product_input}
-     *                     Please see {@see CssProductInputsServiceClient::cssProductInputName()} for help formatting this field.
      *
      * @return \Google\Shopping\Css\V1\DeleteCssProductInputRequest
      *

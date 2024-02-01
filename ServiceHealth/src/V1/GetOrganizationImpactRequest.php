@@ -36,8 +36,7 @@ class GetOrganizationImpactRequest extends \Google\Protobuf\Internal\Message
      *                     [Getting your organization resource
      *                     ID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).<br>
      *                     `organization_impact_id` - ID of the [OrganizationImpact
-     *                     resource](/service-health/docs/reference/rest/v1beta/organizations.locations.organizationImpacts#OrganizationImpact). Please see
-     *                     {@see ServiceHealthClient::organizationImpactName()} for help formatting this field.
+     *                     resource](/service-health/docs/reference/rest/v1beta/organizations.locations.organizationImpacts#OrganizationImpact).
      *
      * @return \Google\Cloud\ServiceHealth\V1\GetOrganizationImpactRequest
      *

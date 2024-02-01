@@ -43,9 +43,7 @@ function update_source_sample(): void
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $source = new Source();
-    $request = (new UpdateSourceRequest())
-        ->setSource($source);
+    $request = new UpdateSourceRequest();
 
     // Call the API and handle any network failures.
     try {

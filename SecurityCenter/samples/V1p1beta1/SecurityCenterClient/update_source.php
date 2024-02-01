@@ -41,13 +41,10 @@ function update_source_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $source = new Source();
-
     // Call the API and handle any network failures.
     try {
         /** @var Source $response */
-        $response = $securityCenterClient->updateSource($source);
+        $response = $securityCenterClient->updateSource();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

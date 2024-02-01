@@ -61,9 +61,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $storageInsightsClient = new StorageInsightsClient();
  * try {
- *     $formattedParent = $storageInsightsClient->locationName('[PROJECT]', '[LOCATION]');
- *     $reportConfig = new ReportConfig();
- *     $response = $storageInsightsClient->createReportConfig($formattedParent, $reportConfig);
+ *     $response = $storageInsightsClient->createReportConfig();
  * } finally {
  *     $storageInsightsClient->close();
  * }
@@ -359,19 +357,19 @@ class StorageInsightsGapicClient
      * ```
      * $storageInsightsClient = new StorageInsightsClient();
      * try {
-     *     $formattedParent = $storageInsightsClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $reportConfig = new ReportConfig();
-     *     $response = $storageInsightsClient->createReportConfig($formattedParent, $reportConfig);
+     *     $response = $storageInsightsClient->createReportConfig();
      * } finally {
      *     $storageInsightsClient->close();
      * }
      * ```
      *
-     * @param string       $parent       Required. Value for parent.
-     * @param ReportConfig $reportConfig Required. The resource being created
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Value for parent.
+     *     @type ReportConfig $reportConfig
+     *           Required. The resource being created
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -396,16 +394,19 @@ class StorageInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createReportConfig(
-        $parent,
-        $reportConfig,
-        array $optionalArgs = []
-    ) {
+    public function createReportConfig(array $optionalArgs = [])
+    {
         $request = new CreateReportConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setReportConfig($reportConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['reportConfig'])) {
+            $request->setReportConfig($optionalArgs['reportConfig']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -431,17 +432,17 @@ class StorageInsightsGapicClient
      * ```
      * $storageInsightsClient = new StorageInsightsClient();
      * try {
-     *     $formattedName = $storageInsightsClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-     *     $storageInsightsClient->deleteReportConfig($formattedName);
+     *     $storageInsightsClient->deleteReportConfig();
      * } finally {
      *     $storageInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the resource
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the resource
      *     @type bool $force
      *           Optional. If set, all ReportDetails for this ReportConfig will be deleted.
      *     @type string $requestId
@@ -466,12 +467,15 @@ class StorageInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteReportConfig($name, array $optionalArgs = [])
+    public function deleteReportConfig(array $optionalArgs = [])
     {
         $request = new DeleteReportConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
@@ -501,17 +505,17 @@ class StorageInsightsGapicClient
      * ```
      * $storageInsightsClient = new StorageInsightsClient();
      * try {
-     *     $formattedName = $storageInsightsClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-     *     $response = $storageInsightsClient->getReportConfig($formattedName);
+     *     $response = $storageInsightsClient->getReportConfig();
      * } finally {
      *     $storageInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the resource
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the resource
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -522,12 +526,15 @@ class StorageInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getReportConfig($name, array $optionalArgs = [])
+    public function getReportConfig(array $optionalArgs = [])
     {
         $request = new GetReportConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -549,17 +556,17 @@ class StorageInsightsGapicClient
      * ```
      * $storageInsightsClient = new StorageInsightsClient();
      * try {
-     *     $formattedName = $storageInsightsClient->reportDetailName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT_DETAIL]');
-     *     $response = $storageInsightsClient->getReportDetail($formattedName);
+     *     $response = $storageInsightsClient->getReportDetail();
      * } finally {
      *     $storageInsightsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the resource
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the resource
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -570,12 +577,15 @@ class StorageInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getReportDetail($name, array $optionalArgs = [])
+    public function getReportDetail(array $optionalArgs = [])
     {
         $request = new GetReportDetailRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -597,9 +607,8 @@ class StorageInsightsGapicClient
      * ```
      * $storageInsightsClient = new StorageInsightsClient();
      * try {
-     *     $formattedParent = $storageInsightsClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $storageInsightsClient->listReportConfigs($formattedParent);
+     *     $pagedResponse = $storageInsightsClient->listReportConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -607,7 +616,7 @@ class StorageInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $storageInsightsClient->listReportConfigs($formattedParent);
+     *     $pagedResponse = $storageInsightsClient->listReportConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -616,10 +625,11 @@ class StorageInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent value for ListReportConfigsRequest
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent value for ListReportConfigsRequest
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -643,12 +653,15 @@ class StorageInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listReportConfigs($parent, array $optionalArgs = [])
+    public function listReportConfigs(array $optionalArgs = [])
     {
         $request = new ListReportConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -686,9 +699,8 @@ class StorageInsightsGapicClient
      * ```
      * $storageInsightsClient = new StorageInsightsClient();
      * try {
-     *     $formattedParent = $storageInsightsClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $storageInsightsClient->listReportDetails($formattedParent);
+     *     $pagedResponse = $storageInsightsClient->listReportDetails();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -696,7 +708,7 @@ class StorageInsightsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $storageInsightsClient->listReportDetails($formattedParent);
+     *     $pagedResponse = $storageInsightsClient->listReportDetails();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -705,10 +717,11 @@ class StorageInsightsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent value for ListReportDetailsRequest
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Parent value for ListReportDetailsRequest
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -732,12 +745,15 @@ class StorageInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listReportDetails($parent, array $optionalArgs = [])
+    public function listReportDetails(array $optionalArgs = [])
     {
         $request = new ListReportDetailsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -775,23 +791,23 @@ class StorageInsightsGapicClient
      * ```
      * $storageInsightsClient = new StorageInsightsClient();
      * try {
-     *     $updateMask = new FieldMask();
-     *     $reportConfig = new ReportConfig();
-     *     $response = $storageInsightsClient->updateReportConfig($updateMask, $reportConfig);
+     *     $response = $storageInsightsClient->updateReportConfig();
      * } finally {
      *     $storageInsightsClient->close();
      * }
      * ```
      *
-     * @param FieldMask    $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
-     *                                   ReportConfig resource by the update.
-     *                                   The fields specified in the update_mask are relative to the resource, not
-     *                                   the full request. A field will be overwritten if it is in the mask. If the
-     *                                   user does not provide a mask then all fields will be overwritten.
-     * @param ReportConfig $reportConfig Required. The resource being updated
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Required. Field mask is used to specify the fields to be overwritten in the
+     *           ReportConfig resource by the update.
+     *           The fields specified in the update_mask are relative to the resource, not
+     *           the full request. A field will be overwritten if it is in the mask. If the
+     *           user does not provide a mask then all fields will be overwritten.
+     *     @type ReportConfig $reportConfig
+     *           Required. The resource being updated
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -816,16 +832,18 @@ class StorageInsightsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateReportConfig(
-        $updateMask,
-        $reportConfig,
-        array $optionalArgs = []
-    ) {
+    public function updateReportConfig(array $optionalArgs = [])
+    {
         $request = new UpdateReportConfigRequest();
         $requestParamHeaders = [];
-        $request->setUpdateMask($updateMask);
-        $request->setReportConfig($reportConfig);
-        $requestParamHeaders['report_config.name'] = $reportConfig->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['reportConfig'])) {
+            $request->setReportConfig($optionalArgs['reportConfig']);
+        }
+
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

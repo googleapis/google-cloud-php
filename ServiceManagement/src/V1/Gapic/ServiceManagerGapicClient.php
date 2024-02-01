@@ -78,8 +78,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $serviceManagerClient = new ServiceManagerClient();
  * try {
- *     $service = new ManagedService();
- *     $operationResponse = $serviceManagerClient->createService($service);
+ *     $operationResponse = $serviceManagerClient->createService();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -90,7 +89,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $serviceManagerClient->createService($service);
+ *     $operationResponse = $serviceManagerClient->createService();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $serviceManagerClient->resumeOperation($operationName, 'createService');
@@ -271,8 +270,7 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $service = new ManagedService();
-     *     $operationResponse = $serviceManagerClient->createService($service);
+     *     $operationResponse = $serviceManagerClient->createService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -283,7 +281,7 @@ class ServiceManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $serviceManagerClient->createService($service);
+     *     $operationResponse = $serviceManagerClient->createService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $serviceManagerClient->resumeOperation($operationName, 'createService');
@@ -303,10 +301,11 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param ManagedService $service      Required. Initial values for the service resource.
-     * @param array          $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ManagedService $service
+     *           Required. Initial values for the service resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -317,10 +316,13 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createService($service, array $optionalArgs = [])
+    public function createService(array $optionalArgs = [])
     {
         $request = new CreateServiceRequest();
-        $request->setService($service);
+        if (isset($optionalArgs['service'])) {
+            $request->setService($optionalArgs['service']);
+        }
+
         return $this->startOperationsCall('CreateService', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
@@ -338,21 +340,21 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $serviceName = 'service_name';
-     *     $serviceConfig = new Service();
-     *     $response = $serviceManagerClient->createServiceConfig($serviceName, $serviceConfig);
+     *     $response = $serviceManagerClient->createServiceConfig();
      * } finally {
      *     $serviceManagerClient->close();
      * }
      * ```
      *
-     * @param string  $serviceName   Required. The name of the service.  See the
-     *                               [overview](https://cloud.google.com/service-management/overview) for naming
-     *                               requirements.  For example: `example.googleapis.com`.
-     * @param Service $serviceConfig Required. The service configuration resource.
-     * @param array   $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $serviceName
+     *           Required. The name of the service.  See the
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements.  For example: `example.googleapis.com`.
+     *     @type Service $serviceConfig
+     *           Required. The service configuration resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -363,13 +365,19 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createServiceConfig($serviceName, $serviceConfig, array $optionalArgs = [])
+    public function createServiceConfig(array $optionalArgs = [])
     {
         $request = new CreateServiceConfigRequest();
         $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $request->setServiceConfig($serviceConfig);
-        $requestParamHeaders['service_name'] = $serviceName;
+        if (isset($optionalArgs['serviceName'])) {
+            $request->setServiceName($optionalArgs['serviceName']);
+            $requestParamHeaders['service_name'] = $optionalArgs['serviceName'];
+        }
+
+        if (isset($optionalArgs['serviceConfig'])) {
+            $request->setServiceConfig($optionalArgs['serviceConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateServiceConfig', Service::class, $optionalArgs, $request)->wait();
@@ -395,9 +403,7 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $serviceName = 'service_name';
-     *     $rollout = new Rollout();
-     *     $operationResponse = $serviceManagerClient->createServiceRollout($serviceName, $rollout);
+     *     $operationResponse = $serviceManagerClient->createServiceRollout();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -408,7 +414,7 @@ class ServiceManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $serviceManagerClient->createServiceRollout($serviceName, $rollout);
+     *     $operationResponse = $serviceManagerClient->createServiceRollout();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $serviceManagerClient->resumeOperation($operationName, 'createServiceRollout');
@@ -428,13 +434,15 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string  $serviceName  Required. The name of the service.  See the
-     *                              [overview](https://cloud.google.com/service-management/overview) for naming
-     *                              requirements.  For example: `example.googleapis.com`.
-     * @param Rollout $rollout      Required. The rollout resource. The `service_name` field is output only.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $serviceName
+     *           Required. The name of the service.  See the
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements.  For example: `example.googleapis.com`.
+     *     @type Rollout $rollout
+     *           Required. The rollout resource. The `service_name` field is output only.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -445,13 +453,19 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createServiceRollout($serviceName, $rollout, array $optionalArgs = [])
+    public function createServiceRollout(array $optionalArgs = [])
     {
         $request = new CreateServiceRolloutRequest();
         $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $request->setRollout($rollout);
-        $requestParamHeaders['service_name'] = $serviceName;
+        if (isset($optionalArgs['serviceName'])) {
+            $request->setServiceName($optionalArgs['serviceName']);
+            $requestParamHeaders['service_name'] = $optionalArgs['serviceName'];
+        }
+
+        if (isset($optionalArgs['rollout'])) {
+            $request->setRollout($optionalArgs['rollout']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateServiceRollout', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -471,8 +485,7 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $serviceName = 'service_name';
-     *     $operationResponse = $serviceManagerClient->deleteService($serviceName);
+     *     $operationResponse = $serviceManagerClient->deleteService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -482,7 +495,7 @@ class ServiceManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $serviceManagerClient->deleteService($serviceName);
+     *     $operationResponse = $serviceManagerClient->deleteService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $serviceManagerClient->resumeOperation($operationName, 'deleteService');
@@ -501,12 +514,13 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the
-     *                             [overview](https://cloud.google.com/service-management/overview) for naming
-     *                             requirements.  For example: `example.googleapis.com`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $serviceName
+     *           Required. The name of the service.  See the
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements.  For example: `example.googleapis.com`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -517,12 +531,15 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteService($serviceName, array $optionalArgs = [])
+    public function deleteService(array $optionalArgs = [])
     {
         $request = new DeleteServiceRequest();
         $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $requestParamHeaders['service_name'] = $serviceName;
+        if (isset($optionalArgs['serviceName'])) {
+            $request->setServiceName($optionalArgs['serviceName']);
+            $requestParamHeaders['service_name'] = $optionalArgs['serviceName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteService', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -545,21 +562,21 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $newConfig = new Any();
-     *     $response = $serviceManagerClient->generateConfigReport($newConfig);
+     *     $response = $serviceManagerClient->generateConfigReport();
      * } finally {
      *     $serviceManagerClient->close();
      * }
      * ```
      *
-     * @param Any   $newConfig    Required. Service configuration for which we want to generate the report.
-     *                            For this version of API, the supported types are
-     *                            [google.api.servicemanagement.v1.ConfigRef][google.api.servicemanagement.v1.ConfigRef],
-     *                            [google.api.servicemanagement.v1.ConfigSource][google.api.servicemanagement.v1.ConfigSource],
-     *                            and [google.api.Service][google.api.Service]
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Any $newConfig
+     *           Required. Service configuration for which we want to generate the report.
+     *           For this version of API, the supported types are
+     *           [google.api.servicemanagement.v1.ConfigRef][google.api.servicemanagement.v1.ConfigRef],
+     *           [google.api.servicemanagement.v1.ConfigSource][google.api.servicemanagement.v1.ConfigSource],
+     *           and [google.api.Service][google.api.Service]
      *     @type Any $oldConfig
      *           Optional. Service configuration against which the comparison will be done.
      *           For this version of API, the supported types are
@@ -576,10 +593,13 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateConfigReport($newConfig, array $optionalArgs = [])
+    public function generateConfigReport(array $optionalArgs = [])
     {
         $request = new GenerateConfigReportRequest();
-        $request->setNewConfig($newConfig);
+        if (isset($optionalArgs['newConfig'])) {
+            $request->setNewConfig($optionalArgs['newConfig']);
+        }
+
         if (isset($optionalArgs['oldConfig'])) {
             $request->setOldConfig($optionalArgs['oldConfig']);
         }
@@ -595,18 +615,18 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $serviceName = 'service_name';
-     *     $response = $serviceManagerClient->getService($serviceName);
+     *     $response = $serviceManagerClient->getService();
      * } finally {
      *     $serviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the `ServiceManager` overview for
-     *                             naming requirements.  For example: `example.googleapis.com`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $serviceName
+     *           Required. The name of the service.  See the `ServiceManager` overview for
+     *           naming requirements.  For example: `example.googleapis.com`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -617,12 +637,15 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getService($serviceName, array $optionalArgs = [])
+    public function getService(array $optionalArgs = [])
     {
         $request = new GetServiceRequest();
         $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $requestParamHeaders['service_name'] = $serviceName;
+        if (isset($optionalArgs['serviceName'])) {
+            $request->setServiceName($optionalArgs['serviceName']);
+            $requestParamHeaders['service_name'] = $optionalArgs['serviceName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetService', ManagedService::class, $optionalArgs, $request)->wait();
@@ -635,24 +658,24 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $serviceName = 'service_name';
-     *     $configId = 'config_id';
-     *     $response = $serviceManagerClient->getServiceConfig($serviceName, $configId);
+     *     $response = $serviceManagerClient->getServiceConfig();
      * } finally {
      *     $serviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the
-     *                             [overview](https://cloud.google.com/service-management/overview) for naming
-     *                             requirements.  For example: `example.googleapis.com`.
-     * @param string $configId     Required. The id of the service configuration resource.
-     *
-     *                             This field must be specified for the server to return all fields, including
-     *                             `SourceInfo`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $serviceName
+     *           Required. The name of the service.  See the
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements.  For example: `example.googleapis.com`.
+     *     @type string $configId
+     *           Required. The id of the service configuration resource.
+     *
+     *           This field must be specified for the server to return all fields, including
+     *           `SourceInfo`.
      *     @type int $view
      *           Specifies which parts of the Service Config should be returned in the
      *           response.
@@ -667,14 +690,20 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getServiceConfig($serviceName, $configId, array $optionalArgs = [])
+    public function getServiceConfig(array $optionalArgs = [])
     {
         $request = new GetServiceConfigRequest();
         $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $request->setConfigId($configId);
-        $requestParamHeaders['service_name'] = $serviceName;
-        $requestParamHeaders['config_id'] = $configId;
+        if (isset($optionalArgs['serviceName'])) {
+            $request->setServiceName($optionalArgs['serviceName']);
+            $requestParamHeaders['service_name'] = $optionalArgs['serviceName'];
+        }
+
+        if (isset($optionalArgs['configId'])) {
+            $request->setConfigId($optionalArgs['configId']);
+            $requestParamHeaders['config_id'] = $optionalArgs['configId'];
+        }
+
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
         }
@@ -692,21 +721,21 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $serviceName = 'service_name';
-     *     $rolloutId = 'rollout_id';
-     *     $response = $serviceManagerClient->getServiceRollout($serviceName, $rolloutId);
+     *     $response = $serviceManagerClient->getServiceRollout();
      * } finally {
      *     $serviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the
-     *                             [overview](https://cloud.google.com/service-management/overview) for naming
-     *                             requirements.  For example: `example.googleapis.com`.
-     * @param string $rolloutId    Required. The id of the rollout resource.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $serviceName
+     *           Required. The name of the service.  See the
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements.  For example: `example.googleapis.com`.
+     *     @type string $rolloutId
+     *           Required. The id of the rollout resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -717,14 +746,20 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getServiceRollout($serviceName, $rolloutId, array $optionalArgs = [])
+    public function getServiceRollout(array $optionalArgs = [])
     {
         $request = new GetServiceRolloutRequest();
         $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $request->setRolloutId($rolloutId);
-        $requestParamHeaders['service_name'] = $serviceName;
-        $requestParamHeaders['rollout_id'] = $rolloutId;
+        if (isset($optionalArgs['serviceName'])) {
+            $request->setServiceName($optionalArgs['serviceName']);
+            $requestParamHeaders['service_name'] = $optionalArgs['serviceName'];
+        }
+
+        if (isset($optionalArgs['rolloutId'])) {
+            $request->setRolloutId($optionalArgs['rolloutId']);
+            $requestParamHeaders['rollout_id'] = $optionalArgs['rolloutId'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetServiceRollout', Rollout::class, $optionalArgs, $request)->wait();
@@ -738,9 +773,8 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $serviceName = 'service_name';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $serviceManagerClient->listServiceConfigs($serviceName);
+     *     $pagedResponse = $serviceManagerClient->listServiceConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -748,7 +782,7 @@ class ServiceManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $serviceManagerClient->listServiceConfigs($serviceName);
+     *     $pagedResponse = $serviceManagerClient->listServiceConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -757,12 +791,13 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the
-     *                             [overview](https://cloud.google.com/service-management/overview) for naming
-     *                             requirements.  For example: `example.googleapis.com`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $serviceName
+     *           Required. The name of the service.  See the
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements.  For example: `example.googleapis.com`.
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -782,12 +817,15 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listServiceConfigs($serviceName, array $optionalArgs = [])
+    public function listServiceConfigs(array $optionalArgs = [])
     {
         $request = new ListServiceConfigsRequest();
         $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $requestParamHeaders['service_name'] = $serviceName;
+        if (isset($optionalArgs['serviceName'])) {
+            $request->setServiceName($optionalArgs['serviceName']);
+            $requestParamHeaders['service_name'] = $optionalArgs['serviceName'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -809,10 +847,8 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $serviceName = 'service_name';
-     *     $filter = 'filter';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $serviceManagerClient->listServiceRollouts($serviceName, $filter);
+     *     $pagedResponse = $serviceManagerClient->listServiceRollouts();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -820,7 +856,7 @@ class ServiceManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $serviceManagerClient->listServiceRollouts($serviceName, $filter);
+     *     $pagedResponse = $serviceManagerClient->listServiceRollouts();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -829,22 +865,13 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the
-     *                             [overview](https://cloud.google.com/service-management/overview) for naming
-     *                             requirements.  For example: `example.googleapis.com`.
-     * @param string $filter       Required. Use `filter` to return subset of rollouts.
-     *                             The following filters are supported:
-     *
-     *                             -- By [status]
-     *                             [google.api.servicemanagement.v1.Rollout.RolloutStatus]. For example,
-     *                             `filter='status=SUCCESS'`
-     *
-     *                             -- By [strategy]
-     *                             [google.api.servicemanagement.v1.Rollout.strategy]. For example,
-     *                             `filter='strategy=TrafficPercentStrategy'`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $serviceName
+     *           Required. The name of the service.  See the
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements.  For example: `example.googleapis.com`.
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -854,6 +881,17 @@ class ServiceManagerGapicClient
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
+     *     @type string $filter
+     *           Required. Use `filter` to return subset of rollouts.
+     *           The following filters are supported:
+     *
+     *           -- By [status]
+     *           [google.api.servicemanagement.v1.Rollout.RolloutStatus]. For example,
+     *           `filter='status=SUCCESS'`
+     *
+     *           -- By [strategy]
+     *           [google.api.servicemanagement.v1.Rollout.strategy]. For example,
+     *           `filter='strategy=TrafficPercentStrategy'`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -864,19 +902,25 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listServiceRollouts($serviceName, $filter, array $optionalArgs = [])
+    public function listServiceRollouts(array $optionalArgs = [])
     {
         $request = new ListServiceRolloutsRequest();
         $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $request->setFilter($filter);
-        $requestParamHeaders['service_name'] = $serviceName;
+        if (isset($optionalArgs['serviceName'])) {
+            $request->setServiceName($optionalArgs['serviceName']);
+            $requestParamHeaders['service_name'] = $optionalArgs['serviceName'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -985,9 +1029,7 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $serviceName = 'service_name';
-     *     $configSource = new ConfigSource();
-     *     $operationResponse = $serviceManagerClient->submitConfigSource($serviceName, $configSource);
+     *     $operationResponse = $serviceManagerClient->submitConfigSource();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -998,7 +1040,7 @@ class ServiceManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $serviceManagerClient->submitConfigSource($serviceName, $configSource);
+     *     $operationResponse = $serviceManagerClient->submitConfigSource();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $serviceManagerClient->resumeOperation($operationName, 'submitConfigSource');
@@ -1018,13 +1060,15 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string       $serviceName  Required. The name of the service.  See the
-     *                                   [overview](https://cloud.google.com/service-management/overview) for naming
-     *                                   requirements.  For example: `example.googleapis.com`.
-     * @param ConfigSource $configSource Required. The source configuration for the service.
-     * @param array        $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $serviceName
+     *           Required. The name of the service.  See the
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements.  For example: `example.googleapis.com`.
+     *     @type ConfigSource $configSource
+     *           Required. The source configuration for the service.
      *     @type bool $validateOnly
      *           Optional. If set, this will result in the generation of a
      *           `google.api.Service` configuration based on the `ConfigSource` provided,
@@ -1039,13 +1083,19 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function submitConfigSource($serviceName, $configSource, array $optionalArgs = [])
+    public function submitConfigSource(array $optionalArgs = [])
     {
         $request = new SubmitConfigSourceRequest();
         $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $request->setConfigSource($configSource);
-        $requestParamHeaders['service_name'] = $serviceName;
+        if (isset($optionalArgs['serviceName'])) {
+            $request->setServiceName($optionalArgs['serviceName']);
+            $requestParamHeaders['service_name'] = $optionalArgs['serviceName'];
+        }
+
+        if (isset($optionalArgs['configSource'])) {
+            $request->setConfigSource($optionalArgs['configSource']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -1067,8 +1117,7 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $serviceName = 'service_name';
-     *     $operationResponse = $serviceManagerClient->undeleteService($serviceName);
+     *     $operationResponse = $serviceManagerClient->undeleteService();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1079,7 +1128,7 @@ class ServiceManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $serviceManagerClient->undeleteService($serviceName);
+     *     $operationResponse = $serviceManagerClient->undeleteService();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $serviceManagerClient->resumeOperation($operationName, 'undeleteService');
@@ -1099,12 +1148,13 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service. See the
-     *                             [overview](https://cloud.google.com/service-management/overview) for naming
-     *                             requirements. For example: `example.googleapis.com`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $serviceName
+     *           Required. The name of the service. See the
+     *           [overview](https://cloud.google.com/service-management/overview) for naming
+     *           requirements. For example: `example.googleapis.com`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1115,12 +1165,15 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function undeleteService($serviceName, array $optionalArgs = [])
+    public function undeleteService(array $optionalArgs = [])
     {
         $request = new UndeleteServiceRequest();
         $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $requestParamHeaders['service_name'] = $serviceName;
+        if (isset($optionalArgs['serviceName'])) {
+            $request->setServiceName($optionalArgs['serviceName']);
+            $requestParamHeaders['service_name'] = $optionalArgs['serviceName'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UndeleteService', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1134,18 +1187,18 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $serviceManagerClient->getIamPolicy($resource);
+     *     $response = $serviceManagerClient->getIamPolicy();
      * } finally {
      *     $serviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1159,12 +1212,15 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1185,23 +1241,23 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $serviceManagerClient->setIamPolicy($resource, $policy);
+     *     $response = $serviceManagerClient->setIamPolicy();
      * } finally {
      *     $serviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1218,13 +1274,19 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1247,23 +1309,23 @@ class ServiceManagerGapicClient
      * ```
      * $serviceManagerClient = new ServiceManagerClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $serviceManagerClient->testIamPermissions($resource, $permissions);
+     *     $response = $serviceManagerClient->testIamPermissions();
      * } finally {
      *     $serviceManagerClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1274,13 +1336,19 @@ class ServiceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions(array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

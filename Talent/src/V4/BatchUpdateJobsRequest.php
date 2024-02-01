@@ -53,8 +53,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      * @param string                        $parent Required. The resource name of the tenant under which the job is created.
      *
      *                                              The format is "projects/{project_id}/tenants/{tenant_id}". For example,
-     *                                              "projects/foo/tenants/bar". Please see
-     *                                              {@see JobServiceClient::tenantName()} for help formatting this field.
+     *                                              "projects/foo/tenants/bar".
      * @param \Google\Cloud\Talent\V4\Job[] $jobs   Required. The jobs to be updated.
      *                                              A maximum of 200 jobs can be updated in a batch.
      *

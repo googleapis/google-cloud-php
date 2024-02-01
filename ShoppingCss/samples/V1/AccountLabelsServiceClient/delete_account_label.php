@@ -30,18 +30,19 @@ use Google\Shopping\Css\V1\DeleteAccountLabelRequest;
 /**
  * Deletes a label and removes it from all accounts to which it was assigned.
  *
- * @param string $formattedName The name of the label to delete.
- *                              Format:  accounts/{account}/labels/{label}
- *                              Please see {@see AccountLabelsServiceClient::accountLabelName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_account_label_sample(string $formattedName): void
+function delete_account_label_sample(): void
 {
     // Create a client.
     $accountLabelsServiceClient = new AccountLabelsServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteAccountLabelRequest())
-        ->setName($formattedName);
+    $request = new DeleteAccountLabelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -50,21 +51,5 @@ function delete_account_label_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AccountLabelsServiceClient::accountLabelName('[ACCOUNT]', '[LABEL]');
-
-    delete_account_label_sample($formattedName);
 }
 // [END css_v1_generated_AccountLabelsService_DeleteAccountLabel_sync]

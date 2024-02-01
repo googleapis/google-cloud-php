@@ -40,7 +40,6 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                          $parent       Required. The project in which to create the repository. Values are of the
      *                                                                      form `projects/{project_number}/locations/{location_id}`
-     *                                                                      Please see {@see SecureSourceManagerClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\SecureSourceManager\V1\Repository $repository   Required. The resource being created.
      * @param string                                          $repositoryId Required. The ID to use for the repository, which will become the final
      *                                                                      component of the repository's resource name. This value should be 4-63

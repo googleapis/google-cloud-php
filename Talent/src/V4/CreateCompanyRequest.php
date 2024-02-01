@@ -34,8 +34,7 @@ class CreateCompanyRequest extends \Google\Protobuf\Internal\Message
      * @param string                          $parent  Required. Resource name of the tenant under which the company is created.
      *
      *                                                 The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                                                 "projects/foo/tenants/bar". Please see
-     *                                                 {@see CompanyServiceClient::tenantName()} for help formatting this field.
+     *                                                 "projects/foo/tenants/bar".
      * @param \Google\Cloud\Talent\V4\Company $company Required. The company to be created.
      *
      * @return \Google\Cloud\Talent\V4\CreateCompanyRequest

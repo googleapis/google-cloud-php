@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\SecurityCenterManagement\V1\Client\SecurityCenterManagementClient;
 use Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule;
 use Google\Cloud\SecurityCenterManagement\V1\UpdateEventThreatDetectionCustomModuleRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates the Event Threat Detection custom module with the given name based
@@ -49,11 +48,7 @@ function update_event_threat_detection_custom_module_sample(): void
     $securityCenterManagementClient = new SecurityCenterManagementClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $eventThreatDetectionCustomModule = new EventThreatDetectionCustomModule();
-    $request = (new UpdateEventThreatDetectionCustomModuleRequest())
-        ->setUpdateMask($updateMask)
-        ->setEventThreatDetectionCustomModule($eventThreatDetectionCustomModule);
+    $request = new UpdateEventThreatDetectionCustomModuleRequest();
 
     // Call the API and handle any network failures.
     try {

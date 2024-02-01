@@ -75,18 +75,13 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->localInventoryName('[ACCOUNT]', '[PRODUCT]', '[STORE_CODE]');
-        $request = (new DeleteLocalInventoryRequest())
-            ->setName($formattedName);
+        $request = new DeleteLocalInventoryRequest();
         $gapicClient->deleteLocalInventory($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.merchant.inventories.v1beta.LocalInventoryService/DeleteLocalInventory', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -108,10 +103,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->localInventoryName('[ACCOUNT]', '[PRODUCT]', '[STORE_CODE]');
-        $request = (new DeleteLocalInventoryRequest())
-            ->setName($formattedName);
+        $request = new DeleteLocalInventoryRequest();
         try {
             $gapicClient->deleteLocalInventory($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -152,14 +144,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $expectedResponse->setPickupSla($pickupSla);
         $expectedResponse->setInstoreProductLocation($instoreProductLocation);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $localInventory = new LocalInventory();
-        $localInventoryStoreCode = 'localInventoryStoreCode1126909757';
-        $localInventory->setStoreCode($localInventoryStoreCode);
-        $request = (new InsertLocalInventoryRequest())
-            ->setParent($parent)
-            ->setLocalInventory($localInventory);
+        $request = new InsertLocalInventoryRequest();
         $response = $gapicClient->insertLocalInventory($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -167,10 +152,6 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.merchant.inventories.v1beta.LocalInventoryService/InsertLocalInventory', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getLocalInventory();
-        $this->assertProtobufEquals($localInventory, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -192,14 +173,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $localInventory = new LocalInventory();
-        $localInventoryStoreCode = 'localInventoryStoreCode1126909757';
-        $localInventory->setStoreCode($localInventoryStoreCode);
-        $request = (new InsertLocalInventoryRequest())
-            ->setParent($parent)
-            ->setLocalInventory($localInventory);
+        $request = new InsertLocalInventoryRequest();
         try {
             $gapicClient->insertLocalInventory($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -231,10 +205,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocalInventories($localInventories);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListLocalInventoriesRequest())
-            ->setParent($parent);
+        $request = new ListLocalInventoriesRequest();
         $response = $gapicClient->listLocalInventories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -245,8 +216,6 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.merchant.inventories.v1beta.LocalInventoryService/ListLocalInventories', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -268,10 +237,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListLocalInventoriesRequest())
-            ->setParent($parent);
+        $request = new ListLocalInventoriesRequest();
         try {
             $gapicClient->listLocalInventories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -296,18 +262,13 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->localInventoryName('[ACCOUNT]', '[PRODUCT]', '[STORE_CODE]');
-        $request = (new DeleteLocalInventoryRequest())
-            ->setName($formattedName);
+        $request = new DeleteLocalInventoryRequest();
         $gapicClient->deleteLocalInventoryAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.merchant.inventories.v1beta.LocalInventoryService/DeleteLocalInventory', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

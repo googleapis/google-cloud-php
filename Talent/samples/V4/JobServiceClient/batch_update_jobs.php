@@ -28,67 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Talent\V4\BatchUpdateJobsRequest;
 use Google\Cloud\Talent\V4\BatchUpdateJobsResponse;
 use Google\Cloud\Talent\V4\Client\JobServiceClient;
-use Google\Cloud\Talent\V4\Job;
 use Google\Rpc\Status;
 
 /**
  * Begins executing a batch update jobs operation.
  *
- * @param string $formattedParent      The resource name of the tenant under which the job is created.
- *
- *                                     The format is "projects/{project_id}/tenants/{tenant_id}". For example,
- *                                     "projects/foo/tenants/bar". Please see
- *                                     {@see JobServiceClient::tenantName()} for help formatting this field.
- * @param string $formattedJobsCompany The resource name of the company listing the job.
- *
- *                                     The format is
- *                                     "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}". For
- *                                     example, "projects/foo/tenants/bar/companies/baz". Please see
- *                                     {@see JobServiceClient::companyName()} for help formatting this field.
- * @param string $jobsRequisitionId    The requisition ID, also referred to as the posting ID, is
- *                                     assigned by the client to identify a job. This field is intended to be used
- *                                     by clients for client identification and tracking of postings. A job isn't
- *                                     allowed to be created if there is another job with the same
- *                                     [company][google.cloud.talent.v4.Job.name],
- *                                     [language_code][google.cloud.talent.v4.Job.language_code] and
- *                                     [requisition_id][google.cloud.talent.v4.Job.requisition_id].
- *
- *                                     The maximum number of allowed characters is 255.
- * @param string $jobsTitle            The title of the job, such as "Software Engineer"
- *
- *                                     The maximum number of allowed characters is 500.
- * @param string $jobsDescription      The description of the job, which typically includes a
- *                                     multi-paragraph description of the company and related information.
- *                                     Separate fields are provided on the job object for
- *                                     [responsibilities][google.cloud.talent.v4.Job.responsibilities],
- *                                     [qualifications][google.cloud.talent.v4.Job.qualifications], and other job
- *                                     characteristics. Use of these separate job fields is recommended.
- *
- *                                     This field accepts and sanitizes HTML input, and also accepts
- *                                     bold, italic, ordered list, and unordered list markup tags.
- *
- *                                     The maximum number of allowed characters is 100,000.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_update_jobs_sample(
-    string $formattedParent,
-    string $formattedJobsCompany,
-    string $jobsRequisitionId,
-    string $jobsTitle,
-    string $jobsDescription
-): void {
+function batch_update_jobs_sample(): void
+{
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $job = (new Job())
-        ->setCompany($formattedJobsCompany)
-        ->setRequisitionId($jobsRequisitionId)
-        ->setTitle($jobsTitle)
-        ->setDescription($jobsDescription);
-    $jobs = [$job,];
-    $request = (new BatchUpdateJobsRequest())
-        ->setParent($formattedParent)
-        ->setJobs($jobs);
+    $request = new BatchUpdateJobsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -108,31 +65,5 @@ function batch_update_jobs_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = JobServiceClient::tenantName('[PROJECT]', '[TENANT]');
-    $formattedJobsCompany = JobServiceClient::companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-    $jobsRequisitionId = '[REQUISITION_ID]';
-    $jobsTitle = '[TITLE]';
-    $jobsDescription = '[DESCRIPTION]';
-
-    batch_update_jobs_sample(
-        $formattedParent,
-        $formattedJobsCompany,
-        $jobsRequisitionId,
-        $jobsTitle,
-        $jobsDescription
-    );
 }
 // [END jobs_v4_generated_JobService_BatchUpdateJobs_sync]

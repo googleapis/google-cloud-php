@@ -90,10 +90,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $securityCenterClient = new SecurityCenterClient();
  * try {
- *     $formattedParent = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
- *     $findingId = 'finding_id';
- *     $finding = new Finding();
- *     $response = $securityCenterClient->createFinding($formattedParent, $findingId, $finding);
+ *     $response = $securityCenterClient->createFinding();
  * } finally {
  *     $securityCenterClient->close();
  * }
@@ -993,23 +990,23 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-     *     $findingId = 'finding_id';
-     *     $finding = new Finding();
-     *     $response = $securityCenterClient->createFinding($formattedParent, $findingId, $finding);
+     *     $response = $securityCenterClient->createFinding();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. Resource name of the new finding's parent. Its format should be
-     *                              "organizations/[organization_id]/sources/[source_id]".
-     * @param string  $findingId    Required. Unique identifier provided by the client within the parent scope.
-     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be ignored as
-     *                              they are both output only fields on this resource.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the new finding's parent. Its format should be
+     *           "organizations/[organization_id]/sources/[source_id]".
+     *     @type string $findingId
+     *           Required. Unique identifier provided by the client within the parent scope.
+     *     @type Finding $finding
+     *           Required. The Finding being created. The name and security_marks will be ignored as
+     *           they are both output only fields on this resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1022,14 +1019,23 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function createFinding($parent, $findingId, $finding, array $optionalArgs = [])
+    public function createFinding(array $optionalArgs = [])
     {
         $request = new CreateFindingRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFindingId($findingId);
-        $request->setFinding($finding);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['findingId'])) {
+            $request->setFindingId($optionalArgs['findingId']);
+        }
+
+        if (isset($optionalArgs['finding'])) {
+            $request->setFinding($optionalArgs['finding']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateFinding', Finding::class, $optionalArgs, $request)->wait();
@@ -1042,25 +1048,25 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
-     *     $configId = 'config_id';
-     *     $notificationConfig = new NotificationConfig();
-     *     $response = $securityCenterClient->createNotificationConfig($formattedParent, $configId, $notificationConfig);
+     *     $response = $securityCenterClient->createNotificationConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string             $parent             Required. Resource name of the new notification config's parent. Its format is
-     *                                               "organizations/[organization_id]".
-     * @param string             $configId           Required. Unique identifier provided by the client within the parent scope.
-     *                                               It must be between 1 and 128 characters, and contains alphanumeric
-     *                                               characters, underscores or hyphens only.
-     * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service account
-     *                                               will be ignored as they are both output only fields on this resource.
-     * @param array              $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the new notification config's parent. Its format is
+     *           "organizations/[organization_id]".
+     *     @type string $configId
+     *           Required. Unique identifier provided by the client within the parent scope.
+     *           It must be between 1 and 128 characters, and contains alphanumeric
+     *           characters, underscores or hyphens only.
+     *     @type NotificationConfig $notificationConfig
+     *           Required. The notification config being created. The name and the service account
+     *           will be ignored as they are both output only fields on this resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1073,14 +1079,23 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function createNotificationConfig($parent, $configId, $notificationConfig, array $optionalArgs = [])
+    public function createNotificationConfig(array $optionalArgs = [])
     {
         $request = new CreateNotificationConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setConfigId($configId);
-        $request->setNotificationConfig($notificationConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['configId'])) {
+            $request->setConfigId($optionalArgs['configId']);
+        }
+
+        if (isset($optionalArgs['notificationConfig'])) {
+            $request->setNotificationConfig($optionalArgs['notificationConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateNotificationConfig', NotificationConfig::class, $optionalArgs, $request)->wait();
@@ -1093,21 +1108,21 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
-     *     $source = new Source();
-     *     $response = $securityCenterClient->createSource($formattedParent, $source);
+     *     $response = $securityCenterClient->createSource();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the new source's parent. Its format should be
-     *                             "organizations/[organization_id]".
-     * @param Source $source       Required. The Source being created, only the display_name and description will be
-     *                             used. All other fields will be ignored.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the new source's parent. Its format should be
+     *           "organizations/[organization_id]".
+     *     @type Source $source
+     *           Required. The Source being created, only the display_name and description will be
+     *           used. All other fields will be ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1120,13 +1135,19 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function createSource($parent, $source, array $optionalArgs = [])
+    public function createSource(array $optionalArgs = [])
     {
         $request = new CreateSourceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSource($source);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['source'])) {
+            $request->setSource($optionalArgs['source']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateSource', Source::class, $optionalArgs, $request)->wait();
@@ -1139,18 +1160,18 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
-     *     $securityCenterClient->deleteNotificationConfig($formattedName);
+     *     $securityCenterClient->deleteNotificationConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the notification config to delete. Its format is
-     *                             "organizations/[organization_id]/notificationConfigs/[config_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the notification config to delete. Its format is
+     *           "organizations/[organization_id]/notificationConfigs/[config_id]".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1161,12 +1182,15 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function deleteNotificationConfig($name, array $optionalArgs = [])
+    public function deleteNotificationConfig(array $optionalArgs = [])
     {
         $request = new DeleteNotificationConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteNotificationConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -1228,18 +1252,18 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
-     *     $response = $securityCenterClient->getNotificationConfig($formattedName);
+     *     $response = $securityCenterClient->getNotificationConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the notification config to get. Its format is
-     *                             "organizations/[organization_id]/notificationConfigs/[config_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the notification config to get. Its format is
+     *           "organizations/[organization_id]/notificationConfigs/[config_id]".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1252,12 +1276,15 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function getNotificationConfig($name, array $optionalArgs = [])
+    public function getNotificationConfig(array $optionalArgs = [])
     {
         $request = new GetNotificationConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetNotificationConfig', NotificationConfig::class, $optionalArgs, $request)->wait();
@@ -1270,18 +1297,18 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->organizationSettingsName('[ORGANIZATION]');
-     *     $response = $securityCenterClient->getOrganizationSettings($formattedName);
+     *     $response = $securityCenterClient->getOrganizationSettings();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the organization to get organization settings for. Its format is
-     *                             "organizations/[organization_id]/organizationSettings".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the organization to get organization settings for. Its format is
+     *           "organizations/[organization_id]/organizationSettings".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1294,12 +1321,15 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function getOrganizationSettings($name, array $optionalArgs = [])
+    public function getOrganizationSettings(array $optionalArgs = [])
     {
         $request = new GetOrganizationSettingsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetOrganizationSettings', OrganizationSettings::class, $optionalArgs, $request)->wait();
@@ -1312,18 +1342,18 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-     *     $response = $securityCenterClient->getSource($formattedName);
+     *     $response = $securityCenterClient->getSource();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Relative resource name of the source. Its format is
-     *                             "organizations/[organization_id]/source/[source_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Relative resource name of the source. Its format is
+     *           "organizations/[organization_id]/source/[source_id]".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1336,12 +1366,15 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function getSource($name, array $optionalArgs = [])
+    public function getSource(array $optionalArgs = [])
     {
         $request = new GetSourceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSource', Source::class, $optionalArgs, $request)->wait();
@@ -1355,10 +1388,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
-     *     $groupBy = 'group_by';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->groupAssets($formattedParent, $groupBy);
+     *     $pagedResponse = $securityCenterClient->groupAssets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1366,7 +1397,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->groupAssets($formattedParent, $groupBy);
+     *     $pagedResponse = $securityCenterClient->groupAssets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1375,30 +1406,13 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to groupBy. Its format is
-     *                             "organizations/[organization_id], folders/[folder_id], or
-     *                             projects/[project_id]".
-     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping. The string
-     *                             value should follow SQL syntax: comma separated list of fields. For
-     *                             example:
-     *                             "security_center_properties.resource_project,security_center_properties.project".
-     *
-     *                             The following fields are supported when compare_duration is not set:
-     *
-     *                             * security_center_properties.resource_project
-     *                             * security_center_properties.resource_project_display_name
-     *                             * security_center_properties.resource_type
-     *                             * security_center_properties.resource_parent
-     *                             * security_center_properties.resource_parent_display_name
-     *
-     *                             The following fields are supported when compare_duration is set:
-     *
-     *                             * security_center_properties.resource_type
-     *                             * security_center_properties.resource_project_display_name
-     *                             * security_center_properties.resource_parent_display_name
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the organization to groupBy. Its format is
+     *           "organizations/[organization_id], folders/[folder_id], or
+     *           projects/[project_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
      *           The expression is a list of zero or more restrictions combined via logical
@@ -1462,6 +1476,25 @@ class SecurityCenterGapicClient
      *
      *           Use a negated partial match on the empty string to filter based on a
      *           property not existing: `-resource_properties.my_property : ""`
+     *     @type string $groupBy
+     *           Required. Expression that defines what assets fields to use for grouping. The string
+     *           value should follow SQL syntax: comma separated list of fields. For
+     *           example:
+     *           "security_center_properties.resource_project,security_center_properties.project".
+     *
+     *           The following fields are supported when compare_duration is not set:
+     *
+     *           * security_center_properties.resource_project
+     *           * security_center_properties.resource_project_display_name
+     *           * security_center_properties.resource_type
+     *           * security_center_properties.resource_parent
+     *           * security_center_properties.resource_parent_display_name
+     *
+     *           The following fields are supported when compare_duration is set:
+     *
+     *           * security_center_properties.resource_type
+     *           * security_center_properties.resource_project_display_name
+     *           * security_center_properties.resource_parent_display_name
      *     @type Duration $compareDuration
      *           When compare_duration is set, the GroupResult's "state_change" property is
      *           updated to indicate whether the asset was added, removed, or remained
@@ -1516,15 +1549,21 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function groupAssets($parent, $groupBy, array $optionalArgs = [])
+    public function groupAssets(array $optionalArgs = [])
     {
         $request = new GroupAssetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setGroupBy($groupBy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['groupBy'])) {
+            $request->setGroupBy($optionalArgs['groupBy']);
         }
 
         if (isset($optionalArgs['compareDuration'])) {
@@ -1561,10 +1600,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-     *     $groupBy = 'group_by';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->groupFindings($formattedParent, $groupBy);
+     *     $pagedResponse = $securityCenterClient->groupFindings();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1572,7 +1609,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->groupFindings($formattedParent, $groupBy);
+     *     $pagedResponse = $securityCenterClient->groupFindings();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1581,31 +1618,17 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the source to groupBy. Its format is
-     *                             "organizations/[organization_id]/sources/[source_id]",
-     *                             folders/[folder_id]/sources/[source_id], or
-     *                             projects/[project_id]/sources/[source_id]. To groupBy across all sources
-     *                             provide a source_id of `-`. For example:
-     *                             organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
-     *                             or projects/{project_id}/sources/-
-     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping (including
-     *                             `state_change`). The string value should follow SQL syntax: comma separated
-     *                             list of fields. For example: "parent,resource_name".
-     *
-     *                             The following fields are supported:
-     *
-     *                             * resource_name
-     *                             * category
-     *                             * state
-     *                             * parent
-     *                             * severity
-     *
-     *                             The following fields are supported when compare_duration is set:
-     *
-     *                             * state_change
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the source to groupBy. Its format is
+     *           "organizations/[organization_id]/sources/[source_id]",
+     *           folders/[folder_id]/sources/[source_id], or
+     *           projects/[project_id]/sources/[source_id]. To groupBy across all sources
+     *           provide a source_id of `-`. For example:
+     *           organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
+     *           or projects/{project_id}/sources/-
      *     @type string $filter
      *           Expression that defines the filter to apply across findings.
      *           The expression is a list of one or more restrictions combined via logical
@@ -1657,6 +1680,22 @@ class SecurityCenterGapicClient
      *
      *           Use a negated partial match on the empty string to filter based on a
      *           property not existing: `-source_properties.my_property : ""`
+     *     @type string $groupBy
+     *           Required. Expression that defines what assets fields to use for grouping (including
+     *           `state_change`). The string value should follow SQL syntax: comma separated
+     *           list of fields. For example: "parent,resource_name".
+     *
+     *           The following fields are supported:
+     *
+     *           * resource_name
+     *           * category
+     *           * state
+     *           * parent
+     *           * severity
+     *
+     *           The following fields are supported when compare_duration is set:
+     *
+     *           * state_change
      *     @type Timestamp $readTime
      *           Time used as a reference point when filtering findings. The filter is
      *           limited to findings existing at the supplied time and their values are
@@ -1716,15 +1755,21 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function groupFindings($parent, $groupBy, array $optionalArgs = [])
+    public function groupFindings(array $optionalArgs = [])
     {
         $request = new GroupFindingsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setGroupBy($groupBy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['groupBy'])) {
+            $request->setGroupBy($optionalArgs['groupBy']);
         }
 
         if (isset($optionalArgs['readTime'])) {
@@ -1755,9 +1800,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listAssets($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listAssets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1765,7 +1809,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listAssets($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listAssets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1774,12 +1818,13 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization assets should belong to. Its format is
-     *                             "organizations/[organization_id], folders/[folder_id], or
-     *                             projects/[project_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the organization assets should belong to. Its format is
+     *           "organizations/[organization_id], folders/[folder_id], or
+     *           projects/[project_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
      *           The expression is a list of zero or more restrictions combined via logical
@@ -1920,12 +1965,15 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function listAssets($parent, array $optionalArgs = [])
+    public function listAssets(array $optionalArgs = [])
     {
         $request = new ListAssetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1969,9 +2017,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listFindings($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listFindings();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1979,7 +2026,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listFindings($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listFindings();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1988,16 +2035,17 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the source the findings belong to. Its format is
-     *                             "organizations/[organization_id]/sources/[source_id],
-     *                             folders/[folder_id]/sources/[source_id], or
-     *                             projects/[project_id]/sources/[source_id]". To list across all sources
-     *                             provide a source_id of `-`. For example:
-     *                             organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
-     *                             projects/{projects_id}/sources/-
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the source the findings belong to. Its format is
+     *           "organizations/[organization_id]/sources/[source_id],
+     *           folders/[folder_id]/sources/[source_id], or
+     *           projects/[project_id]/sources/[source_id]". To list across all sources
+     *           provide a source_id of `-`. For example:
+     *           organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
+     *           projects/{projects_id}/sources/-
      *     @type string $filter
      *           Expression that defines the filter to apply across findings.
      *           The expression is a list of one or more restrictions combined via logical
@@ -2128,12 +2176,15 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function listFindings($parent, array $optionalArgs = [])
+    public function listFindings(array $optionalArgs = [])
     {
         $request = new ListFindingsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2174,9 +2225,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listNotificationConfigs($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listNotificationConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2184,7 +2234,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listNotificationConfigs($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listNotificationConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2193,11 +2243,12 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to list notification configs.
-     *                             Its format is "organizations/[organization_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the organization to list notification configs.
+     *           Its format is "organizations/[organization_id]".
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -2219,12 +2270,15 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function listNotificationConfigs($parent, array $optionalArgs = [])
+    public function listNotificationConfigs(array $optionalArgs = [])
     {
         $request = new ListNotificationConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -2245,9 +2299,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listSources($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listSources();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2255,7 +2308,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listSources($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listSources();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2264,12 +2317,13 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the parent of sources to list. Its format should be
-     *                             "organizations/[organization_id], folders/[folder_id], or
-     *                             projects/[project_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the parent of sources to list. Its format should be
+     *           "organizations/[organization_id], folders/[folder_id], or
+     *           projects/[project_id]".
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -2291,12 +2345,15 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function listSources($parent, array $optionalArgs = [])
+    public function listSources(array $optionalArgs = [])
     {
         $request = new ListSourcesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -2322,8 +2379,7 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
-     *     $operationResponse = $securityCenterClient->runAssetDiscovery($formattedParent);
+     *     $operationResponse = $securityCenterClient->runAssetDiscovery();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2334,7 +2390,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $securityCenterClient->runAssetDiscovery($formattedParent);
+     *     $operationResponse = $securityCenterClient->runAssetDiscovery();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $securityCenterClient->resumeOperation($operationName, 'runAssetDiscovery');
@@ -2354,11 +2410,12 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to run asset discovery for. Its format is
-     *                             "organizations/[organization_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the organization to run asset discovery for. Its format is
+     *           "organizations/[organization_id]".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2371,12 +2428,15 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function runAssetDiscovery($parent, array $optionalArgs = [])
+    public function runAssetDiscovery(array $optionalArgs = [])
     {
         $request = new RunAssetDiscoveryRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RunAssetDiscovery', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -2389,25 +2449,25 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-     *     $state = State::STATE_UNSPECIFIED;
-     *     $startTime = new Timestamp();
-     *     $response = $securityCenterClient->setFindingState($formattedName, $state, $startTime);
+     *     $response = $securityCenterClient->setFindingState();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string    $name         Required. The relative resource name of the finding. See:
-     *                                https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     *                                Example:
-     *                                "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
-     * @param int       $state        Required. The desired State of the finding.
-     *                                For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1p1beta1\Finding\State}
-     * @param Timestamp $startTime    Required. The time at which the updated state takes effect.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The relative resource name of the finding. See:
+     *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *           Example:
+     *           "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
+     *     @type int $state
+     *           Required. The desired State of the finding.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1p1beta1\Finding\State}
+     *     @type Timestamp $startTime
+     *           Required. The time at which the updated state takes effect.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2420,14 +2480,23 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function setFindingState($name, $state, $startTime, array $optionalArgs = [])
+    public function setFindingState(array $optionalArgs = [])
     {
         $request = new SetFindingStateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setState($state);
-        $request->setStartTime($startTime);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['state'])) {
+            $request->setState($optionalArgs['state']);
+        }
+
+        if (isset($optionalArgs['startTime'])) {
+            $request->setStartTime($optionalArgs['startTime']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetFindingState', Finding::class, $optionalArgs, $request)->wait();
@@ -2547,22 +2616,22 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $finding = new Finding();
-     *     $response = $securityCenterClient->updateFinding($finding);
+     *     $response = $securityCenterClient->updateFinding();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param Finding $finding      Required. The finding resource to update or create if it does not already exist.
-     *                              parent, security_marks, and update_time will be ignored.
-     *
-     *                              In the case of creation, the finding id portion of the name must be
-     *                              alphanumeric and less than or equal to 32 characters and greater than 0
-     *                              characters in length.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Finding $finding
+     *           Required. The finding resource to update or create if it does not already exist.
+     *           parent, security_marks, and update_time will be ignored.
+     *
+     *           In the case of creation, the finding id portion of the name must be
+     *           alphanumeric and less than or equal to 32 characters and greater than 0
+     *           characters in length.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the finding resource. This field should
      *           not be specified when creating a finding.
@@ -2583,12 +2652,14 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function updateFinding($finding, array $optionalArgs = [])
+    public function updateFinding(array $optionalArgs = [])
     {
         $request = new UpdateFindingRequest();
         $requestParamHeaders = [];
-        $request->setFinding($finding);
-        $requestParamHeaders['finding.name'] = $finding->getName();
+        if (isset($optionalArgs['finding'])) {
+            $request->setFinding($optionalArgs['finding']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2606,17 +2677,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $notificationConfig = new NotificationConfig();
-     *     $response = $securityCenterClient->updateNotificationConfig($notificationConfig);
+     *     $response = $securityCenterClient->updateNotificationConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param NotificationConfig $notificationConfig Required. The notification config to update.
-     * @param array              $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type NotificationConfig $notificationConfig
+     *           Required. The notification config to update.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the notification config.
      *
@@ -2633,12 +2704,14 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function updateNotificationConfig($notificationConfig, array $optionalArgs = [])
+    public function updateNotificationConfig(array $optionalArgs = [])
     {
         $request = new UpdateNotificationConfigRequest();
         $requestParamHeaders = [];
-        $request->setNotificationConfig($notificationConfig);
-        $requestParamHeaders['notification_config.name'] = $notificationConfig->getName();
+        if (isset($optionalArgs['notificationConfig'])) {
+            $request->setNotificationConfig($optionalArgs['notificationConfig']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2655,17 +2728,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $organizationSettings = new OrganizationSettings();
-     *     $response = $securityCenterClient->updateOrganizationSettings($organizationSettings);
+     *     $response = $securityCenterClient->updateOrganizationSettings();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param OrganizationSettings $organizationSettings Required. The organization settings resource to update.
-     * @param array                $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type OrganizationSettings $organizationSettings
+     *           Required. The organization settings resource to update.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the settings resource.
      *
@@ -2682,12 +2755,14 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function updateOrganizationSettings($organizationSettings, array $optionalArgs = [])
+    public function updateOrganizationSettings(array $optionalArgs = [])
     {
         $request = new UpdateOrganizationSettingsRequest();
         $requestParamHeaders = [];
-        $request->setOrganizationSettings($organizationSettings);
-        $requestParamHeaders['organization_settings.name'] = $organizationSettings->getName();
+        if (isset($optionalArgs['organizationSettings'])) {
+            $request->setOrganizationSettings($optionalArgs['organizationSettings']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2704,17 +2779,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $securityMarks = new SecurityMarks();
-     *     $response = $securityCenterClient->updateSecurityMarks($securityMarks);
+     *     $response = $securityCenterClient->updateSecurityMarks();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param SecurityMarks $securityMarks Required. The security marks resource to update.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type SecurityMarks $securityMarks
+     *           Required. The security marks resource to update.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the security marks resource.
      *
@@ -2737,12 +2812,14 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function updateSecurityMarks($securityMarks, array $optionalArgs = [])
+    public function updateSecurityMarks(array $optionalArgs = [])
     {
         $request = new UpdateSecurityMarksRequest();
         $requestParamHeaders = [];
-        $request->setSecurityMarks($securityMarks);
-        $requestParamHeaders['security_marks.name'] = $securityMarks->getName();
+        if (isset($optionalArgs['securityMarks'])) {
+            $request->setSecurityMarks($optionalArgs['securityMarks']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2763,17 +2840,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $source = new Source();
-     *     $response = $securityCenterClient->updateSource($source);
+     *     $response = $securityCenterClient->updateSource();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param Source $source       Required. The source resource to update.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Source $source
+     *           Required. The source resource to update.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the source resource.
      *
@@ -2790,12 +2867,14 @@ class SecurityCenterGapicClient
      *
      * @experimental
      */
-    public function updateSource($source, array $optionalArgs = [])
+    public function updateSource(array $optionalArgs = [])
     {
         $request = new UpdateSourceRequest();
         $requestParamHeaders = [];
-        $request->setSource($source);
-        $requestParamHeaders['source.name'] = $source->getName();
+        if (isset($optionalArgs['source'])) {
+            $request->setSource($optionalArgs['source']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

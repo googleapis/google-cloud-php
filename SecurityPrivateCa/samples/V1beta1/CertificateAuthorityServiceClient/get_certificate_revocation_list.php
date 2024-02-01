@@ -30,11 +30,13 @@ use Google\Cloud\Security\PrivateCA\V1beta1\CertificateRevocationList;
 /**
  * Returns a [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList].
  *
- * @param string $formattedName The [name][google.cloud.security.privateca.v1beta1.CertificateRevocationList.name] of the
- *                              [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList] to get. Please see
- *                              {@see CertificateAuthorityServiceClient::certificateRevocationListName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_certificate_revocation_list_sample(string $formattedName): void
+function get_certificate_revocation_list_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
@@ -42,31 +44,10 @@ function get_certificate_revocation_list_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var CertificateRevocationList $response */
-        $response = $certificateAuthorityServiceClient->getCertificateRevocationList($formattedName);
+        $response = $certificateAuthorityServiceClient->getCertificateRevocationList();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CertificateAuthorityServiceClient::certificateRevocationListName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CERTIFICATE_AUTHORITY]',
-        '[CERTIFICATE_REVOCATION_LIST]'
-    );
-
-    get_certificate_revocation_list_sample($formattedName);
 }
 // [END privateca_v1beta1_generated_CertificateAuthorityService_GetCertificateRevocationList_sync]

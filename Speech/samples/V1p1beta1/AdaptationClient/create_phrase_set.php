@@ -32,55 +32,24 @@ use Google\Cloud\Speech\V1p1beta1\PhraseSet;
  * a multi-word phrase. The items in the PhraseSet are favored by the
  * recognition model when you send a call that includes the PhraseSet.
  *
- * @param string $formattedParent The parent resource where this phrase set will be created.
- *                                Format:
- *
- *                                `projects/{project}/locations/{location}`
- *
- *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
- *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`
- *                                endpoint, use the `global` location. To specify a region, use a
- *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
- *                                with matching `us` or `eu` location value. Please see
- *                                {@see AdaptationClient::locationName()} for help formatting this field.
- * @param string $phraseSetId     The ID to use for the phrase set, which will become the final
- *                                component of the phrase set's resource name.
- *
- *                                This value should restrict to letters, numbers, and hyphens, with the first
- *                                character a letter, the last a letter or a number, and be 4-63 characters.
- */
-function create_phrase_set_sample(string $formattedParent, string $phraseSetId): void
-{
-    // Create a client.
-    $adaptationClient = new AdaptationClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $phraseSet = new PhraseSet();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var PhraseSet $response */
-        $response = $adaptationClient->createPhraseSet($formattedParent, $phraseSetId, $phraseSet);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function create_phrase_set_sample(): void
 {
-    $formattedParent = AdaptationClient::locationName('[PROJECT]', '[LOCATION]');
-    $phraseSetId = '[PHRASE_SET_ID]';
+    // Create a client.
+    $adaptationClient = new AdaptationClient();
 
-    create_phrase_set_sample($formattedParent, $phraseSetId);
+    // Call the API and handle any network failures.
+    try {
+        /** @var PhraseSet $response */
+        $response = $adaptationClient->createPhraseSet();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END speech_v1p1beta1_generated_Adaptation_CreatePhraseSet_sync]

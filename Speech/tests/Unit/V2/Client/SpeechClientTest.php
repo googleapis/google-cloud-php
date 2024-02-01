@@ -129,10 +129,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new BatchRecognizeRequest())
-            ->setRecognizer($formattedRecognizer);
+        $request = new BatchRecognizeRequest();
         $response = $gapicClient->batchRecognize($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -143,8 +140,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/BatchRecognize', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getRecognizer();
-        $this->assertProtobufEquals($formattedRecognizer, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchRecognizeTest');
         $response->pollUntilComplete([
@@ -195,10 +190,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new BatchRecognizeRequest())
-            ->setRecognizer($formattedRecognizer);
+        $request = new BatchRecognizeRequest();
         $response = $gapicClient->batchRecognize($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -264,12 +256,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $customClass = new CustomClass();
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateCustomClassRequest())
-            ->setCustomClass($customClass)
-            ->setParent($formattedParent);
+        $request = new CreateCustomClassRequest();
         $response = $gapicClient->createCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -280,10 +267,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/CreateCustomClass', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getCustomClass();
-        $this->assertProtobufEquals($customClass, $actualValue);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createCustomClassTest');
         $response->pollUntilComplete([
@@ -334,12 +317,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $customClass = new CustomClass();
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateCustomClassRequest())
-            ->setCustomClass($customClass)
-            ->setParent($formattedParent);
+        $request = new CreateCustomClassRequest();
         $response = $gapicClient->createCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -407,12 +385,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $phraseSet = new PhraseSet();
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreatePhraseSetRequest())
-            ->setPhraseSet($phraseSet)
-            ->setParent($formattedParent);
+        $request = new CreatePhraseSetRequest();
         $response = $gapicClient->createPhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -423,10 +396,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/CreatePhraseSet', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getPhraseSet();
-        $this->assertProtobufEquals($phraseSet, $actualValue);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createPhraseSetTest');
         $response->pollUntilComplete([
@@ -477,12 +446,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $phraseSet = new PhraseSet();
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreatePhraseSetRequest())
-            ->setPhraseSet($phraseSet)
-            ->setParent($formattedParent);
+        $request = new CreatePhraseSetRequest();
         $response = $gapicClient->createPhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -550,12 +514,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $recognizer = new Recognizer();
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateRecognizerRequest())
-            ->setRecognizer($recognizer)
-            ->setParent($formattedParent);
+        $request = new CreateRecognizerRequest();
         $response = $gapicClient->createRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -566,10 +525,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/CreateRecognizer', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getRecognizer();
-        $this->assertProtobufEquals($recognizer, $actualValue);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createRecognizerTest');
         $response->pollUntilComplete([
@@ -620,12 +575,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $recognizer = new Recognizer();
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateRecognizerRequest())
-            ->setRecognizer($recognizer)
-            ->setParent($formattedParent);
+        $request = new CreateRecognizerRequest();
         $response = $gapicClient->createRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -691,10 +641,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new DeleteCustomClassRequest())
-            ->setName($formattedName);
+        $request = new DeleteCustomClassRequest();
         $response = $gapicClient->deleteCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -705,8 +652,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/DeleteCustomClass', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteCustomClassTest');
         $response->pollUntilComplete([
@@ -757,10 +702,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new DeleteCustomClassRequest())
-            ->setName($formattedName);
+        $request = new DeleteCustomClassRequest();
         $response = $gapicClient->deleteCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -828,10 +770,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new DeletePhraseSetRequest())
-            ->setName($formattedName);
+        $request = new DeletePhraseSetRequest();
         $response = $gapicClient->deletePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -842,8 +781,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/DeletePhraseSet', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deletePhraseSetTest');
         $response->pollUntilComplete([
@@ -894,10 +831,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new DeletePhraseSetRequest())
-            ->setName($formattedName);
+        $request = new DeletePhraseSetRequest();
         $response = $gapicClient->deletePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -965,10 +899,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new DeleteRecognizerRequest())
-            ->setName($formattedName);
+        $request = new DeleteRecognizerRequest();
         $response = $gapicClient->deleteRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -979,8 +910,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/DeleteRecognizer', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteRecognizerTest');
         $response->pollUntilComplete([
@@ -1031,10 +960,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new DeleteRecognizerRequest())
-            ->setName($formattedName);
+        $request = new DeleteRecognizerRequest();
         $response = $gapicClient->deleteRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1072,10 +998,7 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
-        $request = (new GetConfigRequest())
-            ->setName($formattedName);
+        $request = new GetConfigRequest();
         $response = $gapicClient->getConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1083,8 +1006,6 @@ class SpeechClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/GetConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1106,10 +1027,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
-        $request = (new GetConfigRequest())
-            ->setName($formattedName);
+        $request = new GetConfigRequest();
         try {
             $gapicClient->getConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1148,10 +1066,7 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setKmsKeyVersionName($kmsKeyVersionName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new GetCustomClassRequest())
-            ->setName($formattedName);
+        $request = new GetCustomClassRequest();
         $response = $gapicClient->getCustomClass($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1159,8 +1074,6 @@ class SpeechClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/GetCustomClass', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1182,10 +1095,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new GetCustomClassRequest())
-            ->setName($formattedName);
+        $request = new GetCustomClassRequest();
         try {
             $gapicClient->getCustomClass($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1226,10 +1136,7 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setKmsKeyVersionName($kmsKeyVersionName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new GetPhraseSetRequest())
-            ->setName($formattedName);
+        $request = new GetPhraseSetRequest();
         $response = $gapicClient->getPhraseSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1237,8 +1144,6 @@ class SpeechClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/GetPhraseSet', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1260,10 +1165,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new GetPhraseSetRequest())
-            ->setName($formattedName);
+        $request = new GetPhraseSetRequest();
         try {
             $gapicClient->getPhraseSet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1304,10 +1206,7 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setKmsKeyVersionName($kmsKeyVersionName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new GetRecognizerRequest())
-            ->setName($formattedName);
+        $request = new GetRecognizerRequest();
         $response = $gapicClient->getRecognizer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1315,8 +1214,6 @@ class SpeechClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/GetRecognizer', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1338,10 +1235,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new GetRecognizerRequest())
-            ->setName($formattedName);
+        $request = new GetRecognizerRequest();
         try {
             $gapicClient->getRecognizer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1373,10 +1267,7 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomClasses($customClasses);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCustomClassesRequest())
-            ->setParent($formattedParent);
+        $request = new ListCustomClassesRequest();
         $response = $gapicClient->listCustomClasses($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1387,8 +1278,6 @@ class SpeechClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/ListCustomClasses', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1410,10 +1299,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCustomClassesRequest())
-            ->setParent($formattedParent);
+        $request = new ListCustomClassesRequest();
         try {
             $gapicClient->listCustomClasses($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1445,10 +1331,7 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPhraseSets($phraseSets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPhraseSetsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPhraseSetsRequest();
         $response = $gapicClient->listPhraseSets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1459,8 +1342,6 @@ class SpeechClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/ListPhraseSets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1482,10 +1363,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPhraseSetsRequest())
-            ->setParent($formattedParent);
+        $request = new ListPhraseSetsRequest();
         try {
             $gapicClient->listPhraseSets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1517,10 +1395,7 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRecognizers($recognizers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRecognizersRequest())
-            ->setParent($formattedParent);
+        $request = new ListRecognizersRequest();
         $response = $gapicClient->listRecognizers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1531,8 +1406,6 @@ class SpeechClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/ListRecognizers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1554,10 +1427,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRecognizersRequest())
-            ->setParent($formattedParent);
+        $request = new ListRecognizersRequest();
         try {
             $gapicClient->listRecognizers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1582,10 +1452,7 @@ class SpeechClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RecognizeResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new RecognizeRequest())
-            ->setRecognizer($formattedRecognizer);
+        $request = new RecognizeRequest();
         $response = $gapicClient->recognize($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1593,8 +1460,6 @@ class SpeechClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/Recognize', $actualFuncCall);
-        $actualValue = $actualRequestObject->getRecognizer();
-        $this->assertProtobufEquals($formattedRecognizer, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1616,10 +1481,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new RecognizeRequest())
-            ->setRecognizer($formattedRecognizer);
+        $request = new RecognizeRequest();
         try {
             $gapicClient->recognize($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1649,15 +1511,9 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponse3 = new StreamingRecognizeResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
         $request = new StreamingRecognizeRequest();
-        $request->setRecognizer($formattedRecognizer);
-        $formattedRecognizer2 = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
         $request2 = new StreamingRecognizeRequest();
-        $request2->setRecognizer($formattedRecognizer2);
-        $formattedRecognizer3 = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
         $request3 = new StreamingRecognizeRequest();
-        $request3->setRecognizer($formattedRecognizer3);
         $bidi = $gapicClient->streamingRecognize();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
@@ -1770,10 +1626,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new UndeleteCustomClassRequest())
-            ->setName($formattedName);
+        $request = new UndeleteCustomClassRequest();
         $response = $gapicClient->undeleteCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1784,8 +1637,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/UndeleteCustomClass', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeleteCustomClassTest');
         $response->pollUntilComplete([
@@ -1836,10 +1687,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $request = (new UndeleteCustomClassRequest())
-            ->setName($formattedName);
+        $request = new UndeleteCustomClassRequest();
         $response = $gapicClient->undeleteCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1907,10 +1755,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new UndeletePhraseSetRequest())
-            ->setName($formattedName);
+        $request = new UndeletePhraseSetRequest();
         $response = $gapicClient->undeletePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1921,8 +1766,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/UndeletePhraseSet', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeletePhraseSetTest');
         $response->pollUntilComplete([
@@ -1973,10 +1816,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $request = (new UndeletePhraseSetRequest())
-            ->setName($formattedName);
+        $request = new UndeletePhraseSetRequest();
         $response = $gapicClient->undeletePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2044,10 +1884,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new UndeleteRecognizerRequest())
-            ->setName($formattedName);
+        $request = new UndeleteRecognizerRequest();
         $response = $gapicClient->undeleteRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2058,8 +1895,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/UndeleteRecognizer', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeleteRecognizerTest');
         $response->pollUntilComplete([
@@ -2110,10 +1945,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new UndeleteRecognizerRequest())
-            ->setName($formattedName);
+        $request = new UndeleteRecognizerRequest();
         $response = $gapicClient->undeleteRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2151,10 +1983,7 @@ class SpeechClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $config = new Config();
-        $request = (new UpdateConfigRequest())
-            ->setConfig($config);
+        $request = new UpdateConfigRequest();
         $response = $gapicClient->updateConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2162,8 +1991,6 @@ class SpeechClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/UpdateConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getConfig();
-        $this->assertProtobufEquals($config, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2185,10 +2012,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $config = new Config();
-        $request = (new UpdateConfigRequest())
-            ->setConfig($config);
+        $request = new UpdateConfigRequest();
         try {
             $gapicClient->updateConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2245,10 +2069,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $customClass = new CustomClass();
-        $request = (new UpdateCustomClassRequest())
-            ->setCustomClass($customClass);
+        $request = new UpdateCustomClassRequest();
         $response = $gapicClient->updateCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2259,8 +2080,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/UpdateCustomClass', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getCustomClass();
-        $this->assertProtobufEquals($customClass, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateCustomClassTest');
         $response->pollUntilComplete([
@@ -2311,10 +2130,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $customClass = new CustomClass();
-        $request = (new UpdateCustomClassRequest())
-            ->setCustomClass($customClass);
+        $request = new UpdateCustomClassRequest();
         $response = $gapicClient->updateCustomClass($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2382,10 +2198,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $phraseSet = new PhraseSet();
-        $request = (new UpdatePhraseSetRequest())
-            ->setPhraseSet($phraseSet);
+        $request = new UpdatePhraseSetRequest();
         $response = $gapicClient->updatePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2396,8 +2209,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/UpdatePhraseSet', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getPhraseSet();
-        $this->assertProtobufEquals($phraseSet, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updatePhraseSetTest');
         $response->pollUntilComplete([
@@ -2448,10 +2259,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $phraseSet = new PhraseSet();
-        $request = (new UpdatePhraseSetRequest())
-            ->setPhraseSet($phraseSet);
+        $request = new UpdatePhraseSetRequest();
         $response = $gapicClient->updatePhraseSet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2519,10 +2327,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $recognizer = new Recognizer();
-        $request = (new UpdateRecognizerRequest())
-            ->setRecognizer($recognizer);
+        $request = new UpdateRecognizerRequest();
         $response = $gapicClient->updateRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2533,8 +2338,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/UpdateRecognizer', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getRecognizer();
-        $this->assertProtobufEquals($recognizer, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateRecognizerTest');
         $response->pollUntilComplete([
@@ -2585,10 +2388,7 @@ class SpeechClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $recognizer = new Recognizer();
-        $request = (new UpdateRecognizerRequest())
-            ->setRecognizer($recognizer);
+        $request = new UpdateRecognizerRequest();
         $response = $gapicClient->updateRecognizer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2764,10 +2564,7 @@ class SpeechClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedRecognizer = $gapicClient->recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-        $request = (new BatchRecognizeRequest())
-            ->setRecognizer($formattedRecognizer);
+        $request = new BatchRecognizeRequest();
         $response = $gapicClient->batchRecognizeAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2778,8 +2575,6 @@ class SpeechClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.speech.v2.Speech/BatchRecognize', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getRecognizer();
-        $this->assertProtobufEquals($formattedRecognizer, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchRecognizeTest');
         $response->pollUntilComplete([

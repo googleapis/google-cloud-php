@@ -73,8 +73,7 @@ class ListOrganizationImpactsRequest extends \Google\Protobuf\Internal\Message
      *                       `organization_id` - ID (number) of the project that contains the event. To
      *                       get your `organization_id`, see
      *                       [Getting your organization resource
-     *                       ID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). Please see
-     *                       {@see ServiceHealthClient::organizationLocationName()} for help formatting this field.
+     *                       ID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
      *
      * @return \Google\Cloud\ServiceHealth\V1\ListOrganizationImpactsRequest
      *

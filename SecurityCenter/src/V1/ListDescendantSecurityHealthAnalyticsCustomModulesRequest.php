@@ -44,7 +44,6 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesRequest extends \Google\
      *                       "organizations/{organization}/securityHealthAnalyticsSettings",
      *                       "folders/{folder}/securityHealthAnalyticsSettings", or
      *                       "projects/{project}/securityHealthAnalyticsSettings"
-     *                       Please see {@see SecurityCenterClient::securityHealthAnalyticsSettingsName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\ListDescendantSecurityHealthAnalyticsCustomModulesRequest
      *

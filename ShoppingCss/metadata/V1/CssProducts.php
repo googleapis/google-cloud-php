@@ -22,26 +22,26 @@ class CssProducts
         \GPBMetadata\Google\Shopping\Type\Types::initOnce();
         $pool->internalAddGeneratedFile(
             '
-£
-)google/shopping/css/v1/css_products.protogoogle.shopping.css.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/shopping/css/v1/css_product_common.proto google/shopping/type/types.proto"K
-GetCssProductRequest3
-name (	B%‡A˙A
-css.googleapis.com/CssProduct"™
+´
+)google/shopping/css/v1/css_products.protogoogle.shopping.css.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/shopping/css/v1/css_product_common.proto google/shopping/type/types.proto"L
+GetCssProductRequest4
+name (	B&‚A˙A
+css.googleapis.com/CssProduct"∞
 
 CssProduct
-name (	
-raw_provided_id (	B‡A
-content_language (	B‡A
+name (	
+raw_provided_id (	B‚A
+content_language (	B‚A
 
-feed_label (	B‡A;
+feed_label (	B‚A<
 
-attributes (2".google.shopping.css.v1.AttributesB‡AE
-custom_attributes (2%.google.shopping.type.CustomAttributeB‡AI
-css_product_status (2(.google.shopping.css.v1.CssProductStatusB‡A:iÍAf
+attributes (2".google.shopping.css.v1.AttributesB‚AF
+custom_attributes (2%.google.shopping.type.CustomAttributeB‚AJ
+css_product_status (2(.google.shopping.css.v1.CssProductStatusB‚A:iÍAf
 css.googleapis.com/CssProduct,accounts/{account}/cssProducts/{css_product}*cssProducts2
-cssProduct"v
-ListCssProductsRequest5
-parent (	B%‡A˙Acss.googleapis.com/CssProduct
+cssProduct"w
+ListCssProductsRequest6
+parent (	B&‚A˙Acss.googleapis.com/CssProduct
 	page_size (
 
 page_token (	"l
@@ -49,8 +49,8 @@ page_token (	"l
 css_products (2".google.shopping.css.v1.CssProduct
 next_page_token (	2ò
 CssProductsServiceï
-GetCssProduct,.google.shopping.css.v1.GetCssProductRequest".google.shopping.css.v1.CssProduct"2Ç”‰ì%#/v1/{name=accounts/*/cssProducts/*}⁄Aname®
-ListCssProducts..google.shopping.css.v1.ListCssProductsRequest/.google.shopping.css.v1.ListCssProductsResponse"4Ç”‰ì%#/v1/{parent=accounts/*}/cssProducts⁄Aparent? Acss.googleapis.com“A\'https://www.googleapis.com/auth/contentB≤
+GetCssProduct,.google.shopping.css.v1.GetCssProductRequest".google.shopping.css.v1.CssProduct"2⁄AnameÇ”‰ì%#/v1/{name=accounts/*/cssProducts/*}®
+ListCssProducts..google.shopping.css.v1.ListCssProductsRequest/.google.shopping.css.v1.ListCssProductsResponse"4⁄AparentÇ”‰ì%#/v1/{parent=accounts/*}/cssProducts? Acss.googleapis.com“A\'https://www.googleapis.com/auth/contentB≤
 com.google.shopping.css.v1BCssProductsProtoPZ2cloud.google.com/go/shopping/css/apiv1/csspb;csspb™Google.Shopping.Css.V1 Google\\Shopping\\Css\\V1ÍGoogle::Shopping::Css::V1bproto3'
         , true);
 

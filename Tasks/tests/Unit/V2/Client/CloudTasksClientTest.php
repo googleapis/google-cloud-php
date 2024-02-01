@@ -98,12 +98,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse = new Queue();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $queue = new Queue();
-        $request = (new CreateQueueRequest())
-            ->setParent($formattedParent)
-            ->setQueue($queue);
+        $request = new CreateQueueRequest();
         $response = $gapicClient->createQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -111,10 +106,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/CreateQueue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getQueue();
-        $this->assertProtobufEquals($queue, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -136,12 +127,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $queue = new Queue();
-        $request = (new CreateQueueRequest())
-            ->setParent($formattedParent)
-            ->setQueue($queue);
+        $request = new CreateQueueRequest();
         try {
             $gapicClient->createQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -172,12 +158,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse->setDispatchCount($dispatchCount);
         $expectedResponse->setResponseCount($responseCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $task = new Task();
-        $request = (new CreateTaskRequest())
-            ->setParent($formattedParent)
-            ->setTask($task);
+        $request = new CreateTaskRequest();
         $response = $gapicClient->createTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -185,10 +166,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/CreateTask', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getTask();
-        $this->assertProtobufEquals($task, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -210,12 +187,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $task = new Task();
-        $request = (new CreateTaskRequest())
-            ->setParent($formattedParent)
-            ->setTask($task);
+        $request = new CreateTaskRequest();
         try {
             $gapicClient->createTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -240,18 +212,13 @@ class CloudTasksClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new DeleteQueueRequest())
-            ->setName($formattedName);
+        $request = new DeleteQueueRequest();
         $gapicClient->deleteQueue($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/DeleteQueue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -273,10 +240,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new DeleteQueueRequest())
-            ->setName($formattedName);
+        $request = new DeleteQueueRequest();
         try {
             $gapicClient->deleteQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -301,18 +265,13 @@ class CloudTasksClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new DeleteTaskRequest())
-            ->setName($formattedName);
+        $request = new DeleteTaskRequest();
         $gapicClient->deleteTask($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/DeleteTask', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -334,10 +293,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new DeleteTaskRequest())
-            ->setName($formattedName);
+        $request = new DeleteTaskRequest();
         try {
             $gapicClient->deleteTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -430,10 +386,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse = new Queue();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new GetQueueRequest())
-            ->setName($formattedName);
+        $request = new GetQueueRequest();
         $response = $gapicClient->getQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -441,8 +394,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/GetQueue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -464,10 +415,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new GetQueueRequest())
-            ->setName($formattedName);
+        $request = new GetQueueRequest();
         try {
             $gapicClient->getQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -498,10 +446,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse->setDispatchCount($dispatchCount);
         $expectedResponse->setResponseCount($responseCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new GetTaskRequest())
-            ->setName($formattedName);
+        $request = new GetTaskRequest();
         $response = $gapicClient->getTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -509,8 +454,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/GetTask', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -532,10 +475,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new GetTaskRequest())
-            ->setName($formattedName);
+        $request = new GetTaskRequest();
         try {
             $gapicClient->getTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -567,10 +507,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setQueues($queues);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListQueuesRequest())
-            ->setParent($formattedParent);
+        $request = new ListQueuesRequest();
         $response = $gapicClient->listQueues($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -581,8 +518,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/ListQueues', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -604,10 +539,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListQueuesRequest())
-            ->setParent($formattedParent);
+        $request = new ListQueuesRequest();
         try {
             $gapicClient->listQueues($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -639,10 +571,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTasks($tasks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new ListTasksRequest())
-            ->setParent($formattedParent);
+        $request = new ListTasksRequest();
         $response = $gapicClient->listTasks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -653,8 +582,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/ListTasks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -676,10 +603,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new ListTasksRequest())
-            ->setParent($formattedParent);
+        $request = new ListTasksRequest();
         try {
             $gapicClient->listTasks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -706,10 +630,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse = new Queue();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new PauseQueueRequest())
-            ->setName($formattedName);
+        $request = new PauseQueueRequest();
         $response = $gapicClient->pauseQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -717,8 +638,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/PauseQueue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -740,10 +659,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new PauseQueueRequest())
-            ->setName($formattedName);
+        $request = new PauseQueueRequest();
         try {
             $gapicClient->pauseQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -770,10 +686,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse = new Queue();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new PurgeQueueRequest())
-            ->setName($formattedName);
+        $request = new PurgeQueueRequest();
         $response = $gapicClient->purgeQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -781,8 +694,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/PurgeQueue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -804,10 +715,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new PurgeQueueRequest())
-            ->setName($formattedName);
+        $request = new PurgeQueueRequest();
         try {
             $gapicClient->purgeQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -834,10 +742,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse = new Queue();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new ResumeQueueRequest())
-            ->setName($formattedName);
+        $request = new ResumeQueueRequest();
         $response = $gapicClient->resumeQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -845,8 +750,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/ResumeQueue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -868,10 +771,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-        $request = (new ResumeQueueRequest())
-            ->setName($formattedName);
+        $request = new ResumeQueueRequest();
         try {
             $gapicClient->resumeQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -902,10 +802,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse->setDispatchCount($dispatchCount);
         $expectedResponse->setResponseCount($responseCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new RunTaskRequest())
-            ->setName($formattedName);
+        $request = new RunTaskRequest();
         $response = $gapicClient->runTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -913,8 +810,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/RunTask', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -936,10 +831,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
-        $request = (new RunTaskRequest())
-            ->setName($formattedName);
+        $request = new RunTaskRequest();
         try {
             $gapicClient->runTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1106,10 +998,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse = new Queue();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $queue = new Queue();
-        $request = (new UpdateQueueRequest())
-            ->setQueue($queue);
+        $request = new UpdateQueueRequest();
         $response = $gapicClient->updateQueue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1117,8 +1006,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/UpdateQueue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getQueue();
-        $this->assertProtobufEquals($queue, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1140,10 +1027,7 @@ class CloudTasksClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $queue = new Queue();
-        $request = (new UpdateQueueRequest())
-            ->setQueue($queue);
+        $request = new UpdateQueueRequest();
         try {
             $gapicClient->updateQueue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1294,12 +1178,7 @@ class CloudTasksClientTest extends GeneratedTest
         $expectedResponse = new Queue();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $queue = new Queue();
-        $request = (new CreateQueueRequest())
-            ->setParent($formattedParent)
-            ->setQueue($queue);
+        $request = new CreateQueueRequest();
         $response = $gapicClient->createQueueAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1307,10 +1186,6 @@ class CloudTasksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.tasks.v2.CloudTasks/CreateQueue', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getQueue();
-        $this->assertProtobufEquals($queue, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

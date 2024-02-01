@@ -54,8 +54,7 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The fully qualified name of parent resource to list cases under. Please see
-     *                       {@see CaseServiceClient::projectName()} for help formatting this field.
+     * @param string $parent Required. The fully qualified name of parent resource to list cases under.
      *
      * @return \Google\Cloud\Support\V2\ListCasesRequest
      *

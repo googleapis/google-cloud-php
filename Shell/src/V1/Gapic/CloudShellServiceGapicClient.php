@@ -499,18 +499,18 @@ class CloudShellServiceGapicClient
      * ```
      * $cloudShellServiceClient = new CloudShellServiceClient();
      * try {
-     *     $formattedName = $cloudShellServiceClient->environmentName('[USER]', '[ENVIRONMENT]');
-     *     $response = $cloudShellServiceClient->getEnvironment($formattedName);
+     *     $response = $cloudShellServiceClient->getEnvironment();
      * } finally {
      *     $cloudShellServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the requested resource, for example `users/me/environments/default`
-     *                             or `users/someone&#64;example.com/environments/default`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the requested resource, for example `users/me/environments/default`
+     *           or `users/someone&#64;example.com/environments/default`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -521,12 +521,15 @@ class CloudShellServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEnvironment($name, array $optionalArgs = [])
+    public function getEnvironment(array $optionalArgs = [])
     {
         $request = new GetEnvironmentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEnvironment', Environment::class, $optionalArgs, $request)->wait();

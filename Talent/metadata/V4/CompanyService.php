@@ -24,23 +24,23 @@ class CompanyService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
-,google/cloud/talent/v4/company_service.protogoogle.cloud.talent.v4google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/talent/v4/common.proto$google/cloud/talent/v4/company.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"
-CreateCompanyRequest2
-parent (	B"àAúA
-jobs.googleapis.com/Tenant5
-company (2.google.cloud.talent.v4.CompanyBàA"F
-GetCompanyRequest1
-name (	B#àAúA
-jobs.googleapis.com/Company"~
-UpdateCompanyRequest5
-company (2.google.cloud.talent.v4.CompanyBàA/
-update_mask (2.google.protobuf.FieldMask"I
-DeleteCompanyRequest1
-name (	B#àAúA
-jobs.googleapis.com/Company"Œ
-ListCompaniesRequest2
-parent (	B"àAúA
+±
+,google/cloud/talent/v4/company_service.protogoogle.cloud.talent.v4google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/talent/v4/common.proto$google/cloud/talent/v4/company.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ƒ
+CreateCompanyRequest3
+parent (	B#âAúA
+jobs.googleapis.com/Tenant6
+company (2.google.cloud.talent.v4.CompanyBâA"G
+GetCompanyRequest2
+name (	B$âAúA
+jobs.googleapis.com/Company"
+UpdateCompanyRequest6
+company (2.google.cloud.talent.v4.CompanyBâA/
+update_mask (2.google.protobuf.FieldMask"J
+DeleteCompanyRequest2
+name (	B$âAúA
+jobs.googleapis.com/Company"
+ListCompaniesRequest3
+parent (	B#âAúA
 jobs.googleapis.com/Tenant
 
 page_token (	
@@ -51,12 +51,12 @@ page_token (	
 next_page_token (	:
 metadata (2(.google.cloud.talent.v4.ResponseMetadata2Ã
 CompanyService­
-CreateCompany,.google.cloud.talent.v4.CreateCompanyRequest.google.cloud.talent.v4.Company"M‚Óä“6"+/v4/{parent=projects/*/tenants/*}/companies:companyÚAparent,company”
+CreateCompany,.google.cloud.talent.v4.CreateCompanyRequest.google.cloud.talent.v4.Company"MÚAparent,company‚Óä“6"+/v4/{parent=projects/*/tenants/*}/companies:company”
 
-GetCompany).google.cloud.talent.v4.GetCompanyRequest.google.cloud.talent.v4.Company":‚Óä“-+/v4/{name=projects/*/tenants/*/companies/*}ÚAnameº
-UpdateCompany,.google.cloud.talent.v4.UpdateCompanyRequest.google.cloud.talent.v4.Company"Z‚Óä“>23/v4/{company.name=projects/*/tenants/*/companies/*}:companyÚAcompany,update_mask‘
-DeleteCompany,.google.cloud.talent.v4.DeleteCompanyRequest.google.protobuf.Empty":‚Óä“-*+/v4/{name=projects/*/tenants/*/companies/*}ÚAnameª
-ListCompanies,.google.cloud.talent.v4.ListCompaniesRequest-.google.cloud.talent.v4.ListCompaniesResponse"<‚Óä“-+/v4/{parent=projects/*/tenants/*}/companiesÚAparentlÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBm
+GetCompany).google.cloud.talent.v4.GetCompanyRequest.google.cloud.talent.v4.Company":ÚAname‚Óä“-+/v4/{name=projects/*/tenants/*/companies/*}º
+UpdateCompany,.google.cloud.talent.v4.UpdateCompanyRequest.google.cloud.talent.v4.Company"ZÚAcompany,update_mask‚Óä“>23/v4/{company.name=projects/*/tenants/*/companies/*}:company‘
+DeleteCompany,.google.cloud.talent.v4.DeleteCompanyRequest.google.protobuf.Empty":ÚAname‚Óä“-*+/v4/{name=projects/*/tenants/*/companies/*}ª
+ListCompanies,.google.cloud.talent.v4.ListCompaniesRequest-.google.cloud.talent.v4.ListCompaniesResponse"<ÚAparent‚Óä“-+/v4/{parent=projects/*/tenants/*}/companieslÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBm
 com.google.cloud.talent.v4BCompanyServiceProtoPZ2cloud.google.com/go/talent/apiv4/talentpb;talentpb¢CTSbproto3'
         , true);
 

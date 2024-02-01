@@ -27,8 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Security\PrivateCA\V1\Certificate;
 use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateRequest;
-use Google\Protobuf\Duration;
-use Google\Protobuf\FieldMask;
 
 /**
  * Update a [Certificate][google.cloud.security.privateca.v1.Certificate].
@@ -47,13 +45,7 @@ function update_certificate_sample(): void
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $certificateLifetime = new Duration();
-    $certificate = (new Certificate())
-        ->setLifetime($certificateLifetime);
-    $updateMask = new FieldMask();
-    $request = (new UpdateCertificateRequest())
-        ->setCertificate($certificate)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateCertificateRequest();
 
     // Call the API and handle any network failures.
     try {

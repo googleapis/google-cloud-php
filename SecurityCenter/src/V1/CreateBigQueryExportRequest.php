@@ -42,8 +42,7 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                         $parent           Required. The name of the parent resource of the new BigQuery export. Its
      *                                                                         format is "organizations/[organization_id]", "folders/[folder_id]", or
-     *                                                                         "projects/[project_id]". Please see
-     *                                                                         {@see SecurityCenterClient::projectName()} for help formatting this field.
+     *                                                                         "projects/[project_id]".
      * @param \Google\Cloud\SecurityCenter\V1\BigQueryExport $bigQueryExport   Required. The BigQuery export being created.
      * @param string                                         $bigQueryExportId Required. Unique identifier provided by the client within the parent scope.
      *                                                                         It must consist of only lowercase letters, numbers, and hyphens, must start

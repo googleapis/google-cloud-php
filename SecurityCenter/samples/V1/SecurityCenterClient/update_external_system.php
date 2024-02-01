@@ -43,9 +43,7 @@ function update_external_system_sample(): void
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $externalSystem = new ExternalSystem();
-    $request = (new UpdateExternalSystemRequest())
-        ->setExternalSystem($externalSystem);
+    $request = new UpdateExternalSystemRequest();
 
     // Call the API and handle any network failures.
     try {

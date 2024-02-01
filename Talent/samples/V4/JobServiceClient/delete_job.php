@@ -33,21 +33,19 @@ use Google\Cloud\Talent\V4\DeleteJobRequest;
  * Typically, the job becomes unsearchable within 10 seconds, but it may take
  * up to 5 minutes.
  *
- * @param string $formattedName The resource name of the job to be deleted.
- *
- *                              The format is
- *                              "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
- *                              example, "projects/foo/tenants/bar/jobs/baz". Please see
- *                              {@see JobServiceClient::jobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_job_sample(string $formattedName): void
+function delete_job_sample(): void
 {
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteJobRequest())
-        ->setName($formattedName);
+    $request = new DeleteJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +54,5 @@ function delete_job_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = JobServiceClient::jobName('[PROJECT]', '[TENANT]', '[JOB]');
-
-    delete_job_sample($formattedName);
 }
 // [END jobs_v4_generated_JobService_DeleteJob_sync]

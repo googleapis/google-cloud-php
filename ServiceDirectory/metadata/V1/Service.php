@@ -19,13 +19,13 @@ class Service
         \GPBMetadata\Google\Cloud\Servicedirectory\V1\Endpoint::initOnce();
         $pool->internalAddGeneratedFile(
             '
-†
-.google/cloud/servicedirectory/v1/service.proto google.cloud.servicedirectory.v1google/api/resource.proto/google/cloud/servicedirectory/v1/endpoint.proto"˝
-Service
-name (	B‡AT
-annotations (2:.google.cloud.servicedirectory.v1.Service.AnnotationsEntryB‡AB
-	endpoints (2*.google.cloud.servicedirectory.v1.EndpointB‡A
-uid (	B‡A2
+§
+.google/cloud/servicedirectory/v1/service.proto google.cloud.servicedirectory.v1google/api/resource.proto/google/cloud/servicedirectory/v1/endpoint.proto"Å
+Service
+name (	B‚AU
+annotations (2:.google.cloud.servicedirectory.v1.Service.AnnotationsEntryB‚AC
+	endpoints (2*.google.cloud.servicedirectory.v1.EndpointB‚A
+uid (	B‚A2
 AnnotationsEntry
 key (	
 value (	:8:ÍA|

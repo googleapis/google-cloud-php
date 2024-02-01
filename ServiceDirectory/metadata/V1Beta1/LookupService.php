@@ -21,13 +21,13 @@ class LookupService
         \GPBMetadata\Google\Cloud\Servicedirectory\V1Beta1\Service::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∆
-:google/cloud/servicedirectory/v1beta1/lookup_service.proto%google.cloud.servicedirectory.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/servicedirectory/v1beta1/service.proto"ê
-ResolveServiceRequest=
-name (	B/‡A˙A)
-\'servicedirectory.googleapis.com/Service
-max_endpoints (B‡A
-endpoint_filter (	B‡A"Y
+…
+:google/cloud/servicedirectory/v1beta1/lookup_service.proto%google.cloud.servicedirectory.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/servicedirectory/v1beta1/service.proto"ì
+ResolveServiceRequest>
+name (	B0‚A˙A)
+\'servicedirectory.googleapis.com/Service
+max_endpoints (B‚A
+endpoint_filter (	B‚A"Y
 ResolveServiceResponse?
 service (2..google.cloud.servicedirectory.v1beta1.Service2«
 LookupService‡

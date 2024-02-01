@@ -40,8 +40,7 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      *                         The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      *                         "projects/foo/tenants/bar".
      *
-     *                         The parent of all of the jobs specified in `names` must match this field. Please see
-     *                         {@see JobServiceClient::tenantName()} for help formatting this field.
+     *                         The parent of all of the jobs specified in `names` must match this field.
      * @param string[] $names  The names of the jobs to delete.
      *
      *                         The format is "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}".

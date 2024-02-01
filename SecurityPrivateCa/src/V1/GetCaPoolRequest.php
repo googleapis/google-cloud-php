@@ -26,8 +26,7 @@ class GetCaPoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The [name][google.cloud.security.privateca.v1.CaPool.name] of the
-     *                     [CaPool][google.cloud.security.privateca.v1.CaPool] to get. Please see
-     *                     {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *                     [CaPool][google.cloud.security.privateca.v1.CaPool] to get.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\GetCaPoolRequest
      *

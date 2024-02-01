@@ -32,7 +32,6 @@ class CreateAccountLabelRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $parent       Required. The parent account.
      *                                                           Format: accounts/{account}
-     *                                                           Please see {@see AccountLabelsServiceClient::accountName()} for help formatting this field.
      * @param \Google\Shopping\Css\V1\AccountLabel $accountLabel Required. The label to create.
      *
      * @return \Google\Shopping\Css\V1\CreateAccountLabelRequest

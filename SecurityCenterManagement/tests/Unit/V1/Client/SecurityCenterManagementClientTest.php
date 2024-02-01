@@ -33,7 +33,6 @@ use Google\Cloud\Location\Location;
 use Google\Cloud\SecurityCenterManagement\V1\Client\SecurityCenterManagementClient;
 use Google\Cloud\SecurityCenterManagement\V1\CreateEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\CreateSecurityHealthAnalyticsCustomModuleRequest;
-use Google\Cloud\SecurityCenterManagement\V1\CustomConfig;
 use Google\Cloud\SecurityCenterManagement\V1\DeleteEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\DeleteSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule;
@@ -57,13 +56,11 @@ use Google\Cloud\SecurityCenterManagement\V1\ListSecurityHealthAnalyticsCustomMo
 use Google\Cloud\SecurityCenterManagement\V1\ListSecurityHealthAnalyticsCustomModulesResponse;
 use Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenterManagement\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest;
-use Google\Cloud\SecurityCenterManagement\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource;
 use Google\Cloud\SecurityCenterManagement\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse;
 use Google\Cloud\SecurityCenterManagement\V1\UpdateEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -121,12 +118,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setLastEditor($lastEditor);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $eventThreatDetectionCustomModule = new EventThreatDetectionCustomModule();
-        $request = (new CreateEventThreatDetectionCustomModuleRequest())
-            ->setParent($formattedParent)
-            ->setEventThreatDetectionCustomModule($eventThreatDetectionCustomModule);
+        $request = new CreateEventThreatDetectionCustomModuleRequest();
         $response = $gapicClient->createEventThreatDetectionCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -137,10 +129,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/CreateEventThreatDetectionCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEventThreatDetectionCustomModule();
-        $this->assertProtobufEquals($eventThreatDetectionCustomModule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -165,12 +153,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $eventThreatDetectionCustomModule = new EventThreatDetectionCustomModule();
-        $request = (new CreateEventThreatDetectionCustomModuleRequest())
-            ->setParent($formattedParent)
-            ->setEventThreatDetectionCustomModule($eventThreatDetectionCustomModule);
+        $request = new CreateEventThreatDetectionCustomModuleRequest();
         try {
             $gapicClient->createEventThreatDetectionCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -203,12 +186,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setLastEditor($lastEditor);
         $expectedResponse->setAncestorModule($ancestorModule);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-        $request = (new CreateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setParent($formattedParent)
-            ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $request = new CreateSecurityHealthAnalyticsCustomModuleRequest();
         $response = $gapicClient->createSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -219,10 +197,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/CreateSecurityHealthAnalyticsCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSecurityHealthAnalyticsCustomModule();
-        $this->assertProtobufEquals($securityHealthAnalyticsCustomModule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -247,12 +221,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-        $request = (new CreateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setParent($formattedParent)
-            ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $request = new CreateSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->createSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -277,13 +246,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
-        );
-        $request = (new DeleteEventThreatDetectionCustomModuleRequest())->setName($formattedName);
+        $request = new DeleteEventThreatDetectionCustomModuleRequest();
         $gapicClient->deleteEventThreatDetectionCustomModule($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -293,8 +256,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/DeleteEventThreatDetectionCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -319,13 +280,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
-        );
-        $request = (new DeleteEventThreatDetectionCustomModuleRequest())->setName($formattedName);
+        $request = new DeleteEventThreatDetectionCustomModuleRequest();
         try {
             $gapicClient->deleteEventThreatDetectionCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -350,13 +305,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
-        );
-        $request = (new DeleteSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
+        $request = new DeleteSecurityHealthAnalyticsCustomModuleRequest();
         $gapicClient->deleteSecurityHealthAnalyticsCustomModule($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -366,8 +315,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/DeleteSecurityHealthAnalyticsCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -392,13 +339,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
-        );
-        $request = (new DeleteSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
+        $request = new DeleteSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->deleteSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -431,13 +372,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->effectiveEventThreatDetectionCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[EFFECTIVE_EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
-        );
-        $request = (new GetEffectiveEventThreatDetectionCustomModuleRequest())->setName($formattedName);
+        $request = new GetEffectiveEventThreatDetectionCustomModuleRequest();
         $response = $gapicClient->getEffectiveEventThreatDetectionCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -448,8 +383,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetEffectiveEventThreatDetectionCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -474,13 +407,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->effectiveEventThreatDetectionCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[EFFECTIVE_EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
-        );
-        $request = (new GetEffectiveEventThreatDetectionCustomModuleRequest())->setName($formattedName);
+        $request = new GetEffectiveEventThreatDetectionCustomModuleRequest();
         try {
             $gapicClient->getEffectiveEventThreatDetectionCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -509,13 +436,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->effectiveSecurityHealthAnalyticsCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[EFFECTIVE_SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
-        );
-        $request = (new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
+        $request = new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest();
         $response = $gapicClient->getEffectiveSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -526,8 +447,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetEffectiveSecurityHealthAnalyticsCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -552,13 +471,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->effectiveSecurityHealthAnalyticsCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[EFFECTIVE_SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
-        );
-        $request = (new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
+        $request = new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->getEffectiveSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -595,13 +508,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setLastEditor($lastEditor);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
-        );
-        $request = (new GetEventThreatDetectionCustomModuleRequest())->setName($formattedName);
+        $request = new GetEventThreatDetectionCustomModuleRequest();
         $response = $gapicClient->getEventThreatDetectionCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -612,8 +519,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetEventThreatDetectionCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -638,13 +543,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->eventThreatDetectionCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[EVENT_THREAT_DETECTION_CUSTOM_MODULE]'
-        );
-        $request = (new GetEventThreatDetectionCustomModuleRequest())->setName($formattedName);
+        $request = new GetEventThreatDetectionCustomModuleRequest();
         try {
             $gapicClient->getEventThreatDetectionCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -677,13 +576,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setLastEditor($lastEditor);
         $expectedResponse->setAncestorModule($ancestorModule);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
-        );
-        $request = (new GetSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
+        $request = new GetSecurityHealthAnalyticsCustomModuleRequest();
         $response = $gapicClient->getSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -694,8 +587,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/GetSecurityHealthAnalyticsCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -720,13 +611,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->securityHealthAnalyticsCustomModuleName(
-            '[ORGANIZATION]',
-            '[LOCATION]',
-            '[SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE]'
-        );
-        $request = (new GetSecurityHealthAnalyticsCustomModuleRequest())->setName($formattedName);
+        $request = new GetSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->getSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -756,9 +641,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEventThreatDetectionCustomModules($eventThreatDetectionCustomModules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListDescendantEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListDescendantEventThreatDetectionCustomModulesRequest();
         $response = $gapicClient->listDescendantEventThreatDetectionCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -772,8 +655,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListDescendantEventThreatDetectionCustomModules',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -798,9 +679,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListDescendantEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListDescendantEventThreatDetectionCustomModulesRequest();
         try {
             $gapicClient->listDescendantEventThreatDetectionCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -830,9 +709,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSecurityHealthAnalyticsCustomModules($securityHealthAnalyticsCustomModules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListDescendantSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListDescendantSecurityHealthAnalyticsCustomModulesRequest();
         $response = $gapicClient->listDescendantSecurityHealthAnalyticsCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -846,8 +723,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListDescendantSecurityHealthAnalyticsCustomModules',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -872,9 +747,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListDescendantSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListDescendantSecurityHealthAnalyticsCustomModulesRequest();
         try {
             $gapicClient->listDescendantSecurityHealthAnalyticsCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -904,9 +777,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEffectiveEventThreatDetectionCustomModules($effectiveEventThreatDetectionCustomModules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEffectiveEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListEffectiveEventThreatDetectionCustomModulesRequest();
         $response = $gapicClient->listEffectiveEventThreatDetectionCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -920,8 +791,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListEffectiveEventThreatDetectionCustomModules',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -946,9 +815,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEffectiveEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListEffectiveEventThreatDetectionCustomModulesRequest();
         try {
             $gapicClient->listEffectiveEventThreatDetectionCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -980,9 +847,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             $effectiveSecurityHealthAnalyticsCustomModules
         );
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest();
         $response = $gapicClient->listEffectiveSecurityHealthAnalyticsCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -996,8 +861,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListEffectiveSecurityHealthAnalyticsCustomModules',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1022,9 +885,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest();
         try {
             $gapicClient->listEffectiveSecurityHealthAnalyticsCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1054,9 +915,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEventThreatDetectionCustomModules($eventThreatDetectionCustomModules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListEventThreatDetectionCustomModulesRequest();
         $response = $gapicClient->listEventThreatDetectionCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1070,8 +929,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListEventThreatDetectionCustomModules',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1096,9 +953,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListEventThreatDetectionCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListEventThreatDetectionCustomModulesRequest();
         try {
             $gapicClient->listEventThreatDetectionCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1128,9 +983,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSecurityHealthAnalyticsCustomModules($securityHealthAnalyticsCustomModules);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListSecurityHealthAnalyticsCustomModulesRequest();
         $response = $gapicClient->listSecurityHealthAnalyticsCustomModules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1144,8 +997,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ListSecurityHealthAnalyticsCustomModules',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1170,9 +1021,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListSecurityHealthAnalyticsCustomModulesRequest())->setParent($formattedParent);
+        $request = new ListSecurityHealthAnalyticsCustomModulesRequest();
         try {
             $gapicClient->listSecurityHealthAnalyticsCustomModules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1197,16 +1046,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SimulateSecurityHealthAnalyticsCustomModuleResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $customConfig = new CustomConfig();
-        $resource = new SimulatedResource();
-        $resourceResourceType = 'resourceResourceType305300374';
-        $resource->setResourceType($resourceResourceType);
-        $request = (new SimulateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setParent($parent)
-            ->setCustomConfig($customConfig)
-            ->setResource($resource);
+        $request = new SimulateSecurityHealthAnalyticsCustomModuleRequest();
         $response = $gapicClient->simulateSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1217,12 +1057,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/SimulateSecurityHealthAnalyticsCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getCustomConfig();
-        $this->assertProtobufEquals($customConfig, $actualValue);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1247,16 +1081,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $customConfig = new CustomConfig();
-        $resource = new SimulatedResource();
-        $resourceResourceType = 'resourceResourceType305300374';
-        $resource->setResourceType($resourceResourceType);
-        $request = (new SimulateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setParent($parent)
-            ->setCustomConfig($customConfig)
-            ->setResource($resource);
+        $request = new SimulateSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->simulateSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1293,12 +1118,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setLastEditor($lastEditor);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $eventThreatDetectionCustomModule = new EventThreatDetectionCustomModule();
-        $request = (new UpdateEventThreatDetectionCustomModuleRequest())
-            ->setUpdateMask($updateMask)
-            ->setEventThreatDetectionCustomModule($eventThreatDetectionCustomModule);
+        $request = new UpdateEventThreatDetectionCustomModuleRequest();
         $response = $gapicClient->updateEventThreatDetectionCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1309,10 +1129,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/UpdateEventThreatDetectionCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualRequestObject->getEventThreatDetectionCustomModule();
-        $this->assertProtobufEquals($eventThreatDetectionCustomModule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1337,12 +1153,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $eventThreatDetectionCustomModule = new EventThreatDetectionCustomModule();
-        $request = (new UpdateEventThreatDetectionCustomModuleRequest())
-            ->setUpdateMask($updateMask)
-            ->setEventThreatDetectionCustomModule($eventThreatDetectionCustomModule);
+        $request = new UpdateEventThreatDetectionCustomModuleRequest();
         try {
             $gapicClient->updateEventThreatDetectionCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1375,12 +1186,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setLastEditor($lastEditor);
         $expectedResponse->setAncestorModule($ancestorModule);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $updateMask = new FieldMask();
-        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-        $request = (new UpdateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setUpdateMask($updateMask)
-            ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $request = new UpdateSecurityHealthAnalyticsCustomModuleRequest();
         $response = $gapicClient->updateSecurityHealthAnalyticsCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1391,10 +1197,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/UpdateSecurityHealthAnalyticsCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualRequestObject->getSecurityHealthAnalyticsCustomModule();
-        $this->assertProtobufEquals($securityHealthAnalyticsCustomModule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1419,12 +1221,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-        $request = (new UpdateSecurityHealthAnalyticsCustomModuleRequest())
-            ->setUpdateMask($updateMask)
-            ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+        $request = new UpdateSecurityHealthAnalyticsCustomModuleRequest();
         try {
             $gapicClient->updateSecurityHealthAnalyticsCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1449,14 +1246,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ValidateEventThreatDetectionCustomModuleResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $rawText = 'rawText503586532';
-        $type = 'type3575610';
-        $request = (new ValidateEventThreatDetectionCustomModuleRequest())
-            ->setParent($formattedParent)
-            ->setRawText($rawText)
-            ->setType($type);
+        $request = new ValidateEventThreatDetectionCustomModuleRequest();
         $response = $gapicClient->validateEventThreatDetectionCustomModule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1467,12 +1257,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/ValidateEventThreatDetectionCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRawText();
-        $this->assertProtobufEquals($rawText, $actualValue);
-        $actualValue = $actualRequestObject->getType();
-        $this->assertProtobufEquals($type, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1497,14 +1281,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $rawText = 'rawText503586532';
-        $type = 'type3575610';
-        $request = (new ValidateEventThreatDetectionCustomModuleRequest())
-            ->setParent($formattedParent)
-            ->setRawText($rawText)
-            ->setType($type);
+        $request = new ValidateEventThreatDetectionCustomModuleRequest();
         try {
             $gapicClient->validateEventThreatDetectionCustomModule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1669,12 +1446,7 @@ class SecurityCenterManagementClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setLastEditor($lastEditor);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $eventThreatDetectionCustomModule = new EventThreatDetectionCustomModule();
-        $request = (new CreateEventThreatDetectionCustomModuleRequest())
-            ->setParent($formattedParent)
-            ->setEventThreatDetectionCustomModule($eventThreatDetectionCustomModule);
+        $request = new CreateEventThreatDetectionCustomModuleRequest();
         $response = $gapicClient->createEventThreatDetectionCustomModuleAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1685,10 +1457,6 @@ class SecurityCenterManagementClientTest extends GeneratedTest
             '/google.cloud.securitycentermanagement.v1.SecurityCenterManagement/CreateEventThreatDetectionCustomModule',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEventThreatDetectionCustomModule();
-        $this->assertProtobufEquals($eventThreatDetectionCustomModule, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -26,51 +26,27 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority\KeyVersionSpec;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority\Type;
-use Google\Cloud\Security\PrivateCA\V1\CertificateConfig;
-use Google\Cloud\Security\PrivateCA\V1\CertificateConfig\SubjectConfig;
 use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
-use Google\Cloud\Security\PrivateCA\V1\Subject;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateAuthorityRequest;
-use Google\Cloud\Security\PrivateCA\V1\X509Parameters;
-use Google\Protobuf\Duration;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Update a
  * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
  *
- * @param int $certificateAuthorityType Immutable. The
- *                                      [Type][google.cloud.security.privateca.v1.CertificateAuthority.Type] of
- *                                      this
- *                                      [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_certificate_authority_sample(int $certificateAuthorityType): void
+function update_certificate_authority_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $certificateAuthorityConfigSubjectConfigSubject = new Subject();
-    $certificateAuthorityConfigSubjectConfig = (new SubjectConfig())
-        ->setSubject($certificateAuthorityConfigSubjectConfigSubject);
-    $certificateAuthorityConfigX509Config = new X509Parameters();
-    $certificateAuthorityConfig = (new CertificateConfig())
-        ->setSubjectConfig($certificateAuthorityConfigSubjectConfig)
-        ->setX509Config($certificateAuthorityConfigX509Config);
-    $certificateAuthorityLifetime = new Duration();
-    $certificateAuthorityKeySpec = new KeyVersionSpec();
-    $certificateAuthority = (new CertificateAuthority())
-        ->setType($certificateAuthorityType)
-        ->setConfig($certificateAuthorityConfig)
-        ->setLifetime($certificateAuthorityLifetime)
-        ->setKeySpec($certificateAuthorityKeySpec);
-    $updateMask = new FieldMask();
-    $request = (new UpdateCertificateAuthorityRequest())
-        ->setCertificateAuthority($certificateAuthority)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateCertificateAuthorityRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -90,21 +66,5 @@ function update_certificate_authority_sample(int $certificateAuthorityType): voi
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $certificateAuthorityType = Type::TYPE_UNSPECIFIED;
-
-    update_certificate_authority_sample($certificateAuthorityType);
 }
 // [END privateca_v1_generated_CertificateAuthorityService_UpdateCertificateAuthority_sync]

@@ -40,8 +40,7 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                  $parent    Required. Resource name of the new finding's parent. Its format should be
-     *                                                           "organizations/[organization_id]/sources/[source_id]". Please see
-     *                                                           {@see SecurityCenterClient::sourceName()} for help formatting this field.
+     *                                                           "organizations/[organization_id]/sources/[source_id]".
      * @param string                                  $findingId Required. Unique identifier provided by the client within the parent scope.
      *                                                           It must be alphanumeric and less than or equal to 32 characters and
      *                                                           greater than 0 characters in length.

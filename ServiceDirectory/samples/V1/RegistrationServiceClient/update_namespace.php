@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
 use Google\Cloud\ServiceDirectory\V1\PBNamespace;
 use Google\Cloud\ServiceDirectory\V1\UpdateNamespaceRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates a namespace.
@@ -44,11 +43,7 @@ function update_namespace_sample(): void
     $registrationServiceClient = new RegistrationServiceClient();
 
     // Prepare the request message.
-    $namespace = new PBNamespace();
-    $updateMask = new FieldMask();
-    $request = (new UpdateNamespaceRequest())
-        ->setNamespace($namespace)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateNamespaceRequest();
 
     // Call the API and handle any network failures.
     try {

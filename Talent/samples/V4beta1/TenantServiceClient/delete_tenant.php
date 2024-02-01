@@ -29,39 +29,23 @@ use Google\Cloud\Talent\V4beta1\TenantServiceClient;
 /**
  * Deletes specified tenant.
  *
- * @param string $formattedName The resource name of the tenant to be deleted.
- *
- *                              The format is "projects/{project_id}/tenants/{tenant_id}", for example,
- *                              "projects/foo/tenants/bar". Please see
- *                              {@see TenantServiceClient::tenantName()} for help formatting this field.
- */
-function delete_tenant_sample(string $formattedName): void
-{
-    // Create a client.
-    $tenantServiceClient = new TenantServiceClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $tenantServiceClient->deleteTenant($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_tenant_sample(): void
 {
-    $formattedName = TenantServiceClient::tenantName('[PROJECT]', '[TENANT]');
+    // Create a client.
+    $tenantServiceClient = new TenantServiceClient();
 
-    delete_tenant_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $tenantServiceClient->deleteTenant();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END jobs_v4beta1_generated_TenantService_DeleteTenant_sync]

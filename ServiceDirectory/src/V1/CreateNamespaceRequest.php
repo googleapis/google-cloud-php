@@ -44,8 +44,7 @@ class CreateNamespaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                        $parent      Required. The resource name of the project and location the namespace
-     *                                                                   will be created in. Please see
-     *                                                                   {@see RegistrationServiceClient::locationName()} for help formatting this field.
+     *                                                                   will be created in.
      * @param \Google\Cloud\ServiceDirectory\V1\PBNamespace $namespace   Required. A namespace with initial fields set.
      * @param string                                        $namespaceId Required. The Resource ID must be 1-63 characters long, and comply with
      *                                                                   <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.

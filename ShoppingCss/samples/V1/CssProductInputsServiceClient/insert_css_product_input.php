@@ -36,47 +36,19 @@ use Google\Shopping\Css\V1\InsertCssProductInputRequest;
  * After inserting, updating, or deleting a CSS Product input, it may
  * take several minutes before the processed CSS Product can be retrieved.
  *
- * @param string $formattedParent                The account where this CSS Product will be inserted.
- *                                               Format: accounts/{account}
- *                                               Please see {@see CssProductInputsServiceClient::accountName()} for help formatting this field.
- * @param string $cssProductInputRawProvidedId   Your unique identifier for the CSS Product. This is the same for
- *                                               the CSS Product input and processed CSS Product. We only allow ids with
- *                                               alphanumerics, underscores and dashes. See the [products feed
- *                                               specification](https://support.google.com/merchants/answer/188494#id) for
- *                                               details.
- * @param string $cssProductInputContentLanguage The two-letter [ISO
- *                                               639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the CSS
- *                                               Product.
- * @param string $cssProductInputFeedLabel       The [feed
- *                                               label](https://developers.google.com/shopping-content/guides/products/feed-labels)
- *                                               for the CSS Product.
- *                                               Feed Label is synonymous to "target country" and hence should always be a
- *                                               valid region code. For example: 'DE' for Germany, 'FR' for France.
- * @param int    $feedId                         The primary or supplemental feed id. If CSS Product already
- *                                               exists and feed id provided is different, then the CSS Product will be
- *                                               moved to a new feed. Note: For now, CSSs do not need to provide feed ids as
- *                                               we create feeds on the fly. We do not have supplemental feed support for
- *                                               CSS Products yet.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function insert_css_product_input_sample(
-    string $formattedParent,
-    string $cssProductInputRawProvidedId,
-    string $cssProductInputContentLanguage,
-    string $cssProductInputFeedLabel,
-    int $feedId
-): void {
+function insert_css_product_input_sample(): void
+{
     // Create a client.
     $cssProductInputsServiceClient = new CssProductInputsServiceClient();
 
     // Prepare the request message.
-    $cssProductInput = (new CssProductInput())
-        ->setRawProvidedId($cssProductInputRawProvidedId)
-        ->setContentLanguage($cssProductInputContentLanguage)
-        ->setFeedLabel($cssProductInputFeedLabel);
-    $request = (new InsertCssProductInputRequest())
-        ->setParent($formattedParent)
-        ->setCssProductInput($cssProductInput)
-        ->setFeedId($feedId);
+    $request = new InsertCssProductInputRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -86,31 +58,5 @@ function insert_css_product_input_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CssProductInputsServiceClient::accountName('[ACCOUNT]');
-    $cssProductInputRawProvidedId = '[RAW_PROVIDED_ID]';
-    $cssProductInputContentLanguage = '[CONTENT_LANGUAGE]';
-    $cssProductInputFeedLabel = '[FEED_LABEL]';
-    $feedId = 0;
-
-    insert_css_product_input_sample(
-        $formattedParent,
-        $cssProductInputRawProvidedId,
-        $cssProductInputContentLanguage,
-        $cssProductInputFeedLabel,
-        $feedId
-    );
 }
 // [END css_v1_generated_CssProductInputsService_InsertCssProductInput_sync]

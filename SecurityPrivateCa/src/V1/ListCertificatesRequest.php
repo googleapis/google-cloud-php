@@ -64,8 +64,7 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the location associated with the
      *                       [Certificates][google.cloud.security.privateca.v1.Certificate], in the
-     *                       format `projects/&#42;/locations/&#42;/caPools/*`. Please see
-     *                       {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *                       format `projects/&#42;/locations/&#42;/caPools/*`.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\ListCertificatesRequest
      *

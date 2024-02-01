@@ -31,21 +31,19 @@ use Google\Cloud\Security\PublicCA\V1beta1\ExternalAccountKey;
 /**
  * Creates a new [ExternalAccountKey][google.cloud.security.publicca.v1beta1.ExternalAccountKey] bound to the project.
  *
- * @param string $formattedParent The parent resource where this external_account_key will be created.
- *                                Format: projects/[project_id]/locations/[location].
- *                                At present only the "global" location is supported. Please see
- *                                {@see PublicCertificateAuthorityServiceClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_external_account_key_sample(string $formattedParent): void
+function create_external_account_key_sample(): void
 {
     // Create a client.
     $publicCertificateAuthorityServiceClient = new PublicCertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $externalAccountKey = new ExternalAccountKey();
-    $request = (new CreateExternalAccountKeyRequest())
-        ->setParent($formattedParent)
-        ->setExternalAccountKey($externalAccountKey);
+    $request = new CreateExternalAccountKeyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +53,5 @@ function create_external_account_key_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = PublicCertificateAuthorityServiceClient::locationName('[PROJECT]', '[LOCATION]');
-
-    create_external_account_key_sample($formattedParent);
 }
 // [END publicca_v1beta1_generated_PublicCertificateAuthorityService_CreateExternalAccountKey_sync]

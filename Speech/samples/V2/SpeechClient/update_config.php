@@ -43,9 +43,7 @@ function update_config_sample(): void
     $speechClient = new SpeechClient();
 
     // Prepare the request message.
-    $config = new Config();
-    $request = (new UpdateConfigRequest())
-        ->setConfig($config);
+    $request = new UpdateConfigRequest();
 
     // Call the API and handle any network failures.
     try {

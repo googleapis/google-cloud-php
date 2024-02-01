@@ -30,11 +30,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Security\PrivateCA\V1beta1\Certificate;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthorityServiceClient;
-use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\KeyVersionSpec;
-use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\Tier;
-use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\Type;
-use Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig;
-use Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig\SubjectConfig;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateRevocationList;
 use Google\Cloud\Security\PrivateCA\V1beta1\FetchCertificateAuthorityCsrResponse;
 use Google\Cloud\Security\PrivateCA\V1beta1\ListCertificateAuthoritiesResponse;
@@ -42,15 +37,9 @@ use Google\Cloud\Security\PrivateCA\V1beta1\ListCertificateRevocationListsRespon
 use Google\Cloud\Security\PrivateCA\V1beta1\ListCertificatesResponse;
 use Google\Cloud\Security\PrivateCA\V1beta1\ListReusableConfigsResponse;
 use Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfig;
-use Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigWrapper;
-use Google\Cloud\Security\PrivateCA\V1beta1\RevocationReason;
-use Google\Cloud\Security\PrivateCA\V1beta1\Subject;
-use Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\Duration;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -115,13 +104,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $pemCaCertificate = 'pemCaCertificate1041594685';
-        $subordinateConfig = new SubordinateConfig();
-        $subordinateConfigCertificateAuthority = 'subordinateConfigCertificateAuthority-722261446';
-        $subordinateConfig->setCertificateAuthority($subordinateConfigCertificateAuthority);
-        $response = $gapicClient->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
+        $response = $gapicClient->activateCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -131,12 +114,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ActivateCertificateAuthority', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getPemCaCertificate();
-        $this->assertProtobufEquals($pemCaCertificate, $actualValue);
-        $actualValue = $actualApiRequestObject->getSubordinateConfig();
-        $this->assertProtobufEquals($subordinateConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/activateCertificateAuthorityTest');
         $response->pollUntilComplete([
@@ -187,13 +164,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $pemCaCertificate = 'pemCaCertificate1041594685';
-        $subordinateConfig = new SubordinateConfig();
-        $subordinateConfigCertificateAuthority = 'subordinateConfigCertificateAuthority-722261446';
-        $subordinateConfig->setCertificateAuthority($subordinateConfigCertificateAuthority);
-        $response = $gapicClient->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
+        $response = $gapicClient->activateCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -232,22 +203,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setPemCsr($pemCsr);
         $expectedResponse->setPemCertificate($pemCertificate);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $certificate = new Certificate();
-        $certificateLifetime = new Duration();
-        $certificate->setLifetime($certificateLifetime);
-        $response = $gapicClient->createCertificate($formattedParent, $certificate);
+        $response = $gapicClient->createCertificate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/CreateCertificate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getCertificate();
-        $this->assertProtobufEquals($certificate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -269,13 +231,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $certificate = new Certificate();
-        $certificateLifetime = new Duration();
-        $certificate->setLifetime($certificateLifetime);
         try {
-            $gapicClient->createCertificate($formattedParent, $certificate);
+            $gapicClient->createCertificate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -320,31 +277,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $certificateAuthorityId = 'certificateAuthorityId561919295';
-        $certificateAuthority = new CertificateAuthority();
-        $certificateAuthorityType = Type::TYPE_UNSPECIFIED;
-        $certificateAuthority->setType($certificateAuthorityType);
-        $certificateAuthorityTier = Tier::TIER_UNSPECIFIED;
-        $certificateAuthority->setTier($certificateAuthorityTier);
-        $certificateAuthorityConfig = new CertificateConfig();
-        $configSubjectConfig = new SubjectConfig();
-        $subjectConfigSubject = new Subject();
-        $configSubjectConfig->setSubject($subjectConfigSubject);
-        $certificateAuthorityConfig->setSubjectConfig($configSubjectConfig);
-        $configReusableConfig = new ReusableConfigWrapper();
-        $reusableConfigReusableConfig = 'reusableConfigReusableConfig424335738';
-        $configReusableConfig->setReusableConfig($reusableConfigReusableConfig);
-        $certificateAuthorityConfig->setReusableConfig($configReusableConfig);
-        $certificateAuthority->setConfig($certificateAuthorityConfig);
-        $certificateAuthorityLifetime = new Duration();
-        $certificateAuthority->setLifetime($certificateAuthorityLifetime);
-        $certificateAuthorityKeySpec = new KeyVersionSpec();
-        $keySpecCloudKmsKeyVersion = 'keySpecCloudKmsKeyVersion170335183';
-        $certificateAuthorityKeySpec->setCloudKmsKeyVersion($keySpecCloudKmsKeyVersion);
-        $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
-        $response = $gapicClient->createCertificateAuthority($formattedParent, $certificateAuthorityId, $certificateAuthority);
+        $response = $gapicClient->createCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -354,12 +287,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/CreateCertificateAuthority', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getCertificateAuthorityId();
-        $this->assertProtobufEquals($certificateAuthorityId, $actualValue);
-        $actualValue = $actualApiRequestObject->getCertificateAuthority();
-        $this->assertProtobufEquals($certificateAuthority, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createCertificateAuthorityTest');
         $response->pollUntilComplete([
@@ -410,31 +337,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $certificateAuthorityId = 'certificateAuthorityId561919295';
-        $certificateAuthority = new CertificateAuthority();
-        $certificateAuthorityType = Type::TYPE_UNSPECIFIED;
-        $certificateAuthority->setType($certificateAuthorityType);
-        $certificateAuthorityTier = Tier::TIER_UNSPECIFIED;
-        $certificateAuthority->setTier($certificateAuthorityTier);
-        $certificateAuthorityConfig = new CertificateConfig();
-        $configSubjectConfig = new SubjectConfig();
-        $subjectConfigSubject = new Subject();
-        $configSubjectConfig->setSubject($subjectConfigSubject);
-        $certificateAuthorityConfig->setSubjectConfig($configSubjectConfig);
-        $configReusableConfig = new ReusableConfigWrapper();
-        $reusableConfigReusableConfig = 'reusableConfigReusableConfig424335738';
-        $configReusableConfig->setReusableConfig($reusableConfigReusableConfig);
-        $certificateAuthorityConfig->setReusableConfig($configReusableConfig);
-        $certificateAuthority->setConfig($certificateAuthorityConfig);
-        $certificateAuthorityLifetime = new Duration();
-        $certificateAuthority->setLifetime($certificateAuthorityLifetime);
-        $certificateAuthorityKeySpec = new KeyVersionSpec();
-        $keySpecCloudKmsKeyVersion = 'keySpecCloudKmsKeyVersion170335183';
-        $certificateAuthorityKeySpec->setCloudKmsKeyVersion($keySpecCloudKmsKeyVersion);
-        $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
-        $response = $gapicClient->createCertificateAuthority($formattedParent, $certificateAuthorityId, $certificateAuthority);
+        $response = $gapicClient->createCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -489,9 +392,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->disableCertificateAuthority($formattedName);
+        $response = $gapicClient->disableCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -501,8 +402,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/DisableCertificateAuthority', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/disableCertificateAuthorityTest');
         $response->pollUntilComplete([
@@ -553,9 +452,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->disableCertificateAuthority($formattedName);
+        $response = $gapicClient->disableCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -610,9 +507,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->enableCertificateAuthority($formattedName);
+        $response = $gapicClient->enableCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -622,8 +517,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/EnableCertificateAuthority', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/enableCertificateAuthorityTest');
         $response->pollUntilComplete([
@@ -674,9 +567,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->enableCertificateAuthority($formattedName);
+        $response = $gapicClient->enableCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -711,17 +602,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse = new FetchCertificateAuthorityCsrResponse();
         $expectedResponse->setPemCsr($pemCsr);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->fetchCertificateAuthorityCsr($formattedName);
+        $response = $gapicClient->fetchCertificateAuthorityCsr();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/FetchCertificateAuthorityCsr', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -743,10 +630,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
         try {
-            $gapicClient->fetchCertificateAuthorityCsr($formattedName);
+            $gapicClient->fetchCertificateAuthorityCsr();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -775,17 +660,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setPemCsr($pemCsr);
         $expectedResponse->setPemCertificate($pemCertificate);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->certificateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE]');
-        $response = $gapicClient->getCertificate($formattedName);
+        $response = $gapicClient->getCertificate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetCertificate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -807,10 +688,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE]');
         try {
-            $gapicClient->getCertificate($formattedName);
+            $gapicClient->getCertificate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -837,17 +716,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setGcsBucket($gcsBucket);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->getCertificateAuthority($formattedName);
+        $response = $gapicClient->getCertificateAuthority();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetCertificateAuthority', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -869,10 +744,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
         try {
-            $gapicClient->getCertificateAuthority($formattedName);
+            $gapicClient->getCertificateAuthority();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -903,17 +776,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setPemCrl($pemCrl);
         $expectedResponse->setAccessUrl($accessUrl);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->certificateRevocationListName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE_REVOCATION_LIST]');
-        $response = $gapicClient->getCertificateRevocationList($formattedName);
+        $response = $gapicClient->getCertificateRevocationList();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetCertificateRevocationList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -935,10 +804,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateRevocationListName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE_REVOCATION_LIST]');
         try {
-            $gapicClient->getCertificateRevocationList($formattedName);
+            $gapicClient->getCertificateRevocationList();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -965,17 +832,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->reusableConfigName('[PROJECT]', '[LOCATION]', '[REUSABLE_CONFIG]');
-        $response = $gapicClient->getReusableConfig($formattedName);
+        $response = $gapicClient->getReusableConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/GetReusableConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -997,10 +860,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->reusableConfigName('[PROJECT]', '[LOCATION]', '[REUSABLE_CONFIG]');
         try {
-            $gapicClient->getReusableConfig($formattedName);
+            $gapicClient->getReusableConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1030,9 +891,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCertificateAuthorities($certificateAuthorities);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listCertificateAuthorities($formattedParent);
+        $response = $gapicClient->listCertificateAuthorities();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1042,8 +901,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListCertificateAuthorities', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1065,10 +922,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listCertificateAuthorities($formattedParent);
+            $gapicClient->listCertificateAuthorities();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1098,9 +953,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCertificateRevocationLists($certificateRevocationLists);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->listCertificateRevocationLists($formattedParent);
+        $response = $gapicClient->listCertificateRevocationLists();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1110,8 +963,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListCertificateRevocationLists', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1133,10 +984,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
         try {
-            $gapicClient->listCertificateRevocationLists($formattedParent);
+            $gapicClient->listCertificateRevocationLists();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1166,9 +1015,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCertificates($certificates);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->listCertificates($formattedParent);
+        $response = $gapicClient->listCertificates();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1178,8 +1025,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListCertificates', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1201,10 +1046,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
         try {
-            $gapicClient->listCertificates($formattedParent);
+            $gapicClient->listCertificates();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1234,9 +1077,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReusableConfigs($reusableConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listReusableConfigs($formattedParent);
+        $response = $gapicClient->listReusableConfigs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1246,8 +1087,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ListReusableConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1269,10 +1108,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listReusableConfigs($formattedParent);
+            $gapicClient->listReusableConfigs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1317,9 +1154,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->restoreCertificateAuthority($formattedName);
+        $response = $gapicClient->restoreCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1329,8 +1164,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/RestoreCertificateAuthority', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restoreCertificateAuthorityTest');
         $response->pollUntilComplete([
@@ -1381,9 +1214,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->restoreCertificateAuthority($formattedName);
+        $response = $gapicClient->restoreCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1422,20 +1253,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setPemCsr($pemCsr);
         $expectedResponse->setPemCertificate($pemCertificate);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->certificateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE]');
-        $reason = RevocationReason::REVOCATION_REASON_UNSPECIFIED;
-        $response = $gapicClient->revokeCertificate($formattedName, $reason);
+        $response = $gapicClient->revokeCertificate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/RevokeCertificate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getReason();
-        $this->assertProtobufEquals($reason, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1457,11 +1281,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE]');
-        $reason = RevocationReason::REVOCATION_REASON_UNSPECIFIED;
         try {
-            $gapicClient->revokeCertificate($formattedName, $reason);
+            $gapicClient->revokeCertificate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1506,9 +1327,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->scheduleDeleteCertificateAuthority($formattedName);
+        $response = $gapicClient->scheduleDeleteCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1518,8 +1337,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/ScheduleDeleteCertificateAuthority', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/scheduleDeleteCertificateAuthorityTest');
         $response->pollUntilComplete([
@@ -1570,9 +1387,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_AUTHORITY]');
-        $response = $gapicClient->scheduleDeleteCertificateAuthority($formattedName);
+        $response = $gapicClient->scheduleDeleteCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1611,22 +1426,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setPemCsr($pemCsr);
         $expectedResponse->setPemCertificate($pemCertificate);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $certificate = new Certificate();
-        $certificateLifetime = new Duration();
-        $certificate->setLifetime($certificateLifetime);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateCertificate($certificate, $updateMask);
+        $response = $gapicClient->updateCertificate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/UpdateCertificate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCertificate();
-        $this->assertProtobufEquals($certificate, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1648,13 +1454,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $certificate = new Certificate();
-        $certificateLifetime = new Duration();
-        $certificate->setLifetime($certificateLifetime);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateCertificate($certificate, $updateMask);
+            $gapicClient->updateCertificate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1699,30 +1500,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $certificateAuthority = new CertificateAuthority();
-        $certificateAuthorityType = Type::TYPE_UNSPECIFIED;
-        $certificateAuthority->setType($certificateAuthorityType);
-        $certificateAuthorityTier = Tier::TIER_UNSPECIFIED;
-        $certificateAuthority->setTier($certificateAuthorityTier);
-        $certificateAuthorityConfig = new CertificateConfig();
-        $configSubjectConfig = new SubjectConfig();
-        $subjectConfigSubject = new Subject();
-        $configSubjectConfig->setSubject($subjectConfigSubject);
-        $certificateAuthorityConfig->setSubjectConfig($configSubjectConfig);
-        $configReusableConfig = new ReusableConfigWrapper();
-        $reusableConfigReusableConfig = 'reusableConfigReusableConfig424335738';
-        $configReusableConfig->setReusableConfig($reusableConfigReusableConfig);
-        $certificateAuthorityConfig->setReusableConfig($configReusableConfig);
-        $certificateAuthority->setConfig($certificateAuthorityConfig);
-        $certificateAuthorityLifetime = new Duration();
-        $certificateAuthority->setLifetime($certificateAuthorityLifetime);
-        $certificateAuthorityKeySpec = new KeyVersionSpec();
-        $keySpecCloudKmsKeyVersion = 'keySpecCloudKmsKeyVersion170335183';
-        $certificateAuthorityKeySpec->setCloudKmsKeyVersion($keySpecCloudKmsKeyVersion);
-        $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateCertificateAuthority($certificateAuthority, $updateMask);
+        $response = $gapicClient->updateCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1732,10 +1510,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/UpdateCertificateAuthority', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getCertificateAuthority();
-        $this->assertProtobufEquals($certificateAuthority, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateCertificateAuthorityTest');
         $response->pollUntilComplete([
@@ -1786,30 +1560,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $certificateAuthority = new CertificateAuthority();
-        $certificateAuthorityType = Type::TYPE_UNSPECIFIED;
-        $certificateAuthority->setType($certificateAuthorityType);
-        $certificateAuthorityTier = Tier::TIER_UNSPECIFIED;
-        $certificateAuthority->setTier($certificateAuthorityTier);
-        $certificateAuthorityConfig = new CertificateConfig();
-        $configSubjectConfig = new SubjectConfig();
-        $subjectConfigSubject = new Subject();
-        $configSubjectConfig->setSubject($subjectConfigSubject);
-        $certificateAuthorityConfig->setSubjectConfig($configSubjectConfig);
-        $configReusableConfig = new ReusableConfigWrapper();
-        $reusableConfigReusableConfig = 'reusableConfigReusableConfig424335738';
-        $configReusableConfig->setReusableConfig($reusableConfigReusableConfig);
-        $certificateAuthorityConfig->setReusableConfig($configReusableConfig);
-        $certificateAuthority->setConfig($certificateAuthorityConfig);
-        $certificateAuthorityLifetime = new Duration();
-        $certificateAuthority->setLifetime($certificateAuthorityLifetime);
-        $certificateAuthorityKeySpec = new KeyVersionSpec();
-        $keySpecCloudKmsKeyVersion = 'keySpecCloudKmsKeyVersion170335183';
-        $certificateAuthorityKeySpec->setCloudKmsKeyVersion($keySpecCloudKmsKeyVersion);
-        $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateCertificateAuthority($certificateAuthority, $updateMask);
+        $response = $gapicClient->updateCertificateAuthority();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1868,10 +1619,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $certificateRevocationList = new CertificateRevocationList();
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateCertificateRevocationList($certificateRevocationList, $updateMask);
+        $response = $gapicClient->updateCertificateRevocationList();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1881,10 +1629,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.privateca.v1beta1.CertificateAuthorityService/UpdateCertificateRevocationList', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getCertificateRevocationList();
-        $this->assertProtobufEquals($certificateRevocationList, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateCertificateRevocationListTest');
         $response->pollUntilComplete([
@@ -1935,10 +1679,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $certificateRevocationList = new CertificateRevocationList();
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateCertificateRevocationList($certificateRevocationList, $updateMask);
+        $response = $gapicClient->updateCertificateRevocationList();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

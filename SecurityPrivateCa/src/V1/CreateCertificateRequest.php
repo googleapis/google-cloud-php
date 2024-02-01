@@ -100,8 +100,7 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      * @param string                                          $parent        Required. The resource name of the
      *                                                                       [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
      *                                                                       [Certificate][google.cloud.security.privateca.v1.Certificate], in the
-     *                                                                       format `projects/&#42;/locations/&#42;/caPools/*`. Please see
-     *                                                                       {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *                                                                       format `projects/&#42;/locations/&#42;/caPools/*`.
      * @param \Google\Cloud\Security\PrivateCA\V1\Certificate $certificate   Required. A [Certificate][google.cloud.security.privateca.v1.Certificate]
      *                                                                       with initial field values.
      * @param string                                          $certificateId Optional. It must be unique within a location and match the regular

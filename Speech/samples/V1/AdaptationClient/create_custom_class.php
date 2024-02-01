@@ -30,55 +30,24 @@ use Google\Cloud\Speech\V1\CustomClass;
 /**
  * Create a custom class.
  *
- * @param string $formattedParent The parent resource where this custom class will be created.
- *                                Format:
- *
- *                                `projects/{project}/locations/{location}/customClasses`
- *
- *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
- *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`
- *                                endpoint, use the `global` location. To specify a region, use a
- *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
- *                                with matching `us` or `eu` location value. Please see
- *                                {@see AdaptationClient::locationName()} for help formatting this field.
- * @param string $customClassId   The ID to use for the custom class, which will become the final
- *                                component of the custom class' resource name.
- *
- *                                This value should restrict to letters, numbers, and hyphens, with the first
- *                                character a letter, the last a letter or a number, and be 4-63 characters.
- */
-function create_custom_class_sample(string $formattedParent, string $customClassId): void
-{
-    // Create a client.
-    $adaptationClient = new AdaptationClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $customClass = new CustomClass();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var CustomClass $response */
-        $response = $adaptationClient->createCustomClass($formattedParent, $customClassId, $customClass);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function create_custom_class_sample(): void
 {
-    $formattedParent = AdaptationClient::locationName('[PROJECT]', '[LOCATION]');
-    $customClassId = '[CUSTOM_CLASS_ID]';
+    // Create a client.
+    $adaptationClient = new AdaptationClient();
 
-    create_custom_class_sample($formattedParent, $customClassId);
+    // Call the API and handle any network failures.
+    try {
+        /** @var CustomClass $response */
+        $response = $adaptationClient->createCustomClass();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END speech_v1_generated_Adaptation_CreateCustomClass_sync]

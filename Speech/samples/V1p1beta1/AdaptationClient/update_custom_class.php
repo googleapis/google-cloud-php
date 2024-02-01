@@ -41,13 +41,10 @@ function update_custom_class_sample(): void
     // Create a client.
     $adaptationClient = new AdaptationClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $customClass = new CustomClass();
-
     // Call the API and handle any network failures.
     try {
         /** @var CustomClass $response */
-        $response = $adaptationClient->updateCustomClass($customClass);
+        $response = $adaptationClient->updateCustomClass();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

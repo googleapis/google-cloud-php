@@ -75,8 +75,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $secretManagerServiceClient = new SecretManagerServiceClient();
  * try {
- *     $formattedName = $secretManagerServiceClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
- *     $response = $secretManagerServiceClient->accessSecretVersion($formattedName);
+ *     $response = $secretManagerServiceClient->accessSecretVersion();
  * } finally {
  *     $secretManagerServiceClient->close();
  * }
@@ -378,21 +377,21 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedName = $secretManagerServiceClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-     *     $response = $secretManagerServiceClient->accessSecretVersion($formattedName);
+     *     $response = $secretManagerServiceClient->accessSecretVersion();
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     *                             `projects/&#42;/secrets/&#42;/versions/*`.
-     *
-     *                             `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
-     *                             created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     *           `projects/&#42;/secrets/&#42;/versions/*`.
+     *
+     *           `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
+     *           created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -403,12 +402,15 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function accessSecretVersion($name, array $optionalArgs = [])
+    public function accessSecretVersion(array $optionalArgs = [])
     {
         $request = new AccessSecretVersionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('AccessSecretVersion', AccessSecretVersionResponse::class, $optionalArgs, $request)->wait();
@@ -422,20 +424,20 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedParent = $secretManagerServiceClient->secretName('[PROJECT]', '[SECRET]');
-     *     $payload = new SecretPayload();
-     *     $response = $secretManagerServiceClient->addSecretVersion($formattedParent, $payload);
+     *     $response = $secretManagerServiceClient->addSecretVersion();
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
      * ```
      *
-     * @param string        $parent       Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
-     *                                    [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;/secrets/*`.
-     * @param SecretPayload $payload      Required. The secret payload of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
-     * @param array         $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+     *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;/secrets/*`.
+     *     @type SecretPayload $payload
+     *           Required. The secret payload of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -446,13 +448,19 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addSecretVersion($parent, $payload, array $optionalArgs = [])
+    public function addSecretVersion(array $optionalArgs = [])
     {
         $request = new AddSecretVersionRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setPayload($payload);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['payload'])) {
+            $request->setPayload($optionalArgs['payload']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('AddSecretVersion', SecretVersion::class, $optionalArgs, $request)->wait();
@@ -465,26 +473,26 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedParent = $secretManagerServiceClient->projectName('[PROJECT]');
-     *     $secretId = 'secret_id';
-     *     $secret = new Secret();
-     *     $response = $secretManagerServiceClient->createSecret($formattedParent, $secretId, $secret);
+     *     $response = $secretManagerServiceClient->createSecret();
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the project to associate with the
-     *                             [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`.
-     * @param string $secretId     Required. This must be unique within the project.
-     *
-     *                             A secret ID is a string with a maximum length of 255 characters and can
-     *                             contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
-     *                             underscore (`_`) characters.
-     * @param Secret $secret       Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the project to associate with the
+     *           [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`.
+     *     @type string $secretId
+     *           Required. This must be unique within the project.
+     *
+     *           A secret ID is a string with a maximum length of 255 characters and can
+     *           contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
+     *           underscore (`_`) characters.
+     *     @type Secret $secret
+     *           Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -495,14 +503,23 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSecret($parent, $secretId, $secret, array $optionalArgs = [])
+    public function createSecret(array $optionalArgs = [])
     {
         $request = new CreateSecretRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSecretId($secretId);
-        $request->setSecret($secret);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['secretId'])) {
+            $request->setSecretId($optionalArgs['secretId']);
+        }
+
+        if (isset($optionalArgs['secret'])) {
+            $request->setSecret($optionalArgs['secret']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateSecret', Secret::class, $optionalArgs, $request)->wait();
@@ -515,18 +532,18 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedName = $secretManagerServiceClient->secretName('[PROJECT]', '[SECRET]');
-     *     $secretManagerServiceClient->deleteSecret($formattedName);
+     *     $secretManagerServiceClient->deleteSecret();
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
-     *                             `projects/&#42;/secrets/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
+     *           `projects/&#42;/secrets/*`.
      *     @type string $etag
      *           Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The request succeeds if it matches
      *           the etag of the currently stored secret object. If the etag is omitted,
@@ -539,12 +556,15 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSecret($name, array $optionalArgs = [])
+    public function deleteSecret(array $optionalArgs = [])
     {
         $request = new DeleteSecretRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -565,18 +585,18 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedName = $secretManagerServiceClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-     *     $response = $secretManagerServiceClient->destroySecretVersion($formattedName);
+     *     $response = $secretManagerServiceClient->destroySecretVersion();
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to destroy in the format
-     *                             `projects/&#42;/secrets/&#42;/versions/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to destroy in the format
+     *           `projects/&#42;/secrets/&#42;/versions/*`.
      *     @type string $etag
      *           Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
      *           the etag of the currently stored secret version object. If the etag is
@@ -591,12 +611,15 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function destroySecretVersion($name, array $optionalArgs = [])
+    public function destroySecretVersion(array $optionalArgs = [])
     {
         $request = new DestroySecretVersionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -616,18 +639,18 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedName = $secretManagerServiceClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-     *     $response = $secretManagerServiceClient->disableSecretVersion($formattedName);
+     *     $response = $secretManagerServiceClient->disableSecretVersion();
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to disable in the format
-     *                             `projects/&#42;/secrets/&#42;/versions/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to disable in the format
+     *           `projects/&#42;/secrets/&#42;/versions/*`.
      *     @type string $etag
      *           Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
      *           the etag of the currently stored secret version object. If the etag is
@@ -642,12 +665,15 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function disableSecretVersion($name, array $optionalArgs = [])
+    public function disableSecretVersion(array $optionalArgs = [])
     {
         $request = new DisableSecretVersionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -667,18 +693,18 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedName = $secretManagerServiceClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-     *     $response = $secretManagerServiceClient->enableSecretVersion($formattedName);
+     *     $response = $secretManagerServiceClient->enableSecretVersion();
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to enable in the format
-     *                             `projects/&#42;/secrets/&#42;/versions/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to enable in the format
+     *           `projects/&#42;/secrets/&#42;/versions/*`.
      *     @type string $etag
      *           Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
      *           the etag of the currently stored secret version object. If the etag is
@@ -693,12 +719,15 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function enableSecretVersion($name, array $optionalArgs = [])
+    public function enableSecretVersion(array $optionalArgs = [])
     {
         $request = new EnableSecretVersionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -763,17 +792,17 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedName = $secretManagerServiceClient->secretName('[PROJECT]', '[SECRET]');
-     *     $response = $secretManagerServiceClient->getSecret($formattedName);
+     *     $response = $secretManagerServiceClient->getSecret();
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;/secrets/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;/secrets/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -784,12 +813,15 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSecret($name, array $optionalArgs = [])
+    public function getSecret(array $optionalArgs = [])
     {
         $request = new GetSecretRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSecret', Secret::class, $optionalArgs, $request)->wait();
@@ -805,21 +837,21 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedName = $secretManagerServiceClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-     *     $response = $secretManagerServiceClient->getSecretVersion($formattedName);
+     *     $response = $secretManagerServiceClient->getSecretVersion();
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     *                             `projects/&#42;/secrets/&#42;/versions/*`.
-     *
-     *                             `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
-     *                             created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     *           `projects/&#42;/secrets/&#42;/versions/*`.
+     *
+     *           `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
+     *           created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -830,12 +862,15 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSecretVersion($name, array $optionalArgs = [])
+    public function getSecretVersion(array $optionalArgs = [])
     {
         $request = new GetSecretVersionRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSecretVersion', SecretVersion::class, $optionalArgs, $request)->wait();
@@ -849,9 +884,8 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedParent = $secretManagerServiceClient->secretName('[PROJECT]', '[SECRET]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $secretManagerServiceClient->listSecretVersions($formattedParent);
+     *     $pagedResponse = $secretManagerServiceClient->listSecretVersions();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -859,7 +893,7 @@ class SecretManagerServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $secretManagerServiceClient->listSecretVersions($formattedParent);
+     *     $pagedResponse = $secretManagerServiceClient->listSecretVersions();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -868,12 +902,13 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] associated with the
-     *                             [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in the format
-     *                             `projects/&#42;/secrets/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] associated with the
+     *           [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in the format
+     *           `projects/&#42;/secrets/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -899,12 +934,15 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSecretVersions($parent, array $optionalArgs = [])
+    public function listSecretVersions(array $optionalArgs = [])
     {
         $request = new ListSecretVersionsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -929,9 +967,8 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $formattedParent = $secretManagerServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $secretManagerServiceClient->listSecrets($formattedParent);
+     *     $pagedResponse = $secretManagerServiceClient->listSecrets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -939,7 +976,7 @@ class SecretManagerServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $secretManagerServiceClient->listSecrets($formattedParent);
+     *     $pagedResponse = $secretManagerServiceClient->listSecrets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -948,11 +985,12 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the project associated with the
-     *                             [Secrets][google.cloud.secretmanager.v1.Secret], in the format `projects/*`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the project associated with the
+     *           [Secrets][google.cloud.secretmanager.v1.Secret], in the format `projects/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -978,12 +1016,15 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSecrets($parent, array $optionalArgs = [])
+    public function listSecrets(array $optionalArgs = [])
     {
         $request = new ListSecretsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1120,19 +1161,19 @@ class SecretManagerServiceGapicClient
      * ```
      * $secretManagerServiceClient = new SecretManagerServiceClient();
      * try {
-     *     $secret = new Secret();
-     *     $updateMask = new FieldMask();
-     *     $response = $secretManagerServiceClient->updateSecret($secret, $updateMask);
+     *     $response = $secretManagerServiceClient->updateSecret();
      * } finally {
      *     $secretManagerServiceClient->close();
      * }
      * ```
      *
-     * @param Secret    $secret       Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field values.
-     * @param FieldMask $updateMask   Required. Specifies the fields to be updated.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Secret $secret
+     *           Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field values.
+     *     @type FieldMask $updateMask
+     *           Required. Specifies the fields to be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1143,13 +1184,18 @@ class SecretManagerServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSecret($secret, $updateMask, array $optionalArgs = [])
+    public function updateSecret(array $optionalArgs = [])
     {
         $request = new UpdateSecretRequest();
         $requestParamHeaders = [];
-        $request->setSecret($secret);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['secret.name'] = $secret->getName();
+        if (isset($optionalArgs['secret'])) {
+            $request->setSecret($optionalArgs['secret']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateSecret', Secret::class, $optionalArgs, $request)->wait();

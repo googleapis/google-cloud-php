@@ -31,8 +31,7 @@ class CreateCaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                          $parent Required. The name of the Google Cloud Resource under which the case should
-     *                                                be created. Please see
-     *                                                {@see CaseServiceClient::projectName()} for help formatting this field.
+     *                                                be created.
      * @param \Google\Cloud\Support\V2\PBCase $case   Required. The case to be created.
      *
      * @return \Google\Cloud\Support\V2\CreateCaseRequest

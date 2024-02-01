@@ -54,9 +54,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $tenantServiceClient = new TenantServiceClient();
  * try {
- *     $formattedParent = $tenantServiceClient->projectName('[PROJECT]');
- *     $tenant = new Tenant();
- *     $response = $tenantServiceClient->createTenant($formattedParent, $tenant);
+ *     $response = $tenantServiceClient->createTenant();
  * } finally {
  *     $tenantServiceClient->close();
  * }
@@ -304,22 +302,22 @@ class TenantServiceGapicClient
      * ```
      * $tenantServiceClient = new TenantServiceClient();
      * try {
-     *     $formattedParent = $tenantServiceClient->projectName('[PROJECT]');
-     *     $tenant = new Tenant();
-     *     $response = $tenantServiceClient->createTenant($formattedParent, $tenant);
+     *     $response = $tenantServiceClient->createTenant();
      * } finally {
      *     $tenantServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the project under which the tenant is created.
-     *
-     *                             The format is "projects/{project_id}", for example,
-     *                             "projects/foo".
-     * @param Tenant $tenant       Required. The tenant to be created.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the project under which the tenant is created.
+     *
+     *           The format is "projects/{project_id}", for example,
+     *           "projects/foo".
+     *     @type Tenant $tenant
+     *           Required. The tenant to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -332,13 +330,19 @@ class TenantServiceGapicClient
      *
      * @experimental
      */
-    public function createTenant($parent, $tenant, array $optionalArgs = [])
+    public function createTenant(array $optionalArgs = [])
     {
         $request = new CreateTenantRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setTenant($tenant);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['tenant'])) {
+            $request->setTenant($optionalArgs['tenant']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateTenant', Tenant::class, $optionalArgs, $request)->wait();
@@ -351,20 +355,20 @@ class TenantServiceGapicClient
      * ```
      * $tenantServiceClient = new TenantServiceClient();
      * try {
-     *     $formattedName = $tenantServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $tenantServiceClient->deleteTenant($formattedName);
+     *     $tenantServiceClient->deleteTenant();
      * } finally {
      *     $tenantServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the tenant to be deleted.
-     *
-     *                             The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                             "projects/foo/tenants/bar".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the tenant to be deleted.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/foo/tenants/bar".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -375,12 +379,15 @@ class TenantServiceGapicClient
      *
      * @experimental
      */
-    public function deleteTenant($name, array $optionalArgs = [])
+    public function deleteTenant(array $optionalArgs = [])
     {
         $request = new DeleteTenantRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteTenant', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -393,20 +400,20 @@ class TenantServiceGapicClient
      * ```
      * $tenantServiceClient = new TenantServiceClient();
      * try {
-     *     $formattedName = $tenantServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $response = $tenantServiceClient->getTenant($formattedName);
+     *     $response = $tenantServiceClient->getTenant();
      * } finally {
      *     $tenantServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the tenant to be retrieved.
-     *
-     *                             The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                             "projects/foo/tenants/bar".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the tenant to be retrieved.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/foo/tenants/bar".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -419,12 +426,15 @@ class TenantServiceGapicClient
      *
      * @experimental
      */
-    public function getTenant($name, array $optionalArgs = [])
+    public function getTenant(array $optionalArgs = [])
     {
         $request = new GetTenantRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetTenant', Tenant::class, $optionalArgs, $request)->wait();
@@ -437,9 +447,8 @@ class TenantServiceGapicClient
      * ```
      * $tenantServiceClient = new TenantServiceClient();
      * try {
-     *     $formattedParent = $tenantServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $tenantServiceClient->listTenants($formattedParent);
+     *     $pagedResponse = $tenantServiceClient->listTenants();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -447,7 +456,7 @@ class TenantServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $tenantServiceClient->listTenants($formattedParent);
+     *     $pagedResponse = $tenantServiceClient->listTenants();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -456,13 +465,14 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the project under which the tenant is created.
-     *
-     *                             The format is "projects/{project_id}", for example,
-     *                             "projects/foo".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the project under which the tenant is created.
+     *
+     *           The format is "projects/{project_id}", for example,
+     *           "projects/foo".
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -484,12 +494,15 @@ class TenantServiceGapicClient
      *
      * @experimental
      */
-    public function listTenants($parent, array $optionalArgs = [])
+    public function listTenants(array $optionalArgs = [])
     {
         $request = new ListTenantsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -510,18 +523,18 @@ class TenantServiceGapicClient
      * ```
      * $tenantServiceClient = new TenantServiceClient();
      * try {
-     *     $tenant = new Tenant();
-     *     $response = $tenantServiceClient->updateTenant($tenant);
+     *     $response = $tenantServiceClient->updateTenant();
      * } finally {
      *     $tenantServiceClient->close();
      * }
      * ```
      *
-     * @param Tenant $tenant       Required. The tenant resource to replace the current resource in the
-     *                             system.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Tenant $tenant
+     *           Required. The tenant resource to replace the current resource in the
+     *           system.
      *     @type FieldMask $updateMask
      *           Strongly recommended for the best service experience.
      *
@@ -546,12 +559,14 @@ class TenantServiceGapicClient
      *
      * @experimental
      */
-    public function updateTenant($tenant, array $optionalArgs = [])
+    public function updateTenant(array $optionalArgs = [])
     {
         $request = new UpdateTenantRequest();
         $requestParamHeaders = [];
-        $request->setTenant($tenant);
-        $requestParamHeaders['tenant.name'] = $tenant->getName();
+        if (isset($optionalArgs['tenant'])) {
+            $request->setTenant($optionalArgs['tenant']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

@@ -44,7 +44,6 @@ class ListCssProductsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The account/domain to list processed CSS Products for.
      *                       Format: accounts/{account}
-     *                       Please see {@see CssProductsServiceClient::accountName()} for help formatting this field.
      *
      * @return \Google\Shopping\Css\V1\ListCssProductsRequest
      *

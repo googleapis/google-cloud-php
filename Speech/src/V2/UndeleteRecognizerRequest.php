@@ -43,7 +43,6 @@ class UndeleteRecognizerRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the Recognizer to undelete.
      *                     Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`
-     *                     Please see {@see SpeechClient::recognizerName()} for help formatting this field.
      *
      * @return \Google\Cloud\Speech\V2\UndeleteRecognizerRequest
      *

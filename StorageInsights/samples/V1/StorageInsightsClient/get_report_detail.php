@@ -31,17 +31,19 @@ use Google\Cloud\StorageInsights\V1\ReportDetail;
 /**
  * Gets details of a single ReportDetail.
  *
- * @param string $formattedName Name of the resource
- *                              Please see {@see StorageInsightsClient::reportDetailName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_report_detail_sample(string $formattedName): void
+function get_report_detail_sample(): void
 {
     // Create a client.
     $storageInsightsClient = new StorageInsightsClient();
 
     // Prepare the request message.
-    $request = (new GetReportDetailRequest())
-        ->setName($formattedName);
+    $request = new GetReportDetailRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,26 +53,5 @@ function get_report_detail_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = StorageInsightsClient::reportDetailName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REPORT_CONFIG]',
-        '[REPORT_DETAIL]'
-    );
-
-    get_report_detail_sample($formattedName);
 }
 // [END storageinsights_v1_generated_StorageInsights_GetReportDetail_sync]

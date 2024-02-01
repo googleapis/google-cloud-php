@@ -21,10 +21,10 @@ class AttachmentService
         \GPBMetadata\Google\Cloud\Support\V2\Attachment::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ñ
-0google/cloud/support/v2/attachment_service.protogoogle.cloud.support.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/support/v2/attachment.proto"y
-ListAttachmentsRequest8
-parent (	B(àAúA"
+Ò
+0google/cloud/support/v2/attachment_service.protogoogle.cloud.support.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/support/v2/attachment.proto"z
+ListAttachmentsRequest9
+parent (	B)âAúA"
  cloudsupport.googleapis.com/Case
 	page_size (
 
@@ -33,7 +33,7 @@ page_token (	"l
 attachments (2#.google.cloud.support.v2.Attachment
 next_page_token (	2Ñ
 CaseAttachmentServiceæ
-ListAttachments/.google.cloud.support.v2.ListAttachmentsRequest0.google.cloud.support.v2.ListAttachmentsResponse"p‚Óä“a+/v2/{parent=projects/*/cases/*}/attachmentsZ20/v2/{parent=organizations/*/cases/*}/attachmentsÚAparentOÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¿
+ListAttachments/.google.cloud.support.v2.ListAttachmentsRequest0.google.cloud.support.v2.ListAttachmentsResponse"pÚAparent‚Óä“a+/v2/{parent=projects/*/cases/*}/attachmentsZ20/v2/{parent=organizations/*/cases/*}/attachmentsOÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¿
 com.google.cloud.support.v2BAttachmentServiceProtoPZ5cloud.google.com/go/support/apiv2/supportpb;supportpbªGoogle.Cloud.Support.V2ÊGoogle\\Cloud\\Support\\V2êGoogle::Cloud::Support::V2bproto3'
         , true);
 

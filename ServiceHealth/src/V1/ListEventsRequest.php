@@ -76,8 +76,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      *                       events.
      *                       `location` - The location to get the service health events from.
      *                       To retrieve service health events of category = INCIDENT, use `location` =
-     *                       `global`. Please see
-     *                       {@see ServiceHealthClient::locationName()} for help formatting this field.
+     *                       `global`.
      *
      * @return \Google\Cloud\ServiceHealth\V1\ListEventsRequest
      *

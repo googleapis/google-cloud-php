@@ -18,15 +18,15 @@ class Resource
         \GPBMetadata\Google\Cloud\Securitycenter\V1P1Beta1\Folder::initOnce();
         $pool->internalAddGeneratedFile(
             '
-â
-4google/cloud/securitycenter/v1p1beta1/resource.proto%google.cloud.securitycenter.v1p1beta12google/cloud/securitycenter/v1p1beta1/folder.proto"¹
+ã
+4google/cloud/securitycenter/v1p1beta1/resource.proto%google.cloud.securitycenter.v1p1beta12google/cloud/securitycenter/v1p1beta1/folder.proto"º
 Resource
 name (	
 project (	
 project_display_name (	
 parent (	
-parent_display_name (	C
-folders (2-.google.cloud.securitycenter.v1p1beta1.FolderBàABŠ
+parent_display_name (	D
+folders (2-.google.cloud.securitycenter.v1p1beta1.FolderBâABŠ
 )com.google.cloud.securitycenter.v1p1beta1BResourceProtoPZQcloud.google.com/go/securitycenter/apiv1p1beta1/securitycenterpb;securitycenterpbª%Google.Cloud.SecurityCenter.V1P1Beta1Ê%Google\\Cloud\\SecurityCenter\\V1p1beta1ê(Google::Cloud::SecurityCenter::V1p1beta1bproto3'
         , true);
 

@@ -30,8 +30,7 @@ class GetCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The
      *                     [name][google.cloud.security.privateca.v1.CertificateTemplate.name] of the
      *                     [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
-     *                     to get. Please see
-     *                     {@see CertificateAuthorityServiceClient::certificateTemplateName()} for help formatting this field.
+     *                     to get.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\GetCertificateTemplateRequest
      *

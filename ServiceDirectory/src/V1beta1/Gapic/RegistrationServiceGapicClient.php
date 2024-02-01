@@ -93,10 +93,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $registrationServiceClient = new RegistrationServiceClient();
  * try {
- *     $formattedParent = $registrationServiceClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
- *     $endpointId = 'endpoint_id';
- *     $endpoint = new Endpoint();
- *     $response = $registrationServiceClient->createEndpoint($formattedParent, $endpointId, $endpoint);
+ *     $response = $registrationServiceClient->createEndpoint();
  * } finally {
  *     $registrationServiceClient->close();
  * }
@@ -484,27 +481,27 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedParent = $registrationServiceClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-     *     $endpointId = 'endpoint_id';
-     *     $endpoint = new Endpoint();
-     *     $response = $registrationServiceClient->createEndpoint($formattedParent, $endpointId, $endpoint);
+     *     $response = $registrationServiceClient->createEndpoint();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param string   $parent       Required. The resource name of the service that this endpoint provides.
-     * @param string   $endpointId   Required. The Resource ID must be 1-63 characters long, and comply with
-     *                               <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
-     *                               Specifically, the name must be 1-63 characters long and match the regular
-     *                               expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
-     *                               character must be a lowercase letter, and all following characters must
-     *                               be a dash, lowercase letter, or digit, except the last character, which
-     *                               cannot be a dash.
-     * @param Endpoint $endpoint     Required. A endpoint with initial fields set.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the service that this endpoint provides.
+     *     @type string $endpointId
+     *           Required. The Resource ID must be 1-63 characters long, and comply with
+     *           <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
+     *     @type Endpoint $endpoint
+     *           Required. A endpoint with initial fields set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -517,18 +514,23 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function createEndpoint(
-        $parent,
-        $endpointId,
-        $endpoint,
-        array $optionalArgs = []
-    ) {
+    public function createEndpoint(array $optionalArgs = [])
+    {
         $request = new CreateEndpointRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setEndpointId($endpointId);
-        $request->setEndpoint($endpoint);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['endpointId'])) {
+            $request->setEndpointId($optionalArgs['endpointId']);
+        }
+
+        if (isset($optionalArgs['endpoint'])) {
+            $request->setEndpoint($optionalArgs['endpoint']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -550,28 +552,28 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedParent = $registrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $namespaceId = 'namespace_id';
-     *     $namespace = new PBNamespace();
-     *     $response = $registrationServiceClient->createNamespace($formattedParent, $namespaceId, $namespace);
+     *     $response = $registrationServiceClient->createNamespace();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param string      $parent       Required. The resource name of the project and location the namespace
-     *                                  will be created in.
-     * @param string      $namespaceId  Required. The Resource ID must be 1-63 characters long, and comply with
-     *                                  <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
-     *                                  Specifically, the name must be 1-63 characters long and match the regular
-     *                                  expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
-     *                                  character must be a lowercase letter, and all following characters must
-     *                                  be a dash, lowercase letter, or digit, except the last character, which
-     *                                  cannot be a dash.
-     * @param PBNamespace $namespace    Required. A namespace with initial fields set.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the project and location the namespace
+     *           will be created in.
+     *     @type string $namespaceId
+     *           Required. The Resource ID must be 1-63 characters long, and comply with
+     *           <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
+     *     @type PBNamespace $namespace
+     *           Required. A namespace with initial fields set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -584,18 +586,23 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function createNamespace(
-        $parent,
-        $namespaceId,
-        $namespace,
-        array $optionalArgs = []
-    ) {
+    public function createNamespace(array $optionalArgs = [])
+    {
         $request = new CreateNamespaceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setNamespaceId($namespaceId);
-        $request->setNamespace($namespace);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['namespaceId'])) {
+            $request->setNamespaceId($optionalArgs['namespaceId']);
+        }
+
+        if (isset($optionalArgs['namespace'])) {
+            $request->setNamespace($optionalArgs['namespace']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -617,27 +624,27 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedParent = $registrationServiceClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-     *     $serviceId = 'service_id';
-     *     $service = new Service();
-     *     $response = $registrationServiceClient->createService($formattedParent, $serviceId, $service);
+     *     $response = $registrationServiceClient->createService();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. The resource name of the namespace this service will belong to.
-     * @param string  $serviceId    Required. The Resource ID must be 1-63 characters long, and comply with
-     *                              <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
-     *                              Specifically, the name must be 1-63 characters long and match the regular
-     *                              expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
-     *                              character must be a lowercase letter, and all following characters must
-     *                              be a dash, lowercase letter, or digit, except the last character, which
-     *                              cannot be a dash.
-     * @param Service $service      Required. A service  with initial fields set.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the namespace this service will belong to.
+     *     @type string $serviceId
+     *           Required. The Resource ID must be 1-63 characters long, and comply with
+     *           <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
+     *     @type Service $service
+     *           Required. A service  with initial fields set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -650,18 +657,23 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function createService(
-        $parent,
-        $serviceId,
-        $service,
-        array $optionalArgs = []
-    ) {
+    public function createService(array $optionalArgs = [])
+    {
         $request = new CreateServiceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setServiceId($serviceId);
-        $request->setService($service);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['serviceId'])) {
+            $request->setServiceId($optionalArgs['serviceId']);
+        }
+
+        if (isset($optionalArgs['service'])) {
+            $request->setService($optionalArgs['service']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -683,17 +695,17 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedName = $registrationServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]', '[ENDPOINT]');
-     *     $registrationServiceClient->deleteEndpoint($formattedName);
+     *     $registrationServiceClient->deleteEndpoint();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the endpoint to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the endpoint to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -704,12 +716,15 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function deleteEndpoint($name, array $optionalArgs = [])
+    public function deleteEndpoint(array $optionalArgs = [])
     {
         $request = new DeleteEndpointRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -732,17 +747,17 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedName = $registrationServiceClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-     *     $registrationServiceClient->deleteNamespace($formattedName);
+     *     $registrationServiceClient->deleteNamespace();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the namespace to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the namespace to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -753,12 +768,15 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function deleteNamespace($name, array $optionalArgs = [])
+    public function deleteNamespace(array $optionalArgs = [])
     {
         $request = new DeleteNamespaceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -781,17 +799,17 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedName = $registrationServiceClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-     *     $registrationServiceClient->deleteService($formattedName);
+     *     $registrationServiceClient->deleteService();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the service to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the service to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -802,12 +820,15 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function deleteService($name, array $optionalArgs = [])
+    public function deleteService(array $optionalArgs = [])
     {
         $request = new DeleteServiceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -829,17 +850,17 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedName = $registrationServiceClient->endpointName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]', '[ENDPOINT]');
-     *     $response = $registrationServiceClient->getEndpoint($formattedName);
+     *     $response = $registrationServiceClient->getEndpoint();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the endpoint to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the endpoint to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -852,12 +873,15 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function getEndpoint($name, array $optionalArgs = [])
+    public function getEndpoint(array $optionalArgs = [])
     {
         $request = new GetEndpointRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -937,17 +961,17 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedName = $registrationServiceClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-     *     $response = $registrationServiceClient->getNamespace($formattedName);
+     *     $response = $registrationServiceClient->getNamespace();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the namespace to retrieve.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the namespace to retrieve.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -960,12 +984,15 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function getNamespace($name, array $optionalArgs = [])
+    public function getNamespace(array $optionalArgs = [])
     {
         $request = new GetNamespaceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -987,17 +1014,17 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedName = $registrationServiceClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-     *     $response = $registrationServiceClient->getService($formattedName);
+     *     $response = $registrationServiceClient->getService();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the service to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the service to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1010,12 +1037,15 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function getService($name, array $optionalArgs = [])
+    public function getService(array $optionalArgs = [])
     {
         $request = new GetServiceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1037,9 +1067,8 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedParent = $registrationServiceClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $registrationServiceClient->listEndpoints($formattedParent);
+     *     $pagedResponse = $registrationServiceClient->listEndpoints();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1047,7 +1076,7 @@ class RegistrationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $registrationServiceClient->listEndpoints($formattedParent);
+     *     $pagedResponse = $registrationServiceClient->listEndpoints();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1056,11 +1085,12 @@ class RegistrationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the service whose endpoints you'd like to
-     *                             list.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the service whose endpoints you'd like to
+     *           list.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1129,12 +1159,15 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function listEndpoints($parent, array $optionalArgs = [])
+    public function listEndpoints(array $optionalArgs = [])
     {
         $request = new ListEndpointsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1172,9 +1205,8 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedParent = $registrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $registrationServiceClient->listNamespaces($formattedParent);
+     *     $pagedResponse = $registrationServiceClient->listNamespaces();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1182,7 +1214,7 @@ class RegistrationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $registrationServiceClient->listNamespaces($formattedParent);
+     *     $pagedResponse = $registrationServiceClient->listNamespaces();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1191,11 +1223,12 @@ class RegistrationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the project and location whose namespaces
-     *                             you'd like to list.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the project and location whose namespaces
+     *           you'd like to list.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1259,12 +1292,15 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function listNamespaces($parent, array $optionalArgs = [])
+    public function listNamespaces(array $optionalArgs = [])
     {
         $request = new ListNamespacesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1302,9 +1338,8 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $formattedParent = $registrationServiceClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $registrationServiceClient->listServices($formattedParent);
+     *     $pagedResponse = $registrationServiceClient->listServices();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1312,7 +1347,7 @@ class RegistrationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $registrationServiceClient->listServices($formattedParent);
+     *     $pagedResponse = $registrationServiceClient->listServices();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1321,11 +1356,12 @@ class RegistrationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the namespace whose services you'd
-     *                             like to list.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the namespace whose services you'd
+     *           like to list.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1392,12 +1428,15 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function listServices($parent, array $optionalArgs = [])
+    public function listServices(array $optionalArgs = [])
     {
         $request = new ListServicesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1563,19 +1602,19 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $endpoint = new Endpoint();
-     *     $updateMask = new FieldMask();
-     *     $response = $registrationServiceClient->updateEndpoint($endpoint, $updateMask);
+     *     $response = $registrationServiceClient->updateEndpoint();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param Endpoint  $endpoint     Required. The updated endpoint.
-     * @param FieldMask $updateMask   Required. List of fields to be updated in this request.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Endpoint $endpoint
+     *           Required. The updated endpoint.
+     *     @type FieldMask $updateMask
+     *           Required. List of fields to be updated in this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1588,16 +1627,18 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function updateEndpoint(
-        $endpoint,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateEndpoint(array $optionalArgs = [])
+    {
         $request = new UpdateEndpointRequest();
         $requestParamHeaders = [];
-        $request->setEndpoint($endpoint);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['endpoint.name'] = $endpoint->getName();
+        if (isset($optionalArgs['endpoint'])) {
+            $request->setEndpoint($optionalArgs['endpoint']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1619,19 +1660,19 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $namespace = new PBNamespace();
-     *     $updateMask = new FieldMask();
-     *     $response = $registrationServiceClient->updateNamespace($namespace, $updateMask);
+     *     $response = $registrationServiceClient->updateNamespace();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param PBNamespace $namespace    Required. The updated namespace.
-     * @param FieldMask   $updateMask   Required. List of fields to be updated in this request.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type PBNamespace $namespace
+     *           Required. The updated namespace.
+     *     @type FieldMask $updateMask
+     *           Required. List of fields to be updated in this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1644,16 +1685,18 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function updateNamespace(
-        $namespace,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateNamespace(array $optionalArgs = [])
+    {
         $request = new UpdateNamespaceRequest();
         $requestParamHeaders = [];
-        $request->setNamespace($namespace);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['namespace.name'] = $namespace->getName();
+        if (isset($optionalArgs['namespace'])) {
+            $request->setNamespace($optionalArgs['namespace']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1675,19 +1718,19 @@ class RegistrationServiceGapicClient
      * ```
      * $registrationServiceClient = new RegistrationServiceClient();
      * try {
-     *     $service = new Service();
-     *     $updateMask = new FieldMask();
-     *     $response = $registrationServiceClient->updateService($service, $updateMask);
+     *     $response = $registrationServiceClient->updateService();
      * } finally {
      *     $registrationServiceClient->close();
      * }
      * ```
      *
-     * @param Service   $service      Required. The updated service.
-     * @param FieldMask $updateMask   Required. List of fields to be updated in this request.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Service $service
+     *           Required. The updated service.
+     *     @type FieldMask $updateMask
+     *           Required. List of fields to be updated in this request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1700,16 +1743,18 @@ class RegistrationServiceGapicClient
      *
      * @experimental
      */
-    public function updateService(
-        $service,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateService(array $optionalArgs = [])
+    {
         $request = new UpdateServiceRequest();
         $requestParamHeaders = [];
-        $request->setService($service);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['service.name'] = $service->getName();
+        if (isset($optionalArgs['service'])) {
+            $request->setService($optionalArgs['service']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

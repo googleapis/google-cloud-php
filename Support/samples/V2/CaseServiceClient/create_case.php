@@ -33,20 +33,19 @@ use Google\Cloud\Support\V2\PBCase;
  * The case object must have the following fields set: `display_name`,
  * `description`, `classification`, and `priority`.
  *
- * @param string $formattedParent The name of the Google Cloud Resource under which the case should
- *                                be created. Please see
- *                                {@see CaseServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_case_sample(string $formattedParent): void
+function create_case_sample(): void
 {
     // Create a client.
     $caseServiceClient = new CaseServiceClient();
 
     // Prepare the request message.
-    $case = new PBCase();
-    $request = (new CreateCaseRequest())
-        ->setParent($formattedParent)
-        ->setCase($case);
+    $request = new CreateCaseRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +55,5 @@ function create_case_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CaseServiceClient::projectName('[PROJECT]');
-
-    create_case_sample($formattedParent);
 }
 // [END cloudsupport_v2_generated_CaseService_CreateCase_sync]

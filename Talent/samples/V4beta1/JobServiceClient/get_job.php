@@ -31,17 +31,13 @@ use Google\Cloud\Talent\V4beta1\JobServiceClient;
  * Retrieves the specified job, whose status is OPEN or recently EXPIRED
  * within the last 90 days.
  *
- * @param string $formattedName The resource name of the job to retrieve.
- *
- *                              The format is
- *                              "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
- *                              example, "projects/foo/tenants/bar/jobs/baz".
- *
- *                              If tenant id is unspecified, the default tenant is used. For
- *                              example, "projects/foo/jobs/bar". Please see
- *                              {@see JobServiceClient::jobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_job_sample(string $formattedName): void
+function get_job_sample(): void
 {
     // Create a client.
     $jobServiceClient = new JobServiceClient();
@@ -49,26 +45,10 @@ function get_job_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $jobServiceClient->getJob($formattedName);
+        $response = $jobServiceClient->getJob();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = JobServiceClient::jobName('[PROJECT]', '[TENANT]', '[JOB]');
-
-    get_job_sample($formattedName);
 }
 // [END jobs_v4beta1_generated_JobService_GetJob_sync]

@@ -38,9 +38,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'instance_id',
-                ],
             ],
             'CreateRepository' => [
                 'method' => 'post',
@@ -52,9 +49,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'repository_id',
                 ],
             ],
             'DeleteInstance' => [

@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Security\PrivateCA\V1\ActivateCertificateAuthorityRequest;
 use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
 use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
-use Google\Cloud\Security\PrivateCA\V1\SubordinateConfig;
 use Google\Rpc\Status;
 
 /**
@@ -43,36 +42,19 @@ use Google\Rpc\Status;
  * [FetchCertificateAuthorityCsr][google.cloud.security.privateca.v1.CertificateAuthorityService.FetchCertificateAuthorityCsr],
  * this method can complete the activation process.
  *
- * @param string $formattedName                                  The resource name for this
- *                                                               [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
- *                                                               in the format `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
- *                                                               {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
- * @param string $pemCaCertificate                               The signed CA certificate issued from
- *                                                               [FetchCertificateAuthorityCsrResponse.pem_csr][google.cloud.security.privateca.v1.FetchCertificateAuthorityCsrResponse.pem_csr].
- * @param string $formattedSubordinateConfigCertificateAuthority This can refer to a
- *                                                               [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
- *                                                               that was used to create a subordinate
- *                                                               [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
- *                                                               This field is used for information and usability purposes only. The
- *                                                               resource name is in the format
- *                                                               `projects/&#42;/locations/&#42;/caPools/&#42;/certificateAuthorities/*`. Please see
- *                                                               {@see CertificateAuthorityServiceClient::certificateAuthorityName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function activate_certificate_authority_sample(
-    string $formattedName,
-    string $pemCaCertificate,
-    string $formattedSubordinateConfigCertificateAuthority
-): void {
+function activate_certificate_authority_sample(): void
+{
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $subordinateConfig = (new SubordinateConfig())
-        ->setCertificateAuthority($formattedSubordinateConfigCertificateAuthority);
-    $request = (new ActivateCertificateAuthorityRequest())
-        ->setName($formattedName)
-        ->setPemCaCertificate($pemCaCertificate)
-        ->setSubordinateConfig($subordinateConfig);
+    $request = new ActivateCertificateAuthorityRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -92,37 +74,5 @@ function activate_certificate_authority_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CertificateAuthorityServiceClient::certificateAuthorityName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CA_POOL]',
-        '[CERTIFICATE_AUTHORITY]'
-    );
-    $pemCaCertificate = '[PEM_CA_CERTIFICATE]';
-    $formattedSubordinateConfigCertificateAuthority = CertificateAuthorityServiceClient::certificateAuthorityName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CA_POOL]',
-        '[CERTIFICATE_AUTHORITY]'
-    );
-
-    activate_certificate_authority_sample(
-        $formattedName,
-        $pemCaCertificate,
-        $formattedSubordinateConfigCertificateAuthority
-    );
 }
 // [END privateca_v1_generated_CertificateAuthorityService_ActivateCertificateAuthority_sync]

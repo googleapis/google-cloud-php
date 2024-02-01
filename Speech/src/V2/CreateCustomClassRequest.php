@@ -48,8 +48,7 @@ class CreateCustomClassRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                              $parent        Required. The project and location where this CustomClass will be created.
-     *                                                           The expected format is `projects/{project}/locations/{location}`. Please see
-     *                                                           {@see SpeechClient::locationName()} for help formatting this field.
+     *                                                           The expected format is `projects/{project}/locations/{location}`.
      * @param \Google\Cloud\Speech\V2\CustomClass $customClass   Required. The CustomClass to create.
      * @param string                              $customClassId The ID to use for the CustomClass, which will become the final component of
      *                                                           the CustomClass's resource name.

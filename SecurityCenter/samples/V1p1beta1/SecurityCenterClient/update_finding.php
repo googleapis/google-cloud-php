@@ -42,13 +42,10 @@ function update_finding_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $finding = new Finding();
-
     // Call the API and handle any network failures.
     try {
         /** @var Finding $response */
-        $response = $securityCenterClient->updateFinding($finding);
+        $response = $securityCenterClient->updateFinding();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

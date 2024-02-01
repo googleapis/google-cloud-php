@@ -36,17 +36,11 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=folders/*}/bigQueryExports',
                         'body' => 'big_query_export',
-                        'queryParams' => [
-                            'big_query_export_id',
-                        ],
                     ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*}/bigQueryExports',
                         'body' => 'big_query_export',
-                        'queryParams' => [
-                            'big_query_export_id',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -55,9 +49,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'big_query_export_id',
                 ],
             ],
             'CreateFinding' => [
@@ -71,9 +62,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'finding_id',
-                ],
             ],
             'CreateMuteConfig' => [
                 'method' => 'post',
@@ -84,17 +72,11 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=folders/*}/muteConfigs',
                         'body' => 'mute_config',
-                        'queryParams' => [
-                            'mute_config_id',
-                        ],
                     ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*}/muteConfigs',
                         'body' => 'mute_config',
-                        'queryParams' => [
-                            'mute_config_id',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -103,9 +85,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'mute_config_id',
                 ],
             ],
             'CreateNotificationConfig' => [
@@ -117,17 +96,11 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=folders/*}/notificationConfigs',
                         'body' => 'notification_config',
-                        'queryParams' => [
-                            'config_id',
-                        ],
                     ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*}/notificationConfigs',
                         'body' => 'notification_config',
-                        'queryParams' => [
-                            'config_id',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -136,9 +109,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'config_id',
                 ],
             ],
             'CreateSecurityHealthAnalyticsCustomModule' => [

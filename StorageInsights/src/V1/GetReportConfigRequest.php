@@ -24,7 +24,6 @@ class GetReportConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the resource
-     *                     Please see {@see StorageInsightsClient::reportConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\StorageInsights\V1\GetReportConfigRequest
      *

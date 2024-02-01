@@ -45,7 +45,6 @@ class UndeleteCustomClassRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the CustomClass to undelete.
      *                     Format:
      *                     `projects/{project}/locations/{location}/customClasses/{custom_class}`
-     *                     Please see {@see SpeechClient::customClassName()} for help formatting this field.
      *
      * @return \Google\Cloud\Speech\V2\UndeleteCustomClassRequest
      *

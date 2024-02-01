@@ -51,8 +51,7 @@ class ListRecognizersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project and location of Recognizers to list. The expected
-     *                       format is `projects/{project}/locations/{location}`. Please see
-     *                       {@see SpeechClient::locationName()} for help formatting this field.
+     *                       format is `projects/{project}/locations/{location}`.
      *
      * @return \Google\Cloud\Speech\V2\ListRecognizersRequest
      *

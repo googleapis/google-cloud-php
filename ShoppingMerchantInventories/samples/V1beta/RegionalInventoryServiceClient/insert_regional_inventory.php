@@ -39,24 +39,19 @@ use Google\Shopping\Merchant\Inventories\V1beta\RegionalInventory;
  * It might take up to 30 minutes for the new or updated `RegionalInventory`
  * resource to appear in products.
  *
- * @param string $parent                  The account and product where this inventory will be inserted.
- *                                        Format: `accounts/{account}/products/{product}`
- * @param string $regionalInventoryRegion ID of the region for this
- *                                        `RegionalInventory` resource. See the [Regional availability and
- *                                        pricing](https://support.google.com/merchants/answer/9698880) for more
- *                                        details.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function insert_regional_inventory_sample(string $parent, string $regionalInventoryRegion): void
+function insert_regional_inventory_sample(): void
 {
     // Create a client.
     $regionalInventoryServiceClient = new RegionalInventoryServiceClient();
 
     // Prepare the request message.
-    $regionalInventory = (new RegionalInventory())
-        ->setRegion($regionalInventoryRegion);
-    $request = (new InsertRegionalInventoryRequest())
-        ->setParent($parent)
-        ->setRegionalInventory($regionalInventory);
+    $request = new InsertRegionalInventoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -66,22 +61,5 @@ function insert_regional_inventory_sample(string $parent, string $regionalInvent
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-    $regionalInventoryRegion = '[REGION]';
-
-    insert_regional_inventory_sample($parent, $regionalInventoryRegion);
 }
 // [END merchantapi_v1beta_generated_RegionalInventoryService_InsertRegionalInventory_sync]

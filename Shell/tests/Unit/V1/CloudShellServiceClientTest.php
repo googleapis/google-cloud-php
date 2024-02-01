@@ -316,17 +316,13 @@ class CloudShellServiceClientTest extends GeneratedTest
         $expectedResponse->setSshHost($sshHost);
         $expectedResponse->setSshPort($sshPort);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->environmentName('[USER]', '[ENVIRONMENT]');
-        $response = $gapicClient->getEnvironment($formattedName);
+        $response = $gapicClient->getEnvironment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.shell.v1.CloudShellService/GetEnvironment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -348,10 +344,8 @@ class CloudShellServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->environmentName('[USER]', '[ENVIRONMENT]');
         try {
-            $gapicClient->getEnvironment($formattedName);
+            $gapicClient->getEnvironment();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

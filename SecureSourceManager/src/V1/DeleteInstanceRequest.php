@@ -39,8 +39,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string $name Required. Name of the resource. Please see
-     *                     {@see SecureSourceManagerClient::instanceName()} for help formatting this field.
+     * @param string $name Required. Name of the resource.
      *
      * @return \Google\Cloud\SecureSourceManager\V1\DeleteInstanceRequest
      *

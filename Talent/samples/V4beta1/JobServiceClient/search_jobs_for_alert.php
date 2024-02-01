@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Talent\V4beta1\JobServiceClient;
-use Google\Cloud\Talent\V4beta1\RequestMetadata;
 use Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob;
 
 /**
@@ -43,25 +42,21 @@ use Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob;
  * the database, and only returns jobs the caller has permission to search
  * against.
  *
- * @param string $formattedParent The resource name of the tenant to search within.
- *
- *                                The format is "projects/{project_id}/tenants/{tenant_id}". For example,
- *                                "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
- *                                is created. For example, "projects/foo". Please see
- *                                {@see JobServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function search_jobs_for_alert_sample(string $formattedParent): void
+function search_jobs_for_alert_sample(): void
 {
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $requestMetadata = new RequestMetadata();
-
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobServiceClient->searchJobsForAlert($formattedParent, $requestMetadata);
+        $response = $jobServiceClient->searchJobsForAlert();
 
         /** @var MatchingJob $element */
         foreach ($response as $element) {
@@ -70,21 +65,5 @@ function search_jobs_for_alert_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = JobServiceClient::projectName('[PROJECT]');
-
-    search_jobs_for_alert_sample($formattedParent);
 }
 // [END jobs_v4beta1_generated_JobService_SearchJobsForAlert_sync]

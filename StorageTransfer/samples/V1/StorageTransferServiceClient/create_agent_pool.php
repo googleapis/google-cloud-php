@@ -31,40 +31,19 @@ use Google\Cloud\StorageTransfer\V1\CreateAgentPoolRequest;
 /**
  * Creates an agent pool resource.
  *
- * @param string $projectId     The ID of the Google Cloud project that owns the
- *                              agent pool.
- * @param string $agentPoolName Specifies a unique string that identifies the agent pool.
- *
- *                              Format: `projects/{project_id}/agentPools/{agent_pool_id}`
- * @param string $agentPoolId   The ID of the agent pool to create.
- *
- *                              The `agent_pool_id` must meet the following requirements:
- *
- *                              *   Length of 128 characters or less.
- *                              *   Not start with the string `goog`.
- *                              *   Start with a lowercase ASCII character, followed by:
- *                              *   Zero or more: lowercase Latin alphabet characters, numerals,
- *                              hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`).
- *                              *   One or more numerals or lowercase ASCII characters.
- *
- *                              As expressed by the regular expression:
- *                              `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_agent_pool_sample(
-    string $projectId,
-    string $agentPoolName,
-    string $agentPoolId
-): void {
+function create_agent_pool_sample(): void
+{
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
     // Prepare the request message.
-    $agentPool = (new AgentPool())
-        ->setName($agentPoolName);
-    $request = (new CreateAgentPoolRequest())
-        ->setProjectId($projectId)
-        ->setAgentPool($agentPool)
-        ->setAgentPoolId($agentPoolId);
+    $request = new CreateAgentPoolRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -74,23 +53,5 @@ function create_agent_pool_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $projectId = '[PROJECT_ID]';
-    $agentPoolName = '[NAME]';
-    $agentPoolId = '[AGENT_POOL_ID]';
-
-    create_agent_pool_sample($projectId, $agentPoolName, $agentPoolId);
 }
 // [END storagetransfer_v1_generated_StorageTransferService_CreateAgentPool_sync]

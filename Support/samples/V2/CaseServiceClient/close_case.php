@@ -31,17 +31,19 @@ use Google\Cloud\Support\V2\PBCase;
 /**
  * Close the specified case.
  *
- * @param string $formattedName The fully qualified name of the case resource to be closed. Please see
- *                              {@see CaseServiceClient::caseName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function close_case_sample(string $formattedName): void
+function close_case_sample(): void
 {
     // Create a client.
     $caseServiceClient = new CaseServiceClient();
 
     // Prepare the request message.
-    $request = (new CloseCaseRequest())
-        ->setName($formattedName);
+    $request = new CloseCaseRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +53,5 @@ function close_case_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CaseServiceClient::caseName('[ORGANIZATION]', '[CASE]');
-
-    close_case_sample($formattedName);
 }
 // [END cloudsupport_v2_generated_CaseService_CloseCase_sync]

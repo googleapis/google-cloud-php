@@ -36,8 +36,7 @@ class GetOrganizationEventRequest extends \Google\Protobuf\Internal\Message
      *                     get your `organization_id`, see
      *                     [Getting your organization resource
      *                     ID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).<br>
-     *                     `event_id` - Organization event ID to retrieve. Please see
-     *                     {@see ServiceHealthClient::organizationEventName()} for help formatting this field.
+     *                     `event_id` - Organization event ID to retrieve.
      *
      * @return \Google\Cloud\ServiceHealth\V1\GetOrganizationEventRequest
      *

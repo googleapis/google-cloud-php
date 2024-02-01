@@ -30,16 +30,19 @@ use Google\Cloud\StorageTransfer\V1\ResumeTransferOperationRequest;
 /**
  * Resumes a transfer operation that is paused.
  *
- * @param string $name The name of the transfer operation.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function resume_transfer_operation_sample(string $name): void
+function resume_transfer_operation_sample(): void
 {
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
     // Prepare the request message.
-    $request = (new ResumeTransferOperationRequest())
-        ->setName($name);
+    $request = new ResumeTransferOperationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -48,21 +51,5 @@ function resume_transfer_operation_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    resume_transfer_operation_sample($name);
 }
 // [END storagetransfer_v1_generated_StorageTransferService_ResumeTransferOperation_sync]

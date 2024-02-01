@@ -21,13 +21,13 @@ class Service
         \GPBMetadata\Google\Cloud\Security\Publicca\V1Beta1\Resources::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ò
-4google/cloud/security/publicca/v1beta1/service.proto&google.cloud.security.publicca.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto6google/cloud/security/publicca/v1beta1/resources.proto"Ä
-CreateExternalAccountKeyRequestB
-parent (	B2àAúA,*publicca.googleapis.com/ExternalAccountKey]
-external_account_key (2:.google.cloud.security.publicca.v1beta1.ExternalAccountKeyBàA2Œ
+Ô
+4google/cloud/security/publicca/v1beta1/service.proto&google.cloud.security.publicca.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto6google/cloud/security/publicca/v1beta1/resources.proto"Æ
+CreateExternalAccountKeyRequestC
+parent (	B3âAúA,*publicca.googleapis.com/ExternalAccountKey^
+external_account_key (2:.google.cloud.security.publicca.v1beta1.ExternalAccountKeyBâA2Œ
 !PublicCertificateAuthorityService™
-CreateExternalAccountKeyG.google.cloud.security.publicca.v1beta1.CreateExternalAccountKeyRequest:.google.cloud.security.publicca.v1beta1.ExternalAccountKey"x‚Óä“T"</v1beta1/{parent=projects/*/locations/*}/externalAccountKeys:external_account_keyÚAparent,external_account_keyKÊApublicca.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB†
+CreateExternalAccountKeyG.google.cloud.security.publicca.v1beta1.CreateExternalAccountKeyRequest:.google.cloud.security.publicca.v1beta1.ExternalAccountKey"xÚAparent,external_account_key‚Óä“T"</v1beta1/{parent=projects/*/locations/*}/externalAccountKeys:external_account_keyKÊApublicca.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB†
 *com.google.cloud.security.publicca.v1beta1BServiceProtoPZFcloud.google.com/go/security/publicca/apiv1beta1/publiccapb;publiccapbøª&Google.Cloud.Security.PublicCA.V1Beta1Ê&Google\\Cloud\\Security\\PublicCA\\V1beta1ê*Google::Cloud::Security::PublicCA::V1beta1bproto3'
         , true);
 

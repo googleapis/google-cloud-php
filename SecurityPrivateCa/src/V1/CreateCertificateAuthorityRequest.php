@@ -61,8 +61,7 @@ class CreateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      * @param string                                                   $parent                 Required. The resource name of the
      *                                                                                         [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
      *                                                                                         [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority],
-     *                                                                                         in the format `projects/&#42;/locations/&#42;/caPools/*`. Please see
-     *                                                                                         {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *                                                                                         in the format `projects/&#42;/locations/&#42;/caPools/*`.
      * @param \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority $certificateAuthority   Required. A
      *                                                                                         [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      *                                                                                         with initial field values.

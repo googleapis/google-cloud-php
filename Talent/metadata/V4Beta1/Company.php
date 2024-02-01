@@ -19,12 +19,12 @@ class Company
         \GPBMetadata\Google\Cloud\Talent\V4Beta1\Common::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í
-)google/cloud/talent/v4beta1/company.protogoogle.cloud.talent.v4beta1google/api/resource.proto(google/cloud/talent/v4beta1/common.proto"Ä
+ñ
+)google/cloud/talent/v4beta1/company.protogoogle.cloud.talent.v4beta1google/api/resource.proto(google/cloud/talent/v4beta1/common.proto"Ñ
 Company
-name (	
-display_name (	B‡A
-external_id (	B‡A6
+name (	
+display_name (	B‚A
+external_id (	B‚A6
 size (2(.google.cloud.talent.v4beta1.CompanySize
 headquarters_address (	
 hiring_agency (
@@ -33,9 +33,9 @@ class Company
 career_site_uri	 (	
 	image_uri
  (	4
-(keyword_searchable_job_custom_attributes (	BK
-derived_info (20.google.cloud.talent.v4beta1.Company.DerivedInfoB‡A
-	suspended (B‡AS
+(keyword_searchable_job_custom_attributes (	BL
+derived_info (20.google.cloud.talent.v4beta1.Company.DerivedInfoB‚A
+	suspended (B‚AS
 DerivedInfoD
 headquarters_location (2%.google.cloud.talent.v4beta1.Location:ÅÍA~
 jobs.googleapis.com/Company7projects/{project}/tenants/{tenant}/companies/{company}&projects/{project}/companies/{company}Bx

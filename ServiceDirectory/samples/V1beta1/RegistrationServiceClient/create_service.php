@@ -30,52 +30,24 @@ use Google\Cloud\ServiceDirectory\V1beta1\Service;
 /**
  * Creates a service, and returns the new service.
  *
- * @param string $formattedParent The resource name of the namespace this service will belong to. Please see
- *                                {@see RegistrationServiceClient::namespaceName()} for help formatting this field.
- * @param string $serviceId       The Resource ID must be 1-63 characters long, and comply with
- *                                <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
- *                                Specifically, the name must be 1-63 characters long and match the regular
- *                                expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
- *                                character must be a lowercase letter, and all following characters must
- *                                be a dash, lowercase letter, or digit, except the last character, which
- *                                cannot be a dash.
- */
-function create_service_sample(string $formattedParent, string $serviceId): void
-{
-    // Create a client.
-    $registrationServiceClient = new RegistrationServiceClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $service = new Service();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Service $response */
-        $response = $registrationServiceClient->createService($formattedParent, $serviceId, $service);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function create_service_sample(): void
 {
-    $formattedParent = RegistrationServiceClient::namespaceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[NAMESPACE]'
-    );
-    $serviceId = '[SERVICE_ID]';
+    // Create a client.
+    $registrationServiceClient = new RegistrationServiceClient();
 
-    create_service_sample($formattedParent, $serviceId);
+    // Call the API and handle any network failures.
+    try {
+        /** @var Service $response */
+        $response = $registrationServiceClient->createService();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END servicedirectory_v1beta1_generated_RegistrationService_CreateService_sync]

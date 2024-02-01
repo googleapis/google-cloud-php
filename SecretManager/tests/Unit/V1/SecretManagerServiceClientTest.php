@@ -31,12 +31,9 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\SecretManager\V1\AccessSecretVersionResponse;
 use Google\Cloud\SecretManager\V1\ListSecretVersionsResponse;
 use Google\Cloud\SecretManager\V1\ListSecretsResponse;
-use Google\Cloud\SecretManager\V1\Replication;
 use Google\Cloud\SecretManager\V1\Secret;
 use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
-use Google\Cloud\SecretManager\V1\SecretPayload;
 use Google\Cloud\SecretManager\V1\SecretVersion;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -82,17 +79,13 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse = new AccessSecretVersionResponse();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $response = $gapicClient->accessSecretVersion($formattedName);
+        $response = $gapicClient->accessSecretVersion();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -114,10 +107,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
         try {
-            $gapicClient->accessSecretVersion($formattedName);
+            $gapicClient->accessSecretVersion();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -146,20 +137,13 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $payload = new SecretPayload();
-        $response = $gapicClient->addSecretVersion($formattedParent, $payload);
+        $response = $gapicClient->addSecretVersion();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/AddSecretVersion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getPayload();
-        $this->assertProtobufEquals($payload, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -181,11 +165,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $payload = new SecretPayload();
         try {
-            $gapicClient->addSecretVersion($formattedParent, $payload);
+            $gapicClient->addSecretVersion();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -212,25 +193,13 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $secretId = 'secretId-739547894';
-        $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
-        $response = $gapicClient->createSecret($formattedParent, $secretId, $secret);
+        $response = $gapicClient->createSecret();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/CreateSecret', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSecretId();
-        $this->assertProtobufEquals($secretId, $actualValue);
-        $actualValue = $actualRequestObject->getSecret();
-        $this->assertProtobufEquals($secret, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -252,14 +221,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $secretId = 'secretId-739547894';
-        $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
         try {
-            $gapicClient->createSecret($formattedParent, $secretId, $secret);
+            $gapicClient->createSecret();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -282,16 +245,12 @@ class SecretManagerServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $gapicClient->deleteSecret($formattedName);
+        $gapicClient->deleteSecret();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/DeleteSecret', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -313,10 +272,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
         try {
-            $gapicClient->deleteSecret($formattedName);
+            $gapicClient->deleteSecret();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -345,17 +302,13 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag2);
         $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $response = $gapicClient->destroySecretVersion($formattedName);
+        $response = $gapicClient->destroySecretVersion();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/DestroySecretVersion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -377,10 +330,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
         try {
-            $gapicClient->destroySecretVersion($formattedName);
+            $gapicClient->destroySecretVersion();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -409,17 +360,13 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag2);
         $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $response = $gapicClient->disableSecretVersion($formattedName);
+        $response = $gapicClient->disableSecretVersion();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/DisableSecretVersion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -441,10 +388,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
         try {
-            $gapicClient->disableSecretVersion($formattedName);
+            $gapicClient->disableSecretVersion();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -473,17 +418,13 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag2);
         $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $response = $gapicClient->enableSecretVersion($formattedName);
+        $response = $gapicClient->enableSecretVersion();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/EnableSecretVersion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -505,10 +446,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
         try {
-            $gapicClient->enableSecretVersion($formattedName);
+            $gapicClient->enableSecretVersion();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -597,17 +536,13 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $response = $gapicClient->getSecret($formattedName);
+        $response = $gapicClient->getSecret();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/GetSecret', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -629,10 +564,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
         try {
-            $gapicClient->getSecret($formattedName);
+            $gapicClient->getSecret();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -661,17 +594,13 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $response = $gapicClient->getSecretVersion($formattedName);
+        $response = $gapicClient->getSecretVersion();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/GetSecretVersion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -693,10 +622,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
         try {
-            $gapicClient->getSecretVersion($formattedName);
+            $gapicClient->getSecretVersion();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -728,9 +655,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setVersions($versions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $response = $gapicClient->listSecretVersions($formattedParent);
+        $response = $gapicClient->listSecretVersions();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -740,8 +665,6 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/ListSecretVersions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -763,10 +686,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
         try {
-            $gapicClient->listSecretVersions($formattedParent);
+            $gapicClient->listSecretVersions();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -798,9 +719,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setSecrets($secrets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listSecrets($formattedParent);
+        $response = $gapicClient->listSecrets();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -810,8 +729,6 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/ListSecrets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -833,10 +750,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listSecrets($formattedParent);
+            $gapicClient->listSecrets();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -991,22 +906,13 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
-        $updateMask = new FieldMask();
-        $response = $gapicClient->updateSecret($secret, $updateMask);
+        $response = $gapicClient->updateSecret();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/UpdateSecret', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSecret();
-        $this->assertProtobufEquals($secret, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1028,13 +934,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
-        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateSecret($secret, $updateMask);
+            $gapicClient->updateSecret();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -360,17 +360,11 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{event_threat_detection_custom_module.name=folders/*/locations/*/eventThreatDetectionCustomModules/*}',
                         'body' => 'event_threat_detection_custom_module',
-                        'queryParams' => [
-                            'update_mask',
-                        ],
                     ],
                     [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{event_threat_detection_custom_module.name=organizations/*/locations/*/eventThreatDetectionCustomModules/*}',
                         'body' => 'event_threat_detection_custom_module',
-                        'queryParams' => [
-                            'update_mask',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -380,9 +374,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'UpdateSecurityHealthAnalyticsCustomModule' => [
@@ -394,17 +385,11 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{security_health_analytics_custom_module.name=folders/*/locations/*/securityHealthAnalyticsCustomModules/*}',
                         'body' => 'security_health_analytics_custom_module',
-                        'queryParams' => [
-                            'update_mask',
-                        ],
                     ],
                     [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{security_health_analytics_custom_module.name=organizations/*/locations/*/securityHealthAnalyticsCustomModules/*}',
                         'body' => 'security_health_analytics_custom_module',
-                        'queryParams' => [
-                            'update_mask',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -414,9 +399,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'ValidateEventThreatDetectionCustomModule' => [

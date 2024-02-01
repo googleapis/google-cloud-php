@@ -47,10 +47,7 @@ use Google\Cloud\Talent\V4\CompleteQueryResponse;
  * ```
  * $completionClient = new CompletionClient();
  * try {
- *     $formattedTenant = $completionClient->tenantName('[PROJECT]', '[TENANT]');
- *     $query = 'query';
- *     $pageSize = 0;
- *     $response = $completionClient->completeQuery($formattedTenant, $query, $pageSize);
+ *     $response = $completionClient->completeQuery();
  * } finally {
  *     $completionClient->close();
  * }
@@ -293,28 +290,24 @@ class CompletionGapicClient
      * ```
      * $completionClient = new CompletionClient();
      * try {
-     *     $formattedTenant = $completionClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $query = 'query';
-     *     $pageSize = 0;
-     *     $response = $completionClient->completeQuery($formattedTenant, $query, $pageSize);
+     *     $response = $completionClient->completeQuery();
      * } finally {
      *     $completionClient->close();
      * }
      * ```
      *
-     * @param string $tenant       Required. Resource name of tenant the completion is performed within.
-     *
-     *                             The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                             "projects/foo/tenants/bar".
-     * @param string $query        Required. The query used to generate suggestions.
-     *
-     *                             The maximum number of allowed characters is 255.
-     * @param int    $pageSize     Required. Completion result count.
-     *
-     *                             The maximum allowed page size is 10.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tenant
+     *           Required. Resource name of tenant the completion is performed within.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/foo/tenants/bar".
+     *     @type string $query
+     *           Required. The query used to generate suggestions.
+     *
+     *           The maximum number of allowed characters is 255.
      *     @type string[] $languageCodes
      *           The list of languages of the query. This is
      *           the BCP-47 language code, such as "en-US" or "sr-Latn".
@@ -322,6 +315,10 @@ class CompletionGapicClient
      *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
      *
      *           The maximum number of allowed characters is 255.
+     *     @type int $pageSize
+     *           Required. Completion result count.
+     *
+     *           The maximum allowed page size is 10.
      *     @type string $company
      *           If provided, restricts completion to specified company.
      *
@@ -346,16 +343,25 @@ class CompletionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function completeQuery($tenant, $query, $pageSize, array $optionalArgs = [])
+    public function completeQuery(array $optionalArgs = [])
     {
         $request = new CompleteQueryRequest();
         $requestParamHeaders = [];
-        $request->setTenant($tenant);
-        $request->setQuery($query);
-        $request->setPageSize($pageSize);
-        $requestParamHeaders['tenant'] = $tenant;
+        if (isset($optionalArgs['tenant'])) {
+            $request->setTenant($optionalArgs['tenant']);
+            $requestParamHeaders['tenant'] = $optionalArgs['tenant'];
+        }
+
+        if (isset($optionalArgs['query'])) {
+            $request->setQuery($optionalArgs['query']);
+        }
+
         if (isset($optionalArgs['languageCodes'])) {
             $request->setLanguageCodes($optionalArgs['languageCodes']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
         }
 
         if (isset($optionalArgs['company'])) {

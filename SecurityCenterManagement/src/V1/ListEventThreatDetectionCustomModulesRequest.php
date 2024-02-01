@@ -51,7 +51,6 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
      *                       "folders/{folder}/locations/{location}",
      *                       or
      *                       "projects/{project}/locations/{location}"
-     *                       Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\ListEventThreatDetectionCustomModulesRequest
      *

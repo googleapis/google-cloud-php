@@ -24,23 +24,23 @@ class TenantService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ë
-+google/cloud/talent/v4/tenant_service.protogoogle.cloud.talent.v4google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/talent/v4/common.proto#google/cloud/talent/v4/tenant.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"
-CreateTenantRequestC
-parent (	B3àAúA-
-+cloudresourcemanager.googleapis.com/Project3
-tenant (2.google.cloud.talent.v4.TenantBàA"D
-GetTenantRequest0
-name (	B"àAúA
-jobs.googleapis.com/Tenant"{
-UpdateTenantRequest3
-tenant (2.google.cloud.talent.v4.TenantBàA/
-update_mask (2.google.protobuf.FieldMask"G
-DeleteTenantRequest0
-name (	B"àAúA
-jobs.googleapis.com/Tenant"€
-ListTenantsRequestC
-parent (	B3àAúA-
+Ñ
++google/cloud/talent/v4/tenant_service.protogoogle.cloud.talent.v4google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/talent/v4/common.proto#google/cloud/talent/v4/tenant.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"‘
+CreateTenantRequestD
+parent (	B4âAúA-
++cloudresourcemanager.googleapis.com/Project4
+tenant (2.google.cloud.talent.v4.TenantBâA"E
+GetTenantRequest1
+name (	B#âAúA
+jobs.googleapis.com/Tenant"|
+UpdateTenantRequest4
+tenant (2.google.cloud.talent.v4.TenantBâA/
+update_mask (2.google.protobuf.FieldMask"H
+DeleteTenantRequest1
+name (	B#âAúA
+jobs.googleapis.com/Tenant"
+ListTenantsRequestD
+parent (	B4âAúA-
 +cloudresourcemanager.googleapis.com/Project
 
 page_token (	
@@ -50,11 +50,11 @@ page_token (	
 next_page_token (	:
 metadata (2(.google.cloud.talent.v4.ResponseMetadata2ğ
 TenantServiceœ
-CreateTenant+.google.cloud.talent.v4.CreateTenantRequest.google.cloud.talent.v4.Tenant"?‚Óä“)"/v4/{parent=projects/*}/tenants:tenantÚAparent,tenant…
-	GetTenant(.google.cloud.talent.v4.GetTenantRequest.google.cloud.talent.v4.Tenant".‚Óä“!/v4/{name=projects/*/tenants/*}ÚAname¨
-UpdateTenant+.google.cloud.talent.v4.UpdateTenantRequest.google.cloud.talent.v4.Tenant"K‚Óä“02&/v4/{tenant.name=projects/*/tenants/*}:tenantÚAtenant,update_maskƒ
-DeleteTenant+.google.cloud.talent.v4.DeleteTenantRequest.google.protobuf.Empty".‚Óä“!*/v4/{name=projects/*/tenants/*}ÚAname˜
-ListTenants*.google.cloud.talent.v4.ListTenantsRequest+.google.cloud.talent.v4.ListTenantsResponse"0‚Óä“!/v4/{parent=projects/*}/tenantsÚAparentlÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBl
+CreateTenant+.google.cloud.talent.v4.CreateTenantRequest.google.cloud.talent.v4.Tenant"?ÚAparent,tenant‚Óä“)"/v4/{parent=projects/*}/tenants:tenant…
+	GetTenant(.google.cloud.talent.v4.GetTenantRequest.google.cloud.talent.v4.Tenant".ÚAname‚Óä“!/v4/{name=projects/*/tenants/*}¨
+UpdateTenant+.google.cloud.talent.v4.UpdateTenantRequest.google.cloud.talent.v4.Tenant"KÚAtenant,update_mask‚Óä“02&/v4/{tenant.name=projects/*/tenants/*}:tenantƒ
+DeleteTenant+.google.cloud.talent.v4.DeleteTenantRequest.google.protobuf.Empty".ÚAname‚Óä“!*/v4/{name=projects/*/tenants/*}˜
+ListTenants*.google.cloud.talent.v4.ListTenantsRequest+.google.cloud.talent.v4.ListTenantsResponse"0ÚAparent‚Óä“!/v4/{parent=projects/*}/tenantslÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBl
 com.google.cloud.talent.v4BTenantServiceProtoPZ2cloud.google.com/go/talent/apiv4/talentpb;talentpb¢CTSbproto3'
         , true);
 

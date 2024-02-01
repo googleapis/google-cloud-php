@@ -30,49 +30,24 @@ use Google\Cloud\SecurityCenter\V1p1beta1\SecurityCenterClient;
 /**
  * Creates a notification config.
  *
- * @param string $formattedParent Resource name of the new notification config's parent. Its format is
- *                                "organizations/[organization_id]". Please see
- *                                {@see SecurityCenterClient::organizationName()} for help formatting this field.
- * @param string $configId        Unique identifier provided by the client within the parent scope.
- *                                It must be between 1 and 128 characters, and contains alphanumeric
- *                                characters, underscores or hyphens only.
- */
-function create_notification_config_sample(string $formattedParent, string $configId): void
-{
-    // Create a client.
-    $securityCenterClient = new SecurityCenterClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $notificationConfig = new NotificationConfig();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var NotificationConfig $response */
-        $response = $securityCenterClient->createNotificationConfig(
-            $formattedParent,
-            $configId,
-            $notificationConfig
-        );
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function create_notification_config_sample(): void
 {
-    $formattedParent = SecurityCenterClient::organizationName('[ORGANIZATION]');
-    $configId = '[CONFIG_ID]';
+    // Create a client.
+    $securityCenterClient = new SecurityCenterClient();
 
-    create_notification_config_sample($formattedParent, $configId);
+    // Call the API and handle any network failures.
+    try {
+        /** @var NotificationConfig $response */
+        $response = $securityCenterClient->createNotificationConfig();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END securitycenter_v1p1beta1_generated_SecurityCenter_CreateNotificationConfig_sync]

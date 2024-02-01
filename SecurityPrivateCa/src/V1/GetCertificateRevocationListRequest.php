@@ -32,8 +32,7 @@ class GetCertificateRevocationListRequest extends \Google\Protobuf\Internal\Mess
      *                     [name][google.cloud.security.privateca.v1.CertificateRevocationList.name]
      *                     of the
      *                     [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
-     *                     to get. Please see
-     *                     {@see CertificateAuthorityServiceClient::certificateRevocationListName()} for help formatting this field.
+     *                     to get.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\GetCertificateRevocationListRequest
      *

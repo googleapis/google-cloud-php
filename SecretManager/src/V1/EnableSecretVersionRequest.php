@@ -33,8 +33,7 @@ class EnableSecretVersionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to enable in the format
-     *                     `projects/&#42;/secrets/&#42;/versions/*`. Please see
-     *                     {@see SecretManagerServiceClient::secretVersionName()} for help formatting this field.
+     *                     `projects/&#42;/secrets/&#42;/versions/*`.
      *
      * @return \Google\Cloud\SecretManager\V1\EnableSecretVersionRequest
      *

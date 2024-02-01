@@ -57,7 +57,6 @@ use Google\Cloud\ServiceDirectory\V1\Service;
 use Google\Cloud\ServiceDirectory\V1\UpdateEndpointRequest;
 use Google\Cloud\ServiceDirectory\V1\UpdateNamespaceRequest;
 use Google\Cloud\ServiceDirectory\V1\UpdateServiceRequest;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -111,14 +110,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $endpointId = 'endpointId-1135808507';
-        $endpoint = new Endpoint();
-        $request = (new CreateEndpointRequest())
-            ->setParent($formattedParent)
-            ->setEndpointId($endpointId)
-            ->setEndpoint($endpoint);
+        $request = new CreateEndpointRequest();
         $response = $gapicClient->createEndpoint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -126,12 +118,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/CreateEndpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEndpointId();
-        $this->assertProtobufEquals($endpointId, $actualValue);
-        $actualValue = $actualRequestObject->getEndpoint();
-        $this->assertProtobufEquals($endpoint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -153,14 +139,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $endpointId = 'endpointId-1135808507';
-        $endpoint = new Endpoint();
-        $request = (new CreateEndpointRequest())
-            ->setParent($formattedParent)
-            ->setEndpointId($endpointId)
-            ->setEndpoint($endpoint);
+        $request = new CreateEndpointRequest();
         try {
             $gapicClient->createEndpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -189,14 +168,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $namespaceId = 'namespaceId-1253352833';
-        $namespace = new PBNamespace();
-        $request = (new CreateNamespaceRequest())
-            ->setParent($formattedParent)
-            ->setNamespaceId($namespaceId)
-            ->setNamespace($namespace);
+        $request = new CreateNamespaceRequest();
         $response = $gapicClient->createNamespace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -204,12 +176,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/CreateNamespace', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getNamespaceId();
-        $this->assertProtobufEquals($namespaceId, $actualValue);
-        $actualValue = $actualRequestObject->getNamespace();
-        $this->assertProtobufEquals($namespace, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -231,14 +197,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $namespaceId = 'namespaceId-1253352833';
-        $namespace = new PBNamespace();
-        $request = (new CreateNamespaceRequest())
-            ->setParent($formattedParent)
-            ->setNamespaceId($namespaceId)
-            ->setNamespace($namespace);
+        $request = new CreateNamespaceRequest();
         try {
             $gapicClient->createNamespace($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -267,14 +226,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-        $serviceId = 'serviceId-1724763419';
-        $service = new Service();
-        $request = (new CreateServiceRequest())
-            ->setParent($formattedParent)
-            ->setServiceId($serviceId)
-            ->setService($service);
+        $request = new CreateServiceRequest();
         $response = $gapicClient->createService($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -282,12 +234,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/CreateService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getServiceId();
-        $this->assertProtobufEquals($serviceId, $actualValue);
-        $actualValue = $actualRequestObject->getService();
-        $this->assertProtobufEquals($service, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -309,14 +255,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-        $serviceId = 'serviceId-1724763419';
-        $service = new Service();
-        $request = (new CreateServiceRequest())
-            ->setParent($formattedParent)
-            ->setServiceId($serviceId)
-            ->setService($service);
+        $request = new CreateServiceRequest();
         try {
             $gapicClient->createService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -341,18 +280,13 @@ class RegistrationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]', '[ENDPOINT]');
-        $request = (new DeleteEndpointRequest())
-            ->setName($formattedName);
+        $request = new DeleteEndpointRequest();
         $gapicClient->deleteEndpoint($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/DeleteEndpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -374,10 +308,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]', '[ENDPOINT]');
-        $request = (new DeleteEndpointRequest())
-            ->setName($formattedName);
+        $request = new DeleteEndpointRequest();
         try {
             $gapicClient->deleteEndpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -402,18 +333,13 @@ class RegistrationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-        $request = (new DeleteNamespaceRequest())
-            ->setName($formattedName);
+        $request = new DeleteNamespaceRequest();
         $gapicClient->deleteNamespace($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/DeleteNamespace', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -435,10 +361,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-        $request = (new DeleteNamespaceRequest())
-            ->setName($formattedName);
+        $request = new DeleteNamespaceRequest();
         try {
             $gapicClient->deleteNamespace($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -463,18 +386,13 @@ class RegistrationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $request = (new DeleteServiceRequest())
-            ->setName($formattedName);
+        $request = new DeleteServiceRequest();
         $gapicClient->deleteService($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/DeleteService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -496,10 +414,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $request = (new DeleteServiceRequest())
-            ->setName($formattedName);
+        $request = new DeleteServiceRequest();
         try {
             $gapicClient->deleteService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -534,10 +449,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]', '[ENDPOINT]');
-        $request = (new GetEndpointRequest())
-            ->setName($formattedName);
+        $request = new GetEndpointRequest();
         $response = $gapicClient->getEndpoint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -545,8 +457,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/GetEndpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -568,10 +478,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]', '[ENDPOINT]');
-        $request = (new GetEndpointRequest())
-            ->setName($formattedName);
+        $request = new GetEndpointRequest();
         try {
             $gapicClient->getEndpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -666,10 +573,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-        $request = (new GetNamespaceRequest())
-            ->setName($formattedName);
+        $request = new GetNamespaceRequest();
         $response = $gapicClient->getNamespace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -677,8 +581,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/GetNamespace', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -700,10 +602,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-        $request = (new GetNamespaceRequest())
-            ->setName($formattedName);
+        $request = new GetNamespaceRequest();
         try {
             $gapicClient->getNamespace($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -732,10 +631,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $request = (new GetServiceRequest())
-            ->setName($formattedName);
+        $request = new GetServiceRequest();
         $response = $gapicClient->getService($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -743,8 +639,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/GetService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -766,10 +660,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $request = (new GetServiceRequest())
-            ->setName($formattedName);
+        $request = new GetServiceRequest();
         try {
             $gapicClient->getService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -801,10 +692,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEndpoints($endpoints);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $request = (new ListEndpointsRequest())
-            ->setParent($formattedParent);
+        $request = new ListEndpointsRequest();
         $response = $gapicClient->listEndpoints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -815,8 +703,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/ListEndpoints', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -838,10 +724,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $request = (new ListEndpointsRequest())
-            ->setParent($formattedParent);
+        $request = new ListEndpointsRequest();
         try {
             $gapicClient->listEndpoints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -873,10 +756,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNamespaces($namespaces);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNamespacesRequest())
-            ->setParent($formattedParent);
+        $request = new ListNamespacesRequest();
         $response = $gapicClient->listNamespaces($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -887,8 +767,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/ListNamespaces', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -910,10 +788,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNamespacesRequest())
-            ->setParent($formattedParent);
+        $request = new ListNamespacesRequest();
         try {
             $gapicClient->listNamespaces($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -945,10 +820,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServices($services);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-        $request = (new ListServicesRequest())
-            ->setParent($formattedParent);
+        $request = new ListServicesRequest();
         $response = $gapicClient->listServices($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -959,8 +831,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/ListServices', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -982,10 +852,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->namespaceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]');
-        $request = (new ListServicesRequest())
-            ->setParent($formattedParent);
+        $request = new ListServicesRequest();
         try {
             $gapicClient->listServices($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1160,12 +1027,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $endpoint = new Endpoint();
-        $updateMask = new FieldMask();
-        $request = (new UpdateEndpointRequest())
-            ->setEndpoint($endpoint)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateEndpointRequest();
         $response = $gapicClient->updateEndpoint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1173,10 +1035,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/UpdateEndpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getEndpoint();
-        $this->assertProtobufEquals($endpoint, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1198,12 +1056,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $endpoint = new Endpoint();
-        $updateMask = new FieldMask();
-        $request = (new UpdateEndpointRequest())
-            ->setEndpoint($endpoint)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateEndpointRequest();
         try {
             $gapicClient->updateEndpoint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1232,12 +1085,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $namespace = new PBNamespace();
-        $updateMask = new FieldMask();
-        $request = (new UpdateNamespaceRequest())
-            ->setNamespace($namespace)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateNamespaceRequest();
         $response = $gapicClient->updateNamespace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1245,10 +1093,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/UpdateNamespace', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNamespace();
-        $this->assertProtobufEquals($namespace, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1270,12 +1114,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $namespace = new PBNamespace();
-        $updateMask = new FieldMask();
-        $request = (new UpdateNamespaceRequest())
-            ->setNamespace($namespace)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateNamespaceRequest();
         try {
             $gapicClient->updateNamespace($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1304,12 +1143,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $service = new Service();
-        $updateMask = new FieldMask();
-        $request = (new UpdateServiceRequest())
-            ->setService($service)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateServiceRequest();
         $response = $gapicClient->updateService($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1317,10 +1151,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/UpdateService', $actualFuncCall);
-        $actualValue = $actualRequestObject->getService();
-        $this->assertProtobufEquals($service, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1342,12 +1172,7 @@ class RegistrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $service = new Service();
-        $updateMask = new FieldMask();
-        $request = (new UpdateServiceRequest())
-            ->setService($service)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateServiceRequest();
         try {
             $gapicClient->updateService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1506,14 +1331,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $endpointId = 'endpointId-1135808507';
-        $endpoint = new Endpoint();
-        $request = (new CreateEndpointRequest())
-            ->setParent($formattedParent)
-            ->setEndpointId($endpointId)
-            ->setEndpoint($endpoint);
+        $request = new CreateEndpointRequest();
         $response = $gapicClient->createEndpointAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1521,12 +1339,6 @@ class RegistrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.servicedirectory.v1.RegistrationService/CreateEndpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getEndpointId();
-        $this->assertProtobufEquals($endpointId, $actualValue);
-        $actualValue = $actualRequestObject->getEndpoint();
-        $this->assertProtobufEquals($endpoint, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

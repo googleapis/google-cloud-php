@@ -26,29 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Security\PrivateCA\V1\Certificate;
 use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
-use Google\Cloud\Security\PrivateCA\V1\RevocationReason;
 use Google\Cloud\Security\PrivateCA\V1\RevokeCertificateRequest;
 
 /**
  * Revoke a [Certificate][google.cloud.security.privateca.v1.Certificate].
  *
- * @param string $formattedName The resource name for this
- *                              [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
- *                              `projects/&#42;/locations/&#42;/caPools/&#42;/certificates/*`. Please see
- *                              {@see CertificateAuthorityServiceClient::certificateName()} for help formatting this field.
- * @param int    $reason        The
- *                              [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for
- *                              revoking this certificate.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function revoke_certificate_sample(string $formattedName, int $reason): void
+function revoke_certificate_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $request = (new RevokeCertificateRequest())
-        ->setName($formattedName)
-        ->setReason($reason);
+    $request = new RevokeCertificateRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,27 +53,5 @@ function revoke_certificate_sample(string $formattedName, int $reason): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CertificateAuthorityServiceClient::certificateName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CA_POOL]',
-        '[CERTIFICATE]'
-    );
-    $reason = RevocationReason::REVOCATION_REASON_UNSPECIFIED;
-
-    revoke_certificate_sample($formattedName, $reason);
 }
 // [END privateca_v1_generated_CertificateAuthorityService_RevokeCertificate_sync]

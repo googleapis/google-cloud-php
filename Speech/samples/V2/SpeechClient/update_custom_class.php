@@ -45,9 +45,7 @@ function update_custom_class_sample(): void
     $speechClient = new SpeechClient();
 
     // Prepare the request message.
-    $customClass = new CustomClass();
-    $request = (new UpdateCustomClassRequest())
-        ->setCustomClass($customClass);
+    $request = new UpdateCustomClassRequest();
 
     // Call the API and handle any network failures.
     try {

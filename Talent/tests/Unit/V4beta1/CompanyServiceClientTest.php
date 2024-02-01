@@ -92,24 +92,13 @@ class CompanyServiceClientTest extends GeneratedTest
         $expectedResponse->setImageUri($imageUri);
         $expectedResponse->setSuspended($suspended);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $company = new Company();
-        $companyDisplayName = 'companyDisplayName-686915152';
-        $company->setDisplayName($companyDisplayName);
-        $companyExternalId = 'companyExternalId855180963';
-        $company->setExternalId($companyExternalId);
-        $response = $gapicClient->createCompany($formattedParent, $company);
+        $response = $gapicClient->createCompany();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/CreateCompany', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getCompany();
-        $this->assertProtobufEquals($company, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -131,15 +120,8 @@ class CompanyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $company = new Company();
-        $companyDisplayName = 'companyDisplayName-686915152';
-        $company->setDisplayName($companyDisplayName);
-        $companyExternalId = 'companyExternalId855180963';
-        $company->setExternalId($companyExternalId);
         try {
-            $gapicClient->createCompany($formattedParent, $company);
+            $gapicClient->createCompany();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -162,16 +144,12 @@ class CompanyServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-        $gapicClient->deleteCompany($formattedName);
+        $gapicClient->deleteCompany();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/DeleteCompany', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -193,10 +171,8 @@ class CompanyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
         try {
-            $gapicClient->deleteCompany($formattedName);
+            $gapicClient->deleteCompany();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -239,17 +215,13 @@ class CompanyServiceClientTest extends GeneratedTest
         $expectedResponse->setImageUri($imageUri);
         $expectedResponse->setSuspended($suspended);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-        $response = $gapicClient->getCompany($formattedName);
+        $response = $gapicClient->getCompany();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/GetCompany', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -271,10 +243,8 @@ class CompanyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
         try {
-            $gapicClient->getCompany($formattedName);
+            $gapicClient->getCompany();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -304,9 +274,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCompanies($companies);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listCompanies($formattedParent);
+        $response = $gapicClient->listCompanies();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -316,8 +284,6 @@ class CompanyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/ListCompanies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -339,10 +305,8 @@ class CompanyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listCompanies($formattedParent);
+            $gapicClient->listCompanies();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -385,21 +349,13 @@ class CompanyServiceClientTest extends GeneratedTest
         $expectedResponse->setImageUri($imageUri);
         $expectedResponse->setSuspended($suspended);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $company = new Company();
-        $companyDisplayName = 'companyDisplayName-686915152';
-        $company->setDisplayName($companyDisplayName);
-        $companyExternalId = 'companyExternalId855180963';
-        $company->setExternalId($companyExternalId);
-        $response = $gapicClient->updateCompany($company);
+        $response = $gapicClient->updateCompany();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.CompanyService/UpdateCompany', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCompany();
-        $this->assertProtobufEquals($company, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -421,14 +377,8 @@ class CompanyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $company = new Company();
-        $companyDisplayName = 'companyDisplayName-686915152';
-        $company->setDisplayName($companyDisplayName);
-        $companyExternalId = 'companyExternalId855180963';
-        $company->setExternalId($companyExternalId);
         try {
-            $gapicClient->updateCompany($company);
+            $gapicClient->updateCompany();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

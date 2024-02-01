@@ -31,26 +31,19 @@ use Google\Cloud\SecurityCenter\V1\NotificationConfig;
 /**
  * Creates a notification config.
  *
- * @param string $formattedParent Resource name of the new notification config's parent. Its format
- *                                is "organizations/[organization_id]", "folders/[folder_id]", or
- *                                "projects/[project_id]". Please see
- *                                {@see SecurityCenterClient::projectName()} for help formatting this field.
- * @param string $configId        Required.
- *                                Unique identifier provided by the client within the parent scope.
- *                                It must be between 1 and 128 characters and contain alphanumeric
- *                                characters, underscores, or hyphens only.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_notification_config_sample(string $formattedParent, string $configId): void
+function create_notification_config_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $notificationConfig = new NotificationConfig();
-    $request = (new CreateNotificationConfigRequest())
-        ->setParent($formattedParent)
-        ->setConfigId($configId)
-        ->setNotificationConfig($notificationConfig);
+    $request = new CreateNotificationConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,22 +53,5 @@ function create_notification_config_sample(string $formattedParent, string $conf
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecurityCenterClient::projectName('[PROJECT]');
-    $configId = '[CONFIG_ID]';
-
-    create_notification_config_sample($formattedParent, $configId);
 }
 // [END securitycenter_v1_generated_SecurityCenter_CreateNotificationConfig_sync]

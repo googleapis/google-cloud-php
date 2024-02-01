@@ -32,25 +32,19 @@ use Google\Cloud\ServiceHealth\V1\OrganizationImpact;
  * Retrieves a resource containing information about impact to an asset under
  * an organization affected by a service health event.
  *
- * @param string $formattedName Name of the resource using the form
- *                              `organizations/{organization_id}/locations/global/organizationImpacts/{organization_impact_id}`.
- *
- *                              `organization_id` - ID (number) of the organization that contains the
- *                              event. To get your `organization_id`, see
- *                              [Getting your organization resource
- *                              ID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).<br>
- *                              `organization_impact_id` - ID of the [OrganizationImpact
- *                              resource](/service-health/docs/reference/rest/v1beta/organizations.locations.organizationImpacts#OrganizationImpact). Please see
- *                              {@see ServiceHealthClient::organizationImpactName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_organization_impact_sample(string $formattedName): void
+function get_organization_impact_sample(): void
 {
     // Create a client.
     $serviceHealthClient = new ServiceHealthClient();
 
     // Prepare the request message.
-    $request = (new GetOrganizationImpactRequest())
-        ->setName($formattedName);
+    $request = new GetOrganizationImpactRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,25 +54,5 @@ function get_organization_impact_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ServiceHealthClient::organizationImpactName(
-        '[ORGANIZATION]',
-        '[LOCATION]',
-        '[ORGANIZATION_IMPACT]'
-    );
-
-    get_organization_impact_sample($formattedName);
 }
 // [END servicehealth_v1_generated_ServiceHealth_GetOrganizationImpact_sync]

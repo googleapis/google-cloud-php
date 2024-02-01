@@ -42,8 +42,7 @@ class ListSourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Resource name of the parent of sources to list. Its format should
      *                       be "organizations/[organization_id]", "folders/[folder_id]", or
-     *                       "projects/[project_id]". Please see
-     *                       {@see SecurityCenterClient::projectName()} for help formatting this field.
+     *                       "projects/[project_id]".
      *
      * @return \Google\Cloud\SecurityCenter\V1\ListSourcesRequest
      *

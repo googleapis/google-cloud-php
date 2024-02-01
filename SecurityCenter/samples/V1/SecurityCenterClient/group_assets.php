@@ -33,38 +33,19 @@ use Google\Cloud\SecurityCenter\V1\GroupResult;
  * Filters an organization's assets and  groups them by their specified
  * properties.
  *
- * @param string $formattedParent The name of the parent to group the assets by. Its format is
- *                                "organizations/[organization_id]", "folders/[folder_id]", or
- *                                "projects/[project_id]". Please see
- *                                {@see SecurityCenterClient::projectName()} for help formatting this field.
- * @param string $groupBy         Expression that defines what assets fields to use for grouping.
- *                                The string value should follow SQL syntax: comma separated list of fields.
- *                                For example:
- *                                "security_center_properties.resource_project,security_center_properties.project".
- *
- *                                The following fields are supported when compare_duration is not set:
- *
- *                                * security_center_properties.resource_project
- *                                * security_center_properties.resource_project_display_name
- *                                * security_center_properties.resource_type
- *                                * security_center_properties.resource_parent
- *                                * security_center_properties.resource_parent_display_name
- *
- *                                The following fields are supported when compare_duration is set:
- *
- *                                * security_center_properties.resource_type
- *                                * security_center_properties.resource_project_display_name
- *                                * security_center_properties.resource_parent_display_name
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function group_assets_sample(string $formattedParent, string $groupBy): void
+function group_assets_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $request = (new GroupAssetsRequest())
-        ->setParent($formattedParent)
-        ->setGroupBy($groupBy);
+    $request = new GroupAssetsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -78,22 +59,5 @@ function group_assets_sample(string $formattedParent, string $groupBy): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecurityCenterClient::projectName('[PROJECT]');
-    $groupBy = '[GROUP_BY]';
-
-    group_assets_sample($formattedParent, $groupBy);
 }
 // [END securitycenter_v1_generated_SecurityCenter_GroupAssets_sync]

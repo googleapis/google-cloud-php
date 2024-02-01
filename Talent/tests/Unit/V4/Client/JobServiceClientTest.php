@@ -40,7 +40,6 @@ use Google\Cloud\Talent\V4\GetJobRequest;
 use Google\Cloud\Talent\V4\Job;
 use Google\Cloud\Talent\V4\ListJobsRequest;
 use Google\Cloud\Talent\V4\ListJobsResponse;
-use Google\Cloud\Talent\V4\RequestMetadata;
 use Google\Cloud\Talent\V4\SearchJobsRequest;
 use Google\Cloud\Talent\V4\SearchJobsResponse;
 use Google\Cloud\Talent\V4\UpdateJobRequest;
@@ -108,12 +107,7 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $jobs = [];
-        $request = (new BatchCreateJobsRequest())
-            ->setParent($formattedParent)
-            ->setJobs($jobs);
+        $request = new BatchCreateJobsRequest();
         $response = $gapicClient->batchCreateJobs($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -124,10 +118,6 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/BatchCreateJobs', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getJobs();
-        $this->assertProtobufEquals($jobs, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchCreateJobsTest');
         $response->pollUntilComplete([
@@ -178,12 +168,7 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $jobs = [];
-        $request = (new BatchCreateJobsRequest())
-            ->setParent($formattedParent)
-            ->setJobs($jobs);
+        $request = new BatchCreateJobsRequest();
         $response = $gapicClient->batchCreateJobs($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -235,10 +220,7 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $request = (new BatchDeleteJobsRequest())
-            ->setParent($formattedParent);
+        $request = new BatchDeleteJobsRequest();
         $response = $gapicClient->batchDeleteJobs($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -249,8 +231,6 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/BatchDeleteJobs', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchDeleteJobsTest');
         $response->pollUntilComplete([
@@ -301,10 +281,7 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $request = (new BatchDeleteJobsRequest())
-            ->setParent($formattedParent);
+        $request = new BatchDeleteJobsRequest();
         $response = $gapicClient->batchDeleteJobs($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -356,12 +333,7 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $jobs = [];
-        $request = (new BatchUpdateJobsRequest())
-            ->setParent($formattedParent)
-            ->setJobs($jobs);
+        $request = new BatchUpdateJobsRequest();
         $response = $gapicClient->batchUpdateJobs($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -372,10 +344,6 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/BatchUpdateJobs', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getJobs();
-        $this->assertProtobufEquals($jobs, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchUpdateJobsTest');
         $response->pollUntilComplete([
@@ -426,12 +394,7 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $jobs = [];
-        $request = (new BatchUpdateJobsRequest())
-            ->setParent($formattedParent)
-            ->setJobs($jobs);
+        $request = new BatchUpdateJobsRequest();
         $response = $gapicClient->batchUpdateJobs($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -489,20 +452,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setResponsibilities($responsibilities);
         $expectedResponse->setCompanyDisplayName($companyDisplayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $job = new Job();
-        $jobCompany = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-        $job->setCompany($jobCompany);
-        $jobRequisitionId = 'jobRequisitionId-1718160870';
-        $job->setRequisitionId($jobRequisitionId);
-        $jobTitle = 'jobTitle-1625529189';
-        $job->setTitle($jobTitle);
-        $jobDescription = 'jobDescription-549074945';
-        $job->setDescription($jobDescription);
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = new CreateJobRequest();
         $response = $gapicClient->createJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -510,10 +460,6 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/CreateJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getJob();
-        $this->assertProtobufEquals($job, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -535,20 +481,7 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $job = new Job();
-        $jobCompany = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-        $job->setCompany($jobCompany);
-        $jobRequisitionId = 'jobRequisitionId-1718160870';
-        $job->setRequisitionId($jobRequisitionId);
-        $jobTitle = 'jobTitle-1625529189';
-        $job->setTitle($jobTitle);
-        $jobDescription = 'jobDescription-549074945';
-        $job->setDescription($jobDescription);
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = new CreateJobRequest();
         try {
             $gapicClient->createJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -573,18 +506,13 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[TENANT]', '[JOB]');
-        $request = (new DeleteJobRequest())
-            ->setName($formattedName);
+        $request = new DeleteJobRequest();
         $gapicClient->deleteJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/DeleteJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -606,10 +534,7 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[TENANT]', '[JOB]');
-        $request = (new DeleteJobRequest())
-            ->setName($formattedName);
+        $request = new DeleteJobRequest();
         try {
             $gapicClient->deleteJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -658,10 +583,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setResponsibilities($responsibilities);
         $expectedResponse->setCompanyDisplayName($companyDisplayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[TENANT]', '[JOB]');
-        $request = (new GetJobRequest())
-            ->setName($formattedName);
+        $request = new GetJobRequest();
         $response = $gapicClient->getJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -669,8 +591,6 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/GetJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -692,10 +612,7 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobName('[PROJECT]', '[TENANT]', '[JOB]');
-        $request = (new GetJobRequest())
-            ->setName($formattedName);
+        $request = new GetJobRequest();
         try {
             $gapicClient->getJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -727,12 +644,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $filter = 'filter-1274492040';
-        $request = (new ListJobsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = new ListJobsRequest();
         $response = $gapicClient->listJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -743,10 +655,6 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/ListJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -768,12 +676,7 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $filter = 'filter-1274492040';
-        $request = (new ListJobsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = new ListJobsRequest();
         try {
             $gapicClient->listJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -804,12 +707,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setBroadenedQueryJobsCount($broadenedQueryJobsCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $requestMetadata = new RequestMetadata();
-        $request = (new SearchJobsRequest())
-            ->setParent($formattedParent)
-            ->setRequestMetadata($requestMetadata);
+        $request = new SearchJobsRequest();
         $response = $gapicClient->searchJobs($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -817,10 +715,6 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/SearchJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRequestMetadata();
-        $this->assertProtobufEquals($requestMetadata, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -842,12 +736,7 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $requestMetadata = new RequestMetadata();
-        $request = (new SearchJobsRequest())
-            ->setParent($formattedParent)
-            ->setRequestMetadata($requestMetadata);
+        $request = new SearchJobsRequest();
         try {
             $gapicClient->searchJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -878,12 +767,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setBroadenedQueryJobsCount($broadenedQueryJobsCount);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $requestMetadata = new RequestMetadata();
-        $request = (new SearchJobsRequest())
-            ->setParent($formattedParent)
-            ->setRequestMetadata($requestMetadata);
+        $request = new SearchJobsRequest();
         $response = $gapicClient->searchJobsForAlert($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -891,10 +775,6 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/SearchJobsForAlert', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRequestMetadata();
-        $this->assertProtobufEquals($requestMetadata, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -916,12 +796,7 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $requestMetadata = new RequestMetadata();
-        $request = (new SearchJobsRequest())
-            ->setParent($formattedParent)
-            ->setRequestMetadata($requestMetadata);
+        $request = new SearchJobsRequest();
         try {
             $gapicClient->searchJobsForAlert($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -970,18 +845,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setResponsibilities($responsibilities);
         $expectedResponse->setCompanyDisplayName($companyDisplayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $job = new Job();
-        $jobCompany = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-        $job->setCompany($jobCompany);
-        $jobRequisitionId = 'jobRequisitionId-1718160870';
-        $job->setRequisitionId($jobRequisitionId);
-        $jobTitle = 'jobTitle-1625529189';
-        $job->setTitle($jobTitle);
-        $jobDescription = 'jobDescription-549074945';
-        $job->setDescription($jobDescription);
-        $request = (new UpdateJobRequest())
-            ->setJob($job);
+        $request = new UpdateJobRequest();
         $response = $gapicClient->updateJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -989,8 +853,6 @@ class JobServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/UpdateJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getJob();
-        $this->assertProtobufEquals($job, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1012,18 +874,7 @@ class JobServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $job = new Job();
-        $jobCompany = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-        $job->setCompany($jobCompany);
-        $jobRequisitionId = 'jobRequisitionId-1718160870';
-        $job->setRequisitionId($jobRequisitionId);
-        $jobTitle = 'jobTitle-1625529189';
-        $job->setTitle($jobTitle);
-        $jobDescription = 'jobDescription-549074945';
-        $job->setDescription($jobDescription);
-        $request = (new UpdateJobRequest())
-            ->setJob($job);
+        $request = new UpdateJobRequest();
         try {
             $gapicClient->updateJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1066,12 +917,7 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $jobs = [];
-        $request = (new BatchCreateJobsRequest())
-            ->setParent($formattedParent)
-            ->setJobs($jobs);
+        $request = new BatchCreateJobsRequest();
         $response = $gapicClient->batchCreateJobsAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1082,10 +928,6 @@ class JobServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4.JobService/BatchCreateJobs', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getJobs();
-        $this->assertProtobufEquals($jobs, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchCreateJobsTest');
         $response->pollUntilComplete([

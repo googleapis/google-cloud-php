@@ -44,8 +44,7 @@ class FetchCaCertsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $caPool Required. The resource name for the
      *                       [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
-     *                       `projects/&#42;/locations/&#42;/caPools/*`. Please see
-     *                       {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+     *                       `projects/&#42;/locations/&#42;/caPools/*`.
      *
      * @return \Google\Cloud\Security\PrivateCA\V1\FetchCaCertsRequest
      *

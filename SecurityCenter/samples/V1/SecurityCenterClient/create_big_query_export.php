@@ -31,26 +31,19 @@ use Google\Cloud\SecurityCenter\V1\CreateBigQueryExportRequest;
 /**
  * Creates a BigQuery export.
  *
- * @param string $formattedParent  The name of the parent resource of the new BigQuery export. Its
- *                                 format is "organizations/[organization_id]", "folders/[folder_id]", or
- *                                 "projects/[project_id]". Please see
- *                                 {@see SecurityCenterClient::projectName()} for help formatting this field.
- * @param string $bigQueryExportId Unique identifier provided by the client within the parent scope.
- *                                 It must consist of only lowercase letters, numbers, and hyphens, must start
- *                                 with a letter, must end with either a letter or a number, and must be 63
- *                                 characters or less.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_big_query_export_sample(string $formattedParent, string $bigQueryExportId): void
+function create_big_query_export_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $bigQueryExport = new BigQueryExport();
-    $request = (new CreateBigQueryExportRequest())
-        ->setParent($formattedParent)
-        ->setBigQueryExport($bigQueryExport)
-        ->setBigQueryExportId($bigQueryExportId);
+    $request = new CreateBigQueryExportRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,22 +53,5 @@ function create_big_query_export_sample(string $formattedParent, string $bigQuer
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecurityCenterClient::projectName('[PROJECT]');
-    $bigQueryExportId = '[BIG_QUERY_EXPORT_ID]';
-
-    create_big_query_export_sample($formattedParent, $bigQueryExportId);
 }
 // [END securitycenter_v1_generated_SecurityCenter_CreateBigQueryExport_sync]

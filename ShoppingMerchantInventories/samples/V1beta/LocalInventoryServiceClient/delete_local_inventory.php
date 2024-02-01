@@ -34,19 +34,19 @@ use Google\Shopping\Merchant\Inventories\V1beta\DeleteLocalInventoryRequest;
  * Once you have received a successful delete response, wait for that
  * period before attempting a delete again.
  *
- * @param string $formattedName The name of the local inventory for the given product to delete.
- *                              Format:
- *                              `accounts/{account}/products/{product}/localInventories/{store_code}`
- *                              Please see {@see LocalInventoryServiceClient::localInventoryName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_local_inventory_sample(string $formattedName): void
+function delete_local_inventory_sample(): void
 {
     // Create a client.
     $localInventoryServiceClient = new LocalInventoryServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteLocalInventoryRequest())
-        ->setName($formattedName);
+    $request = new DeleteLocalInventoryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,25 +55,5 @@ function delete_local_inventory_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = LocalInventoryServiceClient::localInventoryName(
-        '[ACCOUNT]',
-        '[PRODUCT]',
-        '[STORE_CODE]'
-    );
-
-    delete_local_inventory_sample($formattedName);
 }
 // [END merchantapi_v1beta_generated_LocalInventoryService_DeleteLocalInventory_sync]

@@ -24,8 +24,7 @@ class DeleteEndpointRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the endpoint to delete. Please see
-     *                     {@see RegistrationServiceClient::endpointName()} for help formatting this field.
+     * @param string $name Required. The name of the endpoint to delete.
      *
      * @return \Google\Cloud\ServiceDirectory\V1\DeleteEndpointRequest
      *

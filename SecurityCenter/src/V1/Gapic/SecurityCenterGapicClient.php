@@ -124,8 +124,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $securityCenterClient = new SecurityCenterClient();
  * try {
- *     $parent = 'parent';
- *     $operationResponse = $securityCenterClient->bulkMuteFindings($parent);
+ *     $operationResponse = $securityCenterClient->bulkMuteFindings();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -136,7 +135,7 @@ use Google\Protobuf\Timestamp;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $securityCenterClient->bulkMuteFindings($parent);
+ *     $operationResponse = $securityCenterClient->bulkMuteFindings();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $securityCenterClient->resumeOperation($operationName, 'bulkMuteFindings');
@@ -2001,8 +2000,7 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $parent = 'parent';
-     *     $operationResponse = $securityCenterClient->bulkMuteFindings($parent);
+     *     $operationResponse = $securityCenterClient->bulkMuteFindings();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2013,7 +2011,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $securityCenterClient->bulkMuteFindings($parent);
+     *     $operationResponse = $securityCenterClient->bulkMuteFindings();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $securityCenterClient->resumeOperation($operationName, 'bulkMuteFindings');
@@ -2033,12 +2031,13 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, at which bulk action needs to be applied. Its format
-     *                             is "organizations/[organization_id]", "folders/[folder_id]",
-     *                             "projects/[project_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, at which bulk action needs to be applied. Its format
+     *           is "organizations/[organization_id]", "folders/[folder_id]",
+     *           "projects/[project_id]".
      *     @type string $filter
      *           Expression that identifies findings that should be updated.
      *           The expression is a list of zero or more restrictions combined
@@ -2073,12 +2072,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function bulkMuteFindings($parent, array $optionalArgs = [])
+    public function bulkMuteFindings(array $optionalArgs = [])
     {
         $request = new BulkMuteFindingsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -2099,26 +2101,26 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
-     *     $bigQueryExport = new BigQueryExport();
-     *     $bigQueryExportId = 'big_query_export_id';
-     *     $response = $securityCenterClient->createBigQueryExport($formattedParent, $bigQueryExport, $bigQueryExportId);
+     *     $response = $securityCenterClient->createBigQueryExport();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string         $parent           Required. The name of the parent resource of the new BigQuery export. Its
-     *                                         format is "organizations/[organization_id]", "folders/[folder_id]", or
-     *                                         "projects/[project_id]".
-     * @param BigQueryExport $bigQueryExport   Required. The BigQuery export being created.
-     * @param string         $bigQueryExportId Required. Unique identifier provided by the client within the parent scope.
-     *                                         It must consist of only lowercase letters, numbers, and hyphens, must start
-     *                                         with a letter, must end with either a letter or a number, and must be 63
-     *                                         characters or less.
-     * @param array          $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the parent resource of the new BigQuery export. Its
+     *           format is "organizations/[organization_id]", "folders/[folder_id]", or
+     *           "projects/[project_id]".
+     *     @type BigQueryExport $bigQueryExport
+     *           Required. The BigQuery export being created.
+     *     @type string $bigQueryExportId
+     *           Required. Unique identifier provided by the client within the parent scope.
+     *           It must consist of only lowercase letters, numbers, and hyphens, must start
+     *           with a letter, must end with either a letter or a number, and must be 63
+     *           characters or less.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2129,14 +2131,23 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBigQueryExport($parent, $bigQueryExport, $bigQueryExportId, array $optionalArgs = [])
+    public function createBigQueryExport(array $optionalArgs = [])
     {
         $request = new CreateBigQueryExportRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setBigQueryExport($bigQueryExport);
-        $request->setBigQueryExportId($bigQueryExportId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['bigQueryExport'])) {
+            $request->setBigQueryExport($optionalArgs['bigQueryExport']);
+        }
+
+        if (isset($optionalArgs['bigQueryExportId'])) {
+            $request->setBigQueryExportId($optionalArgs['bigQueryExportId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateBigQueryExport', BigQueryExport::class, $optionalArgs, $request)->wait();
@@ -2150,25 +2161,25 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-     *     $findingId = 'finding_id';
-     *     $finding = new Finding();
-     *     $response = $securityCenterClient->createFinding($formattedParent, $findingId, $finding);
+     *     $response = $securityCenterClient->createFinding();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. Resource name of the new finding's parent. Its format should be
-     *                              "organizations/[organization_id]/sources/[source_id]".
-     * @param string  $findingId    Required. Unique identifier provided by the client within the parent scope.
-     *                              It must be alphanumeric and less than or equal to 32 characters and
-     *                              greater than 0 characters in length.
-     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be
-     *                              ignored as they are both output only fields on this resource.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the new finding's parent. Its format should be
+     *           "organizations/[organization_id]/sources/[source_id]".
+     *     @type string $findingId
+     *           Required. Unique identifier provided by the client within the parent scope.
+     *           It must be alphanumeric and less than or equal to 32 characters and
+     *           greater than 0 characters in length.
+     *     @type Finding $finding
+     *           Required. The Finding being created. The name and security_marks will be
+     *           ignored as they are both output only fields on this resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2179,14 +2190,23 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createFinding($parent, $findingId, $finding, array $optionalArgs = [])
+    public function createFinding(array $optionalArgs = [])
     {
         $request = new CreateFindingRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFindingId($findingId);
-        $request->setFinding($finding);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['findingId'])) {
+            $request->setFindingId($optionalArgs['findingId']);
+        }
+
+        if (isset($optionalArgs['finding'])) {
+            $request->setFinding($optionalArgs['finding']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateFinding', Finding::class, $optionalArgs, $request)->wait();
@@ -2199,26 +2219,26 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
-     *     $muteConfig = new MuteConfig();
-     *     $muteConfigId = 'mute_config_id';
-     *     $response = $securityCenterClient->createMuteConfig($formattedParent, $muteConfig, $muteConfigId);
+     *     $response = $securityCenterClient->createMuteConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string     $parent       Required. Resource name of the new mute configs's parent. Its format is
-     *                                 "organizations/[organization_id]", "folders/[folder_id]", or
-     *                                 "projects/[project_id]".
-     * @param MuteConfig $muteConfig   Required. The mute config being created.
-     * @param string     $muteConfigId Required. Unique identifier provided by the client within the parent scope.
-     *                                 It must consist of only lowercase letters, numbers, and hyphens, must start
-     *                                 with a letter, must end with either a letter or a number, and must be 63
-     *                                 characters or less.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the new mute configs's parent. Its format is
+     *           "organizations/[organization_id]", "folders/[folder_id]", or
+     *           "projects/[project_id]".
+     *     @type MuteConfig $muteConfig
+     *           Required. The mute config being created.
+     *     @type string $muteConfigId
+     *           Required. Unique identifier provided by the client within the parent scope.
+     *           It must consist of only lowercase letters, numbers, and hyphens, must start
+     *           with a letter, must end with either a letter or a number, and must be 63
+     *           characters or less.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2229,14 +2249,23 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createMuteConfig($parent, $muteConfig, $muteConfigId, array $optionalArgs = [])
+    public function createMuteConfig(array $optionalArgs = [])
     {
         $request = new CreateMuteConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setMuteConfig($muteConfig);
-        $request->setMuteConfigId($muteConfigId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['muteConfig'])) {
+            $request->setMuteConfig($optionalArgs['muteConfig']);
+        }
+
+        if (isset($optionalArgs['muteConfigId'])) {
+            $request->setMuteConfigId($optionalArgs['muteConfigId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateMuteConfig', MuteConfig::class, $optionalArgs, $request)->wait();
@@ -2249,28 +2278,28 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
-     *     $configId = 'config_id';
-     *     $notificationConfig = new NotificationConfig();
-     *     $response = $securityCenterClient->createNotificationConfig($formattedParent, $configId, $notificationConfig);
+     *     $response = $securityCenterClient->createNotificationConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string             $parent             Required. Resource name of the new notification config's parent. Its format
-     *                                               is "organizations/[organization_id]", "folders/[folder_id]", or
-     *                                               "projects/[project_id]".
-     * @param string             $configId           Required.
-     *                                               Unique identifier provided by the client within the parent scope.
-     *                                               It must be between 1 and 128 characters and contain alphanumeric
-     *                                               characters, underscores, or hyphens only.
-     * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service
-     *                                               account will be ignored as they are both output only fields on this
-     *                                               resource.
-     * @param array              $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the new notification config's parent. Its format
+     *           is "organizations/[organization_id]", "folders/[folder_id]", or
+     *           "projects/[project_id]".
+     *     @type string $configId
+     *           Required.
+     *           Unique identifier provided by the client within the parent scope.
+     *           It must be between 1 and 128 characters and contain alphanumeric
+     *           characters, underscores, or hyphens only.
+     *     @type NotificationConfig $notificationConfig
+     *           Required. The notification config being created. The name and the service
+     *           account will be ignored as they are both output only fields on this
+     *           resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2281,14 +2310,23 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createNotificationConfig($parent, $configId, $notificationConfig, array $optionalArgs = [])
+    public function createNotificationConfig(array $optionalArgs = [])
     {
         $request = new CreateNotificationConfigRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setConfigId($configId);
-        $request->setNotificationConfig($notificationConfig);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['configId'])) {
+            $request->setConfigId($optionalArgs['configId']);
+        }
+
+        if (isset($optionalArgs['notificationConfig'])) {
+            $request->setNotificationConfig($optionalArgs['notificationConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateNotificationConfig', NotificationConfig::class, $optionalArgs, $request)->wait();
@@ -2304,24 +2342,24 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
-     *     $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-     *     $response = $securityCenterClient->createSecurityHealthAnalyticsCustomModule($formattedParent, $securityHealthAnalyticsCustomModule);
+     *     $response = $securityCenterClient->createSecurityHealthAnalyticsCustomModule();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string                              $parent                              Required. Resource name of the new custom module's parent. Its format is
-     *                                                                                 "organizations/{organization}/securityHealthAnalyticsSettings",
-     *                                                                                 "folders/{folder}/securityHealthAnalyticsSettings", or
-     *                                                                                 "projects/{project}/securityHealthAnalyticsSettings"
-     * @param SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. SecurityHealthAnalytics custom module to create. The provided
-     *                                                                                 name is ignored and reset with provided parent information and
-     *                                                                                 server-generated ID.
-     * @param array                               $optionalArgs                        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the new custom module's parent. Its format is
+     *           "organizations/{organization}/securityHealthAnalyticsSettings",
+     *           "folders/{folder}/securityHealthAnalyticsSettings", or
+     *           "projects/{project}/securityHealthAnalyticsSettings"
+     *     @type SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule
+     *           Required. SecurityHealthAnalytics custom module to create. The provided
+     *           name is ignored and reset with provided parent information and
+     *           server-generated ID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2332,13 +2370,19 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSecurityHealthAnalyticsCustomModule($parent, $securityHealthAnalyticsCustomModule, array $optionalArgs = [])
+    public function createSecurityHealthAnalyticsCustomModule(array $optionalArgs = [])
     {
         $request = new CreateSecurityHealthAnalyticsCustomModuleRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['securityHealthAnalyticsCustomModule'])) {
+            $request->setSecurityHealthAnalyticsCustomModule($optionalArgs['securityHealthAnalyticsCustomModule']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateSecurityHealthAnalyticsCustomModule', SecurityHealthAnalyticsCustomModule::class, $optionalArgs, $request)->wait();
@@ -2351,21 +2395,21 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
-     *     $source = new Source();
-     *     $response = $securityCenterClient->createSource($formattedParent, $source);
+     *     $response = $securityCenterClient->createSource();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the new source's parent. Its format should be
-     *                             "organizations/[organization_id]".
-     * @param Source $source       Required. The Source being created, only the display_name and description
-     *                             will be used. All other fields will be ignored.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the new source's parent. Its format should be
+     *           "organizations/[organization_id]".
+     *     @type Source $source
+     *           Required. The Source being created, only the display_name and description
+     *           will be used. All other fields will be ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2376,13 +2420,19 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSource($parent, $source, array $optionalArgs = [])
+    public function createSource(array $optionalArgs = [])
     {
         $request = new CreateSourceRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSource($source);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['source'])) {
+            $request->setSource($optionalArgs['source']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateSource', Source::class, $optionalArgs, $request)->wait();
@@ -2395,20 +2445,20 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
-     *     $securityCenterClient->deleteBigQueryExport($formattedName);
+     *     $securityCenterClient->deleteBigQueryExport();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the BigQuery export to delete. Its format is
-     *                             organizations/{organization}/bigQueryExports/{export_id},
-     *                             folders/{folder}/bigQueryExports/{export_id}, or
-     *                             projects/{project}/bigQueryExports/{export_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the BigQuery export to delete. Its format is
+     *           organizations/{organization}/bigQueryExports/{export_id},
+     *           folders/{folder}/bigQueryExports/{export_id}, or
+     *           projects/{project}/bigQueryExports/{export_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2417,12 +2467,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBigQueryExport($name, array $optionalArgs = [])
+    public function deleteBigQueryExport(array $optionalArgs = [])
     {
         $request = new DeleteBigQueryExportRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteBigQueryExport', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -2435,20 +2488,20 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
-     *     $securityCenterClient->deleteMuteConfig($formattedName);
+     *     $securityCenterClient->deleteMuteConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the mute config to delete. Its format is
-     *                             organizations/{organization}/muteConfigs/{config_id},
-     *                             folders/{folder}/muteConfigs/{config_id}, or
-     *                             projects/{project}/muteConfigs/{config_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the mute config to delete. Its format is
+     *           organizations/{organization}/muteConfigs/{config_id},
+     *           folders/{folder}/muteConfigs/{config_id}, or
+     *           projects/{project}/muteConfigs/{config_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2457,12 +2510,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteMuteConfig($name, array $optionalArgs = [])
+    public function deleteMuteConfig(array $optionalArgs = [])
     {
         $request = new DeleteMuteConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteMuteConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -2475,20 +2531,20 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
-     *     $securityCenterClient->deleteNotificationConfig($formattedName);
+     *     $securityCenterClient->deleteNotificationConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the notification config to delete. Its format is
-     *                             "organizations/[organization_id]/notificationConfigs/[config_id]",
-     *                             "folders/[folder_id]/notificationConfigs/[config_id]",
-     *                             or "projects/[project_id]/notificationConfigs/[config_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the notification config to delete. Its format is
+     *           "organizations/[organization_id]/notificationConfigs/[config_id]",
+     *           "folders/[folder_id]/notificationConfigs/[config_id]",
+     *           or "projects/[project_id]/notificationConfigs/[config_id]".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2497,12 +2553,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteNotificationConfig($name, array $optionalArgs = [])
+    public function deleteNotificationConfig(array $optionalArgs = [])
     {
         $request = new DeleteNotificationConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteNotificationConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -2517,21 +2576,21 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
-     *     $securityCenterClient->deleteSecurityHealthAnalyticsCustomModule($formattedName);
+     *     $securityCenterClient->deleteSecurityHealthAnalyticsCustomModule();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the custom module to delete. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     *                             or
-     *                             "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the custom module to delete. Its format is
+     *           "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *           "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *           or
+     *           "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2540,12 +2599,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSecurityHealthAnalyticsCustomModule($name, array $optionalArgs = [])
+    public function deleteSecurityHealthAnalyticsCustomModule(array $optionalArgs = [])
     {
         $request = new DeleteSecurityHealthAnalyticsCustomModuleRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteSecurityHealthAnalyticsCustomModule', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -2558,20 +2620,20 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
-     *     $response = $securityCenterClient->getBigQueryExport($formattedName);
+     *     $response = $securityCenterClient->getBigQueryExport();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the BigQuery export to retrieve. Its format is
-     *                             organizations/{organization}/bigQueryExports/{export_id},
-     *                             folders/{folder}/bigQueryExports/{export_id}, or
-     *                             projects/{project}/bigQueryExports/{export_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the BigQuery export to retrieve. Its format is
+     *           organizations/{organization}/bigQueryExports/{export_id},
+     *           folders/{folder}/bigQueryExports/{export_id}, or
+     *           projects/{project}/bigQueryExports/{export_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2582,12 +2644,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBigQueryExport($name, array $optionalArgs = [])
+    public function getBigQueryExport(array $optionalArgs = [])
     {
         $request = new GetBigQueryExportRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetBigQueryExport', BigQueryExport::class, $optionalArgs, $request)->wait();
@@ -2600,21 +2665,21 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->effectiveSecurityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[EFFECTIVE_CUSTOM_MODULE]');
-     *     $response = $securityCenterClient->getEffectiveSecurityHealthAnalyticsCustomModule($formattedName);
+     *     $response = $securityCenterClient->getEffectiveSecurityHealthAnalyticsCustomModule();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the effective custom module to get. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
-     *                             or
-     *                             "projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the effective custom module to get. Its format is
+     *           "organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
+     *           "folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
+     *           or
+     *           "projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2625,12 +2690,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getEffectiveSecurityHealthAnalyticsCustomModule($name, array $optionalArgs = [])
+    public function getEffectiveSecurityHealthAnalyticsCustomModule(array $optionalArgs = [])
     {
         $request = new GetEffectiveSecurityHealthAnalyticsCustomModuleRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEffectiveSecurityHealthAnalyticsCustomModule', EffectiveSecurityHealthAnalyticsCustomModule::class, $optionalArgs, $request)->wait();
@@ -2690,20 +2758,20 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
-     *     $response = $securityCenterClient->getMuteConfig($formattedName);
+     *     $response = $securityCenterClient->getMuteConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the mute config to retrieve. Its format is
-     *                             organizations/{organization}/muteConfigs/{config_id},
-     *                             folders/{folder}/muteConfigs/{config_id}, or
-     *                             projects/{project}/muteConfigs/{config_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the mute config to retrieve. Its format is
+     *           organizations/{organization}/muteConfigs/{config_id},
+     *           folders/{folder}/muteConfigs/{config_id}, or
+     *           projects/{project}/muteConfigs/{config_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2714,12 +2782,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getMuteConfig($name, array $optionalArgs = [])
+    public function getMuteConfig(array $optionalArgs = [])
     {
         $request = new GetMuteConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetMuteConfig', MuteConfig::class, $optionalArgs, $request)->wait();
@@ -2732,20 +2803,20 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
-     *     $response = $securityCenterClient->getNotificationConfig($formattedName);
+     *     $response = $securityCenterClient->getNotificationConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the notification config to get. Its format is
-     *                             "organizations/[organization_id]/notificationConfigs/[config_id]",
-     *                             "folders/[folder_id]/notificationConfigs/[config_id]",
-     *                             or "projects/[project_id]/notificationConfigs/[config_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the notification config to get. Its format is
+     *           "organizations/[organization_id]/notificationConfigs/[config_id]",
+     *           "folders/[folder_id]/notificationConfigs/[config_id]",
+     *           or "projects/[project_id]/notificationConfigs/[config_id]".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2756,12 +2827,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getNotificationConfig($name, array $optionalArgs = [])
+    public function getNotificationConfig(array $optionalArgs = [])
     {
         $request = new GetNotificationConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetNotificationConfig', NotificationConfig::class, $optionalArgs, $request)->wait();
@@ -2774,18 +2848,18 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->organizationSettingsName('[ORGANIZATION]');
-     *     $response = $securityCenterClient->getOrganizationSettings($formattedName);
+     *     $response = $securityCenterClient->getOrganizationSettings();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the organization to get organization settings for. Its
-     *                             format is "organizations/[organization_id]/organizationSettings".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the organization to get organization settings for. Its
+     *           format is "organizations/[organization_id]/organizationSettings".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2796,12 +2870,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getOrganizationSettings($name, array $optionalArgs = [])
+    public function getOrganizationSettings(array $optionalArgs = [])
     {
         $request = new GetOrganizationSettingsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetOrganizationSettings', OrganizationSettings::class, $optionalArgs, $request)->wait();
@@ -2814,21 +2891,21 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->securityHealthAnalyticsCustomModuleName('[ORGANIZATION]', '[CUSTOM_MODULE]');
-     *     $response = $securityCenterClient->getSecurityHealthAnalyticsCustomModule($formattedName);
+     *     $response = $securityCenterClient->getSecurityHealthAnalyticsCustomModule();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the custom module to get. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     *                             or
-     *                             "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the custom module to get. Its format is
+     *           "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *           "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *           or
+     *           "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2839,12 +2916,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSecurityHealthAnalyticsCustomModule($name, array $optionalArgs = [])
+    public function getSecurityHealthAnalyticsCustomModule(array $optionalArgs = [])
     {
         $request = new GetSecurityHealthAnalyticsCustomModuleRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSecurityHealthAnalyticsCustomModule', SecurityHealthAnalyticsCustomModule::class, $optionalArgs, $request)->wait();
@@ -2857,18 +2937,18 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-     *     $response = $securityCenterClient->getSource($formattedName);
+     *     $response = $securityCenterClient->getSource();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Relative resource name of the source. Its format is
-     *                             "organizations/[organization_id]/source/[source_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Relative resource name of the source. Its format is
+     *           "organizations/[organization_id]/source/[source_id]".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2879,12 +2959,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSource($name, array $optionalArgs = [])
+    public function getSource(array $optionalArgs = [])
     {
         $request = new GetSourceRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSource', Source::class, $optionalArgs, $request)->wait();
@@ -2898,10 +2981,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
-     *     $groupBy = 'group_by';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->groupAssets($formattedParent, $groupBy);
+     *     $pagedResponse = $securityCenterClient->groupAssets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2909,7 +2990,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->groupAssets($formattedParent, $groupBy);
+     *     $pagedResponse = $securityCenterClient->groupAssets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2918,30 +2999,13 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the parent to group the assets by. Its format is
-     *                             "organizations/[organization_id]", "folders/[folder_id]", or
-     *                             "projects/[project_id]".
-     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping.
-     *                             The string value should follow SQL syntax: comma separated list of fields.
-     *                             For example:
-     *                             "security_center_properties.resource_project,security_center_properties.project".
-     *
-     *                             The following fields are supported when compare_duration is not set:
-     *
-     *                             * security_center_properties.resource_project
-     *                             * security_center_properties.resource_project_display_name
-     *                             * security_center_properties.resource_type
-     *                             * security_center_properties.resource_parent
-     *                             * security_center_properties.resource_parent_display_name
-     *
-     *                             The following fields are supported when compare_duration is set:
-     *
-     *                             * security_center_properties.resource_type
-     *                             * security_center_properties.resource_project_display_name
-     *                             * security_center_properties.resource_parent_display_name
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the parent to group the assets by. Its format is
+     *           "organizations/[organization_id]", "folders/[folder_id]", or
+     *           "projects/[project_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
      *           The expression is a list of zero or more restrictions combined via logical
@@ -3005,6 +3069,25 @@ class SecurityCenterGapicClient
      *
      *           Use a negated partial match on the empty string to filter based on a
      *           property not existing: `-resource_properties.my_property : ""`
+     *     @type string $groupBy
+     *           Required. Expression that defines what assets fields to use for grouping.
+     *           The string value should follow SQL syntax: comma separated list of fields.
+     *           For example:
+     *           "security_center_properties.resource_project,security_center_properties.project".
+     *
+     *           The following fields are supported when compare_duration is not set:
+     *
+     *           * security_center_properties.resource_project
+     *           * security_center_properties.resource_project_display_name
+     *           * security_center_properties.resource_type
+     *           * security_center_properties.resource_parent
+     *           * security_center_properties.resource_parent_display_name
+     *
+     *           The following fields are supported when compare_duration is set:
+     *
+     *           * security_center_properties.resource_type
+     *           * security_center_properties.resource_project_display_name
+     *           * security_center_properties.resource_parent_display_name
      *     @type Duration $compareDuration
      *           When compare_duration is set, the GroupResult's "state_change" property is
      *           updated to indicate whether the asset was added, removed, or remained
@@ -3059,15 +3142,21 @@ class SecurityCenterGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function groupAssets($parent, $groupBy, array $optionalArgs = [])
+    public function groupAssets(array $optionalArgs = [])
     {
         $request = new GroupAssetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setGroupBy($groupBy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['groupBy'])) {
+            $request->setGroupBy($optionalArgs['groupBy']);
         }
 
         if (isset($optionalArgs['compareDuration'])) {
@@ -3104,10 +3193,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
-     *     $groupBy = 'group_by';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->groupFindings($formattedParent, $groupBy);
+     *     $pagedResponse = $securityCenterClient->groupFindings();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3115,7 +3202,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->groupFindings($formattedParent, $groupBy);
+     *     $pagedResponse = $securityCenterClient->groupFindings();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3124,31 +3211,17 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the source to groupBy. Its format is
-     *                             "organizations/[organization_id]/sources/[source_id]",
-     *                             folders/[folder_id]/sources/[source_id], or
-     *                             projects/[project_id]/sources/[source_id]. To groupBy across all sources
-     *                             provide a source_id of `-`. For example:
-     *                             organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
-     *                             or projects/{project_id}/sources/-
-     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping
-     *                             (including `state_change`). The string value should follow SQL syntax:
-     *                             comma separated list of fields. For example: "parent,resource_name".
-     *
-     *                             The following fields are supported:
-     *
-     *                             * resource_name
-     *                             * category
-     *                             * state
-     *                             * parent
-     *                             * severity
-     *
-     *                             The following fields are supported when compare_duration is set:
-     *
-     *                             * state_change
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the source to groupBy. Its format is
+     *           "organizations/[organization_id]/sources/[source_id]",
+     *           folders/[folder_id]/sources/[source_id], or
+     *           projects/[project_id]/sources/[source_id]. To groupBy across all sources
+     *           provide a source_id of `-`. For example:
+     *           organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
+     *           or projects/{project_id}/sources/-
      *     @type string $filter
      *           Expression that defines the filter to apply across findings.
      *           The expression is a list of one or more restrictions combined via logical
@@ -3209,6 +3282,22 @@ class SecurityCenterGapicClient
      *           * resource.project_name: `=`, `:`
      *           * resource.project_display_name: `=`, `:`
      *           * resource.type: `=`, `:`
+     *     @type string $groupBy
+     *           Required. Expression that defines what assets fields to use for grouping
+     *           (including `state_change`). The string value should follow SQL syntax:
+     *           comma separated list of fields. For example: "parent,resource_name".
+     *
+     *           The following fields are supported:
+     *
+     *           * resource_name
+     *           * category
+     *           * state
+     *           * parent
+     *           * severity
+     *
+     *           The following fields are supported when compare_duration is set:
+     *
+     *           * state_change
      *     @type Timestamp $readTime
      *           Time used as a reference point when filtering findings. The filter is
      *           limited to findings existing at the supplied time and their values are
@@ -3266,15 +3355,21 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function groupFindings($parent, $groupBy, array $optionalArgs = [])
+    public function groupFindings(array $optionalArgs = [])
     {
         $request = new GroupFindingsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setGroupBy($groupBy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['groupBy'])) {
+            $request->setGroupBy($optionalArgs['groupBy']);
         }
 
         if (isset($optionalArgs['readTime'])) {
@@ -3305,9 +3400,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listAssets($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listAssets();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3315,7 +3409,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listAssets($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listAssets();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3324,14 +3418,15 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the parent resource that contains the assets. The
-     *                             value that you can specify on parent depends on the method in which you
-     *                             specify parent. You can specify one of the following values:
-     *                             "organizations/[organization_id]", "folders/[folder_id]", or
-     *                             "projects/[project_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the parent resource that contains the assets. The
+     *           value that you can specify on parent depends on the method in which you
+     *           specify parent. You can specify one of the following values:
+     *           "organizations/[organization_id]", "folders/[folder_id]", or
+     *           "projects/[project_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
      *           The expression is a list of zero or more restrictions combined via logical
@@ -3472,12 +3567,15 @@ class SecurityCenterGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function listAssets($parent, array $optionalArgs = [])
+    public function listAssets(array $optionalArgs = [])
     {
         $request = new ListAssetsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -3522,9 +3620,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listBigQueryExports($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listBigQueryExports();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3532,7 +3629,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listBigQueryExports($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listBigQueryExports();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3541,12 +3638,13 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns the collection of BigQuery exports. Its
-     *                             format is "organizations/[organization_id]", "folders/[folder_id]",
-     *                             "projects/[project_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns the collection of BigQuery exports. Its
+     *           format is "organizations/[organization_id]", "folders/[folder_id]",
+     *           "projects/[project_id]".
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3566,12 +3664,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBigQueryExports($parent, array $optionalArgs = [])
+    public function listBigQueryExports(array $optionalArgs = [])
     {
         $request = new ListBigQueryExportsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3593,9 +3694,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listDescendantSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listDescendantSecurityHealthAnalyticsCustomModules();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3603,7 +3703,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listDescendantSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listDescendantSecurityHealthAnalyticsCustomModules();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3612,13 +3712,14 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of parent to list descendant custom modules. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings", or
-     *                             "projects/{project}/securityHealthAnalyticsSettings"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of parent to list descendant custom modules. Its format is
+     *           "organizations/{organization}/securityHealthAnalyticsSettings",
+     *           "folders/{folder}/securityHealthAnalyticsSettings", or
+     *           "projects/{project}/securityHealthAnalyticsSettings"
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3638,12 +3739,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDescendantSecurityHealthAnalyticsCustomModules($parent, array $optionalArgs = [])
+    public function listDescendantSecurityHealthAnalyticsCustomModules(array $optionalArgs = [])
     {
         $request = new ListDescendantSecurityHealthAnalyticsCustomModulesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3666,9 +3770,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listEffectiveSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listEffectiveSecurityHealthAnalyticsCustomModules();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3676,7 +3779,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listEffectiveSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listEffectiveSecurityHealthAnalyticsCustomModules();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3685,13 +3788,14 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of parent to list effective custom modules. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings", or
-     *                             "projects/{project}/securityHealthAnalyticsSettings"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of parent to list effective custom modules. Its format is
+     *           "organizations/{organization}/securityHealthAnalyticsSettings",
+     *           "folders/{folder}/securityHealthAnalyticsSettings", or
+     *           "projects/{project}/securityHealthAnalyticsSettings"
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3711,12 +3815,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listEffectiveSecurityHealthAnalyticsCustomModules($parent, array $optionalArgs = [])
+    public function listEffectiveSecurityHealthAnalyticsCustomModules(array $optionalArgs = [])
     {
         $request = new ListEffectiveSecurityHealthAnalyticsCustomModulesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -3740,9 +3847,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listFindings($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listFindings();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3750,7 +3856,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listFindings($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listFindings();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3759,16 +3865,17 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the source the findings belong to. Its format is
-     *                             "organizations/[organization_id]/sources/[source_id],
-     *                             folders/[folder_id]/sources/[source_id], or
-     *                             projects/[project_id]/sources/[source_id]". To list across all sources
-     *                             provide a source_id of `-`. For example:
-     *                             organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
-     *                             projects/{projects_id}/sources/-
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the source the findings belong to. Its format is
+     *           "organizations/[organization_id]/sources/[source_id],
+     *           folders/[folder_id]/sources/[source_id], or
+     *           projects/[project_id]/sources/[source_id]". To list across all sources
+     *           provide a source_id of `-`. For example:
+     *           organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
+     *           projects/{projects_id}/sources/-
      *     @type string $filter
      *           Expression that defines the filter to apply across findings.
      *           The expression is a list of one or more restrictions combined via logical
@@ -3908,12 +4015,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFindings($parent, array $optionalArgs = [])
+    public function listFindings(array $optionalArgs = [])
     {
         $request = new ListFindingsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -3954,9 +4064,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listMuteConfigs($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listMuteConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -3964,7 +4073,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listMuteConfigs($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listMuteConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -3973,12 +4082,13 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns the collection of mute configs. Its format
-     *                             is "organizations/[organization_id]", "folders/[folder_id]",
-     *                             "projects/[project_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns the collection of mute configs. Its format
+     *           is "organizations/[organization_id]", "folders/[folder_id]",
+     *           "projects/[project_id]".
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -3998,12 +4108,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listMuteConfigs($parent, array $optionalArgs = [])
+    public function listMuteConfigs(array $optionalArgs = [])
     {
         $request = new ListMuteConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -4024,9 +4137,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listNotificationConfigs($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listNotificationConfigs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -4034,7 +4146,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listNotificationConfigs($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listNotificationConfigs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -4043,12 +4155,13 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the parent in which to list the notification
-     *                             configurations. Its format is "organizations/[organization_id]",
-     *                             "folders/[folder_id]", or "projects/[project_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the parent in which to list the notification
+     *           configurations. Its format is "organizations/[organization_id]",
+     *           "folders/[folder_id]", or "projects/[project_id]".
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -4068,12 +4181,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listNotificationConfigs($parent, array $optionalArgs = [])
+    public function listNotificationConfigs(array $optionalArgs = [])
     {
         $request = new ListNotificationConfigsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -4096,9 +4212,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->securityHealthAnalyticsSettingsName('[ORGANIZATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listSecurityHealthAnalyticsCustomModules();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -4106,7 +4221,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listSecurityHealthAnalyticsCustomModules($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listSecurityHealthAnalyticsCustomModules();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -4115,13 +4230,14 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of parent to list custom modules. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings", or
-     *                             "projects/{project}/securityHealthAnalyticsSettings"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of parent to list custom modules. Its format is
+     *           "organizations/{organization}/securityHealthAnalyticsSettings",
+     *           "folders/{folder}/securityHealthAnalyticsSettings", or
+     *           "projects/{project}/securityHealthAnalyticsSettings"
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -4141,12 +4257,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSecurityHealthAnalyticsCustomModules($parent, array $optionalArgs = [])
+    public function listSecurityHealthAnalyticsCustomModules(array $optionalArgs = [])
     {
         $request = new ListSecurityHealthAnalyticsCustomModulesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -4167,9 +4286,8 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityCenterClient->listSources($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listSources();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -4177,7 +4295,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityCenterClient->listSources($formattedParent);
+     *     $pagedResponse = $securityCenterClient->listSources();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -4186,12 +4304,13 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the parent of sources to list. Its format should
-     *                             be "organizations/[organization_id]", "folders/[folder_id]", or
-     *                             "projects/[project_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the parent of sources to list. Its format should
+     *           be "organizations/[organization_id]", "folders/[folder_id]", or
+     *           "projects/[project_id]".
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -4211,12 +4330,15 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSources($parent, array $optionalArgs = [])
+    public function listSources(array $optionalArgs = [])
     {
         $request = new ListSourcesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -4242,8 +4364,7 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
-     *     $operationResponse = $securityCenterClient->runAssetDiscovery($formattedParent);
+     *     $operationResponse = $securityCenterClient->runAssetDiscovery();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -4254,7 +4375,7 @@ class SecurityCenterGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $securityCenterClient->runAssetDiscovery($formattedParent);
+     *     $operationResponse = $securityCenterClient->runAssetDiscovery();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $securityCenterClient->resumeOperation($operationName, 'runAssetDiscovery');
@@ -4274,11 +4395,12 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to run asset discovery for. Its format
-     *                             is "organizations/[organization_id]".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the organization to run asset discovery for. Its format
+     *           is "organizations/[organization_id]".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4291,12 +4413,15 @@ class SecurityCenterGapicClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function runAssetDiscovery($parent, array $optionalArgs = [])
+    public function runAssetDiscovery(array $optionalArgs = [])
     {
         $request = new RunAssetDiscoveryRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RunAssetDiscovery', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -4309,27 +4434,27 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-     *     $state = State::STATE_UNSPECIFIED;
-     *     $startTime = new Timestamp();
-     *     $response = $securityCenterClient->setFindingState($formattedName, $state, $startTime);
+     *     $response = $securityCenterClient->setFindingState();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string    $name         Required. The [relative resource
-     *                                name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     *                                of the finding. Example:
-     *                                "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     *                                "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     *                                "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
-     * @param int       $state        Required. The desired State of the finding.
-     *                                For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\State}
-     * @param Timestamp $startTime    Required. The time at which the updated state takes effect.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [relative resource
+     *           name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *           of the finding. Example:
+     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     *           "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     *           "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     *     @type int $state
+     *           Required. The desired State of the finding.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\State}
+     *     @type Timestamp $startTime
+     *           Required. The time at which the updated state takes effect.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4340,14 +4465,23 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setFindingState($name, $state, $startTime, array $optionalArgs = [])
+    public function setFindingState(array $optionalArgs = [])
     {
         $request = new SetFindingStateRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setState($state);
-        $request->setStartTime($startTime);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['state'])) {
+            $request->setState($optionalArgs['state']);
+        }
+
+        if (isset($optionalArgs['startTime'])) {
+            $request->setStartTime($optionalArgs['startTime']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetFindingState', Finding::class, $optionalArgs, $request)->wait();
@@ -4416,25 +4550,25 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedName = $securityCenterClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-     *     $mute = Mute::MUTE_UNSPECIFIED;
-     *     $response = $securityCenterClient->setMute($formattedName, $mute);
+     *     $response = $securityCenterClient->setMute();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The [relative resource
-     *                             name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     *                             of the finding. Example:
-     *                             "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     *                             "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     *                             "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
-     * @param int    $mute         Required. The desired state of the Mute.
-     *                             For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\Mute}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The [relative resource
+     *           name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *           of the finding. Example:
+     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     *           "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     *           "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     *     @type int $mute
+     *           Required. The desired state of the Mute.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\Mute}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4445,13 +4579,19 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setMute($name, $mute, array $optionalArgs = [])
+    public function setMute(array $optionalArgs = [])
     {
         $request = new SetMuteRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setMute($mute);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['mute'])) {
+            $request->setMute($optionalArgs['mute']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetMute', Finding::class, $optionalArgs, $request)->wait();
@@ -4464,25 +4604,25 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $parent = 'parent';
-     *     $customConfig = new CustomConfig();
-     *     $resource = new SimulatedResource();
-     *     $response = $securityCenterClient->simulateSecurityHealthAnalyticsCustomModule($parent, $customConfig, $resource);
+     *     $response = $securityCenterClient->simulateSecurityHealthAnalyticsCustomModule();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param string            $parent       Required. The relative resource name of the organization, project, or
-     *                                        folder. For more information about relative resource names, see [Relative
-     *                                        Resource
-     *                                        Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     *                                        Example: `organizations/{organization_id}`
-     * @param CustomConfig      $customConfig Required. The custom configuration that you need to test.
-     * @param SimulatedResource $resource     Required. Resource data to simulate custom module against.
-     * @param array             $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The relative resource name of the organization, project, or
+     *           folder. For more information about relative resource names, see [Relative
+     *           Resource
+     *           Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *           Example: `organizations/{organization_id}`
+     *     @type CustomConfig $customConfig
+     *           Required. The custom configuration that you need to test.
+     *     @type SimulatedResource $resource
+     *           Required. Resource data to simulate custom module against.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -4493,14 +4633,23 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function simulateSecurityHealthAnalyticsCustomModule($parent, $customConfig, $resource, array $optionalArgs = [])
+    public function simulateSecurityHealthAnalyticsCustomModule(array $optionalArgs = [])
     {
         $request = new SimulateSecurityHealthAnalyticsCustomModuleRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCustomConfig($customConfig);
-        $request->setResource($resource);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['customConfig'])) {
+            $request->setCustomConfig($optionalArgs['customConfig']);
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SimulateSecurityHealthAnalyticsCustomModule', SimulateSecurityHealthAnalyticsCustomModuleResponse::class, $optionalArgs, $request)->wait();
@@ -4559,17 +4708,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $bigQueryExport = new BigQueryExport();
-     *     $response = $securityCenterClient->updateBigQueryExport($bigQueryExport);
+     *     $response = $securityCenterClient->updateBigQueryExport();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param BigQueryExport $bigQueryExport Required. The BigQuery export being updated.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type BigQueryExport $bigQueryExport
+     *           Required. The BigQuery export being updated.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *           If empty all mutable fields will be updated.
@@ -4583,12 +4732,14 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateBigQueryExport($bigQueryExport, array $optionalArgs = [])
+    public function updateBigQueryExport(array $optionalArgs = [])
     {
         $request = new UpdateBigQueryExportRequest();
         $requestParamHeaders = [];
-        $request->setBigQueryExport($bigQueryExport);
-        $requestParamHeaders['big_query_export.name'] = $bigQueryExport->getName();
+        if (isset($optionalArgs['bigQueryExport'])) {
+            $request->setBigQueryExport($optionalArgs['bigQueryExport']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4605,17 +4756,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $externalSystem = new ExternalSystem();
-     *     $response = $securityCenterClient->updateExternalSystem($externalSystem);
+     *     $response = $securityCenterClient->updateExternalSystem();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param ExternalSystem $externalSystem Required. The external system resource to update.
-     * @param array          $optionalArgs   {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type ExternalSystem $externalSystem
+     *           Required. The external system resource to update.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the external system resource.
      *
@@ -4630,12 +4781,14 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateExternalSystem($externalSystem, array $optionalArgs = [])
+    public function updateExternalSystem(array $optionalArgs = [])
     {
         $request = new UpdateExternalSystemRequest();
         $requestParamHeaders = [];
-        $request->setExternalSystem($externalSystem);
-        $requestParamHeaders['external_system.name'] = $externalSystem->getName();
+        if (isset($optionalArgs['externalSystem'])) {
+            $request->setExternalSystem($optionalArgs['externalSystem']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4653,22 +4806,22 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $finding = new Finding();
-     *     $response = $securityCenterClient->updateFinding($finding);
+     *     $response = $securityCenterClient->updateFinding();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param Finding $finding      Required. The finding resource to update or create if it does not already
-     *                              exist. parent, security_marks, and update_time will be ignored.
-     *
-     *                              In the case of creation, the finding id portion of the name must be
-     *                              alphanumeric and less than or equal to 32 characters and greater than 0
-     *                              characters in length.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Finding $finding
+     *           Required. The finding resource to update or create if it does not already
+     *           exist. parent, security_marks, and update_time will be ignored.
+     *
+     *           In the case of creation, the finding id portion of the name must be
+     *           alphanumeric and less than or equal to 32 characters and greater than 0
+     *           characters in length.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the finding resource. This field should
      *           not be specified when creating a finding.
@@ -4687,12 +4840,14 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFinding($finding, array $optionalArgs = [])
+    public function updateFinding(array $optionalArgs = [])
     {
         $request = new UpdateFindingRequest();
         $requestParamHeaders = [];
-        $request->setFinding($finding);
-        $requestParamHeaders['finding.name'] = $finding->getName();
+        if (isset($optionalArgs['finding'])) {
+            $request->setFinding($optionalArgs['finding']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4709,17 +4864,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $muteConfig = new MuteConfig();
-     *     $response = $securityCenterClient->updateMuteConfig($muteConfig);
+     *     $response = $securityCenterClient->updateMuteConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param MuteConfig $muteConfig   Required. The mute config being updated.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type MuteConfig $muteConfig
+     *           Required. The mute config being updated.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *           If empty all mutable fields will be updated.
@@ -4733,12 +4888,14 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateMuteConfig($muteConfig, array $optionalArgs = [])
+    public function updateMuteConfig(array $optionalArgs = [])
     {
         $request = new UpdateMuteConfigRequest();
         $requestParamHeaders = [];
-        $request->setMuteConfig($muteConfig);
-        $requestParamHeaders['mute_config.name'] = $muteConfig->getName();
+        if (isset($optionalArgs['muteConfig'])) {
+            $request->setMuteConfig($optionalArgs['muteConfig']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4757,17 +4914,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $notificationConfig = new NotificationConfig();
-     *     $response = $securityCenterClient->updateNotificationConfig($notificationConfig);
+     *     $response = $securityCenterClient->updateNotificationConfig();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param NotificationConfig $notificationConfig Required. The notification config to update.
-     * @param array              $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type NotificationConfig $notificationConfig
+     *           Required. The notification config to update.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the notification config.
      *
@@ -4782,12 +4939,14 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateNotificationConfig($notificationConfig, array $optionalArgs = [])
+    public function updateNotificationConfig(array $optionalArgs = [])
     {
         $request = new UpdateNotificationConfigRequest();
         $requestParamHeaders = [];
-        $request->setNotificationConfig($notificationConfig);
-        $requestParamHeaders['notification_config.name'] = $notificationConfig->getName();
+        if (isset($optionalArgs['notificationConfig'])) {
+            $request->setNotificationConfig($optionalArgs['notificationConfig']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4804,17 +4963,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $organizationSettings = new OrganizationSettings();
-     *     $response = $securityCenterClient->updateOrganizationSettings($organizationSettings);
+     *     $response = $securityCenterClient->updateOrganizationSettings();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param OrganizationSettings $organizationSettings Required. The organization settings resource to update.
-     * @param array                $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type OrganizationSettings $organizationSettings
+     *           Required. The organization settings resource to update.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the settings resource.
      *
@@ -4829,12 +4988,14 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateOrganizationSettings($organizationSettings, array $optionalArgs = [])
+    public function updateOrganizationSettings(array $optionalArgs = [])
     {
         $request = new UpdateOrganizationSettingsRequest();
         $requestParamHeaders = [];
-        $request->setOrganizationSettings($organizationSettings);
-        $requestParamHeaders['organization_settings.name'] = $organizationSettings->getName();
+        if (isset($optionalArgs['organizationSettings'])) {
+            $request->setOrganizationSettings($optionalArgs['organizationSettings']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4855,17 +5016,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-     *     $response = $securityCenterClient->updateSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+     *     $response = $securityCenterClient->updateSecurityHealthAnalyticsCustomModule();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. The SecurityHealthAnalytics custom module to update.
-     * @param array                               $optionalArgs                        {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule
+     *           Required. The SecurityHealthAnalytics custom module to update.
      *     @type FieldMask $updateMask
      *           The list of fields to update.
      *     @type RetrySettings|array $retrySettings
@@ -4878,12 +5039,14 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule, array $optionalArgs = [])
+    public function updateSecurityHealthAnalyticsCustomModule(array $optionalArgs = [])
     {
         $request = new UpdateSecurityHealthAnalyticsCustomModuleRequest();
         $requestParamHeaders = [];
-        $request->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
-        $requestParamHeaders['security_health_analytics_custom_module.name'] = $securityHealthAnalyticsCustomModule->getName();
+        if (isset($optionalArgs['securityHealthAnalyticsCustomModule'])) {
+            $request->setSecurityHealthAnalyticsCustomModule($optionalArgs['securityHealthAnalyticsCustomModule']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4900,17 +5063,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $securityMarks = new SecurityMarks();
-     *     $response = $securityCenterClient->updateSecurityMarks($securityMarks);
+     *     $response = $securityCenterClient->updateSecurityMarks();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param SecurityMarks $securityMarks Required. The security marks resource to update.
-     * @param array         $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type SecurityMarks $securityMarks
+     *           Required. The security marks resource to update.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the security marks resource.
      *
@@ -4932,12 +5095,14 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSecurityMarks($securityMarks, array $optionalArgs = [])
+    public function updateSecurityMarks(array $optionalArgs = [])
     {
         $request = new UpdateSecurityMarksRequest();
         $requestParamHeaders = [];
-        $request->setSecurityMarks($securityMarks);
-        $requestParamHeaders['security_marks.name'] = $securityMarks->getName();
+        if (isset($optionalArgs['securityMarks'])) {
+            $request->setSecurityMarks($optionalArgs['securityMarks']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -4958,17 +5123,17 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $source = new Source();
-     *     $response = $securityCenterClient->updateSource($source);
+     *     $response = $securityCenterClient->updateSource();
      * } finally {
      *     $securityCenterClient->close();
      * }
      * ```
      *
-     * @param Source $source       Required. The source resource to update.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Source $source
+     *           Required. The source resource to update.
      *     @type FieldMask $updateMask
      *           The FieldMask to use when updating the source resource.
      *
@@ -4983,12 +5148,14 @@ class SecurityCenterGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSource($source, array $optionalArgs = [])
+    public function updateSource(array $optionalArgs = [])
     {
         $request = new UpdateSourceRequest();
         $requestParamHeaders = [];
-        $request->setSource($source);
-        $requestParamHeaders['source.name'] = $source->getName();
+        if (isset($optionalArgs['source'])) {
+            $request->setSource($optionalArgs['source']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

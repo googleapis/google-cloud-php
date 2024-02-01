@@ -30,43 +30,23 @@ use Google\Cloud\Talent\V4beta1\CompanyServiceClient;
  * Deletes specified company.
  * Prerequisite: The company has no jobs associated with it.
  *
- * @param string $formattedName The resource name of the company to be deleted.
- *
- *                              The format is
- *                              "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
- *                              example, "projects/foo/tenants/bar/companies/baz".
- *
- *                              If tenant id is unspecified, the default tenant is used, for
- *                              example, "projects/foo/companies/bar". Please see
- *                              {@see CompanyServiceClient::companyName()} for help formatting this field.
- */
-function delete_company_sample(string $formattedName): void
-{
-    // Create a client.
-    $companyServiceClient = new CompanyServiceClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $companyServiceClient->deleteCompany($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_company_sample(): void
 {
-    $formattedName = CompanyServiceClient::companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
+    // Create a client.
+    $companyServiceClient = new CompanyServiceClient();
 
-    delete_company_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $companyServiceClient->deleteCompany();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END jobs_v4beta1_generated_CompanyService_DeleteCompany_sync]

@@ -23,8 +23,7 @@ class GetSecretRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;/secrets/*`. Please see
-     *                     {@see SecretManagerServiceClient::secretName()} for help formatting this field.
+     * @param string $name Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;/secrets/*`.
      *
      * @return \Google\Cloud\SecretManager\V1\GetSecretRequest
      *

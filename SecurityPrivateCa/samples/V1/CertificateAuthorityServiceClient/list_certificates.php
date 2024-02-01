@@ -32,19 +32,19 @@ use Google\Cloud\Security\PrivateCA\V1\ListCertificatesRequest;
 /**
  * Lists [Certificates][google.cloud.security.privateca.v1.Certificate].
  *
- * @param string $formattedParent The resource name of the location associated with the
- *                                [Certificates][google.cloud.security.privateca.v1.Certificate], in the
- *                                format `projects/&#42;/locations/&#42;/caPools/*`. Please see
- *                                {@see CertificateAuthorityServiceClient::caPoolName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_certificates_sample(string $formattedParent): void
+function list_certificates_sample(): void
 {
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $request = (new ListCertificatesRequest())
-        ->setParent($formattedParent);
+    $request = new ListCertificatesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,25 +58,5 @@ function list_certificates_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CertificateAuthorityServiceClient::caPoolName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CA_POOL]'
-    );
-
-    list_certificates_sample($formattedParent);
 }
 // [END privateca_v1_generated_CertificateAuthorityService_ListCertificates_sync]

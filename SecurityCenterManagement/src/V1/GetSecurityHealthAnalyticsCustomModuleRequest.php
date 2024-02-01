@@ -24,7 +24,6 @@ class GetSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\Int
 
     /**
      * @param string $name Required. Name of the resource
-     *                     Please see {@see SecurityCenterManagementClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\GetSecurityHealthAnalyticsCustomModuleRequest
      *

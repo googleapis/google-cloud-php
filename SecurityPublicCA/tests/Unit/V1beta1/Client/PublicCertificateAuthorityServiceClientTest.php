@@ -77,12 +77,7 @@ class PublicCertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setKeyId($keyId);
         $expectedResponse->setB64MacKey($b64MacKey);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $externalAccountKey = new ExternalAccountKey();
-        $request = (new CreateExternalAccountKeyRequest())
-            ->setParent($formattedParent)
-            ->setExternalAccountKey($externalAccountKey);
+        $request = new CreateExternalAccountKeyRequest();
         $response = $gapicClient->createExternalAccountKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -90,10 +85,6 @@ class PublicCertificateAuthorityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.publicca.v1beta1.PublicCertificateAuthorityService/CreateExternalAccountKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getExternalAccountKey();
-        $this->assertProtobufEquals($externalAccountKey, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -115,12 +106,7 @@ class PublicCertificateAuthorityServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $externalAccountKey = new ExternalAccountKey();
-        $request = (new CreateExternalAccountKeyRequest())
-            ->setParent($formattedParent)
-            ->setExternalAccountKey($externalAccountKey);
+        $request = new CreateExternalAccountKeyRequest();
         try {
             $gapicClient->createExternalAccountKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -151,12 +137,7 @@ class PublicCertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setKeyId($keyId);
         $expectedResponse->setB64MacKey($b64MacKey);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $externalAccountKey = new ExternalAccountKey();
-        $request = (new CreateExternalAccountKeyRequest())
-            ->setParent($formattedParent)
-            ->setExternalAccountKey($externalAccountKey);
+        $request = new CreateExternalAccountKeyRequest();
         $response = $gapicClient->createExternalAccountKeyAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -164,10 +145,6 @@ class PublicCertificateAuthorityServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.security.publicca.v1beta1.PublicCertificateAuthorityService/CreateExternalAccountKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getExternalAccountKey();
-        $this->assertProtobufEquals($externalAccountKey, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

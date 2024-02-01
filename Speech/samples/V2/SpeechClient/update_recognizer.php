@@ -45,9 +45,7 @@ function update_recognizer_sample(): void
     $speechClient = new SpeechClient();
 
     // Prepare the request message.
-    $recognizer = new Recognizer();
-    $request = (new UpdateRecognizerRequest())
-        ->setRecognizer($recognizer);
+    $request = new UpdateRecognizerRequest();
 
     // Call the API and handle any network failures.
     try {

@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Tasks\V2beta2\CloudTasksClient;
 use Google\Cloud\Tasks\V2beta2\Task;
-use Google\Protobuf\Timestamp;
 
 /**
  * Cancel a pull task's lease.
@@ -36,41 +35,24 @@ use Google\Protobuf\Timestamp;
  * to now. This will make the task available to be leased to the next caller
  * of [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks].
  *
- * @param string $formattedName The task name. For example:
- *                              `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
- *                              Please see {@see CloudTasksClient::taskName()} for help formatting this field.
- */
-function cancel_lease_sample(string $formattedName): void
-{
-    // Create a client.
-    $cloudTasksClient = new CloudTasksClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $scheduleTime = new Timestamp();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Task $response */
-        $response = $cloudTasksClient->cancelLease($formattedName, $scheduleTime);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function cancel_lease_sample(): void
 {
-    $formattedName = CloudTasksClient::taskName('[PROJECT]', '[LOCATION]', '[QUEUE]', '[TASK]');
+    // Create a client.
+    $cloudTasksClient = new CloudTasksClient();
 
-    cancel_lease_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        /** @var Task $response */
+        $response = $cloudTasksClient->cancelLease();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudtasks_v2beta2_generated_CloudTasks_CancelLease_sync]

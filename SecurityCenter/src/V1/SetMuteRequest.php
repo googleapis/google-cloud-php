@@ -39,8 +39,7 @@ class SetMuteRequest extends \Google\Protobuf\Internal\Message
      *                     of the finding. Example:
      *                     "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
      *                     "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     *                     "projects/{project_id}/sources/{source_id}/findings/{finding_id}". Please see
-     *                     {@see SecurityCenterClient::findingName()} for help formatting this field.
+     *                     "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      * @param int    $mute Required. The desired state of the Mute.
      *                     For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\Mute}
      *

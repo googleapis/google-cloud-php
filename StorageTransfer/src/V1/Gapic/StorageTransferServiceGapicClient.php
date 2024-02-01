@@ -70,10 +70,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $storageTransferServiceClient = new StorageTransferServiceClient();
  * try {
- *     $projectId = 'project_id';
- *     $agentPool = new AgentPool();
- *     $agentPoolId = 'agent_pool_id';
- *     $response = $storageTransferServiceClient->createAgentPool($projectId, $agentPool, $agentPoolId);
+ *     $response = $storageTransferServiceClient->createAgentPool();
  * } finally {
  *     $storageTransferServiceClient->close();
  * }
@@ -335,34 +332,34 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $agentPool = new AgentPool();
-     *     $agentPoolId = 'agent_pool_id';
-     *     $response = $storageTransferServiceClient->createAgentPool($projectId, $agentPool, $agentPoolId);
+     *     $response = $storageTransferServiceClient->createAgentPool();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string    $projectId    Required. The ID of the Google Cloud project that owns the
-     *                                agent pool.
-     * @param AgentPool $agentPool    Required. The agent pool to create.
-     * @param string    $agentPoolId  Required. The ID of the agent pool to create.
-     *
-     *                                The `agent_pool_id` must meet the following requirements:
-     *
-     *                                *   Length of 128 characters or less.
-     *                                *   Not start with the string `goog`.
-     *                                *   Start with a lowercase ASCII character, followed by:
-     *                                *   Zero or more: lowercase Latin alphabet characters, numerals,
-     *                                hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`).
-     *                                *   One or more numerals or lowercase ASCII characters.
-     *
-     *                                As expressed by the regular expression:
-     *                                `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud project that owns the
+     *           agent pool.
+     *     @type AgentPool $agentPool
+     *           Required. The agent pool to create.
+     *     @type string $agentPoolId
+     *           Required. The ID of the agent pool to create.
+     *
+     *           The `agent_pool_id` must meet the following requirements:
+     *
+     *           *   Length of 128 characters or less.
+     *           *   Not start with the string `goog`.
+     *           *   Start with a lowercase ASCII character, followed by:
+     *           *   Zero or more: lowercase Latin alphabet characters, numerals,
+     *           hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`).
+     *           *   One or more numerals or lowercase ASCII characters.
+     *
+     *           As expressed by the regular expression:
+     *           `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -373,18 +370,23 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAgentPool(
-        $projectId,
-        $agentPool,
-        $agentPoolId,
-        array $optionalArgs = []
-    ) {
+    public function createAgentPool(array $optionalArgs = [])
+    {
         $request = new CreateAgentPoolRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $request->setAgentPool($agentPool);
-        $request->setAgentPoolId($agentPoolId);
-        $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
+        if (isset($optionalArgs['agentPool'])) {
+            $request->setAgentPool($optionalArgs['agentPool']);
+        }
+
+        if (isset($optionalArgs['agentPoolId'])) {
+            $request->setAgentPoolId($optionalArgs['agentPoolId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -406,17 +408,17 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $transferJob = new TransferJob();
-     *     $response = $storageTransferServiceClient->createTransferJob($transferJob);
+     *     $response = $storageTransferServiceClient->createTransferJob();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param TransferJob $transferJob  Required. The job to create.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type TransferJob $transferJob
+     *           Required. The job to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -427,10 +429,13 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createTransferJob($transferJob, array $optionalArgs = [])
+    public function createTransferJob(array $optionalArgs = [])
     {
         $request = new CreateTransferJobRequest();
-        $request->setTransferJob($transferJob);
+        if (isset($optionalArgs['transferJob'])) {
+            $request->setTransferJob($optionalArgs['transferJob']);
+        }
+
         return $this->startCall(
             'CreateTransferJob',
             TransferJob::class,
@@ -446,17 +451,17 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $name = 'name';
-     *     $storageTransferServiceClient->deleteAgentPool($name);
+     *     $storageTransferServiceClient->deleteAgentPool();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the agent pool to delete.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the agent pool to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -465,12 +470,15 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAgentPool($name, array $optionalArgs = [])
+    public function deleteAgentPool(array $optionalArgs = [])
     {
         $request = new DeleteAgentPoolRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -493,20 +501,20 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $jobName = 'job_name';
-     *     $projectId = 'project_id';
-     *     $storageTransferServiceClient->deleteTransferJob($jobName, $projectId);
+     *     $storageTransferServiceClient->deleteTransferJob();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $jobName      Required. The job to delete.
-     * @param string $projectId    Required. The ID of the Google Cloud project that owns the
-     *                             job.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $jobName
+     *           Required. The job to delete.
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud project that owns the
+     *           job.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -515,16 +523,19 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteTransferJob(
-        $jobName,
-        $projectId,
-        array $optionalArgs = []
-    ) {
+    public function deleteTransferJob(array $optionalArgs = [])
+    {
         $request = new DeleteTransferJobRequest();
         $requestParamHeaders = [];
-        $request->setJobName($jobName);
-        $request->setProjectId($projectId);
-        $requestParamHeaders['job_name'] = $jobName;
+        if (isset($optionalArgs['jobName'])) {
+            $request->setJobName($optionalArgs['jobName']);
+            $requestParamHeaders['job_name'] = $optionalArgs['jobName'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -546,17 +557,17 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $storageTransferServiceClient->getAgentPool($name);
+     *     $response = $storageTransferServiceClient->getAgentPool();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the agent pool to get.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the agent pool to get.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -567,12 +578,15 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAgentPool($name, array $optionalArgs = [])
+    public function getAgentPool(array $optionalArgs = [])
     {
         $request = new GetAgentPoolRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -601,18 +615,18 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $projectId = 'project_id';
-     *     $response = $storageTransferServiceClient->getGoogleServiceAccount($projectId);
+     *     $response = $storageTransferServiceClient->getGoogleServiceAccount();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud project that the Google service
-     *                             account is associated with.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud project that the Google service
+     *           account is associated with.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -623,14 +637,15 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getGoogleServiceAccount(
-        $projectId,
-        array $optionalArgs = []
-    ) {
+    public function getGoogleServiceAccount(array $optionalArgs = [])
+    {
         $request = new GetGoogleServiceAccountRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -652,20 +667,20 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $jobName = 'job_name';
-     *     $projectId = 'project_id';
-     *     $response = $storageTransferServiceClient->getTransferJob($jobName, $projectId);
+     *     $response = $storageTransferServiceClient->getTransferJob();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $jobName      Required. The job to get.
-     * @param string $projectId    Required. The ID of the Google Cloud project that owns the
-     *                             job.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $jobName
+     *           Required. The job to get.
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud project that owns the
+     *           job.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -676,16 +691,19 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getTransferJob(
-        $jobName,
-        $projectId,
-        array $optionalArgs = []
-    ) {
+    public function getTransferJob(array $optionalArgs = [])
+    {
         $request = new GetTransferJobRequest();
         $requestParamHeaders = [];
-        $request->setJobName($jobName);
-        $request->setProjectId($projectId);
-        $requestParamHeaders['job_name'] = $jobName;
+        if (isset($optionalArgs['jobName'])) {
+            $request->setJobName($optionalArgs['jobName']);
+            $requestParamHeaders['job_name'] = $optionalArgs['jobName'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -707,9 +725,8 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $projectId = 'project_id';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $storageTransferServiceClient->listAgentPools($projectId);
+     *     $pagedResponse = $storageTransferServiceClient->listAgentPools();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -717,7 +734,7 @@ class StorageTransferServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $storageTransferServiceClient->listAgentPools($projectId);
+     *     $pagedResponse = $storageTransferServiceClient->listAgentPools();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -726,10 +743,11 @@ class StorageTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud project that owns the job.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud project that owns the job.
      *     @type string $filter
      *           An optional list of query parameters specified as JSON text in the
      *           form of:
@@ -758,12 +776,15 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAgentPools($projectId, array $optionalArgs = [])
+    public function listAgentPools(array $optionalArgs = [])
     {
         $request = new ListAgentPoolsRequest();
         $requestParamHeaders = [];
-        $request->setProjectId($projectId);
-        $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -797,9 +818,8 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $filter = 'filter';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $storageTransferServiceClient->listTransferJobs($filter);
+     *     $pagedResponse = $storageTransferServiceClient->listTransferJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -807,7 +827,7 @@ class StorageTransferServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $storageTransferServiceClient->listTransferJobs($filter);
+     *     $pagedResponse = $storageTransferServiceClient->listTransferJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -816,21 +836,22 @@ class StorageTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $filter       Required. A list of query parameters specified as JSON text in the form of:
-     *                             `{"projectId":"my_project_id",
-     *                             "jobNames":["jobid1","jobid2",...],
-     *                             "jobStatuses":["status1","status2",...]}`
-     *
-     *                             Since `jobNames` and `jobStatuses` support multiple values, their values
-     *                             must be specified with array notation. `projectId` is required.
-     *                             `jobNames` and `jobStatuses` are optional.  The valid values for
-     *                             `jobStatuses` are case-insensitive:
-     *                             [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED],
-     *                             [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and
-     *                             [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED].
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $filter
+     *           Required. A list of query parameters specified as JSON text in the form of:
+     *           `{"projectId":"my_project_id",
+     *           "jobNames":["jobid1","jobid2",...],
+     *           "jobStatuses":["status1","status2",...]}`
+     *
+     *           Since `jobNames` and `jobStatuses` support multiple values, their values
+     *           must be specified with array notation. `projectId` is required.
+     *           `jobNames` and `jobStatuses` are optional.  The valid values for
+     *           `jobStatuses` are case-insensitive:
+     *           [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED],
+     *           [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], and
+     *           [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED].
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -850,10 +871,13 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listTransferJobs($filter, array $optionalArgs = [])
+    public function listTransferJobs(array $optionalArgs = [])
     {
         $request = new ListTransferJobsRequest();
-        $request->setFilter($filter);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -877,17 +901,17 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $name = 'name';
-     *     $storageTransferServiceClient->pauseTransferOperation($name);
+     *     $storageTransferServiceClient->pauseTransferOperation();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the transfer operation.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the transfer operation.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -896,12 +920,15 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function pauseTransferOperation($name, array $optionalArgs = [])
+    public function pauseTransferOperation(array $optionalArgs = [])
     {
         $request = new PauseTransferOperationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -923,17 +950,17 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $name = 'name';
-     *     $storageTransferServiceClient->resumeTransferOperation($name);
+     *     $storageTransferServiceClient->resumeTransferOperation();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the transfer operation.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the transfer operation.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -942,12 +969,15 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function resumeTransferOperation($name, array $optionalArgs = [])
+    public function resumeTransferOperation(array $optionalArgs = [])
     {
         $request = new ResumeTransferOperationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -972,9 +1002,7 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $jobName = 'job_name';
-     *     $projectId = 'project_id';
-     *     $operationResponse = $storageTransferServiceClient->runTransferJob($jobName, $projectId);
+     *     $operationResponse = $storageTransferServiceClient->runTransferJob();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -984,7 +1012,7 @@ class StorageTransferServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $storageTransferServiceClient->runTransferJob($jobName, $projectId);
+     *     $operationResponse = $storageTransferServiceClient->runTransferJob();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $storageTransferServiceClient->resumeOperation($operationName, 'runTransferJob');
@@ -1003,12 +1031,14 @@ class StorageTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $jobName      Required. The name of the transfer job.
-     * @param string $projectId    Required. The ID of the Google Cloud project that owns the transfer
-     *                             job.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $jobName
+     *           Required. The name of the transfer job.
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud project that owns the transfer
+     *           job.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1019,16 +1049,19 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function runTransferJob(
-        $jobName,
-        $projectId,
-        array $optionalArgs = []
-    ) {
+    public function runTransferJob(array $optionalArgs = [])
+    {
         $request = new RunTransferJobRequest();
         $requestParamHeaders = [];
-        $request->setJobName($jobName);
-        $request->setProjectId($projectId);
-        $requestParamHeaders['job_name'] = $jobName;
+        if (isset($optionalArgs['jobName'])) {
+            $request->setJobName($optionalArgs['jobName']);
+            $requestParamHeaders['job_name'] = $optionalArgs['jobName'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1050,26 +1083,26 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $agentPool = new AgentPool();
-     *     $response = $storageTransferServiceClient->updateAgentPool($agentPool);
+     *     $response = $storageTransferServiceClient->updateAgentPool();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param AgentPool $agentPool    Required. The agent pool to update. `agent_pool` is expected to specify
-     *                                following fields:
-     *
-     *                                *  [name][google.storagetransfer.v1.AgentPool.name]
-     *
-     *                                *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
-     *
-     *                                *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
-     *                                An `UpdateAgentPoolRequest` with any other fields is rejected
-     *                                with the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AgentPool $agentPool
+     *           Required. The agent pool to update. `agent_pool` is expected to specify
+     *           following fields:
+     *
+     *           *  [name][google.storagetransfer.v1.AgentPool.name]
+     *
+     *           *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
+     *
+     *           *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
+     *           An `UpdateAgentPoolRequest` with any other fields is rejected
+     *           with the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *     @type FieldMask $updateMask
      *           The [field mask]
      *           (https://developers.google.com/protocol-buffers/docs/reference/google.protobuf)
@@ -1089,12 +1122,14 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAgentPool($agentPool, array $optionalArgs = [])
+    public function updateAgentPool(array $optionalArgs = [])
     {
         $request = new UpdateAgentPoolRequest();
         $requestParamHeaders = [];
-        $request->setAgentPool($agentPool);
-        $requestParamHeaders['agent_pool.name'] = $agentPool->getName();
+        if (isset($optionalArgs['agentPool'])) {
+            $request->setAgentPool($optionalArgs['agentPool']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1127,33 +1162,33 @@ class StorageTransferServiceGapicClient
      * ```
      * $storageTransferServiceClient = new StorageTransferServiceClient();
      * try {
-     *     $jobName = 'job_name';
-     *     $projectId = 'project_id';
-     *     $transferJob = new TransferJob();
-     *     $response = $storageTransferServiceClient->updateTransferJob($jobName, $projectId, $transferJob);
+     *     $response = $storageTransferServiceClient->updateTransferJob();
      * } finally {
      *     $storageTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string      $jobName      Required. The name of job to update.
-     * @param string      $projectId    Required. The ID of the Google Cloud project that owns the
-     *                                  job.
-     * @param TransferJob $transferJob  Required. The job to update. `transferJob` is expected to specify one or
-     *                                  more of five fields:
-     *                                  [description][google.storagetransfer.v1.TransferJob.description],
-     *                                  [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
-     *                                  [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     *                                  [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
-     *                                  [status][google.storagetransfer.v1.TransferJob.status].  An
-     *                                  `UpdateTransferJobRequest` that specifies other fields are rejected with
-     *                                  the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a
-     *                                  job status to
-     *                                  [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
-     *                                  `storagetransfer.jobs.delete` permission.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $jobName
+     *           Required. The name of job to update.
+     *     @type string $projectId
+     *           Required. The ID of the Google Cloud project that owns the
+     *           job.
+     *     @type TransferJob $transferJob
+     *           Required. The job to update. `transferJob` is expected to specify one or
+     *           more of five fields:
+     *           [description][google.storagetransfer.v1.TransferJob.description],
+     *           [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
+     *           [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
+     *           [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     *           [status][google.storagetransfer.v1.TransferJob.status].  An
+     *           `UpdateTransferJobRequest` that specifies other fields are rejected with
+     *           the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a
+     *           job status to
+     *           [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
+     *           `storagetransfer.jobs.delete` permission.
      *     @type FieldMask $updateTransferJobFieldMask
      *           The field mask of the fields in `transferJob` that are to be updated in
      *           this request.  Fields in `transferJob` that can be updated are:
@@ -1176,18 +1211,23 @@ class StorageTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateTransferJob(
-        $jobName,
-        $projectId,
-        $transferJob,
-        array $optionalArgs = []
-    ) {
+    public function updateTransferJob(array $optionalArgs = [])
+    {
         $request = new UpdateTransferJobRequest();
         $requestParamHeaders = [];
-        $request->setJobName($jobName);
-        $request->setProjectId($projectId);
-        $request->setTransferJob($transferJob);
-        $requestParamHeaders['job_name'] = $jobName;
+        if (isset($optionalArgs['jobName'])) {
+            $request->setJobName($optionalArgs['jobName']);
+            $requestParamHeaders['job_name'] = $optionalArgs['jobName'];
+        }
+
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+
+        if (isset($optionalArgs['transferJob'])) {
+            $request->setTransferJob($optionalArgs['transferJob']);
+        }
+
         if (isset($optionalArgs['updateTransferJobFieldMask'])) {
             $request->setUpdateTransferJobFieldMask(
                 $optionalArgs['updateTransferJobFieldMask']

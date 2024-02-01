@@ -25,8 +25,7 @@ class RunAssetDiscoveryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Name of the organization to run asset discovery for. Its format
-     *                       is "organizations/[organization_id]". Please see
-     *                       {@see SecurityCenterClient::organizationName()} for help formatting this field.
+     *                       is "organizations/[organization_id]".
      *
      * @return \Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryRequest
      *

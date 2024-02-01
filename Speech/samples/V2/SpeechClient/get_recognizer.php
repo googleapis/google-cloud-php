@@ -34,18 +34,19 @@ use Google\Cloud\Speech\V2\Recognizer;
  * [NOT_FOUND][google.rpc.Code.NOT_FOUND] if the requested Recognizer doesn't
  * exist.
  *
- * @param string $formattedName The name of the Recognizer to retrieve. The expected format is
- *                              `projects/{project}/locations/{location}/recognizers/{recognizer}`. Please see
- *                              {@see SpeechClient::recognizerName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_recognizer_sample(string $formattedName): void
+function get_recognizer_sample(): void
 {
     // Create a client.
     $speechClient = new SpeechClient();
 
     // Prepare the request message.
-    $request = (new GetRecognizerRequest())
-        ->setName($formattedName);
+    $request = new GetRecognizerRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +56,5 @@ function get_recognizer_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SpeechClient::recognizerName('[PROJECT]', '[LOCATION]', '[RECOGNIZER]');
-
-    get_recognizer_sample($formattedName);
 }
 // [END speech_v2_generated_Speech_GetRecognizer_sync]

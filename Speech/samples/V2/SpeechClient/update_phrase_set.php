@@ -45,9 +45,7 @@ function update_phrase_set_sample(): void
     $speechClient = new SpeechClient();
 
     // Prepare the request message.
-    $phraseSet = new PhraseSet();
-    $request = (new UpdatePhraseSetRequest())
-        ->setPhraseSet($phraseSet);
+    $request = new UpdatePhraseSetRequest();
 
     // Call the API and handle any network failures.
     try {

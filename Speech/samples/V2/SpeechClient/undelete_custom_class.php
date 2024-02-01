@@ -33,19 +33,19 @@ use Google\Rpc\Status;
 /**
  * Undeletes the [CustomClass][google.cloud.speech.v2.CustomClass].
  *
- * @param string $formattedName The name of the CustomClass to undelete.
- *                              Format:
- *                              `projects/{project}/locations/{location}/customClasses/{custom_class}`
- *                              Please see {@see SpeechClient::customClassName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function undelete_custom_class_sample(string $formattedName): void
+function undelete_custom_class_sample(): void
 {
     // Create a client.
     $speechClient = new SpeechClient();
 
     // Prepare the request message.
-    $request = (new UndeleteCustomClassRequest())
-        ->setName($formattedName);
+    $request = new UndeleteCustomClassRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -65,21 +65,5 @@ function undelete_custom_class_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SpeechClient::customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-
-    undelete_custom_class_sample($formattedName);
 }
 // [END speech_v2_generated_Speech_UndeleteCustomClass_sync]

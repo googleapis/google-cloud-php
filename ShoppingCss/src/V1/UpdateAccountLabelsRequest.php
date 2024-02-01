@@ -41,7 +41,6 @@ class UpdateAccountLabelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The label resource name.
      *                     Format: accounts/{account}
-     *                     Please see {@see AccountsServiceClient::accountName()} for help formatting this field.
      *
      * @return \Google\Shopping\Css\V1\UpdateAccountLabelsRequest
      *

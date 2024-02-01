@@ -31,23 +31,19 @@ use Google\Cloud\ServiceManagement\V1\GetServiceConfigRequest;
 /**
  * Gets a service configuration (version) for a managed service.
  *
- * @param string $serviceName The name of the service.  See the
- *                            [overview](https://cloud.google.com/service-management/overview) for naming
- *                            requirements.  For example: `example.googleapis.com`.
- * @param string $configId    The id of the service configuration resource.
- *
- *                            This field must be specified for the server to return all fields, including
- *                            `SourceInfo`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_service_config_sample(string $serviceName, string $configId): void
+function get_service_config_sample(): void
 {
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
     // Prepare the request message.
-    $request = (new GetServiceConfigRequest())
-        ->setServiceName($serviceName)
-        ->setConfigId($configId);
+    $request = new GetServiceConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,22 +53,5 @@ function get_service_config_sample(string $serviceName, string $configId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $serviceName = '[SERVICE_NAME]';
-    $configId = '[CONFIG_ID]';
-
-    get_service_config_sample($serviceName, $configId);
 }
 // [END servicemanagement_v1_generated_ServiceManager_GetServiceConfig_sync]

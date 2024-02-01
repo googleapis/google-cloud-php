@@ -55,13 +55,10 @@ function update_queue_sample(): void
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $queue = new Queue();
-
     // Call the API and handle any network failures.
     try {
         /** @var Queue $response */
-        $response = $cloudTasksClient->updateQueue($queue);
+        $response = $cloudTasksClient->updateQueue();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -49,9 +49,7 @@ use Google\Cloud\Security\PublicCA\V1beta1\ExternalAccountKey;
  * ```
  * $publicCertificateAuthorityServiceClient = new PublicCertificateAuthorityServiceClient();
  * try {
- *     $formattedParent = $publicCertificateAuthorityServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     $externalAccountKey = new ExternalAccountKey();
- *     $response = $publicCertificateAuthorityServiceClient->createExternalAccountKey($formattedParent, $externalAccountKey);
+ *     $response = $publicCertificateAuthorityServiceClient->createExternalAccountKey();
  * } finally {
  *     $publicCertificateAuthorityServiceClient->close();
  * }
@@ -322,24 +320,24 @@ class PublicCertificateAuthorityServiceGapicClient
      * ```
      * $publicCertificateAuthorityServiceClient = new PublicCertificateAuthorityServiceClient();
      * try {
-     *     $formattedParent = $publicCertificateAuthorityServiceClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $externalAccountKey = new ExternalAccountKey();
-     *     $response = $publicCertificateAuthorityServiceClient->createExternalAccountKey($formattedParent, $externalAccountKey);
+     *     $response = $publicCertificateAuthorityServiceClient->createExternalAccountKey();
      * } finally {
      *     $publicCertificateAuthorityServiceClient->close();
      * }
      * ```
      *
-     * @param string             $parent             Required. The parent resource where this external_account_key will be created.
-     *                                               Format: projects/[project_id]/locations/[location].
-     *                                               At present only the "global" location is supported.
-     * @param ExternalAccountKey $externalAccountKey Required. The external account key to create. This field only exists to future-proof
-     *                                               the API. At present, all fields in ExternalAccountKey are output only and
-     *                                               all values are ignored. For the purpose of the
-     *                                               CreateExternalAccountKeyRequest, set it to a default/empty value.
-     * @param array              $optionalArgs       {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource where this external_account_key will be created.
+     *           Format: projects/[project_id]/locations/[location].
+     *           At present only the "global" location is supported.
+     *     @type ExternalAccountKey $externalAccountKey
+     *           Required. The external account key to create. This field only exists to future-proof
+     *           the API. At present, all fields in ExternalAccountKey are output only and
+     *           all values are ignored. For the purpose of the
+     *           CreateExternalAccountKeyRequest, set it to a default/empty value.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -352,16 +350,21 @@ class PublicCertificateAuthorityServiceGapicClient
      *
      * @experimental
      */
-    public function createExternalAccountKey(
-        $parent,
-        $externalAccountKey,
-        array $optionalArgs = []
-    ) {
+    public function createExternalAccountKey(array $optionalArgs = [])
+    {
         $request = new CreateExternalAccountKeyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setExternalAccountKey($externalAccountKey);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['externalAccountKey'])) {
+            $request->setExternalAccountKey(
+                $optionalArgs['externalAccountKey']
+            );
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

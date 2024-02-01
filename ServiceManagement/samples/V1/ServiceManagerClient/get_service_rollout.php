@@ -32,20 +32,19 @@ use Google\Cloud\ServiceManagement\V1\Rollout;
  * Gets a service configuration
  * [rollout][google.api.servicemanagement.v1.Rollout].
  *
- * @param string $serviceName The name of the service.  See the
- *                            [overview](https://cloud.google.com/service-management/overview) for naming
- *                            requirements.  For example: `example.googleapis.com`.
- * @param string $rolloutId   The id of the rollout resource.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_service_rollout_sample(string $serviceName, string $rolloutId): void
+function get_service_rollout_sample(): void
 {
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
     // Prepare the request message.
-    $request = (new GetServiceRolloutRequest())
-        ->setServiceName($serviceName)
-        ->setRolloutId($rolloutId);
+    $request = new GetServiceRolloutRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,22 +54,5 @@ function get_service_rollout_sample(string $serviceName, string $rolloutId): voi
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $serviceName = '[SERVICE_NAME]';
-    $rolloutId = '[ROLLOUT_ID]';
-
-    get_service_rollout_sample($serviceName, $rolloutId);
 }
 // [END servicemanagement_v1_generated_ServiceManager_GetServiceRollout_sync]

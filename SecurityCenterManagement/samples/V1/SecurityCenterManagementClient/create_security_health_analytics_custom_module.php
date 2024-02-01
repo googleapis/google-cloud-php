@@ -34,23 +34,19 @@ use Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule
  * SecurityHealthAnalyticsCustomModules for all CRM descendants of the given
  * parent. These modules are enabled by default.
  *
- * @param string $formattedParent Name of the parent for the module. Its format is
- *                                "organizations/{organization}/locations/{location}",
- *                                "folders/{folder}/locations/{location}",
- *                                or
- *                                "projects/{project}/locations/{location}"
- *                                Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_security_health_analytics_custom_module_sample(string $formattedParent): void
+function create_security_health_analytics_custom_module_sample(): void
 {
     // Create a client.
     $securityCenterManagementClient = new SecurityCenterManagementClient();
 
     // Prepare the request message.
-    $securityHealthAnalyticsCustomModule = new SecurityHealthAnalyticsCustomModule();
-    $request = (new CreateSecurityHealthAnalyticsCustomModuleRequest())
-        ->setParent($formattedParent)
-        ->setSecurityHealthAnalyticsCustomModule($securityHealthAnalyticsCustomModule);
+    $request = new CreateSecurityHealthAnalyticsCustomModuleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,24 +56,5 @@ function create_security_health_analytics_custom_module_sample(string $formatted
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecurityCenterManagementClient::organizationLocationName(
-        '[ORGANIZATION]',
-        '[LOCATION]'
-    );
-
-    create_security_health_analytics_custom_module_sample($formattedParent);
 }
 // [END securitycentermanagement_v1_generated_SecurityCenterManagement_CreateSecurityHealthAnalyticsCustomModule_sync]

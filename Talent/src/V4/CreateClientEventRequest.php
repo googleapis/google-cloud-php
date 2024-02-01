@@ -35,8 +35,7 @@ class CreateClientEventRequest extends \Google\Protobuf\Internal\Message
      * @param string                              $parent      Required. Resource name of the tenant under which the event is created.
      *
      *                                                         The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                                                         "projects/foo/tenants/bar". Please see
-     *                                                         {@see EventServiceClient::tenantName()} for help formatting this field.
+     *                                                         "projects/foo/tenants/bar".
      * @param \Google\Cloud\Talent\V4\ClientEvent $clientEvent Required. Events issued when end user interacts with customer's application
      *                                                         that uses Cloud Talent Solution.
      *

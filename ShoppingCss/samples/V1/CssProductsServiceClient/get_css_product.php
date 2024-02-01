@@ -33,17 +33,19 @@ use Google\Shopping\Css\V1\GetCssProductRequest;
  * inserting, updating, or deleting a product input, it may take several
  * minutes before the updated final product can be retrieved.
  *
- * @param string $formattedName The name of the CSS product to retrieve. Please see
- *                              {@see CssProductsServiceClient::cssProductName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_css_product_sample(string $formattedName): void
+function get_css_product_sample(): void
 {
     // Create a client.
     $cssProductsServiceClient = new CssProductsServiceClient();
 
     // Prepare the request message.
-    $request = (new GetCssProductRequest())
-        ->setName($formattedName);
+    $request = new GetCssProductRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +55,5 @@ function get_css_product_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CssProductsServiceClient::cssProductName('[ACCOUNT]', '[CSS_PRODUCT]');
-
-    get_css_product_sample($formattedName);
 }
 // [END css_v1_generated_CssProductsService_GetCssProduct_sync]

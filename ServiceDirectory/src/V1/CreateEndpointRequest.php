@@ -42,8 +42,7 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
     private $endpoint = null;
 
     /**
-     * @param string                                     $parent     Required. The resource name of the service that this endpoint provides. Please see
-     *                                                               {@see RegistrationServiceClient::serviceName()} for help formatting this field.
+     * @param string                                     $parent     Required. The resource name of the service that this endpoint provides.
      * @param \Google\Cloud\ServiceDirectory\V1\Endpoint $endpoint   Required. A endpoint with initial fields set.
      * @param string                                     $endpointId Required. The Resource ID must be 1-63 characters long, and comply with
      *                                                               <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.

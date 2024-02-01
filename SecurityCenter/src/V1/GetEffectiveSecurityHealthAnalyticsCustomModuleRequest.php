@@ -33,7 +33,6 @@ class GetEffectiveSecurityHealthAnalyticsCustomModuleRequest extends \Google\Pro
      *                     "folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
      *                     or
      *                     "projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}"
-     *                     Please see {@see SecurityCenterClient::effectiveSecurityHealthAnalyticsCustomModuleName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\GetEffectiveSecurityHealthAnalyticsCustomModuleRequest
      *

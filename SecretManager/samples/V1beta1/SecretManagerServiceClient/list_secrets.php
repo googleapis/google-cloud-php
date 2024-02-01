@@ -31,11 +31,13 @@ use Google\Cloud\SecretManager\V1beta1\SecretManagerServiceClient;
 /**
  * Lists [Secrets][google.cloud.secrets.v1beta1.Secret].
  *
- * @param string $formattedParent The resource name of the project associated with the
- *                                [Secrets][google.cloud.secrets.v1beta1.Secret], in the format `projects/*`. Please see
- *                                {@see SecretManagerServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_secrets_sample(string $formattedParent): void
+function list_secrets_sample(): void
 {
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
@@ -43,7 +45,7 @@ function list_secrets_sample(string $formattedParent): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $secretManagerServiceClient->listSecrets($formattedParent);
+        $response = $secretManagerServiceClient->listSecrets();
 
         /** @var Secret $element */
         foreach ($response as $element) {
@@ -52,21 +54,5 @@ function list_secrets_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecretManagerServiceClient::projectName('[PROJECT]');
-
-    list_secrets_sample($formattedParent);
 }
 // [END secretmanager_v1beta1_generated_SecretManagerService_ListSecrets_sync]

@@ -32,25 +32,19 @@ use Google\Cloud\ServiceHealth\V1\OrganizationEvent;
  * Retrieves a resource containing information about an event affecting an
  * organization .
  *
- * @param string $formattedName Unique name of the event in this scope including organization and
- *                              event ID using the form
- *                              `organizations/{organization_id}/locations/locations/global/organizationEvents/{event_id}`.
- *
- *                              `organization_id` - ID (number) of the project that contains the event. To
- *                              get your `organization_id`, see
- *                              [Getting your organization resource
- *                              ID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).<br>
- *                              `event_id` - Organization event ID to retrieve. Please see
- *                              {@see ServiceHealthClient::organizationEventName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_organization_event_sample(string $formattedName): void
+function get_organization_event_sample(): void
 {
     // Create a client.
     $serviceHealthClient = new ServiceHealthClient();
 
     // Prepare the request message.
-    $request = (new GetOrganizationEventRequest())
-        ->setName($formattedName);
+    $request = new GetOrganizationEventRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,25 +54,5 @@ function get_organization_event_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = ServiceHealthClient::organizationEventName(
-        '[ORGANIZATION]',
-        '[LOCATION]',
-        '[EVENT]'
-    );
-
-    get_organization_event_sample($formattedName);
 }
 // [END servicehealth_v1_generated_ServiceHealth_GetOrganizationEvent_sync]

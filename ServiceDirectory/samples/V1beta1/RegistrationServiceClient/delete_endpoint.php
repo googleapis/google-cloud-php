@@ -29,42 +29,23 @@ use Google\Cloud\ServiceDirectory\V1beta1\RegistrationServiceClient;
 /**
  * Deletes an endpoint.
  *
- * @param string $formattedName The name of the endpoint to delete. Please see
- *                              {@see RegistrationServiceClient::endpointName()} for help formatting this field.
- */
-function delete_endpoint_sample(string $formattedName): void
-{
-    // Create a client.
-    $registrationServiceClient = new RegistrationServiceClient();
-
-    // Call the API and handle any network failures.
-    try {
-        $registrationServiceClient->deleteEndpoint($formattedName);
-        printf('Call completed successfully.' . PHP_EOL);
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function delete_endpoint_sample(): void
 {
-    $formattedName = RegistrationServiceClient::endpointName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[NAMESPACE]',
-        '[SERVICE]',
-        '[ENDPOINT]'
-    );
+    // Create a client.
+    $registrationServiceClient = new RegistrationServiceClient();
 
-    delete_endpoint_sample($formattedName);
+    // Call the API and handle any network failures.
+    try {
+        $registrationServiceClient->deleteEndpoint();
+        printf('Call completed successfully.' . PHP_EOL);
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END servicedirectory_v1beta1_generated_RegistrationService_DeleteEndpoint_sync]

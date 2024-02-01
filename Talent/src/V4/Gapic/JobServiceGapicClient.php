@@ -68,9 +68,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $jobServiceClient = new JobServiceClient();
  * try {
- *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
- *     $jobs = [];
- *     $operationResponse = $jobServiceClient->batchCreateJobs($formattedParent, $jobs);
+ *     $operationResponse = $jobServiceClient->batchCreateJobs();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -81,7 +79,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $jobServiceClient->batchCreateJobs($formattedParent, $jobs);
+ *     $operationResponse = $jobServiceClient->batchCreateJobs();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'batchCreateJobs');
@@ -401,9 +399,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $jobs = [];
-     *     $operationResponse = $jobServiceClient->batchCreateJobs($formattedParent, $jobs);
+     *     $operationResponse = $jobServiceClient->batchCreateJobs();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -414,7 +410,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobServiceClient->batchCreateJobs($formattedParent, $jobs);
+     *     $operationResponse = $jobServiceClient->batchCreateJobs();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'batchCreateJobs');
@@ -434,15 +430,17 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the tenant under which the job is created.
-     *
-     *                             The format is "projects/{project_id}/tenants/{tenant_id}". For example,
-     *                             "projects/foo/tenants/bar".
-     * @param Job[]  $jobs         Required. The jobs to be created.
-     *                             A maximum of 200 jobs can be created in a batch.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the tenant under which the job is created.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenants/bar".
+     *     @type Job[] $jobs
+     *           Required. The jobs to be created.
+     *           A maximum of 200 jobs can be created in a batch.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -453,13 +451,19 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCreateJobs($parent, $jobs, array $optionalArgs = [])
+    public function batchCreateJobs(array $optionalArgs = [])
     {
         $request = new BatchCreateJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setJobs($jobs);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['jobs'])) {
+            $request->setJobs($optionalArgs['jobs']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('BatchCreateJobs', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -472,8 +476,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $operationResponse = $jobServiceClient->batchDeleteJobs($formattedParent);
+     *     $operationResponse = $jobServiceClient->batchDeleteJobs();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -484,7 +487,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobServiceClient->batchDeleteJobs($formattedParent);
+     *     $operationResponse = $jobServiceClient->batchDeleteJobs();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'batchDeleteJobs');
@@ -504,15 +507,16 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the tenant under which the job is created.
-     *
-     *                             The format is "projects/{project_id}/tenants/{tenant_id}". For example,
-     *                             "projects/foo/tenants/bar".
-     *
-     *                             The parent of all of the jobs specified in `names` must match this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the tenant under which the job is created.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenants/bar".
+     *
+     *           The parent of all of the jobs specified in `names` must match this field.
      *     @type string[] $names
      *           The names of the jobs to delete.
      *
@@ -530,12 +534,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchDeleteJobs($parent, array $optionalArgs = [])
+    public function batchDeleteJobs(array $optionalArgs = [])
     {
         $request = new BatchDeleteJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['names'])) {
             $request->setNames($optionalArgs['names']);
         }
@@ -552,9 +559,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $jobs = [];
-     *     $operationResponse = $jobServiceClient->batchUpdateJobs($formattedParent, $jobs);
+     *     $operationResponse = $jobServiceClient->batchUpdateJobs();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -565,7 +570,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $jobServiceClient->batchUpdateJobs($formattedParent, $jobs);
+     *     $operationResponse = $jobServiceClient->batchUpdateJobs();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'batchUpdateJobs');
@@ -585,15 +590,17 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the tenant under which the job is created.
-     *
-     *                             The format is "projects/{project_id}/tenants/{tenant_id}". For example,
-     *                             "projects/foo/tenants/bar".
-     * @param Job[]  $jobs         Required. The jobs to be updated.
-     *                             A maximum of 200 jobs can be updated in a batch.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the tenant under which the job is created.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenants/bar".
+     *     @type Job[] $jobs
+     *           Required. The jobs to be updated.
+     *           A maximum of 200 jobs can be updated in a batch.
      *     @type FieldMask $updateMask
      *           Strongly recommended for the best service experience. Be aware that it will
      *           also increase latency when checking the status of a batch operation.
@@ -621,13 +628,19 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchUpdateJobs($parent, $jobs, array $optionalArgs = [])
+    public function batchUpdateJobs(array $optionalArgs = [])
     {
         $request = new BatchUpdateJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setJobs($jobs);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['jobs'])) {
+            $request->setJobs($optionalArgs['jobs']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -647,22 +660,22 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $job = new Job();
-     *     $response = $jobServiceClient->createJob($formattedParent, $job);
+     *     $response = $jobServiceClient->createJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the tenant under which the job is created.
-     *
-     *                             The format is "projects/{project_id}/tenants/{tenant_id}". For example,
-     *                             "projects/foo/tenants/bar".
-     * @param Job    $job          Required. The Job to be created.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the tenant under which the job is created.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenants/bar".
+     *     @type Job $job
+     *           Required. The Job to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -673,13 +686,19 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createJob($parent, $job, array $optionalArgs = [])
+    public function createJob(array $optionalArgs = [])
     {
         $request = new CreateJobRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setJob($job);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['job'])) {
+            $request->setJob($optionalArgs['job']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateJob', Job::class, $optionalArgs, $request)->wait();
@@ -695,21 +714,21 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->jobName('[PROJECT]', '[TENANT]', '[JOB]');
-     *     $jobServiceClient->deleteJob($formattedName);
+     *     $jobServiceClient->deleteJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the job to be deleted.
-     *
-     *                             The format is
-     *                             "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
-     *                             example, "projects/foo/tenants/bar/jobs/baz".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the job to be deleted.
+     *
+     *           The format is
+     *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
+     *           example, "projects/foo/tenants/bar/jobs/baz".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -718,12 +737,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteJob($name, array $optionalArgs = [])
+    public function deleteJob(array $optionalArgs = [])
     {
         $request = new DeleteJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteJob', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -737,21 +759,21 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->jobName('[PROJECT]', '[TENANT]', '[JOB]');
-     *     $response = $jobServiceClient->getJob($formattedName);
+     *     $response = $jobServiceClient->getJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the job to retrieve.
-     *
-     *                             The format is
-     *                             "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
-     *                             example, "projects/foo/tenants/bar/jobs/baz".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the job to retrieve.
+     *
+     *           The format is
+     *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
+     *           example, "projects/foo/tenants/bar/jobs/baz".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -762,12 +784,15 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getJob($name, array $optionalArgs = [])
+    public function getJob(array $optionalArgs = [])
     {
         $request = new GetJobRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetJob', Job::class, $optionalArgs, $request)->wait();
@@ -780,10 +805,8 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $filter = 'filter';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $jobServiceClient->listJobs($formattedParent, $filter);
+     *     $pagedResponse = $jobServiceClient->listJobs();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -791,7 +814,7 @@ class JobServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $jobServiceClient->listJobs($formattedParent, $filter);
+     *     $pagedResponse = $jobServiceClient->listJobs();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -800,36 +823,38 @@ class JobServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the tenant under which the job is created.
-     *
-     *                             The format is "projects/{project_id}/tenants/{tenant_id}". For example,
-     *                             "projects/foo/tenants/bar".
-     * @param string $filter       Required. The filter string specifies the jobs to be enumerated.
-     *
-     *                             Supported operator: =, AND
-     *
-     *                             The fields eligible for filtering are:
-     *
-     *                             * `companyName`
-     *                             * `requisitionId`
-     *                             * `status` Available values: OPEN, EXPIRED, ALL. Defaults to
-     *                             OPEN if no value is specified.
-     *
-     *                             At least one of `companyName` and `requisitionId` must present or an
-     *                             INVALID_ARGUMENT error is thrown.
-     *
-     *                             Sample Query:
-     *
-     *                             * companyName = "projects/foo/tenants/bar/companies/baz"
-     *                             * companyName = "projects/foo/tenants/bar/companies/baz" AND
-     *                             requisitionId = "req-1"
-     *                             * companyName = "projects/foo/tenants/bar/companies/baz" AND
-     *                             status = "EXPIRED"
-     *                             * requisitionId = "req-1"
-     *                             * requisitionId = "req-1" AND status = "EXPIRED"
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the tenant under which the job is created.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenants/bar".
+     *     @type string $filter
+     *           Required. The filter string specifies the jobs to be enumerated.
+     *
+     *           Supported operator: =, AND
+     *
+     *           The fields eligible for filtering are:
+     *
+     *           * `companyName`
+     *           * `requisitionId`
+     *           * `status` Available values: OPEN, EXPIRED, ALL. Defaults to
+     *           OPEN if no value is specified.
+     *
+     *           At least one of `companyName` and `requisitionId` must present or an
+     *           INVALID_ARGUMENT error is thrown.
+     *
+     *           Sample Query:
+     *
+     *           * companyName = "projects/foo/tenants/bar/companies/baz"
+     *           * companyName = "projects/foo/tenants/bar/companies/baz" AND
+     *           requisitionId = "req-1"
+     *           * companyName = "projects/foo/tenants/bar/companies/baz" AND
+     *           status = "EXPIRED"
+     *           * requisitionId = "req-1"
+     *           * requisitionId = "req-1" AND status = "EXPIRED"
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -855,13 +880,19 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listJobs($parent, $filter, array $optionalArgs = [])
+    public function listJobs(array $optionalArgs = [])
     {
         $request = new ListJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFilter($filter);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -892,30 +923,30 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $requestMetadata = new RequestMetadata();
-     *     $response = $jobServiceClient->searchJobs($formattedParent, $requestMetadata);
+     *     $response = $jobServiceClient->searchJobs();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string          $parent          Required. The resource name of the tenant to search within.
-     *
-     *                                         The format is "projects/{project_id}/tenants/{tenant_id}". For example,
-     *                                         "projects/foo/tenants/bar".
-     * @param RequestMetadata $requestMetadata Required. The meta information collected about the job searcher, used to
-     *                                         improve the search quality of the service. The identifiers (such as
-     *                                         `user_id`) are provided by users, and must be unique and consistent.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the tenant to search within.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenants/bar".
      *     @type int $searchMode
      *           Mode of a search.
      *
      *           Defaults to
      *           [SearchMode.JOB_SEARCH][google.cloud.talent.v4.SearchJobsRequest.SearchMode.JOB_SEARCH].
      *           For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4\SearchJobsRequest\SearchMode}
+     *     @type RequestMetadata $requestMetadata
+     *           Required. The meta information collected about the job searcher, used to
+     *           improve the search quality of the service. The identifiers (such as
+     *           `user_id`) are provided by users, and must be unique and consistent.
      *     @type JobQuery $jobQuery
      *           Query used to search against jobs, such as keyword, location filters, etc.
      *     @type bool $enableBroadening
@@ -1187,15 +1218,21 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchJobs($parent, $requestMetadata, array $optionalArgs = [])
+    public function searchJobs(array $optionalArgs = [])
     {
         $request = new SearchJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRequestMetadata($requestMetadata);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['searchMode'])) {
             $request->setSearchMode($optionalArgs['searchMode']);
+        }
+
+        if (isset($optionalArgs['requestMetadata'])) {
+            $request->setRequestMetadata($optionalArgs['requestMetadata']);
         }
 
         if (isset($optionalArgs['jobQuery'])) {
@@ -1269,30 +1306,30 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedParent = $jobServiceClient->tenantName('[PROJECT]', '[TENANT]');
-     *     $requestMetadata = new RequestMetadata();
-     *     $response = $jobServiceClient->searchJobsForAlert($formattedParent, $requestMetadata);
+     *     $response = $jobServiceClient->searchJobsForAlert();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param string          $parent          Required. The resource name of the tenant to search within.
-     *
-     *                                         The format is "projects/{project_id}/tenants/{tenant_id}". For example,
-     *                                         "projects/foo/tenants/bar".
-     * @param RequestMetadata $requestMetadata Required. The meta information collected about the job searcher, used to
-     *                                         improve the search quality of the service. The identifiers (such as
-     *                                         `user_id`) are provided by users, and must be unique and consistent.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource name of the tenant to search within.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenants/bar".
      *     @type int $searchMode
      *           Mode of a search.
      *
      *           Defaults to
      *           [SearchMode.JOB_SEARCH][google.cloud.talent.v4.SearchJobsRequest.SearchMode.JOB_SEARCH].
      *           For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4\SearchJobsRequest\SearchMode}
+     *     @type RequestMetadata $requestMetadata
+     *           Required. The meta information collected about the job searcher, used to
+     *           improve the search quality of the service. The identifiers (such as
+     *           `user_id`) are provided by users, and must be unique and consistent.
      *     @type JobQuery $jobQuery
      *           Query used to search against jobs, such as keyword, location filters, etc.
      *     @type bool $enableBroadening
@@ -1564,15 +1601,21 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchJobsForAlert($parent, $requestMetadata, array $optionalArgs = [])
+    public function searchJobsForAlert(array $optionalArgs = [])
     {
         $request = new SearchJobsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRequestMetadata($requestMetadata);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['searchMode'])) {
             $request->setSearchMode($optionalArgs['searchMode']);
+        }
+
+        if (isset($optionalArgs['requestMetadata'])) {
+            $request->setRequestMetadata($optionalArgs['requestMetadata']);
         }
 
         if (isset($optionalArgs['jobQuery'])) {
@@ -1638,17 +1681,17 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $job = new Job();
-     *     $response = $jobServiceClient->updateJob($job);
+     *     $response = $jobServiceClient->updateJob();
      * } finally {
      *     $jobServiceClient->close();
      * }
      * ```
      *
-     * @param Job   $job          Required. The Job to be updated.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Job $job
+     *           Required. The Job to be updated.
      *     @type FieldMask $updateMask
      *           Strongly recommended for the best service experience.
      *
@@ -1669,12 +1712,14 @@ class JobServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateJob($job, array $optionalArgs = [])
+    public function updateJob(array $optionalArgs = [])
     {
         $request = new UpdateJobRequest();
         $requestParamHeaders = [];
-        $request->setJob($job);
-        $requestParamHeaders['job.name'] = $job->getName();
+        if (isset($optionalArgs['job'])) {
+            $request->setJob($optionalArgs['job']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

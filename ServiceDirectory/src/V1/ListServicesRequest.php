@@ -81,8 +81,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the namespace whose services you'd
-     *                       like to list. Please see
-     *                       {@see RegistrationServiceClient::namespaceName()} for help formatting this field.
+     *                       like to list.
      *
      * @return \Google\Cloud\ServiceDirectory\V1\ListServicesRequest
      *

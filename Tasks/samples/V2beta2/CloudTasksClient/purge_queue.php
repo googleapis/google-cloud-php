@@ -35,11 +35,13 @@ use Google\Cloud\Tasks\V2beta2\Queue;
  * Purge operations can take up to one minute to take effect. Tasks
  * might be dispatched before the purge takes effect. A purge is irreversible.
  *
- * @param string $formattedName The queue name. For example:
- *                              `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
- *                              Please see {@see CloudTasksClient::queueName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function purge_queue_sample(string $formattedName): void
+function purge_queue_sample(): void
 {
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
@@ -47,26 +49,10 @@ function purge_queue_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var Queue $response */
-        $response = $cloudTasksClient->purgeQueue($formattedName);
+        $response = $cloudTasksClient->purgeQueue();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudTasksClient::queueName('[PROJECT]', '[LOCATION]', '[QUEUE]');
-
-    purge_queue_sample($formattedName);
 }
 // [END cloudtasks_v2beta2_generated_CloudTasks_PurgeQueue_sync]

@@ -31,20 +31,19 @@ use Google\Cloud\StorageTransfer\V1\UpdateAgentPoolRequest;
 /**
  * Updates an existing agent pool resource.
  *
- * @param string $agentPoolName Specifies a unique string that identifies the agent pool.
- *
- *                              Format: `projects/{project_id}/agentPools/{agent_pool_id}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_agent_pool_sample(string $agentPoolName): void
+function update_agent_pool_sample(): void
 {
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
     // Prepare the request message.
-    $agentPool = (new AgentPool())
-        ->setName($agentPoolName);
-    $request = (new UpdateAgentPoolRequest())
-        ->setAgentPool($agentPool);
+    $request = new UpdateAgentPoolRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function update_agent_pool_sample(string $agentPoolName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $agentPoolName = '[NAME]';
-
-    update_agent_pool_sample($agentPoolName);
 }
 // [END storagetransfer_v1_generated_StorageTransferService_UpdateAgentPool_sync]

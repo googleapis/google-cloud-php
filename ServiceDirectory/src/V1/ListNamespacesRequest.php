@@ -79,8 +79,7 @@ class ListNamespacesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the project and location whose namespaces
-     *                       you'd like to list. Please see
-     *                       {@see RegistrationServiceClient::locationName()} for help formatting this field.
+     *                       you'd like to list.
      *
      * @return \Google\Cloud\ServiceDirectory\V1\ListNamespacesRequest
      *

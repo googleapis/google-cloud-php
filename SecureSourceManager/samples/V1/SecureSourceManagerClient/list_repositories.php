@@ -34,17 +34,19 @@ use Google\Cloud\SecureSourceManager\V1\Repository;
  *
  * **Host: Data Plane**
  *
- * @param string $formattedParent Parent value for ListRepositoriesRequest. Please see
- *                                {@see SecureSourceManagerClient::locationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_repositories_sample(string $formattedParent): void
+function list_repositories_sample(): void
 {
     // Create a client.
     $secureSourceManagerClient = new SecureSourceManagerClient();
 
     // Prepare the request message.
-    $request = (new ListRepositoriesRequest())
-        ->setParent($formattedParent);
+    $request = new ListRepositoriesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,21 +60,5 @@ function list_repositories_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecureSourceManagerClient::locationName('[PROJECT]', '[LOCATION]');
-
-    list_repositories_sample($formattedParent);
 }
 // [END securesourcemanager_v1_generated_SecureSourceManager_ListRepositories_sync]

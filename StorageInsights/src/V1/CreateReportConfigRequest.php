@@ -45,8 +45,7 @@ class CreateReportConfigRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                        $parent       Required. Value for parent. Please see
-     *                                                                    {@see StorageInsightsClient::locationName()} for help formatting this field.
+     * @param string                                        $parent       Required. Value for parent.
      * @param \Google\Cloud\StorageInsights\V1\ReportConfig $reportConfig Required. The resource being created
      *
      * @return \Google\Cloud\StorageInsights\V1\CreateReportConfigRequest

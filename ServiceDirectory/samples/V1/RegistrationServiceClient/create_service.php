@@ -31,27 +31,19 @@ use Google\Cloud\ServiceDirectory\V1\Service;
 /**
  * Creates a service, and returns the new service.
  *
- * @param string $formattedParent The resource name of the namespace this service will belong to. Please see
- *                                {@see RegistrationServiceClient::namespaceName()} for help formatting this field.
- * @param string $serviceId       The Resource ID must be 1-63 characters long, and comply with
- *                                <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
- *                                Specifically, the name must be 1-63 characters long and match the regular
- *                                expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first
- *                                character must be a lowercase letter, and all following characters must
- *                                be a dash, lowercase letter, or digit, except the last character, which
- *                                cannot be a dash.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_service_sample(string $formattedParent, string $serviceId): void
+function create_service_sample(): void
 {
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
     // Prepare the request message.
-    $service = new Service();
-    $request = (new CreateServiceRequest())
-        ->setParent($formattedParent)
-        ->setServiceId($serviceId)
-        ->setService($service);
+    $request = new CreateServiceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,26 +53,5 @@ function create_service_sample(string $formattedParent, string $serviceId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = RegistrationServiceClient::namespaceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[NAMESPACE]'
-    );
-    $serviceId = '[SERVICE_ID]';
-
-    create_service_sample($formattedParent, $serviceId);
 }
 // [END servicedirectory_v1_generated_RegistrationService_CreateService_sync]

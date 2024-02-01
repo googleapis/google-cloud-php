@@ -32,18 +32,19 @@ use Google\Cloud\Support\V2\ListCommentsRequest;
 /**
  * Retrieve all Comments associated with the Case object.
  *
- * @param string $formattedParent The resource name of Case object for which comments should be
- *                                listed. Please see
- *                                {@see CommentServiceClient::caseName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_comments_sample(string $formattedParent): void
+function list_comments_sample(): void
 {
     // Create a client.
     $commentServiceClient = new CommentServiceClient();
 
     // Prepare the request message.
-    $request = (new ListCommentsRequest())
-        ->setParent($formattedParent);
+    $request = new ListCommentsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_comments_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CommentServiceClient::caseName('[ORGANIZATION]', '[CASE]');
-
-    list_comments_sample($formattedParent);
 }
 // [END cloudsupport_v2_generated_CommentService_ListComments_sync]

@@ -52,7 +52,6 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
      *                                                                                                                     "folders/{folder}/locations/{location}",
      *                                                                                                                     or
      *                                                                                                                     "projects/{project}/locations/{location}"
-     *                                                                                                                     Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule $eventThreatDetectionCustomModule Required. The module to create. The
      *                                                                                                                     event_threat_detection_custom_module.name will be ignored and server
      *                                                                                                                     generated.

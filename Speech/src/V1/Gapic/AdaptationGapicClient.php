@@ -59,10 +59,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $adaptationClient = new AdaptationClient();
  * try {
- *     $formattedParent = $adaptationClient->locationName('[PROJECT]', '[LOCATION]');
- *     $customClassId = 'custom_class_id';
- *     $customClass = new CustomClass();
- *     $response = $adaptationClient->createCustomClass($formattedParent, $customClassId, $customClass);
+ *     $response = $adaptationClient->createCustomClass();
  * } finally {
  *     $adaptationClient->close();
  * }
@@ -335,34 +332,34 @@ class AdaptationGapicClient
      * ```
      * $adaptationClient = new AdaptationClient();
      * try {
-     *     $formattedParent = $adaptationClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $customClassId = 'custom_class_id';
-     *     $customClass = new CustomClass();
-     *     $response = $adaptationClient->createCustomClass($formattedParent, $customClassId, $customClass);
+     *     $response = $adaptationClient->createCustomClass();
      * } finally {
      *     $adaptationClient->close();
      * }
      * ```
      *
-     * @param string      $parent        Required. The parent resource where this custom class will be created.
-     *                                   Format:
-     *
-     *                                   `projects/{project}/locations/{location}/customClasses`
-     *
-     *                                   Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                                   and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                                   endpoint, use the `global` location. To specify a region, use a
-     *                                   [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                                   with matching `us` or `eu` location value.
-     * @param string      $customClassId Required. The ID to use for the custom class, which will become the final
-     *                                   component of the custom class' resource name.
-     *
-     *                                   This value should restrict to letters, numbers, and hyphens, with the first
-     *                                   character a letter, the last a letter or a number, and be 4-63 characters.
-     * @param CustomClass $customClass   Required. The custom class to create.
-     * @param array       $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource where this custom class will be created.
+     *           Format:
+     *
+     *           `projects/{project}/locations/{location}/customClasses`
+     *
+     *           Speech-to-Text supports three locations: `global`, `us` (US North America),
+     *           and `eu` (Europe). If you are calling the `speech.googleapis.com`
+     *           endpoint, use the `global` location. To specify a region, use a
+     *           [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *           with matching `us` or `eu` location value.
+     *     @type string $customClassId
+     *           Required. The ID to use for the custom class, which will become the final
+     *           component of the custom class' resource name.
+     *
+     *           This value should restrict to letters, numbers, and hyphens, with the first
+     *           character a letter, the last a letter or a number, and be 4-63 characters.
+     *     @type CustomClass $customClass
+     *           Required. The custom class to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -373,14 +370,23 @@ class AdaptationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCustomClass($parent, $customClassId, $customClass, array $optionalArgs = [])
+    public function createCustomClass(array $optionalArgs = [])
     {
         $request = new CreateCustomClassRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCustomClassId($customClassId);
-        $request->setCustomClass($customClass);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['customClassId'])) {
+            $request->setCustomClassId($optionalArgs['customClassId']);
+        }
+
+        if (isset($optionalArgs['customClass'])) {
+            $request->setCustomClass($optionalArgs['customClass']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCustomClass', CustomClass::class, $optionalArgs, $request)->wait();
@@ -395,34 +401,34 @@ class AdaptationGapicClient
      * ```
      * $adaptationClient = new AdaptationClient();
      * try {
-     *     $formattedParent = $adaptationClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $phraseSetId = 'phrase_set_id';
-     *     $phraseSet = new PhraseSet();
-     *     $response = $adaptationClient->createPhraseSet($formattedParent, $phraseSetId, $phraseSet);
+     *     $response = $adaptationClient->createPhraseSet();
      * } finally {
      *     $adaptationClient->close();
      * }
      * ```
      *
-     * @param string    $parent       Required. The parent resource where this phrase set will be created.
-     *                                Format:
-     *
-     *                                `projects/{project}/locations/{location}`
-     *
-     *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                                endpoint, use the `global` location. To specify a region, use a
-     *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                                with matching `us` or `eu` location value.
-     * @param string    $phraseSetId  Required. The ID to use for the phrase set, which will become the final
-     *                                component of the phrase set's resource name.
-     *
-     *                                This value should restrict to letters, numbers, and hyphens, with the first
-     *                                character a letter, the last a letter or a number, and be 4-63 characters.
-     * @param PhraseSet $phraseSet    Required. The phrase set to create.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource where this phrase set will be created.
+     *           Format:
+     *
+     *           `projects/{project}/locations/{location}`
+     *
+     *           Speech-to-Text supports three locations: `global`, `us` (US North America),
+     *           and `eu` (Europe). If you are calling the `speech.googleapis.com`
+     *           endpoint, use the `global` location. To specify a region, use a
+     *           [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *           with matching `us` or `eu` location value.
+     *     @type string $phraseSetId
+     *           Required. The ID to use for the phrase set, which will become the final
+     *           component of the phrase set's resource name.
+     *
+     *           This value should restrict to letters, numbers, and hyphens, with the first
+     *           character a letter, the last a letter or a number, and be 4-63 characters.
+     *     @type PhraseSet $phraseSet
+     *           Required. The phrase set to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -433,14 +439,23 @@ class AdaptationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createPhraseSet($parent, $phraseSetId, $phraseSet, array $optionalArgs = [])
+    public function createPhraseSet(array $optionalArgs = [])
     {
         $request = new CreatePhraseSetRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setPhraseSetId($phraseSetId);
-        $request->setPhraseSet($phraseSet);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['phraseSetId'])) {
+            $request->setPhraseSetId($optionalArgs['phraseSetId']);
+        }
+
+        if (isset($optionalArgs['phraseSet'])) {
+            $request->setPhraseSet($optionalArgs['phraseSet']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreatePhraseSet', PhraseSet::class, $optionalArgs, $request)->wait();
@@ -453,25 +468,25 @@ class AdaptationGapicClient
      * ```
      * $adaptationClient = new AdaptationClient();
      * try {
-     *     $formattedName = $adaptationClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-     *     $adaptationClient->deleteCustomClass($formattedName);
+     *     $adaptationClient->deleteCustomClass();
      * } finally {
      *     $adaptationClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the custom class to delete. Format:
-     *
-     *                             `projects/{project}/locations/{location}/customClasses/{custom_class}`
-     *
-     *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                             with matching `us` or `eu` location value.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the custom class to delete. Format:
+     *
+     *           `projects/{project}/locations/{location}/customClasses/{custom_class}`
+     *
+     *           Speech-to-Text supports three locations: `global`, `us` (US North America),
+     *           and `eu` (Europe). If you are calling the `speech.googleapis.com`
+     *           endpoint, use the `global` location. To specify a region, use a
+     *           [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *           with matching `us` or `eu` location value.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -480,12 +495,15 @@ class AdaptationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCustomClass($name, array $optionalArgs = [])
+    public function deleteCustomClass(array $optionalArgs = [])
     {
         $request = new DeleteCustomClassRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteCustomClass', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -498,19 +516,19 @@ class AdaptationGapicClient
      * ```
      * $adaptationClient = new AdaptationClient();
      * try {
-     *     $formattedName = $adaptationClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-     *     $adaptationClient->deletePhraseSet($formattedName);
+     *     $adaptationClient->deletePhraseSet();
      * } finally {
      *     $adaptationClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the phrase set to delete. Format:
-     *
-     *                             `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the phrase set to delete. Format:
+     *
+     *           `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -519,12 +537,15 @@ class AdaptationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePhraseSet($name, array $optionalArgs = [])
+    public function deletePhraseSet(array $optionalArgs = [])
     {
         $request = new DeletePhraseSetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeletePhraseSet', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -537,19 +558,19 @@ class AdaptationGapicClient
      * ```
      * $adaptationClient = new AdaptationClient();
      * try {
-     *     $formattedName = $adaptationClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-     *     $response = $adaptationClient->getCustomClass($formattedName);
+     *     $response = $adaptationClient->getCustomClass();
      * } finally {
      *     $adaptationClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the custom class to retrieve. Format:
-     *
-     *                             `projects/{project}/locations/{location}/customClasses/{custom_class}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the custom class to retrieve. Format:
+     *
+     *           `projects/{project}/locations/{location}/customClasses/{custom_class}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -560,12 +581,15 @@ class AdaptationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCustomClass($name, array $optionalArgs = [])
+    public function getCustomClass(array $optionalArgs = [])
     {
         $request = new GetCustomClassRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCustomClass', CustomClass::class, $optionalArgs, $request)->wait();
@@ -578,25 +602,25 @@ class AdaptationGapicClient
      * ```
      * $adaptationClient = new AdaptationClient();
      * try {
-     *     $formattedName = $adaptationClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-     *     $response = $adaptationClient->getPhraseSet($formattedName);
+     *     $response = $adaptationClient->getPhraseSet();
      * } finally {
      *     $adaptationClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the phrase set to retrieve. Format:
-     *
-     *                             `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
-     *
-     *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                             with matching `us` or `eu` location value.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the phrase set to retrieve. Format:
+     *
+     *           `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
+     *
+     *           Speech-to-Text supports three locations: `global`, `us` (US North America),
+     *           and `eu` (Europe). If you are calling the `speech.googleapis.com`
+     *           endpoint, use the `global` location. To specify a region, use a
+     *           [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *           with matching `us` or `eu` location value.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -607,12 +631,15 @@ class AdaptationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPhraseSet($name, array $optionalArgs = [])
+    public function getPhraseSet(array $optionalArgs = [])
     {
         $request = new GetPhraseSetRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetPhraseSet', PhraseSet::class, $optionalArgs, $request)->wait();
@@ -625,9 +652,8 @@ class AdaptationGapicClient
      * ```
      * $adaptationClient = new AdaptationClient();
      * try {
-     *     $formattedParent = $adaptationClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $adaptationClient->listCustomClasses($formattedParent);
+     *     $pagedResponse = $adaptationClient->listCustomClasses();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -635,7 +661,7 @@ class AdaptationGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $adaptationClient->listCustomClasses($formattedParent);
+     *     $pagedResponse = $adaptationClient->listCustomClasses();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -644,18 +670,19 @@ class AdaptationGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of custom classes. Format:
-     *
-     *                             `projects/{project}/locations/{location}/customClasses`
-     *
-     *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                             with matching `us` or `eu` location value.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of custom classes. Format:
+     *
+     *           `projects/{project}/locations/{location}/customClasses`
+     *
+     *           Speech-to-Text supports three locations: `global`, `us` (US North America),
+     *           and `eu` (Europe). If you are calling the `speech.googleapis.com`
+     *           endpoint, use the `global` location. To specify a region, use a
+     *           [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *           with matching `us` or `eu` location value.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -675,12 +702,15 @@ class AdaptationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCustomClasses($parent, array $optionalArgs = [])
+    public function listCustomClasses(array $optionalArgs = [])
     {
         $request = new ListCustomClassesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -701,9 +731,8 @@ class AdaptationGapicClient
      * ```
      * $adaptationClient = new AdaptationClient();
      * try {
-     *     $formattedParent = $adaptationClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $adaptationClient->listPhraseSet($formattedParent);
+     *     $pagedResponse = $adaptationClient->listPhraseSet();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -711,7 +740,7 @@ class AdaptationGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $adaptationClient->listPhraseSet($formattedParent);
+     *     $pagedResponse = $adaptationClient->listPhraseSet();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -720,18 +749,19 @@ class AdaptationGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns this collection of phrase set. Format:
-     *
-     *                             `projects/{project}/locations/{location}`
-     *
-     *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                             with matching `us` or `eu` location value.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent, which owns this collection of phrase set. Format:
+     *
+     *           `projects/{project}/locations/{location}`
+     *
+     *           Speech-to-Text supports three locations: `global`, `us` (US North America),
+     *           and `eu` (Europe). If you are calling the `speech.googleapis.com`
+     *           endpoint, use the `global` location. To specify a region, use a
+     *           [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *           with matching `us` or `eu` location value.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -751,12 +781,15 @@ class AdaptationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPhraseSet($parent, array $optionalArgs = [])
+    public function listPhraseSet(array $optionalArgs = [])
     {
         $request = new ListPhraseSetRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -777,28 +810,28 @@ class AdaptationGapicClient
      * ```
      * $adaptationClient = new AdaptationClient();
      * try {
-     *     $customClass = new CustomClass();
-     *     $response = $adaptationClient->updateCustomClass($customClass);
+     *     $response = $adaptationClient->updateCustomClass();
      * } finally {
      *     $adaptationClient->close();
      * }
      * ```
      *
-     * @param CustomClass $customClass  Required. The custom class to update.
-     *
-     *                                  The custom class's `name` field is used to identify the custom class to be
-     *                                  updated. Format:
-     *
-     *                                  `projects/{project}/locations/{location}/customClasses/{custom_class}`
-     *
-     *                                  Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                                  and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                                  endpoint, use the `global` location. To specify a region, use a
-     *                                  [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                                  with matching `us` or `eu` location value.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type CustomClass $customClass
+     *           Required. The custom class to update.
+     *
+     *           The custom class's `name` field is used to identify the custom class to be
+     *           updated. Format:
+     *
+     *           `projects/{project}/locations/{location}/customClasses/{custom_class}`
+     *
+     *           Speech-to-Text supports three locations: `global`, `us` (US North America),
+     *           and `eu` (Europe). If you are calling the `speech.googleapis.com`
+     *           endpoint, use the `global` location. To specify a region, use a
+     *           [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *           with matching `us` or `eu` location value.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
@@ -811,12 +844,14 @@ class AdaptationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCustomClass($customClass, array $optionalArgs = [])
+    public function updateCustomClass(array $optionalArgs = [])
     {
         $request = new UpdateCustomClassRequest();
         $requestParamHeaders = [];
-        $request->setCustomClass($customClass);
-        $requestParamHeaders['custom_class.name'] = $customClass->getName();
+        if (isset($optionalArgs['customClass'])) {
+            $request->setCustomClass($optionalArgs['customClass']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -833,28 +868,28 @@ class AdaptationGapicClient
      * ```
      * $adaptationClient = new AdaptationClient();
      * try {
-     *     $phraseSet = new PhraseSet();
-     *     $response = $adaptationClient->updatePhraseSet($phraseSet);
+     *     $response = $adaptationClient->updatePhraseSet();
      * } finally {
      *     $adaptationClient->close();
      * }
      * ```
      *
-     * @param PhraseSet $phraseSet    Required. The phrase set to update.
-     *
-     *                                The phrase set's `name` field is used to identify the set to be
-     *                                updated. Format:
-     *
-     *                                `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
-     *
-     *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
-     *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`
-     *                                endpoint, use the `global` location. To specify a region, use a
-     *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
-     *                                with matching `us` or `eu` location value.
-     * @param array     $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type PhraseSet $phraseSet
+     *           Required. The phrase set to update.
+     *
+     *           The phrase set's `name` field is used to identify the set to be
+     *           updated. Format:
+     *
+     *           `projects/{project}/locations/{location}/phraseSets/{phrase_set}`
+     *
+     *           Speech-to-Text supports three locations: `global`, `us` (US North America),
+     *           and `eu` (Europe). If you are calling the `speech.googleapis.com`
+     *           endpoint, use the `global` location. To specify a region, use a
+     *           [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *           with matching `us` or `eu` location value.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
@@ -867,12 +902,14 @@ class AdaptationGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updatePhraseSet($phraseSet, array $optionalArgs = [])
+    public function updatePhraseSet(array $optionalArgs = [])
     {
         $request = new UpdatePhraseSetRequest();
         $requestParamHeaders = [];
-        $request->setPhraseSet($phraseSet);
-        $requestParamHeaders['phrase_set.name'] = $phraseSet->getName();
+        if (isset($optionalArgs['phraseSet'])) {
+            $request->setPhraseSet($optionalArgs['phraseSet']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

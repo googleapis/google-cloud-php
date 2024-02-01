@@ -41,13 +41,10 @@ function update_organization_settings_sample(): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $organizationSettings = new OrganizationSettings();
-
     // Call the API and handle any network failures.
     try {
         /** @var OrganizationSettings $response */
-        $response = $securityCenterClient->updateOrganizationSettings($organizationSettings);
+        $response = $securityCenterClient->updateOrganizationSettings();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

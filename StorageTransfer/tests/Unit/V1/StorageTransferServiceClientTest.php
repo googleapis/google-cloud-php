@@ -83,25 +83,13 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $agentPool = new AgentPool();
-        $agentPoolName = 'agentPoolName-2036536596';
-        $agentPool->setName($agentPoolName);
-        $agentPoolId = 'agentPoolId-773019420';
-        $response = $gapicClient->createAgentPool($projectId, $agentPool, $agentPoolId);
+        $response = $gapicClient->createAgentPool();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/CreateAgentPool', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getAgentPool();
-        $this->assertProtobufEquals($agentPool, $actualValue);
-        $actualValue = $actualRequestObject->getAgentPoolId();
-        $this->assertProtobufEquals($agentPoolId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -123,14 +111,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $agentPool = new AgentPool();
-        $agentPoolName = 'agentPoolName-2036536596';
-        $agentPool->setName($agentPoolName);
-        $agentPoolId = 'agentPoolId-773019420';
         try {
-            $gapicClient->createAgentPool($projectId, $agentPool, $agentPoolId);
+            $gapicClient->createAgentPool();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -161,17 +143,13 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setProjectId($projectId);
         $expectedResponse->setLatestOperationName($latestOperationName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $transferJob = new TransferJob();
-        $response = $gapicClient->createTransferJob($transferJob);
+        $response = $gapicClient->createTransferJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/CreateTransferJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTransferJob();
-        $this->assertProtobufEquals($transferJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -193,10 +171,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $transferJob = new TransferJob();
         try {
-            $gapicClient->createTransferJob($transferJob);
+            $gapicClient->createTransferJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -219,16 +195,12 @@ class StorageTransferServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $gapicClient->deleteAgentPool($name);
+        $gapicClient->deleteAgentPool();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/DeleteAgentPool', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -250,10 +222,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->deleteAgentPool($name);
+            $gapicClient->deleteAgentPool();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -276,19 +246,12 @@ class StorageTransferServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $jobName = 'jobName-1615239731';
-        $projectId = 'projectId-1969970175';
-        $gapicClient->deleteTransferJob($jobName, $projectId);
+        $gapicClient->deleteTransferJob();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/DeleteTransferJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getJobName();
-        $this->assertProtobufEquals($jobName, $actualValue);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -310,11 +273,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $jobName = 'jobName-1615239731';
-        $projectId = 'projectId-1969970175';
         try {
-            $gapicClient->deleteTransferJob($jobName, $projectId);
+            $gapicClient->deleteTransferJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -341,17 +301,13 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $response = $gapicClient->getAgentPool($name);
+        $response = $gapicClient->getAgentPool();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/GetAgentPool', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -373,10 +329,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->getAgentPool($name);
+            $gapicClient->getAgentPool();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -403,17 +357,13 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setAccountEmail($accountEmail);
         $expectedResponse->setSubjectId($subjectId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $response = $gapicClient->getGoogleServiceAccount($projectId);
+        $response = $gapicClient->getGoogleServiceAccount();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/GetGoogleServiceAccount', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -435,10 +385,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
         try {
-            $gapicClient->getGoogleServiceAccount($projectId);
+            $gapicClient->getGoogleServiceAccount();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -469,20 +417,13 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setProjectId($projectId2);
         $expectedResponse->setLatestOperationName($latestOperationName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $jobName = 'jobName-1615239731';
-        $projectId = 'projectId-1969970175';
-        $response = $gapicClient->getTransferJob($jobName, $projectId);
+        $response = $gapicClient->getTransferJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/GetTransferJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getJobName();
-        $this->assertProtobufEquals($jobName, $actualValue);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -504,11 +445,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $jobName = 'jobName-1615239731';
-        $projectId = 'projectId-1969970175';
         try {
-            $gapicClient->getTransferJob($jobName, $projectId);
+            $gapicClient->getTransferJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -538,9 +476,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAgentPools($agentPools);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $projectId = 'projectId-1969970175';
-        $response = $gapicClient->listAgentPools($projectId);
+        $response = $gapicClient->listAgentPools();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -550,8 +486,6 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/ListAgentPools', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -573,10 +507,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $projectId = 'projectId-1969970175';
         try {
-            $gapicClient->listAgentPools($projectId);
+            $gapicClient->listAgentPools();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -606,9 +538,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTransferJobs($transferJobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $filter = 'filter-1274492040';
-        $response = $gapicClient->listTransferJobs($filter);
+        $response = $gapicClient->listTransferJobs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -618,8 +548,6 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/ListTransferJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -641,10 +569,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $filter = 'filter-1274492040';
         try {
-            $gapicClient->listTransferJobs($filter);
+            $gapicClient->listTransferJobs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -667,16 +593,12 @@ class StorageTransferServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $gapicClient->pauseTransferOperation($name);
+        $gapicClient->pauseTransferOperation();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/PauseTransferOperation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -698,10 +620,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->pauseTransferOperation($name);
+            $gapicClient->pauseTransferOperation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -724,16 +644,12 @@ class StorageTransferServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $gapicClient->resumeTransferOperation($name);
+        $gapicClient->resumeTransferOperation();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/ResumeTransferOperation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -755,10 +671,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
         try {
-            $gapicClient->resumeTransferOperation($name);
+            $gapicClient->resumeTransferOperation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -799,10 +713,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $jobName = 'jobName-1615239731';
-        $projectId = 'projectId-1969970175';
-        $response = $gapicClient->runTransferJob($jobName, $projectId);
+        $response = $gapicClient->runTransferJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -812,10 +723,6 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/RunTransferJob', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getJobName();
-        $this->assertProtobufEquals($jobName, $actualValue);
-        $actualValue = $actualApiRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/runTransferJobTest');
         $response->pollUntilComplete([
@@ -866,10 +773,7 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $jobName = 'jobName-1615239731';
-        $projectId = 'projectId-1969970175';
-        $response = $gapicClient->runTransferJob($jobName, $projectId);
+        $response = $gapicClient->runTransferJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -906,19 +810,13 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $agentPool = new AgentPool();
-        $agentPoolName = 'agentPoolName-2036536596';
-        $agentPool->setName($agentPoolName);
-        $response = $gapicClient->updateAgentPool($agentPool);
+        $response = $gapicClient->updateAgentPool();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/UpdateAgentPool', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAgentPool();
-        $this->assertProtobufEquals($agentPool, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -940,12 +838,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $agentPool = new AgentPool();
-        $agentPoolName = 'agentPoolName-2036536596';
-        $agentPool->setName($agentPoolName);
         try {
-            $gapicClient->updateAgentPool($agentPool);
+            $gapicClient->updateAgentPool();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -976,23 +870,13 @@ class StorageTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setProjectId($projectId2);
         $expectedResponse->setLatestOperationName($latestOperationName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $jobName = 'jobName-1615239731';
-        $projectId = 'projectId-1969970175';
-        $transferJob = new TransferJob();
-        $response = $gapicClient->updateTransferJob($jobName, $projectId, $transferJob);
+        $response = $gapicClient->updateTransferJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.storagetransfer.v1.StorageTransferService/UpdateTransferJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getJobName();
-        $this->assertProtobufEquals($jobName, $actualValue);
-        $actualValue = $actualRequestObject->getProjectId();
-        $this->assertProtobufEquals($projectId, $actualValue);
-        $actualValue = $actualRequestObject->getTransferJob();
-        $this->assertProtobufEquals($transferJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1014,12 +898,8 @@ class StorageTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $jobName = 'jobName-1615239731';
-        $projectId = 'projectId-1969970175';
-        $transferJob = new TransferJob();
         try {
-            $gapicClient->updateTransferJob($jobName, $projectId, $transferJob);
+            $gapicClient->updateTransferJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

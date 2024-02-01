@@ -23,8 +23,7 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Name of the resource. Please see
-     *                     {@see SecureSourceManagerClient::instanceName()} for help formatting this field.
+     * @param string $name Required. Name of the resource.
      *
      * @return \Google\Cloud\SecureSourceManager\V1\GetInstanceRequest
      *

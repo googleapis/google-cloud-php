@@ -54,9 +54,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $companyServiceClient = new CompanyServiceClient();
  * try {
- *     $formattedParent = $companyServiceClient->projectName('[PROJECT]');
- *     $company = new Company();
- *     $response = $companyServiceClient->createCompany($formattedParent, $company);
+ *     $response = $companyServiceClient->createCompany();
  * } finally {
  *     $companyServiceClient->close();
  * }
@@ -404,23 +402,23 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedParent = $companyServiceClient->projectName('[PROJECT]');
-     *     $company = new Company();
-     *     $response = $companyServiceClient->createCompany($formattedParent, $company);
+     *     $response = $companyServiceClient->createCompany();
      * } finally {
      *     $companyServiceClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. Resource name of the tenant under which the company is created.
-     *
-     *                              The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                              "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
-     *                              is created, for example, "projects/foo".
-     * @param Company $company      Required. The company to be created.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the tenant under which the company is created.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     *           is created, for example, "projects/foo".
+     *     @type Company $company
+     *           Required. The company to be created.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -433,13 +431,19 @@ class CompanyServiceGapicClient
      *
      * @experimental
      */
-    public function createCompany($parent, $company, array $optionalArgs = [])
+    public function createCompany(array $optionalArgs = [])
     {
         $request = new CreateCompanyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setCompany($company);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['company'])) {
+            $request->setCompany($optionalArgs['company']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCompany', Company::class, $optionalArgs, $request)->wait();
@@ -453,24 +457,24 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedName = $companyServiceClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-     *     $companyServiceClient->deleteCompany($formattedName);
+     *     $companyServiceClient->deleteCompany();
      * } finally {
      *     $companyServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the company to be deleted.
-     *
-     *                             The format is
-     *                             "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     *                             example, "projects/foo/tenants/bar/companies/baz".
-     *
-     *                             If tenant id is unspecified, the default tenant is used, for
-     *                             example, "projects/foo/companies/bar".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the company to be deleted.
+     *
+     *           The format is
+     *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
+     *           example, "projects/foo/tenants/bar/companies/baz".
+     *
+     *           If tenant id is unspecified, the default tenant is used, for
+     *           example, "projects/foo/companies/bar".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -481,12 +485,15 @@ class CompanyServiceGapicClient
      *
      * @experimental
      */
-    public function deleteCompany($name, array $optionalArgs = [])
+    public function deleteCompany(array $optionalArgs = [])
     {
         $request = new DeleteCompanyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteCompany', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -499,24 +506,24 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedName = $companyServiceClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-     *     $response = $companyServiceClient->getCompany($formattedName);
+     *     $response = $companyServiceClient->getCompany();
      * } finally {
      *     $companyServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the company to be retrieved.
-     *
-     *                             The format is
-     *                             "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     *                             example, "projects/api-test-project/tenants/foo/companies/bar".
-     *
-     *                             If tenant id is unspecified, the default tenant is used, for
-     *                             example, "projects/api-test-project/companies/bar".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the company to be retrieved.
+     *
+     *           The format is
+     *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
+     *           example, "projects/api-test-project/tenants/foo/companies/bar".
+     *
+     *           If tenant id is unspecified, the default tenant is used, for
+     *           example, "projects/api-test-project/companies/bar".
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -529,12 +536,15 @@ class CompanyServiceGapicClient
      *
      * @experimental
      */
-    public function getCompany($name, array $optionalArgs = [])
+    public function getCompany(array $optionalArgs = [])
     {
         $request = new GetCompanyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCompany', Company::class, $optionalArgs, $request)->wait();
@@ -547,9 +557,8 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedParent = $companyServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $companyServiceClient->listCompanies($formattedParent);
+     *     $pagedResponse = $companyServiceClient->listCompanies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -557,7 +566,7 @@ class CompanyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $companyServiceClient->listCompanies($formattedParent);
+     *     $pagedResponse = $companyServiceClient->listCompanies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -566,16 +575,17 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the tenant under which the company is created.
-     *
-     *                             The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *                             "projects/foo/tenant/bar".
-     *
-     *                             If tenant id is unspecified, the default tenant will be used, for
-     *                             example, "projects/foo".
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Resource name of the tenant under which the company is created.
+     *
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/foo/tenant/bar".
+     *
+     *           If tenant id is unspecified, the default tenant will be used, for
+     *           example, "projects/foo".
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -605,12 +615,15 @@ class CompanyServiceGapicClient
      *
      * @experimental
      */
-    public function listCompanies($parent, array $optionalArgs = [])
+    public function listCompanies(array $optionalArgs = [])
     {
         $request = new ListCompaniesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -635,18 +648,18 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $company = new Company();
-     *     $response = $companyServiceClient->updateCompany($company);
+     *     $response = $companyServiceClient->updateCompany();
      * } finally {
      *     $companyServiceClient->close();
      * }
      * ```
      *
-     * @param Company $company      Required. The company resource to replace the current resource in the
-     *                              system.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Company $company
+     *           Required. The company resource to replace the current resource in the
+     *           system.
      *     @type FieldMask $updateMask
      *           Strongly recommended for the best service experience.
      *
@@ -671,12 +684,14 @@ class CompanyServiceGapicClient
      *
      * @experimental
      */
-    public function updateCompany($company, array $optionalArgs = [])
+    public function updateCompany(array $optionalArgs = [])
     {
         $request = new UpdateCompanyRequest();
         $requestParamHeaders = [];
-        $request->setCompany($company);
-        $requestParamHeaders['company.name'] = $company->getName();
+        if (isset($optionalArgs['company'])) {
+            $request->setCompany($optionalArgs['company']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

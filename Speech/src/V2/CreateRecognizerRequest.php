@@ -48,8 +48,7 @@ class CreateRecognizerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                             $parent       Required. The project and location where this Recognizer will be created.
-     *                                                         The expected format is `projects/{project}/locations/{location}`. Please see
-     *                                                         {@see SpeechClient::locationName()} for help formatting this field.
+     *                                                         The expected format is `projects/{project}/locations/{location}`.
      * @param \Google\Cloud\Speech\V2\Recognizer $recognizer   Required. The Recognizer to create.
      * @param string                             $recognizerId The ID to use for the Recognizer, which will become the final component of
      *                                                         the Recognizer's resource name.

@@ -51,8 +51,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string                                        $parent     Required. Value for parent. Please see
-     *                                                                  {@see SecureSourceManagerClient::locationName()} for help formatting this field.
+     * @param string                                        $parent     Required. Value for parent.
      * @param \Google\Cloud\SecureSourceManager\V1\Instance $instance   Required. The resource being created.
      * @param string                                        $instanceId Required. ID of the instance to be created.
      *

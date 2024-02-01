@@ -26,27 +26,25 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\SecretManager\V1\AddSecretVersionRequest;
 use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
-use Google\Cloud\SecretManager\V1\SecretPayload;
 use Google\Cloud\SecretManager\V1\SecretVersion;
 
 /**
  * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] containing secret data and attaches
  * it to an existing [Secret][google.cloud.secretmanager.v1.Secret].
  *
- * @param string $formattedParent The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
- *                                [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;/secrets/*`. Please see
- *                                {@see SecretManagerServiceClient::secretName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function add_secret_version_sample(string $formattedParent): void
+function add_secret_version_sample(): void
 {
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
     // Prepare the request message.
-    $payload = new SecretPayload();
-    $request = (new AddSecretVersionRequest())
-        ->setParent($formattedParent)
-        ->setPayload($payload);
+    $request = new AddSecretVersionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +54,5 @@ function add_secret_version_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SecretManagerServiceClient::secretName('[PROJECT]', '[SECRET]');
-
-    add_secret_version_sample($formattedParent);
 }
 // [END secretmanager_v1_generated_SecretManagerService_AddSecretVersion_sync]

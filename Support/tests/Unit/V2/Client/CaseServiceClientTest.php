@@ -98,10 +98,7 @@ class CaseServiceClientTest extends GeneratedTest
         $expectedResponse->setTestCase($testCase);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new CloseCaseRequest())
-            ->setName($formattedName);
+        $request = new CloseCaseRequest();
         $response = $gapicClient->closeCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -109,8 +106,6 @@ class CaseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.support.v2.CaseService/CloseCase', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -132,10 +127,7 @@ class CaseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new CloseCaseRequest())
-            ->setName($formattedName);
+        $request = new CloseCaseRequest();
         try {
             $gapicClient->closeCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -176,12 +168,7 @@ class CaseServiceClientTest extends GeneratedTest
         $expectedResponse->setTestCase($testCase);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $case = new PBCase();
-        $request = (new CreateCaseRequest())
-            ->setParent($formattedParent)
-            ->setCase($case);
+        $request = new CreateCaseRequest();
         $response = $gapicClient->createCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -189,10 +176,6 @@ class CaseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.support.v2.CaseService/CreateCase', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getCase();
-        $this->assertProtobufEquals($case, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -214,12 +197,7 @@ class CaseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $case = new PBCase();
-        $request = (new CreateCaseRequest())
-            ->setParent($formattedParent)
-            ->setCase($case);
+        $request = new CreateCaseRequest();
         try {
             $gapicClient->createCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -260,10 +238,7 @@ class CaseServiceClientTest extends GeneratedTest
         $expectedResponse->setTestCase($testCase);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new EscalateCaseRequest())
-            ->setName($formattedName);
+        $request = new EscalateCaseRequest();
         $response = $gapicClient->escalateCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -271,8 +246,6 @@ class CaseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.support.v2.CaseService/EscalateCase', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -294,10 +267,7 @@ class CaseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new EscalateCaseRequest())
-            ->setName($formattedName);
+        $request = new EscalateCaseRequest();
         try {
             $gapicClient->escalateCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -338,10 +308,7 @@ class CaseServiceClientTest extends GeneratedTest
         $expectedResponse->setTestCase($testCase);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new GetCaseRequest())
-            ->setName($formattedName);
+        $request = new GetCaseRequest();
         $response = $gapicClient->getCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -349,8 +316,6 @@ class CaseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.support.v2.CaseService/GetCase', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -372,10 +337,7 @@ class CaseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new GetCaseRequest())
-            ->setName($formattedName);
+        $request = new GetCaseRequest();
         try {
             $gapicClient->getCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -407,10 +369,7 @@ class CaseServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCases($cases);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListCasesRequest())
-            ->setParent($formattedParent);
+        $request = new ListCasesRequest();
         $response = $gapicClient->listCases($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -421,8 +380,6 @@ class CaseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.support.v2.CaseService/ListCases', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -444,10 +401,7 @@ class CaseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListCasesRequest())
-            ->setParent($formattedParent);
+        $request = new ListCasesRequest();
         try {
             $gapicClient->listCases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -616,10 +570,7 @@ class CaseServiceClientTest extends GeneratedTest
         $expectedResponse->setTestCase($testCase);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $case = new PBCase();
-        $request = (new UpdateCaseRequest())
-            ->setCase($case);
+        $request = new UpdateCaseRequest();
         $response = $gapicClient->updateCase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -627,8 +578,6 @@ class CaseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.support.v2.CaseService/UpdateCase', $actualFuncCall);
-        $actualValue = $actualRequestObject->getCase();
-        $this->assertProtobufEquals($case, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -650,10 +599,7 @@ class CaseServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $case = new PBCase();
-        $request = (new UpdateCaseRequest())
-            ->setCase($case);
+        $request = new UpdateCaseRequest();
         try {
             $gapicClient->updateCase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -694,10 +640,7 @@ class CaseServiceClientTest extends GeneratedTest
         $expectedResponse->setTestCase($testCase);
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->caseName('[ORGANIZATION]', '[CASE]');
-        $request = (new CloseCaseRequest())
-            ->setName($formattedName);
+        $request = new CloseCaseRequest();
         $response = $gapicClient->closeCaseAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -705,8 +648,6 @@ class CaseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.support.v2.CaseService/CloseCase', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

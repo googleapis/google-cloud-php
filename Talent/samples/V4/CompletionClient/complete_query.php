@@ -32,28 +32,19 @@ use Google\Cloud\Talent\V4\CompleteQueryResponse;
  * Completes the specified prefix with keyword suggestions.
  * Intended for use by a job search auto-complete search box.
  *
- * @param string $formattedTenant Resource name of tenant the completion is performed within.
- *
- *                                The format is "projects/{project_id}/tenants/{tenant_id}", for example,
- *                                "projects/foo/tenants/bar". Please see
- *                                {@see CompletionClient::tenantName()} for help formatting this field.
- * @param string $query           The query used to generate suggestions.
- *
- *                                The maximum number of allowed characters is 255.
- * @param int    $pageSize        Completion result count.
- *
- *                                The maximum allowed page size is 10.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function complete_query_sample(string $formattedTenant, string $query, int $pageSize): void
+function complete_query_sample(): void
 {
     // Create a client.
     $completionClient = new CompletionClient();
 
     // Prepare the request message.
-    $request = (new CompleteQueryRequest())
-        ->setTenant($formattedTenant)
-        ->setQuery($query)
-        ->setPageSize($pageSize);
+    $request = new CompleteQueryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,23 +54,5 @@ function complete_query_sample(string $formattedTenant, string $query, int $page
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedTenant = CompletionClient::tenantName('[PROJECT]', '[TENANT]');
-    $query = '[QUERY]';
-    $pageSize = 0;
-
-    complete_query_sample($formattedTenant, $query, $pageSize);
 }
 // [END jobs_v4_generated_Completion_CompleteQuery_sync]

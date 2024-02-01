@@ -84,8 +84,7 @@ class ListEndpointsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The resource name of the service whose endpoints you'd like to
-     *                       list. Please see
-     *                       {@see RegistrationServiceClient::serviceName()} for help formatting this field.
+     *                       list.
      *
      * @return \Google\Cloud\ServiceDirectory\V1\ListEndpointsRequest
      *

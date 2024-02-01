@@ -26,8 +26,7 @@ class GetRecognizerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the Recognizer to retrieve. The expected format is
-     *                     `projects/{project}/locations/{location}/recognizers/{recognizer}`. Please see
-     *                     {@see SpeechClient::recognizerName()} for help formatting this field.
+     *                     `projects/{project}/locations/{location}/recognizers/{recognizer}`.
      *
      * @return \Google\Cloud\Speech\V2\GetRecognizerRequest
      *

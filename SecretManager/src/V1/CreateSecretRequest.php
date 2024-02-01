@@ -40,8 +40,7 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                $parent   Required. The resource name of the project to associate with the
-     *                                                        [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`. Please see
-     *                                                        {@see SecretManagerServiceClient::projectName()} for help formatting this field.
+     *                                                        [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`.
      * @param string                                $secretId Required. This must be unique within the project.
      *
      *                                                        A secret ID is a string with a maximum length of 255 characters and can

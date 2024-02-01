@@ -80,8 +80,7 @@ class ListOrganizationEventsRequest extends \Google\Protobuf\Internal\Message
      *                       ID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).<br>
      *                       `location` - The location to get the service health events from. To
      *                       retrieve service health events of category = INCIDENT, use `location` =
-     *                       `global`. Please see
-     *                       {@see ServiceHealthClient::organizationLocationName()} for help formatting this field.
+     *                       `global`.
      *
      * @return \Google\Cloud\ServiceHealth\V1\ListOrganizationEventsRequest
      *

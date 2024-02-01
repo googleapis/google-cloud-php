@@ -51,7 +51,6 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *                                                                                                                           "folders/{folder}/locations/{location}",
      *                                                                                                                           or
      *                                                                                                                           "projects/{project}/locations/{location}"
-     *                                                                                                                           Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. The resource being created
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\CreateSecurityHealthAnalyticsCustomModuleRequest

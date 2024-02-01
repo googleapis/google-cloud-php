@@ -32,19 +32,19 @@ use Google\Cloud\Support\V2\CreateCommentRequest;
  * Add a new comment to the specified Case.
  * The comment object must have the following fields set: body.
  *
- * @param string $formattedParent The resource name of Case to which this comment should be added. Please see
- *                                {@see CommentServiceClient::caseName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_comment_sample(string $formattedParent): void
+function create_comment_sample(): void
 {
     // Create a client.
     $commentServiceClient = new CommentServiceClient();
 
     // Prepare the request message.
-    $comment = new Comment();
-    $request = (new CreateCommentRequest())
-        ->setParent($formattedParent)
-        ->setComment($comment);
+    $request = new CreateCommentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +54,5 @@ function create_comment_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CommentServiceClient::caseName('[ORGANIZATION]', '[CASE]');
-
-    create_comment_sample($formattedParent);
 }
 // [END cloudsupport_v2_generated_CommentService_CreateComment_sync]

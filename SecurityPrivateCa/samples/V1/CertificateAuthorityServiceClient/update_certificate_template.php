@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Security\PrivateCA\V1\CertificateTemplate;
 use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateTemplateRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -47,11 +46,7 @@ function update_certificate_template_sample(): void
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $certificateTemplate = new CertificateTemplate();
-    $updateMask = new FieldMask();
-    $request = (new UpdateCertificateTemplateRequest())
-        ->setCertificateTemplate($certificateTemplate)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateCertificateTemplateRequest();
 
     // Call the API and handle any network failures.
     try {

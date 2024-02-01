@@ -43,9 +43,7 @@ function update_case_sample(): void
     $caseServiceClient = new CaseServiceClient();
 
     // Prepare the request message.
-    $case = new PBCase();
-    $request = (new UpdateCaseRequest())
-        ->setCase($case);
+    $request = new UpdateCaseRequest();
 
     // Call the API and handle any network failures.
     try {

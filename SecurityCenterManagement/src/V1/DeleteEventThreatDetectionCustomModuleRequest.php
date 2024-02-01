@@ -45,8 +45,7 @@ class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
      *
      *                     * "organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}".
      *                     * "folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}".
-     *                     * "projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}". Please see
-     *                     {@see SecurityCenterManagementClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
+     *                     * "projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}".
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\DeleteEventThreatDetectionCustomModuleRequest
      *

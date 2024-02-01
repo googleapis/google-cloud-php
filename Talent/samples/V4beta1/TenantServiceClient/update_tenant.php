@@ -30,43 +30,24 @@ use Google\Cloud\Talent\V4beta1\TenantServiceClient;
 /**
  * Updates specified tenant.
  *
- * @param string $tenantExternalId Client side tenant identifier, used to uniquely identify the
- *                                 tenant.
- *
- *                                 The maximum number of allowed characters is 255.
- */
-function update_tenant_sample(string $tenantExternalId): void
-{
-    // Create a client.
-    $tenantServiceClient = new TenantServiceClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $tenant = (new Tenant())
-        ->setExternalId($tenantExternalId);
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Tenant $response */
-        $response = $tenantServiceClient->updateTenant($tenant);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function update_tenant_sample(): void
 {
-    $tenantExternalId = '[EXTERNAL_ID]';
+    // Create a client.
+    $tenantServiceClient = new TenantServiceClient();
 
-    update_tenant_sample($tenantExternalId);
+    // Call the API and handle any network failures.
+    try {
+        /** @var Tenant $response */
+        $response = $tenantServiceClient->updateTenant();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END jobs_v4beta1_generated_TenantService_UpdateTenant_sync]

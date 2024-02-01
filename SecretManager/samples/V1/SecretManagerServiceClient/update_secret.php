@@ -25,10 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START secretmanager_v1_generated_SecretManagerService_UpdateSecret_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
-use Google\Cloud\SecretManager\V1\Replication;
 use Google\Cloud\SecretManager\V1\Secret;
 use Google\Cloud\SecretManager\V1\UpdateSecretRequest;
-use Google\Protobuf\FieldMask;
 
 /**
  * Updates metadata of an existing [Secret][google.cloud.secretmanager.v1.Secret].
@@ -45,13 +43,7 @@ function update_secret_sample(): void
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
     // Prepare the request message.
-    $secretReplication = new Replication();
-    $secret = (new Secret())
-        ->setReplication($secretReplication);
-    $updateMask = new FieldMask();
-    $request = (new UpdateSecretRequest())
-        ->setSecret($secret)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateSecretRequest();
 
     // Call the API and handle any network failures.
     try {
