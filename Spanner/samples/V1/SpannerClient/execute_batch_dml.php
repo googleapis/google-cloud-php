@@ -26,9 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
-use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
-use Google\Cloud\Spanner\V1\TransactionSelector;
 
 /**
  * Executes a batch of SQL DML statements. This method allows many statements
@@ -44,36 +42,19 @@ use Google\Cloud\Spanner\V1\TransactionSelector;
  * Execution stops after the first failed statement; the remaining statements
  * are not executed.
  *
- * @param string $formattedSession The session in which the DML statements should be performed. Please see
- *                                 {@see SpannerClient::sessionName()} for help formatting this field.
- * @param string $statementsSql    The DML string.
- * @param int    $seqno            A per-transaction sequence number used to identify this request.
- *                                 This field makes each request idempotent such that if the request is
- *                                 received multiple times, at most one will succeed.
- *
- *                                 The sequence number must be monotonically increasing within the
- *                                 transaction. If a request arrives for the first time with an out-of-order
- *                                 sequence number, the transaction may be aborted. Replays of previously
- *                                 handled requests will yield the same response as the first execution.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function execute_batch_dml_sample(
-    string $formattedSession,
-    string $statementsSql,
-    int $seqno
-): void {
+function execute_batch_dml_sample(): void
+{
     // Create a client.
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $transaction = new TransactionSelector();
-    $statement = (new Statement())
-        ->setSql($statementsSql);
-    $statements = [$statement,];
-    $request = (new ExecuteBatchDmlRequest())
-        ->setSession($formattedSession)
-        ->setTransaction($transaction)
-        ->setStatements($statements)
-        ->setSeqno($seqno);
+    $request = new ExecuteBatchDmlRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -83,28 +64,5 @@ function execute_batch_dml_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSession = SpannerClient::sessionName(
-        '[PROJECT]',
-        '[INSTANCE]',
-        '[DATABASE]',
-        '[SESSION]'
-    );
-    $statementsSql = '[SQL]';
-    $seqno = 0;
-
-    execute_batch_dml_sample($formattedSession, $statementsSql, $seqno);
 }
 // [END spanner_v1_generated_Spanner_ExecuteBatchDml_sync]

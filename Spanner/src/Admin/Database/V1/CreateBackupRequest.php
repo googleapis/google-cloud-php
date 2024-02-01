@@ -57,8 +57,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *                                                                 backup will be created from. The backup will be stored in the
      *                                                                 location(s) specified in the instance configuration of this
      *                                                                 instance. Values are of the form
-     *                                                                 `projects/<project>/instances/<instance>`. Please see
-     *                                                                 {@see DatabaseAdminClient::instanceName()} for help formatting this field.
+     *                                                                 `projects/<project>/instances/<instance>`.
      * @param \Google\Cloud\Spanner\Admin\Database\V1\Backup $backup   Required. The backup to create.
      * @param string                                         $backupId Required. The id of the backup to be created. The `backup_id` appended to
      *                                                                 `parent` forms the full backup name of the form

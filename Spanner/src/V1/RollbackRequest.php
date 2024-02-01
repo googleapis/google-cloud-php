@@ -29,8 +29,7 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     private $transaction_id = '';
 
     /**
-     * @param string $session       Required. The session in which the transaction to roll back is running. Please see
-     *                              {@see SpannerClient::sessionName()} for help formatting this field.
+     * @param string $session       Required. The session in which the transaction to roll back is running.
      * @param string $transactionId Required. The transaction to roll back.
      *
      * @return \Google\Cloud\Spanner\V1\RollbackRequest

@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START spanner_v1_generated_Spanner_Read_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\ResultSet;
 
@@ -45,25 +44,19 @@ use Google\Cloud\Spanner\V1\ResultSet;
  * Larger result sets can be yielded in streaming fashion by calling
  * [StreamingRead][google.spanner.v1.Spanner.StreamingRead] instead.
  *
- * @param string $formattedSession The session in which the read should be performed. Please see
- *                                 {@see SpannerClient::sessionName()} for help formatting this field.
- * @param string $table            The name of the table in the database to be read.
- * @param string $columnsElement   The columns of [table][google.spanner.v1.ReadRequest.table] to be
- *                                 returned for each row matching this request.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function read_sample(string $formattedSession, string $table, string $columnsElement): void
+function read_sample(): void
 {
     // Create a client.
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $columns = [$columnsElement,];
-    $keySet = new KeySet();
-    $request = (new ReadRequest())
-        ->setSession($formattedSession)
-        ->setTable($table)
-        ->setColumns($columns)
-        ->setKeySet($keySet);
+    $request = new ReadRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -73,28 +66,5 @@ function read_sample(string $formattedSession, string $table, string $columnsEle
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSession = SpannerClient::sessionName(
-        '[PROJECT]',
-        '[INSTANCE]',
-        '[DATABASE]',
-        '[SESSION]'
-    );
-    $table = '[TABLE]';
-    $columnsElement = '[COLUMNS]';
-
-    read_sample($formattedSession, $table, $columnsElement);
 }
 // [END spanner_v1_generated_Spanner_Read_sync]

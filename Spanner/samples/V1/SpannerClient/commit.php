@@ -45,10 +45,13 @@ use Google\Cloud\Spanner\V1\Mutation;
  * we recommend that you perform another read from the database to see the
  * state of things as they are now.
  *
- * @param string $formattedSession The session in which the transaction to be committed is running. Please see
- *                                 {@see SpannerClient::sessionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function commit_sample(string $formattedSession): void
+function commit_sample(): void
 {
     // Create a client.
     $spannerClient = new SpannerClient();
@@ -56,7 +59,6 @@ function commit_sample(string $formattedSession): void
     // Prepare the request message.
     $mutations = [new Mutation()];
     $request = (new CommitRequest())
-        ->setSession($formattedSession)
         ->setMutations($mutations);
 
     // Call the API and handle any network failures.
@@ -67,26 +69,5 @@ function commit_sample(string $formattedSession): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSession = SpannerClient::sessionName(
-        '[PROJECT]',
-        '[INSTANCE]',
-        '[DATABASE]',
-        '[SESSION]'
-    );
-
-    commit_sample($formattedSession);
 }
 // [END spanner_v1_generated_Spanner_Commit_sync]

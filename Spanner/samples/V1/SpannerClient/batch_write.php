@@ -26,10 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
-use Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup;
 use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\Mutation;
 
 /**
  * Batches the supplied mutation groups in a collection of efficient
@@ -48,22 +46,19 @@ use Google\Cloud\Spanner\V1\Mutation;
  * mutation's table. We recommend structuring your mutation groups to be
  * idempotent to avoid this issue.
  *
- * @param string $formattedSession The session in which the batch request is to be run. Please see
- *                                 {@see SpannerClient::sessionName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_write_sample(string $formattedSession): void
+function batch_write_sample(): void
 {
     // Create a client.
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $mutationGroupsMutations = [new Mutation()];
-    $mutationGroup = (new MutationGroup())
-        ->setMutations($mutationGroupsMutations);
-    $mutationGroups = [$mutationGroup,];
-    $request = (new BatchWriteRequest())
-        ->setSession($formattedSession)
-        ->setMutationGroups($mutationGroups);
+    $request = new BatchWriteRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -77,26 +72,5 @@ function batch_write_sample(string $formattedSession): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSession = SpannerClient::sessionName(
-        '[PROJECT]',
-        '[INSTANCE]',
-        '[DATABASE]',
-        '[SESSION]'
-    );
-
-    batch_write_sample($formattedSession);
 }
 // [END spanner_v1_generated_Spanner_BatchWrite_sync]

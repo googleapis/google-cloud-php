@@ -41,8 +41,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
     private $session_count = 0;
 
     /**
-     * @param string $database     Required. The database in which the new sessions are created. Please see
-     *                             {@see SpannerClient::databaseName()} for help formatting this field.
+     * @param string $database     Required. The database in which the new sessions are created.
      * @param int    $sessionCount Required. The number of sessions to be created in this batch call.
      *                             The API may return fewer than the requested number of sessions. If a
      *                             specific number of sessions are desired, the client can make additional

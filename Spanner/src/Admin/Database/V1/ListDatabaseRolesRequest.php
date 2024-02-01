@@ -42,8 +42,7 @@ class ListDatabaseRolesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The database whose roles should be listed.
      *                       Values are of the form
-     *                       `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`. Please see
-     *                       {@see DatabaseAdminClient::databaseName()} for help formatting this field.
+     *                       `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`.
      *
      * @return \Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseRolesRequest
      *

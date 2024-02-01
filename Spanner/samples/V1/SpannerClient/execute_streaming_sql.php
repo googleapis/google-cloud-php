@@ -36,19 +36,19 @@ use Google\Cloud\Spanner\V1\PartialResultSet;
  * the size of the returned result set. However, no individual row in the
  * result set can exceed 100 MiB, and no column value can exceed 10 MiB.
  *
- * @param string $formattedSession The session in which the SQL query should be performed. Please see
- *                                 {@see SpannerClient::sessionName()} for help formatting this field.
- * @param string $sql              The SQL string.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function execute_streaming_sql_sample(string $formattedSession, string $sql): void
+function execute_streaming_sql_sample(): void
 {
     // Create a client.
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $request = (new ExecuteSqlRequest())
-        ->setSession($formattedSession)
-        ->setSql($sql);
+    $request = new ExecuteSqlRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,27 +62,5 @@ function execute_streaming_sql_sample(string $formattedSession, string $sql): vo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedSession = SpannerClient::sessionName(
-        '[PROJECT]',
-        '[INSTANCE]',
-        '[DATABASE]',
-        '[SESSION]'
-    );
-    $sql = '[SQL]';
-
-    execute_streaming_sql_sample($formattedSession, $sql);
 }
 // [END spanner_v1_generated_Spanner_ExecuteStreamingSql_sync]

@@ -49,17 +49,19 @@ use Google\Cloud\Spanner\V1\Session;
  * Idle sessions can be kept alive by sending a trivial SQL query
  * periodically, e.g., `"SELECT 1"`.
  *
- * @param string $formattedDatabase The database in which the new session is created. Please see
- *                                  {@see SpannerClient::databaseName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_session_sample(string $formattedDatabase): void
+function create_session_sample(): void
 {
     // Create a client.
     $spannerClient = new SpannerClient();
 
     // Prepare the request message.
-    $request = (new CreateSessionRequest())
-        ->setDatabase($formattedDatabase);
+    $request = new CreateSessionRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,21 +71,5 @@ function create_session_sample(string $formattedDatabase): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedDatabase = SpannerClient::databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-
-    create_session_sample($formattedDatabase);
 }
 // [END spanner_v1_generated_Spanner_CreateSession_sync]

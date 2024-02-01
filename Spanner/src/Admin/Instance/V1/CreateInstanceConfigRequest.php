@@ -52,8 +52,7 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                                 $parent           Required. The name of the project in which to create the instance config.
-     *                                                                                 Values are of the form `projects/<project>`. Please see
-     *                                                                                 {@see InstanceAdminClient::projectName()} for help formatting this field.
+     *                                                                                 Values are of the form `projects/<project>`.
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instanceConfig   Required. The InstanceConfig proto of the configuration to create.
      *                                                                                 instance_config.name must be
      *                                                                                 `<parent>/instanceConfigs/<instance_config_id>`.

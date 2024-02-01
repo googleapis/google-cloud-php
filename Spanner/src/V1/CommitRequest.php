@@ -56,8 +56,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     protected $transaction;
 
     /**
-     * @param string                              $session       Required. The session in which the transaction to be committed is running. Please see
-     *                                                           {@see SpannerClient::sessionName()} for help formatting this field.
+     * @param string                              $session       Required. The session in which the transaction to be committed is running.
      * @param string                              $transactionId Commit a previously-started transaction.
      * @param \Google\Cloud\Spanner\V1\Mutation[] $mutations     The mutations to be executed when this transaction commits. All
      *                                                           mutations are applied atomically, in the order they appear in
@@ -76,8 +75,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * @param string                                      $session              Required. The session in which the transaction to be committed is running. Please see
-     *                                                                          {@see SpannerClient::sessionName()} for help formatting this field.
+     * @param string                                      $session              Required. The session in which the transaction to be committed is running.
      * @param \Google\Cloud\Spanner\V1\TransactionOptions $singleUseTransaction Execute mutations in a temporary transaction. Note that unlike
      *                                                                          commit of a previously-started transaction, commit with a
      *                                                                          temporary transaction is non-idempotent. That is, if the

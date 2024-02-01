@@ -27,8 +27,7 @@ class DeleteBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Name of the backup to delete.
      *                     Values are of the form
-     *                     `projects/<project>/instances/<instance>/backups/<backup>`. Please see
-     *                     {@see DatabaseAdminClient::backupName()} for help formatting this field.
+     *                     `projects/<project>/instances/<instance>/backups/<backup>`.
      *
      * @return \Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest
      *
