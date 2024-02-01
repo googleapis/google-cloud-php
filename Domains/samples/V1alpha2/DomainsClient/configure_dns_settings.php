@@ -27,28 +27,26 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Domains\V1alpha2\DomainsClient;
 use Google\Cloud\Domains\V1alpha2\Registration;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates a `Registration`'s DNS settings.
  *
- * @param string $formattedRegistration The name of the `Registration` whose DNS settings are being updated,
- *                                      in the format `projects/&#42;/locations/&#42;/registrations/*`. Please see
- *                                      {@see DomainsClient::registrationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function configure_dns_settings_sample(string $formattedRegistration): void
+function configure_dns_settings_sample(): void
 {
     // Create a client.
     $domainsClient = new DomainsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $updateMask = new FieldMask();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $domainsClient->configureDnsSettings($formattedRegistration, $updateMask);
+        $response = $domainsClient->configureDnsSettings();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -63,25 +61,5 @@ function configure_dns_settings_sample(string $formattedRegistration): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedRegistration = DomainsClient::registrationName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REGISTRATION]'
-    );
-
-    configure_dns_settings_sample($formattedRegistration);
 }
 // [END domains_v1alpha2_generated_Domains_ConfigureDnsSettings_sync]

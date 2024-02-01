@@ -31,17 +31,19 @@ use Google\Cloud\EdgeNetwork\V1\InitializeZoneResponse;
 /**
  * InitializeZone will initialize resources for a zone in a project.
  *
- * @param string $formattedName The name of the zone resource. Please see
- *                              {@see EdgeNetworkClient::zoneName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function initialize_zone_sample(string $formattedName): void
+function initialize_zone_sample(): void
 {
     // Create a client.
     $edgeNetworkClient = new EdgeNetworkClient();
 
     // Prepare the request message.
-    $request = (new InitializeZoneRequest())
-        ->setName($formattedName);
+    $request = new InitializeZoneRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,21 +53,5 @@ function initialize_zone_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = EdgeNetworkClient::zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-
-    initialize_zone_sample($formattedName);
 }
 // [END edgenetwork_v1_generated_EdgeNetwork_InitializeZone_sync]

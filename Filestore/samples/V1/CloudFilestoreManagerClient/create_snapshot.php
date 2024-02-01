@@ -33,26 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a snapshot.
  *
- * @param string $formattedParent The Filestore Instance to create the snapshots of, in the format
- *                                `projects/{project_id}/locations/{location}/instances/{instance_id}`
- *                                Please see {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
- * @param string $snapshotId      The ID to use for the snapshot.
- *                                The ID must be unique within the specified instance.
- *
- *                                This value must start with a lowercase letter followed by up to 62
- *                                lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_snapshot_sample(string $formattedParent, string $snapshotId): void
+function create_snapshot_sample(): void
 {
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
     // Prepare the request message.
-    $snapshot = new Snapshot();
-    $request = (new CreateSnapshotRequest())
-        ->setParent($formattedParent)
-        ->setSnapshotId($snapshotId)
-        ->setSnapshot($snapshot);
+    $request = new CreateSnapshotRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,26 +65,5 @@ function create_snapshot_sample(string $formattedParent, string $snapshotId): vo
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudFilestoreManagerClient::instanceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[INSTANCE]'
-    );
-    $snapshotId = '[SNAPSHOT_ID]';
-
-    create_snapshot_sample($formattedParent, $snapshotId);
 }
 // [END file_v1_generated_CloudFilestoreManager_CreateSnapshot_sync]

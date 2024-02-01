@@ -41,7 +41,6 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                              $parent     Required. The Filestore Instance to create the snapshots of, in the format
      *                                                        `projects/{project_id}/locations/{location}/instances/{instance_id}`
-     *                                                        Please see {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
      * @param \Google\Cloud\Filestore\V1\Snapshot $snapshot   Required. A snapshot resource.
      * @param string                              $snapshotId Required. The ID to use for the snapshot.
      *                                                        The ID must be unique within the specified instance.

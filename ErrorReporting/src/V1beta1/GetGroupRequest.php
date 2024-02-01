@@ -33,7 +33,6 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      *                          to return a list of groups belonging to this project.
      *
      *                          Example: `projects/my-project-123/groups/my-group`
-     *                          Please see {@see ErrorGroupServiceClient::errorGroupName()} for help formatting this field.
      *
      * @return \Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest
      *

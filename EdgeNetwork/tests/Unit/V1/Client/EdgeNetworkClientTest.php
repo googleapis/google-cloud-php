@@ -77,7 +77,6 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -153,25 +152,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $interconnectAttachmentId = 'interconnectAttachmentId1313228742';
-        $interconnectAttachment = new InterconnectAttachment();
-        $interconnectAttachmentName = 'interconnectAttachmentName-1161503108';
-        $interconnectAttachment->setName($interconnectAttachmentName);
-        $interconnectAttachmentInterconnect = $gapicClient->interconnectName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ZONE]',
-            '[INTERCONNECT]'
-        );
-        $interconnectAttachment->setInterconnect($interconnectAttachmentInterconnect);
-        $interconnectAttachmentVlanId = 725855631;
-        $interconnectAttachment->setVlanId($interconnectAttachmentVlanId);
-        $request = (new CreateInterconnectAttachmentRequest())
-            ->setParent($formattedParent)
-            ->setInterconnectAttachmentId($interconnectAttachmentId)
-            ->setInterconnectAttachment($interconnectAttachment);
+        $request = new CreateInterconnectAttachmentRequest();
         $response = $gapicClient->createInterconnectAttachment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -182,12 +163,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/CreateInterconnectAttachment', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInterconnectAttachmentId();
-        $this->assertProtobufEquals($interconnectAttachmentId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInterconnectAttachment();
-        $this->assertProtobufEquals($interconnectAttachment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInterconnectAttachmentTest');
         $response->pollUntilComplete([
@@ -241,25 +216,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $interconnectAttachmentId = 'interconnectAttachmentId1313228742';
-        $interconnectAttachment = new InterconnectAttachment();
-        $interconnectAttachmentName = 'interconnectAttachmentName-1161503108';
-        $interconnectAttachment->setName($interconnectAttachmentName);
-        $interconnectAttachmentInterconnect = $gapicClient->interconnectName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ZONE]',
-            '[INTERCONNECT]'
-        );
-        $interconnectAttachment->setInterconnect($interconnectAttachmentInterconnect);
-        $interconnectAttachmentVlanId = 725855631;
-        $interconnectAttachment->setVlanId($interconnectAttachmentVlanId);
-        $request = (new CreateInterconnectAttachmentRequest())
-            ->setParent($formattedParent)
-            ->setInterconnectAttachmentId($interconnectAttachmentId)
-            ->setInterconnectAttachment($interconnectAttachment);
+        $request = new CreateInterconnectAttachmentRequest();
         $response = $gapicClient->createInterconnectAttachment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -317,16 +274,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $networkId = 'networkId-478232372';
-        $network = new Network();
-        $networkName = 'networkName-1940815399';
-        $network->setName($networkName);
-        $request = (new CreateNetworkRequest())
-            ->setParent($formattedParent)
-            ->setNetworkId($networkId)
-            ->setNetwork($network);
+        $request = new CreateNetworkRequest();
         $response = $gapicClient->createNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -337,12 +285,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/CreateNetwork', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getNetworkId();
-        $this->assertProtobufEquals($networkId, $actualValue);
-        $actualValue = $actualApiRequestObject->getNetwork();
-        $this->assertProtobufEquals($network, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createNetworkTest');
         $response->pollUntilComplete([
@@ -396,16 +338,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $networkId = 'networkId-478232372';
-        $network = new Network();
-        $networkName = 'networkName-1940815399';
-        $network->setName($networkName);
-        $request = (new CreateNetworkRequest())
-            ->setParent($formattedParent)
-            ->setNetworkId($networkId)
-            ->setNetwork($network);
+        $request = new CreateNetworkRequest();
         $response = $gapicClient->createNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -463,18 +396,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $routerId = 'routerId168536529';
-        $router = new Router();
-        $routerName = 'routerName929151348';
-        $router->setName($routerName);
-        $routerNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $router->setNetwork($routerNetwork);
-        $request = (new CreateRouterRequest())
-            ->setParent($formattedParent)
-            ->setRouterId($routerId)
-            ->setRouter($router);
+        $request = new CreateRouterRequest();
         $response = $gapicClient->createRouter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -485,12 +407,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/CreateRouter', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRouterId();
-        $this->assertProtobufEquals($routerId, $actualValue);
-        $actualValue = $actualApiRequestObject->getRouter();
-        $this->assertProtobufEquals($router, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createRouterTest');
         $response->pollUntilComplete([
@@ -544,18 +460,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $routerId = 'routerId168536529';
-        $router = new Router();
-        $routerName = 'routerName929151348';
-        $router->setName($routerName);
-        $routerNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $router->setNetwork($routerNetwork);
-        $request = (new CreateRouterRequest())
-            ->setParent($formattedParent)
-            ->setRouterId($routerId)
-            ->setRouter($router);
+        $request = new CreateRouterRequest();
         $response = $gapicClient->createRouter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -615,18 +520,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $subnetId = 'subnetId373593405';
-        $subnet = new Subnet();
-        $subnetName = 'subnetName-1304020088';
-        $subnet->setName($subnetName);
-        $subnetNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $subnet->setNetwork($subnetNetwork);
-        $request = (new CreateSubnetRequest())
-            ->setParent($formattedParent)
-            ->setSubnetId($subnetId)
-            ->setSubnet($subnet);
+        $request = new CreateSubnetRequest();
         $response = $gapicClient->createSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -637,12 +531,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/CreateSubnet', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSubnetId();
-        $this->assertProtobufEquals($subnetId, $actualValue);
-        $actualValue = $actualApiRequestObject->getSubnet();
-        $this->assertProtobufEquals($subnet, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createSubnetTest');
         $response->pollUntilComplete([
@@ -696,18 +584,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $subnetId = 'subnetId373593405';
-        $subnet = new Subnet();
-        $subnetName = 'subnetName-1304020088';
-        $subnet->setName($subnetName);
-        $subnetNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $subnet->setNetwork($subnetNetwork);
-        $request = (new CreateSubnetRequest())
-            ->setParent($formattedParent)
-            ->setSubnetId($subnetId)
-            ->setSubnet($subnet);
+        $request = new CreateSubnetRequest();
         $response = $gapicClient->createSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -759,14 +636,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->interconnectAttachmentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ZONE]',
-            '[INTERCONNECT_ATTACHMENT]'
-        );
-        $request = (new DeleteInterconnectAttachmentRequest())->setName($formattedName);
+        $request = new DeleteInterconnectAttachmentRequest();
         $response = $gapicClient->deleteInterconnectAttachment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -777,8 +647,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/DeleteInterconnectAttachment', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteInterconnectAttachmentTest');
         $response->pollUntilComplete([
@@ -832,14 +700,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->interconnectAttachmentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ZONE]',
-            '[INTERCONNECT_ATTACHMENT]'
-        );
-        $request = (new DeleteInterconnectAttachmentRequest())->setName($formattedName);
+        $request = new DeleteInterconnectAttachmentRequest();
         $response = $gapicClient->deleteInterconnectAttachment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -891,9 +752,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new DeleteNetworkRequest())->setName($formattedName);
+        $request = new DeleteNetworkRequest();
         $response = $gapicClient->deleteNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -904,8 +763,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/DeleteNetwork', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteNetworkTest');
         $response->pollUntilComplete([
@@ -959,9 +816,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new DeleteNetworkRequest())->setName($formattedName);
+        $request = new DeleteNetworkRequest();
         $response = $gapicClient->deleteNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1013,9 +868,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new DeleteRouterRequest())->setName($formattedName);
+        $request = new DeleteRouterRequest();
         $response = $gapicClient->deleteRouter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1026,8 +879,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/DeleteRouter', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteRouterTest');
         $response->pollUntilComplete([
@@ -1081,9 +932,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new DeleteRouterRequest())->setName($formattedName);
+        $request = new DeleteRouterRequest();
         $response = $gapicClient->deleteRouter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1135,9 +984,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[ZONE]', '[SUBNET]');
-        $request = (new DeleteSubnetRequest())->setName($formattedName);
+        $request = new DeleteSubnetRequest();
         $response = $gapicClient->deleteSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1148,8 +995,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/DeleteSubnet', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteSubnetTest');
         $response->pollUntilComplete([
@@ -1203,9 +1048,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[ZONE]', '[SUBNET]');
-        $request = (new DeleteSubnetRequest())->setName($formattedName);
+        $request = new DeleteSubnetRequest();
         $response = $gapicClient->deleteSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1239,9 +1082,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DiagnoseInterconnectResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
-        $request = (new DiagnoseInterconnectRequest())->setName($formattedName);
+        $request = new DiagnoseInterconnectRequest();
         $response = $gapicClient->diagnoseInterconnect($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1249,8 +1090,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/DiagnoseInterconnect', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1275,9 +1114,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
-        $request = (new DiagnoseInterconnectRequest())->setName($formattedName);
+        $request = new DiagnoseInterconnectRequest();
         try {
             $gapicClient->diagnoseInterconnect($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1302,9 +1139,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DiagnoseNetworkResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new DiagnoseNetworkRequest())->setName($formattedName);
+        $request = new DiagnoseNetworkRequest();
         $response = $gapicClient->diagnoseNetwork($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1312,8 +1147,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/DiagnoseNetwork', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1338,9 +1171,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new DiagnoseNetworkRequest())->setName($formattedName);
+        $request = new DiagnoseNetworkRequest();
         try {
             $gapicClient->diagnoseNetwork($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1365,9 +1196,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new DiagnoseRouterResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new DiagnoseRouterRequest())->setName($formattedName);
+        $request = new DiagnoseRouterRequest();
         $response = $gapicClient->diagnoseRouter($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1375,8 +1204,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/DiagnoseRouter', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1401,9 +1228,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new DiagnoseRouterRequest())->setName($formattedName);
+        $request = new DiagnoseRouterRequest();
         try {
             $gapicClient->diagnoseRouter($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1436,9 +1261,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setUuid($uuid);
         $expectedResponse->setDeviceCloudResourceName($deviceCloudResourceName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
-        $request = (new GetInterconnectRequest())->setName($formattedName);
+        $request = new GetInterconnectRequest();
         $response = $gapicClient->getInterconnect($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1446,8 +1269,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/GetInterconnect', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1472,9 +1293,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->interconnectName('[PROJECT]', '[LOCATION]', '[ZONE]', '[INTERCONNECT]');
-        $request = (new GetInterconnectRequest())->setName($formattedName);
+        $request = new GetInterconnectRequest();
         try {
             $gapicClient->getInterconnect($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1511,14 +1330,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setVlanId($vlanId);
         $expectedResponse->setMtu($mtu);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->interconnectAttachmentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ZONE]',
-            '[INTERCONNECT_ATTACHMENT]'
-        );
-        $request = (new GetInterconnectAttachmentRequest())->setName($formattedName);
+        $request = new GetInterconnectAttachmentRequest();
         $response = $gapicClient->getInterconnectAttachment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1526,8 +1338,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/GetInterconnectAttachment', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1552,14 +1362,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->interconnectAttachmentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ZONE]',
-            '[INTERCONNECT_ATTACHMENT]'
-        );
-        $request = (new GetInterconnectAttachmentRequest())->setName($formattedName);
+        $request = new GetInterconnectAttachmentRequest();
         try {
             $gapicClient->getInterconnectAttachment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1590,9 +1393,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setMtu($mtu);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new GetNetworkRequest())->setName($formattedName);
+        $request = new GetNetworkRequest();
         $response = $gapicClient->getNetwork($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1600,8 +1401,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/GetNetwork', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1626,9 +1425,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $request = (new GetNetworkRequest())->setName($formattedName);
+        $request = new GetNetworkRequest();
         try {
             $gapicClient->getNetwork($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1659,9 +1456,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setNetwork($network);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new GetRouterRequest())->setName($formattedName);
+        $request = new GetRouterRequest();
         $response = $gapicClient->getRouter($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1669,8 +1464,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/GetRouter', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1695,9 +1488,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->routerName('[PROJECT]', '[LOCATION]', '[ZONE]', '[ROUTER]');
-        $request = (new GetRouterRequest())->setName($formattedName);
+        $request = new GetRouterRequest();
         try {
             $gapicClient->getRouter($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1730,9 +1521,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setVlanId($vlanId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[ZONE]', '[SUBNET]');
-        $request = (new GetSubnetRequest())->setName($formattedName);
+        $request = new GetSubnetRequest();
         $response = $gapicClient->getSubnet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1740,8 +1529,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/GetSubnet', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1766,9 +1553,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[ZONE]', '[SUBNET]');
-        $request = (new GetSubnetRequest())->setName($formattedName);
+        $request = new GetSubnetRequest();
         try {
             $gapicClient->getSubnet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1797,9 +1582,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setLayoutName($layoutName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new GetZoneRequest())->setName($formattedName);
+        $request = new GetZoneRequest();
         $response = $gapicClient->getZone($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1807,8 +1590,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/GetZone', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1833,9 +1614,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new GetZoneRequest())->setName($formattedName);
+        $request = new GetZoneRequest();
         try {
             $gapicClient->getZone($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1860,9 +1639,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new InitializeZoneResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new InitializeZoneRequest())->setName($formattedName);
+        $request = new InitializeZoneRequest();
         $response = $gapicClient->initializeZone($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1870,8 +1647,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/InitializeZone', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1896,9 +1671,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new InitializeZoneRequest())->setName($formattedName);
+        $request = new InitializeZoneRequest();
         try {
             $gapicClient->initializeZone($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1928,9 +1701,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInterconnectAttachments($interconnectAttachments);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListInterconnectAttachmentsRequest())->setParent($formattedParent);
+        $request = new ListInterconnectAttachmentsRequest();
         $response = $gapicClient->listInterconnectAttachments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1941,8 +1712,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/ListInterconnectAttachments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1967,9 +1736,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListInterconnectAttachmentsRequest())->setParent($formattedParent);
+        $request = new ListInterconnectAttachmentsRequest();
         try {
             $gapicClient->listInterconnectAttachments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1999,9 +1766,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInterconnects($interconnects);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListInterconnectsRequest())->setParent($formattedParent);
+        $request = new ListInterconnectsRequest();
         $response = $gapicClient->listInterconnects($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2012,8 +1777,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/ListInterconnects', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2038,9 +1801,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListInterconnectsRequest())->setParent($formattedParent);
+        $request = new ListInterconnectsRequest();
         try {
             $gapicClient->listInterconnects($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2070,9 +1831,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNetworks($networks);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListNetworksRequest())->setParent($formattedParent);
+        $request = new ListNetworksRequest();
         $response = $gapicClient->listNetworks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2083,8 +1842,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/ListNetworks', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2109,9 +1866,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListNetworksRequest())->setParent($formattedParent);
+        $request = new ListNetworksRequest();
         try {
             $gapicClient->listNetworks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2141,9 +1896,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRouters($routers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListRoutersRequest())->setParent($formattedParent);
+        $request = new ListRoutersRequest();
         $response = $gapicClient->listRouters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2154,8 +1907,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/ListRouters', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2180,9 +1931,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListRoutersRequest())->setParent($formattedParent);
+        $request = new ListRoutersRequest();
         try {
             $gapicClient->listRouters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2212,9 +1961,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubnets($subnets);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListSubnetsRequest())->setParent($formattedParent);
+        $request = new ListSubnetsRequest();
         $response = $gapicClient->listSubnets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2225,8 +1972,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/ListSubnets', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2251,9 +1996,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $request = (new ListSubnetsRequest())->setParent($formattedParent);
+        $request = new ListSubnetsRequest();
         try {
             $gapicClient->listSubnets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2283,9 +2026,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setZones($zones);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListZonesRequest())->setParent($formattedParent);
+        $request = new ListZonesRequest();
         $response = $gapicClient->listZones($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2296,8 +2037,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/ListZones', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2322,9 +2061,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListZonesRequest())->setParent($formattedParent);
+        $request = new ListZonesRequest();
         try {
             $gapicClient->listZones($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2373,14 +2110,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $router = new Router();
-        $routerName = 'routerName929151348';
-        $router->setName($routerName);
-        $routerNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $router->setNetwork($routerNetwork);
-        $request = (new UpdateRouterRequest())->setUpdateMask($updateMask)->setRouter($router);
+        $request = new UpdateRouterRequest();
         $response = $gapicClient->updateRouter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2391,10 +2121,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/UpdateRouter', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getRouter();
-        $this->assertProtobufEquals($router, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateRouterTest');
         $response->pollUntilComplete([
@@ -2448,14 +2174,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $router = new Router();
-        $routerName = 'routerName929151348';
-        $router->setName($routerName);
-        $routerNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $router->setNetwork($routerNetwork);
-        $request = (new UpdateRouterRequest())->setUpdateMask($updateMask)->setRouter($router);
+        $request = new UpdateRouterRequest();
         $response = $gapicClient->updateRouter($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2515,14 +2234,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $subnet = new Subnet();
-        $subnetName = 'subnetName-1304020088';
-        $subnet->setName($subnetName);
-        $subnetNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $subnet->setNetwork($subnetNetwork);
-        $request = (new UpdateSubnetRequest())->setUpdateMask($updateMask)->setSubnet($subnet);
+        $request = new UpdateSubnetRequest();
         $response = $gapicClient->updateSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2533,10 +2245,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/UpdateSubnet', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getSubnet();
-        $this->assertProtobufEquals($subnet, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateSubnetTest');
         $response->pollUntilComplete([
@@ -2590,14 +2298,7 @@ class EdgeNetworkClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $subnet = new Subnet();
-        $subnetName = 'subnetName-1304020088';
-        $subnet->setName($subnetName);
-        $subnetNetwork = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[ZONE]', '[NETWORK]');
-        $subnet->setNetwork($subnetNetwork);
-        $request = (new UpdateSubnetRequest())->setUpdateMask($updateMask)->setSubnet($subnet);
+        $request = new UpdateSubnetRequest();
         $response = $gapicClient->updateSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2789,25 +2490,7 @@ class EdgeNetworkClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-        $interconnectAttachmentId = 'interconnectAttachmentId1313228742';
-        $interconnectAttachment = new InterconnectAttachment();
-        $interconnectAttachmentName = 'interconnectAttachmentName-1161503108';
-        $interconnectAttachment->setName($interconnectAttachmentName);
-        $interconnectAttachmentInterconnect = $gapicClient->interconnectName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[ZONE]',
-            '[INTERCONNECT]'
-        );
-        $interconnectAttachment->setInterconnect($interconnectAttachmentInterconnect);
-        $interconnectAttachmentVlanId = 725855631;
-        $interconnectAttachment->setVlanId($interconnectAttachmentVlanId);
-        $request = (new CreateInterconnectAttachmentRequest())
-            ->setParent($formattedParent)
-            ->setInterconnectAttachmentId($interconnectAttachmentId)
-            ->setInterconnectAttachment($interconnectAttachment);
+        $request = new CreateInterconnectAttachmentRequest();
         $response = $gapicClient->createInterconnectAttachmentAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2818,12 +2501,6 @@ class EdgeNetworkClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.edgenetwork.v1.EdgeNetwork/CreateInterconnectAttachment', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInterconnectAttachmentId();
-        $this->assertProtobufEquals($interconnectAttachmentId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInterconnectAttachment();
-        $this->assertProtobufEquals($interconnectAttachment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInterconnectAttachmentTest');
         $response->pollUntilComplete([

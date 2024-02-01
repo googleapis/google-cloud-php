@@ -27,29 +27,27 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Domains\V1alpha2\DomainsClient;
 use Google\Cloud\Domains\V1alpha2\Registration;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates a `Registration`'s contact settings. Some changes require
  * confirmation by the domain's registrant contact .
  *
- * @param string $formattedRegistration The name of the `Registration` whose contact settings are being updated,
- *                                      in the format `projects/&#42;/locations/&#42;/registrations/*`. Please see
- *                                      {@see DomainsClient::registrationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function configure_contact_settings_sample(string $formattedRegistration): void
+function configure_contact_settings_sample(): void
 {
     // Create a client.
     $domainsClient = new DomainsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $updateMask = new FieldMask();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $domainsClient->configureContactSettings($formattedRegistration, $updateMask);
+        $response = $domainsClient->configureContactSettings();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -64,25 +62,5 @@ function configure_contact_settings_sample(string $formattedRegistration): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedRegistration = DomainsClient::registrationName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REGISTRATION]'
-    );
-
-    configure_contact_settings_sample($formattedRegistration);
 }
 // [END domains_v1alpha2_generated_Domains_ConfigureContactSettings_sync]

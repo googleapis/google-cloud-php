@@ -19,12 +19,12 @@ class PurgeConfig
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¹
-2google/cloud/discoveryengine/v1/purge_config.protogoogle.cloud.discoveryengine.v1google/api/resource.protogoogle/protobuf/timestamp.proto"z
-PurgeDocumentsRequest=
-parent (	B-àAúA\'
-%discoveryengine.googleapis.com/Branch
-filter (	BàA
+»
+2google/cloud/discoveryengine/v1/purge_config.protogoogle.cloud.discoveryengine.v1google/api/resource.protogoogle/protobuf/timestamp.proto"|
+PurgeDocumentsRequest>
+parent (	B.âAúA\'
+%discoveryengine.googleapis.com/Branch
+filter (	BâA
 force ("q
 PurgeDocumentsResponse
 purge_count (B

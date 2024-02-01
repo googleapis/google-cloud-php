@@ -39,8 +39,7 @@ class ListChannelConnectionsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The parent collection from which to list channel connections. Please see
-     *                       {@see EventarcClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent collection from which to list channel connections.
      *
      * @return \Google\Cloud\Eventarc\V1\ListChannelConnectionsRequest
      *

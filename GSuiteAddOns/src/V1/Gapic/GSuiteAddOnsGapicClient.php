@@ -84,10 +84,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $gSuiteAddOnsClient = new GSuiteAddOnsClient();
  * try {
- *     $formattedParent = $gSuiteAddOnsClient->projectName('[PROJECT]');
- *     $deploymentId = 'deployment_id';
- *     $deployment = new Deployment();
- *     $response = $gSuiteAddOnsClient->createDeployment($formattedParent, $deploymentId, $deployment);
+ *     $response = $gSuiteAddOnsClient->createDeployment();
  * } finally {
  *     $gSuiteAddOnsClient->close();
  * }
@@ -398,24 +395,24 @@ class GSuiteAddOnsGapicClient
      * ```
      * $gSuiteAddOnsClient = new GSuiteAddOnsClient();
      * try {
-     *     $formattedParent = $gSuiteAddOnsClient->projectName('[PROJECT]');
-     *     $deploymentId = 'deployment_id';
-     *     $deployment = new Deployment();
-     *     $response = $gSuiteAddOnsClient->createDeployment($formattedParent, $deploymentId, $deployment);
+     *     $response = $gSuiteAddOnsClient->createDeployment();
      * } finally {
      *     $gSuiteAddOnsClient->close();
      * }
      * ```
      *
-     * @param string     $parent       Required. Name of the project in which to create the deployment.
-     *
-     *                                 Example: `projects/my_project`.
-     * @param string     $deploymentId Required. The id to use for this deployment.  The full name of the created
-     *                                 resource will be `projects/<project_number>/deployments/<deployment_id>`.
-     * @param Deployment $deployment   Required. The deployment to create (deployment.name cannot be set).
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the project in which to create the deployment.
+     *
+     *           Example: `projects/my_project`.
+     *     @type string $deploymentId
+     *           Required. The id to use for this deployment.  The full name of the created
+     *           resource will be `projects/<project_number>/deployments/<deployment_id>`.
+     *     @type Deployment $deployment
+     *           Required. The deployment to create (deployment.name cannot be set).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -426,18 +423,23 @@ class GSuiteAddOnsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDeployment(
-        $parent,
-        $deploymentId,
-        $deployment,
-        array $optionalArgs = []
-    ) {
+    public function createDeployment(array $optionalArgs = [])
+    {
         $request = new CreateDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDeploymentId($deploymentId);
-        $request->setDeployment($deployment);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['deploymentId'])) {
+            $request->setDeploymentId($optionalArgs['deploymentId']);
+        }
+
+        if (isset($optionalArgs['deployment'])) {
+            $request->setDeployment($optionalArgs['deployment']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -459,19 +461,19 @@ class GSuiteAddOnsGapicClient
      * ```
      * $gSuiteAddOnsClient = new GSuiteAddOnsClient();
      * try {
-     *     $formattedName = $gSuiteAddOnsClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-     *     $gSuiteAddOnsClient->deleteDeployment($formattedName);
+     *     $gSuiteAddOnsClient->deleteDeployment();
      * } finally {
      *     $gSuiteAddOnsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full resource name of the deployment to delete.
-     *
-     *                             Example:  `projects/my_project/deployments/my_deployment`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the deployment to delete.
+     *
+     *           Example:  `projects/my_project/deployments/my_deployment`.
      *     @type string $etag
      *           The etag of the deployment to delete.
      *           If this is provided, it must match the server's etag.
@@ -483,12 +485,15 @@ class GSuiteAddOnsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDeployment($name, array $optionalArgs = [])
+    public function deleteDeployment(array $optionalArgs = [])
     {
         $request = new DeleteDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -514,20 +519,20 @@ class GSuiteAddOnsGapicClient
      * ```
      * $gSuiteAddOnsClient = new GSuiteAddOnsClient();
      * try {
-     *     $formattedName = $gSuiteAddOnsClient->authorizationName('[PROJECT]');
-     *     $response = $gSuiteAddOnsClient->getAuthorization($formattedName);
+     *     $response = $gSuiteAddOnsClient->getAuthorization();
      * } finally {
      *     $gSuiteAddOnsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the project for which to get the Google Workspace Add-ons
-     *                             authorization information.
-     *
-     *                             Example: `projects/my_project/authorization`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the project for which to get the Google Workspace Add-ons
+     *           authorization information.
+     *
+     *           Example: `projects/my_project/authorization`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -538,12 +543,15 @@ class GSuiteAddOnsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAuthorization($name, array $optionalArgs = [])
+    public function getAuthorization(array $optionalArgs = [])
     {
         $request = new GetAuthorizationRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -565,19 +573,19 @@ class GSuiteAddOnsGapicClient
      * ```
      * $gSuiteAddOnsClient = new GSuiteAddOnsClient();
      * try {
-     *     $formattedName = $gSuiteAddOnsClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-     *     $response = $gSuiteAddOnsClient->getDeployment($formattedName);
+     *     $response = $gSuiteAddOnsClient->getDeployment();
      * } finally {
      *     $gSuiteAddOnsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full resource name of the deployment to get.
-     *
-     *                             Example:  `projects/my_project/deployments/my_deployment`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the deployment to get.
+     *
+     *           Example:  `projects/my_project/deployments/my_deployment`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -588,12 +596,15 @@ class GSuiteAddOnsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDeployment($name, array $optionalArgs = [])
+    public function getDeployment(array $optionalArgs = [])
     {
         $request = new GetDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -615,19 +626,19 @@ class GSuiteAddOnsGapicClient
      * ```
      * $gSuiteAddOnsClient = new GSuiteAddOnsClient();
      * try {
-     *     $formattedName = $gSuiteAddOnsClient->installStatusName('[PROJECT]', '[DEPLOYMENT]');
-     *     $response = $gSuiteAddOnsClient->getInstallStatus($formattedName);
+     *     $response = $gSuiteAddOnsClient->getInstallStatus();
      * } finally {
      *     $gSuiteAddOnsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full resource name of the deployment.
-     *
-     *                             Example:  `projects/my_project/deployments/my_deployment/installStatus`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the deployment.
+     *
+     *           Example:  `projects/my_project/deployments/my_deployment/installStatus`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -638,12 +649,15 @@ class GSuiteAddOnsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInstallStatus($name, array $optionalArgs = [])
+    public function getInstallStatus(array $optionalArgs = [])
     {
         $request = new GetInstallStatusRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -667,19 +681,19 @@ class GSuiteAddOnsGapicClient
      * ```
      * $gSuiteAddOnsClient = new GSuiteAddOnsClient();
      * try {
-     *     $formattedName = $gSuiteAddOnsClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-     *     $gSuiteAddOnsClient->installDeployment($formattedName);
+     *     $gSuiteAddOnsClient->installDeployment();
      * } finally {
      *     $gSuiteAddOnsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full resource name of the deployment to install.
-     *
-     *                             Example:  `projects/my_project/deployments/my_deployment`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the deployment to install.
+     *
+     *           Example:  `projects/my_project/deployments/my_deployment`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -688,12 +702,15 @@ class GSuiteAddOnsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function installDeployment($name, array $optionalArgs = [])
+    public function installDeployment(array $optionalArgs = [])
     {
         $request = new InstallDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -715,9 +732,8 @@ class GSuiteAddOnsGapicClient
      * ```
      * $gSuiteAddOnsClient = new GSuiteAddOnsClient();
      * try {
-     *     $formattedParent = $gSuiteAddOnsClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $gSuiteAddOnsClient->listDeployments($formattedParent);
+     *     $pagedResponse = $gSuiteAddOnsClient->listDeployments();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -725,7 +741,7 @@ class GSuiteAddOnsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $gSuiteAddOnsClient->listDeployments($formattedParent);
+     *     $pagedResponse = $gSuiteAddOnsClient->listDeployments();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -734,12 +750,13 @@ class GSuiteAddOnsGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the project in which to create the deployment.
-     *
-     *                             Example: `projects/my_project`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. Name of the project in which to create the deployment.
+     *
+     *           Example: `projects/my_project`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -759,12 +776,15 @@ class GSuiteAddOnsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDeployments($parent, array $optionalArgs = [])
+    public function listDeployments(array $optionalArgs = [])
     {
         $request = new ListDeploymentsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -794,17 +814,17 @@ class GSuiteAddOnsGapicClient
      * ```
      * $gSuiteAddOnsClient = new GSuiteAddOnsClient();
      * try {
-     *     $deployment = new Deployment();
-     *     $response = $gSuiteAddOnsClient->replaceDeployment($deployment);
+     *     $response = $gSuiteAddOnsClient->replaceDeployment();
      * } finally {
      *     $gSuiteAddOnsClient->close();
      * }
      * ```
      *
-     * @param Deployment $deployment   Required. The deployment to create or replace.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Deployment $deployment
+     *           Required. The deployment to create or replace.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -815,12 +835,14 @@ class GSuiteAddOnsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function replaceDeployment($deployment, array $optionalArgs = [])
+    public function replaceDeployment(array $optionalArgs = [])
     {
         $request = new ReplaceDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setDeployment($deployment);
-        $requestParamHeaders['deployment.name'] = $deployment->getName();
+        if (isset($optionalArgs['deployment'])) {
+            $request->setDeployment($optionalArgs['deployment']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -844,19 +866,19 @@ class GSuiteAddOnsGapicClient
      * ```
      * $gSuiteAddOnsClient = new GSuiteAddOnsClient();
      * try {
-     *     $formattedName = $gSuiteAddOnsClient->deploymentName('[PROJECT]', '[DEPLOYMENT]');
-     *     $gSuiteAddOnsClient->uninstallDeployment($formattedName);
+     *     $gSuiteAddOnsClient->uninstallDeployment();
      * } finally {
      *     $gSuiteAddOnsClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The full resource name of the deployment to install.
-     *
-     *                             Example:  `projects/my_project/deployments/my_deployment`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The full resource name of the deployment to install.
+     *
+     *           Example:  `projects/my_project/deployments/my_deployment`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -865,12 +887,15 @@ class GSuiteAddOnsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function uninstallDeployment($name, array $optionalArgs = [])
+    public function uninstallDeployment(array $optionalArgs = [])
     {
         $request = new UninstallDeploymentRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

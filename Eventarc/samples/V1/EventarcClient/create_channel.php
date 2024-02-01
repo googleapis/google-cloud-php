@@ -33,32 +33,19 @@ use Google\Rpc\Status;
 /**
  * Create a new channel in a particular project and location.
  *
- * @param string $formattedParent The parent collection in which to add this channel. Please see
- *                                {@see EventarcClient::locationName()} for help formatting this field.
- * @param string $channelName     The resource name of the channel. Must be unique within the
- *                                location on the project and must be in
- *                                `projects/{project}/locations/{location}/channels/{channel_id}` format.
- * @param string $channelId       The user-provided ID to be assigned to the channel.
- * @param bool   $validateOnly    If set, validate the request and preview the review, but do not
- *                                post it.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_channel_sample(
-    string $formattedParent,
-    string $channelName,
-    string $channelId,
-    bool $validateOnly
-): void {
+function create_channel_sample(): void
+{
     // Create a client.
     $eventarcClient = new EventarcClient();
 
     // Prepare the request message.
-    $channel = (new Channel())
-        ->setName($channelName);
-    $request = (new CreateChannelRequest())
-        ->setParent($formattedParent)
-        ->setChannel($channel)
-        ->setChannelId($channelId)
-        ->setValidateOnly($validateOnly);
+    $request = new CreateChannelRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -78,24 +65,5 @@ function create_channel_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EventarcClient::locationName('[PROJECT]', '[LOCATION]');
-    $channelName = '[NAME]';
-    $channelId = '[CHANNEL_ID]';
-    $validateOnly = false;
-
-    create_channel_sample($formattedParent, $channelName, $channelId, $validateOnly);
 }
 // [END eventarc_v1_generated_Eventarc_CreateChannel_sync]

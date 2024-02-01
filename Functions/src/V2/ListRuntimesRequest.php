@@ -33,7 +33,6 @@ class ListRuntimesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The project and location from which the runtimes should be
      *                       listed, specified in the format `projects/&#42;/locations/*`
-     *                       Please see {@see FunctionServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Functions\V2\ListRuntimesRequest
      *

@@ -47,8 +47,7 @@ class SignBlobRequest extends \Google\Protobuf\Internal\Message
      * @param string   $name      Required. The resource name of the service account for which the credentials
      *                            are requested, in the following format:
      *                            `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
-     *                            character is required; replacing it with a project ID is invalid. Please see
-     *                            {@see IAMCredentialsClient::serviceAccountName()} for help formatting this field.
+     *                            character is required; replacing it with a project ID is invalid.
      * @param string[] $delegates The sequence of service accounts in a delegation chain. Each service
      *                            account must be granted the `roles/iam.serviceAccountTokenCreator` role
      *                            on its next service account in the chain. The last service account in the

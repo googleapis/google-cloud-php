@@ -35,19 +35,19 @@ use Google\Cloud\GkeMultiCloud\V1\GetAzureOpenIdConfigRequest;
  * specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
  * for details.
  *
- * @param string $formattedAzureCluster The AzureCluster, which owns the OIDC discovery document.
- *                                      Format:
- *                                      projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
- *                                      Please see {@see AzureClustersClient::azureClusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_azure_open_id_config_sample(string $formattedAzureCluster): void
+function get_azure_open_id_config_sample(): void
 {
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
     // Prepare the request message.
-    $request = (new GetAzureOpenIdConfigRequest())
-        ->setAzureCluster($formattedAzureCluster);
+    $request = new GetAzureOpenIdConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,25 +57,5 @@ function get_azure_open_id_config_sample(string $formattedAzureCluster): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedAzureCluster = AzureClustersClient::azureClusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AZURE_CLUSTER]'
-    );
-
-    get_azure_open_id_config_sample($formattedAzureCluster);
 }
 // [END gkemulticloud_v1_generated_AzureClusters_GetAzureOpenIdConfig_sync]

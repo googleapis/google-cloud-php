@@ -31,20 +31,19 @@ use Grafeas\V1\UpdateNoteRequest;
 /**
  * Updates the specified note.
  *
- * @param string $formattedName The name of the note in the form of
- *                              `projects/[PROVIDER_ID]/notes/[NOTE_ID]`. Please see
- *                              {@see GrafeasClient::noteName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_note_sample(string $formattedName): void
+function update_note_sample(): void
 {
     // Create a client.
     $grafeasClient = new GrafeasClient();
 
     // Prepare the request message.
-    $note = new Note();
-    $request = (new UpdateNoteRequest())
-        ->setName($formattedName)
-        ->setNote($note);
+    $request = new UpdateNoteRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function update_note_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = GrafeasClient::noteName('[PROJECT]', '[NOTE]');
-
-    update_note_sample($formattedName);
 }
 // [END containeranalysis_v1_generated_Grafeas_UpdateNote_sync]

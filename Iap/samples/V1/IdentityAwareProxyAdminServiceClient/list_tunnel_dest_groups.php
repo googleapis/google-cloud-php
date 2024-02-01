@@ -34,20 +34,19 @@ use Google\Cloud\Iap\V1\TunnelDestGroup;
  * `-` as the location ID. For example:
  * `/v1/projects/123/iap_tunnel/locations/-/destGroups`
  *
- * @param string $formattedParent Google Cloud Project ID and location.
- *                                In the following format:
- *                                `projects/{project_number/id}/iap_tunnel/locations/{location}`.
- *                                A `-` can be used for the location to group across all locations. Please see
- *                                {@see IdentityAwareProxyAdminServiceClient::tunnelLocationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_tunnel_dest_groups_sample(string $formattedParent): void
+function list_tunnel_dest_groups_sample(): void
 {
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new ListTunnelDestGroupsRequest())
-        ->setParent($formattedParent);
+    $request = new ListTunnelDestGroupsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,24 +60,5 @@ function list_tunnel_dest_groups_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = IdentityAwareProxyAdminServiceClient::tunnelLocationName(
-        '[PROJECT]',
-        '[LOCATION]'
-    );
-
-    list_tunnel_dest_groups_sample($formattedParent);
 }
 // [END iap_v1_generated_IdentityAwareProxyAdminService_ListTunnelDestGroups_sync]

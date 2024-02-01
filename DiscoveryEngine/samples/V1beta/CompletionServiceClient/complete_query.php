@@ -31,22 +31,19 @@ use Google\Cloud\DiscoveryEngine\V1beta\CompleteQueryResponse;
 /**
  * Completes the specified user input with keyword suggestions.
  *
- * @param string $formattedDataStore The parent data store resource name for which the completion is
- *                                   performed, such as
- *                                   `projects/&#42;/locations/global/collections/default_collection/dataStores/default_data_store`. Please see
- *                                   {@see CompletionServiceClient::dataStoreName()} for help formatting this field.
- * @param string $query              The typeahead input used to fetch suggestions. Maximum length is
- *                                   128 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function complete_query_sample(string $formattedDataStore, string $query): void
+function complete_query_sample(): void
 {
     // Create a client.
     $completionServiceClient = new CompletionServiceClient();
 
     // Prepare the request message.
-    $request = (new CompleteQueryRequest())
-        ->setDataStore($formattedDataStore)
-        ->setQuery($query);
+    $request = new CompleteQueryRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,26 +53,5 @@ function complete_query_sample(string $formattedDataStore, string $query): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedDataStore = CompletionServiceClient::dataStoreName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_STORE]'
-    );
-    $query = '[QUERY]';
-
-    complete_query_sample($formattedDataStore, $query);
 }
 // [END discoveryengine_v1beta_generated_CompletionService_CompleteQuery_sync]

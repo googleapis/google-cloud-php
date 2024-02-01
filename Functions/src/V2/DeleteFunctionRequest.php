@@ -23,8 +23,7 @@ class DeleteFunctionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the function which should be deleted. Please see
-     *                     {@see FunctionServiceClient::functionName()} for help formatting this field.
+     * @param string $name Required. The name of the function which should be deleted.
      *
      * @return \Google\Cloud\Functions\V2\DeleteFunctionRequest
      *

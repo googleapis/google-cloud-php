@@ -63,8 +63,7 @@ class ListMigrationJobsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
-     * @param string $parent Required. The parent which owns this collection of migrationJobs. Please see
-     *                       {@see DataMigrationServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent which owns this collection of migrationJobs.
      *
      * @return \Google\Cloud\CloudDms\V1\ListMigrationJobsRequest
      *

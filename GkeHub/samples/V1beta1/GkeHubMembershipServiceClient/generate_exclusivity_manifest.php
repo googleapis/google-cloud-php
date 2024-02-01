@@ -41,11 +41,13 @@ use Google\Cloud\GkeHub\V1beta1\GkeHubMembershipServiceClient;
  * corresponding CR. The response will be the converted CRD and CR if there
  * are any differences between the versions.
  *
- * @param string $formattedName The Membership resource name in the format
- *                              `projects/&#42;/locations/&#42;/memberships/*`. Please see
- *                              {@see GkeHubMembershipServiceClient::membershipName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function generate_exclusivity_manifest_sample(string $formattedName): void
+function generate_exclusivity_manifest_sample(): void
 {
     // Create a client.
     $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
@@ -53,30 +55,10 @@ function generate_exclusivity_manifest_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var GenerateExclusivityManifestResponse $response */
-        $response = $gkeHubMembershipServiceClient->generateExclusivityManifest($formattedName);
+        $response = $gkeHubMembershipServiceClient->generateExclusivityManifest();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = GkeHubMembershipServiceClient::membershipName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[MEMBERSHIP]'
-    );
-
-    generate_exclusivity_manifest_sample($formattedName);
 }
 // [END gkehub_v1beta1_generated_GkeHubMembershipService_GenerateExclusivityManifest_sync]

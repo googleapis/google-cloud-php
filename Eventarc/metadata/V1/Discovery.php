@@ -18,23 +18,23 @@ class Discovery
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˜
-(google/cloud/eventarc/v1/discovery.protogoogle.cloud.eventarc.v1google/api/resource.proto"Ò
-Provider
-name (	B‡A
-display_name (	B‡A=
-event_types (2#.google.cloud.eventarc.v1.EventTypeB‡A:xÍAu
- eventarc.googleapis.com/Provider<projects/{project}/locations/{location}/providers/{provider}*	providers2provider"®
-	EventType
-type (	B‡A
-description (	B‡AO
-filtering_attributes (2,.google.cloud.eventarc.v1.FilteringAttributeB‡A
-event_schema_uri (	B‡A"Ç
-FilteringAttribute
-	attribute (	B‡A
-description (	B‡A
-required (B‡A#
-path_pattern_supported (B‡ABj
+Ç
+(google/cloud/eventarc/v1/discovery.protogoogle.cloud.eventarc.v1google/api/resource.proto"Ù
+Provider
+name (	B‚A
+display_name (	B‚A>
+event_types (2#.google.cloud.eventarc.v1.EventTypeB‚A:xÍAu
+ eventarc.googleapis.com/Provider<projects/{project}/locations/{location}/providers/{provider}*	providers2provider"¨
+	EventType
+type (	B‚A
+description (	B‚AP
+filtering_attributes (2,.google.cloud.eventarc.v1.FilteringAttributeB‚A
+event_schema_uri (	B‚A"Ü
+FilteringAttribute
+	attribute (	B‚A
+description (	B‚A
+required (B‚A$
+path_pattern_supported (B‚ABj
 com.google.cloud.eventarc.v1BDiscoveryProtoPZ8cloud.google.com/go/eventarc/apiv1/eventarcpb;eventarcpbbproto3'
         , true);
 

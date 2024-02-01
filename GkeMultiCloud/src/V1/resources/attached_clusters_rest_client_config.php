@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'attached_cluster_id',
-                ],
             ],
             'DeleteAttachedCluster' => [
                 'method' => 'delete',
@@ -108,9 +105,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

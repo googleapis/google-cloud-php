@@ -30,7 +30,6 @@ class GetContactRequest extends \Google\Protobuf\Internal\Message
      *                     Format: organizations/{organization_id}/contacts/{contact_id},
      *                     folders/{folder_id}/contacts/{contact_id} or
      *                     projects/{project_id}/contacts/{contact_id}
-     *                     Please see {@see EssentialContactsServiceClient::contactName()} for help formatting this field.
      *
      * @return \Google\Cloud\EssentialContacts\V1\GetContactRequest
      *

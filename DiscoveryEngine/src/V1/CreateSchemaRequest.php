@@ -45,8 +45,7 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                  $parent   Required. The parent data store resource name, in the format of
-     *                                                          `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`. Please see
-     *                                                          {@see SchemaServiceClient::dataStoreName()} for help formatting this field.
+     *                                                          `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
      * @param \Google\Cloud\DiscoveryEngine\V1\Schema $schema   Required. The [Schema][google.cloud.discoveryengine.v1.Schema] to create.
      * @param string                                  $schemaId Required. The ID to use for the
      *                                                          [Schema][google.cloud.discoveryengine.v1.Schema], which will become the

@@ -31,18 +31,19 @@ use Google\Cloud\Iap\V1\IapSettings;
 /**
  * Gets the IAP settings on a particular IAP protected resource.
  *
- * @param string $name The resource name for which to retrieve the settings.
- *                     Authorization: Requires the `getSettings` permission for the associated
- *                     resource.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_iap_settings_sample(string $name): void
+function get_iap_settings_sample(): void
 {
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new GetIapSettingsRequest())
-        ->setName($name);
+    $request = new GetIapSettingsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +53,5 @@ function get_iap_settings_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    get_iap_settings_sample($name);
 }
 // [END iap_v1_generated_IdentityAwareProxyAdminService_GetIapSettings_sync]

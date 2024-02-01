@@ -44,8 +44,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                            $parent   Required. The backup's project and location, in the format
      *                                                    `projects/{project_number}/locations/{location}`. In Filestore,
-     *                                                    backup locations map to Google Cloud regions, for example **us-west1**. Please see
-     *                                                    {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
+     *                                                    backup locations map to Google Cloud regions, for example **us-west1**.
      * @param \Google\Cloud\Filestore\V1\Backup $backup   Required. A [backup resource][google.cloud.filestore.v1.Backup]
      * @param string                            $backupId Required. The ID to use for the backup.
      *                                                    The ID must be unique within the specified project and location.

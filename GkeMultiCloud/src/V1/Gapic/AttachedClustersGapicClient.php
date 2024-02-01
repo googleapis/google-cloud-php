@@ -64,10 +64,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $attachedClustersClient = new AttachedClustersClient();
  * try {
- *     $formattedParent = $attachedClustersClient->locationName('[PROJECT]', '[LOCATION]');
- *     $attachedCluster = new AttachedCluster();
- *     $attachedClusterId = 'attached_cluster_id';
- *     $operationResponse = $attachedClustersClient->createAttachedCluster($formattedParent, $attachedCluster, $attachedClusterId);
+ *     $operationResponse = $attachedClustersClient->createAttachedCluster();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -78,7 +75,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $attachedClustersClient->createAttachedCluster($formattedParent, $attachedCluster, $attachedClusterId);
+ *     $operationResponse = $attachedClustersClient->createAttachedCluster();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $attachedClustersClient->resumeOperation($operationName, 'createAttachedCluster');
@@ -427,10 +424,7 @@ class AttachedClustersGapicClient
      * ```
      * $attachedClustersClient = new AttachedClustersClient();
      * try {
-     *     $formattedParent = $attachedClustersClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $attachedCluster = new AttachedCluster();
-     *     $attachedClusterId = 'attached_cluster_id';
-     *     $operationResponse = $attachedClustersClient->createAttachedCluster($formattedParent, $attachedCluster, $attachedClusterId);
+     *     $operationResponse = $attachedClustersClient->createAttachedCluster();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -441,7 +435,7 @@ class AttachedClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $attachedClustersClient->createAttachedCluster($formattedParent, $attachedCluster, $attachedClusterId);
+     *     $operationResponse = $attachedClustersClient->createAttachedCluster();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $attachedClustersClient->resumeOperation($operationName, 'createAttachedCluster');
@@ -461,28 +455,31 @@ class AttachedClustersGapicClient
      * }
      * ```
      *
-     * @param string          $parent            Required. The parent location where this
-     *                                           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
-     *                                           will be created.
-     *
-     *                                           Location names are formatted as `projects/<project-id>/locations/<region>`.
-     *
-     *                                           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                           for more details on Google Cloud resource names.
-     * @param AttachedCluster $attachedCluster   Required. The specification of the
-     *                                           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] to create.
-     * @param string          $attachedClusterId Required. A client provided ID the resource. Must be unique within the
-     *                                           parent resource.
-     *
-     *                                           The provided ID will be part of the
-     *                                           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
-     *                                           name formatted as
-     *                                           `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
-     *
-     *                                           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
-     * @param array           $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location where this
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+     *           will be created.
+     *
+     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
+     *     @type AttachedCluster $attachedCluster
+     *           Required. The specification of the
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] to create.
+     *     @type string $attachedClusterId
+     *           Required. A client provided ID the resource. Must be unique within the
+     *           parent resource.
+     *
+     *           The provided ID will be part of the
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+     *           name formatted as
+     *           `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
+     *
+     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually create the cluster.
      *     @type RetrySettings|array $retrySettings
@@ -495,18 +492,23 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAttachedCluster(
-        $parent,
-        $attachedCluster,
-        $attachedClusterId,
-        array $optionalArgs = []
-    ) {
+    public function createAttachedCluster(array $optionalArgs = [])
+    {
         $request = new CreateAttachedClusterRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAttachedCluster($attachedCluster);
-        $request->setAttachedClusterId($attachedClusterId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['attachedCluster'])) {
+            $request->setAttachedCluster($optionalArgs['attachedCluster']);
+        }
+
+        if (isset($optionalArgs['attachedClusterId'])) {
+            $request->setAttachedClusterId($optionalArgs['attachedClusterId']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -537,8 +539,7 @@ class AttachedClustersGapicClient
      * ```
      * $attachedClustersClient = new AttachedClustersClient();
      * try {
-     *     $formattedName = $attachedClustersClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-     *     $operationResponse = $attachedClustersClient->deleteAttachedCluster($formattedName);
+     *     $operationResponse = $attachedClustersClient->deleteAttachedCluster();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -548,7 +549,7 @@ class AttachedClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $attachedClustersClient->deleteAttachedCluster($formattedName);
+     *     $operationResponse = $attachedClustersClient->deleteAttachedCluster();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $attachedClustersClient->resumeOperation($operationName, 'deleteAttachedCluster');
@@ -567,17 +568,18 @@ class AttachedClustersGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name the
-     *                             [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] to delete.
-     *
-     *                             `AttachedCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud Platform resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name the
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] to delete.
+     *
+     *           `AttachedCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud Platform resource names.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually delete the resource.
      *     @type bool $allowMissing
@@ -611,12 +613,15 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAttachedCluster($name, array $optionalArgs = [])
+    public function deleteAttachedCluster(array $optionalArgs = [])
     {
         $request = new DeleteAttachedClusterRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -654,23 +659,23 @@ class AttachedClustersGapicClient
      * ```
      * $attachedClustersClient = new AttachedClustersClient();
      * try {
-     *     $formattedAttachedCluster = $attachedClustersClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-     *     $subjectToken = 'subject_token';
-     *     $subjectTokenType = 'subject_token_type';
-     *     $version = 'version';
-     *     $response = $attachedClustersClient->generateAttachedClusterAgentToken($formattedAttachedCluster, $subjectToken, $subjectTokenType, $version);
+     *     $response = $attachedClustersClient->generateAttachedClusterAgentToken();
      * } finally {
      *     $attachedClustersClient->close();
      * }
      * ```
      *
-     * @param string $attachedCluster  Required.
-     * @param string $subjectToken     Required.
-     * @param string $subjectTokenType Required.
-     * @param string $version          Required.
-     * @param array  $optionalArgs     {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $attachedCluster
+     *           Required.
+     *     @type string $subjectToken
+     *           Required.
+     *     @type string $subjectTokenType
+     *           Required.
+     *     @type string $version
+     *           Required.
      *     @type string $grantType
      *           Optional.
      *     @type string $audience
@@ -691,20 +696,28 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAttachedClusterAgentToken(
-        $attachedCluster,
-        $subjectToken,
-        $subjectTokenType,
-        $version,
-        array $optionalArgs = []
-    ) {
+    public function generateAttachedClusterAgentToken(array $optionalArgs = [])
+    {
         $request = new GenerateAttachedClusterAgentTokenRequest();
         $requestParamHeaders = [];
-        $request->setAttachedCluster($attachedCluster);
-        $request->setSubjectToken($subjectToken);
-        $request->setSubjectTokenType($subjectTokenType);
-        $request->setVersion($version);
-        $requestParamHeaders['attached_cluster'] = $attachedCluster;
+        if (isset($optionalArgs['attachedCluster'])) {
+            $request->setAttachedCluster($optionalArgs['attachedCluster']);
+            $requestParamHeaders['attached_cluster'] =
+                $optionalArgs['attachedCluster'];
+        }
+
+        if (isset($optionalArgs['subjectToken'])) {
+            $request->setSubjectToken($optionalArgs['subjectToken']);
+        }
+
+        if (isset($optionalArgs['subjectTokenType'])) {
+            $request->setSubjectTokenType($optionalArgs['subjectTokenType']);
+        }
+
+        if (isset($optionalArgs['version'])) {
+            $request->setVersion($optionalArgs['version']);
+        }
+
         if (isset($optionalArgs['grantType'])) {
             $request->setGrantType($optionalArgs['grantType']);
         }
@@ -748,46 +761,46 @@ class AttachedClustersGapicClient
      * ```
      * $attachedClustersClient = new AttachedClustersClient();
      * try {
-     *     $formattedParent = $attachedClustersClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $attachedClusterId = 'attached_cluster_id';
-     *     $platformVersion = 'platform_version';
-     *     $response = $attachedClustersClient->generateAttachedClusterInstallManifest($formattedParent, $attachedClusterId, $platformVersion);
+     *     $response = $attachedClustersClient->generateAttachedClusterInstallManifest();
      * } finally {
      *     $attachedClustersClient->close();
      * }
      * ```
      *
-     * @param string $parent            Required. The parent location where this
-     *                                  [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
-     *                                  will be created.
-     *
-     *                                  Location names are formatted as `projects/<project-id>/locations/<region>`.
-     *
-     *                                  See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                  for more details on Google Cloud resource names.
-     * @param string $attachedClusterId Required. A client provided ID of the resource. Must be unique within the
-     *                                  parent resource.
-     *
-     *                                  The provided ID will be part of the
-     *                                  [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
-     *                                  name formatted as
-     *                                  `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
-     *
-     *                                  Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
-     *
-     *                                  When generating an install manifest for importing an existing Membership
-     *                                  resource, the attached_cluster_id field must be the Membership id.
-     *
-     *                                  Membership names are formatted as
-     *                                  `projects/<project-id>/locations/<region>/memberships/<membership-id>`.
-     * @param string $platformVersion   Required. The platform version for the cluster (e.g. `1.19.0-gke.1000`).
-     *
-     *                                  You can list all supported versions on a given Google Cloud region by
-     *                                  calling
-     *                                  [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
-     * @param array  $optionalArgs      {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location where this
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+     *           will be created.
+     *
+     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
+     *     @type string $attachedClusterId
+     *           Required. A client provided ID of the resource. Must be unique within the
+     *           parent resource.
+     *
+     *           The provided ID will be part of the
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+     *           name formatted as
+     *           `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
+     *
+     *           Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+     *
+     *           When generating an install manifest for importing an existing Membership
+     *           resource, the attached_cluster_id field must be the Membership id.
+     *
+     *           Membership names are formatted as
+     *           `projects/<project-id>/locations/<region>/memberships/<membership-id>`.
+     *     @type string $platformVersion
+     *           Required. The platform version for the cluster (e.g. `1.19.0-gke.1000`).
+     *
+     *           You can list all supported versions on a given Google Cloud region by
+     *           calling
+     *           [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
      *     @type AttachedProxyConfig $proxyConfig
      *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      *     @type RetrySettings|array $retrySettings
@@ -801,17 +814,23 @@ class AttachedClustersGapicClient
      * @throws ApiException if the remote call fails
      */
     public function generateAttachedClusterInstallManifest(
-        $parent,
-        $attachedClusterId,
-        $platformVersion,
         array $optionalArgs = []
     ) {
         $request = new GenerateAttachedClusterInstallManifestRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setAttachedClusterId($attachedClusterId);
-        $request->setPlatformVersion($platformVersion);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['attachedClusterId'])) {
+            $request->setAttachedClusterId($optionalArgs['attachedClusterId']);
+        }
+
+        if (isset($optionalArgs['platformVersion'])) {
+            $request->setPlatformVersion($optionalArgs['platformVersion']);
+        }
+
         if (isset($optionalArgs['proxyConfig'])) {
             $request->setProxyConfig($optionalArgs['proxyConfig']);
         }
@@ -838,25 +857,25 @@ class AttachedClustersGapicClient
      * ```
      * $attachedClustersClient = new AttachedClustersClient();
      * try {
-     *     $formattedName = $attachedClustersClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
-     *     $response = $attachedClustersClient->getAttachedCluster($formattedName);
+     *     $response = $attachedClustersClient->getAttachedCluster();
      * } finally {
      *     $attachedClustersClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
-     *                             to describe.
-     *
-     *                             `AttachedCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud Platform resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+     *           to describe.
+     *
+     *           `AttachedCluster` names are formatted as
+     *           `projects/<project-id>/locations/<region>/attachedClusters/<cluster-id>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud Platform resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -867,12 +886,15 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAttachedCluster($name, array $optionalArgs = [])
+    public function getAttachedCluster(array $optionalArgs = [])
     {
         $request = new GetAttachedClusterRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -895,25 +917,25 @@ class AttachedClustersGapicClient
      * ```
      * $attachedClustersClient = new AttachedClustersClient();
      * try {
-     *     $formattedName = $attachedClustersClient->attachedServerConfigName('[PROJECT]', '[LOCATION]');
-     *     $response = $attachedClustersClient->getAttachedServerConfig($formattedName);
+     *     $response = $attachedClustersClient->getAttachedServerConfig();
      * } finally {
      *     $attachedClustersClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [AttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedServerConfig]
-     *                             resource to describe.
-     *
-     *                             `AttachedServerConfig` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/attachedServerConfig`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the
+     *           [AttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedServerConfig]
+     *           resource to describe.
+     *
+     *           `AttachedServerConfig` names are formatted as
+     *           `projects/<project-id>/locations/<region>/attachedServerConfig`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -924,12 +946,15 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAttachedServerConfig($name, array $optionalArgs = [])
+    public function getAttachedServerConfig(array $optionalArgs = [])
     {
         $request = new GetAttachedServerConfigRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -960,11 +985,7 @@ class AttachedClustersGapicClient
      * ```
      * $attachedClustersClient = new AttachedClustersClient();
      * try {
-     *     $formattedParent = $attachedClustersClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $fleetMembership = 'fleet_membership';
-     *     $platformVersion = 'platform_version';
-     *     $distribution = 'distribution';
-     *     $operationResponse = $attachedClustersClient->importAttachedCluster($formattedParent, $fleetMembership, $platformVersion, $distribution);
+     *     $operationResponse = $attachedClustersClient->importAttachedCluster();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -975,7 +996,7 @@ class AttachedClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $attachedClustersClient->importAttachedCluster($formattedParent, $fleetMembership, $platformVersion, $distribution);
+     *     $operationResponse = $attachedClustersClient->importAttachedCluster();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $attachedClustersClient->resumeOperation($operationName, 'importAttachedCluster');
@@ -995,28 +1016,32 @@ class AttachedClustersGapicClient
      * }
      * ```
      *
-     * @param string $parent          Required. The parent location where this
-     *                                [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
-     *                                will be created.
-     *
-     *                                Location names are formatted as `projects/<project-id>/locations/<region>`.
-     *
-     *                                See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                for more details on Google Cloud resource names.
-     * @param string $fleetMembership Required. The name of the fleet membership resource to import.
-     * @param string $platformVersion Required. The platform version for the cluster (e.g. `1.19.0-gke.1000`).
-     *
-     *                                You can list all supported versions on a given Google Cloud region by
-     *                                calling
-     *                                [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
-     * @param string $distribution    Required. The Kubernetes distribution of the underlying attached cluster.
-     *
-     *                                Supported values: ["eks", "aks"].
-     * @param array  $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location where this
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+     *           will be created.
+     *
+     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud resource names.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually import the cluster.
+     *     @type string $fleetMembership
+     *           Required. The name of the fleet membership resource to import.
+     *     @type string $platformVersion
+     *           Required. The platform version for the cluster (e.g. `1.19.0-gke.1000`).
+     *
+     *           You can list all supported versions on a given Google Cloud region by
+     *           calling
+     *           [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
+     *     @type string $distribution
+     *           Required. The Kubernetes distribution of the underlying attached cluster.
+     *
+     *           Supported values: ["eks", "aks"].
      *     @type AttachedProxyConfig $proxyConfig
      *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      *     @type RetrySettings|array $retrySettings
@@ -1029,22 +1054,29 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importAttachedCluster(
-        $parent,
-        $fleetMembership,
-        $platformVersion,
-        $distribution,
-        array $optionalArgs = []
-    ) {
+    public function importAttachedCluster(array $optionalArgs = [])
+    {
         $request = new ImportAttachedClusterRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setFleetMembership($fleetMembership);
-        $request->setPlatformVersion($platformVersion);
-        $request->setDistribution($distribution);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['fleetMembership'])) {
+            $request->setFleetMembership($optionalArgs['fleetMembership']);
+        }
+
+        if (isset($optionalArgs['platformVersion'])) {
+            $request->setPlatformVersion($optionalArgs['platformVersion']);
+        }
+
+        if (isset($optionalArgs['distribution'])) {
+            $request->setDistribution($optionalArgs['distribution']);
         }
 
         if (isset($optionalArgs['proxyConfig'])) {
@@ -1073,9 +1105,8 @@ class AttachedClustersGapicClient
      * ```
      * $attachedClustersClient = new AttachedClustersClient();
      * try {
-     *     $formattedParent = $attachedClustersClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $attachedClustersClient->listAttachedClusters($formattedParent);
+     *     $pagedResponse = $attachedClustersClient->listAttachedClusters();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1083,7 +1114,7 @@ class AttachedClustersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $attachedClustersClient->listAttachedClusters($formattedParent);
+     *     $pagedResponse = $attachedClustersClient->listAttachedClusters();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1092,16 +1123,17 @@ class AttachedClustersGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent location which owns this collection of
-     *                             [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resources.
-     *
-     *                             Location names are formatted as `projects/<project-id>/locations/<region>`.
-     *
-     *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                             for more details on Google Cloud Platform resource names.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent location which owns this collection of
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resources.
+     *
+     *           Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *
+     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
+     *           for more details on Google Cloud Platform resource names.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1121,12 +1153,15 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAttachedClusters($parent, array $optionalArgs = [])
+    public function listAttachedClusters(array $optionalArgs = [])
     {
         $request = new ListAttachedClustersRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1157,9 +1192,7 @@ class AttachedClustersGapicClient
      * ```
      * $attachedClustersClient = new AttachedClustersClient();
      * try {
-     *     $attachedCluster = new AttachedCluster();
-     *     $updateMask = new FieldMask();
-     *     $operationResponse = $attachedClustersClient->updateAttachedCluster($attachedCluster, $updateMask);
+     *     $operationResponse = $attachedClustersClient->updateAttachedCluster();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1170,7 +1203,7 @@ class AttachedClustersGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $attachedClustersClient->updateAttachedCluster($attachedCluster, $updateMask);
+     *     $operationResponse = $attachedClustersClient->updateAttachedCluster();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $attachedClustersClient->resumeOperation($operationName, 'updateAttachedCluster');
@@ -1190,29 +1223,31 @@ class AttachedClustersGapicClient
      * }
      * ```
      *
-     * @param AttachedCluster $attachedCluster Required. The
-     *                                         [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
-     *                                         to update.
-     * @param FieldMask       $updateMask      Required. Mask of fields to update. At least one path must be supplied in
-     *                                         this field. The elements of the repeated paths field can only include these
-     *                                         fields from
-     *                                         [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]:
-     *
-     *                                         *   `annotations`.
-     *                                         *   `authorization.admin_groups`.
-     *                                         *   `authorization.admin_users`.
-     *                                         *   `binary_authorization.evaluation_mode`.
-     *                                         *   `description`.
-     *                                         *   `logging_config.component_config.enable_components`.
-     *                                         *   `monitoring_config.managed_prometheus_config.enabled`.
-     *                                         *   `platform_version`.
-     *                                         *   `proxy_config.kubernetes_secret.name`.
-     *                                         *   `proxy_config.kubernetes_secret.namespace`.
-     * @param array           $optionalArgs    {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type AttachedCluster $attachedCluster
+     *           Required. The
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster] resource
+     *           to update.
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually update the cluster.
+     *     @type FieldMask $updateMask
+     *           Required. Mask of fields to update. At least one path must be supplied in
+     *           this field. The elements of the repeated paths field can only include these
+     *           fields from
+     *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]:
+     *
+     *           *   `annotations`.
+     *           *   `authorization.admin_groups`.
+     *           *   `authorization.admin_users`.
+     *           *   `binary_authorization.evaluation_mode`.
+     *           *   `description`.
+     *           *   `logging_config.component_config.enable_components`.
+     *           *   `monitoring_config.managed_prometheus_config.enabled`.
+     *           *   `platform_version`.
+     *           *   `proxy_config.kubernetes_secret.name`.
+     *           *   `proxy_config.kubernetes_secret.namespace`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1223,20 +1258,20 @@ class AttachedClustersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAttachedCluster(
-        $attachedCluster,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateAttachedCluster(array $optionalArgs = [])
+    {
         $request = new UpdateAttachedClusterRequest();
         $requestParamHeaders = [];
-        $request->setAttachedCluster($attachedCluster);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders[
-            'attached_cluster.name'
-        ] = $attachedCluster->getName();
+        if (isset($optionalArgs['attachedCluster'])) {
+            $request->setAttachedCluster($optionalArgs['attachedCluster']);
+        }
+
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

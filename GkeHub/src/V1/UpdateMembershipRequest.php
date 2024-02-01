@@ -60,8 +60,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                             $name       Required. The Membership resource name in the format
-     *                                                       `projects/&#42;/locations/&#42;/memberships/*`. Please see
-     *                                                       {@see GkeHubClient::membershipName()} for help formatting this field.
+     *                                                       `projects/&#42;/locations/&#42;/memberships/*`.
      * @param \Google\Cloud\GkeHub\V1\Membership $resource   Required. Only fields specified in update_mask are updated.
      *                                                       If you specify a field in the update_mask but don't specify its value here
      *                                                       that field will be deleted.

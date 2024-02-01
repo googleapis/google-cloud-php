@@ -32,9 +32,6 @@ use Google\Cloud\Domains\V1\Client\DomainsClient;
 use Google\Cloud\Domains\V1\ConfigureContactSettingsRequest;
 use Google\Cloud\Domains\V1\ConfigureDnsSettingsRequest;
 use Google\Cloud\Domains\V1\ConfigureManagementSettingsRequest;
-use Google\Cloud\Domains\V1\ContactPrivacy;
-use Google\Cloud\Domains\V1\ContactSettings;
-use Google\Cloud\Domains\V1\ContactSettings\Contact;
 use Google\Cloud\Domains\V1\DeleteRegistrationRequest;
 use Google\Cloud\Domains\V1\ExportRegistrationRequest;
 use Google\Cloud\Domains\V1\GetRegistrationRequest;
@@ -55,11 +52,8 @@ use Google\Cloud\Domains\V1\UpdateRegistrationRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
-use Google\Type\Money;
-use Google\Type\PostalAddress;
 use stdClass;
 
 /**
@@ -123,12 +117,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $updateMask = new FieldMask();
-        $request = (new ConfigureContactSettingsRequest())
-            ->setRegistration($formattedRegistration)
-            ->setUpdateMask($updateMask);
+        $request = new ConfigureContactSettingsRequest();
         $response = $gapicClient->configureContactSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -139,10 +128,6 @@ class DomainsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/ConfigureContactSettings', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getRegistration();
-        $this->assertProtobufEquals($formattedRegistration, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/configureContactSettingsTest');
         $response->pollUntilComplete([
@@ -193,12 +178,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $updateMask = new FieldMask();
-        $request = (new ConfigureContactSettingsRequest())
-            ->setRegistration($formattedRegistration)
-            ->setUpdateMask($updateMask);
+        $request = new ConfigureContactSettingsRequest();
         $response = $gapicClient->configureContactSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -254,12 +234,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $updateMask = new FieldMask();
-        $request = (new ConfigureDnsSettingsRequest())
-            ->setRegistration($formattedRegistration)
-            ->setUpdateMask($updateMask);
+        $request = new ConfigureDnsSettingsRequest();
         $response = $gapicClient->configureDnsSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -270,10 +245,6 @@ class DomainsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/ConfigureDnsSettings', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getRegistration();
-        $this->assertProtobufEquals($formattedRegistration, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/configureDnsSettingsTest');
         $response->pollUntilComplete([
@@ -324,12 +295,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $updateMask = new FieldMask();
-        $request = (new ConfigureDnsSettingsRequest())
-            ->setRegistration($formattedRegistration)
-            ->setUpdateMask($updateMask);
+        $request = new ConfigureDnsSettingsRequest();
         $response = $gapicClient->configureDnsSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -385,12 +351,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $updateMask = new FieldMask();
-        $request = (new ConfigureManagementSettingsRequest())
-            ->setRegistration($formattedRegistration)
-            ->setUpdateMask($updateMask);
+        $request = new ConfigureManagementSettingsRequest();
         $response = $gapicClient->configureManagementSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -401,10 +362,6 @@ class DomainsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/ConfigureManagementSettings', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getRegistration();
-        $this->assertProtobufEquals($formattedRegistration, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/configureManagementSettingsTest');
         $response->pollUntilComplete([
@@ -455,12 +412,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $updateMask = new FieldMask();
-        $request = (new ConfigureManagementSettingsRequest())
-            ->setRegistration($formattedRegistration)
-            ->setUpdateMask($updateMask);
+        $request = new ConfigureManagementSettingsRequest();
         $response = $gapicClient->configureManagementSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -512,10 +464,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new DeleteRegistrationRequest())
-            ->setName($formattedName);
+        $request = new DeleteRegistrationRequest();
         $response = $gapicClient->deleteRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -526,8 +475,6 @@ class DomainsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/DeleteRegistration', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteRegistrationTest');
         $response->pollUntilComplete([
@@ -578,10 +525,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new DeleteRegistrationRequest())
-            ->setName($formattedName);
+        $request = new DeleteRegistrationRequest();
         $response = $gapicClient->deleteRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -637,10 +581,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new ExportRegistrationRequest())
-            ->setName($formattedName);
+        $request = new ExportRegistrationRequest();
         $response = $gapicClient->exportRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -651,8 +592,6 @@ class DomainsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/ExportRegistration', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportRegistrationTest');
         $response->pollUntilComplete([
@@ -703,10 +642,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new ExportRegistrationRequest())
-            ->setName($formattedName);
+        $request = new ExportRegistrationRequest();
         $response = $gapicClient->exportRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -744,10 +680,7 @@ class DomainsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDomainName($domainName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new GetRegistrationRequest())
-            ->setName($formattedName);
+        $request = new GetRegistrationRequest();
         $response = $gapicClient->getRegistration($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -755,8 +688,6 @@ class DomainsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/GetRegistration', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -778,10 +709,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new GetRegistrationRequest())
-            ->setName($formattedName);
+        $request = new GetRegistrationRequest();
         try {
             $gapicClient->getRegistration($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -813,10 +741,7 @@ class DomainsClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRegistrations($registrations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRegistrationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListRegistrationsRequest();
         $response = $gapicClient->listRegistrations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -827,8 +752,6 @@ class DomainsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/ListRegistrations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -850,10 +773,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRegistrationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListRegistrationsRequest();
         try {
             $gapicClient->listRegistrations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -900,44 +820,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $registration = new Registration();
-        $registrationDomainName = 'registrationDomainName1873916680';
-        $registration->setDomainName($registrationDomainName);
-        $registrationContactSettings = new ContactSettings();
-        $contactSettingsPrivacy = ContactPrivacy::CONTACT_PRIVACY_UNSPECIFIED;
-        $registrationContactSettings->setPrivacy($contactSettingsPrivacy);
-        $contactSettingsRegistrantContact = new Contact();
-        $registrantContactPostalAddress = new PostalAddress();
-        $contactSettingsRegistrantContact->setPostalAddress($registrantContactPostalAddress);
-        $registrantContactEmail = 'registrantContactEmail1001340839';
-        $contactSettingsRegistrantContact->setEmail($registrantContactEmail);
-        $registrantContactPhoneNumber = 'registrantContactPhoneNumber-2077279710';
-        $contactSettingsRegistrantContact->setPhoneNumber($registrantContactPhoneNumber);
-        $registrationContactSettings->setRegistrantContact($contactSettingsRegistrantContact);
-        $contactSettingsAdminContact = new Contact();
-        $adminContactPostalAddress = new PostalAddress();
-        $contactSettingsAdminContact->setPostalAddress($adminContactPostalAddress);
-        $adminContactEmail = 'adminContactEmail1687004235';
-        $contactSettingsAdminContact->setEmail($adminContactEmail);
-        $adminContactPhoneNumber = 'adminContactPhoneNumber-516910138';
-        $contactSettingsAdminContact->setPhoneNumber($adminContactPhoneNumber);
-        $registrationContactSettings->setAdminContact($contactSettingsAdminContact);
-        $contactSettingsTechnicalContact = new Contact();
-        $technicalContactPostalAddress = new PostalAddress();
-        $contactSettingsTechnicalContact->setPostalAddress($technicalContactPostalAddress);
-        $technicalContactEmail = 'technicalContactEmail-221168807';
-        $contactSettingsTechnicalContact->setEmail($technicalContactEmail);
-        $technicalContactPhoneNumber = 'technicalContactPhoneNumber582887508';
-        $contactSettingsTechnicalContact->setPhoneNumber($technicalContactPhoneNumber);
-        $registrationContactSettings->setTechnicalContact($contactSettingsTechnicalContact);
-        $registration->setContactSettings($registrationContactSettings);
-        $yearlyPrice = new Money();
-        $request = (new RegisterDomainRequest())
-            ->setParent($formattedParent)
-            ->setRegistration($registration)
-            ->setYearlyPrice($yearlyPrice);
+        $request = new RegisterDomainRequest();
         $response = $gapicClient->registerDomain($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -948,12 +831,6 @@ class DomainsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/RegisterDomain', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegistration();
-        $this->assertProtobufEquals($registration, $actualValue);
-        $actualValue = $actualApiRequestObject->getYearlyPrice();
-        $this->assertProtobufEquals($yearlyPrice, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/registerDomainTest');
         $response->pollUntilComplete([
@@ -1004,44 +881,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $registration = new Registration();
-        $registrationDomainName = 'registrationDomainName1873916680';
-        $registration->setDomainName($registrationDomainName);
-        $registrationContactSettings = new ContactSettings();
-        $contactSettingsPrivacy = ContactPrivacy::CONTACT_PRIVACY_UNSPECIFIED;
-        $registrationContactSettings->setPrivacy($contactSettingsPrivacy);
-        $contactSettingsRegistrantContact = new Contact();
-        $registrantContactPostalAddress = new PostalAddress();
-        $contactSettingsRegistrantContact->setPostalAddress($registrantContactPostalAddress);
-        $registrantContactEmail = 'registrantContactEmail1001340839';
-        $contactSettingsRegistrantContact->setEmail($registrantContactEmail);
-        $registrantContactPhoneNumber = 'registrantContactPhoneNumber-2077279710';
-        $contactSettingsRegistrantContact->setPhoneNumber($registrantContactPhoneNumber);
-        $registrationContactSettings->setRegistrantContact($contactSettingsRegistrantContact);
-        $contactSettingsAdminContact = new Contact();
-        $adminContactPostalAddress = new PostalAddress();
-        $contactSettingsAdminContact->setPostalAddress($adminContactPostalAddress);
-        $adminContactEmail = 'adminContactEmail1687004235';
-        $contactSettingsAdminContact->setEmail($adminContactEmail);
-        $adminContactPhoneNumber = 'adminContactPhoneNumber-516910138';
-        $contactSettingsAdminContact->setPhoneNumber($adminContactPhoneNumber);
-        $registrationContactSettings->setAdminContact($contactSettingsAdminContact);
-        $contactSettingsTechnicalContact = new Contact();
-        $technicalContactPostalAddress = new PostalAddress();
-        $contactSettingsTechnicalContact->setPostalAddress($technicalContactPostalAddress);
-        $technicalContactEmail = 'technicalContactEmail-221168807';
-        $contactSettingsTechnicalContact->setEmail($technicalContactEmail);
-        $technicalContactPhoneNumber = 'technicalContactPhoneNumber582887508';
-        $contactSettingsTechnicalContact->setPhoneNumber($technicalContactPhoneNumber);
-        $registrationContactSettings->setTechnicalContact($contactSettingsTechnicalContact);
-        $registration->setContactSettings($registrationContactSettings);
-        $yearlyPrice = new Money();
-        $request = (new RegisterDomainRequest())
-            ->setParent($formattedParent)
-            ->setRegistration($registration)
-            ->setYearlyPrice($yearlyPrice);
+        $request = new RegisterDomainRequest();
         $response = $gapicClient->registerDomain($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1077,10 +917,7 @@ class DomainsClientTest extends GeneratedTest
         $expectedResponse = new AuthorizationCode();
         $expectedResponse->setCode($code);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new ResetAuthorizationCodeRequest())
-            ->setRegistration($formattedRegistration);
+        $request = new ResetAuthorizationCodeRequest();
         $response = $gapicClient->resetAuthorizationCode($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1088,8 +925,6 @@ class DomainsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/ResetAuthorizationCode', $actualFuncCall);
-        $actualValue = $actualRequestObject->getRegistration();
-        $this->assertProtobufEquals($formattedRegistration, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1111,10 +946,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new ResetAuthorizationCodeRequest())
-            ->setRegistration($formattedRegistration);
+        $request = new ResetAuthorizationCodeRequest();
         try {
             $gapicClient->resetAuthorizationCode($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1141,10 +973,7 @@ class DomainsClientTest extends GeneratedTest
         $expectedResponse = new AuthorizationCode();
         $expectedResponse->setCode($code);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new RetrieveAuthorizationCodeRequest())
-            ->setRegistration($formattedRegistration);
+        $request = new RetrieveAuthorizationCodeRequest();
         $response = $gapicClient->retrieveAuthorizationCode($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1152,8 +981,6 @@ class DomainsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/RetrieveAuthorizationCode', $actualFuncCall);
-        $actualValue = $actualRequestObject->getRegistration();
-        $this->assertProtobufEquals($formattedRegistration, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1175,10 +1002,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $request = (new RetrieveAuthorizationCodeRequest())
-            ->setRegistration($formattedRegistration);
+        $request = new RetrieveAuthorizationCodeRequest();
         try {
             $gapicClient->retrieveAuthorizationCode($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1203,12 +1027,7 @@ class DomainsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RetrieveRegisterParametersResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $domainName = 'domainName104118566';
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new RetrieveRegisterParametersRequest())
-            ->setDomainName($domainName)
-            ->setLocation($formattedLocation);
+        $request = new RetrieveRegisterParametersRequest();
         $response = $gapicClient->retrieveRegisterParameters($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1216,10 +1035,6 @@ class DomainsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/RetrieveRegisterParameters', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDomainName();
-        $this->assertProtobufEquals($domainName, $actualValue);
-        $actualValue = $actualRequestObject->getLocation();
-        $this->assertProtobufEquals($formattedLocation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1241,12 +1056,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $domainName = 'domainName104118566';
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new RetrieveRegisterParametersRequest())
-            ->setDomainName($domainName)
-            ->setLocation($formattedLocation);
+        $request = new RetrieveRegisterParametersRequest();
         try {
             $gapicClient->retrieveRegisterParameters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1271,12 +1081,7 @@ class DomainsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RetrieveTransferParametersResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $domainName = 'domainName104118566';
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new RetrieveTransferParametersRequest())
-            ->setDomainName($domainName)
-            ->setLocation($formattedLocation);
+        $request = new RetrieveTransferParametersRequest();
         $response = $gapicClient->retrieveTransferParameters($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1284,10 +1089,6 @@ class DomainsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/RetrieveTransferParameters', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDomainName();
-        $this->assertProtobufEquals($domainName, $actualValue);
-        $actualValue = $actualRequestObject->getLocation();
-        $this->assertProtobufEquals($formattedLocation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1309,12 +1110,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $domainName = 'domainName104118566';
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new RetrieveTransferParametersRequest())
-            ->setDomainName($domainName)
-            ->setLocation($formattedLocation);
+        $request = new RetrieveTransferParametersRequest();
         try {
             $gapicClient->retrieveTransferParameters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1339,12 +1135,7 @@ class DomainsClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SearchDomainsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $query = 'query107944136';
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchDomainsRequest())
-            ->setQuery($query)
-            ->setLocation($formattedLocation);
+        $request = new SearchDomainsRequest();
         $response = $gapicClient->searchDomains($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1352,10 +1143,6 @@ class DomainsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/SearchDomains', $actualFuncCall);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
-        $actualValue = $actualRequestObject->getLocation();
-        $this->assertProtobufEquals($formattedLocation, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1377,12 +1164,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $query = 'query107944136';
-        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchDomainsRequest())
-            ->setQuery($query)
-            ->setLocation($formattedLocation);
+        $request = new SearchDomainsRequest();
         try {
             $gapicClient->searchDomains($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1429,44 +1211,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $registration = new Registration();
-        $registrationDomainName = 'registrationDomainName1873916680';
-        $registration->setDomainName($registrationDomainName);
-        $registrationContactSettings = new ContactSettings();
-        $contactSettingsPrivacy = ContactPrivacy::CONTACT_PRIVACY_UNSPECIFIED;
-        $registrationContactSettings->setPrivacy($contactSettingsPrivacy);
-        $contactSettingsRegistrantContact = new Contact();
-        $registrantContactPostalAddress = new PostalAddress();
-        $contactSettingsRegistrantContact->setPostalAddress($registrantContactPostalAddress);
-        $registrantContactEmail = 'registrantContactEmail1001340839';
-        $contactSettingsRegistrantContact->setEmail($registrantContactEmail);
-        $registrantContactPhoneNumber = 'registrantContactPhoneNumber-2077279710';
-        $contactSettingsRegistrantContact->setPhoneNumber($registrantContactPhoneNumber);
-        $registrationContactSettings->setRegistrantContact($contactSettingsRegistrantContact);
-        $contactSettingsAdminContact = new Contact();
-        $adminContactPostalAddress = new PostalAddress();
-        $contactSettingsAdminContact->setPostalAddress($adminContactPostalAddress);
-        $adminContactEmail = 'adminContactEmail1687004235';
-        $contactSettingsAdminContact->setEmail($adminContactEmail);
-        $adminContactPhoneNumber = 'adminContactPhoneNumber-516910138';
-        $contactSettingsAdminContact->setPhoneNumber($adminContactPhoneNumber);
-        $registrationContactSettings->setAdminContact($contactSettingsAdminContact);
-        $contactSettingsTechnicalContact = new Contact();
-        $technicalContactPostalAddress = new PostalAddress();
-        $contactSettingsTechnicalContact->setPostalAddress($technicalContactPostalAddress);
-        $technicalContactEmail = 'technicalContactEmail-221168807';
-        $contactSettingsTechnicalContact->setEmail($technicalContactEmail);
-        $technicalContactPhoneNumber = 'technicalContactPhoneNumber582887508';
-        $contactSettingsTechnicalContact->setPhoneNumber($technicalContactPhoneNumber);
-        $registrationContactSettings->setTechnicalContact($contactSettingsTechnicalContact);
-        $registration->setContactSettings($registrationContactSettings);
-        $yearlyPrice = new Money();
-        $request = (new TransferDomainRequest())
-            ->setParent($formattedParent)
-            ->setRegistration($registration)
-            ->setYearlyPrice($yearlyPrice);
+        $request = new TransferDomainRequest();
         $response = $gapicClient->transferDomain($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1477,12 +1222,6 @@ class DomainsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/TransferDomain', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegistration();
-        $this->assertProtobufEquals($registration, $actualValue);
-        $actualValue = $actualApiRequestObject->getYearlyPrice();
-        $this->assertProtobufEquals($yearlyPrice, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/transferDomainTest');
         $response->pollUntilComplete([
@@ -1533,44 +1272,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $registration = new Registration();
-        $registrationDomainName = 'registrationDomainName1873916680';
-        $registration->setDomainName($registrationDomainName);
-        $registrationContactSettings = new ContactSettings();
-        $contactSettingsPrivacy = ContactPrivacy::CONTACT_PRIVACY_UNSPECIFIED;
-        $registrationContactSettings->setPrivacy($contactSettingsPrivacy);
-        $contactSettingsRegistrantContact = new Contact();
-        $registrantContactPostalAddress = new PostalAddress();
-        $contactSettingsRegistrantContact->setPostalAddress($registrantContactPostalAddress);
-        $registrantContactEmail = 'registrantContactEmail1001340839';
-        $contactSettingsRegistrantContact->setEmail($registrantContactEmail);
-        $registrantContactPhoneNumber = 'registrantContactPhoneNumber-2077279710';
-        $contactSettingsRegistrantContact->setPhoneNumber($registrantContactPhoneNumber);
-        $registrationContactSettings->setRegistrantContact($contactSettingsRegistrantContact);
-        $contactSettingsAdminContact = new Contact();
-        $adminContactPostalAddress = new PostalAddress();
-        $contactSettingsAdminContact->setPostalAddress($adminContactPostalAddress);
-        $adminContactEmail = 'adminContactEmail1687004235';
-        $contactSettingsAdminContact->setEmail($adminContactEmail);
-        $adminContactPhoneNumber = 'adminContactPhoneNumber-516910138';
-        $contactSettingsAdminContact->setPhoneNumber($adminContactPhoneNumber);
-        $registrationContactSettings->setAdminContact($contactSettingsAdminContact);
-        $contactSettingsTechnicalContact = new Contact();
-        $technicalContactPostalAddress = new PostalAddress();
-        $contactSettingsTechnicalContact->setPostalAddress($technicalContactPostalAddress);
-        $technicalContactEmail = 'technicalContactEmail-221168807';
-        $contactSettingsTechnicalContact->setEmail($technicalContactEmail);
-        $technicalContactPhoneNumber = 'technicalContactPhoneNumber582887508';
-        $contactSettingsTechnicalContact->setPhoneNumber($technicalContactPhoneNumber);
-        $registrationContactSettings->setTechnicalContact($contactSettingsTechnicalContact);
-        $registration->setContactSettings($registrationContactSettings);
-        $yearlyPrice = new Money();
-        $request = (new TransferDomainRequest())
-            ->setParent($formattedParent)
-            ->setRegistration($registration)
-            ->setYearlyPrice($yearlyPrice);
+        $request = new TransferDomainRequest();
         $response = $gapicClient->transferDomain($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1626,10 +1328,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $request = (new UpdateRegistrationRequest())
-            ->setUpdateMask($updateMask);
+        $request = new UpdateRegistrationRequest();
         $response = $gapicClient->updateRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1640,8 +1339,6 @@ class DomainsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/UpdateRegistration', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateRegistrationTest');
         $response->pollUntilComplete([
@@ -1692,10 +1389,7 @@ class DomainsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $request = (new UpdateRegistrationRequest())
-            ->setUpdateMask($updateMask);
+        $request = new UpdateRegistrationRequest();
         $response = $gapicClient->updateRegistration($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1751,12 +1445,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $updateMask = new FieldMask();
-        $request = (new ConfigureContactSettingsRequest())
-            ->setRegistration($formattedRegistration)
-            ->setUpdateMask($updateMask);
+        $request = new ConfigureContactSettingsRequest();
         $response = $gapicClient->configureContactSettingsAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1767,10 +1456,6 @@ class DomainsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.domains.v1.Domains/ConfigureContactSettings', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getRegistration();
-        $this->assertProtobufEquals($formattedRegistration, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/configureContactSettingsTest');
         $response->pollUntilComplete([

@@ -44,10 +44,8 @@ function update_document_sample(): void
     $firestoreClient = new FirestoreClient();
 
     // Prepare the request message.
-    $document = new Document();
     $updateMask = new DocumentMask();
     $request = (new UpdateDocumentRequest())
-        ->setDocument($document)
         ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.

@@ -97,14 +97,7 @@ class DocumentServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaId($schemaId);
         $expectedResponse->setParentDocumentId($parentDocumentId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $document = new Document();
-        $documentId = 'documentId506676927';
-        $request = (new CreateDocumentRequest())
-            ->setParent($formattedParent)
-            ->setDocument($document)
-            ->setDocumentId($documentId);
+        $request = new CreateDocumentRequest();
         $response = $gapicClient->createDocument($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -112,12 +105,6 @@ class DocumentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.DocumentService/CreateDocument', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
-        $actualValue = $actualRequestObject->getDocumentId();
-        $this->assertProtobufEquals($documentId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -142,14 +129,7 @@ class DocumentServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $document = new Document();
-        $documentId = 'documentId506676927';
-        $request = (new CreateDocumentRequest())
-            ->setParent($formattedParent)
-            ->setDocument($document)
-            ->setDocumentId($documentId);
+        $request = new CreateDocumentRequest();
         try {
             $gapicClient->createDocument($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -174,23 +154,13 @@ class DocumentServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->documentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[DATA_STORE]',
-            '[BRANCH]',
-            '[DOCUMENT]'
-        );
-        $request = (new DeleteDocumentRequest())->setName($formattedName);
+        $request = new DeleteDocumentRequest();
         $gapicClient->deleteDocument($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.DocumentService/DeleteDocument', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -215,15 +185,7 @@ class DocumentServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->documentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[DATA_STORE]',
-            '[BRANCH]',
-            '[DOCUMENT]'
-        );
-        $request = (new DeleteDocumentRequest())->setName($formattedName);
+        $request = new DeleteDocumentRequest();
         try {
             $gapicClient->deleteDocument($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -258,15 +220,7 @@ class DocumentServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaId($schemaId);
         $expectedResponse->setParentDocumentId($parentDocumentId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->documentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[DATA_STORE]',
-            '[BRANCH]',
-            '[DOCUMENT]'
-        );
-        $request = (new GetDocumentRequest())->setName($formattedName);
+        $request = new GetDocumentRequest();
         $response = $gapicClient->getDocument($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -274,8 +228,6 @@ class DocumentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.DocumentService/GetDocument', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -300,15 +252,7 @@ class DocumentServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->documentName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[DATA_STORE]',
-            '[BRANCH]',
-            '[DOCUMENT]'
-        );
-        $request = (new GetDocumentRequest())->setName($formattedName);
+        $request = new GetDocumentRequest();
         try {
             $gapicClient->getDocument($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -351,9 +295,7 @@ class DocumentServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $request = (new ImportDocumentsRequest())->setParent($formattedParent);
+        $request = new ImportDocumentsRequest();
         $response = $gapicClient->importDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -364,8 +306,6 @@ class DocumentServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.DocumentService/ImportDocuments', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importDocumentsTest');
         $response->pollUntilComplete([
@@ -419,9 +359,7 @@ class DocumentServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $request = (new ImportDocumentsRequest())->setParent($formattedParent);
+        $request = new ImportDocumentsRequest();
         $response = $gapicClient->importDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -460,9 +398,7 @@ class DocumentServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDocuments($documents);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $request = (new ListDocumentsRequest())->setParent($formattedParent);
+        $request = new ListDocumentsRequest();
         $response = $gapicClient->listDocuments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -473,8 +409,6 @@ class DocumentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.DocumentService/ListDocuments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -499,9 +433,7 @@ class DocumentServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $request = (new ListDocumentsRequest())->setParent($formattedParent);
+        $request = new ListDocumentsRequest();
         try {
             $gapicClient->listDocuments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -546,10 +478,7 @@ class DocumentServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $filter = 'filter-1274492040';
-        $request = (new PurgeDocumentsRequest())->setParent($formattedParent)->setFilter($filter);
+        $request = new PurgeDocumentsRequest();
         $response = $gapicClient->purgeDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -560,10 +489,6 @@ class DocumentServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.DocumentService/PurgeDocuments', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFilter();
-        $this->assertProtobufEquals($filter, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/purgeDocumentsTest');
         $response->pollUntilComplete([
@@ -617,10 +542,7 @@ class DocumentServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $filter = 'filter-1274492040';
-        $request = (new PurgeDocumentsRequest())->setParent($formattedParent)->setFilter($filter);
+        $request = new PurgeDocumentsRequest();
         $response = $gapicClient->purgeDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -664,9 +586,7 @@ class DocumentServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaId($schemaId);
         $expectedResponse->setParentDocumentId($parentDocumentId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $document = new Document();
-        $request = (new UpdateDocumentRequest())->setDocument($document);
+        $request = new UpdateDocumentRequest();
         $response = $gapicClient->updateDocument($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -674,8 +594,6 @@ class DocumentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.DocumentService/UpdateDocument', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -700,9 +618,7 @@ class DocumentServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $document = new Document();
-        $request = (new UpdateDocumentRequest())->setDocument($document);
+        $request = new UpdateDocumentRequest();
         try {
             $gapicClient->updateDocument($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -737,14 +653,7 @@ class DocumentServiceClientTest extends GeneratedTest
         $expectedResponse->setSchemaId($schemaId);
         $expectedResponse->setParentDocumentId($parentDocumentId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[BRANCH]');
-        $document = new Document();
-        $documentId = 'documentId506676927';
-        $request = (new CreateDocumentRequest())
-            ->setParent($formattedParent)
-            ->setDocument($document)
-            ->setDocumentId($documentId);
+        $request = new CreateDocumentRequest();
         $response = $gapicClient->createDocumentAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -752,12 +661,6 @@ class DocumentServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.DocumentService/CreateDocument', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDocument();
-        $this->assertProtobufEquals($document, $actualValue);
-        $actualValue = $actualRequestObject->getDocumentId();
-        $this->assertProtobufEquals($documentId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

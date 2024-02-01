@@ -48,8 +48,7 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent data store resource name, in the format of
-     *                       `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`. Please see
-     *                       {@see SchemaServiceClient::dataStoreName()} for help formatting this field.
+     *                       `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1beta\ListSchemasRequest
      *

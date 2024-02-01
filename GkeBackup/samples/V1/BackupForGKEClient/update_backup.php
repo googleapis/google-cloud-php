@@ -45,9 +45,7 @@ function update_backup_sample(): void
     $backupForGKEClient = new BackupForGKEClient();
 
     // Prepare the request message.
-    $backup = new Backup();
-    $request = (new UpdateBackupRequest())
-        ->setBackup($backup);
+    $request = new UpdateBackupRequest();
 
     // Call the API and handle any network failures.
     try {

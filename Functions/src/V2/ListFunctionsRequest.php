@@ -66,8 +66,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
      *                       list functions in all locations, use "-" in place of a location. When
      *                       listing functions in all locations, if one or more location(s) are
      *                       unreachable, the response will contain functions from all reachable
-     *                       locations along with the names of any unreachable locations. Please see
-     *                       {@see FunctionServiceClient::locationName()} for help formatting this field.
+     *                       locations along with the names of any unreachable locations.
      *
      * @return \Google\Cloud\Functions\V2\ListFunctionsRequest
      *

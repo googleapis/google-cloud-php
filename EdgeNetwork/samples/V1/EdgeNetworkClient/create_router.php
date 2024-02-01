@@ -33,34 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new Router in a given project and location.
  *
- * @param string $formattedParent        Value for parent. Please see
- *                                       {@see EdgeNetworkClient::zoneName()} for help formatting this field.
- * @param string $routerId               Id of the requesting object
- *                                       If auto-generating Id server-side, remove this field and
- *                                       router_id from the method_signature of Create RPC
- * @param string $routerName             The canonical resource name of the router.
- * @param string $formattedRouterNetwork The canonical name of the network to which this router belongs.
- *                                       The name is in the form of
- *                                       `projects/{project}/locations/{location}/zones/{zone}/networks/{network}`. Please see
- *                                       {@see EdgeNetworkClient::networkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_router_sample(
-    string $formattedParent,
-    string $routerId,
-    string $routerName,
-    string $formattedRouterNetwork
-): void {
+function create_router_sample(): void
+{
     // Create a client.
     $edgeNetworkClient = new EdgeNetworkClient();
 
     // Prepare the request message.
-    $router = (new Router())
-        ->setName($routerName)
-        ->setNetwork($formattedRouterNetwork);
-    $request = (new CreateRouterRequest())
-        ->setParent($formattedParent)
-        ->setRouterId($routerId)
-        ->setRouter($router);
+    $request = new CreateRouterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -80,29 +65,5 @@ function create_router_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EdgeNetworkClient::zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-    $routerId = '[ROUTER_ID]';
-    $routerName = '[NAME]';
-    $formattedRouterNetwork = EdgeNetworkClient::networkName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ZONE]',
-        '[NETWORK]'
-    );
-
-    create_router_sample($formattedParent, $routerId, $routerName, $formattedRouterNetwork);
 }
 // [END edgenetwork_v1_generated_EdgeNetwork_CreateRouter_sync]

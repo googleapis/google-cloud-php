@@ -57,7 +57,6 @@ use Google\Cloud\GkeBackup\V1\ListVolumeBackupsResponse;
 use Google\Cloud\GkeBackup\V1\ListVolumeRestoresRequest;
 use Google\Cloud\GkeBackup\V1\ListVolumeRestoresResponse;
 use Google\Cloud\GkeBackup\V1\Restore;
-use Google\Cloud\GkeBackup\V1\RestoreConfig;
 use Google\Cloud\GkeBackup\V1\RestorePlan;
 use Google\Cloud\GkeBackup\V1\UpdateBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\UpdateBackupRequest;
@@ -170,10 +169,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent);
+        $request = new CreateBackupRequest();
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -184,8 +180,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/CreateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupTest');
         $response->pollUntilComplete([
@@ -236,10 +230,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent);
+        $request = new CreateBackupRequest();
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -307,16 +298,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backupPlan = new BackupPlan();
-        $backupPlanCluster = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $backupPlan->setCluster($backupPlanCluster);
-        $backupPlanId = 'backupPlanId-25762700';
-        $request = (new CreateBackupPlanRequest())
-            ->setParent($formattedParent)
-            ->setBackupPlan($backupPlan)
-            ->setBackupPlanId($backupPlanId);
+        $request = new CreateBackupPlanRequest();
         $response = $gapicClient->createBackupPlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -327,12 +309,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/CreateBackupPlan', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupPlan();
-        $this->assertProtobufEquals($backupPlan, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupPlanId();
-        $this->assertProtobufEquals($backupPlanId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupPlanTest');
         $response->pollUntilComplete([
@@ -383,16 +359,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backupPlan = new BackupPlan();
-        $backupPlanCluster = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $backupPlan->setCluster($backupPlanCluster);
-        $backupPlanId = 'backupPlanId-25762700';
-        $request = (new CreateBackupPlanRequest())
-            ->setParent($formattedParent)
-            ->setBackupPlan($backupPlan)
-            ->setBackupPlanId($backupPlanId);
+        $request = new CreateBackupPlanRequest();
         $response = $gapicClient->createBackupPlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -466,16 +433,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-        $restore = new Restore();
-        $restoreBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-        $restore->setBackup($restoreBackup);
-        $restoreId = 'restoreId-1374819220';
-        $request = (new CreateRestoreRequest())
-            ->setParent($formattedParent)
-            ->setRestore($restore)
-            ->setRestoreId($restoreId);
+        $request = new CreateRestoreRequest();
         $response = $gapicClient->createRestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -486,12 +444,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/CreateRestore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRestore();
-        $this->assertProtobufEquals($restore, $actualValue);
-        $actualValue = $actualApiRequestObject->getRestoreId();
-        $this->assertProtobufEquals($restoreId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createRestoreTest');
         $response->pollUntilComplete([
@@ -542,16 +494,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-        $restore = new Restore();
-        $restoreBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-        $restore->setBackup($restoreBackup);
-        $restoreId = 'restoreId-1374819220';
-        $request = (new CreateRestoreRequest())
-            ->setParent($formattedParent)
-            ->setRestore($restore)
-            ->setRestoreId($restoreId);
+        $request = new CreateRestoreRequest();
         $response = $gapicClient->createRestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -617,20 +560,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $restorePlan = new RestorePlan();
-        $restorePlanBackupPlan = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $restorePlan->setBackupPlan($restorePlanBackupPlan);
-        $restorePlanCluster = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $restorePlan->setCluster($restorePlanCluster);
-        $restorePlanRestoreConfig = new RestoreConfig();
-        $restorePlan->setRestoreConfig($restorePlanRestoreConfig);
-        $restorePlanId = 'restorePlanId126727488';
-        $request = (new CreateRestorePlanRequest())
-            ->setParent($formattedParent)
-            ->setRestorePlan($restorePlan)
-            ->setRestorePlanId($restorePlanId);
+        $request = new CreateRestorePlanRequest();
         $response = $gapicClient->createRestorePlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -641,12 +571,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/CreateRestorePlan', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getRestorePlan();
-        $this->assertProtobufEquals($restorePlan, $actualValue);
-        $actualValue = $actualApiRequestObject->getRestorePlanId();
-        $this->assertProtobufEquals($restorePlanId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createRestorePlanTest');
         $response->pollUntilComplete([
@@ -697,20 +621,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $restorePlan = new RestorePlan();
-        $restorePlanBackupPlan = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $restorePlan->setBackupPlan($restorePlanBackupPlan);
-        $restorePlanCluster = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $restorePlan->setCluster($restorePlanCluster);
-        $restorePlanRestoreConfig = new RestoreConfig();
-        $restorePlan->setRestoreConfig($restorePlanRestoreConfig);
-        $restorePlanId = 'restorePlanId126727488';
-        $request = (new CreateRestorePlanRequest())
-            ->setParent($formattedParent)
-            ->setRestorePlan($restorePlan)
-            ->setRestorePlanId($restorePlanId);
+        $request = new CreateRestorePlanRequest();
         $response = $gapicClient->createRestorePlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -762,10 +673,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = new DeleteBackupRequest();
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -776,8 +684,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/DeleteBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteBackupTest');
         $response->pollUntilComplete([
@@ -828,10 +734,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = new DeleteBackupRequest();
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -883,10 +786,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $request = (new DeleteBackupPlanRequest())
-            ->setName($formattedName);
+        $request = new DeleteBackupPlanRequest();
         $response = $gapicClient->deleteBackupPlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -897,8 +797,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/DeleteBackupPlan', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteBackupPlanTest');
         $response->pollUntilComplete([
@@ -949,10 +847,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $request = (new DeleteBackupPlanRequest())
-            ->setName($formattedName);
+        $request = new DeleteBackupPlanRequest();
         $response = $gapicClient->deleteBackupPlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1004,10 +899,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->restoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]');
-        $request = (new DeleteRestoreRequest())
-            ->setName($formattedName);
+        $request = new DeleteRestoreRequest();
         $response = $gapicClient->deleteRestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1018,8 +910,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/DeleteRestore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteRestoreTest');
         $response->pollUntilComplete([
@@ -1070,10 +960,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->restoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]');
-        $request = (new DeleteRestoreRequest())
-            ->setName($formattedName);
+        $request = new DeleteRestoreRequest();
         $response = $gapicClient->deleteRestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1125,10 +1012,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-        $request = (new DeleteRestorePlanRequest())
-            ->setName($formattedName);
+        $request = new DeleteRestorePlanRequest();
         $response = $gapicClient->deleteRestorePlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1139,8 +1023,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/DeleteRestorePlan', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteRestorePlanTest');
         $response->pollUntilComplete([
@@ -1191,10 +1073,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-        $request = (new DeleteRestorePlanRequest())
-            ->setName($formattedName);
+        $request = new DeleteRestorePlanRequest();
         $response = $gapicClient->deleteRestorePlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1260,10 +1139,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = new GetBackupRequest();
         $response = $gapicClient->getBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1271,8 +1147,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetBackup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1294,10 +1168,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = new GetBackupRequest();
         try {
             $gapicClient->getBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1338,10 +1209,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setProtectedPodCount($protectedPodCount);
         $expectedResponse->setStateReason($stateReason);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $request = (new GetBackupPlanRequest())
-            ->setName($formattedName);
+        $request = new GetBackupPlanRequest();
         $response = $gapicClient->getBackupPlan($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1349,8 +1217,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetBackupPlan', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1372,10 +1238,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $request = (new GetBackupPlanRequest())
-            ->setName($formattedName);
+        $request = new GetBackupPlanRequest();
         try {
             $gapicClient->getBackupPlan($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1422,10 +1285,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setVolumesRestoredCount($volumesRestoredCount);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->restoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]');
-        $request = (new GetRestoreRequest())
-            ->setName($formattedName);
+        $request = new GetRestoreRequest();
         $response = $gapicClient->getRestore($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1433,8 +1293,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetRestore', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1456,10 +1314,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->restoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]');
-        $request = (new GetRestoreRequest())
-            ->setName($formattedName);
+        $request = new GetRestoreRequest();
         try {
             $gapicClient->getRestore($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1498,10 +1353,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setStateReason($stateReason);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-        $request = (new GetRestorePlanRequest())
-            ->setName($formattedName);
+        $request = new GetRestorePlanRequest();
         $response = $gapicClient->getRestorePlan($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1509,8 +1361,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetRestorePlan', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1532,10 +1382,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-        $request = (new GetRestorePlanRequest())
-            ->setName($formattedName);
+        $request = new GetRestorePlanRequest();
         try {
             $gapicClient->getRestorePlan($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1574,10 +1421,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setStateMessage($stateMessage);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->volumeBackupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]', '[VOLUME_BACKUP]');
-        $request = (new GetVolumeBackupRequest())
-            ->setName($formattedName);
+        $request = new GetVolumeBackupRequest();
         $response = $gapicClient->getVolumeBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1585,8 +1429,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetVolumeBackup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1608,10 +1450,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->volumeBackupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]', '[VOLUME_BACKUP]');
-        $request = (new GetVolumeBackupRequest())
-            ->setName($formattedName);
+        $request = new GetVolumeBackupRequest();
         try {
             $gapicClient->getVolumeBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1648,10 +1487,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setStateMessage($stateMessage);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->volumeRestoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]', '[VOLUME_RESTORE]');
-        $request = (new GetVolumeRestoreRequest())
-            ->setName($formattedName);
+        $request = new GetVolumeRestoreRequest();
         $response = $gapicClient->getVolumeRestore($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1659,8 +1495,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetVolumeRestore', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1682,10 +1516,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->volumeRestoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]', '[VOLUME_RESTORE]');
-        $request = (new GetVolumeRestoreRequest())
-            ->setName($formattedName);
+        $request = new GetVolumeRestoreRequest();
         try {
             $gapicClient->getVolumeRestore($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1717,10 +1548,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackupPlans($backupPlans);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupPlansRequest())
-            ->setParent($formattedParent);
+        $request = new ListBackupPlansRequest();
         $response = $gapicClient->listBackupPlans($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1731,8 +1559,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/ListBackupPlans', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1754,10 +1580,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupPlansRequest())
-            ->setParent($formattedParent);
+        $request = new ListBackupPlansRequest();
         try {
             $gapicClient->listBackupPlans($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1789,10 +1612,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListBackupsRequest();
         $response = $gapicClient->listBackups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1803,8 +1623,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/ListBackups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1826,10 +1644,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListBackupsRequest();
         try {
             $gapicClient->listBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1861,10 +1676,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRestorePlans($restorePlans);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRestorePlansRequest())
-            ->setParent($formattedParent);
+        $request = new ListRestorePlansRequest();
         $response = $gapicClient->listRestorePlans($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1875,8 +1687,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/ListRestorePlans', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1898,10 +1708,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRestorePlansRequest())
-            ->setParent($formattedParent);
+        $request = new ListRestorePlansRequest();
         try {
             $gapicClient->listRestorePlans($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1933,10 +1740,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRestores($restores);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-        $request = (new ListRestoresRequest())
-            ->setParent($formattedParent);
+        $request = new ListRestoresRequest();
         $response = $gapicClient->listRestores($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1947,8 +1751,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/ListRestores', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1970,10 +1772,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-        $request = (new ListRestoresRequest())
-            ->setParent($formattedParent);
+        $request = new ListRestoresRequest();
         try {
             $gapicClient->listRestores($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2005,10 +1804,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVolumeBackups($volumeBackups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-        $request = (new ListVolumeBackupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListVolumeBackupsRequest();
         $response = $gapicClient->listVolumeBackups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2019,8 +1815,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/ListVolumeBackups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2042,10 +1836,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-        $request = (new ListVolumeBackupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListVolumeBackupsRequest();
         try {
             $gapicClient->listVolumeBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2077,10 +1868,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVolumeRestores($volumeRestores);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->restoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]');
-        $request = (new ListVolumeRestoresRequest())
-            ->setParent($formattedParent);
+        $request = new ListVolumeRestoresRequest();
         $response = $gapicClient->listVolumeRestores($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2091,8 +1879,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/ListVolumeRestores', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2114,10 +1900,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->restoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]');
-        $request = (new ListVolumeRestoresRequest())
-            ->setParent($formattedParent);
+        $request = new ListVolumeRestoresRequest();
         try {
             $gapicClient->listVolumeRestores($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2192,10 +1975,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backup = new Backup();
-        $request = (new UpdateBackupRequest())
-            ->setBackup($backup);
+        $request = new UpdateBackupRequest();
         $response = $gapicClient->updateBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2206,8 +1986,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/UpdateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackup();
-        $this->assertProtobufEquals($backup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBackupTest');
         $response->pollUntilComplete([
@@ -2258,10 +2036,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backup = new Backup();
-        $request = (new UpdateBackupRequest())
-            ->setBackup($backup);
+        $request = new UpdateBackupRequest();
         $response = $gapicClient->updateBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2329,12 +2104,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backupPlan = new BackupPlan();
-        $backupPlanCluster = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $backupPlan->setCluster($backupPlanCluster);
-        $request = (new UpdateBackupPlanRequest())
-            ->setBackupPlan($backupPlan);
+        $request = new UpdateBackupPlanRequest();
         $response = $gapicClient->updateBackupPlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2345,8 +2115,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/UpdateBackupPlan', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackupPlan();
-        $this->assertProtobufEquals($backupPlan, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBackupPlanTest');
         $response->pollUntilComplete([
@@ -2397,12 +2165,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backupPlan = new BackupPlan();
-        $backupPlanCluster = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $backupPlan->setCluster($backupPlanCluster);
-        $request = (new UpdateBackupPlanRequest())
-            ->setBackupPlan($backupPlan);
+        $request = new UpdateBackupPlanRequest();
         $response = $gapicClient->updateBackupPlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2476,12 +2239,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $restore = new Restore();
-        $restoreBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-        $restore->setBackup($restoreBackup);
-        $request = (new UpdateRestoreRequest())
-            ->setRestore($restore);
+        $request = new UpdateRestoreRequest();
         $response = $gapicClient->updateRestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2492,8 +2250,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/UpdateRestore', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getRestore();
-        $this->assertProtobufEquals($restore, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateRestoreTest');
         $response->pollUntilComplete([
@@ -2544,12 +2300,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $restore = new Restore();
-        $restoreBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-        $restore->setBackup($restoreBackup);
-        $request = (new UpdateRestoreRequest())
-            ->setRestore($restore);
+        $request = new UpdateRestoreRequest();
         $response = $gapicClient->updateRestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2615,16 +2366,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $restorePlan = new RestorePlan();
-        $restorePlanBackupPlan = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $restorePlan->setBackupPlan($restorePlanBackupPlan);
-        $restorePlanCluster = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $restorePlan->setCluster($restorePlanCluster);
-        $restorePlanRestoreConfig = new RestoreConfig();
-        $restorePlan->setRestoreConfig($restorePlanRestoreConfig);
-        $request = (new UpdateRestorePlanRequest())
-            ->setRestorePlan($restorePlan);
+        $request = new UpdateRestorePlanRequest();
         $response = $gapicClient->updateRestorePlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2635,8 +2377,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/UpdateRestorePlan', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getRestorePlan();
-        $this->assertProtobufEquals($restorePlan, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateRestorePlanTest');
         $response->pollUntilComplete([
@@ -2687,16 +2427,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $restorePlan = new RestorePlan();
-        $restorePlanBackupPlan = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $restorePlan->setBackupPlan($restorePlanBackupPlan);
-        $restorePlanCluster = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $restorePlan->setCluster($restorePlanCluster);
-        $restorePlanRestoreConfig = new RestoreConfig();
-        $restorePlan->setRestoreConfig($restorePlanRestoreConfig);
-        $request = (new UpdateRestorePlanRequest())
-            ->setRestorePlan($restorePlan);
+        $request = new UpdateRestorePlanRequest();
         $response = $gapicClient->updateRestorePlan($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2858,10 +2589,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2869,8 +2597,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2892,10 +2618,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = new GetIamPolicyRequest();
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2924,12 +2647,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2937,10 +2655,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2962,12 +2676,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = new SetIamPolicyRequest();
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2992,12 +2701,7 @@ class BackupForGKEClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3005,10 +2709,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3030,12 +2730,7 @@ class BackupForGKEClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = new TestIamPermissionsRequest();
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3110,10 +2805,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent);
+        $request = new CreateBackupRequest();
         $response = $gapicClient->createBackupAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3124,8 +2816,6 @@ class BackupForGKEClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/CreateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupTest');
         $response->pollUntilComplete([

@@ -32,7 +32,6 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                            $parent       Required. Full resource name of parent data store. Format:
      *                                                                        `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
-     *                                                                        Please see {@see ConversationalSearchServiceClient::dataStoreName()} for help formatting this field.
      * @param \Google\Cloud\DiscoveryEngine\V1beta\Conversation $conversation Required. The conversation to create.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1beta\CreateConversationRequest

@@ -20,13 +20,13 @@ class CompletionService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Õ	
-8google/cloud/discoveryengine/v1/completion_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"¿
-CompleteQueryRequestD
+×	
+8google/cloud/discoveryengine/v1/completion_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"Á
+CompleteQueryRequestE
 
-data_store (	B0àAúA*
-(discoveryengine.googleapis.com/DataStore
-query (	BàA
+data_store (	B1âAúA*
+(discoveryengine.googleapis.com/DataStore
+query (	BâA
 query_model (	
 user_pseudo_id (	 
 include_tail_suggestions ("¿

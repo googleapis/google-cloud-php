@@ -41,7 +41,6 @@ class ListProcessorsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent (project and location) which owns this collection of
      *                       Processors. Format: `projects/{project}/locations/{location}`
-     *                       Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\DocumentAI\V1\ListProcessorsRequest
      *

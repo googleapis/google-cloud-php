@@ -31,27 +31,18 @@ use Google\Cloud\Firestore\V1\Document;
 /**
  * Creates a new document.
  *
- * @param string $parent       The parent resource. For example:
- *                             `projects/{project_id}/databases/{database_id}/documents` or
- *                             `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
- * @param string $collectionId The collection ID, relative to `parent`, to list. For example:
- *                             `chatrooms`.
- * @param string $documentId   The client-assigned document ID to use for this document.
+ * @param string $documentId The client-assigned document ID to use for this document.
  *
- *                             Optional. If not specified, an ID will be assigned by the service.
+ *                           Optional. If not specified, an ID will be assigned by the service.
  */
-function create_document_sample(string $parent, string $collectionId, string $documentId): void
+function create_document_sample(string $documentId): void
 {
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
     // Prepare the request message.
-    $document = new Document();
     $request = (new CreateDocumentRequest())
-        ->setParent($parent)
-        ->setCollectionId($collectionId)
-        ->setDocumentId($documentId)
-        ->setDocument($document);
+        ->setDocumentId($documentId);
 
     // Call the API and handle any network failures.
     try {
@@ -74,10 +65,8 @@ function create_document_sample(string $parent, string $collectionId, string $do
  */
 function callSample(): void
 {
-    $parent = '[PARENT]';
-    $collectionId = '[COLLECTION_ID]';
     $documentId = '[DOCUMENT_ID]';
 
-    create_document_sample($parent, $collectionId, $documentId);
+    create_document_sample($documentId);
 }
 // [END firestore_v1_generated_Firestore_CreateDocument_sync]

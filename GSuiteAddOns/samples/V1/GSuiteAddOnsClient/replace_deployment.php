@@ -43,9 +43,7 @@ function replace_deployment_sample(): void
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
     // Prepare the request message.
-    $deployment = new Deployment();
-    $request = (new ReplaceDeploymentRequest())
-        ->setDeployment($deployment);
+    $request = new ReplaceDeploymentRequest();
 
     // Call the API and handle any network failures.
     try {

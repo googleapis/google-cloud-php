@@ -32,18 +32,19 @@ use Google\Cloud\GkeBackup\V1\VolumeBackup;
 /**
  * Lists the VolumeBackups for a given Backup.
  *
- * @param string $formattedParent The Backup that contains the VolumeBackups to list.
- *                                Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
- *                                Please see {@see BackupForGKEClient::backupName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_volume_backups_sample(string $formattedParent): void
+function list_volume_backups_sample(): void
 {
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
     // Prepare the request message.
-    $request = (new ListVolumeBackupsRequest())
-        ->setParent($formattedParent);
+    $request = new ListVolumeBackupsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,26 +58,5 @@ function list_volume_backups_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BackupForGKEClient::backupName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[BACKUP_PLAN]',
-        '[BACKUP]'
-    );
-
-    list_volume_backups_sample($formattedParent);
 }
 // [END gkebackup_v1_generated_BackupForGKE_ListVolumeBackups_sync]

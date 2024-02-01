@@ -33,29 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a [Schema][google.cloud.discoveryengine.v1beta.Schema].
  *
- * @param string $formattedParent The parent data store resource name, in the format of
- *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`. Please see
- *                                {@see SchemaServiceClient::dataStoreName()} for help formatting this field.
- * @param string $schemaId        The ID to use for the
- *                                [Schema][google.cloud.discoveryengine.v1beta.Schema], which will become the
- *                                final component of the
- *                                [Schema.name][google.cloud.discoveryengine.v1beta.Schema.name].
- *
- *                                This field should conform to
- *                                [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length
- *                                limit of 63 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_schema_sample(string $formattedParent, string $schemaId): void
+function create_schema_sample(): void
 {
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
     // Prepare the request message.
-    $schema = new Schema();
-    $request = (new CreateSchemaRequest())
-        ->setParent($formattedParent)
-        ->setSchema($schema)
-        ->setSchemaId($schemaId);
+    $request = new CreateSchemaRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,22 +65,5 @@ function create_schema_sample(string $formattedParent, string $schemaId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SchemaServiceClient::dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-    $schemaId = '[SCHEMA_ID]';
-
-    create_schema_sample($formattedParent, $schemaId);
 }
 // [END discoveryengine_v1beta_generated_SchemaService_CreateSchema_sync]

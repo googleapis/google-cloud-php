@@ -34,7 +34,6 @@ class DeleteBackupPlanRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Fully qualified BackupPlan name.
      *                     Format: `projects/&#42;/locations/&#42;/backupPlans/*`
-     *                     Please see {@see BackupForGKEClient::backupPlanName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\DeleteBackupPlanRequest
      *

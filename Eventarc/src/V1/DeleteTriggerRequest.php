@@ -44,8 +44,7 @@ class DeleteTriggerRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
-     * @param string $name         Required. The name of the trigger to be deleted. Please see
-     *                             {@see EventarcClient::triggerName()} for help formatting this field.
+     * @param string $name         Required. The name of the trigger to be deleted.
      * @param bool   $allowMissing If set to true, and the trigger is not found, the request will succeed
      *                             but no action will be taken on the server.
      *

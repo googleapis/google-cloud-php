@@ -23,8 +23,7 @@ class DiagnoseNetworkRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the network resource. Please see
-     *                     {@see EdgeNetworkClient::networkName()} for help formatting this field.
+     * @param string $name Required. The name of the network resource.
      *
      * @return \Google\Cloud\EdgeNetwork\V1\DiagnoseNetworkRequest
      *

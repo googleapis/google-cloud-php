@@ -32,25 +32,19 @@ use Google\Cloud\GkeMultiCloud\V1\GetAttachedServerConfigRequest;
  * Returns information, such as supported Kubernetes versions, on a given
  * Google Cloud location.
  *
- * @param string $formattedName The name of the
- *                              [AttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedServerConfig]
- *                              resource to describe.
- *
- *                              `AttachedServerConfig` names are formatted as
- *                              `projects/<project-id>/locations/<region>/attachedServerConfig`.
- *
- *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                              for more details on Google Cloud resource names. Please see
- *                              {@see AttachedClustersClient::attachedServerConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_attached_server_config_sample(string $formattedName): void
+function get_attached_server_config_sample(): void
 {
     // Create a client.
     $attachedClustersClient = new AttachedClustersClient();
 
     // Prepare the request message.
-    $request = (new GetAttachedServerConfigRequest())
-        ->setName($formattedName);
+    $request = new GetAttachedServerConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +54,5 @@ function get_attached_server_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AttachedClustersClient::attachedServerConfigName('[PROJECT]', '[LOCATION]');
-
-    get_attached_server_config_sample($formattedName);
 }
 // [END gkemulticloud_v1_generated_AttachedClusters_GetAttachedServerConfig_sync]

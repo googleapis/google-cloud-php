@@ -34,21 +34,19 @@ use Google\Rpc\Status;
  * LRO endpoint to batch process many documents. The output is written
  * to Cloud Storage as JSON in the [Document] format.
  *
- * @param string $name The resource name of
- *                     [Processor][google.cloud.documentai.v1.Processor] or
- *                     [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
- *                     Format: `projects/{project}/locations/{location}/processors/{processor}`,
- *                     or
- *                     `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function batch_process_documents_sample(string $name): void
+function batch_process_documents_sample(): void
 {
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
     // Prepare the request message.
-    $request = (new BatchProcessRequest())
-        ->setName($name);
+    $request = new BatchProcessRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,21 +66,5 @@ function batch_process_documents_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    batch_process_documents_sample($name);
 }
 // [END documentai_v1_generated_DocumentProcessorService_BatchProcessDocuments_sync]

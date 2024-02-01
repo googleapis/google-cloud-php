@@ -33,39 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new BackupPlan in a given location.
  *
- * @param string $formattedParent            The location within which to create the BackupPlan.
- *                                           Format: `projects/&#42;/locations/*`
- *                                           Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
- * @param string $formattedBackupPlanCluster Immutable. The source cluster from which Backups will be created
- *                                           via this BackupPlan. Valid formats:
- *
- *                                           - `projects/&#42;/locations/&#42;/clusters/*`
- *                                           - `projects/&#42;/zones/&#42;/clusters/*`
- *                                           Please see {@see BackupForGKEClient::clusterName()} for help formatting this field.
- * @param string $backupPlanId               The client-provided short name for the BackupPlan resource.
- *                                           This name must:
- *
- *                                           - be between 1 and 63 characters long (inclusive)
- *                                           - consist of only lower-case ASCII letters, numbers, and dashes
- *                                           - start with a lower-case letter
- *                                           - end with a lower-case letter or number
- *                                           - be unique within the set of BackupPlans in this location
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_backup_plan_sample(
-    string $formattedParent,
-    string $formattedBackupPlanCluster,
-    string $backupPlanId
-): void {
+function create_backup_plan_sample(): void
+{
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
     // Prepare the request message.
-    $backupPlan = (new BackupPlan())
-        ->setCluster($formattedBackupPlanCluster);
-    $request = (new CreateBackupPlanRequest())
-        ->setParent($formattedParent)
-        ->setBackupPlan($backupPlan)
-        ->setBackupPlanId($backupPlanId);
+    $request = new CreateBackupPlanRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -85,27 +65,5 @@ function create_backup_plan_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = BackupForGKEClient::locationName('[PROJECT]', '[LOCATION]');
-    $formattedBackupPlanCluster = BackupForGKEClient::clusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CLUSTER]'
-    );
-    $backupPlanId = '[BACKUP_PLAN_ID]';
-
-    create_backup_plan_sample($formattedParent, $formattedBackupPlanCluster, $backupPlanId);
 }
 // [END gkebackup_v1_generated_BackupForGKE_CreateBackupPlan_sync]

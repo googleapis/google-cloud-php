@@ -32,18 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a [Schema][google.cloud.discoveryengine.v1.Schema].
  *
- * @param string $formattedName The full resource name of the schema, in the format of
- *                              `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`. Please see
- *                              {@see SchemaServiceClient::schemaName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_schema_sample(string $formattedName): void
+function delete_schema_sample(): void
 {
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteSchemaRequest())
-        ->setName($formattedName);
+    $request = new DeleteSchemaRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,26 +62,5 @@ function delete_schema_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = SchemaServiceClient::schemaName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_STORE]',
-        '[SCHEMA]'
-    );
-
-    delete_schema_sample($formattedName);
 }
 // [END discoveryengine_v1_generated_SchemaService_DeleteSchema_sync]

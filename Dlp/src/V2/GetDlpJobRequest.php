@@ -23,8 +23,7 @@ class GetDlpJobRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the DlpJob resource. Please see
-     *                     {@see DlpServiceClient::dlpJobName()} for help formatting this field.
+     * @param string $name Required. The name of the DlpJob resource.
      *
      * @return \Google\Cloud\Dlp\V2\GetDlpJobRequest
      *

@@ -26,8 +26,7 @@ class GetInstallStatusRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The full resource name of the deployment.
      *
-     *                     Example:  `projects/my_project/deployments/my_deployment/installStatus`. Please see
-     *                     {@see GSuiteAddOnsClient::installStatusName()} for help formatting this field.
+     *                     Example:  `projects/my_project/deployments/my_deployment/installStatus`.
      *
      * @return \Google\Cloud\GSuiteAddOns\V1\GetInstallStatusRequest
      *

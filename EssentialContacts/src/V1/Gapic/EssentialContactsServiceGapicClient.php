@@ -41,7 +41,6 @@ use Google\Cloud\EssentialContacts\V1\DeleteContactRequest;
 use Google\Cloud\EssentialContacts\V1\GetContactRequest;
 use Google\Cloud\EssentialContacts\V1\ListContactsRequest;
 use Google\Cloud\EssentialContacts\V1\ListContactsResponse;
-use Google\Cloud\EssentialContacts\V1\NotificationCategory;
 use Google\Cloud\EssentialContacts\V1\SendTestMessageRequest;
 use Google\Cloud\EssentialContacts\V1\UpdateContactRequest;
 use Google\Protobuf\FieldMask;
@@ -56,9 +55,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $essentialContactsServiceClient = new EssentialContactsServiceClient();
  * try {
- *     $formattedParent = $essentialContactsServiceClient->projectName('[PROJECT]');
  *     // Iterate over pages of elements
- *     $pagedResponse = $essentialContactsServiceClient->computeContacts($formattedParent);
+ *     $pagedResponse = $essentialContactsServiceClient->computeContacts();
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -66,7 +64,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // Iterate through all elements
- *     $pagedResponse = $essentialContactsServiceClient->computeContacts($formattedParent);
+ *     $pagedResponse = $essentialContactsServiceClient->computeContacts();
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -454,9 +452,8 @@ class EssentialContactsServiceGapicClient
      * ```
      * $essentialContactsServiceClient = new EssentialContactsServiceClient();
      * try {
-     *     $formattedParent = $essentialContactsServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $essentialContactsServiceClient->computeContacts($formattedParent);
+     *     $pagedResponse = $essentialContactsServiceClient->computeContacts();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -464,7 +461,7 @@ class EssentialContactsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $essentialContactsServiceClient->computeContacts($formattedParent);
+     *     $pagedResponse = $essentialContactsServiceClient->computeContacts();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -473,12 +470,13 @@ class EssentialContactsServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the resource to compute contacts for.
-     *                             Format: organizations/{organization_id},
-     *                             folders/{folder_id} or projects/{project_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The name of the resource to compute contacts for.
+     *           Format: organizations/{organization_id},
+     *           folders/{folder_id} or projects/{project_id}
      *     @type int[] $notificationCategories
      *           The categories of notifications to compute contacts for. If ALL is included
      *           in this list, contacts subscribed to any notification category will be
@@ -503,12 +501,15 @@ class EssentialContactsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function computeContacts($parent, array $optionalArgs = [])
+    public function computeContacts(array $optionalArgs = [])
     {
         $request = new ComputeContactsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['notificationCategories'])) {
             $request->setNotificationCategories($optionalArgs['notificationCategories']);
         }
@@ -533,22 +534,22 @@ class EssentialContactsServiceGapicClient
      * ```
      * $essentialContactsServiceClient = new EssentialContactsServiceClient();
      * try {
-     *     $formattedParent = $essentialContactsServiceClient->projectName('[PROJECT]');
-     *     $contact = new Contact();
-     *     $response = $essentialContactsServiceClient->createContact($formattedParent, $contact);
+     *     $response = $essentialContactsServiceClient->createContact();
      * } finally {
      *     $essentialContactsServiceClient->close();
      * }
      * ```
      *
-     * @param string  $parent       Required. The resource to save this contact for.
-     *                              Format: organizations/{organization_id}, folders/{folder_id} or
-     *                              projects/{project_id}
-     * @param Contact $contact      Required. The contact to create. Must specify an email address and language
-     *                              tag.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource to save this contact for.
+     *           Format: organizations/{organization_id}, folders/{folder_id} or
+     *           projects/{project_id}
+     *     @type Contact $contact
+     *           Required. The contact to create. Must specify an email address and language
+     *           tag.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -559,13 +560,19 @@ class EssentialContactsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createContact($parent, $contact, array $optionalArgs = [])
+    public function createContact(array $optionalArgs = [])
     {
         $request = new CreateContactRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setContact($contact);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['contact'])) {
+            $request->setContact($optionalArgs['contact']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateContact', Contact::class, $optionalArgs, $request)->wait();
@@ -578,20 +585,20 @@ class EssentialContactsServiceGapicClient
      * ```
      * $essentialContactsServiceClient = new EssentialContactsServiceClient();
      * try {
-     *     $formattedName = $essentialContactsServiceClient->contactName('[PROJECT]', '[CONTACT]');
-     *     $essentialContactsServiceClient->deleteContact($formattedName);
+     *     $essentialContactsServiceClient->deleteContact();
      * } finally {
      *     $essentialContactsServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the contact to delete.
-     *                             Format: organizations/{organization_id}/contacts/{contact_id},
-     *                             folders/{folder_id}/contacts/{contact_id} or
-     *                             projects/{project_id}/contacts/{contact_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the contact to delete.
+     *           Format: organizations/{organization_id}/contacts/{contact_id},
+     *           folders/{folder_id}/contacts/{contact_id} or
+     *           projects/{project_id}/contacts/{contact_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -600,12 +607,15 @@ class EssentialContactsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteContact($name, array $optionalArgs = [])
+    public function deleteContact(array $optionalArgs = [])
     {
         $request = new DeleteContactRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteContact', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -618,20 +628,20 @@ class EssentialContactsServiceGapicClient
      * ```
      * $essentialContactsServiceClient = new EssentialContactsServiceClient();
      * try {
-     *     $formattedName = $essentialContactsServiceClient->contactName('[PROJECT]', '[CONTACT]');
-     *     $response = $essentialContactsServiceClient->getContact($formattedName);
+     *     $response = $essentialContactsServiceClient->getContact();
      * } finally {
      *     $essentialContactsServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the contact to retrieve.
-     *                             Format: organizations/{organization_id}/contacts/{contact_id},
-     *                             folders/{folder_id}/contacts/{contact_id} or
-     *                             projects/{project_id}/contacts/{contact_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The name of the contact to retrieve.
+     *           Format: organizations/{organization_id}/contacts/{contact_id},
+     *           folders/{folder_id}/contacts/{contact_id} or
+     *           projects/{project_id}/contacts/{contact_id}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -642,12 +652,15 @@ class EssentialContactsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getContact($name, array $optionalArgs = [])
+    public function getContact(array $optionalArgs = [])
     {
         $request = new GetContactRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetContact', Contact::class, $optionalArgs, $request)->wait();
@@ -660,9 +673,8 @@ class EssentialContactsServiceGapicClient
      * ```
      * $essentialContactsServiceClient = new EssentialContactsServiceClient();
      * try {
-     *     $formattedParent = $essentialContactsServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $essentialContactsServiceClient->listContacts($formattedParent);
+     *     $pagedResponse = $essentialContactsServiceClient->listContacts();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -670,7 +682,7 @@ class EssentialContactsServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $essentialContactsServiceClient->listContacts($formattedParent);
+     *     $pagedResponse = $essentialContactsServiceClient->listContacts();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -679,12 +691,13 @@ class EssentialContactsServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource name.
-     *                             Format: organizations/{organization_id}, folders/{folder_id} or
-     *                             projects/{project_id}
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The parent resource name.
+     *           Format: organizations/{organization_id}, folders/{folder_id} or
+     *           projects/{project_id}
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -704,12 +717,15 @@ class EssentialContactsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listContacts($parent, array $optionalArgs = [])
+    public function listContacts(array $optionalArgs = [])
     {
         $request = new ListContactsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -731,32 +747,30 @@ class EssentialContactsServiceGapicClient
      * ```
      * $essentialContactsServiceClient = new EssentialContactsServiceClient();
      * try {
-     *     $formattedContacts = [
-     *         $essentialContactsServiceClient->contactName('[PROJECT]', '[CONTACT]'),
-     *     ];
-     *     $formattedResource = $essentialContactsServiceClient->projectName('[PROJECT]');
-     *     $notificationCategory = NotificationCategory::NOTIFICATION_CATEGORY_UNSPECIFIED;
-     *     $essentialContactsServiceClient->sendTestMessage($formattedContacts, $formattedResource, $notificationCategory);
+     *     $essentialContactsServiceClient->sendTestMessage();
      * } finally {
      *     $essentialContactsServiceClient->close();
      * }
      * ```
      *
-     * @param string[] $contacts             Required. The list of names of the contacts to send a test message to.
-     *                                       Format: organizations/{organization_id}/contacts/{contact_id},
-     *                                       folders/{folder_id}/contacts/{contact_id} or
-     *                                       projects/{project_id}/contacts/{contact_id}
-     * @param string   $resource             Required. The name of the resource to send the test message for. All
-     *                                       contacts must either be set directly on this resource or inherited from
-     *                                       another resource that is an ancestor of this one. Format:
-     *                                       organizations/{organization_id}, folders/{folder_id} or
-     *                                       projects/{project_id}
-     * @param int      $notificationCategory Required. The notification category to send the test message for. All
-     *                                       contacts must be subscribed to this category.
-     *                                       For allowed values, use constants defined on {@see \Google\Cloud\EssentialContacts\V1\NotificationCategory}
-     * @param array    $optionalArgs         {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string[] $contacts
+     *           Required. The list of names of the contacts to send a test message to.
+     *           Format: organizations/{organization_id}/contacts/{contact_id},
+     *           folders/{folder_id}/contacts/{contact_id} or
+     *           projects/{project_id}/contacts/{contact_id}
+     *     @type string $resource
+     *           Required. The name of the resource to send the test message for. All
+     *           contacts must either be set directly on this resource or inherited from
+     *           another resource that is an ancestor of this one. Format:
+     *           organizations/{organization_id}, folders/{folder_id} or
+     *           projects/{project_id}
+     *     @type int $notificationCategory
+     *           Required. The notification category to send the test message for. All
+     *           contacts must be subscribed to this category.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\EssentialContacts\V1\NotificationCategory}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -765,14 +779,23 @@ class EssentialContactsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function sendTestMessage($contacts, $resource, $notificationCategory, array $optionalArgs = [])
+    public function sendTestMessage(array $optionalArgs = [])
     {
         $request = new SendTestMessageRequest();
         $requestParamHeaders = [];
-        $request->setContacts($contacts);
-        $request->setResource($resource);
-        $request->setNotificationCategory($notificationCategory);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['contacts'])) {
+            $request->setContacts($optionalArgs['contacts']);
+        }
+
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['notificationCategory'])) {
+            $request->setNotificationCategory($optionalArgs['notificationCategory']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SendTestMessage', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -786,18 +809,18 @@ class EssentialContactsServiceGapicClient
      * ```
      * $essentialContactsServiceClient = new EssentialContactsServiceClient();
      * try {
-     *     $contact = new Contact();
-     *     $response = $essentialContactsServiceClient->updateContact($contact);
+     *     $response = $essentialContactsServiceClient->updateContact();
      * } finally {
      *     $essentialContactsServiceClient->close();
      * }
      * ```
      *
-     * @param Contact $contact      Required. The contact resource to replace the existing saved contact. Note:
-     *                              the email address of the contact cannot be modified.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Contact $contact
+     *           Required. The contact resource to replace the existing saved contact. Note:
+     *           the email address of the contact cannot be modified.
      *     @type FieldMask $updateMask
      *           Optional. The update mask applied to the resource. For the `FieldMask`
      *           definition, see
@@ -812,12 +835,14 @@ class EssentialContactsServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateContact($contact, array $optionalArgs = [])
+    public function updateContact(array $optionalArgs = [])
     {
         $request = new UpdateContactRequest();
         $requestParamHeaders = [];
-        $request->setContact($contact);
-        $requestParamHeaders['contact.name'] = $contact->getName();
+        if (isset($optionalArgs['contact'])) {
+            $request->setContact($optionalArgs['contact']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

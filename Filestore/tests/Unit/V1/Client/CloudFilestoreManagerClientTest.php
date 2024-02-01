@@ -54,7 +54,6 @@ use Google\Cloud\Filestore\V1\UpdateSnapshotRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -134,14 +133,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backup = new Backup();
-        $backupId = 'backupId1355353272';
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent)
-            ->setBackup($backup)
-            ->setBackupId($backupId);
+        $request = new CreateBackupRequest();
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -152,12 +144,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/CreateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackup();
-        $this->assertProtobufEquals($backup, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupId();
-        $this->assertProtobufEquals($backupId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupTest');
         $response->pollUntilComplete([
@@ -208,14 +194,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backup = new Backup();
-        $backupId = 'backupId1355353272';
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent)
-            ->setBackup($backup)
-            ->setBackupId($backupId);
+        $request = new CreateBackupRequest();
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -279,14 +258,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -297,12 +269,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/CreateInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createInstanceTest');
         $response->pollUntilComplete([
@@ -353,14 +319,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $request = (new CreateInstanceRequest())
-            ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
+        $request = new CreateInstanceRequest();
         $response = $gapicClient->createInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -418,14 +377,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $snapshotId = 'snapshotId-168585866';
-        $snapshot = new Snapshot();
-        $request = (new CreateSnapshotRequest())
-            ->setParent($formattedParent)
-            ->setSnapshotId($snapshotId)
-            ->setSnapshot($snapshot);
+        $request = new CreateSnapshotRequest();
         $response = $gapicClient->createSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -436,12 +388,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/CreateSnapshot', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getSnapshotId();
-        $this->assertProtobufEquals($snapshotId, $actualValue);
-        $actualValue = $actualApiRequestObject->getSnapshot();
-        $this->assertProtobufEquals($snapshot, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createSnapshotTest');
         $response->pollUntilComplete([
@@ -492,14 +438,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $snapshotId = 'snapshotId-168585866';
-        $snapshot = new Snapshot();
-        $request = (new CreateSnapshotRequest())
-            ->setParent($formattedParent)
-            ->setSnapshotId($snapshotId)
-            ->setSnapshot($snapshot);
+        $request = new CreateSnapshotRequest();
         $response = $gapicClient->createSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -551,10 +490,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = new DeleteBackupRequest();
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -565,8 +501,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/DeleteBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteBackupTest');
         $response->pollUntilComplete([
@@ -617,10 +551,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = new DeleteBackupRequest();
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -672,10 +603,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = new DeleteInstanceRequest();
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -686,8 +614,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/DeleteInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteInstanceTest');
         $response->pollUntilComplete([
@@ -738,10 +664,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = new DeleteInstanceRequest();
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -793,10 +716,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[SNAPSHOT]');
-        $request = (new DeleteSnapshotRequest())
-            ->setName($formattedName);
+        $request = new DeleteSnapshotRequest();
         $response = $gapicClient->deleteSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -807,8 +727,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/DeleteSnapshot', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteSnapshotTest');
         $response->pollUntilComplete([
@@ -859,10 +777,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[SNAPSHOT]');
-        $request = (new DeleteSnapshotRequest())
-            ->setName($formattedName);
+        $request = new DeleteSnapshotRequest();
         $response = $gapicClient->deleteSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -914,10 +829,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setKmsKey($kmsKey);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = new GetBackupRequest();
         $response = $gapicClient->getBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -925,8 +837,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/GetBackup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -948,10 +858,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = new GetBackupRequest();
         try {
             $gapicClient->getBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -988,10 +895,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceRequest();
         $response = $gapicClient->getInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -999,8 +903,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/GetInstance', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1022,10 +924,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = new GetInstanceRequest();
         try {
             $gapicClient->getInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1056,10 +955,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFilesystemUsedBytes($filesystemUsedBytes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[SNAPSHOT]');
-        $request = (new GetSnapshotRequest())
-            ->setName($formattedName);
+        $request = new GetSnapshotRequest();
         $response = $gapicClient->getSnapshot($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1067,8 +963,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/GetSnapshot', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1090,10 +984,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[SNAPSHOT]');
-        $request = (new GetSnapshotRequest())
-            ->setName($formattedName);
+        $request = new GetSnapshotRequest();
         try {
             $gapicClient->getSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1125,10 +1016,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListBackupsRequest();
         $response = $gapicClient->listBackups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1139,8 +1027,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/ListBackups', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1162,10 +1048,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = new ListBackupsRequest();
         try {
             $gapicClient->listBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1197,10 +1080,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = new ListInstancesRequest();
         $response = $gapicClient->listInstances($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1211,8 +1091,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/ListInstances', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1234,10 +1112,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = new ListInstancesRequest();
         try {
             $gapicClient->listInstances($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1269,10 +1144,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnapshots($snapshots);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListSnapshotsRequest())
-            ->setParent($formattedParent);
+        $request = new ListSnapshotsRequest();
         $response = $gapicClient->listSnapshots($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1283,8 +1155,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/ListSnapshots', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1306,10 +1176,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListSnapshotsRequest())
-            ->setParent($formattedParent);
+        $request = new ListSnapshotsRequest();
         try {
             $gapicClient->listSnapshots($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1364,12 +1231,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $fileShare = 'fileShare2143984476';
-        $request = (new RestoreInstanceRequest())
-            ->setName($formattedName)
-            ->setFileShare($fileShare);
+        $request = new RestoreInstanceRequest();
         $response = $gapicClient->restoreInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1380,10 +1242,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/RestoreInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getFileShare();
-        $this->assertProtobufEquals($fileShare, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restoreInstanceTest');
         $response->pollUntilComplete([
@@ -1434,12 +1292,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $fileShare = 'fileShare2143984476';
-        $request = (new RestoreInstanceRequest())
-            ->setName($formattedName)
-            ->setFileShare($fileShare);
+        $request = new RestoreInstanceRequest();
         $response = $gapicClient->restoreInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1503,12 +1356,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $targetSnapshotId = 'targetSnapshotId1030984648';
-        $request = (new RevertInstanceRequest())
-            ->setName($formattedName)
-            ->setTargetSnapshotId($targetSnapshotId);
+        $request = new RevertInstanceRequest();
         $response = $gapicClient->revertInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1519,10 +1367,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/RevertInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getTargetSnapshotId();
-        $this->assertProtobufEquals($targetSnapshotId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/revertInstanceTest');
         $response->pollUntilComplete([
@@ -1573,12 +1417,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $targetSnapshotId = 'targetSnapshotId1030984648';
-        $request = (new RevertInstanceRequest())
-            ->setName($formattedName)
-            ->setTargetSnapshotId($targetSnapshotId);
+        $request = new RevertInstanceRequest();
         $response = $gapicClient->revertInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1648,12 +1487,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $backup = new Backup();
-        $updateMask = new FieldMask();
-        $request = (new UpdateBackupRequest())
-            ->setBackup($backup)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateBackupRequest();
         $response = $gapicClient->updateBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1664,10 +1498,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/UpdateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getBackup();
-        $this->assertProtobufEquals($backup, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBackupTest');
         $response->pollUntilComplete([
@@ -1718,12 +1548,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $backup = new Backup();
-        $updateMask = new FieldMask();
-        $request = (new UpdateBackupRequest())
-            ->setBackup($backup)
-            ->setUpdateMask($updateMask);
+        $request = new UpdateBackupRequest();
         $response = $gapicClient->updateBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1906,12 +1731,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $snapshot = new Snapshot();
-        $request = (new UpdateSnapshotRequest())
-            ->setUpdateMask($updateMask)
-            ->setSnapshot($snapshot);
+        $request = new UpdateSnapshotRequest();
         $response = $gapicClient->updateSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1922,10 +1742,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/UpdateSnapshot', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getSnapshot();
-        $this->assertProtobufEquals($snapshot, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateSnapshotTest');
         $response->pollUntilComplete([
@@ -1976,12 +1792,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $snapshot = new Snapshot();
-        $request = (new UpdateSnapshotRequest())
-            ->setUpdateMask($updateMask)
-            ->setSnapshot($snapshot);
+        $request = new UpdateSnapshotRequest();
         $response = $gapicClient->updateSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2051,14 +1862,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $backup = new Backup();
-        $backupId = 'backupId1355353272';
-        $request = (new CreateBackupRequest())
-            ->setParent($formattedParent)
-            ->setBackup($backup)
-            ->setBackupId($backupId);
+        $request = new CreateBackupRequest();
         $response = $gapicClient->createBackupAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2069,12 +1873,6 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.filestore.v1.CloudFilestoreManager/CreateBackup', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackup();
-        $this->assertProtobufEquals($backup, $actualValue);
-        $actualValue = $actualApiRequestObject->getBackupId();
-        $this->assertProtobufEquals($backupId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupTest');
         $response->pollUntilComplete([

@@ -46,8 +46,7 @@ class CreateConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
     private $request_id = '';
 
     /**
-     * @param string                                        $parent                Required. The parent which owns this collection of conversion workspaces. Please see
-     *                                                                             {@see DataMigrationServiceClient::locationName()} for help formatting this field.
+     * @param string                                        $parent                Required. The parent which owns this collection of conversion workspaces.
      * @param \Google\Cloud\CloudDms\V1\ConversionWorkspace $conversionWorkspace   Required. Represents a conversion workspace object.
      * @param string                                        $conversionWorkspaceId Required. The ID of the conversion workspace to create.
      *

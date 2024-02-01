@@ -37,21 +37,19 @@ use Google\Rpc\Status;
  * capacity of the backup (and also equal to or larger than the minimum
  * capacity of the tier).
  *
- * @param string $formattedName The resource name of the instance, in the format
- *                              `projects/{project_number}/locations/{location_id}/instances/{instance_id}`. Please see
- *                              {@see CloudFilestoreManagerClient::instanceName()} for help formatting this field.
- * @param string $fileShare     Name of the file share in the Filestore instance that the backup
- *                              is being restored to.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function restore_instance_sample(string $formattedName, string $fileShare): void
+function restore_instance_sample(): void
 {
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
     // Prepare the request message.
-    $request = (new RestoreInstanceRequest())
-        ->setName($formattedName)
-        ->setFileShare($fileShare);
+    $request = new RestoreInstanceRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,22 +69,5 @@ function restore_instance_sample(string $formattedName, string $fileShare): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudFilestoreManagerClient::instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-    $fileShare = '[FILE_SHARE]';
-
-    restore_instance_sample($formattedName, $fileShare);
 }
 // [END file_v1_generated_CloudFilestoreManager_RestoreInstance_sync]

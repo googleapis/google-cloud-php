@@ -32,19 +32,19 @@ use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
  * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
  * learn more.
  *
- * @param string $formattedName Resource name of the organization and storedInfoType to be
- *                              deleted, for example `organizations/433245324/storedInfoTypes/432452342` or
- *                              projects/project-id/storedInfoTypes/432452342. Please see
- *                              {@see DlpServiceClient::storedInfoTypeName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_stored_info_type_sample(string $formattedName): void
+function delete_stored_info_type_sample(): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteStoredInfoTypeRequest())
-        ->setName($formattedName);
+    $request = new DeleteStoredInfoTypeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +53,5 @@ function delete_stored_info_type_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DlpServiceClient::storedInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
-
-    delete_stored_info_type_sample($formattedName);
 }
 // [END dlp_v2_generated_DlpService_DeleteStoredInfoType_sync]

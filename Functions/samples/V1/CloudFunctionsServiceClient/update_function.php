@@ -43,13 +43,10 @@ function update_function_sample(): void
     // Create a client.
     $cloudFunctionsServiceClient = new CloudFunctionsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $function = new CloudFunction();
-
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFunctionsServiceClient->updateFunction($function);
+        $response = $cloudFunctionsServiceClient->updateFunction();
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

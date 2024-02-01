@@ -27,35 +27,25 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\MigrationJob;
-use Google\Cloud\CloudDms\V1\MigrationJob\Type;
 use Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single migration job.
  *
- * @param int    $migrationJobType        The migration job type.
- * @param string $migrationJobSource      The resource name (URI) of the source connection profile.
- * @param string $migrationJobDestination The resource name (URI) of the destination connection profile.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_migration_job_sample(
-    int $migrationJobType,
-    string $migrationJobSource,
-    string $migrationJobDestination
-): void {
+function update_migration_job_sample(): void
+{
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $migrationJob = (new MigrationJob())
-        ->setType($migrationJobType)
-        ->setSource($migrationJobSource)
-        ->setDestination($migrationJobDestination);
-    $request = (new UpdateMigrationJobRequest())
-        ->setUpdateMask($updateMask)
-        ->setMigrationJob($migrationJob);
+    $request = new UpdateMigrationJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,23 +65,5 @@ function update_migration_job_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $migrationJobType = Type::TYPE_UNSPECIFIED;
-    $migrationJobSource = '[SOURCE]';
-    $migrationJobDestination = '[DESTINATION]';
-
-    update_migration_job_sample($migrationJobType, $migrationJobSource, $migrationJobDestination);
 }
 // [END datamigration_v1_generated_DataMigrationService_UpdateMigrationJob_sync]

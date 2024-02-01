@@ -32,25 +32,19 @@ use Google\Cloud\GkeMultiCloud\V1\GetAwsServerConfigRequest;
  * Returns information, such as supported AWS regions and Kubernetes
  * versions, on a given Google Cloud location.
  *
- * @param string $formattedName The name of the
- *                              [AwsServerConfig][google.cloud.gkemulticloud.v1.AwsServerConfig] resource
- *                              to describe.
- *
- *                              `AwsServerConfig` names are formatted as
- *                              `projects/<project-id>/locations/<region>/awsServerConfig`.
- *
- *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                              for more details on Google Cloud resource names. Please see
- *                              {@see AwsClustersClient::awsServerConfigName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_aws_server_config_sample(string $formattedName): void
+function get_aws_server_config_sample(): void
 {
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
     // Prepare the request message.
-    $request = (new GetAwsServerConfigRequest())
-        ->setName($formattedName);
+    $request = new GetAwsServerConfigRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +54,5 @@ function get_aws_server_config_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AwsClustersClient::awsServerConfigName('[PROJECT]', '[LOCATION]');
-
-    get_aws_server_config_sample($formattedName);
 }
 // [END gkemulticloud_v1_generated_AwsClusters_GetAwsServerConfig_sync]

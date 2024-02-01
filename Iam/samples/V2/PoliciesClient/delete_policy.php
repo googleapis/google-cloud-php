@@ -33,25 +33,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a policy. This action is permanent.
  *
- * @param string $name The resource name of the policy to delete. Format:
- *                     `policies/{attachment_point}/denypolicies/{policy_id}`
- *
- *
- *                     Use the URL-encoded full resource name, which means that the forward-slash
- *                     character, `/`, must be written as `%2F`. For example,
- *                     `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies/my-policy`.
- *
- *                     For organizations and folders, use the numeric ID in the full resource
- *                     name. For projects, you can use the alphanumeric or the numeric ID.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_policy_sample(string $name): void
+function delete_policy_sample(): void
 {
     // Create a client.
     $policiesClient = new PoliciesClient();
 
     // Prepare the request message.
-    $request = (new DeletePolicyRequest())
-        ->setName($name);
+    $request = new DeletePolicyRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,21 +65,5 @@ function delete_policy_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    delete_policy_sample($name);
 }
 // [END iam_v2_generated_Policies_DeletePolicy_sync]

@@ -61,8 +61,7 @@ class ListConnectionProfilesRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
-     * @param string $parent Required. The parent which owns this collection of connection profiles. Please see
-     *                       {@see DataMigrationServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent which owns this collection of connection profiles.
      *
      * @return \Google\Cloud\CloudDms\V1\ListConnectionProfilesRequest
      *

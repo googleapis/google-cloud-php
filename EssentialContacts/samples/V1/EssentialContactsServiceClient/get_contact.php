@@ -31,20 +31,19 @@ use Google\Cloud\EssentialContacts\V1\GetContactRequest;
 /**
  * Gets a single contact.
  *
- * @param string $formattedName The name of the contact to retrieve.
- *                              Format: organizations/{organization_id}/contacts/{contact_id},
- *                              folders/{folder_id}/contacts/{contact_id} or
- *                              projects/{project_id}/contacts/{contact_id}
- *                              Please see {@see EssentialContactsServiceClient::contactName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_contact_sample(string $formattedName): void
+function get_contact_sample(): void
 {
     // Create a client.
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
     // Prepare the request message.
-    $request = (new GetContactRequest())
-        ->setName($formattedName);
+    $request = new GetContactRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -54,21 +53,5 @@ function get_contact_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = EssentialContactsServiceClient::contactName('[PROJECT]', '[CONTACT]');
-
-    get_contact_sample($formattedName);
 }
 // [END essentialcontacts_v1_generated_EssentialContactsService_GetContact_sync]

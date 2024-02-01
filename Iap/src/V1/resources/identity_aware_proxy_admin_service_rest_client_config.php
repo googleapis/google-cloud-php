@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'tunnel_dest_group_id',
-                ],
             ],
             'DeleteTunnelDestGroup' => [
                 'method' => 'delete',

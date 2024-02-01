@@ -41,7 +41,6 @@ class CreateFunctionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                $parent     Required. The project and location in which the function should be created,
      *                                                          specified in the format `projects/&#42;/locations/*`
-     *                                                          Please see {@see FunctionServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Functions\V2\PBFunction $function   Required. Function to be created.
      * @param string                                $functionId The ID to use for the function, which will become the final component of
      *                                                          the function's resource name.

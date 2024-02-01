@@ -35,18 +35,19 @@ use Google\Cloud\Domains\V1\RetrieveAuthorizationCodeRequest;
  * You can call this method only after 60 days have elapsed since the initial
  * domain registration.
  *
- * @param string $formattedRegistration The name of the `Registration` whose authorization code is being retrieved,
- *                                      in the format `projects/&#42;/locations/&#42;/registrations/*`. Please see
- *                                      {@see DomainsClient::registrationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function retrieve_authorization_code_sample(string $formattedRegistration): void
+function retrieve_authorization_code_sample(): void
 {
     // Create a client.
     $domainsClient = new DomainsClient();
 
     // Prepare the request message.
-    $request = (new RetrieveAuthorizationCodeRequest())
-        ->setRegistration($formattedRegistration);
+    $request = new RetrieveAuthorizationCodeRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,25 +57,5 @@ function retrieve_authorization_code_sample(string $formattedRegistration): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedRegistration = DomainsClient::registrationName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[REGISTRATION]'
-    );
-
-    retrieve_authorization_code_sample($formattedRegistration);
 }
 // [END domains_v1_generated_Domains_RetrieveAuthorizationCode_sync]

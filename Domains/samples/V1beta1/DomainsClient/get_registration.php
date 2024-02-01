@@ -30,11 +30,13 @@ use Google\Cloud\Domains\V1beta1\Registration;
 /**
  * Gets the details of a `Registration` resource.
  *
- * @param string $formattedName The name of the `Registration` to get, in the format
- *                              `projects/&#42;/locations/&#42;/registrations/*`. Please see
- *                              {@see DomainsClient::registrationName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_registration_sample(string $formattedName): void
+function get_registration_sample(): void
 {
     // Create a client.
     $domainsClient = new DomainsClient();
@@ -42,26 +44,10 @@ function get_registration_sample(string $formattedName): void
     // Call the API and handle any network failures.
     try {
         /** @var Registration $response */
-        $response = $domainsClient->getRegistration($formattedName);
+        $response = $domainsClient->getRegistration();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DomainsClient::registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-
-    get_registration_sample($formattedName);
 }
 // [END domains_v1beta1_generated_Domains_GetRegistration_sync]

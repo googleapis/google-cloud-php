@@ -31,27 +31,19 @@ use Google\Cloud\GkeMultiCloud\V1\GenerateAwsClusterAgentTokenResponse;
 /**
  * Generates an access token for a cluster agent.
  *
- * @param string $formattedAwsCluster Please see
- *                                    {@see AwsClustersClient::awsClusterName()} for help formatting this field.
- * @param string $subjectToken        Required.
- * @param string $subjectTokenType    Required.
- * @param string $version             Required.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function generate_aws_cluster_agent_token_sample(
-    string $formattedAwsCluster,
-    string $subjectToken,
-    string $subjectTokenType,
-    string $version
-): void {
+function generate_aws_cluster_agent_token_sample(): void
+{
     // Create a client.
     $awsClustersClient = new AwsClustersClient();
 
     // Prepare the request message.
-    $request = (new GenerateAwsClusterAgentTokenRequest())
-        ->setAwsCluster($formattedAwsCluster)
-        ->setSubjectToken($subjectToken)
-        ->setSubjectTokenType($subjectTokenType)
-        ->setVersion($version);
+    $request = new GenerateAwsClusterAgentTokenRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -61,33 +53,5 @@ function generate_aws_cluster_agent_token_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedAwsCluster = AwsClustersClient::awsClusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AWS_CLUSTER]'
-    );
-    $subjectToken = '[SUBJECT_TOKEN]';
-    $subjectTokenType = '[SUBJECT_TOKEN_TYPE]';
-    $version = '[VERSION]';
-
-    generate_aws_cluster_agent_token_sample(
-        $formattedAwsCluster,
-        $subjectToken,
-        $subjectTokenType,
-        $version
-    );
 }
 // [END gkemulticloud_v1_generated_AwsClusters_GenerateAwsClusterAgentToken_sync]

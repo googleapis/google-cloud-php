@@ -74,17 +74,13 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setGroupId($groupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedGroupName = $gapicClient->errorGroupName('[PROJECT]', '[GROUP]');
-        $response = $gapicClient->getGroup($formattedGroupName);
+        $response = $gapicClient->getGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/GetGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGroupName();
-        $this->assertProtobufEquals($formattedGroupName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -106,10 +102,8 @@ class ErrorGroupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedGroupName = $gapicClient->errorGroupName('[PROJECT]', '[GROUP]');
         try {
-            $gapicClient->getGroup($formattedGroupName);
+            $gapicClient->getGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -136,17 +130,13 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setGroupId($groupId);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $group = new ErrorGroup();
-        $response = $gapicClient->updateGroup($group);
+        $response = $gapicClient->updateGroup();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/UpdateGroup', $actualFuncCall);
-        $actualValue = $actualRequestObject->getGroup();
-        $this->assertProtobufEquals($group, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -168,10 +158,8 @@ class ErrorGroupServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $group = new ErrorGroup();
         try {
-            $gapicClient->updateGroup($group);
+            $gapicClient->updateGroup();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

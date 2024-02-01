@@ -49,7 +49,6 @@ class ListInterconnectAttachmentsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * @param string $parent Required. Parent value for ListInterconnectAttachmentsRequest
-     *                       Please see {@see EdgeNetworkClient::zoneName()} for help formatting this field.
      *
      * @return \Google\Cloud\EdgeNetwork\V1\ListInterconnectAttachmentsRequest
      *

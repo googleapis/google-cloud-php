@@ -75,10 +75,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $expectedResponse = new CompleteQueryResponse();
         $expectedResponse->setTailMatchTriggered($tailMatchTriggered);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedDataStore = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $query = 'query107944136';
-        $request = (new CompleteQueryRequest())->setDataStore($formattedDataStore)->setQuery($query);
+        $request = new CompleteQueryRequest();
         $response = $gapicClient->completeQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -86,10 +83,6 @@ class CompletionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.CompletionService/CompleteQuery', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDataStore();
-        $this->assertProtobufEquals($formattedDataStore, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -114,10 +107,7 @@ class CompletionServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedDataStore = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $query = 'query107944136';
-        $request = (new CompleteQueryRequest())->setDataStore($formattedDataStore)->setQuery($query);
+        $request = new CompleteQueryRequest();
         try {
             $gapicClient->completeQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -144,10 +134,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $expectedResponse = new CompleteQueryResponse();
         $expectedResponse->setTailMatchTriggered($tailMatchTriggered);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedDataStore = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $query = 'query107944136';
-        $request = (new CompleteQueryRequest())->setDataStore($formattedDataStore)->setQuery($query);
+        $request = new CompleteQueryRequest();
         $response = $gapicClient->completeQueryAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -155,10 +142,6 @@ class CompletionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.CompletionService/CompleteQuery', $actualFuncCall);
-        $actualValue = $actualRequestObject->getDataStore();
-        $this->assertProtobufEquals($formattedDataStore, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
 use Google\Cloud\Dlp\V2\DiscoveryConfig;
-use Google\Cloud\Dlp\V2\DiscoveryConfig\Status;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\DlpServiceClient;
 use Google\Cloud\Dlp\V2\HybridInspectResponse;
@@ -46,7 +45,6 @@ use Google\Cloud\Dlp\V2\ListStoredInfoTypesResponse;
 use Google\Cloud\Dlp\V2\RedactImageResponse;
 use Google\Cloud\Dlp\V2\ReidentifyContentResponse;
 use Google\Cloud\Dlp\V2\StoredInfoType;
-use Google\Cloud\Dlp\V2\StoredInfoTypeConfig;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -94,17 +92,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setJobTriggerName($jobTriggerName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-        $response = $gapicClient->activateJobTrigger($formattedName);
+        $response = $gapicClient->activateJobTrigger();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/ActivateJobTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -126,10 +120,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
         try {
-            $gapicClient->activateJobTrigger($formattedName);
+            $gapicClient->activateJobTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -152,16 +144,12 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
-        $gapicClient->cancelDlpJob($formattedName);
+        $gapicClient->cancelDlpJob();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/CancelDlpJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -183,10 +171,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
         try {
-            $gapicClient->cancelDlpJob($formattedName);
+            $gapicClient->cancelDlpJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -215,20 +201,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $deidentifyTemplate = new DeidentifyTemplate();
-        $response = $gapicClient->createDeidentifyTemplate($formattedParent, $deidentifyTemplate);
+        $response = $gapicClient->createDeidentifyTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/CreateDeidentifyTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDeidentifyTemplate();
-        $this->assertProtobufEquals($deidentifyTemplate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -250,11 +229,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $deidentifyTemplate = new DeidentifyTemplate();
         try {
-            $gapicClient->createDeidentifyTemplate($formattedParent, $deidentifyTemplate);
+            $gapicClient->createDeidentifyTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -281,22 +257,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $discoveryConfig = new DiscoveryConfig();
-        $discoveryConfigStatus = Status::STATUS_UNSPECIFIED;
-        $discoveryConfig->setStatus($discoveryConfigStatus);
-        $response = $gapicClient->createDiscoveryConfig($formattedParent, $discoveryConfig);
+        $response = $gapicClient->createDiscoveryConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/CreateDiscoveryConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getDiscoveryConfig();
-        $this->assertProtobufEquals($discoveryConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -318,13 +285,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $discoveryConfig = new DiscoveryConfig();
-        $discoveryConfigStatus = Status::STATUS_UNSPECIFIED;
-        $discoveryConfig->setStatus($discoveryConfigStatus);
         try {
-            $gapicClient->createDiscoveryConfig($formattedParent, $discoveryConfig);
+            $gapicClient->createDiscoveryConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -351,17 +313,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setJobTriggerName($jobTriggerName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->createDlpJob($formattedParent);
+        $response = $gapicClient->createDlpJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/CreateDlpJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -383,10 +341,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->createDlpJob($formattedParent);
+            $gapicClient->createDlpJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -415,20 +371,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $inspectTemplate = new InspectTemplate();
-        $response = $gapicClient->createInspectTemplate($formattedParent, $inspectTemplate);
+        $response = $gapicClient->createInspectTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/CreateInspectTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getInspectTemplate();
-        $this->assertProtobufEquals($inspectTemplate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -450,11 +399,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $inspectTemplate = new InspectTemplate();
         try {
-            $gapicClient->createInspectTemplate($formattedParent, $inspectTemplate);
+            $gapicClient->createInspectTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -483,22 +429,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $jobTrigger = new JobTrigger();
-        $jobTriggerStatus = \Google\Cloud\Dlp\V2\JobTrigger\Status::STATUS_UNSPECIFIED;
-        $jobTrigger->setStatus($jobTriggerStatus);
-        $response = $gapicClient->createJobTrigger($formattedParent, $jobTrigger);
+        $response = $gapicClient->createJobTrigger();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/CreateJobTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getJobTrigger();
-        $this->assertProtobufEquals($jobTrigger, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -520,13 +457,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $jobTrigger = new JobTrigger();
-        $jobTriggerStatus = \Google\Cloud\Dlp\V2\JobTrigger\Status::STATUS_UNSPECIFIED;
-        $jobTrigger->setStatus($jobTriggerStatus);
         try {
-            $gapicClient->createJobTrigger($formattedParent, $jobTrigger);
+            $gapicClient->createJobTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -551,20 +483,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse = new StoredInfoType();
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $config = new StoredInfoTypeConfig();
-        $response = $gapicClient->createStoredInfoType($formattedParent, $config);
+        $response = $gapicClient->createStoredInfoType();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/CreateStoredInfoType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getConfig();
-        $this->assertProtobufEquals($config, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -586,11 +511,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $config = new StoredInfoTypeConfig();
         try {
-            $gapicClient->createStoredInfoType($formattedParent, $config);
+            $gapicClient->createStoredInfoType();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -665,16 +587,12 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deidentifyTemplateName('[ORGANIZATION]', '[DEIDENTIFY_TEMPLATE]');
-        $gapicClient->deleteDeidentifyTemplate($formattedName);
+        $gapicClient->deleteDeidentifyTemplate();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/DeleteDeidentifyTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -696,10 +614,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deidentifyTemplateName('[ORGANIZATION]', '[DEIDENTIFY_TEMPLATE]');
         try {
-            $gapicClient->deleteDeidentifyTemplate($formattedName);
+            $gapicClient->deleteDeidentifyTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -722,16 +638,12 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
-        $gapicClient->deleteDiscoveryConfig($formattedName);
+        $gapicClient->deleteDiscoveryConfig();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/DeleteDiscoveryConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -753,10 +665,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
         try {
-            $gapicClient->deleteDiscoveryConfig($formattedName);
+            $gapicClient->deleteDiscoveryConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -779,16 +689,12 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
-        $gapicClient->deleteDlpJob($formattedName);
+        $gapicClient->deleteDlpJob();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/DeleteDlpJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -810,10 +716,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
         try {
-            $gapicClient->deleteDlpJob($formattedName);
+            $gapicClient->deleteDlpJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -836,16 +740,12 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->inspectTemplateName('[ORGANIZATION]', '[INSPECT_TEMPLATE]');
-        $gapicClient->deleteInspectTemplate($formattedName);
+        $gapicClient->deleteInspectTemplate();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/DeleteInspectTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -867,10 +767,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->inspectTemplateName('[ORGANIZATION]', '[INSPECT_TEMPLATE]');
         try {
-            $gapicClient->deleteInspectTemplate($formattedName);
+            $gapicClient->deleteInspectTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -893,16 +791,12 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-        $gapicClient->deleteJobTrigger($formattedName);
+        $gapicClient->deleteJobTrigger();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/DeleteJobTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -924,10 +818,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
         try {
-            $gapicClient->deleteJobTrigger($formattedName);
+            $gapicClient->deleteJobTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -950,16 +842,12 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->storedInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
-        $gapicClient->deleteStoredInfoType($formattedName);
+        $gapicClient->deleteStoredInfoType();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/DeleteStoredInfoType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -981,10 +869,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->storedInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
         try {
-            $gapicClient->deleteStoredInfoType($formattedName);
+            $gapicClient->deleteStoredInfoType();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1007,16 +893,12 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
-        $gapicClient->finishDlpJob($formattedName);
+        $gapicClient->finishDlpJob();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/FinishDlpJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1038,10 +920,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
         try {
-            $gapicClient->finishDlpJob($formattedName);
+            $gapicClient->finishDlpJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1070,17 +950,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deidentifyTemplateName('[ORGANIZATION]', '[DEIDENTIFY_TEMPLATE]');
-        $response = $gapicClient->getDeidentifyTemplate($formattedName);
+        $response = $gapicClient->getDeidentifyTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/GetDeidentifyTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1102,10 +978,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deidentifyTemplateName('[ORGANIZATION]', '[DEIDENTIFY_TEMPLATE]');
         try {
-            $gapicClient->getDeidentifyTemplate($formattedName);
+            $gapicClient->getDeidentifyTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1132,17 +1006,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
-        $response = $gapicClient->getDiscoveryConfig($formattedName);
+        $response = $gapicClient->getDiscoveryConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/GetDiscoveryConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1164,10 +1034,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
         try {
-            $gapicClient->getDiscoveryConfig($formattedName);
+            $gapicClient->getDiscoveryConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1194,17 +1062,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setJobTriggerName($jobTriggerName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
-        $response = $gapicClient->getDlpJob($formattedName);
+        $response = $gapicClient->getDlpJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/GetDlpJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1226,10 +1090,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
         try {
-            $gapicClient->getDlpJob($formattedName);
+            $gapicClient->getDlpJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1258,17 +1120,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->inspectTemplateName('[ORGANIZATION]', '[INSPECT_TEMPLATE]');
-        $response = $gapicClient->getInspectTemplate($formattedName);
+        $response = $gapicClient->getInspectTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/GetInspectTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1290,10 +1148,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->inspectTemplateName('[ORGANIZATION]', '[INSPECT_TEMPLATE]');
         try {
-            $gapicClient->getInspectTemplate($formattedName);
+            $gapicClient->getInspectTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1322,17 +1178,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-        $response = $gapicClient->getJobTrigger($formattedName);
+        $response = $gapicClient->getJobTrigger();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/GetJobTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1354,10 +1206,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
         try {
-            $gapicClient->getJobTrigger($formattedName);
+            $gapicClient->getJobTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1382,17 +1232,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse = new StoredInfoType();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->storedInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
-        $response = $gapicClient->getStoredInfoType($formattedName);
+        $response = $gapicClient->getStoredInfoType();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/GetStoredInfoType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1414,10 +1260,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->storedInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
         try {
-            $gapicClient->getStoredInfoType($formattedName);
+            $gapicClient->getStoredInfoType();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1440,17 +1284,13 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new HybridInspectResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
-        $response = $gapicClient->hybridInspectDlpJob($formattedName);
+        $response = $gapicClient->hybridInspectDlpJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/HybridInspectDlpJob', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1472,10 +1312,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->dlpJobName('[PROJECT]', '[DLP_JOB]');
         try {
-            $gapicClient->hybridInspectDlpJob($formattedName);
+            $gapicClient->hybridInspectDlpJob();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1498,17 +1336,13 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new HybridInspectResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-        $response = $gapicClient->hybridInspectJobTrigger($formattedName);
+        $response = $gapicClient->hybridInspectJobTrigger();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/HybridInspectJobTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1530,10 +1364,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
         try {
-            $gapicClient->hybridInspectJobTrigger($formattedName);
+            $gapicClient->hybridInspectJobTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1615,9 +1447,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeidentifyTemplates($deidentifyTemplates);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $response = $gapicClient->listDeidentifyTemplates($formattedParent);
+        $response = $gapicClient->listDeidentifyTemplates();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1627,8 +1457,6 @@ class DlpServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/ListDeidentifyTemplates', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1650,10 +1478,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         try {
-            $gapicClient->listDeidentifyTemplates($formattedParent);
+            $gapicClient->listDeidentifyTemplates();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1683,9 +1509,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDiscoveryConfigs($discoveryConfigs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listDiscoveryConfigs($formattedParent);
+        $response = $gapicClient->listDiscoveryConfigs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1695,8 +1519,6 @@ class DlpServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/ListDiscoveryConfigs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1718,10 +1540,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listDiscoveryConfigs($formattedParent);
+            $gapicClient->listDiscoveryConfigs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1751,9 +1571,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listDlpJobs($formattedParent);
+        $response = $gapicClient->listDlpJobs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1763,8 +1581,6 @@ class DlpServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/ListDlpJobs', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1786,10 +1602,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listDlpJobs($formattedParent);
+            $gapicClient->listDlpJobs();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1871,9 +1685,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInspectTemplates($inspectTemplates);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $response = $gapicClient->listInspectTemplates($formattedParent);
+        $response = $gapicClient->listInspectTemplates();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1883,8 +1695,6 @@ class DlpServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/ListInspectTemplates', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1906,10 +1716,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         try {
-            $gapicClient->listInspectTemplates($formattedParent);
+            $gapicClient->listInspectTemplates();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1939,9 +1747,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobTriggers($jobTriggers);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listJobTriggers($formattedParent);
+        $response = $gapicClient->listJobTriggers();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1951,8 +1757,6 @@ class DlpServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/ListJobTriggers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1974,10 +1778,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listJobTriggers($formattedParent);
+            $gapicClient->listJobTriggers();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2007,9 +1809,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStoredInfoTypes($storedInfoTypes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $response = $gapicClient->listStoredInfoTypes($formattedParent);
+        $response = $gapicClient->listStoredInfoTypes();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2019,8 +1819,6 @@ class DlpServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/ListStoredInfoTypes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2042,10 +1840,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         try {
-            $gapicClient->listStoredInfoTypes($formattedParent);
+            $gapicClient->listStoredInfoTypes();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2124,17 +1920,13 @@ class DlpServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ReidentifyContentResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->reidentifyContent($formattedParent);
+        $response = $gapicClient->reidentifyContent();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/ReidentifyContent', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2156,10 +1948,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->reidentifyContent($formattedParent);
+            $gapicClient->reidentifyContent();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2188,17 +1978,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deidentifyTemplateName('[ORGANIZATION]', '[DEIDENTIFY_TEMPLATE]');
-        $response = $gapicClient->updateDeidentifyTemplate($formattedName);
+        $response = $gapicClient->updateDeidentifyTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/UpdateDeidentifyTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2220,10 +2006,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deidentifyTemplateName('[ORGANIZATION]', '[DEIDENTIFY_TEMPLATE]');
         try {
-            $gapicClient->updateDeidentifyTemplate($formattedName);
+            $gapicClient->updateDeidentifyTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2250,22 +2034,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
-        $discoveryConfig = new DiscoveryConfig();
-        $discoveryConfigStatus = Status::STATUS_UNSPECIFIED;
-        $discoveryConfig->setStatus($discoveryConfigStatus);
-        $response = $gapicClient->updateDiscoveryConfig($formattedName, $discoveryConfig);
+        $response = $gapicClient->updateDiscoveryConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/UpdateDiscoveryConfig', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getDiscoveryConfig();
-        $this->assertProtobufEquals($discoveryConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2287,13 +2062,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->discoveryConfigName('[PROJECT]', '[LOCATION]', '[DISCOVERY_CONFIG]');
-        $discoveryConfig = new DiscoveryConfig();
-        $discoveryConfigStatus = Status::STATUS_UNSPECIFIED;
-        $discoveryConfig->setStatus($discoveryConfigStatus);
         try {
-            $gapicClient->updateDiscoveryConfig($formattedName, $discoveryConfig);
+            $gapicClient->updateDiscoveryConfig();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2322,17 +2092,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->inspectTemplateName('[ORGANIZATION]', '[INSPECT_TEMPLATE]');
-        $response = $gapicClient->updateInspectTemplate($formattedName);
+        $response = $gapicClient->updateInspectTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/UpdateInspectTemplate', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2354,10 +2120,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->inspectTemplateName('[ORGANIZATION]', '[INSPECT_TEMPLATE]');
         try {
-            $gapicClient->updateInspectTemplate($formattedName);
+            $gapicClient->updateInspectTemplate();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2386,17 +2150,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-        $response = $gapicClient->updateJobTrigger($formattedName);
+        $response = $gapicClient->updateJobTrigger();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/UpdateJobTrigger', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2418,10 +2178,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
         try {
-            $gapicClient->updateJobTrigger($formattedName);
+            $gapicClient->updateJobTrigger();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2446,17 +2204,13 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse = new StoredInfoType();
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->storedInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
-        $response = $gapicClient->updateStoredInfoType($formattedName);
+        $response = $gapicClient->updateStoredInfoType();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.privacy.dlp.v2.DlpService/UpdateStoredInfoType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2478,10 +2232,8 @@ class DlpServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->storedInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
         try {
-            $gapicClient->updateStoredInfoType($formattedName);
+            $gapicClient->updateStoredInfoType();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

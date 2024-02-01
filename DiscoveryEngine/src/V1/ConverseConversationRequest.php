@@ -89,8 +89,7 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
      *                                                          Use
      *                                                          `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
      *                                                          to activate auto session mode, which automatically creates a new
-     *                                                          conversation inside a ConverseConversation session. Please see
-     *                                                          {@see ConversationalSearchServiceClient::conversationName()} for help formatting this field.
+     *                                                          conversation inside a ConverseConversation session.
      * @param \Google\Cloud\DiscoveryEngine\V1\TextInput $query Required. Current user input.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1\ConverseConversationRequest

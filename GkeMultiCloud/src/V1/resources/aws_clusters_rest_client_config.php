@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'aws_cluster_id',
-                ],
             ],
             'CreateAwsNodePool' => [
                 'method' => 'post',
@@ -28,9 +25,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'aws_node_pool_id',
                 ],
             ],
             'DeleteAwsCluster' => [
@@ -179,9 +173,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateAwsNodePool' => [
                 'method' => 'patch',
@@ -194,9 +185,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

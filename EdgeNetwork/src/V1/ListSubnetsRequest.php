@@ -49,7 +49,6 @@ class ListSubnetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent value for ListSubnetsRequest
-     *                       Please see {@see EdgeNetworkClient::zoneName()} for help formatting this field.
      *
      * @return \Google\Cloud\EdgeNetwork\V1\ListSubnetsRequest
      *

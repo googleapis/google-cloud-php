@@ -31,34 +31,19 @@ use Google\Cloud\Iap\V1\TunnelDestGroup;
 /**
  * Creates a new TunnelDestGroup.
  *
- * @param string $formattedParent     Google Cloud Project ID and location.
- *                                    In the following format:
- *                                    `projects/{project_number/id}/iap_tunnel/locations/{location}`. Please see
- *                                    {@see IdentityAwareProxyAdminServiceClient::tunnelLocationName()} for help formatting this field.
- * @param string $tunnelDestGroupName Immutable. Identifier for the TunnelDestGroup. Must be unique
- *                                    within the project and contain only lower case letters (a-z) and dashes
- *                                    (-).
- * @param string $tunnelDestGroupId   The ID to use for the TunnelDestGroup, which becomes the final
- *                                    component of the resource name.
- *
- *                                    This value must be 4-63 characters, and valid characters
- *                                    are `[a-z]-`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_tunnel_dest_group_sample(
-    string $formattedParent,
-    string $tunnelDestGroupName,
-    string $tunnelDestGroupId
-): void {
+function create_tunnel_dest_group_sample(): void
+{
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
     // Prepare the request message.
-    $tunnelDestGroup = (new TunnelDestGroup())
-        ->setName($tunnelDestGroupName);
-    $request = (new CreateTunnelDestGroupRequest())
-        ->setParent($formattedParent)
-        ->setTunnelDestGroup($tunnelDestGroup)
-        ->setTunnelDestGroupId($tunnelDestGroupId);
+    $request = new CreateTunnelDestGroupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,26 +53,5 @@ function create_tunnel_dest_group_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = IdentityAwareProxyAdminServiceClient::tunnelLocationName(
-        '[PROJECT]',
-        '[LOCATION]'
-    );
-    $tunnelDestGroupName = '[NAME]';
-    $tunnelDestGroupId = '[TUNNEL_DEST_GROUP_ID]';
-
-    create_tunnel_dest_group_sample($formattedParent, $tunnelDestGroupName, $tunnelDestGroupId);
 }
 // [END iap_v1_generated_IdentityAwareProxyAdminService_CreateTunnelDestGroup_sync]

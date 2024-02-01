@@ -25,8 +25,7 @@ class ResetAuthorizationCodeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $registration Required. The name of the `Registration` whose authorization code is being reset,
-     *                             in the format `projects/&#42;/locations/&#42;/registrations/*`. Please see
-     *                             {@see DomainsClient::registrationName()} for help formatting this field.
+     *                             in the format `projects/&#42;/locations/&#42;/registrations/*`.
      *
      * @return \Google\Cloud\Domains\V1\ResetAuthorizationCodeRequest
      *

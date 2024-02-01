@@ -90,12 +90,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $expectedResponse->setApplicationTitle($applicationTitle);
         $expectedResponse->setOrgInternalOnly($orgInternalOnly);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $brand = new Brand();
-        $request = (new CreateBrandRequest())
-            ->setParent($parent)
-            ->setBrand($brand);
+        $request = new CreateBrandRequest();
         $response = $gapicClient->createBrand($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -103,10 +98,6 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyOAuthService/CreateBrand', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getBrand();
-        $this->assertProtobufEquals($brand, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -128,12 +119,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $brand = new Brand();
-        $request = (new CreateBrandRequest())
-            ->setParent($parent)
-            ->setBrand($brand);
+        $request = new CreateBrandRequest();
         try {
             $gapicClient->createBrand($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -164,12 +150,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $expectedResponse->setSecret($secret);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $identityAwareProxyClient = new IdentityAwareProxyClient();
-        $request = (new CreateIdentityAwareProxyClientRequest())
-            ->setParent($parent)
-            ->setIdentityAwareProxyClient($identityAwareProxyClient);
+        $request = new CreateIdentityAwareProxyClientRequest();
         $response = $gapicClient->createIdentityAwareProxyClient($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -177,10 +158,6 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyOAuthService/CreateIdentityAwareProxyClient', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getIdentityAwareProxyClient();
-        $this->assertProtobufEquals($identityAwareProxyClient, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -202,12 +179,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $identityAwareProxyClient = new IdentityAwareProxyClient();
-        $request = (new CreateIdentityAwareProxyClientRequest())
-            ->setParent($parent)
-            ->setIdentityAwareProxyClient($identityAwareProxyClient);
+        $request = new CreateIdentityAwareProxyClientRequest();
         try {
             $gapicClient->createIdentityAwareProxyClient($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -232,18 +204,13 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new DeleteIdentityAwareProxyClientRequest())
-            ->setName($name);
+        $request = new DeleteIdentityAwareProxyClientRequest();
         $gapicClient->deleteIdentityAwareProxyClient($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyOAuthService/DeleteIdentityAwareProxyClient', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -265,10 +232,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new DeleteIdentityAwareProxyClientRequest())
-            ->setName($name);
+        $request = new DeleteIdentityAwareProxyClientRequest();
         try {
             $gapicClient->deleteIdentityAwareProxyClient($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -301,10 +265,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $expectedResponse->setApplicationTitle($applicationTitle);
         $expectedResponse->setOrgInternalOnly($orgInternalOnly);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetBrandRequest())
-            ->setName($name);
+        $request = new GetBrandRequest();
         $response = $gapicClient->getBrand($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -312,8 +273,6 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyOAuthService/GetBrand', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -335,10 +294,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetBrandRequest())
-            ->setName($name);
+        $request = new GetBrandRequest();
         try {
             $gapicClient->getBrand($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -369,10 +325,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $expectedResponse->setSecret($secret);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetIdentityAwareProxyClientRequest())
-            ->setName($name);
+        $request = new GetIdentityAwareProxyClientRequest();
         $response = $gapicClient->getIdentityAwareProxyClient($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -380,8 +333,6 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyOAuthService/GetIdentityAwareProxyClient', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -403,10 +354,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new GetIdentityAwareProxyClientRequest())
-            ->setName($name);
+        $request = new GetIdentityAwareProxyClientRequest();
         try {
             $gapicClient->getIdentityAwareProxyClient($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -431,10 +379,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ListBrandsResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListBrandsRequest())
-            ->setParent($parent);
+        $request = new ListBrandsRequest();
         $response = $gapicClient->listBrands($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -442,8 +387,6 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyOAuthService/ListBrands', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -465,10 +408,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListBrandsRequest())
-            ->setParent($parent);
+        $request = new ListBrandsRequest();
         try {
             $gapicClient->listBrands($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -500,10 +440,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIdentityAwareProxyClients($identityAwareProxyClients);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListIdentityAwareProxyClientsRequest())
-            ->setParent($parent);
+        $request = new ListIdentityAwareProxyClientsRequest();
         $response = $gapicClient->listIdentityAwareProxyClients($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -514,8 +451,6 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyOAuthService/ListIdentityAwareProxyClients', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -537,10 +472,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListIdentityAwareProxyClientsRequest())
-            ->setParent($parent);
+        $request = new ListIdentityAwareProxyClientsRequest();
         try {
             $gapicClient->listIdentityAwareProxyClients($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -571,10 +503,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $expectedResponse->setSecret($secret);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ResetIdentityAwareProxyClientSecretRequest())
-            ->setName($name);
+        $request = new ResetIdentityAwareProxyClientSecretRequest();
         $response = $gapicClient->resetIdentityAwareProxyClientSecret($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -582,8 +511,6 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyOAuthService/ResetIdentityAwareProxyClientSecret', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -605,10 +532,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ResetIdentityAwareProxyClientSecretRequest())
-            ->setName($name);
+        $request = new ResetIdentityAwareProxyClientSecretRequest();
         try {
             $gapicClient->resetIdentityAwareProxyClientSecret($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -641,12 +565,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $expectedResponse->setApplicationTitle($applicationTitle);
         $expectedResponse->setOrgInternalOnly($orgInternalOnly);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $parent = 'parent-995424086';
-        $brand = new Brand();
-        $request = (new CreateBrandRequest())
-            ->setParent($parent)
-            ->setBrand($brand);
+        $request = new CreateBrandRequest();
         $response = $gapicClient->createBrandAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -654,10 +573,6 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.iap.v1.IdentityAwareProxyOAuthService/CreateBrand', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getBrand();
-        $this->assertProtobufEquals($brand, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

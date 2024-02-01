@@ -33,17 +33,19 @@ use Google\Rpc\Status;
 /**
  * Enables a processor
  *
- * @param string $formattedName The processor resource name to be enabled. Please see
- *                              {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function enable_processor_sample(string $formattedName): void
+function enable_processor_sample(): void
 {
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
     // Prepare the request message.
-    $request = (new EnableProcessorRequest())
-        ->setName($formattedName);
+    $request = new EnableProcessorRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -63,25 +65,5 @@ function enable_processor_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DocumentProcessorServiceClient::processorName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[PROCESSOR]'
-    );
-
-    enable_processor_sample($formattedName);
 }
 // [END documentai_v1_generated_DocumentProcessorService_EnableProcessor_sync]

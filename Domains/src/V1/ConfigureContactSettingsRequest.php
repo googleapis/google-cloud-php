@@ -52,8 +52,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                   $registration    Required. The name of the `Registration` whose contact settings are being updated,
-     *                                                                  in the format `projects/&#42;/locations/&#42;/registrations/*`. Please see
-     *                                                                  {@see DomainsClient::registrationName()} for help formatting this field.
+     *                                                                  in the format `projects/&#42;/locations/&#42;/registrations/*`.
      * @param \Google\Cloud\Domains\V1\ContactSettings $contactSettings Fields of the `ContactSettings` to update.
      * @param \Google\Protobuf\FieldMask               $updateMask      Required. The field mask describing which fields to update as a comma-separated list.
      *                                                                  For example, if only the registrant contact is being updated, the

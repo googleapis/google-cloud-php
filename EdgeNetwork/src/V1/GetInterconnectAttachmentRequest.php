@@ -24,7 +24,6 @@ class GetInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the resource
-     *                     Please see {@see EdgeNetworkClient::interconnectAttachmentName()} for help formatting this field.
      *
      * @return \Google\Cloud\EdgeNetwork\V1\GetInterconnectAttachmentRequest
      *

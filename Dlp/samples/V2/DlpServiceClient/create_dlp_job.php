@@ -37,32 +37,19 @@ use Google\Cloud\Dlp\V2\DlpJob;
  * system will automatically choose what detectors to run. By default this may
  * be all types, but may change over time as detectors are updated.
  *
- * @param string $formattedParent Parent resource name.
- *
- *                                The format of this value varies depending on whether you have [specified a
- *                                processing
- *                                location](https://cloud.google.com/dlp/docs/specifying-location):
- *
- *                                + Projects scope, location specified:<br/>
- *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
- *                                + Projects scope, no location specified (defaults to global):<br/>
- *                                `projects/`<var>PROJECT_ID</var>
- *
- *                                The following example `parent` string specifies a parent project with the
- *                                identifier `example-project`, and specifies the `europe-west3` location
- *                                for processing data:
- *
- *                                parent=projects/example-project/locations/europe-west3
- *                                Please see {@see DlpServiceClient::projectName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_dlp_job_sample(string $formattedParent): void
+function create_dlp_job_sample(): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new CreateDlpJobRequest())
-        ->setParent($formattedParent);
+    $request = new CreateDlpJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -72,21 +59,5 @@ function create_dlp_job_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DlpServiceClient::projectName('[PROJECT]');
-
-    create_dlp_job_sample($formattedParent);
 }
 // [END dlp_v2_generated_DlpService_CreateDlpJob_sync]

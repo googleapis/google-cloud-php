@@ -33,29 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a backup.
  *
- * @param string $formattedParent The backup's project and location, in the format
- *                                `projects/{project_number}/locations/{location}`. In Filestore,
- *                                backup locations map to Google Cloud regions, for example **us-west1**. Please see
- *                                {@see CloudFilestoreManagerClient::locationName()} for help formatting this field.
- * @param string $backupId        The ID to use for the backup.
- *                                The ID must be unique within the specified project and location.
- *
- *                                This value must start with a lowercase letter followed by up to 62
- *                                lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
- *                                Values that do not match this pattern will trigger an INVALID_ARGUMENT
- *                                error.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_backup_sample(string $formattedParent, string $backupId): void
+function create_backup_sample(): void
 {
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
     // Prepare the request message.
-    $backup = new Backup();
-    $request = (new CreateBackupRequest())
-        ->setParent($formattedParent)
-        ->setBackup($backup)
-        ->setBackupId($backupId);
+    $request = new CreateBackupRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,22 +65,5 @@ function create_backup_sample(string $formattedParent, string $backupId): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = CloudFilestoreManagerClient::locationName('[PROJECT]', '[LOCATION]');
-    $backupId = '[BACKUP_ID]';
-
-    create_backup_sample($formattedParent, $backupId);
 }
 // [END file_v1_generated_CloudFilestoreManager_CreateBackup_sync]

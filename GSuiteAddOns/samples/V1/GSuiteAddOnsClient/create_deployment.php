@@ -31,24 +31,19 @@ use Google\Cloud\GSuiteAddOns\V1\Deployment;
 /**
  * Creates a deployment with the specified name and configuration.
  *
- * @param string $formattedParent Name of the project in which to create the deployment.
- *
- *                                Example: `projects/my_project`. Please see
- *                                {@see GSuiteAddOnsClient::projectName()} for help formatting this field.
- * @param string $deploymentId    The id to use for this deployment.  The full name of the created
- *                                resource will be `projects/<project_number>/deployments/<deployment_id>`.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_deployment_sample(string $formattedParent, string $deploymentId): void
+function create_deployment_sample(): void
 {
     // Create a client.
     $gSuiteAddOnsClient = new GSuiteAddOnsClient();
 
     // Prepare the request message.
-    $deployment = new Deployment();
-    $request = (new CreateDeploymentRequest())
-        ->setParent($formattedParent)
-        ->setDeploymentId($deploymentId)
-        ->setDeployment($deployment);
+    $request = new CreateDeploymentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -58,22 +53,5 @@ function create_deployment_sample(string $formattedParent, string $deploymentId)
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = GSuiteAddOnsClient::projectName('[PROJECT]');
-    $deploymentId = '[DEPLOYMENT_ID]';
-
-    create_deployment_sample($formattedParent, $deploymentId);
 }
 // [END gsuiteaddons_v1_generated_GSuiteAddOns_CreateDeployment_sync]

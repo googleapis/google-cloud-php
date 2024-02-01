@@ -42,44 +42,19 @@ use Google\Rpc\Status;
  * [Operation][google.longrunning.Operation] resource that can be
  * described to track the status of the operation.
  *
- * @param string $formattedParent          The parent location where this
- *                                         [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource will be
- *                                         created.
- *
- *                                         Location names are formatted as `projects/<project-id>/locations/<region>`.
- *
- *                                         See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                                         for more details on Google Cloud resource names. Please see
- *                                         {@see AzureClustersClient::locationName()} for help formatting this field.
- * @param string $azureClientTenantId      The Azure Active Directory Tenant ID.
- * @param string $azureClientApplicationId The Azure Active Directory Application ID.
- * @param string $azureClientId            A client provided ID the resource. Must be unique within the
- *                                         parent resource.
- *
- *                                         The provided ID will be part of the
- *                                         [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource name
- *                                         formatted as
- *                                         `projects/<project-id>/locations/<region>/azureClients/<client-id>`.
- *
- *                                         Valid characters are `/[a-z][0-9]-/`. Cannot be longer than 63 characters.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_azure_client_sample(
-    string $formattedParent,
-    string $azureClientTenantId,
-    string $azureClientApplicationId,
-    string $azureClientId
-): void {
+function create_azure_client_sample(): void
+{
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
     // Prepare the request message.
-    $azureClient = (new AzureClient())
-        ->setTenantId($azureClientTenantId)
-        ->setApplicationId($azureClientApplicationId);
-    $request = (new CreateAzureClientRequest())
-        ->setParent($formattedParent)
-        ->setAzureClient($azureClient)
-        ->setAzureClientId($azureClientId);
+    $request = new CreateAzureClientRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -99,29 +74,5 @@ function create_azure_client_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = AzureClustersClient::locationName('[PROJECT]', '[LOCATION]');
-    $azureClientTenantId = '[TENANT_ID]';
-    $azureClientApplicationId = '[APPLICATION_ID]';
-    $azureClientId = '[AZURE_CLIENT_ID]';
-
-    create_azure_client_sample(
-        $formattedParent,
-        $azureClientTenantId,
-        $azureClientApplicationId,
-        $azureClientId
-    );
 }
 // [END gkemulticloud_v1_generated_AzureClusters_CreateAzureClient_sync]

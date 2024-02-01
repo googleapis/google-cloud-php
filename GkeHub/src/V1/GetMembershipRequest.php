@@ -25,8 +25,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The Membership resource name in the format
-     *                     `projects/&#42;/locations/&#42;/memberships/*`. Please see
-     *                     {@see GkeHubClient::membershipName()} for help formatting this field.
+     *                     `projects/&#42;/locations/&#42;/memberships/*`.
      *
      * @return \Google\Cloud\GkeHub\V1\GetMembershipRequest
      *

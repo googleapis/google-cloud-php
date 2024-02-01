@@ -23,13 +23,13 @@ class RecommendationService
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ì
-@google/cloud/discoveryengine/v1beta/recommendation_service.proto#google.cloud.discoveryengine.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/discoveryengine/v1beta/document.proto4google/cloud/discoveryengine/v1beta/user_event.protogoogle/protobuf/struct.proto"å
-RecommendRequestL
-serving_config (	B4‡A˙A.
-,discoveryengine.googleapis.com/ServingConfigG
+ï
+@google/cloud/discoveryengine/v1beta/recommendation_service.proto#google.cloud.discoveryengine.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/discoveryengine/v1beta/document.proto4google/cloud/discoveryengine/v1beta/user_event.protogoogle/protobuf/struct.proto"é
+RecommendRequestM
+serving_config (	B5‚A˙A.
+,discoveryengine.googleapis.com/ServingConfigH
 
-user_event (2..google.cloud.discoveryengine.v1beta.UserEventB‡A
+user_event (2..google.cloud.discoveryengine.v1beta.UserEventB‚A
 	page_size (
 filter (	
 validate_only (Q

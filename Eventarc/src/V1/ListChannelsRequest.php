@@ -48,8 +48,7 @@ class ListChannelsRequest extends \Google\Protobuf\Internal\Message
     private $order_by = '';
 
     /**
-     * @param string $parent Required. The parent collection to list channels on. Please see
-     *                       {@see EventarcClient::locationName()} for help formatting this field.
+     * @param string $parent Required. The parent collection to list channels on.
      *
      * @return \Google\Cloud\Eventarc\V1\ListChannelsRequest
      *

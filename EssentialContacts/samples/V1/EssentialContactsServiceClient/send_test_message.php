@@ -25,41 +25,25 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START essentialcontacts_v1_generated_EssentialContactsService_SendTestMessage_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\EssentialContacts\V1\Client\EssentialContactsServiceClient;
-use Google\Cloud\EssentialContacts\V1\NotificationCategory;
 use Google\Cloud\EssentialContacts\V1\SendTestMessageRequest;
 
 /**
  * Allows a contact admin to send a test message to contact to verify that it
  * has been configured correctly.
  *
- * @param string $formattedContactsElement The list of names of the contacts to send a test message to.
- *                                         Format: organizations/{organization_id}/contacts/{contact_id},
- *                                         folders/{folder_id}/contacts/{contact_id} or
- *                                         projects/{project_id}/contacts/{contact_id}
- *                                         Please see {@see EssentialContactsServiceClient::contactName()} for help formatting this field.
- * @param string $formattedResource        The name of the resource to send the test message for. All
- *                                         contacts must either be set directly on this resource or inherited from
- *                                         another resource that is an ancestor of this one. Format:
- *                                         organizations/{organization_id}, folders/{folder_id} or
- *                                         projects/{project_id}
- *                                         Please see {@see EssentialContactsServiceClient::projectName()} for help formatting this field.
- * @param int    $notificationCategory     The notification category to send the test message for. All
- *                                         contacts must be subscribed to this category.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function send_test_message_sample(
-    string $formattedContactsElement,
-    string $formattedResource,
-    int $notificationCategory
-): void {
+function send_test_message_sample(): void
+{
     // Create a client.
     $essentialContactsServiceClient = new EssentialContactsServiceClient();
 
     // Prepare the request message.
-    $formattedContacts = [$formattedContactsElement,];
-    $request = (new SendTestMessageRequest())
-        ->setContacts($formattedContacts)
-        ->setResource($formattedResource)
-        ->setNotificationCategory($notificationCategory);
+    $request = new SendTestMessageRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,23 +52,5 @@ function send_test_message_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedContactsElement = EssentialContactsServiceClient::contactName('[PROJECT]', '[CONTACT]');
-    $formattedResource = EssentialContactsServiceClient::projectName('[PROJECT]');
-    $notificationCategory = NotificationCategory::NOTIFICATION_CATEGORY_UNSPECIFIED;
-
-    send_test_message_sample($formattedContactsElement, $formattedResource, $notificationCategory);
 }
 // [END essentialcontacts_v1_generated_EssentialContactsService_SendTestMessage_sync]

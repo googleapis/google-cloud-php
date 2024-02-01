@@ -36,27 +36,19 @@ use Google\Cloud\Iam\V2\Policy;
  * The response lists only policy metadata. In particular, policy rules are
  * omitted.
  *
- * @param string $parent The resource that the policy is attached to, along with the kind of policy
- *                       to list. Format:
- *                       `policies/{attachment_point}/denypolicies`
- *
- *
- *                       The attachment point is identified by its URL-encoded full resource name,
- *                       which means that the forward-slash character, `/`, must be written as
- *                       `%2F`. For example,
- *                       `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies`.
- *
- *                       For organizations and folders, use the numeric ID in the full resource
- *                       name. For projects, you can use the alphanumeric or the numeric ID.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_policies_sample(string $parent): void
+function list_policies_sample(): void
 {
     // Create a client.
     $policiesClient = new PoliciesClient();
 
     // Prepare the request message.
-    $request = (new ListPoliciesRequest())
-        ->setParent($parent);
+    $request = new ListPoliciesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -70,21 +62,5 @@ function list_policies_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    list_policies_sample($parent);
 }
 // [END iam_v2_generated_Policies_ListPolicies_sync]

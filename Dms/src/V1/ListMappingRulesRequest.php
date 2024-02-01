@@ -44,8 +44,7 @@ class ListMappingRulesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Name of the conversion workspace resource whose mapping rules are
      *                       listed in the form of:
-     *                       projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}. Please see
-     *                       {@see DataMigrationServiceClient::conversionWorkspaceName()} for help formatting this field.
+     *                       projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
      *
      * @return \Google\Cloud\CloudDms\V1\ListMappingRulesRequest
      *

@@ -28,29 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\EdgeNetwork\V1\Client\EdgeNetworkClient;
 use Google\Cloud\EdgeNetwork\V1\Subnet;
 use Google\Cloud\EdgeNetwork\V1\UpdateSubnetRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single Subnet.
  *
- * @param string $subnetName             The canonical resource name of the subnet.
- * @param string $formattedSubnetNetwork The network that this subnetwork belongs to. Please see
- *                                       {@see EdgeNetworkClient::networkName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_subnet_sample(string $subnetName, string $formattedSubnetNetwork): void
+function update_subnet_sample(): void
 {
     // Create a client.
     $edgeNetworkClient = new EdgeNetworkClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $subnet = (new Subnet())
-        ->setName($subnetName)
-        ->setNetwork($formattedSubnetNetwork);
-    $request = (new UpdateSubnetRequest())
-        ->setUpdateMask($updateMask)
-        ->setSubnet($subnet);
+    $request = new UpdateSubnetRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -70,27 +65,5 @@ function update_subnet_sample(string $subnetName, string $formattedSubnetNetwork
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $subnetName = '[NAME]';
-    $formattedSubnetNetwork = EdgeNetworkClient::networkName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ZONE]',
-        '[NETWORK]'
-    );
-
-    update_subnet_sample($subnetName, $formattedSubnetNetwork);
 }
 // [END edgenetwork_v1_generated_EdgeNetwork_UpdateSubnet_sync]

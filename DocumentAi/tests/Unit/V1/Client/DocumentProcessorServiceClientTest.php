@@ -137,10 +137,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new BatchProcessRequest())
-            ->setName($name);
+        $request = new BatchProcessRequest();
         $response = $gapicClient->batchProcessDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -151,8 +148,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/BatchProcessDocuments', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchProcessDocumentsTest');
         $response->pollUntilComplete([
@@ -203,10 +198,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new BatchProcessRequest())
-            ->setName($name);
+        $request = new BatchProcessRequest();
         $response = $gapicClient->batchProcessDocuments($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -252,12 +244,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setProcessEndpoint($processEndpoint);
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $processor = new Processor();
-        $request = (new CreateProcessorRequest())
-            ->setParent($formattedParent)
-            ->setProcessor($processor);
+        $request = new CreateProcessorRequest();
         $response = $gapicClient->createProcessor($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -265,10 +252,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/CreateProcessor', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getProcessor();
-        $this->assertProtobufEquals($processor, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -290,12 +273,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $processor = new Processor();
-        $request = (new CreateProcessorRequest())
-            ->setParent($formattedParent)
-            ->setProcessor($processor);
+        $request = new CreateProcessorRequest();
         try {
             $gapicClient->createProcessor($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -338,10 +316,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new DeleteProcessorRequest())
-            ->setName($formattedName);
+        $request = new DeleteProcessorRequest();
         $response = $gapicClient->deleteProcessor($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -352,8 +327,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/DeleteProcessor', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteProcessorTest');
         $response->pollUntilComplete([
@@ -404,10 +377,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new DeleteProcessorRequest())
-            ->setName($formattedName);
+        $request = new DeleteProcessorRequest();
         $response = $gapicClient->deleteProcessor($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -459,10 +429,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new DeleteProcessorVersionRequest())
-            ->setName($formattedName);
+        $request = new DeleteProcessorVersionRequest();
         $response = $gapicClient->deleteProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -473,8 +440,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/DeleteProcessorVersion', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteProcessorVersionTest');
         $response->pollUntilComplete([
@@ -525,10 +490,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new DeleteProcessorVersionRequest())
-            ->setName($formattedName);
+        $request = new DeleteProcessorVersionRequest();
         $response = $gapicClient->deleteProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -580,10 +542,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new DeployProcessorVersionRequest())
-            ->setName($formattedName);
+        $request = new DeployProcessorVersionRequest();
         $response = $gapicClient->deployProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -594,8 +553,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/DeployProcessorVersion', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deployProcessorVersionTest');
         $response->pollUntilComplete([
@@ -646,10 +603,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new DeployProcessorVersionRequest())
-            ->setName($formattedName);
+        $request = new DeployProcessorVersionRequest();
         $response = $gapicClient->deployProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -701,10 +655,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new DisableProcessorRequest())
-            ->setName($formattedName);
+        $request = new DisableProcessorRequest();
         $response = $gapicClient->disableProcessor($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -715,8 +666,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/DisableProcessor', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/disableProcessorTest');
         $response->pollUntilComplete([
@@ -767,10 +716,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new DisableProcessorRequest())
-            ->setName($formattedName);
+        $request = new DisableProcessorRequest();
         $response = $gapicClient->disableProcessor($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -822,10 +768,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new EnableProcessorRequest())
-            ->setName($formattedName);
+        $request = new EnableProcessorRequest();
         $response = $gapicClient->enableProcessor($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -836,8 +779,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/EnableProcessor', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/enableProcessorTest');
         $response->pollUntilComplete([
@@ -888,10 +829,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new EnableProcessorRequest())
-            ->setName($formattedName);
+        $request = new EnableProcessorRequest();
         $response = $gapicClient->enableProcessor($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -945,10 +883,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedProcessorVersion = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new EvaluateProcessorVersionRequest())
-            ->setProcessorVersion($formattedProcessorVersion);
+        $request = new EvaluateProcessorVersionRequest();
         $response = $gapicClient->evaluateProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -959,8 +894,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/EvaluateProcessorVersion', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProcessorVersion();
-        $this->assertProtobufEquals($formattedProcessorVersion, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/evaluateProcessorVersionTest');
         $response->pollUntilComplete([
@@ -1011,10 +944,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedProcessorVersion = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new EvaluateProcessorVersionRequest())
-            ->setProcessorVersion($formattedProcessorVersion);
+        $request = new EvaluateProcessorVersionRequest();
         $response = $gapicClient->evaluateProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1048,10 +978,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new FetchProcessorTypesResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new FetchProcessorTypesRequest())
-            ->setParent($formattedParent);
+        $request = new FetchProcessorTypesRequest();
         $response = $gapicClient->fetchProcessorTypes($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1059,8 +986,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/FetchProcessorTypes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1082,10 +1007,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new FetchProcessorTypesRequest())
-            ->setParent($formattedParent);
+        $request = new FetchProcessorTypesRequest();
         try {
             $gapicClient->fetchProcessorTypes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1116,10 +1038,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setKmsKeyVersionName($kmsKeyVersionName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->evaluationName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]', '[EVALUATION]');
-        $request = (new GetEvaluationRequest())
-            ->setName($formattedName);
+        $request = new GetEvaluationRequest();
         $response = $gapicClient->getEvaluation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1127,8 +1046,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/GetEvaluation', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1150,10 +1067,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->evaluationName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]', '[EVALUATION]');
-        $request = (new GetEvaluationRequest())
-            ->setName($formattedName);
+        $request = new GetEvaluationRequest();
         try {
             $gapicClient->getEvaluation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1190,10 +1104,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setProcessEndpoint($processEndpoint);
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new GetProcessorRequest())
-            ->setName($formattedName);
+        $request = new GetProcessorRequest();
         $response = $gapicClient->getProcessor($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1201,8 +1112,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/GetProcessor', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1224,10 +1133,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new GetProcessorRequest())
-            ->setName($formattedName);
+        $request = new GetProcessorRequest();
         try {
             $gapicClient->getProcessor($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1260,10 +1166,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setCategory($category);
         $expectedResponse->setAllowCreation($allowCreation);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->processorTypeName('[PROJECT]', '[LOCATION]', '[PROCESSOR_TYPE]');
-        $request = (new GetProcessorTypeRequest())
-            ->setName($formattedName);
+        $request = new GetProcessorTypeRequest();
         $response = $gapicClient->getProcessorType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1271,8 +1174,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/GetProcessorType', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1294,10 +1195,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processorTypeName('[PROJECT]', '[LOCATION]', '[PROCESSOR_TYPE]');
-        $request = (new GetProcessorTypeRequest())
-            ->setName($formattedName);
+        $request = new GetProcessorTypeRequest();
         try {
             $gapicClient->getProcessorType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1332,10 +1230,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setKmsKeyVersionName($kmsKeyVersionName);
         $expectedResponse->setGoogleManaged($googleManaged);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new GetProcessorVersionRequest())
-            ->setName($formattedName);
+        $request = new GetProcessorVersionRequest();
         $response = $gapicClient->getProcessorVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1343,8 +1238,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/GetProcessorVersion', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1366,10 +1259,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new GetProcessorVersionRequest())
-            ->setName($formattedName);
+        $request = new GetProcessorVersionRequest();
         try {
             $gapicClient->getProcessorVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1401,10 +1291,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEvaluations($evaluations);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new ListEvaluationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListEvaluationsRequest();
         $response = $gapicClient->listEvaluations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1415,8 +1302,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/ListEvaluations', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1438,10 +1323,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new ListEvaluationsRequest())
-            ->setParent($formattedParent);
+        $request = new ListEvaluationsRequest();
         try {
             $gapicClient->listEvaluations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1473,10 +1355,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProcessorTypes($processorTypes);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProcessorTypesRequest())
-            ->setParent($formattedParent);
+        $request = new ListProcessorTypesRequest();
         $response = $gapicClient->listProcessorTypes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1487,8 +1366,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/ListProcessorTypes', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1510,10 +1387,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProcessorTypesRequest())
-            ->setParent($formattedParent);
+        $request = new ListProcessorTypesRequest();
         try {
             $gapicClient->listProcessorTypes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1545,10 +1419,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProcessorVersions($processorVersions);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new ListProcessorVersionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListProcessorVersionsRequest();
         $response = $gapicClient->listProcessorVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1559,8 +1430,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/ListProcessorVersions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1582,10 +1451,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new ListProcessorVersionsRequest())
-            ->setParent($formattedParent);
+        $request = new ListProcessorVersionsRequest();
         try {
             $gapicClient->listProcessorVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1617,10 +1483,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProcessors($processors);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProcessorsRequest())
-            ->setParent($formattedParent);
+        $request = new ListProcessorsRequest();
         $response = $gapicClient->listProcessors($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1631,8 +1494,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/ListProcessors', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1654,10 +1515,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProcessorsRequest())
-            ->setParent($formattedParent);
+        $request = new ListProcessorsRequest();
         try {
             $gapicClient->listProcessors($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1682,10 +1540,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ProcessResponse();
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ProcessRequest())
-            ->setName($name);
+        $request = new ProcessRequest();
         $response = $gapicClient->processDocument($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1693,8 +1548,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/ProcessDocument', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1716,10 +1569,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new ProcessRequest())
-            ->setName($name);
+        $request = new ProcessRequest();
         try {
             $gapicClient->processDocument($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1766,10 +1616,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedHumanReviewConfig = $gapicClient->humanReviewConfigName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new ReviewDocumentRequest())
-            ->setHumanReviewConfig($formattedHumanReviewConfig);
+        $request = new ReviewDocumentRequest();
         $response = $gapicClient->reviewDocument($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1780,8 +1627,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/ReviewDocument', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getHumanReviewConfig();
-        $this->assertProtobufEquals($formattedHumanReviewConfig, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/reviewDocumentTest');
         $response->pollUntilComplete([
@@ -1832,10 +1677,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedHumanReviewConfig = $gapicClient->humanReviewConfigName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $request = (new ReviewDocumentRequest())
-            ->setHumanReviewConfig($formattedHumanReviewConfig);
+        $request = new ReviewDocumentRequest();
         $response = $gapicClient->reviewDocument($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1887,12 +1729,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedProcessor = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $formattedDefaultProcessorVersion = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new SetDefaultProcessorVersionRequest())
-            ->setProcessor($formattedProcessor)
-            ->setDefaultProcessorVersion($formattedDefaultProcessorVersion);
+        $request = new SetDefaultProcessorVersionRequest();
         $response = $gapicClient->setDefaultProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1903,10 +1740,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/SetDefaultProcessorVersion', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProcessor();
-        $this->assertProtobufEquals($formattedProcessor, $actualValue);
-        $actualValue = $actualApiRequestObject->getDefaultProcessorVersion();
-        $this->assertProtobufEquals($formattedDefaultProcessorVersion, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/setDefaultProcessorVersionTest');
         $response->pollUntilComplete([
@@ -1957,12 +1790,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedProcessor = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $formattedDefaultProcessorVersion = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new SetDefaultProcessorVersionRequest())
-            ->setProcessor($formattedProcessor)
-            ->setDefaultProcessorVersion($formattedDefaultProcessorVersion);
+        $request = new SetDefaultProcessorVersionRequest();
         $response = $gapicClient->setDefaultProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2016,12 +1844,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $processorVersion = new ProcessorVersion();
-        $request = (new TrainProcessorVersionRequest())
-            ->setParent($formattedParent)
-            ->setProcessorVersion($processorVersion);
+        $request = new TrainProcessorVersionRequest();
         $response = $gapicClient->trainProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2032,10 +1855,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/TrainProcessorVersion', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getProcessorVersion();
-        $this->assertProtobufEquals($processorVersion, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/trainProcessorVersionTest');
         $response->pollUntilComplete([
@@ -2086,12 +1905,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $processorVersion = new ProcessorVersion();
-        $request = (new TrainProcessorVersionRequest())
-            ->setParent($formattedParent)
-            ->setProcessorVersion($processorVersion);
+        $request = new TrainProcessorVersionRequest();
         $response = $gapicClient->trainProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2143,10 +1957,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new UndeployProcessorVersionRequest())
-            ->setName($formattedName);
+        $request = new UndeployProcessorVersionRequest();
         $response = $gapicClient->undeployProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2157,8 +1968,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/UndeployProcessorVersion', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeployProcessorVersionTest');
         $response->pollUntilComplete([
@@ -2209,10 +2018,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
-        $request = (new UndeployProcessorVersionRequest())
-            ->setName($formattedName);
+        $request = new UndeployProcessorVersionRequest();
         $response = $gapicClient->undeployProcessorVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2388,10 +2194,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $name = 'name3373707';
-        $request = (new BatchProcessRequest())
-            ->setName($name);
+        $request = new BatchProcessRequest();
         $response = $gapicClient->batchProcessDocumentsAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2402,8 +2205,6 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.documentai.v1.DocumentProcessorService/BatchProcessDocuments', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchProcessDocumentsTest');
         $response->pollUntilComplete([

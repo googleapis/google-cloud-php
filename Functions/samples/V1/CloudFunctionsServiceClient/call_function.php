@@ -33,11 +33,13 @@ use Google\Cloud\Functions\V1\CloudFunctionsServiceClient;
  * the actual limits, refer to
  * [Rate Limits](https://cloud.google.com/functions/quotas#rate_limits).
  *
- * @param string $formattedName The name of the function to be called. Please see
- *                              {@see CloudFunctionsServiceClient::cloudFunctionName()} for help formatting this field.
- * @param string $data          Input to be passed to the function.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function call_function_sample(string $formattedName, string $data): void
+function call_function_sample(): void
 {
     // Create a client.
     $cloudFunctionsServiceClient = new CloudFunctionsServiceClient();
@@ -45,31 +47,10 @@ function call_function_sample(string $formattedName, string $data): void
     // Call the API and handle any network failures.
     try {
         /** @var CallFunctionResponse $response */
-        $response = $cloudFunctionsServiceClient->callFunction($formattedName, $data);
+        $response = $cloudFunctionsServiceClient->callFunction();
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = CloudFunctionsServiceClient::cloudFunctionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[FUNCTION]'
-    );
-    $data = '[DATA]';
-
-    call_function_sample($formattedName, $data);
 }
 // [END cloudfunctions_v1_generated_CloudFunctionsService_CallFunction_sync]

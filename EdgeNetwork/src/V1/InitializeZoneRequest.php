@@ -23,8 +23,7 @@ class InitializeZoneRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the zone resource. Please see
-     *                     {@see EdgeNetworkClient::zoneName()} for help formatting this field.
+     * @param string $name Required. The name of the zone resource.
      *
      * @return \Google\Cloud\EdgeNetwork\V1\InitializeZoneRequest
      *

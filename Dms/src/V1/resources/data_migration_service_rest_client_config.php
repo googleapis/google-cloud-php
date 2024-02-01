@@ -50,9 +50,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'connection_profile_id',
-                ],
             ],
             'CreateConversionWorkspace' => [
                 'method' => 'post',
@@ -64,9 +61,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'conversion_workspace_id',
                 ],
             ],
             'CreateMappingRule' => [
@@ -80,9 +74,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'mapping_rule_id',
-                ],
             ],
             'CreateMigrationJob' => [
                 'method' => 'post',
@@ -95,9 +86,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'migration_job_id',
-                ],
             ],
             'CreatePrivateConnection' => [
                 'method' => 'post',
@@ -109,9 +97,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'private_connection_id',
                 ],
             ],
             'DeleteConnectionProfile' => [
@@ -455,9 +440,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateConversionWorkspace' => [
                 'method' => 'patch',
@@ -471,9 +453,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateMigrationJob' => [
                 'method' => 'patch',
@@ -486,9 +465,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'VerifyMigrationJob' => [

@@ -34,18 +34,19 @@ use Google\Cloud\GkeHub\V1\GenerateConnectManifestResponse;
  * **This method is used internally by Google-provided libraries.**
  * Most clients should not need to call this method directly.
  *
- * @param string $formattedName The Membership resource name the Agent will associate with, in
- *                              the format `projects/&#42;/locations/&#42;/memberships/*`. Please see
- *                              {@see GkeHubClient::membershipName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function generate_connect_manifest_sample(string $formattedName): void
+function generate_connect_manifest_sample(): void
 {
     // Create a client.
     $gkeHubClient = new GkeHubClient();
 
     // Prepare the request message.
-    $request = (new GenerateConnectManifestRequest())
-        ->setName($formattedName);
+    $request = new GenerateConnectManifestRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -55,21 +56,5 @@ function generate_connect_manifest_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = GkeHubClient::membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-
-    generate_connect_manifest_sample($formattedName);
 }
 // [END gkehub_v1_generated_GkeHub_GenerateConnectManifest_sync]

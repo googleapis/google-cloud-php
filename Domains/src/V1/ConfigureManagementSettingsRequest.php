@@ -39,8 +39,7 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * @param string                                      $registration       Required. The name of the `Registration` whose management settings are being updated,
-     *                                                                        in the format `projects/&#42;/locations/&#42;/registrations/*`. Please see
-     *                                                                        {@see DomainsClient::registrationName()} for help formatting this field.
+     *                                                                        in the format `projects/&#42;/locations/&#42;/registrations/*`.
      * @param \Google\Cloud\Domains\V1\ManagementSettings $managementSettings Fields of the `ManagementSettings` to update.
      * @param \Google\Protobuf\FieldMask                  $updateMask         Required. The field mask describing which fields to update as a comma-separated list.
      *                                                                        For example, if only the transfer lock is being updated, the `update_mask`

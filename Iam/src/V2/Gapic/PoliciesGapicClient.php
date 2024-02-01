@@ -52,9 +52,7 @@ use Google\LongRunning\Operation;
  * ```
  * $policiesClient = new PoliciesClient();
  * try {
- *     $parent = 'parent';
- *     $policy = new Policy();
- *     $operationResponse = $policiesClient->createPolicy($parent, $policy);
+ *     $operationResponse = $policiesClient->createPolicy();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -65,7 +63,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $policiesClient->createPolicy($parent, $policy);
+ *     $operationResponse = $policiesClient->createPolicy();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $policiesClient->resumeOperation($operationName, 'createPolicy');
@@ -245,9 +243,7 @@ class PoliciesGapicClient
      * ```
      * $policiesClient = new PoliciesClient();
      * try {
-     *     $parent = 'parent';
-     *     $policy = new Policy();
-     *     $operationResponse = $policiesClient->createPolicy($parent, $policy);
+     *     $operationResponse = $policiesClient->createPolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -258,7 +254,7 @@ class PoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $policiesClient->createPolicy($parent, $policy);
+     *     $operationResponse = $policiesClient->createPolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $policiesClient->resumeOperation($operationName, 'createPolicy');
@@ -278,21 +274,23 @@ class PoliciesGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource that the policy is attached to, along with the kind of policy
-     *                             to create. Format: `policies/{attachment_point}/denypolicies`
-     *
-     *
-     *                             The attachment point is identified by its URL-encoded full resource name,
-     *                             which means that the forward-slash character, `/`, must be written as
-     *                             `%2F`. For example,
-     *                             `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies`.
-     *
-     *                             For organizations and folders, use the numeric ID in the full resource
-     *                             name. For projects, you can use the alphanumeric or the numeric ID.
-     * @param Policy $policy       Required. The policy to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource that the policy is attached to, along with the kind of policy
+     *           to create. Format: `policies/{attachment_point}/denypolicies`
+     *
+     *
+     *           The attachment point is identified by its URL-encoded full resource name,
+     *           which means that the forward-slash character, `/`, must be written as
+     *           `%2F`. For example,
+     *           `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies`.
+     *
+     *           For organizations and folders, use the numeric ID in the full resource
+     *           name. For projects, you can use the alphanumeric or the numeric ID.
+     *     @type Policy $policy
+     *           Required. The policy to create.
      *     @type string $policyId
      *           The ID to use for this policy, which will become the final component of
      *           the policy's resource name. The ID must contain 3 to 63 characters. It can
@@ -308,13 +306,19 @@ class PoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createPolicy($parent, $policy, array $optionalArgs = [])
+    public function createPolicy(array $optionalArgs = [])
     {
         $request = new CreatePolicyRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setPolicy($policy);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['policyId'])) {
             $request->setPolicyId($optionalArgs['policyId']);
         }
@@ -340,8 +344,7 @@ class PoliciesGapicClient
      * ```
      * $policiesClient = new PoliciesClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $policiesClient->deletePolicy($name);
+     *     $operationResponse = $policiesClient->deletePolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -352,7 +355,7 @@ class PoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $policiesClient->deletePolicy($name);
+     *     $operationResponse = $policiesClient->deletePolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $policiesClient->resumeOperation($operationName, 'deletePolicy');
@@ -372,19 +375,20 @@ class PoliciesGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the policy to delete. Format:
-     *                             `policies/{attachment_point}/denypolicies/{policy_id}`
-     *
-     *
-     *                             Use the URL-encoded full resource name, which means that the forward-slash
-     *                             character, `/`, must be written as `%2F`. For example,
-     *                             `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies/my-policy`.
-     *
-     *                             For organizations and folders, use the numeric ID in the full resource
-     *                             name. For projects, you can use the alphanumeric or the numeric ID.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the policy to delete. Format:
+     *           `policies/{attachment_point}/denypolicies/{policy_id}`
+     *
+     *
+     *           Use the URL-encoded full resource name, which means that the forward-slash
+     *           character, `/`, must be written as `%2F`. For example,
+     *           `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies/my-policy`.
+     *
+     *           For organizations and folders, use the numeric ID in the full resource
+     *           name. For projects, you can use the alphanumeric or the numeric ID.
      *     @type string $etag
      *           Optional. The expected `etag` of the policy to delete. If the value does not match
      *           the value that is stored in IAM, the request fails with a `409` error code
@@ -402,12 +406,15 @@ class PoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deletePolicy($name, array $optionalArgs = [])
+    public function deletePolicy(array $optionalArgs = [])
     {
         $request = new DeletePolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -433,26 +440,26 @@ class PoliciesGapicClient
      * ```
      * $policiesClient = new PoliciesClient();
      * try {
-     *     $name = 'name';
-     *     $response = $policiesClient->getPolicy($name);
+     *     $response = $policiesClient->getPolicy();
      * } finally {
      *     $policiesClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the policy to retrieve. Format:
-     *                             `policies/{attachment_point}/denypolicies/{policy_id}`
-     *
-     *
-     *                             Use the URL-encoded full resource name, which means that the forward-slash
-     *                             character, `/`, must be written as `%2F`. For example,
-     *                             `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies/my-policy`.
-     *
-     *                             For organizations and folders, use the numeric ID in the full resource
-     *                             name. For projects, you can use the alphanumeric or the numeric ID.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. The resource name of the policy to retrieve. Format:
+     *           `policies/{attachment_point}/denypolicies/{policy_id}`
+     *
+     *
+     *           Use the URL-encoded full resource name, which means that the forward-slash
+     *           character, `/`, must be written as `%2F`. For example,
+     *           `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies/my-policy`.
+     *
+     *           For organizations and folders, use the numeric ID in the full resource
+     *           name. For projects, you can use the alphanumeric or the numeric ID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -463,12 +470,15 @@ class PoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getPolicy($name, array $optionalArgs = [])
+    public function getPolicy(array $optionalArgs = [])
     {
         $request = new GetPolicyRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -494,9 +504,8 @@ class PoliciesGapicClient
      * ```
      * $policiesClient = new PoliciesClient();
      * try {
-     *     $parent = 'parent';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $policiesClient->listPolicies($parent);
+     *     $pagedResponse = $policiesClient->listPolicies();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -504,7 +513,7 @@ class PoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $policiesClient->listPolicies($parent);
+     *     $pagedResponse = $policiesClient->listPolicies();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -513,21 +522,22 @@ class PoliciesGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource that the policy is attached to, along with the kind of policy
-     *                             to list. Format:
-     *                             `policies/{attachment_point}/denypolicies`
-     *
-     *
-     *                             The attachment point is identified by its URL-encoded full resource name,
-     *                             which means that the forward-slash character, `/`, must be written as
-     *                             `%2F`. For example,
-     *                             `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies`.
-     *
-     *                             For organizations and folders, use the numeric ID in the full resource
-     *                             name. For projects, you can use the alphanumeric or the numeric ID.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The resource that the policy is attached to, along with the kind of policy
+     *           to list. Format:
+     *           `policies/{attachment_point}/denypolicies`
+     *
+     *
+     *           The attachment point is identified by its URL-encoded full resource name,
+     *           which means that the forward-slash character, `/`, must be written as
+     *           `%2F`. For example,
+     *           `policies/cloudresourcemanager.googleapis.com%2Fprojects%2Fmy-project/denypolicies`.
+     *
+     *           For organizations and folders, use the numeric ID in the full resource
+     *           name. For projects, you can use the alphanumeric or the numeric ID.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -547,12 +557,15 @@ class PoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listPolicies($parent, array $optionalArgs = [])
+    public function listPolicies(array $optionalArgs = [])
     {
         $request = new ListPoliciesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -592,8 +605,7 @@ class PoliciesGapicClient
      * ```
      * $policiesClient = new PoliciesClient();
      * try {
-     *     $policy = new Policy();
-     *     $operationResponse = $policiesClient->updatePolicy($policy);
+     *     $operationResponse = $policiesClient->updatePolicy();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -604,7 +616,7 @@ class PoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $policiesClient->updatePolicy($policy);
+     *     $operationResponse = $policiesClient->updatePolicy();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $policiesClient->resumeOperation($operationName, 'updatePolicy');
@@ -624,14 +636,15 @@ class PoliciesGapicClient
      * }
      * ```
      *
-     * @param Policy $policy       Required. The policy to update.
-     *
-     *                             To prevent conflicting updates, the `etag` value must match the value that
-     *                             is stored in IAM. If the `etag` values do not match, the request fails with
-     *                             a `409` error code and `ABORTED` status.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Policy $policy
+     *           Required. The policy to update.
+     *
+     *           To prevent conflicting updates, the `etag` value must match the value that
+     *           is stored in IAM. If the `etag` values do not match, the request fails with
+     *           a `409` error code and `ABORTED` status.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -642,12 +655,14 @@ class PoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updatePolicy($policy, array $optionalArgs = [])
+    public function updatePolicy(array $optionalArgs = [])
     {
         $request = new UpdatePolicyRequest();
         $requestParamHeaders = [];
-        $request->setPolicy($policy);
-        $requestParamHeaders['policy.name'] = $policy->getName();
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

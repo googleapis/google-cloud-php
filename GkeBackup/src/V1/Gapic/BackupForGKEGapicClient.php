@@ -95,8 +95,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $backupForGKEClient = new BackupForGKEClient();
  * try {
- *     $formattedParent = $backupForGKEClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
- *     $operationResponse = $backupForGKEClient->createBackup($formattedParent);
+ *     $operationResponse = $backupForGKEClient->createBackup();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -107,7 +106,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $backupForGKEClient->createBackup($formattedParent);
+ *     $operationResponse = $backupForGKEClient->createBackup();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'createBackup');
@@ -684,8 +683,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedParent = $backupForGKEClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-     *     $operationResponse = $backupForGKEClient->createBackup($formattedParent);
+     *     $operationResponse = $backupForGKEClient->createBackup();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -696,7 +694,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->createBackup($formattedParent);
+     *     $operationResponse = $backupForGKEClient->createBackup();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'createBackup');
@@ -716,11 +714,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The BackupPlan within which to create the Backup.
-     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The BackupPlan within which to create the Backup.
+     *           Format: `projects/&#42;/locations/&#42;/backupPlans/*`
      *     @type Backup $backup
      *           The Backup resource to create.
      *     @type string $backupId
@@ -742,12 +741,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBackup($parent, array $optionalArgs = [])
+    public function createBackup(array $optionalArgs = [])
     {
         $request = new CreateBackupRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['backup'])) {
             $request->setBackup($optionalArgs['backup']);
         }
@@ -777,10 +779,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedParent = $backupForGKEClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $backupPlan = new BackupPlan();
-     *     $backupPlanId = 'backup_plan_id';
-     *     $operationResponse = $backupForGKEClient->createBackupPlan($formattedParent, $backupPlan, $backupPlanId);
+     *     $operationResponse = $backupForGKEClient->createBackupPlan();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -791,7 +790,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->createBackupPlan($formattedParent, $backupPlan, $backupPlanId);
+     *     $operationResponse = $backupForGKEClient->createBackupPlan();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'createBackupPlan');
@@ -811,20 +810,23 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The location within which to create the BackupPlan.
-     *                                 Format: `projects/&#42;/locations/*`
-     * @param BackupPlan $backupPlan   Required. The BackupPlan resource object to create.
-     * @param string     $backupPlanId Required. The client-provided short name for the BackupPlan resource.
-     *                                 This name must:
-     *
-     *                                 - be between 1 and 63 characters long (inclusive)
-     *                                 - consist of only lower-case ASCII letters, numbers, and dashes
-     *                                 - start with a lower-case letter
-     *                                 - end with a lower-case letter or number
-     *                                 - be unique within the set of BackupPlans in this location
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location within which to create the BackupPlan.
+     *           Format: `projects/&#42;/locations/*`
+     *     @type BackupPlan $backupPlan
+     *           Required. The BackupPlan resource object to create.
+     *     @type string $backupPlanId
+     *           Required. The client-provided short name for the BackupPlan resource.
+     *           This name must:
+     *
+     *           - be between 1 and 63 characters long (inclusive)
+     *           - consist of only lower-case ASCII letters, numbers, and dashes
+     *           - start with a lower-case letter
+     *           - end with a lower-case letter or number
+     *           - be unique within the set of BackupPlans in this location
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -835,18 +837,23 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBackupPlan(
-        $parent,
-        $backupPlan,
-        $backupPlanId,
-        array $optionalArgs = []
-    ) {
+    public function createBackupPlan(array $optionalArgs = [])
+    {
         $request = new CreateBackupPlanRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setBackupPlan($backupPlan);
-        $request->setBackupPlanId($backupPlanId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['backupPlan'])) {
+            $request->setBackupPlan($optionalArgs['backupPlan']);
+        }
+
+        if (isset($optionalArgs['backupPlanId'])) {
+            $request->setBackupPlanId($optionalArgs['backupPlanId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -868,10 +875,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedParent = $backupForGKEClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-     *     $restore = new Restore();
-     *     $restoreId = 'restore_id';
-     *     $operationResponse = $backupForGKEClient->createRestore($formattedParent, $restore, $restoreId);
+     *     $operationResponse = $backupForGKEClient->createRestore();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -882,7 +886,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->createRestore($formattedParent, $restore, $restoreId);
+     *     $operationResponse = $backupForGKEClient->createRestore();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'createRestore');
@@ -902,20 +906,23 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The RestorePlan within which to create the Restore.
-     *                              Format: `projects/&#42;/locations/&#42;/restorePlans/*`
-     * @param Restore $restore      Required. The restore resource to create.
-     * @param string  $restoreId    Required. The client-provided short name for the Restore resource.
-     *                              This name must:
-     *
-     *                              - be between 1 and 63 characters long (inclusive)
-     *                              - consist of only lower-case ASCII letters, numbers, and dashes
-     *                              - start with a lower-case letter
-     *                              - end with a lower-case letter or number
-     *                              - be unique within the set of Restores in this RestorePlan.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The RestorePlan within which to create the Restore.
+     *           Format: `projects/&#42;/locations/&#42;/restorePlans/*`
+     *     @type Restore $restore
+     *           Required. The restore resource to create.
+     *     @type string $restoreId
+     *           Required. The client-provided short name for the Restore resource.
+     *           This name must:
+     *
+     *           - be between 1 and 63 characters long (inclusive)
+     *           - consist of only lower-case ASCII letters, numbers, and dashes
+     *           - start with a lower-case letter
+     *           - end with a lower-case letter or number
+     *           - be unique within the set of Restores in this RestorePlan.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -926,18 +933,23 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createRestore(
-        $parent,
-        $restore,
-        $restoreId,
-        array $optionalArgs = []
-    ) {
+    public function createRestore(array $optionalArgs = [])
+    {
         $request = new CreateRestoreRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRestore($restore);
-        $request->setRestoreId($restoreId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['restore'])) {
+            $request->setRestore($optionalArgs['restore']);
+        }
+
+        if (isset($optionalArgs['restoreId'])) {
+            $request->setRestoreId($optionalArgs['restoreId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -959,10 +971,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedParent = $backupForGKEClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $restorePlan = new RestorePlan();
-     *     $restorePlanId = 'restore_plan_id';
-     *     $operationResponse = $backupForGKEClient->createRestorePlan($formattedParent, $restorePlan, $restorePlanId);
+     *     $operationResponse = $backupForGKEClient->createRestorePlan();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -973,7 +982,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->createRestorePlan($formattedParent, $restorePlan, $restorePlanId);
+     *     $operationResponse = $backupForGKEClient->createRestorePlan();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'createRestorePlan');
@@ -993,20 +1002,23 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string      $parent        Required. The location within which to create the RestorePlan.
-     *                                   Format: `projects/&#42;/locations/*`
-     * @param RestorePlan $restorePlan   Required. The RestorePlan resource object to create.
-     * @param string      $restorePlanId Required. The client-provided short name for the RestorePlan resource.
-     *                                   This name must:
-     *
-     *                                   - be between 1 and 63 characters long (inclusive)
-     *                                   - consist of only lower-case ASCII letters, numbers, and dashes
-     *                                   - start with a lower-case letter
-     *                                   - end with a lower-case letter or number
-     *                                   - be unique within the set of RestorePlans in this location
-     * @param array       $optionalArgs  {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location within which to create the RestorePlan.
+     *           Format: `projects/&#42;/locations/*`
+     *     @type RestorePlan $restorePlan
+     *           Required. The RestorePlan resource object to create.
+     *     @type string $restorePlanId
+     *           Required. The client-provided short name for the RestorePlan resource.
+     *           This name must:
+     *
+     *           - be between 1 and 63 characters long (inclusive)
+     *           - consist of only lower-case ASCII letters, numbers, and dashes
+     *           - start with a lower-case letter
+     *           - end with a lower-case letter or number
+     *           - be unique within the set of RestorePlans in this location
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1017,18 +1029,23 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createRestorePlan(
-        $parent,
-        $restorePlan,
-        $restorePlanId,
-        array $optionalArgs = []
-    ) {
+    public function createRestorePlan(array $optionalArgs = [])
+    {
         $request = new CreateRestorePlanRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setRestorePlan($restorePlan);
-        $request->setRestorePlanId($restorePlanId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['restorePlan'])) {
+            $request->setRestorePlan($optionalArgs['restorePlan']);
+        }
+
+        if (isset($optionalArgs['restorePlanId'])) {
+            $request->setRestorePlanId($optionalArgs['restorePlanId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1050,8 +1067,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedName = $backupForGKEClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-     *     $operationResponse = $backupForGKEClient->deleteBackup($formattedName);
+     *     $operationResponse = $backupForGKEClient->deleteBackup();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1061,7 +1077,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->deleteBackup($formattedName);
+     *     $operationResponse = $backupForGKEClient->deleteBackup();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'deleteBackup');
@@ -1080,11 +1096,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Name of the Backup resource.
-     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the Backup resource.
+     *           Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
      *     @type string $etag
      *           If provided, this value must match the current value of the
      *           target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the
@@ -1103,12 +1120,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBackup($name, array $optionalArgs = [])
+    public function deleteBackup(array $optionalArgs = [])
     {
         $request = new DeleteBackupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -1138,8 +1158,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedName = $backupForGKEClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-     *     $operationResponse = $backupForGKEClient->deleteBackupPlan($formattedName);
+     *     $operationResponse = $backupForGKEClient->deleteBackupPlan();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1149,7 +1168,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->deleteBackupPlan($formattedName);
+     *     $operationResponse = $backupForGKEClient->deleteBackupPlan();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'deleteBackupPlan');
@@ -1168,11 +1187,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Fully qualified BackupPlan name.
-     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Fully qualified BackupPlan name.
+     *           Format: `projects/&#42;/locations/&#42;/backupPlans/*`
      *     @type string $etag
      *           If provided, this value must match the current value of the
      *           target BackupPlan's [etag][google.cloud.gkebackup.v1.BackupPlan.etag] field
@@ -1187,12 +1207,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBackupPlan($name, array $optionalArgs = [])
+    public function deleteBackupPlan(array $optionalArgs = [])
     {
         $request = new DeleteBackupPlanRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -1218,8 +1241,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedName = $backupForGKEClient->restoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]');
-     *     $operationResponse = $backupForGKEClient->deleteRestore($formattedName);
+     *     $operationResponse = $backupForGKEClient->deleteRestore();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1229,7 +1251,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->deleteRestore($formattedName);
+     *     $operationResponse = $backupForGKEClient->deleteRestore();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'deleteRestore');
@@ -1248,11 +1270,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Full name of the Restore
-     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Full name of the Restore
+     *           Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
      *     @type string $etag
      *           If provided, this value must match the current value of the
      *           target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
@@ -1271,12 +1294,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteRestore($name, array $optionalArgs = [])
+    public function deleteRestore(array $optionalArgs = [])
     {
         $request = new DeleteRestoreRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -1306,8 +1332,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedName = $backupForGKEClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-     *     $operationResponse = $backupForGKEClient->deleteRestorePlan($formattedName);
+     *     $operationResponse = $backupForGKEClient->deleteRestorePlan();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1317,7 +1342,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->deleteRestorePlan($formattedName);
+     *     $operationResponse = $backupForGKEClient->deleteRestorePlan();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'deleteRestorePlan');
@@ -1336,11 +1361,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Fully qualified RestorePlan name.
-     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Fully qualified RestorePlan name.
+     *           Format: `projects/&#42;/locations/&#42;/restorePlans/*`
      *     @type string $etag
      *           If provided, this value must match the current value of the
      *           target RestorePlan's [etag][google.cloud.gkebackup.v1.RestorePlan.etag]
@@ -1359,12 +1385,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteRestorePlan($name, array $optionalArgs = [])
+    public function deleteRestorePlan(array $optionalArgs = [])
     {
         $request = new DeleteRestorePlanRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -1394,18 +1423,18 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedName = $backupForGKEClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
-     *     $response = $backupForGKEClient->getBackup($formattedName);
+     *     $response = $backupForGKEClient->getBackup();
      * } finally {
      *     $backupForGKEClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Full name of the Backup resource.
-     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Full name of the Backup resource.
+     *           Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1416,12 +1445,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBackup($name, array $optionalArgs = [])
+    public function getBackup(array $optionalArgs = [])
     {
         $request = new GetBackupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1443,18 +1475,18 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedName = $backupForGKEClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
-     *     $response = $backupForGKEClient->getBackupPlan($formattedName);
+     *     $response = $backupForGKEClient->getBackupPlan();
      * } finally {
      *     $backupForGKEClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Fully qualified BackupPlan name.
-     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Fully qualified BackupPlan name.
+     *           Format: `projects/&#42;/locations/&#42;/backupPlans/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1465,12 +1497,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBackupPlan($name, array $optionalArgs = [])
+    public function getBackupPlan(array $optionalArgs = [])
     {
         $request = new GetBackupPlanRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1492,18 +1527,18 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedName = $backupForGKEClient->restoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]');
-     *     $response = $backupForGKEClient->getRestore($formattedName);
+     *     $response = $backupForGKEClient->getRestore();
      * } finally {
      *     $backupForGKEClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Name of the restore resource.
-     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Name of the restore resource.
+     *           Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1514,12 +1549,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRestore($name, array $optionalArgs = [])
+    public function getRestore(array $optionalArgs = [])
     {
         $request = new GetRestoreRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1541,18 +1579,18 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedName = $backupForGKEClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
-     *     $response = $backupForGKEClient->getRestorePlan($formattedName);
+     *     $response = $backupForGKEClient->getRestorePlan();
      * } finally {
      *     $backupForGKEClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Fully qualified RestorePlan name.
-     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Fully qualified RestorePlan name.
+     *           Format: `projects/&#42;/locations/&#42;/restorePlans/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1563,12 +1601,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRestorePlan($name, array $optionalArgs = [])
+    public function getRestorePlan(array $optionalArgs = [])
     {
         $request = new GetRestorePlanRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1590,18 +1631,18 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedName = $backupForGKEClient->volumeBackupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]', '[VOLUME_BACKUP]');
-     *     $response = $backupForGKEClient->getVolumeBackup($formattedName);
+     *     $response = $backupForGKEClient->getVolumeBackup();
      * } finally {
      *     $backupForGKEClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Full name of the VolumeBackup resource.
-     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/&#42;/volumeBackups/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Full name of the VolumeBackup resource.
+     *           Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/&#42;/volumeBackups/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1612,12 +1653,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getVolumeBackup($name, array $optionalArgs = [])
+    public function getVolumeBackup(array $optionalArgs = [])
     {
         $request = new GetVolumeBackupRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1639,18 +1683,18 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedName = $backupForGKEClient->volumeRestoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]', '[VOLUME_RESTORE]');
-     *     $response = $backupForGKEClient->getVolumeRestore($formattedName);
+     *     $response = $backupForGKEClient->getVolumeRestore();
      * } finally {
      *     $backupForGKEClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. Full name of the VolumeRestore resource.
-     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/&#42;/volumeRestores/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Full name of the VolumeRestore resource.
+     *           Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/&#42;/volumeRestores/*`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1661,12 +1705,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getVolumeRestore($name, array $optionalArgs = [])
+    public function getVolumeRestore(array $optionalArgs = [])
     {
         $request = new GetVolumeRestoreRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1688,9 +1735,8 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedParent = $backupForGKEClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backupForGKEClient->listBackupPlans($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listBackupPlans();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1698,7 +1744,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backupForGKEClient->listBackupPlans($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listBackupPlans();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1707,11 +1753,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The location that contains the BackupPlans to list.
-     *                             Format: `projects/&#42;/locations/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location that contains the BackupPlans to list.
+     *           Format: `projects/&#42;/locations/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1735,12 +1782,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBackupPlans($parent, array $optionalArgs = [])
+    public function listBackupPlans(array $optionalArgs = [])
     {
         $request = new ListBackupPlansRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1778,9 +1828,8 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedParent = $backupForGKEClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backupForGKEClient->listBackups($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listBackups();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1788,7 +1837,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backupForGKEClient->listBackups($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listBackups();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1797,11 +1846,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The BackupPlan that contains the Backups to list.
-     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The BackupPlan that contains the Backups to list.
+     *           Format: `projects/&#42;/locations/&#42;/backupPlans/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1825,12 +1875,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBackups($parent, array $optionalArgs = [])
+    public function listBackups(array $optionalArgs = [])
     {
         $request = new ListBackupsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1868,9 +1921,8 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedParent = $backupForGKEClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backupForGKEClient->listRestorePlans($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listRestorePlans();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1878,7 +1930,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backupForGKEClient->listRestorePlans($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listRestorePlans();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1887,11 +1939,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The location that contains the RestorePlans to list.
-     *                             Format: `projects/&#42;/locations/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The location that contains the RestorePlans to list.
+     *           Format: `projects/&#42;/locations/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1915,12 +1968,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRestorePlans($parent, array $optionalArgs = [])
+    public function listRestorePlans(array $optionalArgs = [])
     {
         $request = new ListRestorePlansRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1958,9 +2014,8 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedParent = $backupForGKEClient->restorePlanName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backupForGKEClient->listRestores($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listRestores();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1968,7 +2023,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backupForGKEClient->listRestores($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listRestores();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1977,11 +2032,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The RestorePlan that contains the Restores to list.
-     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The RestorePlan that contains the Restores to list.
+     *           Format: `projects/&#42;/locations/&#42;/restorePlans/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2005,12 +2061,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRestores($parent, array $optionalArgs = [])
+    public function listRestores(array $optionalArgs = [])
     {
         $request = new ListRestoresRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2048,9 +2107,8 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedParent = $backupForGKEClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backupForGKEClient->listVolumeBackups($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listVolumeBackups();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2058,7 +2116,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backupForGKEClient->listVolumeBackups($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listVolumeBackups();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2067,11 +2125,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Backup that contains the VolumeBackups to list.
-     *                             Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The Backup that contains the VolumeBackups to list.
+     *           Format: `projects/&#42;/locations/&#42;/backupPlans/&#42;/backups/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2095,12 +2154,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listVolumeBackups($parent, array $optionalArgs = [])
+    public function listVolumeBackups(array $optionalArgs = [])
     {
         $request = new ListVolumeBackupsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2138,9 +2200,8 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $formattedParent = $backupForGKEClient->restoreName('[PROJECT]', '[LOCATION]', '[RESTORE_PLAN]', '[RESTORE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backupForGKEClient->listVolumeRestores($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listVolumeRestores();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2148,7 +2209,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backupForGKEClient->listVolumeRestores($formattedParent);
+     *     $pagedResponse = $backupForGKEClient->listVolumeRestores();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2157,11 +2218,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Restore that contains the VolumeRestores to list.
-     *                             Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. The Restore that contains the VolumeRestores to list.
+     *           Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2185,12 +2247,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listVolumeRestores($parent, array $optionalArgs = [])
+    public function listVolumeRestores(array $optionalArgs = [])
     {
         $request = new ListVolumeRestoresRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2228,8 +2293,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $backup = new Backup();
-     *     $operationResponse = $backupForGKEClient->updateBackup($backup);
+     *     $operationResponse = $backupForGKEClient->updateBackup();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2240,7 +2304,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->updateBackup($backup);
+     *     $operationResponse = $backupForGKEClient->updateBackup();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'updateBackup');
@@ -2260,11 +2324,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param Backup $backup       Required. A new version of the Backup resource that contains updated
-     *                             fields. This may be sparsely populated if an `update_mask` is provided.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Backup $backup
+     *           Required. A new version of the Backup resource that contains updated
+     *           fields. This may be sparsely populated if an `update_mask` is provided.
      *     @type FieldMask $updateMask
      *           This is used to specify the fields to be overwritten in the
      *           Backup targeted for update. The values for each of these
@@ -2284,12 +2349,14 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateBackup($backup, array $optionalArgs = [])
+    public function updateBackup(array $optionalArgs = [])
     {
         $request = new UpdateBackupRequest();
         $requestParamHeaders = [];
-        $request->setBackup($backup);
-        $requestParamHeaders['backup.name'] = $backup->getName();
+        if (isset($optionalArgs['backup'])) {
+            $request->setBackup($optionalArgs['backup']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2315,8 +2382,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $backupPlan = new BackupPlan();
-     *     $operationResponse = $backupForGKEClient->updateBackupPlan($backupPlan);
+     *     $operationResponse = $backupForGKEClient->updateBackupPlan();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2327,7 +2393,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->updateBackupPlan($backupPlan);
+     *     $operationResponse = $backupForGKEClient->updateBackupPlan();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'updateBackupPlan');
@@ -2347,11 +2413,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param BackupPlan $backupPlan   Required. A new version of the BackupPlan resource that contains updated
-     *                                 fields. This may be sparsely populated if an `update_mask` is provided.
-     * @param array      $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type BackupPlan $backupPlan
+     *           Required. A new version of the BackupPlan resource that contains updated
+     *           fields. This may be sparsely populated if an `update_mask` is provided.
      *     @type FieldMask $updateMask
      *           This is used to specify the fields to be overwritten in the
      *           BackupPlan targeted for update. The values for each of these
@@ -2372,12 +2439,14 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateBackupPlan($backupPlan, array $optionalArgs = [])
+    public function updateBackupPlan(array $optionalArgs = [])
     {
         $request = new UpdateBackupPlanRequest();
         $requestParamHeaders = [];
-        $request->setBackupPlan($backupPlan);
-        $requestParamHeaders['backup_plan.name'] = $backupPlan->getName();
+        if (isset($optionalArgs['backupPlan'])) {
+            $request->setBackupPlan($optionalArgs['backupPlan']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2403,8 +2472,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $restore = new Restore();
-     *     $operationResponse = $backupForGKEClient->updateRestore($restore);
+     *     $operationResponse = $backupForGKEClient->updateRestore();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2415,7 +2483,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->updateRestore($restore);
+     *     $operationResponse = $backupForGKEClient->updateRestore();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'updateRestore');
@@ -2435,11 +2503,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param Restore $restore      Required. A new version of the Restore resource that contains updated
-     *                              fields. This may be sparsely populated if an `update_mask` is provided.
-     * @param array   $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Restore $restore
+     *           Required. A new version of the Restore resource that contains updated
+     *           fields. This may be sparsely populated if an `update_mask` is provided.
      *     @type FieldMask $updateMask
      *           This is used to specify the fields to be overwritten in the
      *           Restore targeted for update. The values for each of these
@@ -2459,12 +2528,14 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateRestore($restore, array $optionalArgs = [])
+    public function updateRestore(array $optionalArgs = [])
     {
         $request = new UpdateRestoreRequest();
         $requestParamHeaders = [];
-        $request->setRestore($restore);
-        $requestParamHeaders['restore.name'] = $restore->getName();
+        if (isset($optionalArgs['restore'])) {
+            $request->setRestore($optionalArgs['restore']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2490,8 +2561,7 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $restorePlan = new RestorePlan();
-     *     $operationResponse = $backupForGKEClient->updateRestorePlan($restorePlan);
+     *     $operationResponse = $backupForGKEClient->updateRestorePlan();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2502,7 +2572,7 @@ class BackupForGKEGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backupForGKEClient->updateRestorePlan($restorePlan);
+     *     $operationResponse = $backupForGKEClient->updateRestorePlan();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $backupForGKEClient->resumeOperation($operationName, 'updateRestorePlan');
@@ -2522,11 +2592,12 @@ class BackupForGKEGapicClient
      * }
      * ```
      *
-     * @param RestorePlan $restorePlan  Required. A new version of the RestorePlan resource that contains updated
-     *                                  fields. This may be sparsely populated if an `update_mask` is provided.
-     * @param array       $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type RestorePlan $restorePlan
+     *           Required. A new version of the RestorePlan resource that contains updated
+     *           fields. This may be sparsely populated if an `update_mask` is provided.
      *     @type FieldMask $updateMask
      *           This is used to specify the fields to be overwritten in the
      *           RestorePlan targeted for update. The values for each of these
@@ -2546,12 +2617,14 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateRestorePlan($restorePlan, array $optionalArgs = [])
+    public function updateRestorePlan(array $optionalArgs = [])
     {
         $request = new UpdateRestorePlanRequest();
         $requestParamHeaders = [];
-        $request->setRestorePlan($restorePlan);
-        $requestParamHeaders['restore_plan.name'] = $restorePlan->getName();
+        if (isset($optionalArgs['restorePlan'])) {
+            $request->setRestorePlan($optionalArgs['restorePlan']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2718,18 +2791,18 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $resource = 'resource';
-     *     $response = $backupForGKEClient->getIamPolicy($resource);
+     *     $response = $backupForGKEClient->getIamPolicy();
      * } finally {
      *     $backupForGKEClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being requested.
+     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -2743,12 +2816,15 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy($resource, array $optionalArgs = [])
+    public function getIamPolicy(array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -2780,23 +2856,23 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $resource = 'resource';
-     *     $policy = new Policy();
-     *     $response = $backupForGKEClient->setIamPolicy($resource, $policy);
+     *     $response = $backupForGKEClient->setIamPolicy();
      * } finally {
      *     $backupForGKEClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is a
-     *                             valid policy but certain Cloud Platform services (such as Projects)
-     *                             might reject them.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy is being specified.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type Policy $policy
+     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *           the policy is limited to a few 10s of KB. An empty policy is a
+     *           valid policy but certain Cloud Platform services (such as Projects)
+     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -2813,13 +2889,19 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    public function setIamPolicy(array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPolicy($policy);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['policy'])) {
+            $request->setPolicy($optionalArgs['policy']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -2853,23 +2935,23 @@ class BackupForGKEGapicClient
      * ```
      * $backupForGKEClient = new BackupForGKEClient();
      * try {
-     *     $resource = 'resource';
-     *     $permissions = [];
-     *     $response = $backupForGKEClient->testIamPermissions($resource, $permissions);
+     *     $response = $backupForGKEClient->testIamPermissions();
      * } finally {
      *     $backupForGKEClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $resource
+     *           REQUIRED: The resource for which the policy detail is being requested.
+     *           See the operation documentation for the appropriate value for this field.
+     *     @type string[] $permissions
+     *           The set of permissions to check for the `resource`. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *           information see
+     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2880,16 +2962,19 @@ class BackupForGKEGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions(array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        $request->setResource($resource);
-        $request->setPermissions($permissions);
-        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+            $requestParamHeaders['resource'] = $optionalArgs['resource'];
+        }
+
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

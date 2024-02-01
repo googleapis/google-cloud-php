@@ -65,8 +65,7 @@ class TransferDomainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                     $parent            Required. The parent resource of the `Registration`. Must be in the
-     *                                                                      format `projects/&#42;/locations/*`. Please see
-     *                                                                      {@see DomainsClient::locationName()} for help formatting this field.
+     *                                                                      format `projects/&#42;/locations/*`.
      * @param \Google\Cloud\Domains\V1\Registration      $registration      Required. The complete `Registration` resource to be created.
      *
      *                                                                      You can leave `registration.dns_settings` unset to import the

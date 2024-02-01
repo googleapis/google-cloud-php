@@ -33,37 +33,19 @@ use Google\Rpc\Status;
 /**
  * Creates a new InterconnectAttachment in a given project and location.
  *
- * @param string $formattedParent                             Value for parent. Please see
- *                                                            {@see EdgeNetworkClient::zoneName()} for help formatting this field.
- * @param string $interconnectAttachmentId                    Id of the requesting object
- *                                                            If auto-generating Id server-side, remove this field and
- *                                                            interconnect_attachment_id from the method_signature of Create RPC
- * @param string $interconnectAttachmentName                  The canonical resource name of the interconnect attachment.
- * @param string $formattedInterconnectAttachmentInterconnect The canonical name of underlying Interconnect object that this
- *                                                            attachment's traffic will traverse through. The name is in the form of
- *                                                            `projects/{project}/locations/{location}/zones/{zone}/interconnects/{interconnect}`. Please see
- *                                                            {@see EdgeNetworkClient::interconnectName()} for help formatting this field.
- * @param int    $interconnectAttachmentVlanId                VLAN id provided by user. Must be site-wise unique.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_interconnect_attachment_sample(
-    string $formattedParent,
-    string $interconnectAttachmentId,
-    string $interconnectAttachmentName,
-    string $formattedInterconnectAttachmentInterconnect,
-    int $interconnectAttachmentVlanId
-): void {
+function create_interconnect_attachment_sample(): void
+{
     // Create a client.
     $edgeNetworkClient = new EdgeNetworkClient();
 
     // Prepare the request message.
-    $interconnectAttachment = (new InterconnectAttachment())
-        ->setName($interconnectAttachmentName)
-        ->setInterconnect($formattedInterconnectAttachmentInterconnect)
-        ->setVlanId($interconnectAttachmentVlanId);
-    $request = (new CreateInterconnectAttachmentRequest())
-        ->setParent($formattedParent)
-        ->setInterconnectAttachmentId($interconnectAttachmentId)
-        ->setInterconnectAttachment($interconnectAttachment);
+    $request = new CreateInterconnectAttachmentRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -83,36 +65,5 @@ function create_interconnect_attachment_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = EdgeNetworkClient::zoneName('[PROJECT]', '[LOCATION]', '[ZONE]');
-    $interconnectAttachmentId = '[INTERCONNECT_ATTACHMENT_ID]';
-    $interconnectAttachmentName = '[NAME]';
-    $formattedInterconnectAttachmentInterconnect = EdgeNetworkClient::interconnectName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[ZONE]',
-        '[INTERCONNECT]'
-    );
-    $interconnectAttachmentVlanId = 0;
-
-    create_interconnect_attachment_sample(
-        $formattedParent,
-        $interconnectAttachmentId,
-        $interconnectAttachmentName,
-        $formattedInterconnectAttachmentInterconnect,
-        $interconnectAttachmentVlanId
-    );
 }
 // [END edgenetwork_v1_generated_EdgeNetwork_CreateInterconnectAttachment_sync]

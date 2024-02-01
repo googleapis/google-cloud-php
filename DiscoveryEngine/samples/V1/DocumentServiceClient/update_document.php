@@ -43,9 +43,7 @@ function update_document_sample(): void
     $documentServiceClient = new DocumentServiceClient();
 
     // Prepare the request message.
-    $document = new Document();
-    $request = (new UpdateDocumentRequest())
-        ->setDocument($document);
+    $request = new UpdateDocumentRequest();
 
     // Call the API and handle any network failures.
     try {

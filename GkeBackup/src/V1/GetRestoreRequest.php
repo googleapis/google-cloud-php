@@ -26,7 +26,6 @@ class GetRestoreRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Name of the restore resource.
      *                     Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
-     *                     Please see {@see BackupForGKEClient::restoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeBackup\V1\GetRestoreRequest
      *

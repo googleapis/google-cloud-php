@@ -35,14 +35,12 @@ use Google\Cloud\Firestore\V1\Client\FirestoreClient;
  * Documents returned by this method are not guaranteed to be returned in the
  * same order that they were requested.
  *
- * @param string $database         The database name. In the format:
- *                                 `projects/{project_id}/databases/{database_id}`.
  * @param string $documentsElement The names of the documents to retrieve. In the format:
  *                                 `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
  *                                 The request will fail if any of the document is not a child resource of the
  *                                 given `database`. Duplicate names will be elided.
  */
-function batch_get_documents_sample(string $database, string $documentsElement): void
+function batch_get_documents_sample(string $documentsElement): void
 {
     // Create a client.
     $firestoreClient = new FirestoreClient();
@@ -50,7 +48,6 @@ function batch_get_documents_sample(string $database, string $documentsElement):
     // Prepare the request message.
     $documents = [$documentsElement,];
     $request = (new BatchGetDocumentsRequest())
-        ->setDatabase($database)
         ->setDocuments($documents);
 
     // Call the API and handle any network failures.
@@ -78,9 +75,8 @@ function batch_get_documents_sample(string $database, string $documentsElement):
  */
 function callSample(): void
 {
-    $database = '[DATABASE]';
     $documentsElement = '[DOCUMENTS]';
 
-    batch_get_documents_sample($database, $documentsElement);
+    batch_get_documents_sample($documentsElement);
 }
 // [END firestore_v1_generated_Firestore_BatchGetDocuments_sync]

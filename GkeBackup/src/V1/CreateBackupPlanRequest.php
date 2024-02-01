@@ -44,7 +44,6 @@ class CreateBackupPlanRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                $parent       Required. The location within which to create the BackupPlan.
      *                                                            Format: `projects/&#42;/locations/*`
-     *                                                            Please see {@see BackupForGKEClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\GkeBackup\V1\BackupPlan $backupPlan   Required. The BackupPlan resource object to create.
      * @param string                                $backupPlanId Required. The client-provided short name for the BackupPlan resource.
      *                                                            This name must:

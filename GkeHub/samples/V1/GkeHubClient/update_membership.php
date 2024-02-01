@@ -28,28 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\GkeHub\V1\Client\GkeHubClient;
 use Google\Cloud\GkeHub\V1\Membership;
 use Google\Cloud\GkeHub\V1\UpdateMembershipRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates an existing Membership.
  *
- * @param string $formattedName The Membership resource name in the format
- *                              `projects/&#42;/locations/&#42;/memberships/*`. Please see
- *                              {@see GkeHubClient::membershipName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_membership_sample(string $formattedName): void
+function update_membership_sample(): void
 {
     // Create a client.
     $gkeHubClient = new GkeHubClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $resource = new Membership();
-    $request = (new UpdateMembershipRequest())
-        ->setName($formattedName)
-        ->setUpdateMask($updateMask)
-        ->setResource($resource);
+    $request = new UpdateMembershipRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -69,21 +65,5 @@ function update_membership_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = GkeHubClient::membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-
-    update_membership_sample($formattedName);
 }
 // [END gkehub_v1_generated_GkeHub_UpdateMembership_sync]

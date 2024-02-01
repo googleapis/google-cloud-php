@@ -31,22 +31,19 @@ use Google\Cloud\Iam\Credentials\V1\SignJwtResponse;
 /**
  * Signs a JWT using a service account's system-managed private key.
  *
- * @param string $formattedName The resource name of the service account for which the credentials
- *                              are requested, in the following format:
- *                              `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
- *                              character is required; replacing it with a project ID is invalid. Please see
- *                              {@see IAMCredentialsClient::serviceAccountName()} for help formatting this field.
- * @param string $payload       The JWT payload to sign: a JSON object that contains a JWT Claims Set.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function sign_jwt_sample(string $formattedName, string $payload): void
+function sign_jwt_sample(): void
 {
     // Create a client.
     $iAMCredentialsClient = new IAMCredentialsClient();
 
     // Prepare the request message.
-    $request = (new SignJwtRequest())
-        ->setName($formattedName)
-        ->setPayload($payload);
+    $request = new SignJwtRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,22 +53,5 @@ function sign_jwt_sample(string $formattedName, string $payload): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = IAMCredentialsClient::serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
-    $payload = '[PAYLOAD]';
-
-    sign_jwt_sample($formattedName, $payload);
 }
 // [END iamcredentials_v1_generated_IAMCredentials_SignJwt_sync]

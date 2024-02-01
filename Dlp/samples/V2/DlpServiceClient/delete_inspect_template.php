@@ -31,19 +31,19 @@ use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
  * Deletes an InspectTemplate.
  * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
  *
- * @param string $formattedName Resource name of the organization and inspectTemplate to be
- *                              deleted, for example `organizations/433245324/inspectTemplates/432452342`
- *                              or projects/project-id/inspectTemplates/432452342. Please see
- *                              {@see DlpServiceClient::inspectTemplateName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_inspect_template_sample(string $formattedName): void
+function delete_inspect_template_sample(): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteInspectTemplateRequest())
-        ->setName($formattedName);
+    $request = new DeleteInspectTemplateRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,21 +52,5 @@ function delete_inspect_template_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DlpServiceClient::inspectTemplateName('[ORGANIZATION]', '[INSPECT_TEMPLATE]');
-
-    delete_inspect_template_sample($formattedName);
 }
 // [END dlp_v2_generated_DlpService_DeleteInspectTemplate_sync]

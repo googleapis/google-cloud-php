@@ -27,8 +27,7 @@ class DeleteSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The full resource name of the schema, in the format of
-     *                     `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`. Please see
-     *                     {@see SchemaServiceClient::schemaName()} for help formatting this field.
+     *                     `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}`.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1\DeleteSchemaRequest
      *

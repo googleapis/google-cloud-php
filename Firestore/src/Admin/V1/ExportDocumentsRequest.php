@@ -67,8 +67,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Database to export. Should be of the form:
-     *                     `projects/{project_id}/databases/{database_id}`. Please see
-     *                     {@see FirestoreAdminClient::databaseName()} for help formatting this field.
+     *                     `projects/{project_id}/databases/{database_id}`.
      *
      * @return \Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest
      *

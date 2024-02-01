@@ -32,18 +32,19 @@ use Google\Cloud\DiscoveryEngine\V1beta\Schema;
 /**
  * Gets a list of [Schema][google.cloud.discoveryengine.v1beta.Schema]s.
  *
- * @param string $formattedParent The parent data store resource name, in the format of
- *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`. Please see
- *                                {@see SchemaServiceClient::dataStoreName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_schemas_sample(string $formattedParent): void
+function list_schemas_sample(): void
 {
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
     // Prepare the request message.
-    $request = (new ListSchemasRequest())
-        ->setParent($formattedParent);
+    $request = new ListSchemasRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +58,5 @@ function list_schemas_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = SchemaServiceClient::dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-
-    list_schemas_sample($formattedParent);
 }
 // [END discoveryengine_v1beta_generated_SchemaService_ListSchemas_sync]

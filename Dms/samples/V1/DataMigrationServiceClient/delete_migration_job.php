@@ -32,17 +32,19 @@ use Google\Rpc\Status;
 /**
  * Deletes a single migration job.
  *
- * @param string $formattedName Name of the migration job resource to delete. Please see
- *                              {@see DataMigrationServiceClient::migrationJobName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_migration_job_sample(string $formattedName): void
+function delete_migration_job_sample(): void
 {
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteMigrationJobRequest())
-        ->setName($formattedName);
+    $request = new DeleteMigrationJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,25 +62,5 @@ function delete_migration_job_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataMigrationServiceClient::migrationJobName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[MIGRATION_JOB]'
-    );
-
-    delete_migration_job_sample($formattedName);
 }
 // [END datamigration_v1_generated_DataMigrationService_DeleteMigrationJob_sync]

@@ -23,8 +23,7 @@ class GetConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. Name of the connection profile resource to get. Please see
-     *                     {@see DataMigrationServiceClient::connectionProfileName()} for help formatting this field.
+     * @param string $name Required. Name of the connection profile resource to get.
      *
      * @return \Google\Cloud\CloudDms\V1\GetConnectionProfileRequest
      *

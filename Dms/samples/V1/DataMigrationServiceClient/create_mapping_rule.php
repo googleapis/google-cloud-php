@@ -26,39 +26,24 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\CreateMappingRuleRequest;
-use Google\Cloud\CloudDms\V1\DatabaseEntityType;
 use Google\Cloud\CloudDms\V1\MappingRule;
-use Google\Cloud\CloudDms\V1\MappingRuleFilter;
 
 /**
  * Creates a new mapping rule for a given conversion workspace.
  *
- * @param string $formattedParent      The parent which owns this collection of mapping rules. Please see
- *                                     {@see DataMigrationServiceClient::conversionWorkspaceName()} for help formatting this field.
- * @param string $mappingRuleId        The ID of the rule to create.
- * @param int    $mappingRuleRuleScope The rule scope
- * @param int    $mappingRuleRuleOrder The order in which the rule is applied. Lower order rules are
- *                                     applied before higher value rules so they may end up being overridden.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_mapping_rule_sample(
-    string $formattedParent,
-    string $mappingRuleId,
-    int $mappingRuleRuleScope,
-    int $mappingRuleRuleOrder
-): void {
+function create_mapping_rule_sample(): void
+{
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
     // Prepare the request message.
-    $mappingRuleFilter = new MappingRuleFilter();
-    $mappingRule = (new MappingRule())
-        ->setRuleScope($mappingRuleRuleScope)
-        ->setFilter($mappingRuleFilter)
-        ->setRuleOrder($mappingRuleRuleOrder);
-    $request = (new CreateMappingRuleRequest())
-        ->setParent($formattedParent)
-        ->setMappingRuleId($mappingRuleId)
-        ->setMappingRule($mappingRule);
+    $request = new CreateMappingRuleRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -68,33 +53,5 @@ function create_mapping_rule_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataMigrationServiceClient::conversionWorkspaceName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONVERSION_WORKSPACE]'
-    );
-    $mappingRuleId = '[MAPPING_RULE_ID]';
-    $mappingRuleRuleScope = DatabaseEntityType::DATABASE_ENTITY_TYPE_UNSPECIFIED;
-    $mappingRuleRuleOrder = 0;
-
-    create_mapping_rule_sample(
-        $formattedParent,
-        $mappingRuleId,
-        $mappingRuleRuleScope,
-        $mappingRuleRuleOrder
-    );
 }
 // [END datamigration_v1_generated_DataMigrationService_CreateMappingRule_sync]

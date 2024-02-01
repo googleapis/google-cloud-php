@@ -31,18 +31,19 @@ use Google\Cloud\GkeBackup\V1\Restore;
 /**
  * Retrieves the details of a single Restore.
  *
- * @param string $formattedName Name of the restore resource.
- *                              Format: `projects/&#42;/locations/&#42;/restorePlans/&#42;/restores/*`
- *                              Please see {@see BackupForGKEClient::restoreName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_restore_sample(string $formattedName): void
+function get_restore_sample(): void
 {
     // Create a client.
     $backupForGKEClient = new BackupForGKEClient();
 
     // Prepare the request message.
-    $request = (new GetRestoreRequest())
-        ->setName($formattedName);
+    $request = new GetRestoreRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -52,26 +53,5 @@ function get_restore_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = BackupForGKEClient::restoreName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[RESTORE_PLAN]',
-        '[RESTORE]'
-    );
-
-    get_restore_sample($formattedName);
 }
 // [END gkebackup_v1_generated_BackupForGKE_GetRestore_sync]

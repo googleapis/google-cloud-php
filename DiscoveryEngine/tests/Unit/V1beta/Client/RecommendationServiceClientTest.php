@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1beta\Client\RecommendationServiceClient;
 use Google\Cloud\DiscoveryEngine\V1beta\RecommendRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\RecommendResponse;
-use Google\Cloud\DiscoveryEngine\V1beta\UserEvent;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -78,19 +77,7 @@ class RecommendationServiceClientTest extends GeneratedTest
         $expectedResponse->setAttributionToken($attributionToken);
         $expectedResponse->setValidateOnly($validateOnly2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[DATA_STORE]',
-            '[SERVING_CONFIG]'
-        );
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventUserPseudoId = 'userEventUserPseudoId-1929667693';
-        $userEvent->setUserPseudoId($userEventUserPseudoId);
-        $request = (new RecommendRequest())->setServingConfig($formattedServingConfig)->setUserEvent($userEvent);
+        $request = new RecommendRequest();
         $response = $gapicClient->recommend($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -98,10 +85,6 @@ class RecommendationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.RecommendationService/Recommend', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServingConfig();
-        $this->assertProtobufEquals($formattedServingConfig, $actualValue);
-        $actualValue = $actualRequestObject->getUserEvent();
-        $this->assertProtobufEquals($userEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -126,19 +109,7 @@ class RecommendationServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[DATA_STORE]',
-            '[SERVING_CONFIG]'
-        );
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventUserPseudoId = 'userEventUserPseudoId-1929667693';
-        $userEvent->setUserPseudoId($userEventUserPseudoId);
-        $request = (new RecommendRequest())->setServingConfig($formattedServingConfig)->setUserEvent($userEvent);
+        $request = new RecommendRequest();
         try {
             $gapicClient->recommend($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -167,19 +138,7 @@ class RecommendationServiceClientTest extends GeneratedTest
         $expectedResponse->setAttributionToken($attributionToken);
         $expectedResponse->setValidateOnly($validateOnly2);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[DATA_STORE]',
-            '[SERVING_CONFIG]'
-        );
-        $userEvent = new UserEvent();
-        $userEventEventType = 'userEventEventType341658661';
-        $userEvent->setEventType($userEventEventType);
-        $userEventUserPseudoId = 'userEventUserPseudoId-1929667693';
-        $userEvent->setUserPseudoId($userEventUserPseudoId);
-        $request = (new RecommendRequest())->setServingConfig($formattedServingConfig)->setUserEvent($userEvent);
+        $request = new RecommendRequest();
         $response = $gapicClient->recommendAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -187,10 +146,6 @@ class RecommendationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.discoveryengine.v1beta.RecommendationService/Recommend', $actualFuncCall);
-        $actualValue = $actualRequestObject->getServingConfig();
-        $this->assertProtobufEquals($formattedServingConfig, $actualValue);
-        $actualValue = $actualRequestObject->getUserEvent();
-        $this->assertProtobufEquals($userEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

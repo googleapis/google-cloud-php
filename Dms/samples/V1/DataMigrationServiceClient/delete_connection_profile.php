@@ -34,17 +34,19 @@ use Google\Rpc\Status;
  * A connection profile can only be deleted if it is not in use by any
  * active migration jobs.
  *
- * @param string $formattedName Name of the connection profile resource to delete. Please see
- *                              {@see DataMigrationServiceClient::connectionProfileName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_connection_profile_sample(string $formattedName): void
+function delete_connection_profile_sample(): void
 {
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteConnectionProfileRequest())
-        ->setName($formattedName);
+    $request = new DeleteConnectionProfileRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -62,25 +64,5 @@ function delete_connection_profile_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DataMigrationServiceClient::connectionProfileName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONNECTION_PROFILE]'
-    );
-
-    delete_connection_profile_sample($formattedName);
 }
 // [END datamigration_v1_generated_DataMigrationService_DeleteConnectionProfile_sync]

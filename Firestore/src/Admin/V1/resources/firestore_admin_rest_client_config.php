@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'database_id',
-                ],
             ],
             'CreateIndex' => [
                 'method' => 'post',

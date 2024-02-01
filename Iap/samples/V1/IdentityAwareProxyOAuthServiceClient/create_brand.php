@@ -38,19 +38,19 @@ use Google\Cloud\Iap\V1\CreateBrandRequest;
  * exist for the project, and that the specified support email is owned by the
  * caller.
  *
- * @param string $parent GCP Project number/id under which the brand is to be created.
- *                       In the following format: projects/{project_number/id}.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_brand_sample(string $parent): void
+function create_brand_sample(): void
 {
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
     // Prepare the request message.
-    $brand = new Brand();
-    $request = (new CreateBrandRequest())
-        ->setParent($parent)
-        ->setBrand($brand);
+    $request = new CreateBrandRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -60,21 +60,5 @@ function create_brand_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    create_brand_sample($parent);
 }
 // [END iap_v1_generated_IdentityAwareProxyOAuthService_CreateBrand_sync]

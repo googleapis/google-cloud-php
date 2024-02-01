@@ -31,8 +31,7 @@ class HybridInspectJobTriggerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the trigger to execute a hybrid inspect on, for
-     *                     example `projects/dlp-test-project/jobTriggers/53234423`. Please see
-     *                     {@see DlpServiceClient::jobTriggerName()} for help formatting this field.
+     *                     example `projects/dlp-test-project/jobTriggers/53234423`.
      *
      * @return \Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest
      *

@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'membership_id',
-                ],
             ],
             'DeleteMembership' => [
                 'method' => 'delete',
@@ -83,9 +80,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
             'ValidateExclusivity' => [

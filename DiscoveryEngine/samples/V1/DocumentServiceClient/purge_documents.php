@@ -48,22 +48,19 @@ use Google\Rpc\Status;
  * [PurgeDocumentsRequest.force][google.cloud.discoveryengine.v1.PurgeDocumentsRequest.force]
  * to false.
  *
- * @param string $formattedParent The parent resource name, such as
- *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`. Please see
- *                                {@see DocumentServiceClient::branchName()} for help formatting this field.
- * @param string $filter          Filter matching documents to purge. Only currently supported
- *                                value is
- *                                `*` (all items).
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function purge_documents_sample(string $formattedParent, string $filter): void
+function purge_documents_sample(): void
 {
     // Create a client.
     $documentServiceClient = new DocumentServiceClient();
 
     // Prepare the request message.
-    $request = (new PurgeDocumentsRequest())
-        ->setParent($formattedParent)
-        ->setFilter($filter);
+    $request = new PurgeDocumentsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -83,27 +80,5 @@ function purge_documents_sample(string $formattedParent, string $filter): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DocumentServiceClient::branchName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_STORE]',
-        '[BRANCH]'
-    );
-    $filter = '[FILTER]';
-
-    purge_documents_sample($formattedParent, $filter);
 }
 // [END discoveryengine_v1_generated_DocumentService_PurgeDocuments_sync]

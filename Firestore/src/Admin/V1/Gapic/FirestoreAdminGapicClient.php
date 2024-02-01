@@ -99,10 +99,7 @@ use Google\Protobuf\Timestamp;
  * ```
  * $firestoreAdminClient = new FirestoreAdminClient();
  * try {
- *     $formattedParent = $firestoreAdminClient->projectName('[PROJECT]');
- *     $database = new Database();
- *     $databaseId = 'database_id';
- *     $operationResponse = $firestoreAdminClient->createDatabase($formattedParent, $database, $databaseId);
+ *     $operationResponse = $firestoreAdminClient->createDatabase();
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -113,7 +110,7 @@ use Google\Protobuf\Timestamp;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $firestoreAdminClient->createDatabase($formattedParent, $database, $databaseId);
+ *     $operationResponse = $firestoreAdminClient->createDatabase();
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'createDatabase');
@@ -497,10 +494,7 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedParent = $firestoreAdminClient->projectName('[PROJECT]');
-     *     $database = new Database();
-     *     $databaseId = 'database_id';
-     *     $operationResponse = $firestoreAdminClient->createDatabase($formattedParent, $database, $databaseId);
+     *     $operationResponse = $firestoreAdminClient->createDatabase();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -511,7 +505,7 @@ class FirestoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->createDatabase($formattedParent, $database, $databaseId);
+     *     $operationResponse = $firestoreAdminClient->createDatabase();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'createDatabase');
@@ -531,20 +525,23 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. A parent name of the form
-     *                               `projects/{project_id}`
-     * @param Database $database     Required. The Database to create.
-     * @param string   $databaseId   Required. The ID to use for the database, which will become the final
-     *                               component of the database's resource name.
-     *
-     *                               This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
-     *                               with first character a letter and the last a letter or a number. Must not
-     *                               be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
-     *
-     *                               "(default)" database id is also valid.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. A parent name of the form
+     *           `projects/{project_id}`
+     *     @type Database $database
+     *           Required. The Database to create.
+     *     @type string $databaseId
+     *           Required. The ID to use for the database, which will become the final
+     *           component of the database's resource name.
+     *
+     *           This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     *           with first character a letter and the last a letter or a number. Must not
+     *           be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     *
+     *           "(default)" database id is also valid.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -555,14 +552,23 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDatabase($parent, $database, $databaseId, array $optionalArgs = [])
+    public function createDatabase(array $optionalArgs = [])
     {
         $request = new CreateDatabaseRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setDatabase($database);
-        $request->setDatabaseId($databaseId);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['database'])) {
+            $request->setDatabase($optionalArgs['database']);
+        }
+
+        if (isset($optionalArgs['databaseId'])) {
+            $request->setDatabaseId($optionalArgs['databaseId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -579,9 +585,7 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedParent = $firestoreAdminClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-     *     $index = new Index();
-     *     $operationResponse = $firestoreAdminClient->createIndexLRO($formattedParent, $index);
+     *     $operationResponse = $firestoreAdminClient->createIndexLRO();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -592,7 +596,7 @@ class FirestoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->createIndexLRO($formattedParent, $index);
+     *     $operationResponse = $firestoreAdminClient->createIndexLRO();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'createIndex');
@@ -612,12 +616,14 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. A parent name of the form
-     *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
-     * @param Index  $index        Required. The composite index to create.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. A parent name of the form
+     *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     *     @type Index $index
+     *           Required. The composite index to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -628,13 +634,19 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createIndexLRO($parent, $index, array $optionalArgs = [])
+    public function createIndexLRO(array $optionalArgs = [])
     {
         $request = new CreateIndexRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setIndex($index);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['index'])) {
+            $request->setIndex($optionalArgs['index']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateIndex', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -647,8 +659,7 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedName = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
-     *     $operationResponse = $firestoreAdminClient->deleteDatabase($formattedName);
+     *     $operationResponse = $firestoreAdminClient->deleteDatabase();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -659,7 +670,7 @@ class FirestoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->deleteDatabase($formattedName);
+     *     $operationResponse = $firestoreAdminClient->deleteDatabase();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'deleteDatabase');
@@ -679,11 +690,12 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. A name of the form
-     *                             `projects/{project_id}/databases/{database_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the form
+     *           `projects/{project_id}/databases/{database_id}`
      *     @type string $etag
      *           The current etag of the Database.
      *           If an etag is provided and does not match the current etag of the database,
@@ -698,12 +710,15 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDatabase($name, array $optionalArgs = [])
+    public function deleteDatabase(array $optionalArgs = [])
     {
         $request = new DeleteDatabaseRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -720,18 +735,18 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedName = $firestoreAdminClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-     *     $firestoreAdminClient->deleteIndex($formattedName);
+     *     $firestoreAdminClient->deleteIndex();
      * } finally {
      *     $firestoreAdminClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A name of the form
-     *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the form
+     *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -740,12 +755,15 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteIndex($name, array $optionalArgs = [])
+    public function deleteIndex(array $optionalArgs = [])
     {
         $request = new DeleteIndexRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteIndex', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -768,8 +786,7 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedName = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
-     *     $operationResponse = $firestoreAdminClient->exportDocumentsLRO($formattedName);
+     *     $operationResponse = $firestoreAdminClient->exportDocumentsLRO();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -780,7 +797,7 @@ class FirestoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->exportDocumentsLRO($formattedName);
+     *     $operationResponse = $firestoreAdminClient->exportDocumentsLRO();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'exportDocuments');
@@ -800,11 +817,12 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Database to export. Should be of the form:
-     *                             `projects/{project_id}/databases/{database_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Database to export. Should be of the form:
+     *           `projects/{project_id}/databases/{database_id}`.
      *     @type string[] $collectionIds
      *           Which collection ids to export. Unspecified means all collections.
      *     @type string $outputUriPrefix
@@ -841,12 +859,15 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportDocumentsLRO($name, array $optionalArgs = [])
+    public function exportDocumentsLRO(array $optionalArgs = [])
     {
         $request = new ExportDocumentsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['collectionIds'])) {
             $request->setCollectionIds($optionalArgs['collectionIds']);
         }
@@ -875,18 +896,18 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedName = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
-     *     $response = $firestoreAdminClient->getDatabase($formattedName);
+     *     $response = $firestoreAdminClient->getDatabase();
      * } finally {
      *     $firestoreAdminClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A name of the form
-     *                             `projects/{project_id}/databases/{database_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the form
+     *           `projects/{project_id}/databases/{database_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -897,12 +918,15 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDatabase($name, array $optionalArgs = [])
+    public function getDatabase(array $optionalArgs = [])
     {
         $request = new GetDatabaseRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDatabase', Database::class, $optionalArgs, $request)->wait();
@@ -915,18 +939,18 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedName = $firestoreAdminClient->fieldName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[FIELD]');
-     *     $response = $firestoreAdminClient->getField($formattedName);
+     *     $response = $firestoreAdminClient->getField();
      * } finally {
      *     $firestoreAdminClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A name of the form
-     *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the form
+     *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -937,12 +961,15 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getField($name, array $optionalArgs = [])
+    public function getField(array $optionalArgs = [])
     {
         $request = new GetFieldRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetField', Field::class, $optionalArgs, $request)->wait();
@@ -955,18 +982,18 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedName = $firestoreAdminClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-     *     $response = $firestoreAdminClient->getIndex($formattedName);
+     *     $response = $firestoreAdminClient->getIndex();
      * } finally {
      *     $firestoreAdminClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. A name of the form
-     *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. A name of the form
+     *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -977,12 +1004,15 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIndex($name, array $optionalArgs = [])
+    public function getIndex(array $optionalArgs = [])
     {
         $request = new GetIndexRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetIndex', Index::class, $optionalArgs, $request)->wait();
@@ -999,8 +1029,7 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedName = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
-     *     $operationResponse = $firestoreAdminClient->importDocumentsLRO($formattedName);
+     *     $operationResponse = $firestoreAdminClient->importDocumentsLRO();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1010,7 +1039,7 @@ class FirestoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->importDocumentsLRO($formattedName);
+     *     $operationResponse = $firestoreAdminClient->importDocumentsLRO();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'importDocuments');
@@ -1029,11 +1058,12 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Database to import into. Should be of the form:
-     *                             `projects/{project_id}/databases/{database_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Required. Database to import into. Should be of the form:
+     *           `projects/{project_id}/databases/{database_id}`.
      *     @type string[] $collectionIds
      *           Which collection ids to import. Unspecified means all collections included
      *           in the import.
@@ -1060,12 +1090,15 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importDocumentsLRO($name, array $optionalArgs = [])
+    public function importDocumentsLRO(array $optionalArgs = [])
     {
         $request = new ImportDocumentsRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['collectionIds'])) {
             $request->setCollectionIds($optionalArgs['collectionIds']);
         }
@@ -1090,18 +1123,18 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedParent = $firestoreAdminClient->projectName('[PROJECT]');
-     *     $response = $firestoreAdminClient->listDatabases($formattedParent);
+     *     $response = $firestoreAdminClient->listDatabases();
      * } finally {
      *     $firestoreAdminClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. A parent name of the form
-     *                             `projects/{project_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. A parent name of the form
+     *           `projects/{project_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1112,12 +1145,15 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDatabases($parent, array $optionalArgs = [])
+    public function listDatabases(array $optionalArgs = [])
     {
         $request = new ListDatabasesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ListDatabases', ListDatabasesResponse::class, $optionalArgs, $request)->wait();
@@ -1138,9 +1174,8 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedParent = $firestoreAdminClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $firestoreAdminClient->listFields($formattedParent);
+     *     $pagedResponse = $firestoreAdminClient->listFields();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1148,7 +1183,7 @@ class FirestoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $firestoreAdminClient->listFields($formattedParent);
+     *     $pagedResponse = $firestoreAdminClient->listFields();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1157,11 +1192,12 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. A parent name of the form
-     *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. A parent name of the form
+     *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      *     @type string $filter
      *           The filter to apply to list results. Currently,
      *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
@@ -1188,12 +1224,15 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listFields($parent, array $optionalArgs = [])
+    public function listFields(array $optionalArgs = [])
     {
         $request = new ListFieldsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1218,9 +1257,8 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedParent = $firestoreAdminClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $firestoreAdminClient->listIndexes($formattedParent);
+     *     $pagedResponse = $firestoreAdminClient->listIndexes();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1228,7 +1266,7 @@ class FirestoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $firestoreAdminClient->listIndexes($formattedParent);
+     *     $pagedResponse = $firestoreAdminClient->listIndexes();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1237,11 +1275,12 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. A parent name of the form
-     *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Required. A parent name of the form
+     *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      *     @type string $filter
      *           The filter to apply to list results.
      *     @type int $pageSize
@@ -1263,12 +1302,15 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listIndexes($parent, array $optionalArgs = [])
+    public function listIndexes(array $optionalArgs = [])
     {
         $request = new ListIndexesRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1293,8 +1335,7 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $database = new Database();
-     *     $operationResponse = $firestoreAdminClient->updateDatabase($database);
+     *     $operationResponse = $firestoreAdminClient->updateDatabase();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1305,7 +1346,7 @@ class FirestoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->updateDatabase($database);
+     *     $operationResponse = $firestoreAdminClient->updateDatabase();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'updateDatabase');
@@ -1325,10 +1366,11 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param Database $database     Required. The database to update.
-     * @param array    $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Database $database
+     *           Required. The database to update.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type RetrySettings|array $retrySettings
@@ -1341,12 +1383,14 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDatabase($database, array $optionalArgs = [])
+    public function updateDatabase(array $optionalArgs = [])
     {
         $request = new UpdateDatabaseRequest();
         $requestParamHeaders = [];
-        $request->setDatabase($database);
-        $requestParamHeaders['database.name'] = $database->getName();
+        if (isset($optionalArgs['database'])) {
+            $request->setDatabase($optionalArgs['database']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1378,8 +1422,7 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $field = new Field();
-     *     $operationResponse = $firestoreAdminClient->updateFieldLRO($field);
+     *     $operationResponse = $firestoreAdminClient->updateFieldLRO();
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1390,7 +1433,7 @@ class FirestoreAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->updateFieldLRO($field);
+     *     $operationResponse = $firestoreAdminClient->updateFieldLRO();
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'updateField');
@@ -1410,10 +1453,11 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param Field $field        Required. The field to be updated.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type Field $field
+     *           Required. The field to be updated.
      *     @type FieldMask $updateMask
      *           A mask, relative to the field. If specified, only configuration specified
      *           by this field_mask will be updated in the field.
@@ -1427,12 +1471,14 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateFieldLRO($field, array $optionalArgs = [])
+    public function updateFieldLRO(array $optionalArgs = [])
     {
         $request = new UpdateFieldRequest();
         $requestParamHeaders = [];
-        $request->setField($field);
-        $requestParamHeaders['field.name'] = $field->getName();
+        if (isset($optionalArgs['field'])) {
+            $request->setField($optionalArgs['field']);
+        }
+
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

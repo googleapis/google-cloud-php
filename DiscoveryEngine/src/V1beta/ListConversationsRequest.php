@@ -63,7 +63,6 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The data store resource name. Format:
      *                       `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
-     *                       Please see {@see ConversationalSearchServiceClient::dataStoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1beta\ListConversationsRequest
      *

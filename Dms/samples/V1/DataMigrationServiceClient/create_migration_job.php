@@ -28,38 +28,24 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\CreateMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\MigrationJob;
-use Google\Cloud\CloudDms\V1\MigrationJob\Type;
 use Google\Rpc\Status;
 
 /**
  * Creates a new migration job in a given project and location.
  *
- * @param string $formattedParent         The parent which owns this collection of migration jobs. Please see
- *                                        {@see DataMigrationServiceClient::locationName()} for help formatting this field.
- * @param string $migrationJobId          The ID of the instance to create.
- * @param int    $migrationJobType        The migration job type.
- * @param string $migrationJobSource      The resource name (URI) of the source connection profile.
- * @param string $migrationJobDestination The resource name (URI) of the destination connection profile.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_migration_job_sample(
-    string $formattedParent,
-    string $migrationJobId,
-    int $migrationJobType,
-    string $migrationJobSource,
-    string $migrationJobDestination
-): void {
+function create_migration_job_sample(): void
+{
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
     // Prepare the request message.
-    $migrationJob = (new MigrationJob())
-        ->setType($migrationJobType)
-        ->setSource($migrationJobSource)
-        ->setDestination($migrationJobDestination);
-    $request = (new CreateMigrationJobRequest())
-        ->setParent($formattedParent)
-        ->setMigrationJobId($migrationJobId)
-        ->setMigrationJob($migrationJob);
+    $request = new CreateMigrationJobRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -79,31 +65,5 @@ function create_migration_job_sample(
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DataMigrationServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $migrationJobId = '[MIGRATION_JOB_ID]';
-    $migrationJobType = Type::TYPE_UNSPECIFIED;
-    $migrationJobSource = '[SOURCE]';
-    $migrationJobDestination = '[DESTINATION]';
-
-    create_migration_job_sample(
-        $formattedParent,
-        $migrationJobId,
-        $migrationJobType,
-        $migrationJobSource,
-        $migrationJobDestination
-    );
 }
 // [END datamigration_v1_generated_DataMigrationService_CreateMigrationJob_sync]

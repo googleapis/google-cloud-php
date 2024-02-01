@@ -66,8 +66,7 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent (project and location) where the Memberships will be
      *                       listed. Specified in the format `projects/&#42;/locations/*`.
-     *                       `projects/&#42;/locations/-` list memberships in all the regions. Please see
-     *                       {@see GkeHubClient::locationName()} for help formatting this field.
+     *                       `projects/&#42;/locations/-` list memberships in all the regions.
      *
      * @return \Google\Cloud\GkeHub\V1\ListMembershipsRequest
      *

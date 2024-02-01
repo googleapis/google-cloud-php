@@ -33,45 +33,24 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
  * If the function does not exist, this will return an empty set of
  * permissions, not a NOT_FOUND error.
  *
- * @param string $resource           REQUIRED: The resource for which the policy detail is being requested.
- *                                   See the operation documentation for the appropriate value for this field.
- * @param string $permissionsElement The set of permissions to check for the `resource`. Permissions with
- *                                   wildcards (such as '*' or 'storage.*') are not allowed. For more
- *                                   information see
- *                                   [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
- */
-function test_iam_permissions_sample(string $resource, string $permissionsElement): void
-{
-    // Create a client.
-    $cloudFunctionsServiceClient = new CloudFunctionsServiceClient();
-
-    // Prepare any non-scalar elements to be passed along with the request.
-    $permissions = [$permissionsElement,];
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var TestIamPermissionsResponse $response */
-        $response = $cloudFunctionsServiceClient->testIamPermissions($resource, $permissions);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
-}
-
-/**
- * Helper to execute the sample.
- *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function callSample(): void
+function test_iam_permissions_sample(): void
 {
-    $resource = '[RESOURCE]';
-    $permissionsElement = '[PERMISSIONS]';
+    // Create a client.
+    $cloudFunctionsServiceClient = new CloudFunctionsServiceClient();
 
-    test_iam_permissions_sample($resource, $permissionsElement);
+    // Call the API and handle any network failures.
+    try {
+        /** @var TestIamPermissionsResponse $response */
+        $response = $cloudFunctionsServiceClient->testIamPermissions();
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
 }
 // [END cloudfunctions_v1_generated_CloudFunctionsService_TestIamPermissions_sync]

@@ -32,25 +32,19 @@ use Google\Cloud\DiscoveryEngine\V1\ListDocumentsRequest;
 /**
  * Gets a list of [Document][google.cloud.discoveryengine.v1.Document]s.
  *
- * @param string $formattedParent The parent branch resource name, such as
- *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
- *                                Use `default_branch` as the branch ID, to list documents under the default
- *                                branch.
- *
- *                                If the caller does not have permission to list
- *                                [Document][google.cloud.discoveryengine.v1.Document]s under this branch,
- *                                regardless of whether or not this branch exists, a `PERMISSION_DENIED`
- *                                error is returned. Please see
- *                                {@see DocumentServiceClient::branchName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function list_documents_sample(string $formattedParent): void
+function list_documents_sample(): void
 {
     // Create a client.
     $documentServiceClient = new DocumentServiceClient();
 
     // Prepare the request message.
-    $request = (new ListDocumentsRequest())
-        ->setParent($formattedParent);
+    $request = new ListDocumentsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -64,26 +58,5 @@ function list_documents_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DocumentServiceClient::branchName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_STORE]',
-        '[BRANCH]'
-    );
-
-    list_documents_sample($formattedParent);
 }
 // [END discoveryengine_v1_generated_DocumentService_ListDocuments_sync]

@@ -33,21 +33,19 @@ use Google\Cloud\Iap\V1\IdentityAwareProxyClient;
  * by IAP. Requires that the brand for the project exists and that it is
  * set for internal-only use.
  *
- * @param string $parent Path to create the client in.
- *                       In the following format:
- *                       projects/{project_number/id}/brands/{brand}.
- *                       The project must belong to a G Suite account.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_identity_aware_proxy_client_sample(string $parent): void
+function create_identity_aware_proxy_client_sample(): void
 {
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
     // Prepare the request message.
-    $identityAwareProxyClient = new IdentityAwareProxyClient();
-    $request = (new CreateIdentityAwareProxyClientRequest())
-        ->setParent($parent)
-        ->setIdentityAwareProxyClient($identityAwareProxyClient);
+    $request = new CreateIdentityAwareProxyClientRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,21 +55,5 @@ function create_identity_aware_proxy_client_sample(string $parent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $parent = '[PARENT]';
-
-    create_identity_aware_proxy_client_sample($parent);
 }
 // [END iap_v1_generated_IdentityAwareProxyOAuthService_CreateIdentityAwareProxyClient_sync]

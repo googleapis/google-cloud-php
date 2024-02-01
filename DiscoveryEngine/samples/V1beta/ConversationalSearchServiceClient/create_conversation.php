@@ -34,20 +34,19 @@ use Google\Cloud\DiscoveryEngine\V1beta\CreateConversationRequest;
  * If the [Conversation][google.cloud.discoveryengine.v1beta.Conversation] to
  * create already exists, an ALREADY_EXISTS error is returned.
  *
- * @param string $formattedParent Full resource name of parent data store. Format:
- *                                `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
- *                                Please see {@see ConversationalSearchServiceClient::dataStoreName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function create_conversation_sample(string $formattedParent): void
+function create_conversation_sample(): void
 {
     // Create a client.
     $conversationalSearchServiceClient = new ConversationalSearchServiceClient();
 
     // Prepare the request message.
-    $conversation = new Conversation();
-    $request = (new CreateConversationRequest())
-        ->setParent($formattedParent)
-        ->setConversation($conversation);
+    $request = new CreateConversationRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -57,25 +56,5 @@ function create_conversation_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = ConversationalSearchServiceClient::dataStoreName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_STORE]'
-    );
-
-    create_conversation_sample($formattedParent);
 }
 // [END discoveryengine_v1beta_generated_ConversationalSearchService_CreateConversation_sync]

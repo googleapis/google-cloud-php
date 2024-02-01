@@ -12,9 +12,6 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*/branches/*}/documents',
                         'body' => 'document',
-                        'queryParams' => [
-                            'document_id',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -23,9 +20,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'document_id',
                 ],
             ],
             'DeleteDocument' => [

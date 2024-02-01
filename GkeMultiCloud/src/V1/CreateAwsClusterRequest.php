@@ -60,8 +60,7 @@ class CreateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *                                                                Location names are formatted as `projects/<project-id>/locations/<region>`.
      *
      *                                                                See [Resource Names](https://cloud.google.com/apis/design/resource_names)
-     *                                                                for more details on Google Cloud resource names. Please see
-     *                                                                {@see AwsClustersClient::locationName()} for help formatting this field.
+     *                                                                for more details on Google Cloud resource names.
      * @param \Google\Cloud\GkeMultiCloud\V1\AwsCluster $awsCluster   Required. The specification of the
      *                                                                [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to create.
      * @param string                                    $awsClusterId Required. A client provided ID the resource. Must be unique within the

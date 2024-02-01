@@ -14,9 +14,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'azure_client_id',
-                ],
             ],
             'CreateAzureCluster' => [
                 'method' => 'post',
@@ -29,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'azure_cluster_id',
-                ],
             ],
             'CreateAzureNodePool' => [
                 'method' => 'post',
@@ -43,9 +37,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'azure_node_pool_id',
                 ],
             ],
             'DeleteAzureClient' => [
@@ -215,9 +206,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
-                ],
             ],
             'UpdateAzureNodePool' => [
                 'method' => 'patch',
@@ -230,9 +218,6 @@ return [
                             'getName',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'update_mask',
                 ],
             ],
         ],

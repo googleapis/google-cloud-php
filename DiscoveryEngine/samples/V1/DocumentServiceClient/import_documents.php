@@ -39,19 +39,19 @@ use Google\Rpc\Status;
  * [Document][google.cloud.discoveryengine.v1.Document]s to be successfully
  * updated.
  *
- * @param string $formattedParent The parent branch resource name, such as
- *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
- *                                Requires create/update permission. Please see
- *                                {@see DocumentServiceClient::branchName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function import_documents_sample(string $formattedParent): void
+function import_documents_sample(): void
 {
     // Create a client.
     $documentServiceClient = new DocumentServiceClient();
 
     // Prepare the request message.
-    $request = (new ImportDocumentsRequest())
-        ->setParent($formattedParent);
+    $request = new ImportDocumentsRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -71,26 +71,5 @@ function import_documents_sample(string $formattedParent): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedParent = DocumentServiceClient::branchName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[DATA_STORE]',
-        '[BRANCH]'
-    );
-
-    import_documents_sample($formattedParent);
 }
 // [END discoveryengine_v1_generated_DocumentService_ImportDocuments_sync]

@@ -40,24 +40,19 @@ use Google\Rpc\Status;
  * [Operation][google.longrunning.Operation] resource that can be
  * described to track the status of the operation.
  *
- * @param string $formattedName The resource name the
- *                              [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] to delete.
- *
- *                              `AzureCluster` names are formatted as
- *                              `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
- *
- *                              See [Resource Names](https://cloud.google.com/apis/design/resource_names)
- *                              for more details on Google Cloud Platform resource names. Please see
- *                              {@see AzureClustersClient::azureClusterName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function delete_azure_cluster_sample(string $formattedName): void
+function delete_azure_cluster_sample(): void
 {
     // Create a client.
     $azureClustersClient = new AzureClustersClient();
 
     // Prepare the request message.
-    $request = (new DeleteAzureClusterRequest())
-        ->setName($formattedName);
+    $request = new DeleteAzureClusterRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -75,25 +70,5 @@ function delete_azure_cluster_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = AzureClustersClient::azureClusterName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AZURE_CLUSTER]'
-    );
-
-    delete_azure_cluster_sample($formattedName);
 }
 // [END gkemulticloud_v1_generated_AzureClusters_DeleteAzureCluster_sync]

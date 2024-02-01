@@ -23,8 +23,7 @@ class GetProviderRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The name of the provider to get. Please see
-     *                     {@see EventarcClient::providerName()} for help formatting this field.
+     * @param string $name Required. The name of the provider to get.
      *
      * @return \Google\Cloud\Eventarc\V1\GetProviderRequest
      *

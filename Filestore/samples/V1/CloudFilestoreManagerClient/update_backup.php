@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Filestore\V1\Backup;
 use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
 use Google\Cloud\Filestore\V1\UpdateBackupRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -46,11 +45,7 @@ function update_backup_sample(): void
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
     // Prepare the request message.
-    $backup = new Backup();
-    $updateMask = new FieldMask();
-    $request = (new UpdateBackupRequest())
-        ->setBackup($backup)
-        ->setUpdateMask($updateMask);
+    $request = new UpdateBackupRequest();
 
     // Call the API and handle any network failures.
     try {

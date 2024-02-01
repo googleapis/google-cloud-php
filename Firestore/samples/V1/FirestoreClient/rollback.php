@@ -30,19 +30,19 @@ use Google\Cloud\Firestore\V1\RollbackRequest;
 /**
  * Rolls back a transaction.
  *
- * @param string $database    The database name. In the format:
- *                            `projects/{project_id}/databases/{database_id}`.
- * @param string $transaction The transaction to roll back.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function rollback_sample(string $database, string $transaction): void
+function rollback_sample(): void
 {
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
     // Prepare the request message.
-    $request = (new RollbackRequest())
-        ->setDatabase($database)
-        ->setTransaction($transaction);
+    $request = new RollbackRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -51,22 +51,5 @@ function rollback_sample(string $database, string $transaction): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $database = '[DATABASE]';
-    $transaction = '...';
-
-    rollback_sample($database, $transaction);
 }
 // [END firestore_v1_generated_Firestore_Rollback_sync]

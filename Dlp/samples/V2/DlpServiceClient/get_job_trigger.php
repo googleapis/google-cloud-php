@@ -32,18 +32,19 @@ use Google\Cloud\Dlp\V2\JobTrigger;
  * Gets a job trigger.
  * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
  *
- * @param string $formattedName Resource name of the project and the triggeredJob, for example
- *                              `projects/dlp-test-project/jobTriggers/53234423`. Please see
- *                              {@see DlpServiceClient::jobTriggerName()} for help formatting this field.
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function get_job_trigger_sample(string $formattedName): void
+function get_job_trigger_sample(): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new GetJobTriggerRequest())
-        ->setName($formattedName);
+    $request = new GetJobTriggerRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -53,21 +54,5 @@ function get_job_trigger_sample(string $formattedName): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $formattedName = DlpServiceClient::jobTriggerName('[PROJECT]', '[JOB_TRIGGER]');
-
-    get_job_trigger_sample($formattedName);
 }
 // [END dlp_v2_generated_DlpService_GetJobTrigger_sync]

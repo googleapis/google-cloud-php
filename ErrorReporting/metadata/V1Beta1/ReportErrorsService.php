@@ -22,21 +22,21 @@ class ReportErrorsService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ï
-Ggoogle/devtools/clouderrorreporting/v1beta1/report_errors_service.proto+google.devtools.clouderrorreporting.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto8google/devtools/clouderrorreporting/v1beta1/common.protogoogle/protobuf/timestamp.proto"π
-ReportErrorEventRequestI
-project_name (	B3‡A˙A-
-+cloudresourcemanager.googleapis.com/ProjectS
-event (2?.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEventB‡A"
-ReportErrorEventResponse"ã
-ReportedErrorEvent3
+õ
+Ggoogle/devtools/clouderrorreporting/v1beta1/report_errors_service.proto+google.devtools.clouderrorreporting.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto8google/devtools/clouderrorreporting/v1beta1/common.protogoogle/protobuf/timestamp.proto"ª
+ReportErrorEventRequestJ
+project_name (	B4‚A˙A-
++cloudresourcemanager.googleapis.com/ProjectT
+event (2?.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEventB‚A"
+ReportErrorEventResponse"è
+ReportedErrorEvent4
 
-event_time (2.google.protobuf.TimestampB‡AY
-service_context (2;.google.devtools.clouderrorreporting.v1beta1.ServiceContextB‡A
-message (	B‡AO
-context (29.google.devtools.clouderrorreporting.v1beta1.ErrorContextB‡A2Â
+event_time (2.google.protobuf.TimestampB‚AZ
+service_context (2;.google.devtools.clouderrorreporting.v1beta1.ServiceContextB‚A
+message (	B‚AP
+context (29.google.devtools.clouderrorreporting.v1beta1.ErrorContextB‚A2Â
 ReportErrorsServiceı
-ReportErrorEventD.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequestE.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse"TÇ”‰ì9"0/v1beta1/{project_name=projects/*}/events:report:event⁄Aproject_name,eventV A"clouderrorreporting.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBñ
+ReportErrorEventD.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequestE.google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse"T⁄Aproject_name,eventÇ”‰ì9"0/v1beta1/{project_name=projects/*}/events:report:eventV A"clouderrorreporting.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBñ
 /com.google.devtools.clouderrorreporting.v1beta1BReportErrorsServiceProtoPZOcloud.google.com/go/errorreporting/apiv1beta1/errorreportingpb;errorreportingpb¯™#Google.Cloud.ErrorReporting.V1Beta1 #Google\\Cloud\\ErrorReporting\\V1beta1Í&Google::Cloud::ErrorReporting::V1beta1bproto3'
         , true);
 

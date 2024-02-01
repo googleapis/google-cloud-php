@@ -42,8 +42,7 @@ class CreateTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $parent            Required. Google Cloud Project ID and location.
      *                                                                In the following format:
-     *                                                                `projects/{project_number/id}/iap_tunnel/locations/{location}`. Please see
-     *                                                                {@see IdentityAwareProxyAdminServiceClient::tunnelLocationName()} for help formatting this field.
+     *                                                                `projects/{project_number/id}/iap_tunnel/locations/{location}`.
      * @param \Google\Cloud\Iap\V1\TunnelDestGroup $tunnelDestGroup   Required. The TunnelDestGroup to create.
      * @param string                               $tunnelDestGroupId Required. The ID to use for the TunnelDestGroup, which becomes the final
      *                                                                component of the resource name.
